@@ -33,6 +33,8 @@ jobs:
       MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
       BLUESKY_HANDLE: ${{ vars.BLUESKY_HANDLE }}
       BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+      # Static subscriber gate (no Cloudflare): encrypts per-subscriber early feeds.
+      STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
       # Cloudflare KV sync (Secrets). If unset, KV steps no-op and the run still
       # produces the public page from whatever is committed (manual fallback).
       CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
@@ -85,6 +87,14 @@ jobs:
             echo "No CF secrets set; skipping KV push (manual fallback)."
           fi
 
+      # Encrypt today's embargoed feed per active subscriber to a static path
+      # (docs/edge/<hash>.json). No Cloudflare/KV; the browser decrypts with the
+      # subscriber's press credential. Skipped if no Stripe key is set.
+      - name: Publish subscriber feeds
+        shell: bash
+        run: |
+          if [ -n "$STRIPE_SECRET_KEY" ]; then node scripts/publish_edge.mjs; else echo "no STRIPE_SECRET_KEY; skipping subscriber feeds"; fi
+
       # Syndicate the day's call to free channels. Best-effort: any channel
       # without its secret set is skipped, and a failed post never fails the run.
       - name: Syndicate
@@ -126,7 +136,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/predictions.json data/pulse.json docs/index.html docs/feed.xml docs/sitemap.xml
+          git add -A docs data/predictions.json data/pulse.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

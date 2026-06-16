@@ -198,6 +198,25 @@
     .sx.alt:hover { background: var(--ink-soft); color: var(--paper); border-color: var(--ink-soft); }
     .acct-entry { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
     .cred-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+
+    /* account modal (fully client-side; the credential lives in the browser) */
+    .am-overlay { display: none; position: fixed; inset: 0; z-index: 50; background: rgba(10,11,16,0.78); padding: 20px; overflow-y: auto; }
+    .am-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .am-panel { position: relative; background: var(--paper); color: var(--ink); max-width: 520px; width: 100%; margin: 40px auto; padding: 30px 30px 34px;
+      background-image: radial-gradient(circle 3.4px, var(--desk) 96%, transparent 100%), radial-gradient(circle 3.4px, var(--desk) 96%, transparent 100%);
+      background-size: 22px 22px, 22px 22px; background-position: 12px 16px, calc(100% - 12px) 16px; background-repeat: repeat-y, repeat-y;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
+    .am-x { position: absolute; top: 12px; right: 16px; background: none; border: none; font-family: var(--mono); font-size: 18px; color: var(--ink-soft); cursor: pointer; }
+    .am-body { padding: 0 12px; }
+    .am-body .band { margin-bottom: 14px; }
+    .am-cred { font-size: clamp(18px, 4.6vw, 26px); font-weight: 700; letter-spacing: 0.08em; border: 2px dashed var(--ink); padding: 16px; text-align: center; margin: 6px 0 12px; word-break: break-word; }
+    .am-body p { font-size: 13px; line-height: 1.6; color: #3b3a30; }
+    .am-body input { width: 100%; font-family: var(--mono); font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; padding: 13px; border: 1.5px solid var(--ink); background: #fff; color: var(--ink); margin: 8px 0 14px; }
+    .am-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .am-feed { margin-top: 6px; }
+    .am-call { padding: 12px 0; border-bottom: 1.5px dashed var(--rule); }
+    .am-call .meta { font-size: 11px; color: var(--ink-soft); letter-spacing: 0.08em; }
+    .am-call p { font-size: 15px; margin: 6px 0; color: var(--ink); }
     .book-spark .ph-bar { background: #2f6f4f; opacity: 0.8; }
     .book-spark .ph-bar:last-child { background: var(--stamp); opacity: 1; }
     .entry.st-miss { opacity: 0.9; }
@@ -330,12 +349,10 @@
               </div>
               <div class="barcode" aria-hidden="true"></div>
               <div class="barcode-no">SGNL // PUBLIC RECORD // {{ total }} ON FILE</div>
-              {% if early_access_url and early_access_url != "#" %}
               <div class="acct-entry">
-                <a class="sx" href="{{ early_access_url }}new" rel="noopener">[ GET A FREE PRESS CREDENTIAL ]</a>
-                <a class="sx alt" href="{{ early_access_url }}" rel="noopener">[ SIGN IN ]</a>
+                <button class="sx" type="button" data-acct="new">[ GET A FREE PRESS CREDENTIAL ]</button>
+                <button class="sx alt" type="button" data-acct="early">[ EARLY FEED ]</button>
               </div>
-              {% endif %}
             </header>
 
             <div class="perf" aria-hidden="true"></div>
@@ -463,15 +480,13 @@
               <p class="coupon-p">Every call prints here for free, dated and on the record. Subscribers get each call {{ reveal_delay_days }} {{ delay_word }} earlier, while the lead still pays. The ledger below is the proof. The lead time is the product.</p>
               <div class="coupon-row">
                 <div class="price">15 USD <span>/ MONTH</span></div>
-                <a class="sub" href="{{ payment_link }}" rel="noopener">SUBSCRIBE FOR THE {{ reveal_delay_days }}-{{ delay_word }} LEAD</a>
+                <a class="sub" href="{{ payment_link }}" data-acct="subscribe" data-link="{{ payment_link }}" rel="noopener">SUBSCRIBE FOR THE {{ reveal_delay_days }}-{{ delay_word }} LEAD</a>
               </div>
-              {% if early_access_url and early_access_url != "#" %}
               <div class="cred-actions">
-                <a class="sub-2" href="{{ early_access_url }}new" rel="noopener">[ CREATE A FREE PRESS CREDENTIAL ]</a>
-                <a class="sub-2" href="{{ early_access_url }}" rel="noopener">[ ENTER YOURS ]</a>
+                <button class="sub-2" type="button" data-acct="new">[ CREATE A FREE PRESS CREDENTIAL ]</button>
+                <button class="sub-2" type="button" data-acct="early">[ ENTER &amp; UNLOCK ]</button>
               </div>
-              {% endif %}
-              <div class="coupon-cred">NO EMAIL. NO PASSWORD. ANYONE CAN MINT A <b>PRESS CREDENTIAL</b> (LIKE RIBBON-COPPER-VECTOR-7F3A) FOR FREE, AND THAT CODE IS YOUR ACCOUNT. SUBSCRIBING UPGRADES THE SAME CREDENTIAL IN PLACE TO UNLOCK THE EARLY FEED.</div>
+              <div class="coupon-cred">NO EMAIL. NO PASSWORD. ANYONE CAN MINT A <b>PRESS CREDENTIAL</b> (LIKE RIBBON-COPPER-VECTOR-7F3A) FOR FREE, AND THAT CODE IS YOUR ACCOUNT. IT LIVES IN YOUR BROWSER, NOT ON A SERVER. SUBSCRIBING LINKS IT TO YOUR PLAN AND UNLOCKS THE EARLY FEED.</div>
               <div class="coupon-fine">SECURE CHECKOUT BY STRIPE.{% if portal_url and portal_url != "#" %} CANCEL VIA <a href="{{ portal_url }}" rel="noopener">CUSTOMER PORTAL</a>.{% else %} CANCEL ANYTIME FROM YOUR STRIPE RECEIPT.{% endif %}</div>
             </section>
 
@@ -554,6 +569,10 @@
         </div>
       </aside>
     </div>
+  </div>
+
+  <div class="am-overlay" id="acct-modal" role="dialog" aria-modal="true" aria-label="Press credential">
+    <div class="am-panel"><button class="am-x" type="button" data-close aria-label="Close">[ X ]</button><div class="am-body"></div></div>
   </div>
 
   <script>
@@ -764,6 +783,89 @@
     })();
 
     // ----------------------------------------------------------------------
+    // Accounts: a PRESS CREDENTIAL is the account. Free credentials are minted
+    // and stored entirely in the browser (no server). Premium unlock fetches a
+    // static per-subscriber file published by the daily Action at an unguessable
+    // path (edge/<sha256(credential)>.json) -- no Cloudflare, no database.
+    // ----------------------------------------------------------------------
+    (function () {
+      var KEY = "signal_cred";
+      var WORDS = ["RIBBON","PLATEN","SPROCKET","COPPER","VECTOR","CIPHER","BEACON","EMBER","QUARTZ","PISTON","LANTERN","MARGIN","FOLIO","GALLEY","STYLUS","CARBON","TUNGSTEN","RELAY","DELTA","OXIDE","PRISM","ANVIL","COBALT","FERRITE","GASKET","HALIDE","INDIGO","JUNCTION","KELVIN","LUMEN","MAGNET","NICKEL","ONYX","PHOSPHOR","QUASAR","ROTOR","SOLDER","TELEX","ULTRA","VOLT","WAFER","XENON","YOKE","ZINC","ASHEN","BRASS","CEDAR","DRIFT"];
+      function hx(b) { return [].map.call(b, function (x) { return ("0" + x.toString(16)).slice(-2); }).join(""); }
+      function rand() { var b = new Uint8Array(8); crypto.getRandomValues(b); var h = hx(b); var w = []; for (var i = 0; i < 3; i++) w.push(WORDS[parseInt(h.substr(i * 2, 2), 16) % WORDS.length]); return w.join("-") + "-" + h.substr(12, 4).toUpperCase(); }
+      function norm(s) { return (s || "").toUpperCase().replace(/[^A-Z0-9]+/g, "-").replace(/^-+|-+$/g, ""); }
+      function getCred() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+      function setCred(c) { try { localStorage.setItem(KEY, c); } catch (e) {} }
+      async function sha(s) { var b = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s)); return hx(new Uint8Array(b)); }
+      function b64d(s) { var bin = atob(s), b = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) b[i] = bin.charCodeAt(i); return b; }
+      async function decryptBlob(cred, o) {
+        var base = await crypto.subtle.importKey("raw", new TextEncoder().encode(cred), "PBKDF2", false, ["deriveKey"]);
+        var key = await crypto.subtle.deriveKey({ name: "PBKDF2", salt: b64d(o.salt), iterations: 100000, hash: "SHA-256" }, base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+        var pt = await crypto.subtle.decrypt({ name: "AES-GCM", iv: b64d(o.iv) }, key, b64d(o.ct));
+        return JSON.parse(new TextDecoder().decode(pt));
+      }
+      function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
+
+      var modal = $id("acct-modal"), body = modal.querySelector(".am-body");
+      function open(h) { body.innerHTML = h; modal.classList.add("open"); }
+      function close() { modal.classList.remove("open"); }
+
+      function viewNew() {
+        var c = getCred() || rand(); setCred(c);
+        open('<div class="band">YOUR PRESS CREDENTIAL</div><div class="am-cred">' + esc(c) + '</div>' +
+          '<p><b>This is your account.</b> It lives in this browser, not on a server. Copy it somewhere safe; it is the only key, and there is no email or password to recover it.</p>' +
+          '<div class="am-row"><button class="sx" type="button" data-cp="' + esc(c) + '">[ COPY ]</button><button class="sx alt" type="button" data-pass="1">[ SAVE AS PRESS PASS ]</button><button class="sx alt" type="button" data-close>[ DONE ]</button></div>');
+      }
+      function viewEarly() {
+        var c = getCred() || "";
+        open('<div class="band">SUBSCRIBER EARLY FEED</div><p>Enter your press credential to unlock today\'s embargoed calls, ahead of the public record.</p>' +
+          '<input id="am-in" value="' + esc(c) + '" placeholder="RIBBON-COPPER-VECTOR-7F3A" autocomplete="off" autocapitalize="characters" spellcheck="false">' +
+          '<div class="am-row"><button class="sx" type="button" data-go="early">[ UNLOCK ]</button><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
+      }
+      async function doEarly(input) {
+        var c = norm(input); if (!c) return; setCred(c);
+        open('<div class="band">UNLOCKING</div><p>Checking the press for ' + esc(c) + ' ...</p>');
+        var h = await sha(c), payload = null;
+        try { var r = await fetch("edge/" + h + ".json", { cache: "no-store" }); if (r.ok) { payload = await decryptBlob(c, await r.json()); } } catch (e) {}
+        if (payload && payload.predictions && payload.predictions.length) {
+          var feed = payload.predictions.map(function (p) { return '<div class="am-call"><div class="meta">CALLED ' + esc(p.date) + " // PUBLIC " + esc(p.public_reveal_date) + '</div><p>' + esc(p.prediction_text) + '</p><a class="soft" href="' + esc(p.source_url) + '" rel="noopener">source</a></div>'; }).join("");
+          open('<div class="band">EARLY FEED // ' + payload.predictions.length + ' AHEAD OF THE RECORD</div><div class="am-feed">' + feed + '</div><div class="am-row" style="margin-top:14px"><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
+        } else {
+          open('<div class="band">NO ACTIVE EARLY FEED</div><p>No feed is published for that credential. If you just subscribed, it appears on the next daily run. Otherwise, subscribe to unlock, then unlock here with the same credential.</p>' +
+            '<div class="am-row"><a class="sx" href="{{ payment_link }}" data-acct="subscribe" data-link="{{ payment_link }}" rel="noopener">[ SUBSCRIBE ]</a><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
+        }
+      }
+      function subscribe(link) {
+        var c = getCred(); if (!c) { c = rand(); setCred(c); }
+        var u = link + (link.indexOf("?") >= 0 ? "&" : "?") + "client_reference_id=" + encodeURIComponent(c);
+        window.open(u, "_blank", "noopener");
+        open('<div class="band">CHECKOUT OPENED</div><div class="am-cred">' + esc(c) + '</div><p>Your credential is linked to this checkout. After payment it unlocks the early feed within a day. <b>Save this code</b> -- it is your account.</p><div class="am-row"><button class="sx" type="button" data-cp="' + esc(c) + '">[ COPY ]</button><button class="sx alt" type="button" data-close>[ DONE ]</button></div>');
+      }
+      function pressPass() {
+        var c = getCred(); if (!c) { c = rand(); setCred(c); }
+        if (window.__signalCard) { window.__signalCard({ headline: c, dm: true, kicker: "PRESS CREDENTIAL // ADMIT ONE", sub: "THE SIGNAL // KEEP THIS PRIVATE", stamp: "PRESS PASS" }, "My SIGNAL press credential."); }
+      }
+
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest("[data-acct]");
+        if (a) {
+          var k = a.getAttribute("data-acct");
+          if (k === "subscribe") { e.preventDefault(); subscribe(a.getAttribute("data-link") || "{{ payment_link }}"); return; }
+          e.preventDefault();
+          if (k === "new") viewNew(); else if (k === "early") viewEarly();
+          return;
+        }
+        if (e.target.closest("[data-close]")) { close(); return; }
+        var go = e.target.closest("[data-go]");
+        if (go) { e.preventDefault(); if (go.getAttribute("data-go") === "early") doEarly(($id("am-in") || {}).value || ""); return; }
+        var cp = e.target.closest("[data-cp]");
+        if (cp) { e.preventDefault(); navigator.clipboard.writeText(cp.getAttribute("data-cp")).then(function () { var p = cp.textContent; cp.textContent = "[ COPIED ]"; setTimeout(function () { cp.textContent = p; }, 1400); }); return; }
+        if (e.target.closest("[data-pass]")) { e.preventDefault(); pressPass(); return; }
+        if (e.target === modal) close();
+      });
+    })();
+
+    // ----------------------------------------------------------------------
     // Sharing: native share / X intent / copy, plus on-brand PNG cards drawn
     // to canvas so every call and stat is screenshot-ready.
     // ----------------------------------------------------------------------
@@ -838,6 +940,7 @@
           var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "the-signal.png"; document.body.appendChild(a); a.click(); a.remove();
         });
       }
+      window.__signalCard = function (o, text) { out(card(o), text || SITE); };
       function entryData(li) {
         return {
           url: SITE + "#" + li.id,

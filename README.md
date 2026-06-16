@@ -139,7 +139,37 @@ for public URLs; **Secrets** are for the Cloudflare token.
 
 ---
 
-## The paid tier (Stripe + Cloudflare Worker)
+## Accounts + the paid tier
+
+### Accounts are a PRESS CREDENTIAL, and they need no server
+
+The account is a credential like `RIBBON-COPPER-VECTOR-7F3A`. There is no email,
+username, or password.
+
+- **Free accounts are 100% client-side.** "Get a free press credential" mints a
+  high-entropy credential in the browser with `crypto.getRandomValues` and stores
+  it in `localStorage`. Nothing is sent anywhere. The credential is the identity.
+- **Premium (early feed) needs no Cloudflare and no database** either. The daily
+  GitHub Action (which already runs, and can hold the Stripe key as a secret)
+  encrypts today's embargoed payload **once per active subscriber** with a key
+  derived from that subscriber's credential (PBKDF2 → AES-256-GCM) and writes it
+  to a static path `docs/edge/<sha256(credential)>.json`. The file is committed to
+  the public repo but is **ciphertext** — only the credential holder can decrypt
+  it, in the browser, with Web Crypto. Cancel a subscription and the Action stops
+  publishing that file → access is revoked on the next daily run.
+
+How a credential gets linked to a subscription: the site's Subscribe button
+appends `?client_reference_id=<credential>` to the Stripe Payment Link, so the
+checkout (and thus `scripts/publish_edge.mjs`, which lists active subscriptions)
+knows which credential to encrypt for. To enable: set `STRIPE_SECRET_KEY` as a
+repo **Secret**. That's the only requirement — no Cloudflare account at all.
+
+Tradeoffs: revocation is daily (not instant), and a subscriber who shares their
+credential shares their access. Both are fine for a daily $15 edge. The Cloudflare
+Worker below remains as an **optional** alternative if you ever want real-time
+gating; it is not required.
+
+## The paid tier (optional Cloudflare Worker alternative)
 
 ### Gating approach chosen: serverless function (Cloudflare Worker + KV)
 
