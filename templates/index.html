@@ -190,16 +190,42 @@
     .winif .res-hit { color: #2f6f4f; font-weight: 700; } .winif .res-miss { color: var(--stamp); font-weight: 700; }
     .odds { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); }
 
-    /* the live floor */
-    .fl-list { font-size: 12px; line-height: 1.5; min-height: 170px; }
+    /* the live floor / pit */
+    .ticker { overflow: hidden; border: 1.5px solid var(--rule); background: var(--bar); height: 32px; margin-bottom: 14px; position: relative; }
+    .ticker-track { position: absolute; white-space: nowrap; line-height: 32px; font-size: 12.5px; will-change: transform; animation: tick 30s linear infinite; }
+    @keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    .ticker .sym { color: var(--ink); font-weight: 700; margin: 0 7px 0 22px; }
+    .ticker .up { color: #2f6f4f; } .ticker .down { color: var(--stamp); }
+    .wallet { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 14px; }
+    .wallet b { font-size: 19px; color: var(--ink); font-weight: 700; margin-left: 4px; }
+    #w-open.up { color: #2f6f4f; } #w-open.down { color: var(--stamp); }
+    .board { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 6px; }
+    .tile { position: relative; text-align: left; background: var(--bar); border: 1.5px solid var(--rule); padding: 13px; cursor: pointer; font-family: var(--mono); color: var(--ink); transition: border-color 0.12s; }
+    .tile:hover { border-color: var(--ink); }
+    .tile-kw { font-weight: 700; font-size: 16px; letter-spacing: 0.03em; }
+    .tile-mkt { font-size: 9.5px; letter-spacing: 0.12em; color: var(--ink-soft); margin: 2px 0 8px; }
+    .tile-line { font-size: 28px; font-weight: 700; line-height: 1; }
+    .tile-act { position: absolute; top: 11px; right: 11px; font-size: 9px; letter-spacing: 0.1em; color: var(--ink-soft); border: 1px solid var(--rule); padding: 1px 6px; }
+    .tile-spark { display: block; width: 100%; height: 26px; margin-top: 8px; }
+    .tile.flash-up { animation: fup 0.7s ease; } .tile.flash-down { animation: fdn 0.7s ease; }
+    @keyframes fup { from { background: rgba(47,111,79,0.30); } to { background: var(--bar); } }
+    @keyframes fdn { from { background: rgba(178,58,46,0.30); } to { background: var(--bar); } }
+    .myrow { display: flex; align-items: center; gap: 9px; flex-wrap: wrap; font-size: 12px; padding: 9px 0; border-bottom: 1px dashed var(--rule); }
+    .myrow .side { font-weight: 700; } .myrow .side.tail { color: #2f6f4f; } .myrow .side.fade { color: var(--stamp); }
+    .myrow .soft { color: var(--ink-soft); font-size: 11px; }
+    .myrow .mpnl { font-weight: 700; } .myrow .mpnl.up { color: #2f6f4f; } .myrow .mpnl.down { color: var(--stamp); }
+    .myrow button { margin-left: auto; }
+    .tape { font-size: 11px; line-height: 1.5; max-height: 132px; overflow: hidden; margin-top: 12px; }
     .fl-row { padding: 5px 0; border-bottom: 1px dashed var(--rule); }
     .fl-row:first-child { animation: flin 0.5s ease; }
     @keyframes flin { from { background: rgba(110,224,122,0.18); } to { background: transparent; } }
     .fl-t { color: var(--ink-soft); font-size: 10.5px; margin-right: 8px; }
     .fl-row b { color: var(--ink); }
-    .fl-unreal.up { color: #2f6f4f; } .fl-unreal.down { color: var(--stamp); }
     .mkt { font-size: 9.5px; letter-spacing: 0.1em; color: var(--ink-soft); border: 1px solid var(--rule); padding: 0 5px; border-radius: 3px; }
-    @media (prefers-reduced-motion: reduce) { .fl-row:first-child { animation: none; } }
+    .sx.sel { background: var(--ink); color: var(--paper); }
+    .am-body input[type=range] { accent-color: #2f6f4f; padding: 0; margin: 10px 0 16px; }
+    @media (max-width: 520px) { .board { grid-template-columns: 1fr; } }
+    @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } .tile.flash-up, .tile.flash-down, .fl-row:first-child { animation: none; } }
 
     /* sharing */
     .sharebar { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
@@ -411,10 +437,20 @@
 
             <div class="perf" aria-hidden="true"></div>
 
-            <section class="floor" aria-label="Live betting floor">
-              <div class="band">THE FLOOR / LIVE // <span id="floor-unreal" class="fl-unreal">0.0u</span> UNREALIZED</div>
-              <div class="fl-list" id="floor"></div>
-              <div class="seismo-lbl">THE DESK MARKS ITS OPEN POSITIONS AGAINST THE LIVE FEEDS, AROUND THE CLOCK</div>
+            <section class="floor" aria-label="Live betting pit">
+              <div class="band">THE FLOOR / LIVE PIT // TAIL OR FADE THE ENGINE</div>
+              <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
+              <div class="wallet">
+                <span>CHIPS<b id="w-bal">1000</b></span>
+                <span>EXPOSURE<b id="w-exp">0</b></span>
+                <span>OPEN P&amp;L<b id="w-open" class="up">+0</b></span>
+                <button class="sx alt" type="button" id="w-reset">[ RESET CHIPS ]</button>
+              </div>
+              <div class="board" id="board"></div>
+              <div id="myhdr"></div>
+              <div class="mypos" id="mypos"></div>
+              <div class="tape" id="floor"></div>
+              <div class="seismo-lbl">PAPER CHIPS, FOR FUN. THE LINES MOVE LIVE. TAP A TILE TO TRADE, CASH OUT ANYTIME.</div>
             </section>
 
             <div class="perf" aria-hidden="true"></div>
@@ -595,6 +631,10 @@
     <div class="am-panel"><button class="am-x" type="button" data-close aria-label="Close">[ X ]</button><div class="am-body"></div></div>
   </div>
 
+  <div class="am-overlay" id="bet-modal" role="dialog" aria-modal="true" aria-label="Place a trade">
+    <div class="am-panel"><button class="am-x" type="button" data-betclose aria-label="Close">[ X ]</button><div class="am-body" id="bet-body"></div></div>
+  </div>
+
   <script>
     function $id(id){ return document.getElementById(id); }
     function setText(id, t){ var e = $id(id); if (e) e.textContent = t; }
@@ -663,37 +703,119 @@
       step(); if (!REDUCE) setInterval(step, 60);
     })();
 
-    // ---- THE FLOOR: continuous live betting activity, always something moving ----
+    // ---- THE FLOOR: an interactive live betting pit. Paper chips, client-side,
+    // persisted in localStorage. Tail or fade the engine; the lines move live. ----
     (function () {
-      var host = $id("floor"); if (!host) return;
-      var bets = ((typeof __FLOOR !== "undefined" && __FLOOR) || []).map(function (b) {
-        var ln = parseFloat(b.odds) || 1.6; return { kw: b.kw, market: b.market, line: ln, entry: ln };
-      });
-      var lines = [];
+      var board = $id("board"); if (!board) return;
+      function lj(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+      function sj(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
       function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
       function tnow() { var d = new Date(); return pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()); }
       function rnd(a, b) { return a + Math.random() * (b - a); }
-      function pick() { return bets.length ? bets[Math.floor(Math.random() * bets.length)] : null; }
-      function paint() { host.innerHTML = lines.map(function (l) { return '<div class="fl-row"><span class="fl-t">' + l.t + "</span> " + l.m + "</div>"; }).join(""); }
-      function push(m) { lines.unshift({ t: tnow(), m: m }); lines = lines.slice(0, 14); paint(); }
-      function setUnreal() {
-        var u = 0; bets.forEach(function (x) { u += (x.entry - x.line) / x.entry * 100; });
-        var el = $id("floor-unreal"), sign = u >= 0 ? "+" : "";
-        if (el) { el.textContent = sign + u.toFixed(1) + "u"; el.className = "fl-unreal " + (u >= 0 ? "up" : "down"); }
-        return sign + u.toFixed(1) + "u";
+
+      var bets = ((typeof __FLOOR !== "undefined" && __FLOOR) || []).map(function (b) {
+        var ln = parseFloat(b.odds) || 1.6; return { kw: b.kw, market: b.market, line: ln, prev: ln, hist: [ln] };
+      });
+      if (!bets.length) bets = [{ kw: "signal", market: "RESURFACE", line: 1.6, prev: 1.6, hist: [1.6] }];
+      var W = lj("signal_wallet", { bal: 1000, realized: 0 });
+      var POS = lj("signal_pos", []);
+      var tape = [];
+
+      function betByKw(kw) { for (var i = 0; i < bets.length; i++) if (bets[i].kw === kw) return bets[i]; return null; }
+      function posPnl(p) { var b = betByKw(p.kw), line = b ? b.line : p.entry; var raw = p.side === "TAIL" ? p.stake * (p.entry / line - 1) : p.stake * (line / p.entry - 1); return Math.max(-p.stake, raw); }
+      function exposure() { var s = 0; POS.forEach(function (p) { s += p.stake; }); return s; }
+      function openPnl() { var s = 0; POS.forEach(function (p) { s += posPnl(p); }); return s; }
+
+      function buildBoard() {
+        board.innerHTML = bets.map(function (b, i) {
+          return '<button class="tile" type="button" data-i="' + i + '"><span class="tile-act">TAIL / FADE</span><div class="tile-kw">' + esc(b.kw.toUpperCase()) + '</div><div class="tile-mkt">' + esc(b.market) + '</div><div class="tile-line" id="line-' + i + '">' + b.line.toFixed(2) + 'x</div><canvas class="tile-spark" id="spark-' + i + '"></canvas></button>';
+        }).join("");
+        bets.forEach(function (_, i) { drawSpark(i); });
       }
-      function gen() {
-        var r = Math.random(), b = pick();
-        if (b && r < 0.42) { var old = b.line, dir = Math.random() < 0.5 ? -1 : 1; b.line = Math.max(1.05, Math.min(4, b.line + rnd(0.01, 0.06) * dir)); return "LINE // <b>" + esc(b.kw) + "</b> " + old.toFixed(2) + "x -> " + b.line.toFixed(2) + "x " + (dir < 0 ? "(heating)" : "(cooling)"); }
-        if (r < 0.6) { return "SWEEP // 6 feeds // " + Math.floor(rnd(80, 170)) + " signals in play"; }
-        if (b && r < 0.76) { var v = setUnreal(); return "MARK TO MARKET // <b>" + v + "</b> across " + bets.length + " open"; }
-        if (b && r < 0.9) { return "HOLDING // " + esc(b.market) + " on <b>" + esc(b.kw) + "</b> @ " + b.line.toFixed(2) + "x"; }
-        var w = pick(); return "FEELER // 0.5u on <b>" + esc((w && w.kw) || "signal") + "</b> @ " + rnd(1.4, 2.6).toFixed(2) + "x";
+      function drawSpark(i) {
+        var b = bets[i], cv = $id("spark-" + i); if (!cv) return;
+        var dpr = Math.min(2, window.devicePixelRatio || 1), w = cv.clientWidth || 280, h = cv.clientHeight || 26;
+        cv.width = w * dpr; cv.height = h * dpr; var x = cv.getContext("2d"); x.setTransform(dpr, 0, 0, dpr, 0, 0);
+        var hs = b.hist.slice(-40), mn = Math.min.apply(null, hs), mx = Math.max.apply(null, hs), rng = (mx - mn) || 1;
+        x.clearRect(0, 0, w, h); x.strokeStyle = "#1b1a14"; x.lineWidth = 1.4; x.beginPath();
+        for (var j = 0; j < hs.length; j++) { var px = j / (hs.length - 1 || 1) * w, py = h - ((hs[j] - mn) / rng) * (h - 4) - 2; if (j === 0) x.moveTo(px, py); else x.lineTo(px, py); }
+        x.stroke();
       }
-      function step() { push(gen()); if (!REDUCE) setTimeout(step, rnd(2600, 6500)); }
-      push("DESK ONLINE // marking " + bets.length + " open position" + (bets.length === 1 ? "" : "s") + " against the live feeds");
-      setUnreal();
-      if (REDUCE) { for (var i = 0; i < 6; i++) push(gen()); } else { step(); }
+      function buildTicker() {
+        var seg = bets.map(function (b) { var up = b.line <= b.prev; return '<span class="sym">' + esc(b.kw.toUpperCase()) + '</span><span class="' + (up ? "up" : "down") + '">' + b.line.toFixed(2) + "x</span>"; }).join("&nbsp;&nbsp;");
+        $id("ticker").innerHTML = seg + "&nbsp;&nbsp;" + seg;
+      }
+      function renderWallet() {
+        $id("w-bal").textContent = Math.round(W.bal);
+        $id("w-exp").textContent = Math.round(exposure());
+        var op = openPnl(), oe = $id("w-open"); oe.textContent = (op >= 0 ? "+" : "") + op.toFixed(0); oe.className = op >= 0 ? "up" : "down";
+      }
+      function renderMy() {
+        renderWallet();
+        var hdr = $id("myhdr"), mp = $id("mypos");
+        if (!POS.length) { hdr.innerHTML = ""; mp.innerHTML = '<div class="myrow soft">No open trades. Tap a tile to tail or fade the engine.</div>'; return; }
+        hdr.innerHTML = '<div class="band" style="font-size:11px;margin:8px 0">YOUR OPEN TRADES</div>';
+        mp.innerHTML = POS.map(function (p) {
+          var pnl = posPnl(p), b = betByKw(p.kw), line = (b ? b.line : p.entry).toFixed(2);
+          return '<div class="myrow"><span class="side ' + (p.side === "TAIL" ? "tail" : "fade") + '">' + p.side + '</span> <b>' + esc(p.kw.toUpperCase()) + '</b> <span class="soft">' + p.stake + "u @ " + p.entry.toFixed(2) + "x &middot; now " + line + 'x</span> <span class="mpnl ' + (pnl >= 0 ? "up" : "down") + '">' + (pnl >= 0 ? "+" : "") + pnl.toFixed(0) + 'u</span> <button class="sx" type="button" data-cash="' + p.id + '">[ CASH OUT ]</button></div>';
+        }).join("");
+      }
+      function pushTape(m) { tape.unshift({ t: tnow(), m: m }); tape = tape.slice(0, 8); $id("floor").innerHTML = tape.map(function (l) { return '<div class="fl-row"><span class="fl-t">' + l.t + "</span> " + l.m + "</div>"; }).join(""); }
+
+      // bet modal
+      var bm = $id("bet-modal"), bb = $id("bet-body"), sel = null, sideSel = null;
+      function openBet(i) {
+        sel = i; sideSel = null; var b = bets[i], max = Math.max(10, Math.round(W.bal)), def = Math.min(50, max);
+        bb.innerHTML = '<div class="band">TRADE // ' + esc(b.kw.toUpperCase()) + '</div>' +
+          '<p>Market <b>' + esc(b.market) + '</b>. Line <b>' + b.line.toFixed(2) + 'x</b>. <b>TAIL</b> the engine to profit if the line shortens; <b>FADE</b> to profit if it drifts out.</p>' +
+          '<div class="am-row"><button class="sx" type="button" data-side="TAIL">[ TAIL ]</button><button class="sx alt" type="button" data-side="FADE">[ FADE ]</button></div>' +
+          '<p style="margin-top:14px">STAKE <b id="bet-stake-l">' + def + '</b>u &middot; chips ' + Math.round(W.bal) + '</p>' +
+          '<input type="range" id="bet-stake" min="10" max="' + max + '" value="' + def + '" style="width:100%">' +
+          '<div class="am-row"><button class="sx" type="button" id="bet-place" disabled>SELECT TAIL OR FADE</button><button class="sx alt" type="button" data-betclose>[ CANCEL ]</button></div>';
+        bm.classList.add("open");
+      }
+      function closeBet() { bm.classList.remove("open"); sel = null; sideSel = null; }
+      function placeBet() {
+        if (sel == null || !sideSel) return;
+        var b = bets[sel], stake = Math.min(W.bal, +($id("bet-stake").value || 0));
+        if (stake < 10) { closeBet(); return; }
+        W.bal -= stake; POS.push({ id: "p" + Date.now() + Math.floor(Math.random() * 999), kw: b.kw, market: b.market, side: sideSel, stake: Math.round(stake), entry: b.line });
+        sj("signal_wallet", W); sj("signal_pos", POS); pushTape("YOU " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase() + " @ " + b.line.toFixed(2) + "x"); closeBet(); renderMy();
+      }
+      function cashOut(id) {
+        for (var i = 0; i < POS.length; i++) if (POS[i].id === id) {
+          var p = POS[i], pnl = posPnl(p); W.bal += p.stake + pnl; W.realized += pnl; POS.splice(i, 1);
+          sj("signal_wallet", W); sj("signal_pos", POS); pushTape("CASHED OUT " + p.kw.toUpperCase() + " // " + (pnl >= 0 ? "+" : "") + pnl.toFixed(0) + "u"); renderMy(); return;
+        }
+      }
+
+      document.addEventListener("click", function (e) {
+        var tile = e.target.closest(".tile"); if (tile) { openBet(+tile.getAttribute("data-i")); return; }
+        if (e.target.closest("[data-betclose]")) { closeBet(); return; }
+        var sb = e.target.closest("[data-side]");
+        if (sb) { sideSel = sb.getAttribute("data-side"); bb.querySelectorAll("[data-side]").forEach(function (x) { x.classList.remove("sel"); }); sb.classList.add("sel"); var pl = $id("bet-place"); pl.disabled = false; pl.textContent = "[ PLACE " + sideSel + " ]"; return; }
+        if (e.target.id === "bet-place") { placeBet(); return; }
+        var cash = e.target.closest("[data-cash]"); if (cash) { cashOut(cash.getAttribute("data-cash")); return; }
+        if (e.target.id === "w-reset") { W = { bal: 1000, realized: 0 }; POS = []; sj("signal_wallet", W); sj("signal_pos", POS); pushTape("WALLET RESET // 1000 CHIPS"); renderMy(); return; }
+        if (e.target === bm) closeBet();
+      });
+      document.addEventListener("input", function (e) { if (e.target.id === "bet-stake") { var l = $id("bet-stake-l"); if (l) l.textContent = e.target.value; } });
+
+      function move() {
+        var i = Math.floor(Math.random() * bets.length), b = bets[i];
+        b.prev = b.line; var dir = Math.random() < 0.5 ? -1 : 1; b.line = Math.max(1.05, Math.min(4.5, b.line + rnd(0.01, 0.07) * dir));
+        b.hist.push(b.line); if (b.hist.length > 60) b.hist.shift();
+        var el = $id("line-" + i); if (el) el.textContent = b.line.toFixed(2) + "x"; drawSpark(i);
+        var t = board.children[i]; if (t) { t.classList.remove("flash-up", "flash-down"); void t.offsetWidth; t.classList.add(dir < 0 ? "flash-up" : "flash-down"); }
+        buildTicker(); renderMy();
+        pushTape("LINE // <b>" + esc(b.kw.toUpperCase()) + "</b> " + b.prev.toFixed(2) + "x -> " + b.line.toFixed(2) + "x " + (dir < 0 ? "(heating)" : "(cooling)"));
+      }
+      function tick() { move(); if (!REDUCE) setTimeout(tick, rnd(1700, 3300)); }
+
+      buildBoard(); buildTicker(); renderMy();
+      pushTape("PIT OPEN // " + bets.length + " live lines");
+      if (REDUCE) { for (var k = 0; k < 4; k++) move(); } else { tick(); }
+      window.addEventListener("resize", function () { bets.forEach(function (_, i) { drawSpark(i); }); }, { passive: true });
     })();
 
     // ---- rolling activity log + periodic machine event ----
