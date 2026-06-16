@@ -179,6 +179,9 @@ pub fn render(
     let site = std::env::var("SITE_URL")
         .unwrap_or_else(|_| "https://mattbusel.github.io/tech-oracle".to_string());
     let site = site.trim_end_matches('/').to_string();
+    let ladder_repo = std::env::var("LADDER_REPO")
+        .or_else(|_| std::env::var("GITHUB_REPOSITORY"))
+        .unwrap_or_else(|_| "Mattbusel/tech-oracle".to_string());
 
     // JSON-LD structured data (SEO: each call as a CreativeWork in an ItemList).
     let ld_items: Vec<serde_json::Value> = sorted
@@ -221,10 +224,43 @@ pub fn render(
     feed.push_str("</channel></rss>\n");
     std::fs::write(format!("{}/feed.xml", crate::OUT_DIR), feed)?;
 
+    // Programmatic SEO: one crawlable permalink page per revealed call.
+    let _ = std::fs::create_dir_all(format!("{}/call", crate::OUT_DIR));
+    let mut urls = vec![format!("{site}/")];
+    for (i, p) in sorted.iter().enumerate() {
+        let no = total - i;
+        let status = if p.status.is_empty() { "OPEN" } else { p.status.as_str() };
+        let market = if p.market.is_empty() { "RESURFACE" } else { p.market.as_str() };
+        let desc = xml(&clip_r(&p.prediction_text, 150));
+        let tt = xml(&clip_r(&p.prediction_text, 65));
+        let page = format!(
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Call No. {no}: {tt} // THE SIGNAL</title>\n<meta name=\"description\" content=\"{desc}\">\n<meta property=\"og:title\" content=\"THE SIGNAL // Call No. {no} [{status}]\">\n<meta property=\"og:description\" content=\"{desc}\">\n<meta name=\"twitter:card\" content=\"summary\">\n<link rel=\"canonical\" href=\"{site}/call/{no}.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:620px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}.c{{font-size:25px;font-weight:600;line-height:1.35;margin:18px 0}}.m{{font-size:11px;letter-spacing:.1em;color:#6d6b5e}}.w{{font-size:12px;color:#6d6b5e;margin:14px 0}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // CALL No. {no}</div>\n<div class=\"m\">{date} // {market} // {status}</div>\n<p class=\"c\">{t}</p>\n<div class=\"w\">{win}</div>\n<p class=\"m\"><a href=\"{src}\" rel=\"noopener\">source signal</a> // <a href=\"{site}/#call-{no}\">on the public record</a> // <a href=\"{site}/\">THE SIGNAL</a></p>\n</div></body></html>\n",
+            no = no, tt = tt, t = xml(&p.prediction_text), desc = desc, status = status, market = market,
+            date = xml(&p.date), win = xml(&p.win_if), src = xml(&p.source_url), site = site
+        );
+        let _ = std::fs::write(format!("{}/call/{no}.html", crate::OUT_DIR), page);
+        urls.push(format!("{site}/call/{no}.html"));
+    }
+    let url_body: String = urls.iter().map(|u| format!("<url><loc>{u}</loc></url>")).collect();
     let sitemap = format!(
-        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><url><loc>{site}/</loc></url></urlset>\n"
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">{url_body}</urlset>\n"
     );
     std::fs::write(format!("{}/sitemap.xml", crate::OUT_DIR), sitemap)?;
+
+    // Embeddable wire: one-line <script> any site can drop in (they redistribute
+    // us, each embed is a backlink). Content baked daily; styles inline.
+    let idx = pulse.get("index").and_then(|v| v.as_i64()).unwrap_or(0);
+    let verdict = pulse.get("verdict").and_then(|v| v.as_str()).unwrap_or("");
+    let latest_w = featured.first().map(|p| clip_r(&p.prediction_text, 120)).unwrap_or_default();
+    let widget_html = format!(
+        "<a href=\"{site}/\" target=\"_blank\" rel=\"noopener\" style=\"display:block;max-width:360px;font-family:'IBM Plex Mono',ui-monospace,monospace;background:#efede4;color:#1b1a14;border:2px solid #1b1a14;border-radius:8px;padding:14px 16px;text-decoration:none;line-height:1.45\"><div style=\"font-weight:700;letter-spacing:.16em;font-size:12px\">THE SIGNAL // TODAY</div><div style=\"font-size:11px;color:#6d6b5e;letter-spacing:.06em;margin:6px 0 8px\">INDEX {idx} ({verdict}) // RECORD {hits}-{misses}</div><div style=\"font-size:14px;font-weight:600\">{latest}</div><div style=\"font-size:11px;color:#b23a2e;margin-top:8px\">tail it or fade it &gt;</div></a>",
+        site = site, idx = idx, verdict = verdict, hits = hits, misses = misses, latest = xml(&latest_w)
+    );
+    let widget_js = format!(
+        "(function(){{var h={html};var t=document.getElementById('signal-wire');if(!t){{t=document.createElement('div');(document.currentScript&&document.currentScript.parentNode?document.currentScript.parentNode:document.body).appendChild(t);}}t.innerHTML=h;}})();",
+        html = serde_json::to_string(&widget_html).unwrap_or_else(|_| "\"\"".to_string())
+    );
+    std::fs::write(format!("{}/widget.js", crate::OUT_DIR), widget_js)?;
 
     // Live floor positions: the most recent calls the desk marks against the
     // live feeds (client-side, continuously).
@@ -266,6 +302,7 @@ pub fn render(
         book => book,
         jsonld => jsonld,
         floor_json => floor_json,
+        ladder_repo => ladder_repo,
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,
@@ -287,6 +324,14 @@ fn rfc822(date: &str) -> String {
     match NaiveDate::parse_from_str(date, "%Y-%m-%d") {
         Ok(d) => d.format("%a, %d %b %Y 13:17:00 +0000").to_string(),
         Err(_) => date.to_string(),
+    }
+}
+
+fn clip_r(s: &str, n: usize) -> String {
+    if s.chars().count() > n {
+        format!("{}...", s.chars().take(n - 3).collect::<String>())
+    } else {
+        s.to_string()
     }
 }
 

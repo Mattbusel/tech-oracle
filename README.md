@@ -20,6 +20,16 @@ Worker for the paid gate. No server you operate, no database you run.
 
 ---
 
+<!--SIGNAL:START-->
+## Today on THE SIGNAL
+
+**June 16, 2026** // Index **70 (SURGING)** // hottest **LEARNING** // record **8-2**
+
+> The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.
+
+Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
+<!--SIGNAL:END-->
+
 ## Architecture (polyglot — right tool per job)
 
 | Layer | Language / tool | Why |
@@ -315,6 +325,27 @@ cheapest/most-automatic first:
 
 4. **Share loop** — every call/stat has share controls and a downloadable on-brand
    PNG card (see Sharing), turning every reader into a distributor.
+5. **Programmatic SEO** — every revealed call is also a standalone crawlable page
+   at `/call/<n>.html` with its own title/OG tags, all listed in `sitemap.xml`.
+   A growing corpus of dated, linkable predictions that strangers find via search.
+   No audience required; compounds over time.
+6. **Embeddable wire** — any site/newsletter/README can show today's call with one
+   line, and each embed is a backlink:
+   ```html
+   <script src="https://mattbusel.github.io/tech-oracle/widget.js" async></script>
+   ```
+   (Optionally drop a `<div id="signal-wire"></div>` where you want it.) Content is
+   baked daily; no API/CORS needed because it is a script include.
+7. **GitHub-native dispatch** — each cron run posts the day's call as a GitHub
+   issue (the free auto-newsletter: every repo watcher is notified) and refreshes
+   the README's "Today" block. "Watch this repo" becomes "subscribe to the oracle."
+8. **FADE ME challenge links** — every bet encodes into a URL that drops a friend
+   into the opposite side. A peer-to-peer viral loop, no server.
+9. **The ladder** — top runs are public GitHub issues (`label:ladder`) the site
+   reads via the GitHub API. Competition that bootstraps on infra you already have.
+
+These layer: SEO + the embeddable wire pull in strangers with no audience; the
+dispatch and challenge links convert and retain; the ladder makes them compete.
 
 X/Twitter is intentionally not auto-posted (their write API is no longer free);
 use the per-post **share buttons** (X intent) or route the RSS feed through IFTTT.

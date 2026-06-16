@@ -220,6 +220,11 @@
     .fl-row b { color: var(--ink); }
     .mkt { font-size: 9.5px; letter-spacing: 0.1em; color: var(--ink-soft); border: 1px solid var(--rule); padding: 0 5px; border-radius: 3px; }
     .sx.sel { background: var(--ink); color: var(--paper); }
+    .lad { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+    .lad-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--rule); }
+    .lad-rank { font-weight: 700; color: var(--ink-soft); width: 22px; }
+    .lad-pnl { font-weight: 700; } .lad-pnl.up { color: #2f6f4f; } .lad-pnl.down { color: var(--stamp); }
+    .lad .soft { color: var(--ink-soft); }
     .vs-banner { border: 2px solid var(--stamp); background: rgba(178,58,46,0.06); padding: 12px 14px; margin-bottom: 14px; font-size: 13px; line-height: 1.5; }
     .vs-banner b { color: var(--ink); }
     .vs-banner .sx { margin-top: 8px; }
@@ -474,6 +479,15 @@
 
             <div class="perf" aria-hidden="true"></div>
 
+            <section class="ladder-pit" aria-label="Public challenge ladder">
+              <div class="band">THE LADDER / TOP RUNS ON THE RECORD</div>
+              <ol class="lad" id="ladder"><li class="soft">Loading the ladder...</li></ol>
+              <div class="sharebar" style="margin-top:12px"><button class="sx" type="button" id="lad-post">[ POST MY RUN ]</button><button class="sx alt" type="button" id="lad-refresh">[ REFRESH ]</button></div>
+              <div class="seismo-lbl">RUNS ARE PUBLIC GITHUB ISSUES. BEAT THE BOARD, THEN POST YOURS.</div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
             <section class="pulse" aria-label="Tech acceleration index">
               <div class="band">THE PULSE / TECH ACCELERATION INDEX</div>
               <div class="pulse-grid">
@@ -546,15 +560,15 @@
                 </div>
                 
                 <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-lobsters">LOBSTERS</span><span class="mf-count">25</span></div>
-                  <span class="mf-bar"><i class="s-lobsters" style="width:83%"></i></span>
-                  <a class="mf-item" href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/" rel="noopener">TOP // curl summer of bliss</a>
-                </div>
-                
-                <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
                   <span class="mf-bar"><i class="s-devto" style="width:83%"></i></span>
                   <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-lobsters">LOBSTERS</span><span class="mf-count">25</span></div>
+                  <span class="mf-bar"><i class="s-lobsters" style="width:83%"></i></span>
+                  <a class="mf-item" href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/" rel="noopener">TOP // curl summer of bliss</a>
                 </div>
                 
                 <div class="mf-row">
@@ -581,7 +595,7 @@
               <p class="coupon-p">Every call prints here for free, dated and on the record. Subscribers get each call 1 DAY earlier, while the lead still pays. The ledger below is the proof. The lead time is the product.</p>
               <div class="coupon-row">
                 <div class="price">15 USD <span>/ MONTH</span></div>
-                <a class="sub" href="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" data-acct="subscribe" data-link="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" rel="noopener">SUBSCRIBE FOR THE 1-DAY LEAD</a>
+                <a class="sub" href="#" data-acct="subscribe" data-link="#" rel="noopener">SUBSCRIBE FOR THE 1-DAY LEAD</a>
               </div>
               <div class="cred-actions">
                 <button class="sub-2" type="button" data-acct="new">[ CREATE A FREE PRESS CREDENTIAL ]</button>
@@ -604,32 +618,26 @@
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-hn">HACKER NEWS</span>
-                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
-                  <span class="bs-count">2</span>
-                </div>
-                
-                <div class="bs-row">
                   <span class="bs-label s-arxiv">ARXIV</span>
                   <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
                   <span class="bs-count">2</span>
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-ars">ARS TECHNICA</span>
-                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
-                  <span class="bs-count">1</span>
-                </div>
-                
-                <div class="bs-row">
-                  <span class="bs-label s-ars">ARS TECHNICA</span>
-                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
-                  <span class="bs-count">1</span>
+                  <span class="bs-label s-hn">HACKER NEWS</span>
+                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
+                  <span class="bs-count">2</span>
                 </div>
                 
                 <div class="bs-row">
                   <span class="bs-label s-devto">DEV.TO</span>
                   <span class="bs-bar"><i class="s-devto" style="width:10%"></i></span>
+                  <span class="bs-count">1</span>
+                </div>
+                
+                <div class="bs-row">
+                  <span class="bs-label s-ars">ARS TECHNICA</span>
+                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
                   <span class="bs-count">1</span>
                 </div>
                 
@@ -644,7 +652,7 @@
                 <span class="sm-dot s-github" title="2026-06-02"></span><span class="sm-dot s-arxiv" title="2026-06-04"></span><span class="sm-dot s-lobsters" title="2026-06-05"></span><span class="sm-dot s-hn" title="2026-06-08"></span><span class="sm-dot s-ars" title="2026-06-09"></span><span class="sm-dot s-devto" title="2026-06-09"></span><span class="sm-dot s-github" title="2026-06-11"></span><span class="sm-dot s-github" title="2026-06-13"></span><span class="sm-dot s-arxiv" title="2026-06-14"></span><span class="sm-dot s-hn" title="2026-06-15"></span>
               </div>
               <div class="map-key">
-                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span>
+                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span>
               </div>
             </section>
 
@@ -890,6 +898,7 @@
     function pad(n){ return (n < 10 ? "0" : "") + n; }
     var REDUCE = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     var __FLOOR = [{"kw":"local","market":"RESURFACE","odds":"1.72","src":"Show HN: A local-first sync engine for your app","status":"HIT","t":"The HN front page is piling onto local-first sync ","win":"WIN IF \"LOCAL\" RESURFACES ACROSS THE FEEDS BY 2026-07-15"},{"kw":"compute","market":"RESURFACE","odds":"1.59","src":"Scaling Test-Time Compute Optimally for Reasoning Models","status":"HIT","t":"Fresh cs.AI/cs.LG work on test-time compute scalin","win":"WIN IF \"COMPUTE\" RESURFACES ACROSS THE FEEDS BY 2026-07-14"},{"kw":"llama","market":"RESURFACE","odds":"1.28","src":"ggml-org/llama.cpp","status":"HIT","t":"Devs are starring ggml-org/llama.cpp hard today. B","win":"WIN IF \"LLAMA\" RESURFACES ACROSS THE FEEDS BY 2026-07-03"},{"kw":"vercel","market":"RESURFACE","odds":"1.39","src":"vercel/ai","status":"HIT","t":"vercel/ai is rocketing up GitHub trending. The tra","win":"WIN IF \"VERCEL\" RESURFACES ACROSS THE FEEDS BY 2026-07-01"},{"kw":"typed","market":"RESURFACE","odds":"1.67","src":"Why typed API clients are taking over","status":"MISS","t":"Dev.to writers are rallying around typed API clien","win":"WIN IF \"TYPED\" RESURFACES ACROSS THE FEEDS BY 2026-06-14"},{"kw":"power","market":"RESURFACE","odds":"1.52","src":"The power bill for AI is coming due","status":"HIT","t":"Ars is covering AI data-center power demand. When ","win":"WIN IF \"POWER\" RESURFACES ACROSS THE FEEDS BY 2026-06-29"},{"kw":"inference","market":"RESURFACE","odds":"1.45","src":"On-device inference is finally good enough","status":"HIT","t":"The HN front page is piling onto on-device inferen","win":"WIN IF \"INFERENCE\" RESURFACES ACROSS THE FEEDS BY 2026-06-28"},{"kw":"deterministic","market":"RESURFACE","odds":"1.75","src":"On reproducible, deterministic builds","status":"MISS","t":"Lobsters is chewing on deterministic build systems","win":"WIN IF \"DETERMINISTIC\" RESURFACES ACROSS THE FEEDS BY 2026-06-12"}];
+    var __LADREPO = "Mattbusel/tech-oracle";
 
     // ---- station clock + countdown to the next 13:17 UTC print ----
     (function () {
@@ -1209,6 +1218,47 @@
       load(); setInterval(load, 5 * 60 * 1000);    // refresh the wire every 5 min
     })();
 
+    // ---- THE LADDER: top runs, stored as public GitHub issues (no server) ----
+    (function () {
+      var el = $id("ladder"); if (!el) return;
+      var repo = (typeof __LADREPO !== "undefined" && __LADREPO) || "Mattbusel/tech-oracle";
+      function eh(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
+      function parseRun(body) {
+        var m = /pnl=(-?\d+)[\s\S]*?streak=(\d+)[\s\S]*?record=(\d+-\d+)[\s\S]*?by=([^\n\r]+)/.exec(body || "");
+        return m ? { pnl: +m[1], streak: +m[2], record: m[3], by: m[4].trim().slice(0, 24) } : null;
+      }
+      function load() {
+        el.innerHTML = '<li class="soft">Loading the ladder...</li>';
+        fetch("https://api.github.com/repos/" + repo + "/issues?labels=ladder&state=all&per_page=100", { headers: { Accept: "application/vnd.github+json" } })
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .then(function (items) {
+            var runs = [];
+            (items || []).forEach(function (it) { var run = parseRun(it.body); if (run) runs.push(run); });
+            runs.sort(function (a, b) { return b.pnl - a.pnl; });
+            if (!runs.length) { el.innerHTML = '<li class="soft">No runs on the board yet. Be the first.</li>'; return; }
+            el.innerHTML = runs.slice(0, 12).map(function (r, i) {
+              return '<li class="lad-row"><span class="lad-rank">' + (i + 1) + '</span> <b>' + eh(r.by) + '</b> <span class="lad-pnl ' + (r.pnl >= 0 ? "up" : "down") + '">' + (r.pnl >= 0 ? "+" : "") + r.pnl + 'u</span> <span class="soft">' + eh(r.record) + " / streak " + r.streak + '</span></li>';
+            }).join("");
+          })
+          .catch(function () { el.innerHTML = '<li class="soft">Ladder unavailable right now.</li>'; });
+      }
+      document.addEventListener("click", function (e) {
+        if (e.target.id === "lad-refresh") { load(); return; }
+        if (e.target.id === "lad-post") {
+          var w = null; try { w = JSON.parse(localStorage.getItem("signal_wallet") || "null"); } catch (e2) {}
+          var by = ""; try { var c = localStorage.getItem("signal_cred"); if (c) by = c.split("-")[0]; } catch (e3) {}
+          if (!by) by = (prompt("Name for the ladder:", "") || "anon");
+          by = by.replace(/[^A-Za-z0-9 _-]/g, "").slice(0, 24) || "anon";
+          var pnl = w ? Math.round(w.realized || 0) : 0, streak = w ? (w.streak || 0) : 0, wins = w ? (w.wins || 0) : 0, losses = w ? (w.losses || 0) : 0;
+          var body = "My run at THE SIGNAL pit.\n\nSIGNAL-RUN pnl=" + pnl + " streak=" + streak + " record=" + wins + "-" + losses + " by=" + by + "\n\nBeat it: " + location.origin + location.pathname;
+          var url = "https://github.com/" + repo + "/issues/new?labels=ladder&title=" + encodeURIComponent("Ladder: " + by + " " + (pnl >= 0 ? "+" : "") + pnl + "u") + "&body=" + encodeURIComponent(body);
+          window.open(url, "_blank", "noopener");
+          return;
+        }
+      });
+      load();
+    })();
+
     // ----------------------------------------------------------------------
     // <dot-matrix>: re-rasterize text into impact dots; a print head strikes
     // them column by column. Progressive enhancement; JS off shows real text.
@@ -1329,7 +1379,7 @@
           open('<div class="band">EARLY FEED // ' + payload.predictions.length + ' AHEAD OF THE RECORD</div><div class="am-feed">' + feed + '</div><div class="am-row" style="margin-top:14px"><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
         } else {
           open('<div class="band">NO ACTIVE EARLY FEED</div><p>No feed is published for that credential. If you just subscribed, it appears on the next daily run. Otherwise, subscribe to unlock, then unlock here with the same credential.</p>' +
-            '<div class="am-row"><a class="sx" href="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" data-acct="subscribe" data-link="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" rel="noopener">[ SUBSCRIBE ]</a><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
+            '<div class="am-row"><a class="sx" href="#" data-acct="subscribe" data-link="#" rel="noopener">[ SUBSCRIBE ]</a><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
         }
       }
       function subscribe(link) {
@@ -1347,7 +1397,7 @@
         var a = e.target.closest("[data-acct]");
         if (a) {
           var k = a.getAttribute("data-acct");
-          if (k === "subscribe") { e.preventDefault(); subscribe(a.getAttribute("data-link") || "https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400"); return; }
+          if (k === "subscribe") { e.preventDefault(); subscribe(a.getAttribute("data-link") || "#"); return; }
           e.preventDefault();
           if (k === "new") viewNew(); else if (k === "early") viewEarly();
           return;

@@ -185,7 +185,16 @@ fn main() {
     );
     let _ = std::fs::write("build/social_short.txt", social_short);
 
-    eprintln!("wrote {DATA_PATH}, {EARLY_OUT}, {OUT_HTML}, feeds, and social posts");
+    // Living README: update the marked block so the repo page is a daily showcase.
+    update_readme_block(&human, idx, verdict, theme, hits, misses, latest, site);
+    // Daily dispatch files for the GitHub issue (the free auto-newsletter).
+    let _ = std::fs::write("build/dispatch_title.txt", format!("Dispatch {date}: {}", clip(latest, 70)));
+    let _ = std::fs::write(
+        "build/dispatch_body.md",
+        format!("**{human}** // Acceleration Index **{idx} ({verdict})** // hottest cluster **{theme}** // self-graded record **{hits}-{misses}**\n\n> {latest}\n\nTail it or fade it: {site}/\n\n_Watch this repo to get tomorrow's call in your notifications._\n"),
+    );
+
+    eprintln!("wrote {DATA_PATH}, {EARLY_OUT}, {OUT_HTML}, feeds, social posts, and dispatch");
 }
 
 // --------------------------------------------------------------------------
@@ -425,6 +434,30 @@ fn dominant_theme(signals: &[model::Signal]) -> (String, f64) {
             (word.to_uppercase(), share)
         }
         None => ("QUIET".to_string(), 0.0),
+    }
+}
+
+fn clip(s: &str, n: usize) -> String {
+    if s.chars().count() > n {
+        format!("{}...", s.chars().take(n - 3).collect::<String>())
+    } else {
+        s.to_string()
+    }
+}
+
+/// Replace the marked block in README.md with today's dispatch so the repo page
+/// is a living daily showcase. No-op if the markers are absent.
+fn update_readme_block(human: &str, idx: i64, verdict: &str, theme: &str, hits: usize, misses: usize, latest: &str, site: &str) {
+    let path = "README.md";
+    let (start, end) = ("<!--SIGNAL:START-->", "<!--SIGNAL:END-->");
+    if let Ok(txt) = std::fs::read_to_string(path) {
+        if let (Some(s), Some(e)) = (txt.find(start), txt.find(end)) {
+            let block = format!(
+                "{start}\n## Today on THE SIGNAL\n\n**{human}** // Index **{idx} ({verdict})** // hottest **{theme}** // record **{hits}-{misses}**\n\n> {latest}\n\nLive: {site}/ // Watch this repo for the daily dispatch.\n"
+            );
+            let new = format!("{}{}{}", &txt[..s], block, &txt[e..]);
+            let _ = std::fs::write(path, new);
+        }
     }
 }
 

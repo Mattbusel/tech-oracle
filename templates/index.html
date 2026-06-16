@@ -223,6 +223,11 @@
     .fl-row b { color: var(--ink); }
     .mkt { font-size: 9.5px; letter-spacing: 0.1em; color: var(--ink-soft); border: 1px solid var(--rule); padding: 0 5px; border-radius: 3px; }
     .sx.sel { background: var(--ink); color: var(--paper); }
+    .lad { list-style: none; margin: 0; padding: 0; font-size: 13px; }
+    .lad-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px dashed var(--rule); }
+    .lad-rank { font-weight: 700; color: var(--ink-soft); width: 22px; }
+    .lad-pnl { font-weight: 700; } .lad-pnl.up { color: #2f6f4f; } .lad-pnl.down { color: var(--stamp); }
+    .lad .soft { color: var(--ink-soft); }
     .vs-banner { border: 2px solid var(--stamp); background: rgba(178,58,46,0.06); padding: 12px 14px; margin-bottom: 14px; font-size: 13px; line-height: 1.5; }
     .vs-banner b { color: var(--ink); }
     .vs-banner .sx { margin-top: 8px; }
@@ -477,6 +482,15 @@
 
             <div class="perf" aria-hidden="true"></div>
 
+            <section class="ladder-pit" aria-label="Public challenge ladder">
+              <div class="band">THE LADDER / TOP RUNS ON THE RECORD</div>
+              <ol class="lad" id="ladder"><li class="soft">Loading the ladder...</li></ol>
+              <div class="sharebar" style="margin-top:12px"><button class="sx" type="button" id="lad-post">[ POST MY RUN ]</button><button class="sx alt" type="button" id="lad-refresh">[ REFRESH ]</button></div>
+              <div class="seismo-lbl">RUNS ARE PUBLIC GITHUB ISSUES. BEAT THE BOARD, THEN POST YOURS.</div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
             <section class="pulse" aria-label="Tech acceleration index">
               <div class="band">THE PULSE / TECH ACCELERATION INDEX</div>
               <div class="pulse-grid">
@@ -666,6 +680,7 @@
     function pad(n){ return (n < 10 ? "0" : "") + n; }
     var REDUCE = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     var __FLOOR = {{ floor_json | safe }};
+    var __LADREPO = "{{ ladder_repo }}";
 
     // ---- station clock + countdown to the next 13:17 UTC print ----
     (function () {
@@ -983,6 +998,47 @@
           });
       }
       load(); setInterval(load, 5 * 60 * 1000);    // refresh the wire every 5 min
+    })();
+
+    // ---- THE LADDER: top runs, stored as public GitHub issues (no server) ----
+    (function () {
+      var el = $id("ladder"); if (!el) return;
+      var repo = (typeof __LADREPO !== "undefined" && __LADREPO) || "Mattbusel/tech-oracle";
+      function eh(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
+      function parseRun(body) {
+        var m = /pnl=(-?\d+)[\s\S]*?streak=(\d+)[\s\S]*?record=(\d+-\d+)[\s\S]*?by=([^\n\r]+)/.exec(body || "");
+        return m ? { pnl: +m[1], streak: +m[2], record: m[3], by: m[4].trim().slice(0, 24) } : null;
+      }
+      function load() {
+        el.innerHTML = '<li class="soft">Loading the ladder...</li>';
+        fetch("https://api.github.com/repos/" + repo + "/issues?labels=ladder&state=all&per_page=100", { headers: { Accept: "application/vnd.github+json" } })
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .then(function (items) {
+            var runs = [];
+            (items || []).forEach(function (it) { var run = parseRun(it.body); if (run) runs.push(run); });
+            runs.sort(function (a, b) { return b.pnl - a.pnl; });
+            if (!runs.length) { el.innerHTML = '<li class="soft">No runs on the board yet. Be the first.</li>'; return; }
+            el.innerHTML = runs.slice(0, 12).map(function (r, i) {
+              return '<li class="lad-row"><span class="lad-rank">' + (i + 1) + '</span> <b>' + eh(r.by) + '</b> <span class="lad-pnl ' + (r.pnl >= 0 ? "up" : "down") + '">' + (r.pnl >= 0 ? "+" : "") + r.pnl + 'u</span> <span class="soft">' + eh(r.record) + " / streak " + r.streak + '</span></li>';
+            }).join("");
+          })
+          .catch(function () { el.innerHTML = '<li class="soft">Ladder unavailable right now.</li>'; });
+      }
+      document.addEventListener("click", function (e) {
+        if (e.target.id === "lad-refresh") { load(); return; }
+        if (e.target.id === "lad-post") {
+          var w = null; try { w = JSON.parse(localStorage.getItem("signal_wallet") || "null"); } catch (e2) {}
+          var by = ""; try { var c = localStorage.getItem("signal_cred"); if (c) by = c.split("-")[0]; } catch (e3) {}
+          if (!by) by = (prompt("Name for the ladder:", "") || "anon");
+          by = by.replace(/[^A-Za-z0-9 _-]/g, "").slice(0, 24) || "anon";
+          var pnl = w ? Math.round(w.realized || 0) : 0, streak = w ? (w.streak || 0) : 0, wins = w ? (w.wins || 0) : 0, losses = w ? (w.losses || 0) : 0;
+          var body = "My run at THE SIGNAL pit.\n\nSIGNAL-RUN pnl=" + pnl + " streak=" + streak + " record=" + wins + "-" + losses + " by=" + by + "\n\nBeat it: " + location.origin + location.pathname;
+          var url = "https://github.com/" + repo + "/issues/new?labels=ladder&title=" + encodeURIComponent("Ladder: " + by + " " + (pnl >= 0 ? "+" : "") + pnl + "u") + "&body=" + encodeURIComponent(body);
+          window.open(url, "_blank", "noopener");
+          return;
+        }
+      });
+      load();
     })();
 
     // ----------------------------------------------------------------------
