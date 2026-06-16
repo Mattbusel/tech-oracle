@@ -240,6 +240,8 @@ pub fn render(
                 "market": if p.market.is_empty() { "RESURFACE".to_string() } else { p.market.clone() },
                 "odds": format!("{:.2}", 1.0 / conf),
                 "status": if p.status.is_empty() { "OPEN" } else { p.status.as_str() },
+                "win": p.win_if,
+                "src": p.source_title,
             })
         })
         .collect();

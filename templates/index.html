@@ -223,6 +223,21 @@
     .fl-row b { color: var(--ink); }
     .mkt { font-size: 9.5px; letter-spacing: 0.1em; color: var(--ink-soft); border: 1px solid var(--rule); padding: 0 5px; border-radius: 3px; }
     .sx.sel { background: var(--ink); color: var(--paper); }
+    .pit-stats { font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); margin: -4px 0 14px; }
+    .pit-stats b { color: var(--ink); }
+    .tile-claim { font-size: 10.5px; color: var(--ink-soft); line-height: 1.4; margin-top: 8px; min-height: 28px; }
+    .myrow.win { background: rgba(47,111,79,0.08); } .myrow.lose { background: rgba(178,58,46,0.08); }
+    #w-open.bump { animation: bump 0.3s ease; } @keyframes bump { 50% { transform: scale(1.18); } }
+    .toast { position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--paper); font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; padding: 11px 16px; border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity 0.25s, transform 0.25s; z-index: 60; }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+    .bigstamp { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 60; pointer-events: none; }
+    .bigstamp.show { display: flex; }
+    .bigstamp span { font-family: var(--mono); font-weight: 700; font-size: clamp(40px, 12vw, 76px); letter-spacing: 0.05em; border: 5px solid; border-radius: 12px; padding: 14px 30px; transform: rotate(-9deg); background: rgba(239,237,228,0.94); }
+    .bigstamp.show span { animation: stmp 1.1s ease forwards; }
+    .bigstamp.win span { color: #2f6f4f; border-color: #2f6f4f; }
+    .bigstamp.loss span { color: var(--stamp); border-color: var(--stamp); }
+    @keyframes stmp { 0% { opacity: 0; transform: rotate(-9deg) scale(1.5); } 15% { opacity: 1; transform: rotate(-9deg) scale(1); } 80% { opacity: 1; } 100% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .bigstamp.show span { animation: none; } .toast { transition: none; } #w-open.bump { animation: none; } }
     .am-body input[type=range] { accent-color: #2f6f4f; padding: 0; margin: 10px 0 16px; }
     @media (max-width: 520px) { .board { grid-template-columns: 1fr; } }
     @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } .tile.flash-up, .tile.flash-down, .fl-row:first-child { animation: none; } }
@@ -444,13 +459,16 @@
                 <span>CHIPS<b id="w-bal">1000</b></span>
                 <span>EXPOSURE<b id="w-exp">0</b></span>
                 <span>OPEN P&amp;L<b id="w-open" class="up">+0</b></span>
-                <button class="sx alt" type="button" id="w-reset">[ RESET CHIPS ]</button>
+                <button class="sx alt" type="button" id="w-sound">[ SOUND: OFF ]</button>
+                <button class="sx alt" type="button" id="w-reset">[ RESET ]</button>
               </div>
+              <div class="pit-stats" id="pit-stats"></div>
               <div class="board" id="board"></div>
               <div id="myhdr"></div>
               <div class="mypos" id="mypos"></div>
               <div class="tape" id="floor"></div>
-              <div class="seismo-lbl">PAPER CHIPS, FOR FUN. THE LINES MOVE LIVE. TAP A TILE TO TRADE, CASH OUT ANYTIME.</div>
+              <div class="sharebar" style="margin-top:14px"><button class="sx" type="button" id="w-share">[ SHARE MY SESSION ]</button></div>
+              <div class="seismo-lbl">PAPER CHIPS, FOR FUN. TAIL = BET THE CALL HEATS UP. FADE = BET IT COOLS. CASH OUT ANYTIME.</div>
             </section>
 
             <div class="perf" aria-hidden="true"></div>
@@ -635,6 +653,9 @@
     <div class="am-panel"><button class="am-x" type="button" data-betclose aria-label="Close">[ X ]</button><div class="am-body" id="bet-body"></div></div>
   </div>
 
+  <div id="toast" class="toast" aria-hidden="true"></div>
+  <div id="bigstamp" class="bigstamp" aria-hidden="true"></div>
+
   <script>
     function $id(id){ return document.getElementById(id); }
     function setText(id, t){ var e = $id(id); if (e) e.textContent = t; }
@@ -717,9 +738,27 @@
         var ln = parseFloat(b.odds) || 1.6; return { kw: b.kw, market: b.market, line: ln, prev: ln, hist: [ln] };
       });
       if (!bets.length) bets = [{ kw: "signal", market: "RESURFACE", line: 1.6, prev: 1.6, hist: [1.6] }];
-      var W = lj("signal_wallet", { bal: 1000, realized: 0 });
+      var W = lj("signal_wallet", { bal: 1000, realized: 0, wins: 0, losses: 0, streak: 0, best: 1000 });
+      if (W.wins == null) { W.wins = 0; W.losses = 0; W.streak = 0; W.best = Math.max(1000, W.bal); }
       var POS = lj("signal_pos", []);
       var tape = [];
+      var CLAIM = { RESURFACE: "resurfaces across the feeds", SURVIVAL: "stays in the conversation", MOMENTUM: "keeps its momentum", "HEAD-TO-HEAD": "leads its rival", INDEX: "the index crosses its line" };
+
+      // ---- sound (Web Audio; off by default, opt-in) ----
+      var AC = null, SND = lj("signal_snd", false);
+      function ac() { if (!AC) { try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} } return AC; }
+      function beep(freq, dur, type, vol) {
+        if (!SND) return; var c = ac(); if (!c) return; if (c.state === "suspended") c.resume();
+        var o = c.createOscillator(), g = c.createGain(); o.type = type || "square"; o.frequency.value = freq;
+        var t = c.currentTime; g.gain.setValueAtTime(vol || 0.05, t); g.gain.exponentialRampToValueAtTime(0.0001, t + (dur || 0.12));
+        o.connect(g); g.connect(c.destination); o.start(t); o.stop(t + (dur || 0.13));
+      }
+      function chord(fs, dur) { fs.forEach(function (f, i) { setTimeout(function () { beep(f, dur, "triangle", 0.06); }, i * 80); }); }
+
+      var toastEl = $id("toast"), toastT;
+      function toast(m) { toastEl.textContent = m; toastEl.classList.add("show"); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove("show"); }, 1900); }
+      var stampEl = $id("bigstamp"), stampT;
+      function bigStamp(text, win) { stampEl.className = "bigstamp " + (win ? "win" : "loss") + " show"; stampEl.innerHTML = "<span>" + text + "</span>"; clearTimeout(stampT); stampT = setTimeout(function () { stampEl.classList.remove("show"); }, 1150); }
 
       function betByKw(kw) { for (var i = 0; i < bets.length; i++) if (bets[i].kw === kw) return bets[i]; return null; }
       function posPnl(p) { var b = betByKw(p.kw), line = b ? b.line : p.entry; var raw = p.side === "TAIL" ? p.stake * (p.entry / line - 1) : p.stake * (line / p.entry - 1); return Math.max(-p.stake, raw); }
@@ -728,7 +767,8 @@
 
       function buildBoard() {
         board.innerHTML = bets.map(function (b, i) {
-          return '<button class="tile" type="button" data-i="' + i + '"><span class="tile-act">TAIL / FADE</span><div class="tile-kw">' + esc(b.kw.toUpperCase()) + '</div><div class="tile-mkt">' + esc(b.market) + '</div><div class="tile-line" id="line-' + i + '">' + b.line.toFixed(2) + 'x</div><canvas class="tile-spark" id="spark-' + i + '"></canvas></button>';
+          var claim = "Call: <b>" + esc(b.kw.toUpperCase()) + "</b> " + (CLAIM[b.market] || "moves") + ".";
+          return '<button class="tile" type="button" data-i="' + i + '"><span class="tile-act">TAIL / FADE</span><div class="tile-kw">' + esc(b.kw.toUpperCase()) + '</div><div class="tile-mkt">' + esc(b.market) + ' &middot; LINE</div><div class="tile-line" id="line-' + i + '">' + b.line.toFixed(2) + 'x</div><canvas class="tile-spark" id="spark-' + i + '"></canvas><div class="tile-claim">' + claim + '</div></button>';
         }).join("");
         bets.forEach(function (_, i) { drawSpark(i); });
       }
@@ -748,7 +788,12 @@
       function renderWallet() {
         $id("w-bal").textContent = Math.round(W.bal);
         $id("w-exp").textContent = Math.round(exposure());
-        var op = openPnl(), oe = $id("w-open"); oe.textContent = (op >= 0 ? "+" : "") + op.toFixed(0); oe.className = op >= 0 ? "up" : "down";
+        if (W.best < W.bal) W.best = Math.round(W.bal);
+        var op = openPnl(), oe = $id("w-open"), txt = (op >= 0 ? "+" : "") + op.toFixed(0);
+        oe.className = op >= 0 ? "up" : "down"; oe.textContent = txt;
+        if (oe.getAttribute("data-v") !== txt) { oe.setAttribute("data-v", txt); oe.classList.remove("bump"); void oe.offsetWidth; oe.classList.add("bump"); }
+        var ps = $id("pit-stats");
+        if (ps) ps.innerHTML = "RECORD <b>" + W.wins + "-" + W.losses + "</b> &middot; STREAK <b>" + W.streak + "</b> &middot; BEST BALANCE <b>" + Math.round(W.best) + "</b> &middot; REALIZED <b>" + (W.realized >= 0 ? "+" : "") + Math.round(W.realized) + "u</b>";
       }
       function renderMy() {
         renderWallet();
@@ -757,7 +802,7 @@
         hdr.innerHTML = '<div class="band" style="font-size:11px;margin:8px 0">YOUR OPEN TRADES</div>';
         mp.innerHTML = POS.map(function (p) {
           var pnl = posPnl(p), b = betByKw(p.kw), line = (b ? b.line : p.entry).toFixed(2);
-          return '<div class="myrow"><span class="side ' + (p.side === "TAIL" ? "tail" : "fade") + '">' + p.side + '</span> <b>' + esc(p.kw.toUpperCase()) + '</b> <span class="soft">' + p.stake + "u @ " + p.entry.toFixed(2) + "x &middot; now " + line + 'x</span> <span class="mpnl ' + (pnl >= 0 ? "up" : "down") + '">' + (pnl >= 0 ? "+" : "") + pnl.toFixed(0) + 'u</span> <button class="sx" type="button" data-cash="' + p.id + '">[ CASH OUT ]</button></div>';
+          return '<div class="myrow ' + (pnl >= 0 ? "win" : "lose") + '"><span class="side ' + (p.side === "TAIL" ? "tail" : "fade") + '">' + p.side + '</span> <b>' + esc(p.kw.toUpperCase()) + '</b> <span class="soft">' + p.stake + "u @ " + p.entry.toFixed(2) + "x &middot; now " + line + 'x</span> <span class="mpnl ' + (pnl >= 0 ? "up" : "down") + '">' + (pnl >= 0 ? "+" : "") + pnl.toFixed(0) + 'u</span> <button class="sx" type="button" data-cash="' + p.id + '">[ CASH OUT ]</button></div>';
         }).join("");
       }
       function pushTape(m) { tape.unshift({ t: tnow(), m: m }); tape = tape.slice(0, 8); $id("floor").innerHTML = tape.map(function (l) { return '<div class="fl-row"><span class="fl-t">' + l.t + "</span> " + l.m + "</div>"; }).join(""); }
@@ -767,12 +812,14 @@
       function openBet(i) {
         sel = i; sideSel = null; var b = bets[i], max = Math.max(10, Math.round(W.bal)), def = Math.min(50, max);
         bb.innerHTML = '<div class="band">TRADE // ' + esc(b.kw.toUpperCase()) + '</div>' +
-          '<p>Market <b>' + esc(b.market) + '</b>. Line <b>' + b.line.toFixed(2) + 'x</b>. <b>TAIL</b> the engine to profit if the line shortens; <b>FADE</b> to profit if it drifts out.</p>' +
-          '<div class="am-row"><button class="sx" type="button" data-side="TAIL">[ TAIL ]</button><button class="sx alt" type="button" data-side="FADE">[ FADE ]</button></div>' +
+          '<p class="soft" style="margin:0 0 4px">THE CALL</p>' +
+          '<p style="margin:0 0 12px"><b>' + esc(b.kw.toUpperCase()) + '</b> ' + (CLAIM[b.market] || "moves") + '.<br><span class="soft">' + esc(b.win || "") + '</span></p>' +
+          '<p>Line now <b>' + b.line.toFixed(2) + 'x</b>. <b>TAIL</b> = bet the call heats up (line shortens). <b>FADE</b> = bet it cools (line drifts out). Marked to market live; cash out anytime.</p>' +
+          '<div class="am-row"><button class="sx" type="button" data-side="TAIL">[ TAIL // WITH ]</button><button class="sx alt" type="button" data-side="FADE">[ FADE // AGAINST ]</button></div>' +
           '<p style="margin-top:14px">STAKE <b id="bet-stake-l">' + def + '</b>u &middot; chips ' + Math.round(W.bal) + '</p>' +
           '<input type="range" id="bet-stake" min="10" max="' + max + '" value="' + def + '" style="width:100%">' +
-          '<div class="am-row"><button class="sx" type="button" id="bet-place" disabled>SELECT TAIL OR FADE</button><button class="sx alt" type="button" data-betclose>[ CANCEL ]</button></div>';
-        bm.classList.add("open");
+          '<div class="am-row"><button class="sx" type="button" id="bet-place" disabled>SELECT A SIDE</button><button class="sx alt" type="button" data-betclose>[ CANCEL ]</button></div>';
+        bm.classList.add("open"); beep(330, 0.05, "square", 0.04);
       }
       function closeBet() { bm.classList.remove("open"); sel = null; sideSel = null; }
       function placeBet() {
@@ -780,12 +827,23 @@
         var b = bets[sel], stake = Math.min(W.bal, +($id("bet-stake").value || 0));
         if (stake < 10) { closeBet(); return; }
         W.bal -= stake; POS.push({ id: "p" + Date.now() + Math.floor(Math.random() * 999), kw: b.kw, market: b.market, side: sideSel, stake: Math.round(stake), entry: b.line });
-        sj("signal_wallet", W); sj("signal_pos", POS); pushTape("YOU " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase() + " @ " + b.line.toFixed(2) + "x"); closeBet(); renderMy();
+        sj("signal_wallet", W); sj("signal_pos", POS);
+        pushTape("YOU " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase() + " @ " + b.line.toFixed(2) + "x");
+        toast("PLACED // " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase()); beep(440, 0.08, "square", 0.05);
+        closeBet(); renderMy();
       }
       function cashOut(id) {
         for (var i = 0; i < POS.length; i++) if (POS[i].id === id) {
-          var p = POS[i], pnl = posPnl(p); W.bal += p.stake + pnl; W.realized += pnl; POS.splice(i, 1);
-          sj("signal_wallet", W); sj("signal_pos", POS); pushTape("CASHED OUT " + p.kw.toUpperCase() + " // " + (pnl >= 0 ? "+" : "") + pnl.toFixed(0) + "u"); renderMy(); return;
+          var p = POS[i], pnl = posPnl(p); W.bal += p.stake + pnl; W.realized += pnl;
+          if (pnl >= 0) { W.wins++; W.streak++; } else { W.losses++; W.streak = 0; }
+          if (W.best < W.bal) W.best = Math.round(W.bal);
+          POS.splice(i, 1); sj("signal_wallet", W); sj("signal_pos", POS);
+          var sign = pnl >= 0 ? "+" : "";
+          pushTape("CASHED OUT " + p.kw.toUpperCase() + " // " + sign + pnl.toFixed(0) + "u");
+          bigStamp((pnl >= 0 ? "WIN " + sign : "LOSS ") + Math.round(pnl) + "u", pnl >= 0);
+          toast((pnl >= 0 ? "WIN " + sign : "LOSS ") + Math.round(pnl) + "u cashed");
+          if (pnl >= 0) chord([523, 659, 784], 0.18); else { beep(196, 0.22, "sawtooth", 0.06); setTimeout(function () { beep(147, 0.26, "sawtooth", 0.06); }, 90); }
+          renderMy(); return;
         }
       }
 
@@ -796,7 +854,9 @@
         if (sb) { sideSel = sb.getAttribute("data-side"); bb.querySelectorAll("[data-side]").forEach(function (x) { x.classList.remove("sel"); }); sb.classList.add("sel"); var pl = $id("bet-place"); pl.disabled = false; pl.textContent = "[ PLACE " + sideSel + " ]"; return; }
         if (e.target.id === "bet-place") { placeBet(); return; }
         var cash = e.target.closest("[data-cash]"); if (cash) { cashOut(cash.getAttribute("data-cash")); return; }
-        if (e.target.id === "w-reset") { W = { bal: 1000, realized: 0 }; POS = []; sj("signal_wallet", W); sj("signal_pos", POS); pushTape("WALLET RESET // 1000 CHIPS"); renderMy(); return; }
+        if (e.target.id === "w-reset") { W = { bal: 1000, realized: 0, wins: 0, losses: 0, streak: 0, best: 1000 }; POS = []; sj("signal_wallet", W); sj("signal_pos", POS); pushTape("WALLET RESET // 1000 CHIPS"); toast("WALLET RESET"); renderMy(); return; }
+        if (e.target.id === "w-sound") { SND = !SND; sj("signal_snd", SND); e.target.textContent = "[ SOUND: " + (SND ? "ON" : "OFF") + " ]"; if (SND) { ac(); beep(660, 0.09, "triangle", 0.05); } return; }
+        if (e.target.id === "w-share") { if (window.__signalCard) window.__signalCard({ headline: (W.realized >= 0 ? "+" : "") + Math.round(W.realized) + "u", dm: true, kicker: "MY SIGNAL PIT SESSION", sub: "RECORD " + W.wins + "-" + W.losses + " / STREAK " + W.streak + " / " + Math.round(W.bal) + " CHIPS", stamp: W.realized >= 0 ? "UP" : "DOWN", stampcolor: W.realized >= 0 ? "green" : "red" }, "Tailing and fading the SIGNAL oracle."); return; }
         if (e.target === bm) closeBet();
       });
       document.addEventListener("input", function (e) { if (e.target.id === "bet-stake") { var l = $id("bet-stake-l"); if (l) l.textContent = e.target.value; } });
@@ -808,10 +868,12 @@
         var el = $id("line-" + i); if (el) el.textContent = b.line.toFixed(2) + "x"; drawSpark(i);
         var t = board.children[i]; if (t) { t.classList.remove("flash-up", "flash-down"); void t.offsetWidth; t.classList.add(dir < 0 ? "flash-up" : "flash-down"); }
         buildTicker(); renderMy();
+        beep(170 + Math.random() * 150, 0.03, "sine", 0.02);
         pushTape("LINE // <b>" + esc(b.kw.toUpperCase()) + "</b> " + b.prev.toFixed(2) + "x -> " + b.line.toFixed(2) + "x " + (dir < 0 ? "(heating)" : "(cooling)"));
       }
       function tick() { move(); if (!REDUCE) setTimeout(tick, rnd(1700, 3300)); }
 
+      var sb = $id("w-sound"); if (sb) sb.textContent = "[ SOUND: " + (SND ? "ON" : "OFF") + " ]";
       buildBoard(); buildTicker(); renderMy();
       pushTape("PIT OPEN // " + bets.length + " live lines");
       if (REDUCE) { for (var k = 0; k < 4; k++) move(); } else { tick(); }
