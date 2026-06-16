@@ -1,0 +1,11 @@
+# Rust build output
+/target
+
+# Local CARGO_HOME override used for building on this machine
+/.cargo-home
+
+# Subscriber payload + KV sync scratch — must NOT be committed (it's the paid edge).
+/build
+
+# Worker deps
+/worker/node_modules

@@ -1,0 +1,25 @@
+[package]
+name = "tech-oracle"
+version = "0.1.0"
+edition = "2021"
+description = "Self-updating tech-prediction site: fetch free signals, generate dated calls by rules, render a static page."
+
+[dependencies]
+# HTTP. rustls-tls so there is no OpenSSL system dependency on the CI box.
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "rustls-tls"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+# Robust Atom parsing for the arXiv feed.
+feed-rs = "2"
+# GitHub trending has no official API; we extract repo + stars-today from the
+# HTML defensively with regex. (We avoid `scraper` here: its build-time
+# perfect-hash codegen pulls a `rand` that fails to compile on rustc 1.91.)
+regex = "1"
+# Jinja2 templating. Template file is embedded at compile time via include_str!.
+minijinja = "2"
+# Dates + deterministic date-seeded template rotation.
+chrono = "0.4"
+anyhow = "1"
+
+[profile.release]
+opt-level = 2

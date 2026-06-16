@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+{%- set labels = {"hn": "Hacker News", "arxiv": "arXiv", "github": "GitHub"} -%}
+{%- set delay_word = "day" if reveal_delay_days == 1 else "days" -%}
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SIGNAL&nbsp;/&nbsp;Oracle — dated tech predictions</title>
+  <meta name="description" content="One or two specific, dated, confident tech predictions a day — generated from live signals, with a full public track record." />
+  <meta property="og:title" content="SIGNAL — dated tech predictions" />
+  <meta property="og:description" content="Specific, dated, confident calls on where tech goes next. Full public track record. Subscribers see every call {{ reveal_delay_days }} {{ delay_word }} early." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0b1a;
+      --bg-2: #10122b;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface-2: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.10);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --text: #eef0fa;
+      --muted: #9aa0bd;
+      --faint: #6b7095;
+      --cyan: #5ed6ff;
+      --violet: #b69cff;
+      --amber: #ffb454;
+      --pink: #ff9ecb;
+      --display: "Space Grotesk", system-ui, sans-serif;
+      --body: "Inter", system-ui, sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--body);
+      color: var(--text);
+      background:
+        radial-gradient(1100px 700px at 78% -8%, rgba(94, 214, 255, 0.10), transparent 60%),
+        radial-gradient(900px 620px at 12% 4%, rgba(182, 156, 255, 0.10), transparent 60%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      background-attachment: fixed;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+
+    .wrap { max-width: 920px; margin: 0 auto; padding: 0 22px; }
+
+    /* ---- masthead ---- */
+    header.masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 26px 0 8px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 12px;
+      font-family: var(--mono);
+      letter-spacing: 0.34em;
+      font-size: 13px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .dot {
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 0 0 rgba(94, 214, 255, 0.55);
+      animation: blip 2.6s ease-out infinite;
+    }
+    @keyframes blip {
+      0% { box-shadow: 0 0 0 0 rgba(94, 214, 255, 0.5); }
+      70% { box-shadow: 0 0 0 12px rgba(94, 214, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(94, 214, 255, 0); }
+    }
+    .masthead .meta { font-family: var(--mono); font-size: 12px; color: var(--faint); text-align: right; }
+
+    /* ---- hero ---- */
+    .hero { position: relative; padding: 30px 0 26px; overflow: hidden; }
+    /* signature element: sonar rings emanating behind the hero */
+    .sonar {
+      position: absolute; right: -120px; top: -90px;
+      width: 460px; height: 460px;
+      pointer-events: none; opacity: 0.5;
+      -webkit-mask-image: radial-gradient(closest-side, #000 60%, transparent);
+              mask-image: radial-gradient(closest-side, #000 60%, transparent);
+    }
+    .sonar span {
+      position: absolute; inset: 0; margin: auto;
+      width: 80px; height: 80px; border-radius: 50%;
+      border: 1px solid rgba(94, 214, 255, 0.35);
+      animation: ping 4.8s ease-out infinite;
+    }
+    .sonar span:nth-child(2) { animation-delay: 1.6s; border-color: rgba(182, 156, 255, 0.35); }
+    .sonar span:nth-child(3) { animation-delay: 3.2s; border-color: rgba(255, 158, 203, 0.30); }
+    @keyframes ping {
+      0% { transform: scale(0.2); opacity: 0.9; }
+      100% { transform: scale(5.2); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .dot, .sonar span { animation: none; }
+      .sonar span { transform: scale(3); opacity: 0.25; }
+    }
+
+    .eyebrow {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--cyan); margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-family: var(--display); font-weight: 700;
+      font-size: clamp(30px, 5.4vw, 52px);
+      line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 10px;
+    }
+    .hero .call {
+      background: linear-gradient(100deg, #8ee6ff, var(--violet) 55%, var(--pink));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .hero .called-on { font-family: var(--mono); font-size: 12.5px; color: var(--faint); }
+    .hero .source {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-size: 13px; color: var(--muted); text-decoration: none;
+      border-bottom: 1px solid var(--border-strong); padding-bottom: 1px;
+    }
+    .hero .source:hover { color: var(--text); }
+    .featured-item + .featured-item { margin-top: 26px; padding-top: 26px; border-top: 1px dashed var(--border); }
+
+    .ribbon {
+      display: inline-flex; align-items: center; gap: 9px;
+      margin-top: 22px; padding: 8px 14px; border-radius: 999px;
+      background: var(--surface); border: 1px solid var(--border);
+      font-size: 13px; color: var(--muted);
+    }
+    .ribbon b { color: var(--cyan); font-weight: 600; }
+
+    /* ---- subscribe ---- */
+    .edge {
+      margin: 38px 0 14px; padding: 26px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(94,214,255,0.08), rgba(182,156,255,0.08));
+      border: 1px solid var(--border-strong);
+    }
+    .edge h2 { font-family: var(--display); font-size: 22px; margin: 0 0 8px; letter-spacing: -0.01em; }
+    .edge p { margin: 0 0 18px; color: var(--muted); font-size: 15px; max-width: 60ch; }
+    .edge .btns { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--body); font-weight: 600; font-size: 14px;
+      text-decoration: none; padding: 11px 18px; border-radius: 11px;
+      border: 1px solid transparent; transition: transform .12s ease, filter .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { color: #06121a; background: linear-gradient(100deg, var(--cyan), var(--violet)); }
+    .btn-primary:hover { filter: brightness(1.06); }
+    .btn-ghost { color: var(--text); border-color: var(--border-strong); background: var(--surface); }
+    .edge .fine { margin: 16px 0 0; font-size: 12.5px; color: var(--faint); }
+    .edge .fine a { color: var(--muted); }
+
+    /* ---- archive ---- */
+    .archive { margin: 46px 0 60px; }
+    .archive-head {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 12px; margin-bottom: 22px;
+      border-top: 1px solid var(--border); padding-top: 26px;
+    }
+    .archive-head h2 { font-family: var(--display); font-size: 18px; margin: 0; letter-spacing: 0.02em; }
+    .archive-head .count { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+
+    ol.timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; }
+    ol.timeline::before {
+      content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px;
+      width: 1px; background: linear-gradient(var(--border-strong), transparent);
+    }
+    .entry { position: relative; padding: 0 0 28px 22px; }
+    .entry::before {
+      content: ""; position: absolute; left: -22px; top: 7px;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--bg-2); border: 1.5px solid var(--cyan);
+    }
+    .entry.t-arxiv::before { border-color: var(--violet); }
+    .entry.t-github::before { border-color: var(--cyan); }
+    .entry.t-hn::before { border-color: var(--amber); }
+    .entry:target { background: var(--surface); border-radius: 12px; padding-top: 10px; margin-left: -8px; padding-left: 30px; }
+
+    .entry .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
+    .entry time { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
+    .chip {
+      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 3px 8px; border-radius: 6px;
+      border: 1px solid var(--border); color: var(--muted);
+    }
+    .chip.t-hn { color: var(--amber); border-color: rgba(255,180,84,0.4); }
+    .chip.t-arxiv { color: var(--violet); border-color: rgba(182,156,255,0.4); }
+    .chip.t-github { color: var(--cyan); border-color: rgba(94,214,255,0.4); }
+    .entry p.text { margin: 0 0 8px; font-size: 16.5px; }
+    .entry .links { display: flex; gap: 14px; align-items: center; }
+    .entry .links a, .entry .links button {
+      font-family: var(--mono); font-size: 12px; color: var(--faint);
+      text-decoration: none; background: none; border: none; cursor: pointer; padding: 0;
+    }
+    .entry .links a:hover, .entry .links button:hover { color: var(--cyan); }
+    .anchor { opacity: 0; transition: opacity .12s ease; }
+    .entry:hover .anchor { opacity: 1; }
+
+    .empty { color: var(--muted); font-style: italic; padding: 20px 0; }
+
+    footer {
+      border-top: 1px solid var(--border); padding: 26px 0 50px;
+      font-size: 12.5px; color: var(--faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    }
+    footer a { color: var(--muted); }
+
+    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="masthead">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> SIGNAL · ORACLE</div>
+      <div class="meta">updated<br />{{ generated_human }}</div>
+    </header>
+
+    <section class="hero" aria-label="Latest public call">
+      <div class="sonar" aria-hidden="true"><span></span><span></span><span></span></div>
+      <div class="eyebrow">Today's public call{% if featured | length > 1 %}s{% endif %}</div>
+      {% if featured | length > 0 %}
+        {% for p in featured %}
+        <div class="featured-item">
+          <h1><span class="call">{{ p.prediction_text }}</span></h1>
+          <div class="called-on">
+            Called {{ featured_date_human }} ·
+            <a class="source" href="{{ p.source_url }}" rel="noopener">based on {{ labels[p.signal_type] }}: {{ p.source_title }} ↗</a>
+          </div>
+        </div>
+        {% endfor %}
+        <div class="ribbon">⚡ Subscribers saw {% if featured | length > 1 %}these{% else %}this{% endif %} <b>{{ reveal_delay_days }} {{ delay_word }}</b> before this page.</div>
+      {% else %}
+        <h1><span class="call">The signal's still warming up.</span></h1>
+        <p class="called-on">No public calls have been revealed yet — check back once the archive fills in.</p>
+      {% endif %}
+    </section>
+
+    <section class="edge" aria-label="Subscribe">
+      <h2>Get tomorrow's call today</h2>
+      <p>
+        The whole product is being early. The public archive below is the proof it works —
+        every call is dated and linked to its source. Subscribers get each call
+        <b>{{ reveal_delay_days }} {{ delay_word }}</b> before it lands here, while the lead still matters.
+      </p>
+      <div class="btns">
+        <a class="btn btn-primary" href="{{ payment_link }}" rel="noopener">Subscribe — get the {{ reveal_delay_days }}-{{ delay_word }} edge →</a>
+        <a class="btn btn-ghost" href="{{ early_access_url }}" rel="noopener">Subscriber sign-in</a>
+      </div>
+      <p class="fine">
+        Secure checkout & billing handled by Stripe. Cancel anytime via the
+        <a href="{{ portal_url }}" rel="noopener">customer portal</a>.
+      </p>
+    </section>
+
+    <section class="archive" aria-label="Track record">
+      <div class="archive-head">
+        <h2>The track record</h2>
+        <span class="count">{{ total }} call{% if total != 1 %}s{% endif %} on the board</span>
+      </div>
+
+      {% if archive | length > 0 %}
+      <ol class="timeline">
+        {% for p in archive %}
+        {% set anchor = "call-" ~ p.date ~ "-" ~ loop.index %}
+        <li class="entry t-{{ p.signal_type }}" id="{{ anchor }}">
+          <div class="row">
+            <time datetime="{{ p.date }}">{{ p.date }}</time>
+            <span class="chip t-{{ p.signal_type }}">{{ labels[p.signal_type] }}</span>
+          </div>
+          <p class="text">{{ p.prediction_text }}</p>
+          <div class="links">
+            <a href="{{ p.source_url }}" rel="noopener">source ↗</a>
+            <a class="anchor" href="#{{ anchor }}">#</a>
+            <button type="button" class="copy" data-anchor="{{ anchor }}">copy link</button>
+          </div>
+        </li>
+        {% endfor %}
+      </ol>
+      {% else %}
+      <p class="empty">No calls revealed yet.</p>
+      {% endif %}
+    </section>
+
+    <footer>
+      <span>SIGNAL · ORACLE — rules-based calls from live tech signals. Not financial advice.</span>
+      <span>HN · arXiv · GitHub Trending</span>
+    </footer>
+  </div>
+
+  <script>
+    // Progressive enhancement only — all content above works with JS off.
+    document.querySelectorAll("button.copy").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var url = location.origin + location.pathname + "#" + btn.dataset.anchor;
+        navigator.clipboard.writeText(url).then(function () {
+          var prev = btn.textContent;
+          btn.textContent = "copied ✓";
+          setTimeout(function () { btn.textContent = prev; }, 1400);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

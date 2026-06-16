@@ -1,0 +1,91 @@
+name: daily-prediction
+
+on:
+  # Edit this one line to change when the daily call drops (UTC).
+  schedule:
+    - cron: "17 13 * * *" # 13:17 UTC daily
+  workflow_dispatch: {}
+
+# Needed so the Action can commit the regenerated files back.
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-prediction
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    env:
+      # Release window. Subscribers see calls now; public reveals after this many days.
+      REVEAL_DELAY_DAYS: "1"
+      # Public CTA URLs (repo Variables, not Secrets — a Payment Link is shareable).
+      STRIPE_PAYMENT_LINK: ${{ vars.STRIPE_PAYMENT_LINK }}
+      STRIPE_PORTAL_URL: ${{ vars.STRIPE_PORTAL_URL }}
+      EARLY_ACCESS_URL: ${{ vars.EARLY_ACCESS_URL }}
+      # Cloudflare KV sync (Secrets). If unset, KV steps no-op and the run still
+      # produces the public page from whatever is committed (manual fallback).
+      CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+      CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
+      CF_KV_NAMESPACE_ID: ${{ secrets.CF_KV_NAMESPACE_ID }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust toolchain
+        run: rustup toolchain install stable --profile minimal --no-self-update
+
+      - name: Cache cargo + build
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: cargo-${{ runner.os }}-${{ hashFiles('Cargo.lock', 'Cargo.toml') }}
+          restore-keys: cargo-${{ runner.os }}-
+
+      - name: Build (release)
+        run: cargo build --release
+
+      # Pull the current embargoed pool out of KV so today's run can promote
+      # any calls whose delay window has elapsed. Missing key => empty file.
+      - name: Pull embargoed pool from KV
+        run: |
+          mkdir -p build
+          if [ -n "$CF_API_TOKEN" ]; then
+            curl -fsS -H "Authorization: Bearer $CF_API_TOKEN" \
+              "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/storage/kv/namespaces/$CF_KV_NAMESPACE_ID/values/edge_payload" \
+              -o build/embargoed_in.json || echo "[]" > build/embargoed_in.json
+          else
+            echo "No CF secrets set; skipping KV pull (manual fallback)."
+          fi
+
+      - name: Generate
+        run: ./target/release/tech-oracle
+
+      # Push the new edge payload back into KV for the Worker to serve.
+      - name: Push edge payload to KV
+        run: |
+          if [ -n "$CF_API_TOKEN" ] && [ -f build/early_payload.json ]; then
+            curl -fsS -X PUT -H "Authorization: Bearer $CF_API_TOKEN" \
+              --data-binary @build/early_payload.json \
+              "https://api.cloudflare.com/client/v4/accounts/$CF_ACCOUNT_ID/storage/kv/namespaces/$CF_KV_NAMESPACE_ID/values/edge_payload"
+            echo "Pushed edge payload to KV."
+          else
+            echo "No CF secrets set; skipping KV push (manual fallback)."
+          fi
+
+      # Commit ONLY the public, revealed files. build/ is gitignored, so the
+      # embargoed edge never lands in the public repo.
+      - name: Commit revealed output
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/predictions.json docs/index.html
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "daily prediction: $(date -u +%Y-%m-%d)"
+            git push
+          fi

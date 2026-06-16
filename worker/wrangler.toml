@@ -1,0 +1,19 @@
+name = "tech-oracle-edge"
+main = "worker.js"
+compatibility_date = "2024-09-01"
+
+# Create with: wrangler kv namespace create EDGE
+# then paste the returned id here.
+kv_namespaces = [
+  { binding = "KV", id = "REPLACE_WITH_KV_NAMESPACE_ID" }
+]
+
+# Public, non-secret config. The Payment Link and Portal URLs are safe here.
+[vars]
+PAYMENT_LINK_URL = "https://buy.stripe.com/test_REPLACE"
+PORTAL_URL = "https://billing.stripe.com/p/login/test_REPLACE"
+
+# Secrets are NOT stored here — set them out-of-band:
+#   wrangler secret put STRIPE_SECRET_KEY
+#   wrangler secret put STRIPE_WEBHOOK_SECRET
+#   wrangler secret put COOKIE_SECRET        # any long random string
