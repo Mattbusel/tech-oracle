@@ -259,11 +259,13 @@
       </p>
       <div class="btns">
         <a class="btn btn-primary" href="{{ payment_link }}" rel="noopener">Subscribe — get the {{ reveal_delay_days }}-{{ delay_word }} edge →</a>
+        {% if early_access_url and early_access_url != "#" %}
         <a class="btn btn-ghost" href="{{ early_access_url }}" rel="noopener">Subscriber sign-in</a>
+        {% endif %}
       </div>
       <p class="fine">
-        Secure checkout & billing handled by Stripe. Cancel anytime via the
-        <a href="{{ portal_url }}" rel="noopener">customer portal</a>.
+        Secure checkout & billing handled by Stripe.
+        {% if portal_url and portal_url != "#" %}Cancel anytime via the <a href="{{ portal_url }}" rel="noopener">customer portal</a>.{% else %}Cancel anytime — manage from your Stripe receipt.{% endif %}
       </p>
     </section>
 
