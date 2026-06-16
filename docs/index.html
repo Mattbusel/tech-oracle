@@ -550,6 +550,12 @@
               <div class="mf-grid">
                 
                 <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-hn">HACKER NEWS</span><span class="mf-count">30</span></div>
+                  <span class="mf-bar"><i class="s-hn" style="width:100%"></i></span>
+                  <a class="mf-item" href="https://vickiboykis.com/2026/06/15/running-local-models-is-good-now/" rel="noopener">TOP // Running local models is good now</a>
+                </div>
+                
+                <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-arxiv">ARXIV</span><span class="mf-count">30</span></div>
                   <span class="mf-bar"><i class="s-arxiv" style="width:100%"></i></span>
                   <a class="mf-item" href="https://arxiv.org/abs/2606.17048v1" rel="noopener">TOP // Exact Posterior Score Estimation for Solving Linear Inverse Problems</a>
@@ -597,7 +603,7 @@
               <p class="coupon-p">Every call prints here for free, dated and on the record. Subscribers get each call 1 DAY earlier, while the lead still pays. The ledger below is the proof. The lead time is the product.</p>
               <div class="coupon-row">
                 <div class="price">15 USD <span>/ MONTH</span></div>
-                <a class="sub" href="#" data-acct="subscribe" data-link="#" rel="noopener">SUBSCRIBE FOR THE 1-DAY LEAD</a>
+                <a class="sub" href="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" data-acct="subscribe" data-link="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" rel="noopener">SUBSCRIBE FOR THE 1-DAY LEAD</a>
               </div>
               <div class="cred-actions">
                 <button class="sub-2" type="button" data-acct="new">[ CREATE A FREE PRESS CREDENTIAL ]</button>
@@ -646,6 +652,12 @@
                 <div class="bs-row">
                   <span class="bs-label s-lobsters">LOBSTERS</span>
                   <span class="bs-bar"><i class="s-lobsters" style="width:10%"></i></span>
+                  <span class="bs-count">1</span>
+                </div>
+                
+                <div class="bs-row">
+                  <span class="bs-label s-devto">DEV.TO</span>
+                  <span class="bs-bar"><i class="s-devto" style="width:10%"></i></span>
                   <span class="bs-count">1</span>
                 </div>
                 
@@ -1381,7 +1393,7 @@
           open('<div class="band">EARLY FEED // ' + payload.predictions.length + ' AHEAD OF THE RECORD</div><div class="am-feed">' + feed + '</div><div class="am-row" style="margin-top:14px"><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
         } else {
           open('<div class="band">NO ACTIVE EARLY FEED</div><p>No feed is published for that credential. If you just subscribed, it appears on the next daily run. Otherwise, subscribe to unlock, then unlock here with the same credential.</p>' +
-            '<div class="am-row"><a class="sx" href="#" data-acct="subscribe" data-link="#" rel="noopener">[ SUBSCRIBE ]</a><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
+            '<div class="am-row"><a class="sx" href="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" data-acct="subscribe" data-link="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" rel="noopener">[ SUBSCRIBE ]</a><button class="sx alt" type="button" data-close>[ CLOSE ]</button></div>');
         }
       }
       function subscribe(link) {
@@ -1399,7 +1411,7 @@
         var a = e.target.closest("[data-acct]");
         if (a) {
           var k = a.getAttribute("data-acct");
-          if (k === "subscribe") { e.preventDefault(); subscribe(a.getAttribute("data-link") || "#"); return; }
+          if (k === "subscribe") { e.preventDefault(); subscribe(a.getAttribute("data-link") || "https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400"); return; }
           e.preventDefault();
           if (k === "new") viewNew(); else if (k === "early") viewEarly();
           return;
