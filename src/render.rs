@@ -37,6 +37,7 @@ pub fn render(
         while i < sorted.len() && sorted[i].date == date {
             let p = sorted[i];
             let status = if p.status.is_empty() { "OPEN" } else { p.status.as_str() };
+            let conf = if p.confidence > 0.0 { p.confidence } else { 0.65 };
             items.push(serde_json::json!({
                 "no": total - i,
                 "prediction_text": p.prediction_text,
@@ -45,6 +46,8 @@ pub fn render(
                 "status": status,
                 "win_if": p.win_if,
                 "resolved_on": p.resolved_on,
+                "odds": format!("{:.2}x", 1.0 / conf),
+                "conf": (conf * 100.0).round() as i64,
             }));
             i += 1;
         }
@@ -107,6 +110,63 @@ pub fn render(
         "rate": rate.unwrap_or(0), "verdict": verdict,
     });
 
+    // THE BOOK: a flat-stake virtual bankroll wagered on the oracle's own
+    // calls, settled in chronological order. The line (decimal odds) is 1/conf,
+    // so favorites pay little and longshots pay big.
+    let mut chrono: Vec<&Prediction> = archive.iter().collect();
+    chrono.sort_by(|a, b| a.date.cmp(&b.date));
+    let start_bank = 1000.0_f64;
+    let stake = 100.0_f64;
+    let mut bank = start_bank;
+    let mut bank_hist: Vec<f64> = Vec::new();
+    let mut bank_dates: Vec<String> = Vec::new();
+    let (mut cur, mut best_win, mut best_loss, mut settled) = (0i64, 0i64, 0i64, 0i64);
+    let mut last_win: Option<bool> = None;
+    for p in &chrono {
+        let conf = if p.confidence > 0.0 { p.confidence.clamp(0.5, 0.95) } else { 0.65 };
+        let win = match p.status.as_str() {
+            "HIT" => true,
+            "MISS" => false,
+            _ => continue,
+        };
+        if win {
+            bank += stake * ((1.0 / conf) - 1.0);
+        } else {
+            bank -= stake;
+        }
+        settled += 1;
+        match last_win {
+            Some(l) if l == win => cur += 1,
+            _ => cur = 1,
+        }
+        last_win = Some(win);
+        if win && cur > best_win { best_win = cur; }
+        if !win && cur > best_loss { best_loss = cur; }
+        bank_hist.push(bank);
+        bank_dates.push(p.date.clone());
+    }
+    let pnl = bank - start_bank;
+    let roi = (pnl / start_bank * 100.0).round() as i64;
+    let (mn, mx) = bank_hist.iter().fold((f64::MAX, f64::MIN), |(a, b), &v| (a.min(v), b.max(v)));
+    let span = bank_dates.len().saturating_sub(20);
+    let book_history: Vec<serde_json::Value> = bank_hist
+        .iter()
+        .zip(bank_dates.iter())
+        .skip(span)
+        .map(|(&v, d)| {
+            let pct = if mx > mn { ((v - mn) / (mx - mn) * 100.0).round().max(4.0) } else { 50.0 };
+            serde_json::json!({ "date": d, "pct": pct as i64 })
+        })
+        .collect();
+    let book = serde_json::json!({
+        "bank": bank.round() as i64,
+        "roi_str": format!("{}{}%", if pnl >= 0.0 { "+" } else { "" }, roi),
+        "pnl_class": if pnl >= 0.0 { "sb-hit" } else { "sb-miss" },
+        "streak": match last_win { Some(true) => format!("W{cur}"), Some(false) => format!("L{cur}"), None => "--".to_string() },
+        "best_win": best_win, "best_loss": best_loss,
+        "settled": settled, "history": book_history,
+    });
+
     let since_human = sorted.last().map(|p| human_date(&p.date)).unwrap_or_default();
     let record = serde_json::json!({
         "total": total,
@@ -130,6 +190,7 @@ pub fn render(
         intake => intake,
         pulse => pulse,
         scoreboard => scoreboard,
+        book => book,
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,

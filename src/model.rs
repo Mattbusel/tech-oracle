@@ -32,4 +32,6 @@ pub struct Prediction {
     pub resolves_by: String, // YYYY-MM-DD deadline
     #[serde(default)]
     pub resolved_on: String, // YYYY-MM-DD when settled, or ""
+    #[serde(default)]
+    pub confidence: f64, // 0.50-0.95; sets the line and the stake payout
 }

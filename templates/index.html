@@ -183,6 +183,9 @@
     .verdict-stamp.v-open { color: var(--ink-soft); border-color: var(--rule); }
     .winif { font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-soft); margin: 0 0 10px; }
     .winif .res-hit { color: #2f6f4f; font-weight: 700; } .winif .res-miss { color: var(--stamp); font-weight: 700; }
+    .odds { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); }
+    .book-spark .ph-bar { background: #2f6f4f; opacity: 0.8; }
+    .book-spark .ph-bar:last-child { background: var(--stamp); opacity: 1; }
     .entry.st-miss { opacity: 0.9; }
 
     /* THE PULSE */
@@ -334,6 +337,24 @@
 
             <div class="perf" aria-hidden="true"></div>
 
+            <section class="book" aria-label="The book">
+              <div class="band">THE BOOK / VIRTUAL BANKROLL / FLAT 100-UNIT STAKES</div>
+              <div class="sb-grid">
+                <div class="sb-cell"><span class="sb-num">{{ book.bank }}</span><span class="sb-lbl">UNITS</span></div>
+                <div class="sb-cell"><span class="sb-num {{ book.pnl_class }}">{{ book.roi_str }}</span><span class="sb-lbl">RETURN</span></div>
+                <div class="sb-cell"><span class="sb-num">{{ book.streak }}</span><span class="sb-lbl">CURRENT STREAK</span></div>
+                <div class="sb-cell"><span class="sb-num" style="font-size:24px">W{{ book.best_win }} / L{{ book.best_loss }}</span><span class="sb-lbl">BEST RUNS</span></div>
+              </div>
+              {% if book.history | length > 0 %}
+              <div class="pulse-hist book-spark" aria-hidden="true">
+                {% for h in book.history %}<span class="ph-bar" title="{{ h.date }}" style="height:{{ h.pct }}%"></span>{% endfor %}
+              </div>
+              <div class="seismo-lbl">BANKROLL CURVE // {{ book.settled }} SETTLED BETS // STARTING STAKE 1000</div>
+              {% endif %}
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
             <section class="pulse" aria-label="Tech acceleration index">
               <div class="band">THE PULSE / TECH ACCELERATION INDEX</div>
               <div class="pulse-grid">
@@ -444,7 +465,7 @@
                   {% for it in page.items %}
                   {% set anchor = "call-" ~ it.no %}
                   <li class="entry s-edge-{{ it.signal_type }} st-{{ it.status | lower }}" id="{{ anchor }}">
-                    <div class="entry-meta"><span class="no">No. {{ it.no }}</span><span class="verdict-stamp v-{{ it.status | lower }}">{{ it.status }}</span><span class="tg s-{{ it.signal_type }}">{{ labels[it.signal_type] }}</span></div>
+                    <div class="entry-meta"><span class="no">No. {{ it.no }}</span><span class="verdict-stamp v-{{ it.status | lower }}">{{ it.status }}</span><span class="odds">LINE {{ it.odds }} @ {{ it.conf }}%</span><span class="tg s-{{ it.signal_type }}">{{ labels[it.signal_type] }}</span></div>
                     <p class="entry-text">{{ it.prediction_text }}</p>
                     {% if it.win_if %}<div class="winif">{{ it.win_if }}{% if it.status == 'HIT' %} <span class="res-hit">:: HIT {{ it.resolved_on }}</span>{% elif it.status == 'MISS' %} <span class="res-miss">:: MISSED</span>{% endif %}</div>{% endif %}
                     <div class="entry-actions">

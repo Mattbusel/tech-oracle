@@ -180,6 +180,9 @@
     .verdict-stamp.v-open { color: var(--ink-soft); border-color: var(--rule); }
     .winif { font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-soft); margin: 0 0 10px; }
     .winif .res-hit { color: #2f6f4f; font-weight: 700; } .winif .res-miss { color: var(--stamp); font-weight: 700; }
+    .odds { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); }
+    .book-spark .ph-bar { background: #2f6f4f; opacity: 0.8; }
+    .book-spark .ph-bar:last-child { background: var(--stamp); opacity: 1; }
     .entry.st-miss { opacity: 0.9; }
 
     /* THE PULSE */
@@ -317,16 +320,34 @@
             <section class="scoreboard" aria-label="Track record scorecard">
               <div class="band">THE SCORECARD / SELF-GRADING / NO EDITS / NO DELETES</div>
               <div class="sb-grid">
-                <div class="sb-cell"><span class="sb-num sb-hit">7</span><span class="sb-lbl">HITS</span></div>
+                <div class="sb-cell"><span class="sb-num sb-hit">8</span><span class="sb-lbl">HITS</span></div>
                 <div class="sb-cell"><span class="sb-num sb-miss">2</span><span class="sb-lbl">MISSES</span></div>
-                <div class="sb-cell"><span class="sb-num">1</span><span class="sb-lbl">OPEN BETS</span></div>
+                <div class="sb-cell"><span class="sb-num">0</span><span class="sb-lbl">OPEN BETS</span></div>
                 <div class="sb-cell sb-rate">
-                  <dot-matrix data-fit="content" data-size="58" data-pitch="4" data-weight="700" data-print="1">77%</dot-matrix>
+                  <dot-matrix data-fit="content" data-size="58" data-pitch="4" data-weight="700" data-print="1">80%</dot-matrix>
                   <span class="sb-lbl">HIT RATE</span>
                 </div>
               </div>
               <div class="sb-verdict">THE ORACLE IS BEATING THE STREET</div>
               <div class="sb-fine">EVERY CALL CARRIES A CONCRETE WIN CONDITION. THE MACHINE GRADES ITSELF AGAINST THE FEEDS, IN PUBLIC, AND NEVER UNPRINTS A LOSS.</div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
+            <section class="book" aria-label="The book">
+              <div class="band">THE BOOK / VIRTUAL BANKROLL / FLAT 100-UNIT STAKES</div>
+              <div class="sb-grid">
+                <div class="sb-cell"><span class="sb-num">1194</span><span class="sb-lbl">UNITS</span></div>
+                <div class="sb-cell"><span class="sb-num sb-hit">+19%</span><span class="sb-lbl">RETURN</span></div>
+                <div class="sb-cell"><span class="sb-num">W5</span><span class="sb-lbl">CURRENT STREAK</span></div>
+                <div class="sb-cell"><span class="sb-num" style="font-size:24px">W5 / L1</span><span class="sb-lbl">BEST RUNS</span></div>
+              </div>
+              
+              <div class="pulse-hist book-spark" aria-hidden="true">
+                <span class="ph-bar" title="2026-06-02" style="height:36%"></span><span class="ph-bar" title="2026-06-04" style="height:62%"></span><span class="ph-bar" title="2026-06-05" style="height:22%"></span><span class="ph-bar" title="2026-06-08" style="height:40%"></span><span class="ph-bar" title="2026-06-09" style="height:4%"></span><span class="ph-bar" title="2026-06-09" style="height:21%"></span><span class="ph-bar" title="2026-06-11" style="height:36%"></span><span class="ph-bar" title="2026-06-13" style="height:47%"></span><span class="ph-bar" title="2026-06-14" style="height:71%"></span><span class="ph-bar" title="2026-06-15" style="height:100%"></span>
+              </div>
+              <div class="seismo-lbl">BANKROLL CURVE // 10 SETTLED BETS // STARTING STAKE 1000</div>
+              
             </section>
 
             <div class="perf" aria-hidden="true"></div>
@@ -394,15 +415,15 @@
                 </div>
                 
                 <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
-                  <span class="mf-bar"><i class="s-devto" style="width:83%"></i></span>
-                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
-                </div>
-                
-                <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-lobsters">LOBSTERS</span><span class="mf-count">25</span></div>
                   <span class="mf-bar"><i class="s-lobsters" style="width:83%"></i></span>
                   <a class="mf-item" href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/" rel="noopener">TOP // curl summer of bliss</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
+                  <span class="mf-bar"><i class="s-devto" style="width:83%"></i></span>
+                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
                 </div>
                 
                 <div class="mf-row">
@@ -460,12 +481,6 @@
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-hn">HACKER NEWS</span>
-                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
-                  <span class="bs-count">2</span>
-                </div>
-                
-                <div class="bs-row">
                   <span class="bs-label s-lobsters">LOBSTERS</span>
                   <span class="bs-bar"><i class="s-lobsters" style="width:10%"></i></span>
                   <span class="bs-count">1</span>
@@ -488,7 +503,7 @@
                 <span class="sm-dot s-github" title="2026-06-02"></span><span class="sm-dot s-arxiv" title="2026-06-04"></span><span class="sm-dot s-lobsters" title="2026-06-05"></span><span class="sm-dot s-hn" title="2026-06-08"></span><span class="sm-dot s-ars" title="2026-06-09"></span><span class="sm-dot s-devto" title="2026-06-09"></span><span class="sm-dot s-github" title="2026-06-11"></span><span class="sm-dot s-github" title="2026-06-13"></span><span class="sm-dot s-arxiv" title="2026-06-14"></span><span class="sm-dot s-hn" title="2026-06-15"></span>
               </div>
               <div class="map-key">
-                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span>
+                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span>
               </div>
             </section>
 
@@ -502,10 +517,10 @@
                 <ol class="entries">
                   
                   
-                  <li class="entry s-edge-hn st-miss" id="call-10">
-                    <div class="entry-meta"><span class="no">No. 10</span><span class="verdict-stamp v-miss">MISS</span><span class="tg s-hn">HACKER NEWS</span></div>
+                  <li class="entry s-edge-hn st-hit" id="call-10">
+                    <div class="entry-meta"><span class="no">No. 10</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.72x @ 58%</span><span class="tg s-hn">HACKER NEWS</span></div>
                     <p class="entry-text">The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
-                    <div class="winif">WIN IF "LOCAL" RESURFACES ACROSS THE FEEDS BY 2026-07-15 <span class="res-miss">:: MISSED</span></div>
+                    <div class="winif">WIN IF "LOCAL" RESURFACES ACROSS THE FEEDS BY 2026-07-15 <span class="res-hit">:: HIT 2026-06-16</span></div>
                     <div class="entry-actions">
                       <a href="https://news.ycombinator.com/news" rel="noopener">[ SOURCE ]</a>
                       <a class="anchor" href="#call-10">[ REF ]</a>
@@ -521,7 +536,7 @@
                   
                   
                   <li class="entry s-edge-arxiv st-hit" id="call-9">
-                    <div class="entry-meta"><span class="no">No. 9</span><span class="verdict-stamp v-hit">HIT</span><span class="tg s-arxiv">ARXIV</span></div>
+                    <div class="entry-meta"><span class="no">No. 9</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.59x @ 63%</span><span class="tg s-arxiv">ARXIV</span></div>
                     <p class="entry-text">Fresh cs.AI/cs.LG work on test-time compute scaling just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.</p>
                     <div class="winif">WIN IF "COMPUTE" RESURFACES ACROSS THE FEEDS BY 2026-07-14 <span class="res-hit">:: HIT 2026-06-16</span></div>
                     <div class="entry-actions">
@@ -539,7 +554,7 @@
                   
                   
                   <li class="entry s-edge-github st-hit" id="call-8">
-                    <div class="entry-meta"><span class="no">No. 8</span><span class="verdict-stamp v-hit">HIT</span><span class="tg s-github">GITHUB</span></div>
+                    <div class="entry-meta"><span class="no">No. 8</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.28x @ 78%</span><span class="tg s-github">GITHUB</span></div>
                     <p class="entry-text">Devs are starring ggml-org/llama.cpp hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.</p>
                     <div class="winif">WIN IF "LLAMA" RESURFACES ACROSS THE FEEDS BY 2026-07-03 <span class="res-hit">:: HIT 2026-06-15</span></div>
                     <div class="entry-actions">
@@ -557,7 +572,7 @@
                   
                   
                   <li class="entry s-edge-github st-hit" id="call-7">
-                    <div class="entry-meta"><span class="no">No. 7</span><span class="verdict-stamp v-hit">HIT</span><span class="tg s-github">GITHUB</span></div>
+                    <div class="entry-meta"><span class="no">No. 7</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.39x @ 72%</span><span class="tg s-github">GITHUB</span></div>
                     <p class="entry-text">vercel/ai is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.</p>
                     <div class="winif">WIN IF "VERCEL" RESURFACES ACROSS THE FEEDS BY 2026-07-01 <span class="res-hit">:: HIT 2026-06-15</span></div>
                     <div class="entry-actions">
@@ -574,10 +589,10 @@
                 <ol class="entries">
                   
                   
-                  <li class="entry s-edge-devto st-open" id="call-6">
-                    <div class="entry-meta"><span class="no">No. 6</span><span class="verdict-stamp v-open">OPEN</span><span class="tg s-devto">DEV.TO</span></div>
+                  <li class="entry s-edge-devto st-miss" id="call-6">
+                    <div class="entry-meta"><span class="no">No. 6</span><span class="verdict-stamp v-miss">MISS</span><span class="odds">LINE 1.67x @ 60%</span><span class="tg s-devto">DEV.TO</span></div>
                     <p class="entry-text">Dev.to writers are rallying around typed API clients. Expect tutorials to outpace the docs and adoption to snowball within a quarter.</p>
-                    <div class="winif">WIN IF "TYPED" RESURFACES ACROSS THE FEEDS BY 2026-07-09</div>
+                    <div class="winif">WIN IF "TYPED" RESURFACES ACROSS THE FEEDS BY 2026-06-14 <span class="res-miss">:: MISSED</span></div>
                     <div class="entry-actions">
                       <a href="https://dev.to" rel="noopener">[ SOURCE ]</a>
                       <a class="anchor" href="#call-6">[ REF ]</a>
@@ -587,7 +602,7 @@
                   
                   
                   <li class="entry s-edge-ars st-hit" id="call-5">
-                    <div class="entry-meta"><span class="no">No. 5</span><span class="verdict-stamp v-hit">HIT</span><span class="tg s-ars">ARS TECHNICA</span></div>
+                    <div class="entry-meta"><span class="no">No. 5</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.52x @ 66%</span><span class="tg s-ars">ARS TECHNICA</span></div>
                     <p class="entry-text">Ars is covering AI data-center power demand. When it crosses from tech press to mainstream, regulation or a major incumbent move follows within two quarters.</p>
                     <div class="winif">WIN IF "POWER" RESURFACES ACROSS THE FEEDS BY 2026-06-29 <span class="res-hit">:: HIT 2026-06-14</span></div>
                     <div class="entry-actions">
@@ -605,7 +620,7 @@
                   
                   
                   <li class="entry s-edge-hn st-hit" id="call-4">
-                    <div class="entry-meta"><span class="no">No. 4</span><span class="verdict-stamp v-hit">HIT</span><span class="tg s-hn">HACKER NEWS</span></div>
+                    <div class="entry-meta"><span class="no">No. 4</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.45x @ 69%</span><span class="tg s-hn">HACKER NEWS</span></div>
                     <p class="entry-text">The HN front page is piling onto on-device inference runtimes. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
                     <div class="winif">WIN IF "INFERENCE" RESURFACES ACROSS THE FEEDS BY 2026-06-28 <span class="res-hit">:: HIT 2026-06-13</span></div>
                     <div class="entry-actions">
@@ -623,9 +638,9 @@
                   
                   
                   <li class="entry s-edge-lobsters st-miss" id="call-3">
-                    <div class="entry-meta"><span class="no">No. 3</span><span class="verdict-stamp v-miss">MISS</span><span class="tg s-lobsters">LOBSTERS</span></div>
+                    <div class="entry-meta"><span class="no">No. 3</span><span class="verdict-stamp v-miss">MISS</span><span class="odds">LINE 1.75x @ 57%</span><span class="tg s-lobsters">LOBSTERS</span></div>
                     <p class="entry-text">Lobsters is chewing on deterministic build systems. When the careful crowd gets interested, it tends to be a default tool a year out.</p>
-                    <div class="winif">WIN IF "DETERMINISTIC" RESURFACES ACROSS THE FEEDS BY 2026-06-25 <span class="res-miss">:: MISSED</span></div>
+                    <div class="winif">WIN IF "DETERMINISTIC" RESURFACES ACROSS THE FEEDS BY 2026-06-12 <span class="res-miss">:: MISSED</span></div>
                     <div class="entry-actions">
                       <a href="https://lobste.rs" rel="noopener">[ SOURCE ]</a>
                       <a class="anchor" href="#call-3">[ REF ]</a>
@@ -641,7 +656,7 @@
                   
                   
                   <li class="entry s-edge-arxiv st-hit" id="call-2">
-                    <div class="entry-meta"><span class="no">No. 2</span><span class="verdict-stamp v-hit">HIT</span><span class="tg s-arxiv">ARXIV</span></div>
+                    <div class="entry-meta"><span class="no">No. 2</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.64x @ 61%</span><span class="tg s-arxiv">ARXIV</span></div>
                     <p class="entry-text">Fresh cs.AI/cs.LG work on sparse mixture-of-experts routing just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.</p>
                     <div class="winif">WIN IF "MIXTURE" RESURFACES ACROSS THE FEEDS BY 2026-06-24 <span class="res-hit">:: HIT 2026-06-12</span></div>
                     <div class="entry-actions">
@@ -659,7 +674,7 @@
                   
                   
                   <li class="entry s-edge-github st-hit" id="call-1">
-                    <div class="entry-meta"><span class="no">No. 1</span><span class="verdict-stamp v-hit">HIT</span><span class="tg s-github">GITHUB</span></div>
+                    <div class="entry-meta"><span class="no">No. 1</span><span class="verdict-stamp v-hit">HIT</span><span class="odds">LINE 1.35x @ 74%</span><span class="tg s-github">GITHUB</span></div>
                     <p class="entry-text">Devs are starring zed-industries/zed hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.</p>
                     <div class="winif">WIN IF "ZED" RESURFACES ACROSS THE FEEDS BY 2026-06-22 <span class="res-hit">:: HIT 2026-06-10</span></div>
                     <div class="entry-actions">

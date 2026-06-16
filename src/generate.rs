@@ -23,6 +23,10 @@ pub fn generate(signals: &[Signal], date: &str, seed: i64) -> Vec<Prediction> {
                 keyword.to_uppercase(),
                 resolves_by
             );
+            // Confidence sets the line: lead picks are favorites, later picks are
+            // longer shots. A small date-seeded jitter keeps it from being rote.
+            let jitter = ((seed.unsigned_abs() as usize + i) % 7) as f64 * 0.01;
+            let confidence = (0.78 - i as f64 * 0.06 + jitter).clamp(0.52, 0.86);
             Prediction {
                 date: date.to_string(),
                 prediction_text: fill_template(&s.signal_type, &subject, seed, i),
@@ -34,6 +38,7 @@ pub fn generate(signals: &[Signal], date: &str, seed: i64) -> Vec<Prediction> {
                 win_if,
                 resolves_by,
                 resolved_on: String::new(),
+                confidence,
             }
         })
         .collect()
