@@ -174,6 +174,57 @@ pub fn render(
         "by_source": by_source,
     });
 
+    // Site base URL for feeds, structured data, and share links.
+    let site = std::env::var("SITE_URL")
+        .unwrap_or_else(|_| "https://mattbusel.github.io/tech-oracle".to_string());
+    let site = site.trim_end_matches('/').to_string();
+
+    // JSON-LD structured data (SEO: each call as a CreativeWork in an ItemList).
+    let ld_items: Vec<serde_json::Value> = sorted
+        .iter()
+        .take(15)
+        .enumerate()
+        .map(|(i, p)| {
+            serde_json::json!({
+                "@type": "ListItem", "position": i + 1,
+                "item": { "@type": "CreativeWork", "headline": p.prediction_text, "datePublished": p.date, "url": format!("{site}/#call-{}", total - i) }
+            })
+        })
+        .collect();
+    let jsonld = serde_json::json!({
+        "@context": "https://schema.org", "@type": "WebSite", "name": "THE SIGNAL",
+        "url": site, "description": "A self-grading public oracle of dated, falsifiable tech predictions.",
+        "mainEntity": { "@type": "ItemList", "itemListElement": ld_items }
+    })
+    .to_string();
+
+    // RSS feed: the syndication source (subscribe, aggregators, IFTTT/Zapier).
+    let mut feed = String::from("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<rss version=\"2.0\"><channel>\n");
+    feed.push_str(&format!(
+        "<title>THE SIGNAL // dated tech calls</title>\n<link>{site}/</link>\n<description>A self-grading public oracle. Dated, falsifiable tech calls, graded in public.</description>\n"
+    ));
+    for (i, p) in sorted.iter().enumerate() {
+        let no = total - i;
+        let title = if p.prediction_text.chars().count() > 90 {
+            format!("{}...", p.prediction_text.chars().take(88).collect::<String>())
+        } else {
+            p.prediction_text.clone()
+        };
+        let status = if p.status.is_empty() { "OPEN" } else { p.status.as_str() };
+        let desc = format!("{} // {} // {}", p.prediction_text, status, p.win_if);
+        feed.push_str(&format!(
+            "<item><title>{}</title><link>{}/#call-{}</link><guid isPermaLink=\"false\">signal-{}</guid><pubDate>{}</pubDate><description>{}</description></item>\n",
+            xml(&title), site, no, no, rfc822(&p.date), xml(&desc)
+        ));
+    }
+    feed.push_str("</channel></rss>\n");
+    std::fs::write(format!("{}/feed.xml", crate::OUT_DIR), feed)?;
+
+    let sitemap = format!(
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"><url><loc>{site}/</loc></url></urlset>\n"
+    );
+    std::fs::write(format!("{}/sitemap.xml", crate::OUT_DIR), sitemap)?;
+
     let tmpl_src = include_str!("../templates/index.html");
     let mut env = minijinja::Environment::new();
     env.add_template("index", tmpl_src)?;
@@ -191,6 +242,7 @@ pub fn render(
         pulse => pulse,
         scoreboard => scoreboard,
         book => book,
+        jsonld => jsonld,
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,
@@ -206,4 +258,19 @@ fn human_date(date: &str) -> String {
         Ok(d) => d.format("%B %-d, %Y").to_string(),
         Err(_) => date.to_string(),
     }
+}
+
+fn rfc822(date: &str) -> String {
+    match NaiveDate::parse_from_str(date, "%Y-%m-%d") {
+        Ok(d) => d.format("%a, %d %b %Y 13:17:00 +0000").to_string(),
+        Err(_) => date.to_string(),
+    }
+}
+
+fn xml(s: &str) -> String {
+    s.replace('&', "&amp;")
+        .replace('<', "&lt;")
+        .replace('>', "&gt;")
+        .replace('"', "&quot;")
+        .replace('\'', "&apos;")
 }

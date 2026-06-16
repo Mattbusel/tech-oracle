@@ -243,6 +243,39 @@ Worker path when ready (no change to the Rust core).
 
 ---
 
+## Distribution (automated, $0, layered)
+
+Every daily run produces a syndication payload and the Action fans it out. Layers,
+cheapest/most-automatic first:
+
+1. **RSS feed** (`docs/feed.xml`) — the universal source. Anyone can subscribe, and
+   it's the input for free automation tools: pipe it through **IFTTT** or **Zapier**
+   (free tiers) to auto-post to almost any network without writing code. One feed,
+   many destinations.
+2. **SEO** — `sitemap.xml`, JSON-LD structured data, and rich `og:`/`twitter:`
+   previews rendered with the live hit rate / bankroll / index, so a pasted link
+   reads like a headline and each call is indexable.
+3. **Direct auto-posting** from the daily Action (all free APIs, each posts only if
+   its secret/var is set — unset channels are silently skipped):
+
+   | Channel | Set (repo Secrets/Variables) |
+   |---|---|
+   | Discord | secret `DISCORD_WEBHOOK_URL` (Server Settings → Integrations → Webhooks) |
+   | Telegram | secrets `TELEGRAM_BOT_TOKEN` (via @BotFather) + `TELEGRAM_CHAT_ID` (your channel) |
+   | Mastodon | var `MASTODON_BASE` (e.g. `https://mastodon.social`) + secret `MASTODON_TOKEN` |
+   | Bluesky | var `BLUESKY_HANDLE` + secret `BLUESKY_APP_PASSWORD` (Settings → App Passwords) |
+
+   Set `SITE_URL` (repo Variable) to your Pages URL so links and feeds are absolute.
+
+4. **Share loop** — every call/stat has share controls and a downloadable on-brand
+   PNG card (see Sharing), turning every reader into a distributor.
+
+X/Twitter is intentionally not auto-posted (their write API is no longer free);
+use the per-post **share buttons** (X intent) or route the RSS feed through IFTTT.
+
+To add a channel: create its free token, drop it into repo Secrets/Variables, done.
+Nothing else changes; the next daily run starts posting there.
+
 ## Acceptance checklist
 
 - [x] `cargo run --release` with no keys → updated `data/predictions.json`,

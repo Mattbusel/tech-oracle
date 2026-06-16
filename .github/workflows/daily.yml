@@ -24,6 +24,15 @@ jobs:
       STRIPE_PAYMENT_LINK: ${{ vars.STRIPE_PAYMENT_LINK }}
       STRIPE_PORTAL_URL: ${{ vars.STRIPE_PORTAL_URL }}
       EARLY_ACCESS_URL: ${{ vars.EARLY_ACCESS_URL }}
+      # Distribution (all free; each channel posts only if its secret/var is set).
+      SITE_URL: ${{ vars.SITE_URL }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      MASTODON_BASE: ${{ vars.MASTODON_BASE }}
+      MASTODON_TOKEN: ${{ secrets.MASTODON_TOKEN }}
+      BLUESKY_HANDLE: ${{ vars.BLUESKY_HANDLE }}
+      BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
       # Cloudflare KV sync (Secrets). If unset, KV steps no-op and the run still
       # produces the public page from whatever is committed (manual fallback).
       CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
@@ -76,13 +85,48 @@ jobs:
             echo "No CF secrets set; skipping KV push (manual fallback)."
           fi
 
+      # Syndicate the day's call to free channels. Best-effort: any channel
+      # without its secret set is skipped, and a failed post never fails the run.
+      - name: Syndicate
+        shell: bash
+        run: |
+          set +e
+          [ -f build/social.txt ] || { echo "no social.txt; skipping"; exit 0; }
+          MSG="$(cat build/social.txt)"
+
+          if [ -n "$DISCORD_WEBHOOK_URL" ]; then
+            jq -Rs '{content: .}' build/social.txt | curl -fsS -X POST -H "Content-Type: application/json" -d @- "$DISCORD_WEBHOOK_URL" >/dev/null && echo "discord: posted" || echo "discord: failed"
+          fi
+
+          if [ -n "$TELEGRAM_BOT_TOKEN" ] && [ -n "$TELEGRAM_CHAT_ID" ]; then
+            curl -fsS "https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage" --data-urlencode "chat_id=$TELEGRAM_CHAT_ID" --data-urlencode "text=$MSG" >/dev/null && echo "telegram: posted" || echo "telegram: failed"
+          fi
+
+          if [ -n "$MASTODON_BASE" ] && [ -n "$MASTODON_TOKEN" ]; then
+            curl -fsS -H "Authorization: Bearer $MASTODON_TOKEN" --data-urlencode "status=$MSG" "$MASTODON_BASE/api/v1/statuses" >/dev/null && echo "mastodon: posted" || echo "mastodon: failed"
+          fi
+
+          if [ -n "$BLUESKY_HANDLE" ] && [ -n "$BLUESKY_APP_PASSWORD" ]; then
+            SESS=$(curl -fsS -X POST "https://bsky.social/xrpc/com.atproto.server.createSession" -H "Content-Type: application/json" -d "{\"identifier\":\"$BLUESKY_HANDLE\",\"password\":\"$BLUESKY_APP_PASSWORD\"}")
+            JWT=$(echo "$SESS" | jq -r .accessJwt); DID=$(echo "$SESS" | jq -r .did)
+            if [ -n "$JWT" ] && [ "$JWT" != "null" ]; then
+              BTEXT=$(echo "$MSG" | cut -c1-290)
+              NOW=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
+              PAYLOAD=$(jq -n --arg did "$DID" --arg text "$BTEXT" --arg now "$NOW" '{repo:$did,collection:"app.bsky.feed.post",record:{"$type":"app.bsky.feed.post",text:$text,createdAt:$now}}')
+              curl -fsS -X POST "https://bsky.social/xrpc/com.atproto.repo.createRecord" -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "$PAYLOAD" >/dev/null && echo "bluesky: posted" || echo "bluesky: failed"
+            else
+              echo "bluesky: auth failed"
+            fi
+          fi
+          echo "syndication complete"
+
       # Commit ONLY the public, revealed files. build/ is gitignored, so the
       # embargoed edge never lands in the public repo.
       - name: Commit revealed output
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/predictions.json data/pulse.json docs/index.html
+          git add data/predictions.json data/pulse.json docs/index.html docs/feed.xml docs/sitemap.xml
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

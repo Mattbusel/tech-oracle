@@ -145,7 +145,19 @@ fn main() {
         eprintln!("render error: {e}");
         std::process::exit(1);
     }
-    eprintln!("wrote {DATA_PATH}, {EARLY_OUT}, and {OUT_HTML}");
+    // Ready-to-post syndication message for the daily auto-poster.
+    let site = env_or("SITE_URL", "https://mattbusel.github.io/tech-oracle");
+    let site = site.trim_end_matches('/');
+    let idx = pulse.get("index").and_then(|v| v.as_i64()).unwrap_or(0);
+    let verdict = pulse.get("verdict").and_then(|v| v.as_str()).unwrap_or("");
+    let theme = pulse.get("theme").and_then(|v| v.as_str()).unwrap_or("");
+    let latest = featured.first().map(|p| p.prediction_text.as_str()).unwrap_or("");
+    let social = format!(
+        "THE SIGNAL // {human}\nTech Acceleration Index {idx} {verdict}. Hottest cluster: {theme}.\n\n{latest}\n\n{site}/"
+    );
+    let _ = std::fs::write("build/social.txt", social);
+
+    eprintln!("wrote {DATA_PATH}, {EARLY_OUT}, {OUT_HTML}, feeds, and build/social.txt");
 }
 
 // --------------------------------------------------------------------------
