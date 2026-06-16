@@ -2,313 +2,310 @@
 <html lang="en"><head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SIGNAL&nbsp;/&nbsp;Oracle — dated tech predictions</title>
-  <meta name="description" content="One or two specific, dated, confident tech predictions a day — generated from live signals, with a full public track record." />
-  <meta property="og:title" content="SIGNAL — dated tech predictions" />
-  <meta property="og:description" content="Specific, dated, confident calls on where tech goes next. Full public track record. Subscribers see every call 1 day early." />
+  <title>THE SIGNAL // a public record of dated tech calls</title>
+  <meta name="description" content="One or two specific, dated tech predictions printed every day from live signals. An append-only public record. No edits, no deletes. Subscribers get every call before it prints here." />
+  <meta property="og:title" content="THE SIGNAL // dated tech calls, on the record" />
+  <meta property="og:description" content="We print the future and never reprint it. A public, append-only ledger of dated tech predictions. Subscribers see every call before it goes public." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #0a0b1a;
-      --bg-2: #10122b;
-      --surface: rgba(255, 255, 255, 0.04);
-      --surface-2: rgba(255, 255, 255, 0.06);
-      --border: rgba(255, 255, 255, 0.10);
-      --border-strong: rgba(255, 255, 255, 0.18);
-      --text: #eef0fa;
-      --muted: #9aa0bd;
-      --faint: #6b7095;
-      --cyan: #5ed6ff;
-      --violet: #b69cff;
-      --amber: #ffb454;
-      --pink: #ff9ecb;
-      --display: "Space Grotesk", system-ui, sans-serif;
-      --body: "Inter", system-ui, sans-serif;
-      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --desk: #17181c;
+      --desk-2: #1f2127;
+      --paper: #efede4;
+      --bar: #e4e9dc;        /* faint green-bar stripe */
+      --ink: #1b1a14;
+      --ink-soft: #6d6b5e;
+      --rule: rgba(27, 26, 20, 0.30);
+      --stamp: #b23a2e;
+      --mono: "IBM Plex Mono", ui-monospace, "Courier New", monospace;
     }
 
     * { box-sizing: border-box; }
 
     html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     body {
       margin: 0;
-      font-family: var(--body);
-      color: var(--text);
-      background:
-        radial-gradient(1100px 700px at 78% -8%, rgba(94, 214, 255, 0.10), transparent 60%),
-        radial-gradient(900px 620px at 12% 4%, rgba(182, 156, 255, 0.10), transparent 60%),
-        linear-gradient(180deg, var(--bg), var(--bg-2));
-      background-attachment: fixed;
-      line-height: 1.55;
+      font-family: var(--mono);
+      color: var(--ink);
+      background-color: var(--desk);
+      background-image:
+        radial-gradient(1200px 600px at 50% -10%, var(--desk-2), transparent 70%),
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+      padding: 0 16px;
       -webkit-font-smoothing: antialiased;
     }
 
     a { color: inherit; }
 
-    .wrap { max-width: 920px; margin: 0 auto; padding: 0 22px; }
+    /* ---- the continuous-form sheet ---- */
+    .sheet {
+      position: relative;
+      max-width: 660px;
+      margin: 0 auto;
+      background-color: var(--paper);
+      padding: 34px 46px 40px;
+      /* sprocket feed holes punched down both edges */
+      background-image:
+        radial-gradient(circle 3.4px, var(--desk) 96%, transparent 100%),
+        radial-gradient(circle 3.4px, var(--desk) 96%, transparent 100%);
+      background-size: 22px 22px, 22px 22px;
+      background-position: 14px 18px, calc(100% - 14px) 18px;
+      background-repeat: repeat-y, repeat-y;
+      box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 30px 80px rgba(0,0,0,0.45);
+    }
+    /* faint paper tooth */
+    .sheet::after {
+      content: "";
+      position: absolute; inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(rgba(27,26,20,0.04) 1px, transparent 1px);
+      background-size: 4px 4px;
+      mix-blend-mode: multiply;
+      opacity: 0.5;
+    }
+    .sheet > * { position: relative; z-index: 1; }
+
+    /* ---- perforation fold lines ---- */
+    .perf {
+      position: relative;
+      height: 1px;
+      margin: 30px -46px;
+      border-top: 1.5px dashed var(--rule);
+    }
+    .perf::before, .perf::after {
+      content: "";
+      position: absolute; top: -6px;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--desk);
+    }
+    .perf::before { left: 9px; }
+    .perf::after { right: 9px; }
 
     /* ---- masthead ---- */
-    header.masthead {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 26px 0 8px;
+    .head { text-align: center; }
+    .wordmark {
+      font-weight: 700;
+      font-size: clamp(30px, 8vw, 58px);
+      letter-spacing: 0.16em;
+      margin: 2px 0 0;
+      text-indent: 0.16em;
     }
-    .brand {
-      display: flex; align-items: center; gap: 12px;
-      font-family: var(--mono);
-      letter-spacing: 0.34em;
-      font-size: 13px;
-      text-transform: uppercase;
-      color: var(--muted);
+    .tag {
+      font-size: 11px; letter-spacing: 0.42em; color: var(--ink-soft);
+      text-indent: 0.42em; margin-top: 6px;
     }
-    .dot {
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 0 0 rgba(94, 214, 255, 0.55);
-      animation: blip 2.6s ease-out infinite;
+    .metaline {
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft);
+      margin-top: 18px; text-align: left;
     }
-    @keyframes blip {
-      0% { box-shadow: 0 0 0 0 rgba(94, 214, 255, 0.5); }
-      70% { box-shadow: 0 0 0 12px rgba(94, 214, 255, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(94, 214, 255, 0); }
-    }
-    .masthead .meta { font-family: var(--mono); font-size: 12px; color: var(--faint); text-align: right; }
+    .caret { display: inline-block; width: 7px; background: var(--ink); color: transparent; animation: blink 1.1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
 
-    /* ---- hero ---- */
-    .hero { position: relative; padding: 30px 0 26px; overflow: hidden; }
-    /* signature element: sonar rings emanating behind the hero */
-    .sonar {
-      position: absolute; right: -120px; top: -90px;
-      width: 460px; height: 460px;
-      pointer-events: none; opacity: 0.5;
-      -webkit-mask-image: radial-gradient(closest-side, #000 60%, transparent);
-              mask-image: radial-gradient(closest-side, #000 60%, transparent);
+    .barcode {
+      height: 36px; width: 100%; max-width: 240px; margin: 16px auto 0;
+      background: repeating-linear-gradient(90deg,
+        var(--ink) 0 2px, transparent 2px 4px,
+        var(--ink) 4px 7px, transparent 7px 8px,
+        var(--ink) 8px 9px, transparent 9px 12px,
+        var(--ink) 12px 16px, transparent 16px 17px);
     }
-    .sonar span {
-      position: absolute; inset: 0; margin: auto;
-      width: 80px; height: 80px; border-radius: 50%;
-      border: 1px solid rgba(94, 214, 255, 0.35);
-      animation: ping 4.8s ease-out infinite;
-    }
-    .sonar span:nth-child(2) { animation-delay: 1.6s; border-color: rgba(182, 156, 255, 0.35); }
-    .sonar span:nth-child(3) { animation-delay: 3.2s; border-color: rgba(255, 158, 203, 0.30); }
-    @keyframes ping {
-      0% { transform: scale(0.2); opacity: 0.9; }
-      100% { transform: scale(5.2); opacity: 0; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .dot, .sonar span { animation: none; }
-      .sonar span { transform: scale(3); opacity: 0.25; }
+    .barcode-no { text-align: center; font-size: 10px; letter-spacing: 0.3em; color: var(--ink-soft); margin-top: 5px; }
+
+    /* ---- section band labels ---- */
+    .band {
+      display: inline-block; background: var(--ink); color: var(--paper);
+      font-weight: 600; font-size: 12px; letter-spacing: 0.22em;
+      padding: 4px 12px; margin-bottom: 18px;
     }
 
-    .eyebrow {
-      font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--cyan); margin-bottom: 14px;
+    /* ---- latest print (hero) ---- */
+    .call--hero { margin-bottom: 6px; }
+    .call--hero + .call--hero { margin-top: 22px; padding-top: 22px; border-top: 1.5px dashed var(--rule); }
+    .callmeta {
+      display: flex; gap: 16px; flex-wrap: wrap;
+      font-size: 11px; letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 12px;
     }
-    .hero h1 {
-      font-family: var(--display); font-weight: 700;
-      font-size: clamp(30px, 5.4vw, 52px);
-      line-height: 1.08; letter-spacing: -0.02em; margin: 0 0 10px;
+    .callmeta .tag-src { color: var(--ink); border: 1px solid var(--rule); padding: 0 6px; }
+    .calltext {
+      font-size: clamp(20px, 4.4vw, 29px);
+      font-weight: 500; line-height: 1.32; margin: 0 0 16px;
+      letter-spacing: -0.01em;
     }
-    .hero .call {
-      background: linear-gradient(100deg, #8ee6ff, var(--violet) 55%, var(--pink));
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+    .basis { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; margin-bottom: 6px; word-break: break-word; }
+    .open {
+      display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-decoration: none; border-bottom: 2px solid var(--ink); padding-bottom: 1px;
     }
-    .hero .called-on { font-family: var(--mono); font-size: 12.5px; color: var(--faint); }
-    .hero .source {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 13px; color: var(--muted); text-decoration: none;
-      border-bottom: 1px solid var(--border-strong); padding-bottom: 1px;
-    }
-    .hero .source:hover { color: var(--text); }
-    .featured-item + .featured-item { margin-top: 26px; padding-top: 26px; border-top: 1px dashed var(--border); }
+    .open:hover { color: var(--stamp); border-color: var(--stamp); }
 
-    .ribbon {
-      display: inline-flex; align-items: center; gap: 9px;
-      margin-top: 22px; padding: 8px 14px; border-radius: 999px;
-      background: var(--surface); border: 1px solid var(--border);
-      font-size: 13px; color: var(--muted);
+    /* ---- subscribe coupon ---- */
+    .coupon { position: relative; border: 2px dashed var(--ink); padding: 22px 22px 20px; margin-top: 6px; }
+    .stamp {
+      position: absolute; top: -16px; right: 14px; transform: rotate(-7deg);
+      color: var(--stamp); border: 2.5px solid var(--stamp); border-radius: 5px;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.16em; padding: 5px 11px;
+      background: var(--paper); mix-blend-mode: multiply; opacity: 0.9;
     }
-    .ribbon b { color: var(--cyan); font-weight: 600; }
+    .coupon-h { font-weight: 700; font-size: 15px; letter-spacing: 0.22em; }
+    .coupon-p { font-size: 13.5px; line-height: 1.55; color: #3b3a30; margin: 10px 0 18px; max-width: 52ch; }
+    .coupon-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .price { font-weight: 700; font-size: 22px; letter-spacing: 0.04em; }
+    .price span { font-size: 12px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.1em; }
+    .sub {
+      flex: 1 1 auto; text-align: center;
+      background: var(--ink); color: var(--paper);
+      font-weight: 600; font-size: 13px; letter-spacing: 0.12em;
+      text-decoration: none; padding: 13px 18px;
+    }
+    .sub:hover { background: var(--stamp); }
+    .sub-2 { display: inline-block; margin-top: 12px; font-size: 12px; letter-spacing: 0.1em; }
+    .coupon-fine { font-size: 10.5px; letter-spacing: 0.08em; color: var(--ink-soft); margin-top: 16px; }
 
-    /* ---- subscribe ---- */
-    .edge {
-      margin: 38px 0 14px; padding: 26px;
-      border-radius: 18px;
-      background: linear-gradient(135deg, rgba(94,214,255,0.08), rgba(182,156,255,0.08));
-      border: 1px solid var(--border-strong);
+    /* ---- ledger ---- */
+    .entries { list-style: none; margin: 0; padding: 0; }
+    .entry { padding: 16px 14px; }
+    .entry:nth-child(odd) { background: var(--bar); }
+    .entry + .entry { border-top: 1.5px dashed var(--rule); }
+    .entry:target { outline: 2px solid var(--stamp); outline-offset: -2px; }
+    .entry-meta { display: flex; gap: 14px; flex-wrap: wrap; font-size: 11px; letter-spacing: 0.1em; color: var(--ink-soft); margin-bottom: 8px; }
+    .entry-meta .no { color: var(--ink); font-weight: 600; }
+    .entry-meta .tg { margin-left: auto; }
+    .entry-text { font-size: 15.5px; line-height: 1.45; margin: 0 0 10px; }
+    .entry-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .entry-actions a, .entry-actions button {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; font-weight: 500;
+      color: var(--ink-soft); background: none; border: none; padding: 0; cursor: pointer; text-decoration: none;
     }
-    .edge h2 { font-family: var(--display); font-size: 22px; margin: 0 0 8px; letter-spacing: -0.01em; }
-    .edge p { margin: 0 0 18px; color: var(--muted); font-size: 15px; max-width: 60ch; }
-    .edge .btns { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--body); font-weight: 600; font-size: 14px;
-      text-decoration: none; padding: 11px 18px; border-radius: 11px;
-      border: 1px solid transparent; transition: transform .12s ease, filter .12s ease;
-    }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { color: #06121a; background: linear-gradient(100deg, var(--cyan), var(--violet)); }
-    .btn-primary:hover { filter: brightness(1.06); }
-    .btn-ghost { color: var(--text); border-color: var(--border-strong); background: var(--surface); }
-    .edge .fine { margin: 16px 0 0; font-size: 12.5px; color: var(--faint); }
-    .edge .fine a { color: var(--muted); }
+    .entry-actions a:hover, .entry-actions button:hover { color: var(--stamp); }
 
-    /* ---- archive ---- */
-    .archive { margin: 46px 0 60px; }
-    .archive-head {
-      display: flex; align-items: baseline; justify-content: space-between;
-      gap: 12px; margin-bottom: 22px;
-      border-top: 1px solid var(--border); padding-top: 26px;
-    }
-    .archive-head h2 { font-family: var(--display); font-size: 18px; margin: 0; letter-spacing: 0.02em; }
-    .archive-head .count { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+    .empty { color: var(--ink-soft); padding: 18px 0; }
 
-    ol.timeline { list-style: none; margin: 0; padding: 0 0 0 22px; position: relative; }
-    ol.timeline::before {
-      content: ""; position: absolute; left: 4px; top: 6px; bottom: 6px;
-      width: 1px; background: linear-gradient(var(--border-strong), transparent);
-    }
-    .entry { position: relative; padding: 0 0 28px 22px; }
-    .entry::before {
-      content: ""; position: absolute; left: -22px; top: 7px;
-      width: 9px; height: 9px; border-radius: 50%;
-      background: var(--bg-2); border: 1.5px solid var(--cyan);
-    }
-    .entry.t-arxiv::before { border-color: var(--violet); }
-    .entry.t-github::before { border-color: var(--cyan); }
-    .entry.t-hn::before { border-color: var(--amber); }
-    .entry:target { background: var(--surface); border-radius: 12px; padding-top: 10px; margin-left: -8px; padding-left: 30px; }
+    /* ---- footer ---- */
+    .foot { text-align: center; }
+    .foot p { font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-soft); margin: 6px 0; }
 
-    .entry .row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 8px; }
-    .entry time { font-family: var(--mono); font-size: 12.5px; color: var(--muted); }
-    .chip {
-      font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em;
-      text-transform: uppercase; padding: 3px 8px; border-radius: 6px;
-      border: 1px solid var(--border); color: var(--muted);
-    }
-    .chip.t-hn { color: var(--amber); border-color: rgba(255,180,84,0.4); }
-    .chip.t-arxiv { color: var(--violet); border-color: rgba(182,156,255,0.4); }
-    .chip.t-github { color: var(--cyan); border-color: rgba(94,214,255,0.4); }
-    .entry p.text { margin: 0 0 8px; font-size: 16.5px; }
-    .entry .links { display: flex; gap: 14px; align-items: center; }
-    .entry .links a, .entry .links button {
-      font-family: var(--mono); font-size: 12px; color: var(--faint);
-      text-decoration: none; background: none; border: none; cursor: pointer; padding: 0;
-    }
-    .entry .links a:hover, .entry .links button:hover { color: var(--cyan); }
-    .anchor { opacity: 0; transition: opacity .12s ease; }
-    .entry:hover .anchor { opacity: 1; }
+    :focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
 
-    .empty { color: var(--muted); font-style: italic; padding: 20px 0; }
-
-    footer {
-      border-top: 1px solid var(--border); padding: 26px 0 50px;
-      font-size: 12.5px; color: var(--faint); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    @media (max-width: 520px) {
+      .sheet { padding: 28px 30px 32px; }
+      .perf { margin-left: -30px; margin-right: -30px; }
+      .entry-meta .tg { margin-left: 0; }
     }
-    footer a { color: var(--muted); }
-
-    :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 4px; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header class="masthead">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> SIGNAL · ORACLE</div>
-      <div class="meta">updated<br />June 16, 2026</div>
+  <main class="sheet">
+    <header class="head">
+      <div class="wordmark">THE SIGNAL</div>
+      <div class="tag">CONTINUOUS-FORM ORACLE</div>
+      <div class="metaline">
+        <span>PRINT RUN June 16, 2026 <span class="caret" aria-hidden="true">_</span></span>
+        <span>AUTONOMOUS / NO EDITS / NO DELETES</span>
+      </div>
+      <div class="barcode" aria-hidden="true"></div>
+      <div class="barcode-no">SGNL // PUBLIC RECORD // 3 ON FILE</div>
     </header>
 
-    <section class="hero" aria-label="Latest public call">
-      <div class="sonar" aria-hidden="true"><span></span><span></span><span></span></div>
-      <div class="eyebrow">Today's public call</div>
+    <div class="perf" aria-hidden="true"></div>
+
+    <section class="latest" aria-label="Latest printed call">
+      <div class="band">LATEST PRINT</div>
       
         
-        <div class="featured-item">
-          <h1><span class="call">The HN front page is piling onto local-first sync engines — expect the tooling around it to consolidate into one default winner within two quarters.</span></h1>
-          <div class="called-on">
-            Called June 15, 2026 ·
-            <a class="source" href="https://news.ycombinator.com/news" rel="noopener">based on Hacker News: Show HN: A local-first sync engine for your app ↗</a>
-          </div>
-        </div>
         
-        <div class="ribbon">⚡ Subscribers saw this <b>1 day</b> before this page.</div>
+        <article class="call--hero">
+          <div class="callmeta">
+            <span>CALL No. 3</span>
+            <span>CALLED June 15, 2026</span>
+            <span class="tag-src">HACKER NEWS</span>
+          </div>
+          <p class="calltext">The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
+          <div class="basis">BASIS: Show HN: A local-first sync engine for your app</div>
+          <a class="open" href="https://news.ycombinator.com/news" rel="noopener">OPEN SOURCE SIGNAL</a>
+        </article>
+        
       
     </section>
 
-    <section class="edge" aria-label="Subscribe">
-      <h2>Get tomorrow's call today</h2>
-      <p>
-        The whole product is being early. The public archive below is the proof it works —
-        every call is dated and linked to its source. Subscribers get each call
-        <b>1 day</b> before it lands here, while the lead still matters.
+    <div class="perf" aria-hidden="true"></div>
+
+    <section class="coupon" aria-label="Subscribe">
+      <div class="stamp" aria-hidden="true">PUBLIC RECORD</div>
+      <div class="coupon-h">FOUNDING ACCESS</div>
+      <p class="coupon-p">
+        Every call prints here for free, dated and on the record. Subscribers get each call
+        1 DAY earlier, while the lead still pays. The ledger below is the proof.
+        The lead time is the product.
       </p>
-      <div class="btns">
-        <a class="btn btn-primary" href="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" rel="noopener">Subscribe — get the 1-day edge →</a>
-        
+      <div class="coupon-row">
+        <div class="price">15 USD <span>/ MONTH</span></div>
+        <a class="sub" href="https://buy.stripe.com/9B600k1Aj7pAgjC1B6fw400" rel="noopener">SUBSCRIBE FOR THE 1-DAY LEAD</a>
       </div>
-      <p class="fine">
-        Secure checkout & billing handled by Stripe.
-        Cancel anytime — manage from your Stripe receipt.
-      </p>
+      
+      <div class="coupon-fine">
+        SECURE CHECKOUT BY STRIPE. CANCEL ANYTIME FROM YOUR STRIPE RECEIPT.
+      </div>
     </section>
 
-    <section class="archive" aria-label="Track record">
-      <div class="archive-head">
-        <h2>The track record</h2>
-        <span class="count">3 calls on the board</span>
-      </div>
+    <div class="perf" aria-hidden="true"></div>
 
+    <section class="ledger" aria-label="The public record">
+      <div class="band">THE LEDGER / 3 CALLS ON RECORD</div>
       
-      <ol class="timeline">
+      <ol class="entries">
         
         
-        <li class="entry t-hn" id="call-2026-06-15-1">
-          <div class="row">
-            <time datetime="2026-06-15">2026-06-15</time>
-            <span class="chip t-hn">Hacker News</span>
+        
+        <li class="entry" id="call-2026-06-15-1">
+          <div class="entry-meta">
+            <span class="no">No. 3</span>
+            <span class="dt">2026-06-15</span>
+            <span class="tg">HACKER NEWS</span>
           </div>
-          <p class="text">The HN front page is piling onto local-first sync engines — expect the tooling around it to consolidate into one default winner within two quarters.</p>
-          <div class="links">
-            <a href="https://news.ycombinator.com/news" rel="noopener">source ↗</a>
-            <a class="anchor" href="#call-2026-06-15-1">#</a>
-            <button type="button" class="copy" data-anchor="call-2026-06-15-1">copy link</button>
+          <p class="entry-text">The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
+          <div class="entry-actions">
+            <a href="https://news.ycombinator.com/news" rel="noopener">[ SOURCE ]</a>
+            <a class="anchor" href="#call-2026-06-15-1">[ REF ]</a>
+            <button type="button" class="copy" data-anchor="call-2026-06-15-1">[ COPY LINK ]</button>
           </div>
         </li>
         
         
-        <li class="entry t-arxiv" id="call-2026-06-14-2">
-          <div class="row">
-            <time datetime="2026-06-14">2026-06-14</time>
-            <span class="chip t-arxiv">arXiv</span>
+        
+        <li class="entry" id="call-2026-06-14-2">
+          <div class="entry-meta">
+            <span class="no">No. 2</span>
+            <span class="dt">2026-06-14</span>
+            <span class="tg">ARXIV</span>
           </div>
-          <p class="text">Fresh cs.AI/cs.LG work on test-time compute scaling just hit arXiv — calling it: this jumps from paper to a shipped product feature inside 9 months.</p>
-          <div class="links">
-            <a href="https://arxiv.org/abs/2408.03314" rel="noopener">source ↗</a>
-            <a class="anchor" href="#call-2026-06-14-2">#</a>
-            <button type="button" class="copy" data-anchor="call-2026-06-14-2">copy link</button>
+          <p class="entry-text">Fresh cs.AI/cs.LG work on test-time compute scaling just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.</p>
+          <div class="entry-actions">
+            <a href="https://arxiv.org/abs/2408.03314" rel="noopener">[ SOURCE ]</a>
+            <a class="anchor" href="#call-2026-06-14-2">[ REF ]</a>
+            <button type="button" class="copy" data-anchor="call-2026-06-14-2">[ COPY LINK ]</button>
           </div>
         </li>
         
         
-        <li class="entry t-github" id="call-2026-06-13-3">
-          <div class="row">
-            <time datetime="2026-06-13">2026-06-13</time>
-            <span class="chip t-github">GitHub</span>
+        
+        <li class="entry" id="call-2026-06-13-3">
+          <div class="entry-meta">
+            <span class="no">No. 1</span>
+            <span class="dt">2026-06-13</span>
+            <span class="tg">GITHUB</span>
           </div>
-          <p class="text">Devs are starring llama.cpp hard today; betting it picks up a corporate backer or a managed-cloud offering within ~6 months.</p>
-          <div class="links">
-            <a href="https://github.com/ggml-org/llama.cpp" rel="noopener">source ↗</a>
-            <a class="anchor" href="#call-2026-06-13-3">#</a>
-            <button type="button" class="copy" data-anchor="call-2026-06-13-3">copy link</button>
+          <p class="entry-text">Devs are starring ggml-org/llama.cpp hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.</p>
+          <div class="entry-actions">
+            <a href="https://github.com/ggml-org/llama.cpp" rel="noopener">[ SOURCE ]</a>
+            <a class="anchor" href="#call-2026-06-13-3">[ REF ]</a>
+            <button type="button" class="copy" data-anchor="call-2026-06-13-3">[ COPY LINK ]</button>
           </div>
         </li>
         
@@ -316,20 +313,23 @@
       
     </section>
 
-    <footer>
-      <span>SIGNAL · ORACLE — rules-based calls from live tech signals. Not financial advice.</span>
-      <span>HN · arXiv · GitHub Trending</span>
+    <div class="perf" aria-hidden="true"></div>
+
+    <footer class="foot">
+      <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
+      <p>NOT FINANCIAL ADVICE. SOURCES: HACKER NEWS / ARXIV / GITHUB TRENDING.</p>
+      <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
     </footer>
-  </div>
+  </main>
 
   <script>
-    // Progressive enhancement only — all content above works with JS off.
+    // Progressive enhancement only. All content works with JS off.
     document.querySelectorAll("button.copy").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var url = location.origin + location.pathname + "#" + btn.dataset.anchor;
         navigator.clipboard.writeText(url).then(function () {
           var prev = btn.textContent;
-          btn.textContent = "copied ✓";
+          btn.textContent = "[ COPIED ]";
           setTimeout(function () { btn.textContent = prev; }, 1400);
         });
       });

@@ -34,24 +34,24 @@ fn fill_template(signal_type: &str, subject: &str, seed: i64, idx: usize) -> Str
 fn variants_for(signal_type: &str) -> &'static [&'static str] {
     match signal_type {
         "hn" => &[
-            "The HN front page is piling onto {s} — expect the tooling around it to consolidate into one default winner within two quarters.",
-            "{s} is the conversation on HN today; the signal says a major incumbent ships a near-identical feature before Q4.",
-            "Watching {s} climb HN — this is the kind of thing that quietly becomes table-stakes infrastructure within ~6 months.",
-            "{s} is pulling outsized attention on HN; betting the backlash think-pieces land within a month and the hype cools by next quarter.",
+            "The HN front page is piling onto {s}. Expect the tooling around it to consolidate into one default winner within two quarters.",
+            "{s} is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.",
+            "Watching {s} climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
+            "{s} is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.",
         ],
         "arxiv" => &[
-            "Fresh cs.AI/cs.LG work on {s} just hit arXiv — calling it: this jumps from paper to a shipped product feature inside 9 months.",
-            "{s} is the new research thread to watch; expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
-            "This {s} paper reads like a precursor — the signal points to it landing in a major lab's flagship model by year's end.",
-            "{s} looks academic today, but this line of work tends to go commercial faster than people expect — call it two quarters to first product.",
+            "Fresh cs.AI/cs.LG work on {s} just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
+            "{s} is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
+            "This {s} paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
+            "{s} looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
         ],
         "github" => &[
-            "{s} is rocketing up GitHub trending — the trajectory says it crosses into mainstream dev workflows within two quarters.",
-            "Devs are starring {s} hard today; betting it picks up a corporate backer or a managed-cloud offering within ~6 months.",
-            "{s} is having a moment on GitHub; expect a 'Show HN' surge and the first VC-backed competitor before Q4.",
-            "Keep an eye on {s} — this kind of trending velocity usually precedes it becoming a default in its niche within the year.",
+            "{s} is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.",
+            "Devs are starring {s} hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.",
+            "{s} is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
+            "Keep an eye on {s}. This kind of trending velocity usually precedes it becoming a default in its niche within the year.",
         ],
-        _ => &["{s} is showing momentum; the signal points to it mattering more next quarter than it does today."],
+        _ => &["{s} is showing momentum. The signal points to it mattering more next quarter than it does today."],
     }
 }
 
