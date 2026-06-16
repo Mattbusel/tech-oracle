@@ -164,6 +164,23 @@ checkout (and thus `scripts/publish_edge.mjs`, which lists active subscriptions)
 knows which credential to encrypt for. To enable: set `STRIPE_SECRET_KEY` as a
 repo **Secret**. That's the only requirement — no Cloudflare account at all.
 
+### God passes (free comp access for friends)
+
+A god pass is just a credential the Action publishes a feed for **without checking
+Stripe**. Set a repo **Secret** `COMP_CREDS` to a comma/space/newline-separated
+list of codes, e.g. `GOLDEN-TICKET-9X2, APRIL-FRIENDS-2026`. On the next daily
+run, each code gets its own encrypted feed at `docs/edge/<sha256(code)>.json`.
+
+Give a friend a code; they click **EARLY FEED**, type it, and it decrypts — full
+premium, free, no payment and no Stripe required. Revoke instantly-ish by removing
+the code from `COMP_CREDS` (its file stops being published on the next run). The
+codes live in a Secret, so they are never exposed publicly; only people you tell
+can use them. Any string works (it is normalized to upper/hyphen form); pick
+memorable ones or mint strong ones with "Get a free press credential".
+
+This also works with **no Stripe at all** — set only `COMP_CREDS` and you can hand
+out free premium without a paid tier configured.
+
 Tradeoffs: revocation is daily (not instant), and a subscriber who shares their
 credential shares their access. Both are fine for a daily $15 edge. The Cloudflare
 Worker below remains as an **optional** alternative if you ever want real-time

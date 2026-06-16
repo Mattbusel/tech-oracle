@@ -35,6 +35,8 @@ jobs:
       BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
       # Static subscriber gate (no Cloudflare): encrypts per-subscriber early feeds.
       STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+      # God passes: comma/space-separated codes that unlock premium for free.
+      COMP_CREDS: ${{ secrets.COMP_CREDS }}
       # Cloudflare KV sync (Secrets). If unset, KV steps no-op and the run still
       # produces the public page from whatever is committed (manual fallback).
       CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
@@ -93,7 +95,7 @@ jobs:
       - name: Publish subscriber feeds
         shell: bash
         run: |
-          if [ -n "$STRIPE_SECRET_KEY" ]; then node scripts/publish_edge.mjs; else echo "no STRIPE_SECRET_KEY; skipping subscriber feeds"; fi
+          if [ -n "$STRIPE_SECRET_KEY" ] || [ -n "$COMP_CREDS" ]; then node scripts/publish_edge.mjs; else echo "no STRIPE_SECRET_KEY or COMP_CREDS; skipping subscriber feeds"; fi
 
       # Syndicate the day's call to free channels. Best-effort: any channel
       # without its secret set is skipped, and a failed post never fails the run.
