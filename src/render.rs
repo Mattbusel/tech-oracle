@@ -5,7 +5,10 @@
 
 use crate::model::Prediction;
 use chrono::NaiveDate;
-use std::collections::HashMap;
+use std::collections::{BTreeMap, HashMap};
+
+// IndexNow ownership key (not secret; proves we control the host via a key file).
+const INDEXNOW_KEY: &str = "0f9c2a7b5e3d4148a6c1b2e3f4a5d6c7";
 
 #[allow(clippy::too_many_arguments)]
 pub fn render(
@@ -246,11 +249,53 @@ pub fn render(
             &site, no as i64, status, market, &p.prediction_text,
         );
     }
+    // Topic pages: group the archive by subject so the site matches real search
+    // queries ("<topic> predictions"), not just one call's exact wording.
+    let mut topics: BTreeMap<String, Vec<(usize, &Prediction)>> = BTreeMap::new();
+    for (i, p) in sorted.iter().enumerate() {
+        if !p.keyword.is_empty() {
+            topics.entry(slug(&p.keyword)).or_default().push((total - i, p));
+        }
+    }
+    let _ = std::fs::create_dir_all(format!("{}/topic", crate::OUT_DIR));
+    for (sl, calls) in &topics {
+        let topic = sl.to_uppercase();
+        let items: String = calls
+            .iter()
+            .map(|(no, p)| {
+                let st = if p.status.is_empty() { "OPEN" } else { p.status.as_str() };
+                format!(
+                    "<li class=\"i\"><span class=\"m\">{date} // {st}</span><br><a href=\"{site}/call/{no}.html\">{t}</a></li>",
+                    date = xml(&p.date), st = st, no = no, t = xml(&clip_r(&p.prediction_text, 130)), site = site
+                )
+            })
+            .collect();
+        let page = format!(
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>{topic}: dated tech predictions // THE SIGNAL</title>\n<meta name=\"description\" content=\"Every dated, self-graded call on {topic} from THE SIGNAL, a public tech-prediction oracle.\">\n<meta property=\"og:title\" content=\"THE SIGNAL // {topic} predictions\">\n<meta property=\"og:image\" content=\"{site}/og.png\">\n<link rel=\"canonical\" href=\"{site}/topic/{sl}.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:640px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}h1{{font-size:26px;letter-spacing:.04em}}ul{{list-style:none;padding:0}}.i{{padding:12px 0;border-bottom:1px dashed rgba(27,26,20,.3);font-size:15px;line-height:1.4}}.m{{font-size:11px;letter-spacing:.1em;color:#6d6b5e}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // TOPIC</div>\n<h1>{topic}</h1><p class=\"m\">Dated, self-graded calls on {topic}.</p>\n<ul>{items}</ul>\n<p class=\"m\"><a href=\"{site}/\">THE SIGNAL // the full record</a></p></div></body></html>\n",
+            topic = topic, sl = sl, items = items, site = site
+        );
+        let _ = std::fs::write(format!("{}/topic/{sl}.html", crate::OUT_DIR), page);
+        urls.push(format!("{site}/topic/{sl}.html"));
+    }
+
     let url_body: String = urls.iter().map(|u| format!("<url><loc>{u}</loc></url>")).collect();
     let sitemap = format!(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">{url_body}</urlset>\n"
     );
     std::fs::write(format!("{}/sitemap.xml", crate::OUT_DIR), sitemap)?;
+
+    // IndexNow: host the ownership key file, and write the payload the Action
+    // POSTs so search engines crawl new pages immediately (free, no account).
+    let host = site.trim_start_matches("https://").trim_start_matches("http://").split('/').next().unwrap_or("").to_string();
+    std::fs::write(format!("{}/{INDEXNOW_KEY}.txt", crate::OUT_DIR), INDEXNOW_KEY)?;
+    let indexnow = serde_json::json!({
+        "host": host,
+        "key": INDEXNOW_KEY,
+        "keyLocation": format!("{site}/{INDEXNOW_KEY}.txt"),
+        "urlList": urls,
+    });
+    let _ = std::fs::create_dir_all("build");
+    let _ = std::fs::write("build/indexnow.json", indexnow.to_string());
 
     // Embeddable wire: one-line <script> any site can drop in (they redistribute
     // us, each embed is a backlink). Content baked daily; styles inline.
@@ -348,6 +393,21 @@ fn rfc822(date: &str) -> String {
         Ok(d) => d.format("%a, %d %b %Y 13:17:00 +0000").to_string(),
         Err(_) => date.to_string(),
     }
+}
+
+fn slug(s: &str) -> String {
+    let mut out = String::new();
+    let mut dash = false;
+    for ch in s.to_lowercase().chars() {
+        if ch.is_ascii_alphanumeric() {
+            out.push(ch);
+            dash = false;
+        } else if !dash && !out.is_empty() {
+            out.push('-');
+            dash = true;
+        }
+    }
+    out.trim_matches('-').to_string()
 }
 
 fn clip_r(s: &str, n: usize) -> String {

@@ -329,6 +329,11 @@ cheapest/most-automatic first:
    at `/call/<n>.html` with its own title/OG tags, all listed in `sitemap.xml`.
    A growing corpus of dated, linkable predictions that strangers find via search.
    No audience required; compounds over time.
+   - **Topic pages** (`/topic/<x>.html`) group the archive by subject so the site
+     matches real queries ("ai agents predictions"), not just one call's wording.
+   - **IndexNow**: each build pings search engines to crawl the new pages now (free,
+     no account; the ownership key file is served from the site). Faster cold
+     search traffic without waiting for the next natural crawl.
 6. **Embeddable wire** — any site/newsletter/README can show today's call with one
    line, and each embed is a backlink:
    ```html

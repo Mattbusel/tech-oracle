@@ -104,6 +104,14 @@ jobs:
           TITLE="$(cat build/dispatch_title.txt)"
           gh issue create --title "$TITLE" --body-file build/dispatch_body.md --label dispatch >/dev/null 2>&1 && echo "dispatch posted" || echo "dispatch failed"
 
+      # IndexNow: tell search engines to crawl the new/updated pages now. Free,
+      # no account; the key file is served from the site. Best-effort.
+      - name: IndexNow ping
+        shell: bash
+        run: |
+          set +e
+          [ -f build/indexnow.json ] && curl -fsS -X POST "https://api.indexnow.org/indexnow" -H "Content-Type: application/json" --data @build/indexnow.json >/dev/null && echo "indexnow pinged" || echo "indexnow skipped"
+
       # Syndicate the day's call to free channels. Best-effort: any channel
       # without its secret set is skipped, and a failed post never fails the run.
       - name: Syndicate
