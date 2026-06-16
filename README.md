@@ -336,6 +336,13 @@ cheapest/most-automatic first:
    ```
    (Optionally drop a `<div id="signal-wire"></div>` where you want it.) Content is
    baked daily; no API/CORS needed because it is a script include.
+6b. **Daily share images + a badge.** The engine renders a real dot-matrix PNG
+   card server-side (`/og.png`, and `/call/<n>.png` per call) wired into every
+   `og:image`, so every shared link unfurls as a branded visual. It also emits a
+   daily-updating SVG badge for READMEs/sites (another backlink vector):
+   ```md
+   [![THE SIGNAL](https://mattbusel.github.io/tech-oracle/badge.svg)](https://mattbusel.github.io/tech-oracle/)
+   ```
 7. **GitHub-native dispatch** — each cron run posts the day's call as a GitHub
    issue (the free auto-newsletter: every repo watcher is notified) and refreshes
    the README's "Today" block. "Watch this repo" becomes "subscribe to the oracle."

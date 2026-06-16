@@ -26,6 +26,8 @@ pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
 sha2 = "0.10"
 base64 = "0.22"
 getrandom = "0.2"
+# Server-side PNG share cards (rendered as real dot-matrix dots, no font files).
+png = "0.17"
 
 [profile.release]
 opt-level = 2

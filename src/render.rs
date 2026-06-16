@@ -234,12 +234,17 @@ pub fn render(
         let desc = xml(&clip_r(&p.prediction_text, 150));
         let tt = xml(&clip_r(&p.prediction_text, 65));
         let page = format!(
-            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Call No. {no}: {tt} // THE SIGNAL</title>\n<meta name=\"description\" content=\"{desc}\">\n<meta property=\"og:title\" content=\"THE SIGNAL // Call No. {no} [{status}]\">\n<meta property=\"og:description\" content=\"{desc}\">\n<meta name=\"twitter:card\" content=\"summary\">\n<link rel=\"canonical\" href=\"{site}/call/{no}.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:620px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}.c{{font-size:25px;font-weight:600;line-height:1.35;margin:18px 0}}.m{{font-size:11px;letter-spacing:.1em;color:#6d6b5e}}.w{{font-size:12px;color:#6d6b5e;margin:14px 0}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // CALL No. {no}</div>\n<div class=\"m\">{date} // {market} // {status}</div>\n<p class=\"c\">{t}</p>\n<div class=\"w\">{win}</div>\n<p class=\"m\"><a href=\"{src}\" rel=\"noopener\">source signal</a> // <a href=\"{site}/#call-{no}\">on the public record</a> // <a href=\"{site}/\">THE SIGNAL</a></p>\n</div></body></html>\n",
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Call No. {no}: {tt} // THE SIGNAL</title>\n<meta name=\"description\" content=\"{desc}\">\n<meta property=\"og:title\" content=\"THE SIGNAL // Call No. {no} [{status}]\">\n<meta property=\"og:description\" content=\"{desc}\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<meta property=\"og:image\" content=\"{site}/call/{no}.png\">\n<meta name=\"twitter:image\" content=\"{site}/call/{no}.png\">\n<link rel=\"canonical\" href=\"{site}/call/{no}.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:620px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}.c{{font-size:25px;font-weight:600;line-height:1.35;margin:18px 0}}.m{{font-size:11px;letter-spacing:.1em;color:#6d6b5e}}.w{{font-size:12px;color:#6d6b5e;margin:14px 0}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // CALL No. {no}</div>\n<div class=\"m\">{date} // {market} // {status}</div>\n<p class=\"c\">{t}</p>\n<div class=\"w\">{win}</div>\n<p class=\"m\"><a href=\"{src}\" rel=\"noopener\">source signal</a> // <a href=\"{site}/#call-{no}\">on the public record</a> // <a href=\"{site}/\">THE SIGNAL</a></p>\n</div></body></html>\n",
             no = no, tt = tt, t = xml(&p.prediction_text), desc = desc, status = status, market = market,
             date = xml(&p.date), win = xml(&p.win_if), src = xml(&p.source_url), site = site
         );
         let _ = std::fs::write(format!("{}/call/{no}.html", crate::OUT_DIR), page);
         urls.push(format!("{site}/call/{no}.html"));
+        // og:image for this call page
+        let _ = crate::card::call_card(
+            &format!("{}/call/{no}.png", crate::OUT_DIR),
+            &site, no as i64, status, market, &p.prediction_text,
+        );
     }
     let url_body: String = urls.iter().map(|u| format!("<url><loc>{u}</loc></url>")).collect();
     let sitemap = format!(
@@ -261,6 +266,23 @@ pub fn render(
         html = serde_json::to_string(&widget_html).unwrap_or_else(|_| "\"\"".to_string())
     );
     std::fs::write(format!("{}/widget.js", crate::OUT_DIR), widget_js)?;
+
+    // Daily og:image for the homepage (rendered as real dot-matrix dots).
+    let _ = crate::card::site_card(
+        &format!("{}/og.png", crate::OUT_DIR),
+        &site, generated_human, idx, verdict, hits as usize, misses as usize, &latest_w,
+    );
+
+    // Daily-updating SVG badge for READMEs / other sites (a backlink vector).
+    let badge = format!(
+        "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"320\" height=\"40\" role=\"img\" aria-label=\"THE SIGNAL\">\
+<rect width=\"320\" height=\"40\" fill=\"#1b1a14\"/>\
+<text x=\"14\" y=\"25\" fill=\"#efede4\" font-family=\"monospace\" font-size=\"14\" font-weight=\"700\" letter-spacing=\"2\">THE SIGNAL</text>\
+<text x=\"150\" y=\"25\" fill=\"#5bf08a\" font-family=\"monospace\" font-size=\"13\">IDX {idx} {verdict}</text>\
+<text x=\"150\" y=\"25\" fill=\"#5bf08a\" font-family=\"monospace\" font-size=\"13\" dy=\"0\"></text>\
+<text x=\"262\" y=\"25\" fill=\"#ffb454\" font-family=\"monospace\" font-size=\"13\">{hits}-{misses}</text></svg>\n"
+    );
+    std::fs::write(format!("{}/badge.svg", crate::OUT_DIR), badge)?;
 
     // Live floor positions: the most recent calls the desk marks against the
     // live feeds (client-side, continuously).
@@ -303,6 +325,7 @@ pub fn render(
         jsonld => jsonld,
         floor_json => floor_json,
         ladder_repo => ladder_repo,
+        og_image => format!("{site}/og.png"),
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,

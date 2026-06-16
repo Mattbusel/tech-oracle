@@ -1,4 +1,5 @@
 mod access;
+mod card;
 mod fetch;
 mod generate;
 mod model;

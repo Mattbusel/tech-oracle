@@ -10,6 +10,8 @@
   <meta property="og:title" content="THE SIGNAL // a self-grading tech oracle, {{ scoreboard.hits }}-{{ scoreboard.misses }} on the record" />
   <meta property="og:description" content="{% if scoreboard.has_rate %}{{ scoreboard.rate }}% hit rate. {% endif %}The book is at {{ book.bank }} units ({{ book.roi_str }}). Tech Acceleration Index {{ pulse.index }} {{ pulse.verdict }}, hottest cluster {{ pulse.theme }}. Every call self-grades. No edits, no deletes." />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content="{{ og_image }}" />
+  <meta name="twitter:image" content="{{ og_image }}" />
   <link rel="alternate" type="application/rss+xml" title="THE SIGNAL" href="feed.xml" />
   <script type="application/ld+json">{{ jsonld | safe }}</script>
   <meta property="og:type" content="website" />
