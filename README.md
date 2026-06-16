@@ -155,18 +155,43 @@ is manual. Fine for a first $10–20/mo "edge"; we went with the Worker because 
 gate is real and the cost is still $0 (free tier). The core is unchanged either
 way — only the access layer differs, so you can switch without touching Rust.
 
+### The account system: the PRESS CREDENTIAL (no email, no password)
+
+Accounts are deliberately *not* username/email/password. On a successful Stripe
+checkout the press **issues a unique credential** — three themed words plus a hex
+suffix, e.g. `RIBBON-COPPER-VECTOR-7F3A` — derived deterministically from the
+Stripe customer id (`HMAC(customer)` → wordlist). That credential **is** the
+account. Subscribers log in by entering it; a signed cookie remembers them after.
+
+- Deterministic, so it can always be **re-issued** from a later checkout or the
+  customer portal (no "forgot password" flow needed).
+- KV stores `cred:<CREDENTIAL>` → `customer` (for login lookup) and
+  `sub:<customer>` → active (from webhooks, for real-time revocation).
+- Nothing personal is stored. No card data, no database, no email.
+
 ### What the Worker does (`worker/worker.js`)
 
-- `POST /webhook` — verifies the Stripe signature, and on
-  `customer.subscription.*` / `invoice.payment_failed` writes/deletes
-  `sub:<customer>` in KV. (This is what makes gating real-time.)
-- `GET /` — if `?session_id=` is present (just back from Checkout), verifies the
-  session against Stripe, marks the customer active, and sets a signed cookie.
-  Returning visitors are checked by cookie + KV. Active subscribers get the early
-  calls; everyone else gets a paywall with the Subscribe button.
+- `POST /webhook` — verifies the Stripe signature; on `customer.subscription.*` /
+  `invoice.payment_failed` writes/deletes `sub:<customer>` in KV (real-time gating).
+- `GET /?session_id=...` — back from Checkout: verifies the session, mints the
+  credential, stores it, sets a cookie, and **prints the credential** for the user
+  to save.
+- `GET /?cred=...` — logs in with a credential (KV lookup → active check → cookie).
+- `GET /` — cookie → early feed; otherwise the credential gate (enter-credential
+  form + subscribe button).
+- `GET /logout` — clears the cookie.
 
-We store **no card data** and run **no database** — KV holds only `sub:<customer>`
-flags and the daily `edge_payload`.
+We store **no card data** and run **no database** — KV holds only `sub:<customer>`,
+`cred:<CREDENTIAL>`, and the daily `edge_payload`.
+
+### Sharing
+
+Every call, the scorecard, the book, and the pulse have **share controls**: native
+share sheet (mobile) / X intent (desktop) / copy link, plus **SAVE AS IMAGE**,
+which draws an on-brand receipt-style PNG card to canvas client-side (no backend,
+no image service) for screenshot-native sharing. Link previews (`og:`/`twitter:`)
+are rendered with the live hit rate, bankroll, and index so a pasted URL already
+reads like a headline.
 
 ### Stripe setup (test mode)
 

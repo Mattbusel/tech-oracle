@@ -7,8 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>THE SIGNAL // a public record of dated tech calls</title>
   <meta name="description" content="One or two specific, dated tech predictions printed every day from live signals. An append-only public record. No edits, no deletes. Subscribers get every call before it prints here." />
-  <meta property="og:title" content="THE SIGNAL // dated tech calls, on the record" />
-  <meta property="og:description" content="We print the future and never reprint it. A public, append-only ledger of dated tech predictions. Subscribers see every call before it goes public." />
+  <meta property="og:title" content="THE SIGNAL // a self-grading tech oracle, {{ scoreboard.hits }}-{{ scoreboard.misses }} on the record" />
+  <meta property="og:description" content="{% if scoreboard.has_rate %}{{ scoreboard.rate }}% hit rate. {% endif %}The book is at {{ book.bank }} units ({{ book.roi_str }}). Tech Acceleration Index {{ pulse.index }} {{ pulse.verdict }}, hottest cluster {{ pulse.theme }}. Every call self-grades. No edits, no deletes." />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -147,7 +148,9 @@
     .sub { flex: 1 1 auto; text-align: center; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-decoration: none; padding: 13px 18px; }
     .sub:hover { background: var(--stamp); }
     .sub-2 { display: inline-block; margin-top: 12px; font-size: 12px; letter-spacing: 0.1em; }
-    .coupon-fine { font-size: 10.5px; letter-spacing: 0.08em; color: var(--ink-soft); margin-top: 16px; }
+    .coupon-cred { font-size: 11px; letter-spacing: 0.05em; line-height: 1.6; color: #3b3a30; margin-top: 16px; border-top: 1.5px dashed var(--rule); padding-top: 14px; }
+    .coupon-cred b { color: var(--ink); }
+    .coupon-fine { font-size: 10.5px; letter-spacing: 0.08em; color: var(--ink-soft); margin-top: 12px; }
     .entries { list-style: none; margin: 0; padding: 0; }
     .entry { padding: 16px 14px; }
     .entry:nth-child(odd) { background: var(--bar); }
@@ -184,6 +187,13 @@
     .winif { font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-soft); margin: 0 0 10px; }
     .winif .res-hit { color: #2f6f4f; font-weight: 700; } .winif .res-miss { color: var(--stamp); font-weight: 700; }
     .odds { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); }
+
+    /* sharing */
+    .sharebar { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
+    .sx { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--ink); background: none; border: 1.5px solid var(--ink); border-radius: 4px; padding: 6px 11px; cursor: pointer; text-decoration: none; }
+    .sx:hover { background: var(--ink); color: var(--paper); }
+    .sx.alt { border-color: var(--rule); color: var(--ink-soft); }
+    .sx.alt:hover { background: var(--ink-soft); color: var(--paper); border-color: var(--ink-soft); }
     .book-spark .ph-bar { background: #2f6f4f; opacity: 0.8; }
     .book-spark .ph-bar:last-child { background: var(--stamp); opacity: 1; }
     .entry.st-miss { opacity: 0.9; }
@@ -333,6 +343,10 @@
               </div>
               <div class="sb-verdict">{{ scoreboard.verdict }}</div>
               <div class="sb-fine">EVERY CALL CARRIES A CONCRETE WIN CONDITION. THE MACHINE GRADES ITSELF AGAINST THE FEEDS, IN PUBLIC, AND NEVER UNPRINTS A LOSS.</div>
+              <div class="sharebar" style="justify-content:center">
+                <button class="sx" type="button" data-share data-text="An autonomous tech oracle that grades itself in public: {{ scoreboard.hits }} hits, {{ scoreboard.misses }} misses{% if scoreboard.has_rate %}, {{ scoreboard.rate }}% hit rate{% endif %}. No edits, no deletes.">[ SHARE THE RECORD ]</button>
+                <button class="sx alt" type="button" data-card data-headline="{% if scoreboard.has_rate %}{{ scoreboard.rate }}% HIT RATE{% else %}ON THE RECORD{% endif %}" data-kicker="THE SCORECARD // SELF-GRADING" data-sub="{{ scoreboard.hits }} HITS / {{ scoreboard.misses }} MISSES / {{ scoreboard.open }} OPEN" data-stamp="PUBLIC RECORD" data-big="1" data-text="The SIGNAL oracle's public scorecard.">[ SAVE AS IMAGE ]</button>
+              </div>
             </section>
 
             <div class="perf" aria-hidden="true"></div>
@@ -351,6 +365,10 @@
               </div>
               <div class="seismo-lbl">BANKROLL CURVE // {{ book.settled }} SETTLED BETS // STARTING STAKE 1000</div>
               {% endif %}
+              <div class="sharebar" style="justify-content:center">
+                <button class="sx" type="button" data-share data-text="The SIGNAL oracle is running a virtual book on its own tech calls: {{ book.bank }} units, {{ book.roi_str }} return, current streak {{ book.streak }}.">[ SHARE THE BOOK ]</button>
+                <button class="sx alt" type="button" data-card data-headline="{{ book.roi_str }} ON THE BOOK" data-kicker="THE BOOK // VIRTUAL BANKROLL" data-sub="{{ book.bank }} UNITS / STREAK {{ book.streak }} / BEST W{{ book.best_win }}" data-stamp="{{ book.streak }}" data-stampcolor="{% if book.pnl_class == 'sb-hit' %}green{% else %}red{% endif %}" data-big="1" data-text="The SIGNAL oracle's book.">[ SAVE AS IMAGE ]</button>
+              </div>
             </section>
 
             <div class="perf" aria-hidden="true"></div>
@@ -375,6 +393,10 @@
                 {% for h in pulse.history %}<span class="ph-bar" title="{{ h.date }} :: {{ h.index }}" style="height:{{ h.index }}%"></span>{% endfor %}
               </div>
               <div class="seismo-lbl">ACCELERATION INDEX // LAST {{ pulse.history | length }} PRINTS</div>
+              <div class="sharebar" style="justify-content:center">
+                <button class="sx" type="button" data-share data-text="Tech Acceleration Index today: {{ pulse.index }} ({{ pulse.verdict }}). Hottest cluster: {{ pulse.theme }}. {{ pulse.total }} signals across 6 sources.">[ SHARE THE PULSE ]</button>
+                <button class="sx alt" type="button" data-card data-headline="{{ pulse.index }} {{ pulse.verdict }}" data-kicker="TECH ACCELERATION INDEX // {{ generated_human }}" data-sub="HOTTEST CLUSTER: {{ pulse.theme }} / {{ pulse.total }} SIGNALS" data-stamp="{{ pulse.verdict }}" data-big="1" data-text="Today's Tech Acceleration Index.">[ SAVE AS IMAGE ]</button>
+              </div>
             </section>
 
             <div class="perf" aria-hidden="true"></div>
@@ -393,6 +415,10 @@
                   <dot-matrix class="calltext" data-fit="fill" data-size="27" data-pitch="3" data-weight="600" data-print="1">{{ p.prediction_text }}</dot-matrix>
                   <div class="basis">BASIS: {{ p.source_title }}</div>
                   <a class="open" href="{{ p.source_url }}" rel="noopener">OPEN SOURCE SIGNAL</a>
+                  <div class="sharebar">
+                    <button class="sx" type="button" data-hero-act="share">[ SHARE THIS CALL ]</button>
+                    <button class="sx alt" type="button" data-hero-act="card">[ SAVE AS IMAGE ]</button>
+                  </div>
                 </article>
                 {% endfor %}
               {% else %}
@@ -429,7 +455,8 @@
                 <div class="price">15 USD <span>/ MONTH</span></div>
                 <a class="sub" href="{{ payment_link }}" rel="noopener">SUBSCRIBE FOR THE {{ reveal_delay_days }}-{{ delay_word }} LEAD</a>
               </div>
-              {% if early_access_url and early_access_url != "#" %}<a class="sub-2" href="{{ early_access_url }}" rel="noopener">[ SUBSCRIBER ACCESS ]</a>{% endif %}
+              {% if early_access_url and early_access_url != "#" %}<a class="sub-2" href="{{ early_access_url }}" rel="noopener">[ ENTER WITH YOUR PRESS CREDENTIAL ]</a>{% endif %}
+              <div class="coupon-cred">NO EMAIL. NO PASSWORD. ON SUBSCRIBING, THE PRESS ISSUES YOU A ONE-OF-A-KIND <b>PRESS CREDENTIAL</b> (LIKE RIBBON-COPPER-VECTOR-7F3A). THAT CODE IS YOUR ACCOUNT AND YOUR ONLY KEY TO THE EARLY FEED.</div>
               <div class="coupon-fine">SECURE CHECKOUT BY STRIPE.{% if portal_url and portal_url != "#" %} CANCEL VIA <a href="{{ portal_url }}" rel="noopener">CUSTOMER PORTAL</a>.{% else %} CANCEL ANYTIME FROM YOUR STRIPE RECEIPT.{% endif %}</div>
             </section>
 
@@ -470,8 +497,9 @@
                     {% if it.win_if %}<div class="winif">{{ it.win_if }}{% if it.status == 'HIT' %} <span class="res-hit">:: HIT {{ it.resolved_on }}</span>{% elif it.status == 'MISS' %} <span class="res-miss">:: MISSED</span>{% endif %}</div>{% endif %}
                     <div class="entry-actions">
                       <a href="{{ it.source_url }}" rel="noopener">[ SOURCE ]</a>
-                      <a class="anchor" href="#{{ anchor }}">[ REF ]</a>
-                      <button type="button" class="copy" data-anchor="{{ anchor }}">[ COPY LINK ]</button>
+                      <button type="button" data-act="copy">[ COPY ]</button>
+                      <button type="button" data-act="share">[ SHARE ]</button>
+                      <button type="button" data-act="card">[ IMAGE ]</button>
                     </div>
                   </li>
                   {% endfor %}
@@ -720,12 +748,90 @@
       ready.then(function () { (window.requestAnimationFrame || setTimeout)(boot); });
     })();
 
-    document.querySelectorAll("button.copy").forEach(function (btn) {
-      btn.addEventListener("click", function () {
-        var url = location.origin + location.pathname + "#" + btn.dataset.anchor;
-        navigator.clipboard.writeText(url).then(function () { var prev = btn.textContent; btn.textContent = "[ COPIED ]"; setTimeout(function () { btn.textContent = prev; }, 1400); });
+    // ----------------------------------------------------------------------
+    // Sharing: native share / X intent / copy, plus on-brand PNG cards drawn
+    // to canvas so every call and stat is screenshot-ready.
+    // ----------------------------------------------------------------------
+    (function () {
+      var SITE = location.origin + location.pathname;
+      var PAPER = "#efede4", INK = "#1b1a14", SOFT = "#6d6b5e", STAMP = "#b23a2e", GREEN = "#2f6f4f";
+      function flash(btn, msg) { var p = btn.textContent; btn.textContent = "[ " + msg + " ]"; setTimeout(function () { btn.textContent = p; }, 1500); }
+      function doShare(text, url, btn) {
+        if (navigator.share) { navigator.share({ title: "THE SIGNAL", text: text, url: url }).catch(function () {}); }
+        else { window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(url), "_blank", "noopener"); if (btn) flash(btn, "OPENED"); }
+      }
+      function wrap(x, text, max) {
+        var words = (text || "").split(" "), lines = [], cur = "";
+        for (var i = 0; i < words.length; i++) { var t = cur ? cur + " " + words[i] : words[i]; if (x.measureText(t).width > max && cur) { lines.push(cur); cur = words[i]; } else cur = t; }
+        if (cur) lines.push(cur); return lines;
+      }
+      function card(o) {
+        var W = 1200, H = 630, s = 2, c = document.createElement("canvas"); c.width = W * s; c.height = H * s;
+        var x = c.getContext("2d"); x.scale(s, s);
+        x.fillStyle = PAPER; x.fillRect(0, 0, W, H);
+        x.fillStyle = "#d9d7cd"; for (var i = 22; i < W; i += 34) { x.beginPath(); x.arc(i, 17, 5, 0, 6.2832); x.fill(); x.beginPath(); x.arc(i, H - 17, 5, 0, 6.2832); x.fill(); }
+        x.fillStyle = INK; x.font = "700 27px 'IBM Plex Mono', monospace"; x.fillText("THE SIGNAL", 56, 74);
+        x.fillStyle = SOFT; x.font = "500 14px 'IBM Plex Mono', monospace"; x.fillText((o.kicker || "PUBLIC RECORD // NO EDITS // NO DELETES").toUpperCase(), 56, 100);
+        var big = o.big === "1" || o.big === true;
+        x.fillStyle = INK; x.font = "700 " + (big ? 78 : 42) + "px 'IBM Plex Mono', monospace";
+        var lines = wrap(x, o.headline || "", W - 112).slice(0, big ? 3 : 6), ly = big ? 250 : 196, lh = big ? 84 : 52;
+        for (var j = 0; j < lines.length; j++) x.fillText(lines[j], 56, ly + j * lh);
+        if (o.sub) { x.fillStyle = SOFT; x.font = "600 21px 'IBM Plex Mono', monospace"; x.fillText(("" + o.sub).toUpperCase(), 56, H - 92); }
+        x.fillStyle = SOFT; x.font = "500 18px 'IBM Plex Mono', monospace"; x.fillText(SITE.replace(/^https?:\/\//, ""), 56, H - 48);
+        if (o.stamp) {
+          var col = o.stampcolor === "green" ? GREEN : STAMP;
+          x.save(); x.translate(W - 250, 96); x.rotate(-0.12);
+          x.strokeStyle = col; x.lineWidth = 3.5; x.font = "700 24px 'IBM Plex Mono', monospace";
+          var tw = x.measureText(o.stamp).width; x.strokeRect(-6, -30, tw + 28, 46); x.fillStyle = col; x.fillText(o.stamp, 8, 2);
+          x.restore();
+        }
+        return c;
+      }
+      function out(c, text) {
+        c.toBlob(function (b) {
+          if (navigator.canShare && window.File) {
+            var f = new File([b], "the-signal.png", { type: "image/png" });
+            if (navigator.canShare({ files: [f] })) { navigator.share({ files: [f], text: text, title: "THE SIGNAL" }).catch(function () {}); return; }
+          }
+          var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "the-signal.png"; document.body.appendChild(a); a.click(); a.remove();
+        });
+      }
+      function entryData(li) {
+        return {
+          url: SITE + "#" + li.id,
+          text: ((li.querySelector(".entry-text") || {}).textContent || "").trim(),
+          status: ((li.querySelector(".verdict-stamp") || {}).textContent || "OPEN").trim(),
+          odds: ((li.querySelector(".odds") || {}).textContent || "").trim(),
+          no: ((li.querySelector(".no") || {}).textContent || "").trim()
+        };
+      }
+      document.addEventListener("click", function (e) {
+        var act = e.target.closest(".entry-actions [data-act]");
+        if (act) {
+          e.preventDefault(); var li = e.target.closest(".entry"); var d = entryData(li); var a = act.getAttribute("data-act");
+          if (a === "copy") navigator.clipboard.writeText(d.url).then(function () { flash(act, "COPIED"); });
+          else if (a === "share") doShare("THE SIGNAL " + d.no + " [" + d.status + "] " + d.text, d.url, act);
+          else if (a === "card") out(card({ kicker: d.no + " // " + d.status + " // " + d.odds, headline: d.text, stamp: d.status, stampcolor: d.status === "HIT" ? "green" : "red" }), d.text + " " + d.url);
+          return;
+        }
+        var hero = e.target.closest("[data-hero-act]");
+        if (hero) {
+          e.preventDefault(); var art = e.target.closest(".call--hero"); var dm = art.querySelector("dot-matrix");
+          var text = dm ? dm.getAttribute("aria-label") : ((art.querySelector(".calltext") || {}).textContent || "");
+          if (hero.getAttribute("data-hero-act") === "share") doShare("THE SIGNAL's latest call: " + text, SITE, hero);
+          else out(card({ kicker: "LATEST PRINT", headline: text, stamp: "ON THE RECORD", big: true }), "THE SIGNAL's latest call. " + SITE);
+          return;
+        }
+        var sh = e.target.closest("[data-share]");
+        if (sh) { e.preventDefault(); doShare(sh.getAttribute("data-text") || "", SITE, sh); return; }
+        var cd = e.target.closest("[data-card]");
+        if (cd) {
+          e.preventDefault();
+          out(card({ headline: cd.getAttribute("data-headline"), kicker: cd.getAttribute("data-kicker"), sub: cd.getAttribute("data-sub"), stamp: cd.getAttribute("data-stamp"), stampcolor: cd.getAttribute("data-stampcolor"), big: cd.getAttribute("data-big") }), cd.getAttribute("data-text") || SITE);
+          return;
+        }
       });
-    });
+    })();
   </script>
 </body>
 </html>
