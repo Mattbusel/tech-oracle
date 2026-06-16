@@ -10,7 +10,10 @@ use chrono::{Duration, NaiveDate};
 /// Days a call stays open before it misses if its subject never resurfaces.
 const HORIZON_DAYS: i64 = 30;
 
-pub fn generate(signals: &[Signal], date: &str, seed: i64) -> Vec<Prediction> {
+const MARKETS: &[&str] = &["RESURFACE", "SURVIVAL", "MOMENTUM", "HEAD-TO-HEAD", "INDEX"];
+
+pub fn generate(signals: &[Signal], date: &str, seed: i64, index: i64) -> Vec<Prediction> {
+    let n = signals.len();
     signals
         .iter()
         .enumerate()
@@ -18,11 +21,34 @@ pub fn generate(signals: &[Signal], date: &str, seed: i64) -> Vec<Prediction> {
             let subject = subject_of(s);
             let keyword = pick_keyword(&subject);
             let resolves_by = horizon(date);
-            let win_if = format!(
-                "WIN IF \"{}\" RESURFACES ACROSS THE FEEDS BY {}",
-                keyword.to_uppercase(),
-                resolves_by
-            );
+
+            // Rotate the market so the slate has variety in what it bets on.
+            let mut market = MARKETS[(seed as usize).wrapping_add(i) % MARKETS.len()];
+            let mut keyword2 = String::new();
+            let mut target = 0i64;
+            if market == "HEAD-TO-HEAD" {
+                if n >= 2 {
+                    keyword2 = pick_keyword(&subject_of(&signals[(i + 1) % n]));
+                    if keyword2 == keyword || keyword2.is_empty() {
+                        market = "RESURFACE";
+                    }
+                } else {
+                    market = "RESURFACE";
+                }
+            }
+            if market == "INDEX" {
+                target = (index + 5 + ((seed as i64 + i as i64) % 6)).clamp(1, 100);
+            }
+
+            let kw = keyword.to_uppercase();
+            let win_if = match market {
+                "SURVIVAL" => format!("WIN IF \"{kw}\" HAS NOT GONE QUIET BY {resolves_by}"),
+                "MOMENTUM" => format!("WIN IF \"{kw}\" IS STILL MOVING ACROSS THE FEEDS BY {resolves_by}"),
+                "HEAD-TO-HEAD" => format!("WIN IF \"{kw}\" RESURFACES BEFORE \"{}\" BY {resolves_by}", keyword2.to_uppercase()),
+                "INDEX" => format!("WIN IF THE PULSE INDEX CROSSES {target} BY {resolves_by}"),
+                _ => format!("WIN IF \"{kw}\" RESURFACES ACROSS THE FEEDS BY {resolves_by}"),
+            };
+
             // Confidence sets the line: lead picks are favorites, later picks are
             // longer shots. A small date-seeded jitter keeps it from being rote.
             let jitter = ((seed.unsigned_abs() as usize + i) % 7) as f64 * 0.01;
@@ -39,6 +65,9 @@ pub fn generate(signals: &[Signal], date: &str, seed: i64) -> Vec<Prediction> {
                 resolves_by,
                 resolved_on: String::new(),
                 confidence,
+                market: market.to_string(),
+                keyword2,
+                target,
             }
         })
         .collect()

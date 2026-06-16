@@ -48,6 +48,7 @@ pub fn render(
                 "resolved_on": p.resolved_on,
                 "odds": format!("{:.2}x", 1.0 / conf),
                 "conf": (conf * 100.0).round() as i64,
+                "market": if p.market.is_empty() { "RESURFACE".to_string() } else { p.market.clone() },
             }));
             i += 1;
         }
@@ -225,6 +226,25 @@ pub fn render(
     );
     std::fs::write(format!("{}/sitemap.xml", crate::OUT_DIR), sitemap)?;
 
+    // Live floor positions: the most recent calls the desk marks against the
+    // live feeds (client-side, continuously).
+    let floor: Vec<serde_json::Value> = sorted
+        .iter()
+        .take(8)
+        .map(|p| {
+            let conf = if p.confidence > 0.0 { p.confidence } else { 0.65 };
+            let kw = if p.keyword.is_empty() { "signal".to_string() } else { p.keyword.clone() };
+            let t: String = p.prediction_text.chars().take(50).collect();
+            serde_json::json!({
+                "t": t, "kw": kw,
+                "market": if p.market.is_empty() { "RESURFACE".to_string() } else { p.market.clone() },
+                "odds": format!("{:.2}", 1.0 / conf),
+                "status": if p.status.is_empty() { "OPEN" } else { p.status.as_str() },
+            })
+        })
+        .collect();
+    let floor_json = serde_json::to_string(&floor).unwrap_or_else(|_| "[]".to_string());
+
     let tmpl_src = include_str!("../templates/index.html");
     let mut env = minijinja::Environment::new();
     env.add_template("index", tmpl_src)?;
@@ -243,6 +263,7 @@ pub fn render(
         scoreboard => scoreboard,
         book => book,
         jsonld => jsonld,
+        floor_json => floor_json,
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,

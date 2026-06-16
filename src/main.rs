@@ -1,3 +1,4 @@
+mod access;
 mod fetch;
 mod generate;
 mod model;
@@ -76,8 +77,9 @@ fn main() {
         .collect::<Vec<_>>()
         .join(" || ");
 
+    let today_index = pulse.get("index").and_then(|v| v.as_i64()).unwrap_or(50);
     let picks = rank::rank_and_select(signals, seed, 4);
-    let todays = generate::generate(&picks, &date, seed);
+    let todays = generate::generate(&picks, &date, seed, today_index);
     eprintln!("generated {} call(s) for {date}", todays.len());
 
     // ---- merge across the embargo/reveal windows ----
@@ -91,8 +93,8 @@ fn main() {
 
     // Self-grade: resolve any open call whose subject resurfaced in today's
     // signals (a HIT) or whose deadline has passed without resurfacing (a MISS).
-    resolve_open(&mut revealed, &date, &corpus);
-    resolve_open(&mut embargoed, &date, &corpus);
+    resolve_open(&mut revealed, &date, &corpus, today_index);
+    resolve_open(&mut embargoed, &date, &corpus, today_index);
 
     // Promote any embargoed call old enough to go public.
     let mut still_embargoed = Vec::new();
@@ -109,7 +111,17 @@ fn main() {
 
     // ---- persist both outputs ----
     save_json(DATA_PATH, &revealed); // committed by the Action
-    write_early_payload(EARLY_OUT, &human, delay_days, &embargoed); // pushed to KV
+    write_early_payload(EARLY_OUT, &human, delay_days, &embargoed);
+
+    // Access codes: encrypt the early feed under each shared code so a code
+    // "just works" to unlock premium client-side. Set ACCESS_CODES (comma/space
+    // separated). The engine does this in the normal build -- no extra scripts.
+    let codes = env_or("ACCESS_CODES", "");
+    if !codes.is_empty() {
+        if let Ok(payload_json) = std::fs::read_to_string(EARLY_OUT) {
+            access::publish(&format!("{OUT_DIR}/edge"), &payload_json, &codes);
+        }
+    }
 
     eprintln!(
         "revealed: {} public call(s); embargoed: {} subscriber-only call(s)",
@@ -239,16 +251,51 @@ fn build_intake(signals: &[model::Signal]) -> serde_json::Value {
 /// Resolve open calls against today's signal corpus. A call only resolves on a
 /// day after it was made (so it cannot settle on its own source), HITs if its
 /// keyword resurfaces before the deadline, and MISSes once the deadline passes.
-fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str) {
+fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, index: i64) {
     for p in preds.iter_mut() {
-        if p.status != "OPEN" || p.keyword.is_empty() || p.date.as_str() >= today {
+        if p.status != "OPEN" || p.date.as_str() >= today {
             continue;
         }
         let within = p.resolves_by.is_empty() || today <= p.resolves_by.as_str();
-        if within && corpus.contains(&p.keyword) {
+        let expired = !p.resolves_by.is_empty() && today > p.resolves_by.as_str();
+        let here = |kw: &str| !kw.is_empty() && corpus.contains(kw);
+
+        let (mut hit, mut miss) = (false, false);
+        match p.market.as_str() {
+            "HEAD-TO-HEAD" => {
+                let a = here(&p.keyword);
+                let b = here(&p.keyword2);
+                if within && a && !b {
+                    hit = true;
+                } else if b && !a {
+                    miss = true; // the other side moved first
+                } else if expired {
+                    miss = true;
+                }
+            }
+            "INDEX" => {
+                if within && index >= p.target {
+                    hit = true;
+                } else if expired {
+                    miss = true;
+                }
+            }
+            // RESURFACE / SURVIVAL / MOMENTUM / default: keyword resurfaces.
+            _ => {
+                if p.keyword.is_empty() {
+                    continue;
+                }
+                if within && here(&p.keyword) {
+                    hit = true;
+                } else if expired {
+                    miss = true;
+                }
+            }
+        }
+        if hit {
             p.status = "HIT".to_string();
             p.resolved_on = today.to_string();
-        } else if !p.resolves_by.is_empty() && today > p.resolves_by.as_str() {
+        } else if miss {
             p.status = "MISS".to_string();
             p.resolved_on = today.to_string();
         }

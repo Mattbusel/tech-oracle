@@ -34,4 +34,10 @@ pub struct Prediction {
     pub resolved_on: String, // YYYY-MM-DD when settled, or ""
     #[serde(default)]
     pub confidence: f64, // 0.50-0.95; sets the line and the stake payout
+    #[serde(default)]
+    pub market: String, // RESURFACE | SURVIVAL | MOMENTUM | HEAD-TO-HEAD | INDEX
+    #[serde(default)]
+    pub keyword2: String, // the other side, for HEAD-TO-HEAD
+    #[serde(default)]
+    pub target: i64, // index threshold, for INDEX bets
 }

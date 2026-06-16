@@ -20,6 +20,12 @@ minijinja = "2"
 # Dates + deterministic date-seeded template rotation.
 chrono = "0.4"
 anyhow = "1"
+# Access codes: encrypt the early feed so a shared code unlocks it client-side.
+aes-gcm = "0.10"
+pbkdf2 = { version = "0.12", default-features = false, features = ["hmac"] }
+sha2 = "0.10"
+base64 = "0.22"
+getrandom = "0.2"
 
 [profile.release]
 opt-level = 2

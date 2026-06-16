@@ -190,6 +190,17 @@
     .winif .res-hit { color: #2f6f4f; font-weight: 700; } .winif .res-miss { color: var(--stamp); font-weight: 700; }
     .odds { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); }
 
+    /* the live floor */
+    .fl-list { font-size: 12px; line-height: 1.5; min-height: 170px; }
+    .fl-row { padding: 5px 0; border-bottom: 1px dashed var(--rule); }
+    .fl-row:first-child { animation: flin 0.5s ease; }
+    @keyframes flin { from { background: rgba(110,224,122,0.18); } to { background: transparent; } }
+    .fl-t { color: var(--ink-soft); font-size: 10.5px; margin-right: 8px; }
+    .fl-row b { color: var(--ink); }
+    .fl-unreal.up { color: #2f6f4f; } .fl-unreal.down { color: var(--stamp); }
+    .mkt { font-size: 9.5px; letter-spacing: 0.1em; color: var(--ink-soft); border: 1px solid var(--rule); padding: 0 5px; border-radius: 3px; }
+    @media (prefers-reduced-motion: reduce) { .fl-row:first-child { animation: none; } }
+
     /* sharing */
     .sharebar { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
     .sx { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: 0.1em; color: var(--ink); background: none; border: 1.5px solid var(--ink); border-radius: 4px; padding: 6px 11px; cursor: pointer; text-decoration: none; }
@@ -400,6 +411,14 @@
 
             <div class="perf" aria-hidden="true"></div>
 
+            <section class="floor" aria-label="Live betting floor">
+              <div class="band">THE FLOOR / LIVE // <span id="floor-unreal" class="fl-unreal">0.0u</span> UNREALIZED</div>
+              <div class="fl-list" id="floor"></div>
+              <div class="seismo-lbl">THE DESK MARKS ITS OPEN POSITIONS AGAINST THE LIVE FEEDS, AROUND THE CLOCK</div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
             <section class="pulse" aria-label="Tech acceleration index">
               <div class="band">THE PULSE / TECH ACCELERATION INDEX</div>
               <div class="pulse-grid">
@@ -438,6 +457,7 @@
                     <span>CALL No. {{ n }}</span>
                     <span>CALLED {{ featured_date_human }}</span>
                     <span class="tag-src">{{ labels[p.signal_type] }}</span>
+                    {% if p.market %}<span class="mkt">{{ p.market }}</span>{% endif %}
                   </div>
                   <dot-matrix class="calltext" data-fit="fill" data-size="27" data-pitch="3" data-weight="600" data-print="1">{{ p.prediction_text }}</dot-matrix>
                   <div class="basis">BASIS: {{ p.source_title }}</div>
@@ -522,7 +542,7 @@
                   {% for it in page.items %}
                   {% set anchor = "call-" ~ it.no %}
                   <li class="entry s-edge-{{ it.signal_type }} st-{{ it.status | lower }}" id="{{ anchor }}">
-                    <div class="entry-meta"><span class="no">No. {{ it.no }}</span><span class="verdict-stamp v-{{ it.status | lower }}">{{ it.status }}</span><span class="odds">LINE {{ it.odds }} @ {{ it.conf }}%</span><span class="tg s-{{ it.signal_type }}">{{ labels[it.signal_type] }}</span></div>
+                    <div class="entry-meta"><span class="no">No. {{ it.no }}</span><span class="verdict-stamp v-{{ it.status | lower }}">{{ it.status }}</span><span class="odds">LINE {{ it.odds }} @ {{ it.conf }}%</span><span class="mkt">{{ it.market }}</span><span class="tg s-{{ it.signal_type }}">{{ labels[it.signal_type] }}</span></div>
                     <p class="entry-text">{{ it.prediction_text }}</p>
                     {% if it.win_if %}<div class="winif">{{ it.win_if }}{% if it.status == 'HIT' %} <span class="res-hit">:: HIT {{ it.resolved_on }}</span>{% elif it.status == 'MISS' %} <span class="res-miss">:: MISSED</span>{% endif %}</div>{% endif %}
                     <div class="entry-actions">
@@ -580,6 +600,7 @@
     function setText(id, t){ var e = $id(id); if (e) e.textContent = t; }
     function pad(n){ return (n < 10 ? "0" : "") + n; }
     var REDUCE = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var __FLOOR = {{ floor_json | safe }};
 
     // ---- station clock + countdown to the next 13:17 UTC print ----
     (function () {
@@ -640,6 +661,39 @@
       }
       window.__pulseSpike = function () { spike = amp * 2.3; };
       step(); if (!REDUCE) setInterval(step, 60);
+    })();
+
+    // ---- THE FLOOR: continuous live betting activity, always something moving ----
+    (function () {
+      var host = $id("floor"); if (!host) return;
+      var bets = ((typeof __FLOOR !== "undefined" && __FLOOR) || []).map(function (b) {
+        var ln = parseFloat(b.odds) || 1.6; return { kw: b.kw, market: b.market, line: ln, entry: ln };
+      });
+      var lines = [];
+      function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
+      function tnow() { var d = new Date(); return pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()) + ":" + pad(d.getUTCSeconds()); }
+      function rnd(a, b) { return a + Math.random() * (b - a); }
+      function pick() { return bets.length ? bets[Math.floor(Math.random() * bets.length)] : null; }
+      function paint() { host.innerHTML = lines.map(function (l) { return '<div class="fl-row"><span class="fl-t">' + l.t + "</span> " + l.m + "</div>"; }).join(""); }
+      function push(m) { lines.unshift({ t: tnow(), m: m }); lines = lines.slice(0, 14); paint(); }
+      function setUnreal() {
+        var u = 0; bets.forEach(function (x) { u += (x.entry - x.line) / x.entry * 100; });
+        var el = $id("floor-unreal"), sign = u >= 0 ? "+" : "";
+        if (el) { el.textContent = sign + u.toFixed(1) + "u"; el.className = "fl-unreal " + (u >= 0 ? "up" : "down"); }
+        return sign + u.toFixed(1) + "u";
+      }
+      function gen() {
+        var r = Math.random(), b = pick();
+        if (b && r < 0.42) { var old = b.line, dir = Math.random() < 0.5 ? -1 : 1; b.line = Math.max(1.05, Math.min(4, b.line + rnd(0.01, 0.06) * dir)); return "LINE // <b>" + esc(b.kw) + "</b> " + old.toFixed(2) + "x -> " + b.line.toFixed(2) + "x " + (dir < 0 ? "(heating)" : "(cooling)"); }
+        if (r < 0.6) { return "SWEEP // 6 feeds // " + Math.floor(rnd(80, 170)) + " signals in play"; }
+        if (b && r < 0.76) { var v = setUnreal(); return "MARK TO MARKET // <b>" + v + "</b> across " + bets.length + " open"; }
+        if (b && r < 0.9) { return "HOLDING // " + esc(b.market) + " on <b>" + esc(b.kw) + "</b> @ " + b.line.toFixed(2) + "x"; }
+        var w = pick(); return "FEELER // 0.5u on <b>" + esc((w && w.kw) || "signal") + "</b> @ " + rnd(1.4, 2.6).toFixed(2) + "x";
+      }
+      function step() { push(gen()); if (!REDUCE) setTimeout(step, rnd(2600, 6500)); }
+      push("DESK ONLINE // marking " + bets.length + " open position" + (bets.length === 1 ? "" : "s") + " against the live feeds");
+      setUnreal();
+      if (REDUCE) { for (var i = 0; i < 6; i++) push(gen()); } else { step(); }
     })();
 
     // ---- rolling activity log + periodic machine event ----

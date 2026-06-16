@@ -149,42 +149,33 @@ username, or password.
 - **Free accounts are 100% client-side.** "Get a free press credential" mints a
   high-entropy credential in the browser with `crypto.getRandomValues` and stores
   it in `localStorage`. Nothing is sent anywhere. The credential is the identity.
-- **Premium (early feed) needs no Cloudflare and no database** either. The daily
-  GitHub Action (which already runs, and can hold the Stripe key as a secret)
-  encrypts today's embargoed payload **once per active subscriber** with a key
-  derived from that subscriber's credential (PBKDF2 → AES-256-GCM) and writes it
-  to a static path `docs/edge/<sha256(credential)>.json`. The file is committed to
-  the public repo but is **ciphertext** — only the credential holder can decrypt
-  it, in the browser, with Web Crypto. Cancel a subscription and the Action stops
-  publishing that file → access is revoked on the next daily run.
+- **Premium (early feed) is unlocked by ACCESS CODES, no server.** The engine
+  (the Rust core, in its normal daily build) encrypts today's embargoed payload
+  once per code in `ACCESS_CODES` with a key derived from that code (PBKDF2 →
+  AES-256-GCM) and writes `docs/edge/<sha256(code)>.json`. The file is committed
+  to the public repo but is **ciphertext** — only someone with the code can
+  decrypt it in the browser. No Cloudflare, no database, no extra scripts.
 
-How a credential gets linked to a subscription: the site's Subscribe button
-appends `?client_reference_id=<credential>` to the Stripe Payment Link, so the
-checkout (and thus `scripts/publish_edge.mjs`, which lists active subscriptions)
-knows which credential to encrypt for. To enable: set `STRIPE_SECRET_KEY` as a
-repo **Secret**. That's the only requirement — no Cloudflare account at all.
+### Access codes / god passes (premium that just works)
 
-### God passes (free comp access for friends)
+A premium code (a "god pass") is simply a string the engine encrypts the early
+feed for. Set a repo **Secret** `ACCESS_CODES` to a comma/newline-separated list,
+e.g. `GOLDEN-TICKET-9X2, APRIL-FRIENDS`. On the next daily build each code gets
+its encrypted feed published.
 
-A god pass is just a credential the Action publishes a feed for **without checking
-Stripe**. Set a repo **Secret** `COMP_CREDS` to a comma/space/newline-separated
-list of codes, e.g. `GOLDEN-TICKET-9X2, APRIL-FRIENDS-2026`. On the next daily
-run, each code gets its own encrypted feed at `docs/edge/<sha256(code)>.json`.
+Give someone a code; they click **EARLY FEED**, type it, and it decrypts — full
+premium, instantly, no payment and no account needed. Revoke by removing the code
+from `ACCESS_CODES` (its file stops publishing on the next run). Codes live in a
+Secret, never exposed publicly. A code may contain spaces (normalized to hyphens),
+so `GOLDEN TICKET` and `golden-ticket` resolve to the same thing.
 
-Give a friend a code; they click **EARLY FEED**, type it, and it decrypts — full
-premium, free, no payment and no Stripe required. Revoke instantly-ish by removing
-the code from `COMP_CREDS` (its file stops being published on the next run). The
-codes live in a Secret, so they are never exposed publicly; only people you tell
-can use them. Any string works (it is normalized to upper/hyphen form); pick
-memorable ones or mint strong ones with "Get a free press credential".
+This is also how you grant **paying subscribers** access for now: give each a code
+(or one shared code you rotate). It works with no Stripe and no Cloudflare at all —
+`ACCESS_CODES` is the only thing to set.
 
-This also works with **no Stripe at all** — set only `COMP_CREDS` and you can hand
-out free premium without a paid tier configured.
-
-Tradeoffs: revocation is daily (not instant), and a subscriber who shares their
-credential shares their access. Both are fine for a daily $15 edge. The Cloudflare
-Worker below remains as an **optional** alternative if you ever want real-time
-gating; it is not required.
+Tradeoffs: revocation is daily (not instant), and anyone a code is forwarded to can
+use it (rotate codes for a clean cut). Fine for a daily $15 edge. The Cloudflare
+Worker below remains an **optional** alternative for real-time, per-user gating.
 
 ## The paid tier (optional Cloudflare Worker alternative)
 
