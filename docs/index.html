@@ -15,7 +15,7 @@
       --desk: #17181c;
       --desk-2: #1f2127;
       --paper: #efede4;
-      --bar: #e4e9dc;        /* faint green-bar stripe */
+      --bar: #e4e9dc;
       --ink: #1b1a14;
       --ink-soft: #6d6b5e;
       --rule: rgba(27, 26, 20, 0.30);
@@ -24,7 +24,6 @@
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
     @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
@@ -38,18 +37,19 @@
         repeating-linear-gradient(0deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
       padding: 0 16px;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
-
     a { color: inherit; }
 
-    /* ---- the continuous-form sheet ---- */
+    .filter-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+    /* the continuous-form sheet, fed up through the platen on load */
     .sheet {
       position: relative;
       max-width: 660px;
       margin: 0 auto;
       background-color: var(--paper);
       padding: 34px 46px 40px;
-      /* sprocket feed holes punched down both edges */
       background-image:
         radial-gradient(circle 3.4px, var(--desk) 96%, transparent 100%),
         radial-gradient(circle 3.4px, var(--desk) 96%, transparent 100%);
@@ -57,95 +57,61 @@
       background-position: 14px 18px, calc(100% - 14px) 18px;
       background-repeat: repeat-y, repeat-y;
       box-shadow: 0 0 0 1px rgba(0,0,0,0.25), 0 30px 80px rgba(0,0,0,0.45);
+      animation: feed 0.9s cubic-bezier(0.22, 0.68, 0.2, 1) both;
     }
-    /* faint paper tooth */
+    @keyframes feed { from { transform: translateY(46px); } to { transform: none; } }
     .sheet::after {
-      content: "";
-      position: absolute; inset: 0;
-      pointer-events: none;
+      content: ""; position: absolute; inset: 0; pointer-events: none;
       background-image: radial-gradient(rgba(27,26,20,0.04) 1px, transparent 1px);
-      background-size: 4px 4px;
-      mix-blend-mode: multiply;
-      opacity: 0.5;
+      background-size: 4px 4px; mix-blend-mode: multiply; opacity: 0.5;
     }
     .sheet > * { position: relative; z-index: 1; }
 
-    /* ---- perforation fold lines ---- */
     .perf {
-      position: relative;
-      height: 1px;
-      margin: 30px -46px;
+      position: relative; height: 1px; margin: 30px -46px;
       border-top: 1.5px dashed var(--rule);
     }
     .perf::before, .perf::after {
-      content: "";
-      position: absolute; top: -6px;
-      width: 11px; height: 11px; border-radius: 50%;
-      background: var(--desk);
+      content: ""; position: absolute; top: -6px;
+      width: 11px; height: 11px; border-radius: 50%; background: var(--desk);
     }
-    .perf::before { left: 9px; }
-    .perf::after { right: 9px; }
+    .perf::before { left: 9px; } .perf::after { right: 9px; }
 
-    /* ---- masthead ---- */
     .head { text-align: center; }
     .wordmark {
-      font-weight: 700;
-      font-size: clamp(30px, 8vw, 58px);
-      letter-spacing: 0.16em;
-      margin: 2px 0 0;
-      text-indent: 0.16em;
+      display: block; font-weight: 700; font-size: clamp(30px, 8vw, 58px);
+      letter-spacing: 0.16em; margin: 2px 0 0; text-indent: 0.16em; line-height: 1;
     }
-    .tag {
-      font-size: 11px; letter-spacing: 0.42em; color: var(--ink-soft);
-      text-indent: 0.42em; margin-top: 6px;
-    }
+    .tag { font-size: 11px; letter-spacing: 0.42em; color: var(--ink-soft); text-indent: 0.42em; margin-top: 10px; }
     .metaline {
       display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
-      font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft);
-      margin-top: 18px; text-align: left;
+      font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); margin-top: 18px; text-align: left;
     }
     .caret { display: inline-block; width: 7px; background: var(--ink); color: transparent; animation: blink 1.1s steps(1) infinite; }
     @keyframes blink { 50% { opacity: 0; } }
-    @media (prefers-reduced-motion: reduce) { .caret { animation: none; } }
 
     .barcode {
       height: 36px; width: 100%; max-width: 240px; margin: 16px auto 0;
       background: repeating-linear-gradient(90deg,
-        var(--ink) 0 2px, transparent 2px 4px,
-        var(--ink) 4px 7px, transparent 7px 8px,
-        var(--ink) 8px 9px, transparent 9px 12px,
-        var(--ink) 12px 16px, transparent 16px 17px);
+        var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 7px, transparent 7px 8px,
+        var(--ink) 8px 9px, transparent 9px 12px, var(--ink) 12px 16px, transparent 16px 17px);
     }
     .barcode-no { text-align: center; font-size: 10px; letter-spacing: 0.3em; color: var(--ink-soft); margin-top: 5px; }
 
-    /* ---- section band labels ---- */
     .band {
       display: inline-block; background: var(--ink); color: var(--paper);
-      font-weight: 600; font-size: 12px; letter-spacing: 0.22em;
-      padding: 4px 12px; margin-bottom: 18px;
+      font-weight: 600; font-size: 12px; letter-spacing: 0.22em; padding: 4px 12px; margin-bottom: 18px;
     }
 
-    /* ---- latest print (hero) ---- */
     .call--hero { margin-bottom: 6px; }
     .call--hero + .call--hero { margin-top: 22px; padding-top: 22px; border-top: 1.5px dashed var(--rule); }
-    .callmeta {
-      display: flex; gap: 16px; flex-wrap: wrap;
-      font-size: 11px; letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 12px;
-    }
+    .callmeta { display: flex; gap: 16px; flex-wrap: wrap; font-size: 11px; letter-spacing: 0.12em; color: var(--ink-soft); margin-bottom: 12px; }
     .callmeta .tag-src { color: var(--ink); border: 1px solid var(--rule); padding: 0 6px; }
-    .calltext {
-      font-size: clamp(20px, 4.4vw, 29px);
-      font-weight: 500; line-height: 1.32; margin: 0 0 16px;
-      letter-spacing: -0.01em;
-    }
+    .calltext { display: block; font-size: clamp(20px, 4.4vw, 29px); font-weight: 600; line-height: 1.32; margin: 0 0 16px; letter-spacing: -0.01em; }
     .basis { font-size: 12px; color: var(--ink-soft); letter-spacing: 0.04em; margin-bottom: 6px; word-break: break-word; }
-    .open {
-      display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
-      text-decoration: none; border-bottom: 2px solid var(--ink); padding-bottom: 1px;
-    }
+    .open { display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-decoration: none; border-bottom: 2px solid var(--ink); padding-bottom: 1px; }
     .open:hover { color: var(--stamp); border-color: var(--stamp); }
 
-    /* ---- subscribe coupon ---- */
     .coupon { position: relative; border: 2px dashed var(--ink); padding: 22px 22px 20px; margin-top: 6px; }
     .stamp {
       position: absolute; top: -16px; right: 14px; transform: rotate(-7deg);
@@ -158,17 +124,11 @@
     .coupon-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
     .price { font-weight: 700; font-size: 22px; letter-spacing: 0.04em; }
     .price span { font-size: 12px; font-weight: 500; color: var(--ink-soft); letter-spacing: 0.1em; }
-    .sub {
-      flex: 1 1 auto; text-align: center;
-      background: var(--ink); color: var(--paper);
-      font-weight: 600; font-size: 13px; letter-spacing: 0.12em;
-      text-decoration: none; padding: 13px 18px;
-    }
+    .sub { flex: 1 1 auto; text-align: center; background: var(--ink); color: var(--paper); font-weight: 600; font-size: 13px; letter-spacing: 0.12em; text-decoration: none; padding: 13px 18px; }
     .sub:hover { background: var(--stamp); }
     .sub-2 { display: inline-block; margin-top: 12px; font-size: 12px; letter-spacing: 0.1em; }
     .coupon-fine { font-size: 10.5px; letter-spacing: 0.08em; color: var(--ink-soft); margin-top: 16px; }
 
-    /* ---- ledger ---- */
     .entries { list-style: none; margin: 0; padding: 0; }
     .entry { padding: 16px 14px; }
     .entry:nth-child(odd) { background: var(--bar); }
@@ -179,19 +139,21 @@
     .entry-meta .tg { margin-left: auto; }
     .entry-text { font-size: 15.5px; line-height: 1.45; margin: 0 0 10px; }
     .entry-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-    .entry-actions a, .entry-actions button {
-      font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; font-weight: 500;
-      color: var(--ink-soft); background: none; border: none; padding: 0; cursor: pointer; text-decoration: none;
-    }
+    .entry-actions a, .entry-actions button { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; font-weight: 500; color: var(--ink-soft); background: none; border: none; padding: 0; cursor: pointer; text-decoration: none; }
     .entry-actions a:hover, .entry-actions button:hover { color: var(--stamp); }
 
     .empty { color: var(--ink-soft); padding: 18px 0; }
-
-    /* ---- footer ---- */
     .foot { text-align: center; }
     .foot p { font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-soft); margin: 6px 0; }
 
     :focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+
+    /* the <dot-matrix> element */
+    dot-matrix { display: block; }
+    dot-matrix .dm-canvas { display: none; filter: url(#ink); }
+    dot-matrix.ready .dm-fallback { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    dot-matrix.ready .dm-canvas { display: block; }
+    .wordmark .dm-canvas { margin: 0 auto; }
 
     @media (max-width: 520px) {
       .sheet { padding: 28px 30px 32px; }
@@ -201,9 +163,16 @@
   </style>
 </head>
 <body>
+  <svg class="filter-defs" aria-hidden="true">
+    <filter id="ink" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="1" seed="7" result="noise" />
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </svg>
+
   <main class="sheet">
     <header class="head">
-      <div class="wordmark">THE SIGNAL</div>
+      <dot-matrix class="wordmark" data-fit="content" data-size="64" data-pitch="4" data-weight="700" data-print="1">THE SIGNAL</dot-matrix>
       <div class="tag">CONTINUOUS-FORM ORACLE</div>
       <div class="metaline">
         <span>PRINT RUN June 16, 2026 <span class="caret" aria-hidden="true">_</span></span>
@@ -226,7 +195,7 @@
             <span>CALLED June 15, 2026</span>
             <span class="tag-src">HACKER NEWS</span>
           </div>
-          <p class="calltext">The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
+          <dot-matrix class="calltext" data-fit="fill" data-size="25" data-pitch="3" data-weight="600" data-print="1">The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.</dot-matrix>
           <div class="basis">BASIS: Show HN: A local-first sync engine for your app</div>
           <a class="open" href="https://news.ycombinator.com/news" rel="noopener">OPEN SOURCE SIGNAL</a>
         </article>
@@ -323,7 +292,164 @@
   </main>
 
   <script>
-    // Progressive enhancement only. All content works with JS off.
+    // ----------------------------------------------------------------------
+    // <dot-matrix>: re-rasterize any text into impact-printer dots, then let
+    // a print head strike them column by column. Progressive enhancement only:
+    // with JS off the light-DOM text shows; screen readers read aria-label.
+    // ----------------------------------------------------------------------
+    (function () {
+      var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var still = location.search.indexOf("still") >= 0;
+      var INK = "#1b1a14";
+      var queue = [];
+      var skipped = false;
+
+      function DM(el) {
+        this.el = el;
+        this.text = (el.textContent || "").replace(/\s+/g, " ").trim();
+        this.size = +el.getAttribute("data-size") || 24;
+        this.pitch = +el.getAttribute("data-pitch") || 3;
+        this.weight = el.getAttribute("data-weight") || "600";
+        this.fit = el.getAttribute("data-fit") || "fill";
+        el.setAttribute("role", "img");
+        el.setAttribute("aria-label", this.text);
+        var fb = document.createElement("span");
+        fb.className = "dm-fallback";
+        fb.textContent = this.text;
+        el.textContent = "";
+        el.appendChild(fb);
+        this.canvas = document.createElement("canvas");
+        this.canvas.className = "dm-canvas";
+        this.canvas.setAttribute("aria-hidden", "true");
+        el.appendChild(this.canvas);
+        this.ctx = this.canvas.getContext("2d");
+      }
+
+      DM.prototype.layout = function () {
+        var host = this.el.clientWidth || (this.el.parentElement && this.el.parentElement.clientWidth) || 600;
+        var off = document.createElement("canvas");
+        var o = off.getContext("2d");
+        var fontpx = this.size;
+        var fontStr = this.weight + " " + fontpx + "px " + getComputedStyle(this.el).fontFamily;
+        o.font = fontStr;
+
+        // word-wrap to the host width
+        var words = this.text.split(" "), lines = [], cur = "";
+        for (var i = 0; i < words.length; i++) {
+          var t = cur ? cur + " " + words[i] : words[i];
+          if (o.measureText(t).width > host && cur) { lines.push(cur); cur = words[i]; }
+          else { cur = t; }
+        }
+        if (cur) lines.push(cur);
+        this.lines = lines;
+
+        var maxw = 0;
+        for (var j = 0; j < lines.length; j++) maxw = Math.max(maxw, o.measureText(lines[j]).width);
+        var lineH = Math.round(fontpx * 1.22);
+        var W = this.fit === "content" ? Math.ceil(maxw) + this.pitch * 2 : host;
+        var H = lines.length * lineH;
+        this.lineH = lineH; this.W = W; this.H = H;
+
+        // render glyphs to an offscreen buffer, then sample to a dot grid
+        off.width = W; off.height = H;
+        var c = off.getContext("2d");
+        c.font = fontStr; c.textBaseline = "middle"; c.fillStyle = "#000";
+        for (var k = 0; k < lines.length; k++) c.fillText(lines[k], 0, k * lineH + lineH / 2);
+        var data = c.getImageData(0, 0, W, H).data;
+        var pitch = this.pitch;
+        this.dots = [];
+        for (var y = (pitch >> 1); y < H; y += pitch) {
+          for (var x = (pitch >> 1); x < W; x += pitch) {
+            if (data[(y * W + x) * 4 + 3] > 90) this.dots.push({ x: x, y: y, line: Math.floor(y / lineH) });
+          }
+        }
+
+        var dpr = Math.min(2, window.devicePixelRatio || 1);
+        this.canvas.width = W * dpr; this.canvas.height = H * dpr;
+        this.canvas.style.width = W + "px"; this.canvas.style.height = H + "px";
+        this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        this.el.classList.add("ready");
+      };
+
+      DM.prototype.dot = function (x, y) {
+        var r = this.pitch * 0.42;
+        this.ctx.beginPath(); this.ctx.arc(x, y, r, 0, 6.2832); this.ctx.fill();
+      };
+
+      DM.prototype.drawAll = function () {
+        this.ctx.clearRect(0, 0, this.W, this.H);
+        this.ctx.fillStyle = INK;
+        for (var i = 0; i < this.dots.length; i++) this.dot(this.dots[i].x, this.dots[i].y);
+      };
+
+      DM.prototype.drawUpTo = function (line, headX) {
+        this.ctx.clearRect(0, 0, this.W, this.H);
+        this.ctx.fillStyle = INK;
+        for (var i = 0; i < this.dots.length; i++) {
+          var d = this.dots[i];
+          if (d.line < line || (d.line === line && d.x <= headX)) this.dot(d.x, d.y);
+        }
+      };
+
+      DM.prototype.print = function (done) {
+        if (skipped || reduce || still) { this.drawAll(); return done(); }
+        var self = this, li = 0;
+        function line() {
+          if (skipped) { self.drawAll(); return done(); }
+          if (li >= self.lines.length) { self.drawAll(); return done(); }
+          var top = li * self.lineH;
+          var dur = Math.min(820, 240 + self.W * 0.62);
+          var start = null;
+          function frame(ts) {
+            if (skipped) { self.drawAll(); return done(); }
+            if (start === null) start = ts;
+            var p = Math.min(1, (ts - start) / dur);
+            var headX = p * self.W;
+            self.drawUpTo(li, headX);
+            if (p < 1) {
+              self.ctx.fillStyle = "rgba(27,26,20,0.9)";
+              self.ctx.fillRect(headX, top + 2, 2, self.lineH - 4);
+              requestAnimationFrame(frame);
+            } else { li++; setTimeout(line, 60); }
+          }
+          requestAnimationFrame(frame);
+        }
+        line();
+      };
+
+      function boot() {
+        var els = [].slice.call(document.querySelectorAll("dot-matrix"));
+        if (!els.length) return;
+        for (var i = 0; i < els.length; i++) { els[i]._dm = new DM(els[i]); els[i]._dm.layout(); }
+
+        var printers = els.filter(function (e) { return e.getAttribute("data-print"); });
+        var seq = 0;
+        function next() { if (seq >= printers.length) return; printers[seq]._dm.print(function () { seq++; next(); }); }
+
+        // skip the animation on any interaction
+        function skip() { skipped = true; for (var i = 0; i < els.length; i++) els[i]._dm.drawAll(); }
+        window.addEventListener("pointerdown", skip, { once: true });
+        window.addEventListener("keydown", skip, { once: true });
+
+        // non-printing elements just appear; printers run the carriage in order
+        for (var k = 0; k < els.length; k++) if (!els[k].getAttribute("data-print")) els[k]._dm.drawAll();
+        next();
+
+        // keep dots crisp on resize (no re-animation)
+        var rt;
+        window.addEventListener("resize", function () {
+          clearTimeout(rt);
+          rt = setTimeout(function () {
+            for (var i = 0; i < els.length; i++) { els[i]._dm.layout(); els[i]._dm.drawAll(); }
+          }, 180);
+        }, { passive: true });
+      }
+
+      var ready = (document.fonts && document.fonts.ready) ? document.fonts.ready : Promise.resolve();
+      ready.then(function () { (window.requestAnimationFrame || setTimeout)(boot); });
+    })();
+
+    // copy-link affordance (works independently of the printer)
     document.querySelectorAll("button.copy").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var url = location.origin + location.pathname + "#" + btn.dataset.anchor;
