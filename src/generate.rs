@@ -5,6 +5,10 @@
 //! (date, signals): the template variant is chosen by the date seed.
 
 use crate::model::{Prediction, Signal};
+use chrono::{Duration, NaiveDate};
+
+/// Days a call stays open before it misses if its subject never resurfaces.
+const HORIZON_DAYS: i64 = 30;
 
 pub fn generate(signals: &[Signal], date: &str, seed: i64) -> Vec<Prediction> {
     signals
@@ -12,15 +16,64 @@ pub fn generate(signals: &[Signal], date: &str, seed: i64) -> Vec<Prediction> {
         .enumerate()
         .map(|(i, s)| {
             let subject = subject_of(s);
+            let keyword = pick_keyword(&subject);
+            let resolves_by = horizon(date);
+            let win_if = format!(
+                "WIN IF \"{}\" RESURFACES ACROSS THE FEEDS BY {}",
+                keyword.to_uppercase(),
+                resolves_by
+            );
             Prediction {
                 date: date.to_string(),
                 prediction_text: fill_template(&s.signal_type, &subject, seed, i),
                 source_title: s.title.clone(),
                 source_url: s.url.clone(),
                 signal_type: s.signal_type.clone(),
+                status: "OPEN".to_string(),
+                keyword,
+                win_if,
+                resolves_by,
+                resolved_on: String::new(),
             }
         })
         .collect()
+}
+
+/// The most distinctive token of a subject: the longest non-trivial word.
+fn pick_keyword(subject: &str) -> String {
+    const STOP: &[&str] = &[
+        "the", "and", "for", "with", "this", "that", "from", "your", "new", "show", "using",
+        "via", "model", "models", "data", "apps", "code", "tool", "tools", "open", "source",
+        "into", "what", "why", "how", "are", "will",
+    ];
+    let mut best = "";
+    let mut best_len = 0;
+    for w in subject.split(|c: char| !c.is_alphanumeric()) {
+        let lw = w.to_lowercase();
+        if lw.len() < 4 || STOP.contains(&lw.as_str()) {
+            continue;
+        }
+        if lw.len() > best_len {
+            best_len = lw.len();
+            best = w;
+        }
+    }
+    if best.is_empty() {
+        for w in subject.split(|c: char| !c.is_alphanumeric()) {
+            if w.len() > 2 {
+                return w.to_lowercase();
+            }
+        }
+        return subject.to_lowercase();
+    }
+    best.to_lowercase()
+}
+
+fn horizon(date: &str) -> String {
+    match NaiveDate::parse_from_str(date, "%Y-%m-%d") {
+        Ok(d) => (d + Duration::days(HORIZON_DAYS)).format("%Y-%m-%d").to_string(),
+        Err(_) => date.to_string(),
+    }
 }
 
 /// Pick a variant for the signal type, rotated by the date seed (+ item index so

@@ -18,6 +18,7 @@ pub fn render(
     portal_url: &str,
     early_access_url: &str,
     intake: &serde_json::Value,
+    pulse: &serde_json::Value,
 ) -> anyhow::Result<()> {
     std::fs::create_dir_all(crate::OUT_DIR)?;
 
@@ -35,11 +36,15 @@ pub fn render(
         let mut items = Vec::new();
         while i < sorted.len() && sorted[i].date == date {
             let p = sorted[i];
+            let status = if p.status.is_empty() { "OPEN" } else { p.status.as_str() };
             items.push(serde_json::json!({
                 "no": total - i,
                 "prediction_text": p.prediction_text,
                 "source_url": p.source_url,
                 "signal_type": p.signal_type,
+                "status": status,
+                "win_if": p.win_if,
+                "resolved_on": p.resolved_on,
             }));
             i += 1;
         }
@@ -79,6 +84,29 @@ pub fn render(
         .map(|(t, label, count, pct)| serde_json::json!({ "type": t, "label": label, "count": count, "pct": pct }))
         .collect();
 
+    // The scorecard: the viral artifact. Tally settled and open calls.
+    let (mut hits, mut misses, mut open) = (0i64, 0i64, 0i64);
+    for p in archive {
+        match p.status.as_str() {
+            "HIT" => hits += 1,
+            "MISS" => misses += 1,
+            _ => open += 1,
+        }
+    }
+    let resolved = hits + misses;
+    let rate = if resolved > 0 { Some(hits * 100 / resolved) } else { None };
+    let verdict = match rate {
+        Some(r) if r >= 70 => "THE ORACLE IS BEATING THE STREET",
+        Some(r) if r >= 50 => "AHEAD OF THE CROWD",
+        Some(_) => "UNDERWATER, AND NOT HIDING IT",
+        None => "NO BETS SETTLED YET",
+    };
+    let scoreboard = serde_json::json!({
+        "hits": hits, "misses": misses, "open": open,
+        "resolved": resolved, "has_rate": rate.is_some(),
+        "rate": rate.unwrap_or(0), "verdict": verdict,
+    });
+
     let since_human = sorted.last().map(|p| human_date(&p.date)).unwrap_or_default();
     let record = serde_json::json!({
         "total": total,
@@ -100,6 +128,8 @@ pub fn render(
         calls => calls,
         record => record,
         intake => intake,
+        pulse => pulse,
+        scoreboard => scoreboard,
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,

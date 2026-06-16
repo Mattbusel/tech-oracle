@@ -165,6 +165,45 @@
     .foot p { font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-soft); margin: 6px 0; }
     :focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
 
+    /* THE SCORECARD */
+    .sb-grid { display: flex; gap: 10px; flex-wrap: wrap; align-items: stretch; margin: 4px 0 14px; }
+    .sb-cell { flex: 1 1 0; min-width: 92px; border: 1.5px solid var(--rule); padding: 14px 10px; text-align: center; display: flex; flex-direction: column; gap: 5px; justify-content: center; }
+    .sb-cell.sb-rate { flex: 1.5 1 0; border-color: var(--ink); }
+    .sb-num { font-size: 36px; font-weight: 700; line-height: 1; }
+    .sb-hit { color: #2f6f4f; } .sb-miss { color: var(--stamp); }
+    .sb-lbl { font-size: 9.5px; letter-spacing: 0.2em; color: var(--ink-soft); }
+    .sb-rate .dm-fallback { font-size: 40px; font-weight: 700; }
+    .sb-verdict { font-weight: 700; font-size: clamp(15px, 3.3vw, 19px); letter-spacing: 0.1em; text-align: center; margin: 8px 0 6px; }
+    .sb-fine { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); text-align: center; max-width: 60ch; margin: 0 auto; }
+
+    /* verdict stamps + win conditions on ledger entries */
+    .verdict-stamp { font-weight: 700; font-size: 10px; letter-spacing: 0.12em; border: 1.5px solid; border-radius: 4px; padding: 1px 7px; }
+    .verdict-stamp.v-hit { color: #2f6f4f; border-color: #2f6f4f; }
+    .verdict-stamp.v-miss { color: var(--stamp); border-color: var(--stamp); }
+    .verdict-stamp.v-open { color: var(--ink-soft); border-color: var(--rule); }
+    .winif { font-size: 10.5px; letter-spacing: 0.05em; color: var(--ink-soft); margin: 0 0 10px; }
+    .winif .res-hit { color: #2f6f4f; font-weight: 700; } .winif .res-miss { color: var(--stamp); font-weight: 700; }
+    .entry.st-miss { opacity: 0.9; }
+
+    /* THE PULSE */
+    .idx-big { font-size: 76px; font-weight: 700; line-height: 0.9; letter-spacing: -0.02em; }
+    .pulse-grid { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+    .pulse-num { display: flex; align-items: baseline; gap: 16px; }
+    .pulse-verdict { font-weight: 700; font-size: 19px; letter-spacing: 0.18em; }
+    .v-dormant, .v-calm { color: #2f6f4f; }
+    .v-active { color: #8a6d1f; }
+    .v-surging { color: #b5651d; }
+    .v-overheating { color: var(--stamp); animation: throb 1s ease-in-out infinite; }
+    @keyframes throb { 50% { opacity: 0.4; } }
+    .pulse-meta { font-size: 12px; letter-spacing: 0.06em; line-height: 1.95; color: var(--ink-soft); }
+    .pulse-meta b { color: var(--ink); }
+    .pm-alert { color: var(--stamp); font-weight: 700; letter-spacing: 0.1em; }
+    .seismo { display: block; width: 100%; height: 92px; margin: 14px 0 3px; filter: url(#ink); }
+    .seismo-lbl { font-size: 9.5px; letter-spacing: 0.2em; color: var(--ink-soft); text-align: center; }
+    .pulse-hist { display: flex; align-items: flex-end; gap: 4px; height: 64px; margin: 18px 0 4px; padding: 0 2px; }
+    .ph-bar { flex: 1; background: var(--ink); opacity: 0.78; min-height: 2px; }
+    .ph-bar:last-child { background: var(--stamp); opacity: 1; }
+
     /* source colours (ink-on-paper, distinct) */
     .s-hn { color: #b5651d; } .s-arxiv { color: #7a3b8f; } .s-github { color: #2f6f4f; }
     .s-lobsters { color: #9a1f1f; } .s-devto { color: #244a9c; } .s-ars { color: #8a6d1f; }
@@ -278,6 +317,47 @@
 
             <div class="perf" aria-hidden="true"></div>
 
+            <section class="scoreboard" aria-label="Track record scorecard">
+              <div class="band">THE SCORECARD / SELF-GRADING / NO EDITS / NO DELETES</div>
+              <div class="sb-grid">
+                <div class="sb-cell"><span class="sb-num sb-hit">{{ scoreboard.hits }}</span><span class="sb-lbl">HITS</span></div>
+                <div class="sb-cell"><span class="sb-num sb-miss">{{ scoreboard.misses }}</span><span class="sb-lbl">MISSES</span></div>
+                <div class="sb-cell"><span class="sb-num">{{ scoreboard.open }}</span><span class="sb-lbl">OPEN BETS</span></div>
+                <div class="sb-cell sb-rate">
+                  {% if scoreboard.has_rate %}<dot-matrix data-fit="content" data-size="58" data-pitch="4" data-weight="700" data-print="1">{{ scoreboard.rate }}%</dot-matrix>{% else %}<span class="sb-num">--</span>{% endif %}
+                  <span class="sb-lbl">HIT RATE</span>
+                </div>
+              </div>
+              <div class="sb-verdict">{{ scoreboard.verdict }}</div>
+              <div class="sb-fine">EVERY CALL CARRIES A CONCRETE WIN CONDITION. THE MACHINE GRADES ITSELF AGAINST THE FEEDS, IN PUBLIC, AND NEVER UNPRINTS A LOSS.</div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
+            <section class="pulse" aria-label="Tech acceleration index">
+              <div class="band">THE PULSE / TECH ACCELERATION INDEX</div>
+              <div class="pulse-grid">
+                <div class="pulse-num">
+                  <div class="idx-big">{{ pulse.index }}</div>
+                  <div class="pulse-verdict v-{{ pulse.verdict | lower }}">{{ pulse.verdict }}</div>
+                </div>
+                <div class="pulse-meta">
+                  <div class="pm-line">HOTTEST CLUSTER // <b>{{ pulse.theme }}</b></div>
+                  {% if pulse.has_prev %}<div class="pm-line">{{ pulse.delta_word }} {{ pulse.delta_abs }} VS PRIOR PRINT</div>{% else %}<div class="pm-line">FIRST READING ON RECORD</div>{% endif %}
+                  {% if pulse.highest_days >= 2 %}<div class="pm-line pm-alert">HIGHEST IN {{ pulse.highest_days }} DAYS</div>{% endif %}
+                  <div class="pm-line pm-soft">{{ pulse.total }} SIGNALS // {{ pulse.breadth }} OF 6 SOURCES LIVE</div>
+                </div>
+              </div>
+              <canvas class="seismo" id="seismo" data-energy="{{ pulse.index }}" aria-hidden="true"></canvas>
+              <div class="seismo-lbl">LIVE SIGNAL SEISMOGRAPH</div>
+              <div class="pulse-hist" aria-hidden="true">
+                {% for h in pulse.history %}<span class="ph-bar" title="{{ h.date }} :: {{ h.index }}" style="height:{{ h.index }}%"></span>{% endfor %}
+              </div>
+              <div class="seismo-lbl">ACCELERATION INDEX // LAST {{ pulse.history | length }} PRINTS</div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
             <section class="latest" aria-label="Latest printed call">
               <div class="band">LATEST PRINT</div>
               {% if featured | length > 0 %}
@@ -363,9 +443,10 @@
                 <ol class="entries">
                   {% for it in page.items %}
                   {% set anchor = "call-" ~ it.no %}
-                  <li class="entry s-edge-{{ it.signal_type }}" id="{{ anchor }}">
-                    <div class="entry-meta"><span class="no">No. {{ it.no }}</span><span class="tg s-{{ it.signal_type }}">{{ labels[it.signal_type] }}</span></div>
+                  <li class="entry s-edge-{{ it.signal_type }} st-{{ it.status | lower }}" id="{{ anchor }}">
+                    <div class="entry-meta"><span class="no">No. {{ it.no }}</span><span class="verdict-stamp v-{{ it.status | lower }}">{{ it.status }}</span><span class="tg s-{{ it.signal_type }}">{{ labels[it.signal_type] }}</span></div>
                     <p class="entry-text">{{ it.prediction_text }}</p>
+                    {% if it.win_if %}<div class="winif">{{ it.win_if }}{% if it.status == 'HIT' %} <span class="res-hit">:: HIT {{ it.resolved_on }}</span>{% elif it.status == 'MISS' %} <span class="res-miss">:: MISSED</span>{% endif %}</div>{% endif %}
                     <div class="entry-actions">
                       <a href="{{ it.source_url }}" rel="noopener">[ SOURCE ]</a>
                       <a class="anchor" href="#{{ anchor }}">[ REF ]</a>
@@ -450,6 +531,32 @@
       }
       window.__spike = function () { spike = 0.42; };
       draw(); if (!REDUCE) setInterval(draw, 700);
+    })();
+
+    // ---- THE PULSE: live seismograph; agitation scales with the index ----
+    (function () {
+      var cv = $id("seismo"); if (!cv) return;
+      var ctx = cv.getContext("2d"), energy = (+cv.getAttribute("data-energy") || 40) / 100;
+      var N = 200, data = [], t = 0, spike = 0;
+      for (var i = 0; i < N; i++) data.push(0);
+      function resize() { var dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = cv.clientWidth * dpr; cv.height = cv.clientHeight * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); }
+      resize(); window.addEventListener("resize", resize, { passive: true });
+      var amp = 0.12 + energy * 0.78, beat = Math.max(7, Math.round(38 - energy * 28));
+      function step() {
+        t++;
+        var v = (Math.random() - 0.5) * amp;
+        if (t % beat === 0) spike = amp * 1.7;          // regular heartbeat
+        if (spike > 0) { v += spike; spike *= 0.5; }
+        data.push(v); if (data.length > N) data.shift();
+        var w = cv.clientWidth, h = cv.clientHeight, mid = h / 2;
+        ctx.clearRect(0, 0, w, h);
+        ctx.strokeStyle = "rgba(27,26,20,0.16)"; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, mid); ctx.lineTo(w, mid); ctx.stroke();
+        ctx.strokeStyle = "#1b1a14"; ctx.lineWidth = 1.4; ctx.beginPath();
+        for (var i = 0; i < data.length; i++) { var x = i / (N - 1) * w, y = mid - data[i] * mid * 0.92; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); }
+        ctx.stroke();
+      }
+      window.__pulseSpike = function () { spike = amp * 2.3; };
+      step(); if (!REDUCE) setInterval(step, 60);
     })();
 
     // ---- rolling activity log + periodic machine event ----

@@ -19,4 +19,17 @@ pub struct Prediction {
     pub source_title: String,
     pub source_url: String,
     pub signal_type: String,
+
+    // Self-grading scorecard. Every call carries a concrete, machine-checkable
+    // win condition; the engine resolves it against later signals.
+    #[serde(default)]
+    pub status: String, // "OPEN" | "HIT" | "MISS"
+    #[serde(default)]
+    pub keyword: String, // token watched for resurfacing
+    #[serde(default)]
+    pub win_if: String, // human-readable win condition
+    #[serde(default)]
+    pub resolves_by: String, // YYYY-MM-DD deadline
+    #[serde(default)]
+    pub resolved_on: String, // YYYY-MM-DD when settled, or ""
 }

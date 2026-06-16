@@ -6,10 +6,13 @@ mod render;
 
 use chrono::{Datelike, Duration, NaiveDate, Utc};
 use model::Prediction;
+use serde::{Deserialize, Serialize};
 use std::collections::HashSet;
 
 // Committed, public: the revealed track record. Renders the public page.
 const DATA_PATH: &str = "data/predictions.json";
+// Committed, public: the daily acceleration index history (THE PULSE).
+const PULSE_PATH: &str = "data/pulse.json";
 // Gitignored, synced from KV before the run: calls still under embargo.
 const EMBARGO_IN: &str = "build/embargoed_in.json";
 // Gitignored, synced to KV after the run: the subscriber edge payload.
@@ -63,6 +66,15 @@ fn main() {
 
     // A manifest of everything ingested today, for the printed page.
     let intake = build_intake(&signals);
+    // The Pulse: one acceleration index aggregated from the day's signals,
+    // persisted so it trends over time.
+    let pulse = build_pulse(&signals, &date);
+    // Lowercased corpus of today's signals, for self-grading open calls.
+    let corpus = signals
+        .iter()
+        .map(|s| s.title.to_lowercase())
+        .collect::<Vec<_>>()
+        .join(" || ");
 
     let picks = rank::rank_and_select(signals, seed, 4);
     let todays = generate::generate(&picks, &date, seed);
@@ -76,6 +88,11 @@ fn main() {
     revealed.retain(|p| p.date != date);
     embargoed.retain(|p| p.date != date);
     embargoed.extend(todays);
+
+    // Self-grade: resolve any open call whose subject resurfaced in today's
+    // signals (a HIT) or whose deadline has passed without resurfacing (a MISS).
+    resolve_open(&mut revealed, &date, &corpus);
+    resolve_open(&mut embargoed, &date, &corpus);
 
     // Promote any embargoed call old enough to go public.
     let mut still_embargoed = Vec::new();
@@ -123,6 +140,7 @@ fn main() {
         &portal_url,
         &early_access_url,
         &intake,
+        &pulse,
     ) {
         eprintln!("render error: {e}");
         std::process::exit(1);
@@ -204,6 +222,135 @@ fn build_intake(signals: &[model::Signal]) -> serde_json::Value {
         .collect();
 
     serde_json::json!({ "total": signals.len(), "sources": sources })
+}
+
+/// Resolve open calls against today's signal corpus. A call only resolves on a
+/// day after it was made (so it cannot settle on its own source), HITs if its
+/// keyword resurfaces before the deadline, and MISSes once the deadline passes.
+fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str) {
+    for p in preds.iter_mut() {
+        if p.status != "OPEN" || p.keyword.is_empty() || p.date.as_str() >= today {
+            continue;
+        }
+        let within = p.resolves_by.is_empty() || today <= p.resolves_by.as_str();
+        if within && corpus.contains(&p.keyword) {
+            p.status = "HIT".to_string();
+            p.resolved_on = today.to_string();
+        } else if !p.resolves_by.is_empty() && today > p.resolves_by.as_str() {
+            p.status = "MISS".to_string();
+            p.resolved_on = today.to_string();
+        }
+    }
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+struct PulseDay {
+    date: String,
+    index: i64,
+    theme: String,
+}
+
+/// THE PULSE: aggregate the day's signals into a single 0-100 acceleration
+/// index, detect the hottest topic cluster, persist the daily reading, and
+/// derive the deltas and history the page dramatizes.
+fn build_pulse(signals: &[model::Signal], date: &str) -> serde_json::Value {
+    let total = signals.len();
+    let breadth = signals.iter().map(|s| s.signal_type.as_str()).collect::<HashSet<_>>().len();
+    let (theme, theme_share) = dominant_theme(signals);
+
+    let vol = (total as f64 / 180.0).min(1.0); // ~6 sources * 30 items
+    let br = breadth as f64 / 6.0;
+    let index = ((0.5 * vol + 0.3 * br + 0.2 * theme_share) * 100.0).round() as i64;
+    let index = index.clamp(0, 100);
+
+    // Load history, drop any existing entry for today, remember the prior reading.
+    let mut hist: Vec<PulseDay> = match std::fs::read_to_string(PULSE_PATH) {
+        Ok(s) => serde_json::from_str(&s).unwrap_or_default(),
+        Err(_) => Vec::new(),
+    };
+    let prev = hist
+        .iter()
+        .filter(|d| d.date.as_str() < date)
+        .max_by(|a, b| a.date.cmp(&b.date))
+        .map(|d| d.index);
+    hist.retain(|d| d.date != date);
+    hist.push(PulseDay { date: date.to_string(), index, theme: theme.clone() });
+    hist.sort_by(|a, b| a.date.cmp(&b.date));
+
+    if let Some(parent) = std::path::Path::new(PULSE_PATH).parent() {
+        let _ = std::fs::create_dir_all(parent);
+    }
+    if let Ok(j) = serde_json::to_string_pretty(&hist) {
+        let _ = std::fs::write(PULSE_PATH, j);
+    }
+
+    // How many consecutive prior prints were lower than today (the "highest in N").
+    let mut highest_days = 0i64;
+    for d in hist.iter().rev().skip(1) {
+        if d.index < index {
+            highest_days += 1;
+        } else {
+            break;
+        }
+    }
+
+    let delta = prev.map(|p| index - p);
+    let verdict = match index {
+        0..=24 => "DORMANT",
+        25..=44 => "CALM",
+        45..=64 => "ACTIVE",
+        65..=84 => "SURGING",
+        _ => "OVERHEATING",
+    };
+    let start = hist.len().saturating_sub(14);
+    let history: Vec<serde_json::Value> = hist[start..]
+        .iter()
+        .map(|d| serde_json::json!({ "date": d.date, "index": d.index }))
+        .collect();
+
+    serde_json::json!({
+        "index": index,
+        "verdict": verdict,
+        "theme": theme,
+        "has_prev": prev.is_some(),
+        "delta_word": match delta { Some(x) if x > 0 => "RISING", Some(x) if x < 0 => "FALLING", Some(_) => "FLAT", None => "NEW" },
+        "delta_abs": delta.map(|d| d.abs()).unwrap_or(0),
+        "highest_days": highest_days,
+        "total": total,
+        "breadth": breadth,
+        "history": history,
+    })
+}
+
+/// Most-mentioned meaningful token across all signal titles, plus how dominant
+/// it is (amplified, capped at 1.0) for the index. Returns an uppercased theme.
+fn dominant_theme(signals: &[model::Signal]) -> (String, f64) {
+    const STOP: &[&str] = &[
+        "the", "and", "for", "with", "this", "that", "from", "your", "you", "what", "why", "how",
+        "new", "show", "using", "via", "are", "was", "will", "can", "has", "have", "not", "but",
+        "its", "out", "get", "all", "one", "like", "just", "now", "day", "into", "ask", "tell",
+        "more", "less", "than", "who", "our", "their", "they", "them", "about", "over", "when",
+        "first", "best", "good", "make", "made", "use", "used", "open", "source", "free", "code",
+    ];
+    let stop: HashSet<&str> = STOP.iter().copied().collect();
+    let mut counts: std::collections::HashMap<String, usize> = std::collections::HashMap::new();
+    let mut total_tokens = 0usize;
+    for s in signals {
+        for w in s.title.to_lowercase().split(|c: char| !c.is_alphanumeric()) {
+            if w.len() < 3 || stop.contains(w) || w.chars().all(|c| c.is_numeric()) {
+                continue;
+            }
+            *counts.entry(w.to_string()).or_insert(0) += 1;
+            total_tokens += 1;
+        }
+    }
+    match counts.into_iter().max_by_key(|(_, c)| *c) {
+        Some((word, count)) => {
+            let share = ((count as f64 / total_tokens.max(1) as f64) * 4.0).min(1.0);
+            (word.to_uppercase(), share)
+        }
+        None => ("QUIET".to_string(), 0.0),
+    }
 }
 
 fn env_or(key: &str, default: &str) -> String {
