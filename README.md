@@ -305,6 +305,14 @@ cheapest/most-automatic first:
 
    Set `SITE_URL` (repo Variable) to your Pages URL so links and feeds are absolute.
 
+   **Turn it on in ~5 minutes:** the two channels that reach *new* people are
+   **Bluesky** and **Mastodon** (their hashtag/discovery feeds) — create a free
+   account, grab an app password / token, drop it in repo Secrets/Variables, done.
+   Discord/Telegram are for an audience you already have. After that the daily
+   build auto-posts a punchy, hashtagged call (a 300-char variant goes to Bluesky)
+   with zero further effort. Everything else can be fanned out by piping the RSS
+   feed through a free IFTTT/Zapier applet.
+
 4. **Share loop** — every call/stat has share controls and a downloadable on-brand
    PNG card (see Sharing), turning every reader into a distributor.
 

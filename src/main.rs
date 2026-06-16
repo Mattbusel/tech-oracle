@@ -164,12 +164,28 @@ fn main() {
     let verdict = pulse.get("verdict").and_then(|v| v.as_str()).unwrap_or("");
     let theme = pulse.get("theme").and_then(|v| v.as_str()).unwrap_or("");
     let latest = featured.first().map(|p| p.prediction_text.as_str()).unwrap_or("");
+    let hits = revealed.iter().filter(|p| p.status == "HIT").count();
+    let misses = revealed.iter().filter(|p| p.status == "MISS").count();
+
+    // Long form for Discord / Telegram / Mastodon: hook, the call, the record,
+    // the index, a tail/fade nudge, and discovery hashtags.
     let social = format!(
-        "THE SIGNAL // {human}\nTech Acceleration Index {idx} {verdict}. Hottest cluster: {theme}.\n\n{latest}\n\n{site}/"
+        "The tech oracle's call for {human}:\n\n{latest}\n\nIt grades itself in public, currently {hits}-{misses}. Acceleration Index {idx} ({verdict}), hottest cluster {theme}.\n\nTail it or fade it: {site}/\n\n#tech #AI #buildinpublic #rustlang"
     );
     let _ = std::fs::write("build/social.txt", social);
 
-    eprintln!("wrote {DATA_PATH}, {EARLY_OUT}, {OUT_HTML}, feeds, and build/social.txt");
+    // Short form for Bluesky (300-char limit), trimmed call.
+    let short_latest: String = if latest.chars().count() > 150 {
+        format!("{}...", latest.chars().take(148).collect::<String>())
+    } else {
+        latest.to_string()
+    };
+    let social_short = format!(
+        "Tech oracle, {hits}-{misses} and grading itself in public:\n\n{short_latest}\n\n{site}/ #tech #AI"
+    );
+    let _ = std::fs::write("build/social_short.txt", social_short);
+
+    eprintln!("wrote {DATA_PATH}, {EARLY_OUT}, {OUT_HTML}, feeds, and social posts");
 }
 
 // --------------------------------------------------------------------------

@@ -113,7 +113,8 @@ jobs:
             SESS=$(curl -fsS -X POST "https://bsky.social/xrpc/com.atproto.server.createSession" -H "Content-Type: application/json" -d "{\"identifier\":\"$BLUESKY_HANDLE\",\"password\":\"$BLUESKY_APP_PASSWORD\"}")
             JWT=$(echo "$SESS" | jq -r .accessJwt); DID=$(echo "$SESS" | jq -r .did)
             if [ -n "$JWT" ] && [ "$JWT" != "null" ]; then
-              BTEXT=$(echo "$MSG" | cut -c1-290)
+              BTEXT=$(cat build/social_short.txt 2>/dev/null | cut -c1-300)
+              [ -z "$BTEXT" ] && BTEXT=$(echo "$MSG" | cut -c1-290)
               NOW=$(date -u +%Y-%m-%dT%H:%M:%S.000Z)
               PAYLOAD=$(jq -n --arg did "$DID" --arg text "$BTEXT" --arg now "$NOW" '{repo:$did,collection:"app.bsky.feed.post",record:{"$type":"app.bsky.feed.post",text:$text,createdAt:$now}}')
               curl -fsS -X POST "https://bsky.social/xrpc/com.atproto.repo.createRecord" -H "Authorization: Bearer $JWT" -H "Content-Type: application/json" -d "$PAYLOAD" >/dev/null && echo "bluesky: posted" || echo "bluesky: failed"
