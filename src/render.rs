@@ -329,6 +329,27 @@ pub fn render(
     );
     std::fs::write(format!("{}/badge.svg", crate::OUT_DIR), badge)?;
 
+    // curl-able ASCII printout: `curl https://.../cli` prints today's call as a
+    // dot-matrix banner in the terminal. wttr.in-style cold acquisition for devs.
+    let banner = crate::card::ascii_banner("THE SIGNAL");
+    let mut call_block = String::new();
+    for (j, line) in wrap_chars(&latest_w, 62).iter().take(4).enumerate() {
+        call_block.push_str(&format!("  {} {}\n", if j == 0 { ">" } else { " " }, line));
+    }
+    let cli = format!(
+        "\n{banner}\n  CONTINUOUS-FORM ORACLE // {date}\n  ------------------------------------------------------------\n  INDEX {idx} ({verdict})      SELF-GRADED RECORD {hits}-{misses}\n\n  TODAY'S CALL\n{call_block}\n  tail it or fade it ............ {site}/\n  the live pit, the ladder, the record are all there.\n\n  ( curl this any day. the press never sleeps. )\n\n",
+        banner = banner, date = generated_human, idx = idx, verdict = verdict, hits = hits, misses = misses, call_block = call_block, site = site
+    );
+    std::fs::write(format!("{}/cli", crate::OUT_DIR), &cli)?;
+    std::fs::write(format!("{}/cli.txt", crate::OUT_DIR), &cli)?;
+
+    // llms.txt: a machine-readable map so AI answer engines can find and cite it.
+    let latest_no = total;
+    let llms = format!(
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## How it works\nReads Hacker News, arXiv, GitHub, Lobsters, dev.to and Ars Technica. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+    );
+    std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
+
     // Live floor positions: the most recent calls the desk marks against the
     // live feeds (client-side, continuously).
     let floor: Vec<serde_json::Value> = sorted
@@ -393,6 +414,25 @@ fn rfc822(date: &str) -> String {
         Ok(d) => d.format("%a, %d %b %Y 13:17:00 +0000").to_string(),
         Err(_) => date.to_string(),
     }
+}
+
+fn wrap_chars(s: &str, n: usize) -> Vec<String> {
+    let mut lines = Vec::new();
+    let mut cur = String::new();
+    for w in s.split_whitespace() {
+        if cur.len() + w.len() + 1 > n && !cur.is_empty() {
+            lines.push(cur.clone());
+            cur.clear();
+        }
+        if !cur.is_empty() {
+            cur.push(' ');
+        }
+        cur.push_str(w);
+    }
+    if !cur.is_empty() {
+        lines.push(cur);
+    }
+    lines
 }
 
 fn slug(s: &str) -> String {

@@ -174,6 +174,26 @@ pub fn call_card(path: &str, site: &str, no: i64, status: &str, market: &str, ca
     c.save(path)
 }
 
+/// Render text as a 7-row ASCII dot-matrix banner (for the curl-able terminal
+/// printout). Uses the same hand font as the PNG cards.
+pub fn ascii_banner(text: &str) -> String {
+    let chars: Vec<[u8; 5]> = text.to_uppercase().chars().map(glyph).collect();
+    let mut out = String::new();
+    for row in 0..7 {
+        for g in &chars {
+            for col in 0..5 {
+                out.push(if g[col] & (1 << row) != 0 { '#' } else { ' ' });
+            }
+            out.push(' ');
+        }
+        while out.ends_with(' ') {
+            out.pop();
+        }
+        out.push('\n');
+    }
+    out
+}
+
 /// 5x7 dot-matrix font. Each glyph is 5 columns; bit i (from 0) is row i (top).
 fn glyph(ch: char) -> [u8; 5] {
     match ch {

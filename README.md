@@ -356,8 +356,15 @@ cheapest/most-automatic first:
 9. **The ladder** — top runs are public GitHub issues (`label:ladder`) the site
    reads via the GitHub API. Competition that bootstraps on infra you already have.
 
-These layer: SEO + the embeddable wire pull in strangers with no audience; the
-dispatch and challenge links convert and retain; the ladder makes them compete.
+10. **Curl-able wire** — `curl https://mattbusel.github.io/tech-oracle/cli` prints
+   today's call as a dot-matrix ASCII banner in the terminal (wttr.in-style). Devs
+   share `curl` one-liners; it's pure cold acquisition and exactly on brand.
+11. **`llms.txt`** — a machine-readable map of the record so AI answer engines can
+   find and cite it when people ask about tech predictions.
+
+These layer: SEO + topic pages + IndexNow + the curl wire + the embeddable wire and
+badge pull in strangers with no audience; the dispatch and challenge links convert
+and retain; the ladder makes them compete.
 
 X/Twitter is intentionally not auto-posted (their write API is no longer free);
 use the per-post **share buttons** (X intent) or route the RSS feed through IFTTT.
