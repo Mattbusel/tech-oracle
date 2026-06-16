@@ -51,6 +51,24 @@ fn variants_for(signal_type: &str) -> &'static [&'static str] {
             "{s} is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
             "Keep an eye on {s}. This kind of trending velocity usually precedes it becoming a default in its niche within the year.",
         ],
+        "lobsters" => &[
+            "Lobsters is chewing on {s}. When the careful crowd gets interested, it tends to be a default tool a year out.",
+            "{s} is climbing Lobsters today. Betting it graduates from enthusiast favorite to production-boring within a year.",
+            "The signal on {s} from Lobsters reads early-but-serious. Calling it: real adoption follows within two quarters.",
+            "{s} is the quiet Lobsters pick. This is usually how the next standard library or pattern starts.",
+        ],
+        "devto" => &[
+            "Dev.to writers are rallying around {s}. Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
+            "{s} is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.",
+            "Lots of dev.to energy on {s}. Betting a framework or starter kit consolidates the space before Q4.",
+            "{s} is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.",
+        ],
+        "ars" => &[
+            "Ars is covering {s}. When it crosses from tech press to mainstream, regulation or a major incumbent move follows within two quarters.",
+            "{s} just hit the wider tech press. The signal points to it shaping a product roadmap at a big player by year end.",
+            "{s} is industry news now, not a rumor. Calling it: a concrete shipping consequence lands within ~6 months.",
+            "Coverage of {s} is widening. This is the stage where it stops being optional for the incumbents.",
+        ],
         _ => &["{s} is showing momentum. The signal points to it mattering more next quarter than it does today."],
     }
 }

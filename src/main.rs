@@ -38,23 +38,33 @@ fn main() {
     let portal_url = env_or("STRIPE_PORTAL_URL", "#");
     let early_access_url = env_or("EARLY_ACCESS_URL", "#");
 
-    // ---- fetch the three sources concurrently; each fails soft ----
+    // ---- fetch all six sources concurrently; each fails soft ----
     let client = fetch::client();
     let signals = std::thread::scope(|scope| {
-        let (c1, c2, c3) = (client.clone(), client.clone(), client.clone());
+        let c = || client.clone();
+        let (c1, c2, c3, c4, c5, c6) = (c(), c(), c(), c(), c(), c());
         let hn = scope.spawn(move || fetch::fetch_hackernews(&c1));
         let ax = scope.spawn(move || fetch::fetch_arxiv(&c2));
         let gh = scope.spawn(move || fetch::fetch_github(&c3));
+        let lo = scope.spawn(move || fetch::fetch_lobsters(&c4));
+        let dv = scope.spawn(move || fetch::fetch_devto(&c5));
+        let ar = scope.spawn(move || fetch::fetch_ars(&c6));
 
         let mut all = Vec::new();
         collect("Hacker News", hn.join(), &mut all);
         collect("arXiv", ax.join(), &mut all);
         collect("GitHub Trending", gh.join(), &mut all);
+        collect("Lobsters", lo.join(), &mut all);
+        collect("dev.to", dv.join(), &mut all);
+        collect("Ars Technica", ar.join(), &mut all);
         all
     });
     eprintln!("collected {} signals total", signals.len());
 
-    let picks = rank::rank_and_select(signals, seed, 2);
+    // A manifest of everything ingested today, for the printed page.
+    let intake = build_intake(&signals);
+
+    let picks = rank::rank_and_select(signals, seed, 4);
     let todays = generate::generate(&picks, &date, seed);
     eprintln!("generated {} call(s) for {date}", todays.len());
 
@@ -94,12 +104,13 @@ fn main() {
     let mut archive: Vec<Prediction> = revealed.clone();
     archive.sort_by(|a, b| b.date.cmp(&a.date)); // newest first
 
-    // Hero = the freshest revealed date's call(s).
+    // Hero = the freshest revealed date's call(s), capped to the two lead calls.
     let featured_date = archive.first().map(|p| p.date.clone());
-    let featured: Vec<Prediction> = match &featured_date {
+    let mut featured: Vec<Prediction> = match &featured_date {
         Some(d) => archive.iter().filter(|p| &p.date == d).cloned().collect(),
         None => Vec::new(),
     };
+    featured.truncate(2);
     let featured_human = featured_date.as_deref().map(human_date).unwrap_or_default();
 
     if let Err(e) = render::render(
@@ -111,6 +122,7 @@ fn main() {
         &payment_link,
         &portal_url,
         &early_access_url,
+        &intake,
     ) {
         eprintln!("render error: {e}");
         std::process::exit(1);
@@ -135,6 +147,63 @@ fn collect(
         Ok(Err(e)) => eprintln!("{name}: source failed, skipping ({e})"),
         Err(_) => eprintln!("{name}: source panicked, skipping"),
     }
+}
+
+/// Source label for a signal type, shared by the manifest and the page.
+fn source_label(t: &str) -> &'static str {
+    match t {
+        "hn" => "HACKER NEWS",
+        "arxiv" => "ARXIV",
+        "github" => "GITHUB",
+        "lobsters" => "LOBSTERS",
+        "devto" => "DEV.TO",
+        "ars" => "ARS TECHNICA",
+        _ => "SIGNAL",
+    }
+}
+
+/// Build the intake manifest: per-source count, a bar width, and the single
+/// hottest item from each source. Pure summary of what was ingested today.
+fn build_intake(signals: &[model::Signal]) -> serde_json::Value {
+    use std::collections::HashMap;
+    let mut groups: HashMap<&str, Vec<&model::Signal>> = HashMap::new();
+    for s in signals {
+        groups.entry(s.signal_type.as_str()).or_default().push(s);
+    }
+
+    let mut rows: Vec<(String, String, usize, String, String, f64)> = groups
+        .into_iter()
+        .map(|(t, v)| {
+            let count = v.len();
+            let top = v.iter().max_by(|a, b| {
+                a.momentum_score
+                    .partial_cmp(&b.momentum_score)
+                    .unwrap_or(std::cmp::Ordering::Equal)
+            });
+            let (title, url) = top.map(|s| (s.title.clone(), s.url.clone())).unwrap_or_default();
+            let score = top.map(|s| s.momentum_score).unwrap_or(0.0);
+            (t.to_string(), source_label(t).to_string(), count, title, url, score)
+        })
+        .collect();
+    rows.sort_by(|a, b| b.2.cmp(&a.2));
+
+    let max = rows.iter().map(|r| r.2).max().unwrap_or(1).max(1);
+    let sources: Vec<serde_json::Value> = rows
+        .into_iter()
+        .map(|(t, label, count, title, url, score)| {
+            serde_json::json!({
+                "type": t,
+                "label": label,
+                "count": count,
+                "pct": ((count as f64 / max as f64) * 100.0).round() as i64,
+                "top_title": title,
+                "top_url": url,
+                "top_score": score as i64,
+            })
+        })
+        .collect();
+
+    serde_json::json!({ "total": signals.len(), "sources": sources })
 }
 
 fn env_or(key: &str, default: &str) -> String {

@@ -1,9 +1,11 @@
 //! Render the public (delayed) page from the revealed archive using minijinja.
 //! The template file is embedded at compile time, so the binary stays
-//! self-contained. This module knows nothing about payments — it only renders
+//! self-contained. This module knows nothing about payments; it only renders
 //! whatever the caller decided is public, plus static subscribe links.
 
 use crate::model::Prediction;
+use chrono::NaiveDate;
+use std::collections::HashMap;
 
 #[allow(clippy::too_many_arguments)]
 pub fn render(
@@ -11,12 +13,78 @@ pub fn render(
     reveal_delay_days: i64,
     featured_date_human: &str,
     featured: &[Prediction],
-    archive: &[Prediction], // already newest-first
+    archive: &[Prediction],
     payment_link: &str,
     portal_url: &str,
     early_access_url: &str,
+    intake: &serde_json::Value,
 ) -> anyhow::Result<()> {
     std::fs::create_dir_all(crate::OUT_DIR)?;
+
+    // Newest-first. YYYY-MM-DD sorts lexicographically.
+    let mut sorted: Vec<&Prediction> = archive.iter().collect();
+    sorted.sort_by(|a, b| b.date.cmp(&a.date));
+    let total = sorted.len();
+
+    // Group the ledger into dated "pages" (fanfold pages), each with running
+    // call numbers (newest = highest).
+    let mut pages: Vec<serde_json::Value> = Vec::new();
+    let mut i = 0;
+    while i < sorted.len() {
+        let date = sorted[i].date.clone();
+        let mut items = Vec::new();
+        while i < sorted.len() && sorted[i].date == date {
+            let p = sorted[i];
+            items.push(serde_json::json!({
+                "no": total - i,
+                "prediction_text": p.prediction_text,
+                "source_url": p.source_url,
+                "signal_type": p.signal_type,
+            }));
+            i += 1;
+        }
+        pages.push(serde_json::json!({
+            "date": date,
+            "human": human_date(&date),
+            "count": items.len(),
+            "items": items,
+        }));
+    }
+
+    // A flat oldest-first list for the punch-card "signal map".
+    let mut calls: Vec<serde_json::Value> = sorted
+        .iter()
+        .rev()
+        .map(|p| serde_json::json!({ "date": p.date, "signal_type": p.signal_type }))
+        .collect();
+    if calls.len() > 120 {
+        calls = calls.split_off(calls.len() - 120); // keep the most recent 120 dots
+    }
+
+    // Record summary: per-source counts across the whole public archive.
+    let mut counts: HashMap<&str, usize> = HashMap::new();
+    for p in archive {
+        *counts.entry(p.signal_type.as_str()).or_insert(0) += 1;
+    }
+    let mut by_source: Vec<(String, String, usize, i64)> = counts
+        .into_iter()
+        .map(|(t, c)| {
+            let pct = if total > 0 { (c as f64 / total as f64 * 100.0).round() as i64 } else { 0 };
+            (t.to_string(), crate::source_label(t).to_string(), c, pct)
+        })
+        .collect();
+    by_source.sort_by(|a, b| b.2.cmp(&a.2));
+    let by_source: Vec<serde_json::Value> = by_source
+        .into_iter()
+        .map(|(t, label, count, pct)| serde_json::json!({ "type": t, "label": label, "count": count, "pct": pct }))
+        .collect();
+
+    let since_human = sorted.last().map(|p| human_date(&p.date)).unwrap_or_default();
+    let record = serde_json::json!({
+        "total": total,
+        "since": since_human,
+        "by_source": by_source,
+    });
 
     let tmpl_src = include_str!("../templates/index.html");
     let mut env = minijinja::Environment::new();
@@ -28,8 +96,11 @@ pub fn render(
         reveal_delay_days => reveal_delay_days,
         featured_date_human => featured_date_human,
         featured => featured,
-        archive => archive,
-        total => archive.len(),
+        pages => pages,
+        calls => calls,
+        record => record,
+        intake => intake,
+        total => total,
         payment_link => payment_link,
         portal_url => portal_url,
         early_access_url => early_access_url,
@@ -37,4 +108,11 @@ pub fn render(
 
     std::fs::write(crate::OUT_HTML, html)?;
     Ok(())
+}
+
+fn human_date(date: &str) -> String {
+    match NaiveDate::parse_from_str(date, "%Y-%m-%d") {
+        Ok(d) => d.format("%B %-d, %Y").to_string(),
+        Err(_) => date.to_string(),
+    }
 }

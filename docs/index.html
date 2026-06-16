@@ -162,6 +162,48 @@
     .foot p { font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-soft); margin: 6px 0; }
     :focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
 
+    /* source colours (ink-on-paper, distinct) */
+    .s-hn { color: #b5651d; } .s-arxiv { color: #7a3b8f; } .s-github { color: #2f6f4f; }
+    .s-lobsters { color: #9a1f1f; } .s-devto { color: #244a9c; } .s-ars { color: #8a6d1f; }
+    i.s-hn, .sm-dot.s-hn { background: #b5651d; } i.s-arxiv, .sm-dot.s-arxiv { background: #7a3b8f; }
+    i.s-github, .sm-dot.s-github { background: #2f6f4f; } i.s-lobsters, .sm-dot.s-lobsters { background: #9a1f1f; }
+    i.s-devto, .sm-dot.s-devto { background: #244a9c; } i.s-ars, .sm-dot.s-ars { background: #8a6d1f; }
+
+    /* intake manifest */
+    .mf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 24px; }
+    .mf-row { min-width: 0; }
+    .mf-top { display: flex; justify-content: space-between; align-items: baseline; font-size: 11px; letter-spacing: 0.08em; }
+    .mf-label { font-weight: 700; }
+    .mf-count { color: var(--ink-soft); }
+    .mf-bar { display: block; height: 7px; background: rgba(27,26,20,0.10); margin: 5px 0 6px; position: relative; overflow: hidden; }
+    .mf-bar i { position: absolute; left: 0; top: 0; bottom: 0; display: block; }
+    .mf-item { display: block; font-size: 11px; color: var(--ink-soft); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .mf-item:hover { color: var(--ink); }
+
+    /* record summary + signal map */
+    .by-source { margin: 2px 0 16px; }
+    .bs-row { display: flex; align-items: center; gap: 10px; margin: 6px 0; font-size: 11px; letter-spacing: 0.08em; }
+    .bs-label { flex: 0 0 100px; font-weight: 700; }
+    .bs-bar { flex: 1; height: 9px; background: rgba(27,26,20,0.10); position: relative; overflow: hidden; }
+    .bs-bar i { position: absolute; left: 0; top: 0; bottom: 0; display: block; }
+    .bs-count { flex: 0 0 28px; text-align: right; color: var(--ink-soft); }
+    .signalmap { display: flex; flex-wrap: wrap; gap: 3px; margin: 8px 0 10px; padding: 12px; background: var(--bar); border: 1px solid var(--rule); }
+    .sm-dot { width: 8px; height: 8px; border-radius: 2px; opacity: 0.85; }
+    .map-key { display: flex; flex-wrap: wrap; gap: 12px; font-size: 9.5px; letter-spacing: 0.08em; color: var(--ink-soft); }
+    .map-key .key { display: inline-flex; align-items: center; gap: 5px; }
+
+    /* ledger pages */
+    .page-head { display: flex; justify-content: space-between; align-items: baseline; margin: 18px 0 4px; }
+    .page-date { font-weight: 700; font-size: 13px; letter-spacing: 0.08em; }
+    .page-count { font-size: 10px; letter-spacing: 0.12em; color: var(--ink-soft); }
+    .page-perf { position: relative; height: 1px; margin: 22px -46px; border-top: 1.5px dashed var(--rule); }
+    .page-perf::before, .page-perf::after { content: ""; position: absolute; top: -6px; width: 11px; height: 11px; border-radius: 50%; background: var(--desk); }
+    .page-perf::before { left: 9px; } .page-perf::after { right: 9px; }
+    .entry.s-edge-hn { box-shadow: inset 3px 0 0 #b5651d; } .entry.s-edge-arxiv { box-shadow: inset 3px 0 0 #7a3b8f; }
+    .entry.s-edge-github { box-shadow: inset 3px 0 0 #2f6f4f; } .entry.s-edge-lobsters { box-shadow: inset 3px 0 0 #9a1f1f; }
+    .entry.s-edge-devto { box-shadow: inset 3px 0 0 #244a9c; } .entry.s-edge-ars { box-shadow: inset 3px 0 0 #8a6d1f; }
+    @media (max-width: 520px) { .mf-grid { grid-template-columns: 1fr; } }
+
     dot-matrix { display: block; }
     dot-matrix .dm-canvas { display: none; filter: url(#ink); }
     dot-matrix.ready .dm-fallback { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
@@ -228,7 +270,7 @@
                 <span>AUTONOMOUS / NO EDITS / NO DELETES</span>
               </div>
               <div class="barcode" aria-hidden="true"></div>
-              <div class="barcode-no">SGNL // PUBLIC RECORD // 3 ON FILE</div>
+              <div class="barcode-no">SGNL // PUBLIC RECORD // 10 ON FILE</div>
             </header>
 
             <div class="perf" aria-hidden="true"></div>
@@ -240,7 +282,7 @@
                 
                 <article class="call--hero">
                   <div class="callmeta">
-                    <span>CALL No. 3</span>
+                    <span>CALL No. 10</span>
                     <span>CALLED June 15, 2026</span>
                     <span class="tag-src">HACKER NEWS</span>
                   </div>
@@ -249,6 +291,53 @@
                   <a class="open" href="https://news.ycombinator.com/news" rel="noopener">OPEN SOURCE SIGNAL</a>
                 </article>
                 
+              
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
+            <section class="manifest" aria-label="Signals ingested today">
+              <div class="band">INTAKE MANIFEST / 143 SIGNALS TODAY</div>
+              
+              <div class="mf-grid">
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-arxiv">ARXIV</span><span class="mf-count">30</span></div>
+                  <span class="mf-bar"><i class="s-arxiv" style="width:100%"></i></span>
+                  <a class="mf-item" href="https://arxiv.org/abs/2606.17048v1" rel="noopener">TOP // Exact Posterior Score Estimation for Solving Linear Inverse Problems</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-hn">HACKER NEWS</span><span class="mf-count">30</span></div>
+                  <span class="mf-bar"><i class="s-hn" style="width:100%"></i></span>
+                  <a class="mf-item" href="https://twitter.com/ID_AA_Carmack/status/2064095424420487226" rel="noopener">TOP // I admire Fabrice Bellard. He is almost certainly a better overall programmer</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-lobsters">LOBSTERS</span><span class="mf-count">25</span></div>
+                  <span class="mf-bar"><i class="s-lobsters" style="width:83%"></i></span>
+                  <a class="mf-item" href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/" rel="noopener">TOP // curl summer of bliss</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
+                  <span class="mf-bar"><i class="s-devto" style="width:83%"></i></span>
+                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-ars">ARS TECHNICA</span><span class="mf-count">20</span></div>
+                  <span class="mf-bar"><i class="s-ars" style="width:67%"></i></span>
+                  <a class="mf-item" href="https://arstechnica.com/tech-policy/2026/06/us-approval-of-paramount-warner-bros-deal-surprised-doj-lawyers-report-says/" rel="noopener">TOP // US approval of Paramount/Warner Bros. deal surprised DOJ lawyers, report says</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-github">GITHUB</span><span class="mf-count">13</span></div>
+                  <span class="mf-bar"><i class="s-github" style="width:43%"></i></span>
+                  <a class="mf-item" href="https://github.com/iptv-org/iptv" rel="noopener">TOP // iptv-org/iptv</a>
+                </div>
+                
+              </div>
               
             </section>
 
@@ -268,48 +357,225 @@
 
             <div class="perf" aria-hidden="true"></div>
 
+            <section class="record" aria-label="Record summary">
+              <div class="band">THE RECORD / 10 CALLS SINCE June 2, 2026</div>
+              <div class="by-source">
+                
+                <div class="bs-row">
+                  <span class="bs-label s-github">GITHUB</span>
+                  <span class="bs-bar"><i class="s-github" style="width:30%"></i></span>
+                  <span class="bs-count">3</span>
+                </div>
+                
+                <div class="bs-row">
+                  <span class="bs-label s-hn">HACKER NEWS</span>
+                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
+                  <span class="bs-count">2</span>
+                </div>
+                
+                <div class="bs-row">
+                  <span class="bs-label s-arxiv">ARXIV</span>
+                  <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
+                  <span class="bs-count">2</span>
+                </div>
+                
+                <div class="bs-row">
+                  <span class="bs-label s-devto">DEV.TO</span>
+                  <span class="bs-bar"><i class="s-devto" style="width:10%"></i></span>
+                  <span class="bs-count">1</span>
+                </div>
+                
+                <div class="bs-row">
+                  <span class="bs-label s-ars">ARS TECHNICA</span>
+                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
+                  <span class="bs-count">1</span>
+                </div>
+                
+                <div class="bs-row">
+                  <span class="bs-label s-lobsters">LOBSTERS</span>
+                  <span class="bs-bar"><i class="s-lobsters" style="width:10%"></i></span>
+                  <span class="bs-count">1</span>
+                </div>
+                
+              </div>
+              <div class="signalmap" aria-hidden="true">
+                <span class="sm-dot s-github" title="2026-06-02"></span><span class="sm-dot s-arxiv" title="2026-06-04"></span><span class="sm-dot s-lobsters" title="2026-06-05"></span><span class="sm-dot s-hn" title="2026-06-08"></span><span class="sm-dot s-ars" title="2026-06-09"></span><span class="sm-dot s-devto" title="2026-06-09"></span><span class="sm-dot s-github" title="2026-06-11"></span><span class="sm-dot s-github" title="2026-06-13"></span><span class="sm-dot s-arxiv" title="2026-06-14"></span><span class="sm-dot s-hn" title="2026-06-15"></span>
+              </div>
+              <div class="map-key">
+                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span>
+              </div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
             <section class="ledger" aria-label="The public record">
-              <div class="band">THE LEDGER / 3 CALLS ON RECORD</div>
+              <div class="band">THE LEDGER</div>
               
-              <ol class="entries">
+                
+                <div class="page-head"><span class="page-date">June 15, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-hn" id="call-10">
+                    <div class="entry-meta"><span class="no">No. 10</span><span class="tg s-hn">HACKER NEWS</span></div>
+                    <p class="entry-text">The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
+                    <div class="entry-actions">
+                      <a href="https://news.ycombinator.com/news" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-10">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-10">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 14, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-arxiv" id="call-9">
+                    <div class="entry-meta"><span class="no">No. 9</span><span class="tg s-arxiv">ARXIV</span></div>
+                    <p class="entry-text">Fresh cs.AI/cs.LG work on test-time compute scaling just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.</p>
+                    <div class="entry-actions">
+                      <a href="https://arxiv.org/abs/2408.03314" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-9">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-9">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 13, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-github" id="call-8">
+                    <div class="entry-meta"><span class="no">No. 8</span><span class="tg s-github">GITHUB</span></div>
+                    <p class="entry-text">Devs are starring ggml-org/llama.cpp hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.</p>
+                    <div class="entry-actions">
+                      <a href="https://github.com/ggml-org/llama.cpp" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-8">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-8">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 11, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-github" id="call-7">
+                    <div class="entry-meta"><span class="no">No. 7</span><span class="tg s-github">GITHUB</span></div>
+                    <p class="entry-text">vercel/ai is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.</p>
+                    <div class="entry-actions">
+                      <a href="https://github.com/vercel/ai" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-7">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-7">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 9, 2026</span><span class="page-count">2 CALLS</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-devto" id="call-6">
+                    <div class="entry-meta"><span class="no">No. 6</span><span class="tg s-devto">DEV.TO</span></div>
+                    <p class="entry-text">Dev.to writers are rallying around typed API clients. Expect tutorials to outpace the docs and adoption to snowball within a quarter.</p>
+                    <div class="entry-actions">
+                      <a href="https://dev.to" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-6">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-6">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                  
+                  <li class="entry s-edge-ars" id="call-5">
+                    <div class="entry-meta"><span class="no">No. 5</span><span class="tg s-ars">ARS TECHNICA</span></div>
+                    <p class="entry-text">Ars is covering AI data-center power demand. When it crosses from tech press to mainstream, regulation or a major incumbent move follows within two quarters.</p>
+                    <div class="entry-actions">
+                      <a href="https://arstechnica.com" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-5">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-5">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 8, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-hn" id="call-4">
+                    <div class="entry-meta"><span class="no">No. 4</span><span class="tg s-hn">HACKER NEWS</span></div>
+                    <p class="entry-text">The HN front page is piling onto on-device inference runtimes. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
+                    <div class="entry-actions">
+                      <a href="https://news.ycombinator.com" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-4">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-4">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 5, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-lobsters" id="call-3">
+                    <div class="entry-meta"><span class="no">No. 3</span><span class="tg s-lobsters">LOBSTERS</span></div>
+                    <p class="entry-text">Lobsters is chewing on deterministic build systems. When the careful crowd gets interested, it tends to be a default tool a year out.</p>
+                    <div class="entry-actions">
+                      <a href="https://lobste.rs" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-3">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-3">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 4, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-arxiv" id="call-2">
+                    <div class="entry-meta"><span class="no">No. 2</span><span class="tg s-arxiv">ARXIV</span></div>
+                    <p class="entry-text">Fresh cs.AI/cs.LG work on sparse mixture-of-experts routing just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.</p>
+                    <div class="entry-actions">
+                      <a href="https://arxiv.org/list/cs.LG/recent" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-2">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-2">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
+                <div class="page-perf" aria-hidden="true"></div>
+                
+                <div class="page-head"><span class="page-date">June 2, 2026</span><span class="page-count">1 CALL</span></div>
+                <ol class="entries">
+                  
+                  
+                  <li class="entry s-edge-github" id="call-1">
+                    <div class="entry-meta"><span class="no">No. 1</span><span class="tg s-github">GITHUB</span></div>
+                    <p class="entry-text">Devs are starring zed-industries/zed hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.</p>
+                    <div class="entry-actions">
+                      <a href="https://github.com/zed-industries/zed" rel="noopener">[ SOURCE ]</a>
+                      <a class="anchor" href="#call-1">[ REF ]</a>
+                      <button type="button" class="copy" data-anchor="call-1">[ COPY LINK ]</button>
+                    </div>
+                  </li>
+                  
+                </ol>
                 
                 
-                
-                <li class="entry" id="call-2026-06-15-1">
-                  <div class="entry-meta"><span class="no">No. 3</span><span class="dt">2026-06-15</span><span class="tg">HACKER NEWS</span></div>
-                  <p class="entry-text">The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.</p>
-                  <div class="entry-actions">
-                    <a href="https://news.ycombinator.com/news" rel="noopener">[ SOURCE ]</a>
-                    <a class="anchor" href="#call-2026-06-15-1">[ REF ]</a>
-                    <button type="button" class="copy" data-anchor="call-2026-06-15-1">[ COPY LINK ]</button>
-                  </div>
-                </li>
-                
-                
-                
-                <li class="entry" id="call-2026-06-14-2">
-                  <div class="entry-meta"><span class="no">No. 2</span><span class="dt">2026-06-14</span><span class="tg">ARXIV</span></div>
-                  <p class="entry-text">Fresh cs.AI/cs.LG work on test-time compute scaling just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.</p>
-                  <div class="entry-actions">
-                    <a href="https://arxiv.org/abs/2408.03314" rel="noopener">[ SOURCE ]</a>
-                    <a class="anchor" href="#call-2026-06-14-2">[ REF ]</a>
-                    <button type="button" class="copy" data-anchor="call-2026-06-14-2">[ COPY LINK ]</button>
-                  </div>
-                </li>
-                
-                
-                
-                <li class="entry" id="call-2026-06-13-3">
-                  <div class="entry-meta"><span class="no">No. 1</span><span class="dt">2026-06-13</span><span class="tg">GITHUB</span></div>
-                  <p class="entry-text">Devs are starring ggml-org/llama.cpp hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.</p>
-                  <div class="entry-actions">
-                    <a href="https://github.com/ggml-org/llama.cpp" rel="noopener">[ SOURCE ]</a>
-                    <a class="anchor" href="#call-2026-06-13-3">[ REF ]</a>
-                    <button type="button" class="copy" data-anchor="call-2026-06-13-3">[ COPY LINK ]</button>
-                  </div>
-                </li>
-                
-              </ol>
               
             </section>
 
@@ -317,7 +583,7 @@
 
             <footer class="foot">
               <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
-              <p>NOT FINANCIAL ADVICE. SOURCES: HACKER NEWS / ARXIV / GITHUB TRENDING.</p>
+              <p>NOT FINANCIAL ADVICE. SOURCES: HACKER NEWS / ARXIV / GITHUB / LOBSTERS / DEV.TO / ARS TECHNICA.</p>
               <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
             </footer>
           </main>
@@ -335,8 +601,8 @@
           </div>
           <dl class="stats">
             <div class="row"><dt>NEXT PRINT</dt><dd id="countdown">--:--:--</dd></div>
-            <div class="row"><dt>CALLS ON FILE</dt><dd>3</dd></div>
-            <div class="row"><dt>SOURCES</dt><dd>3 MONITORED</dd></div>
+            <div class="row"><dt>CALLS ON FILE</dt><dd>10</dd></div>
+            <div class="row"><dt>SOURCES</dt><dd>6 MONITORED</dd></div>
             <div class="row"><dt>HEAD</dt><dd id="machine-status">ONLINE</dd></div>
           </dl>
           <div class="log" id="log" aria-hidden="true"></div>
