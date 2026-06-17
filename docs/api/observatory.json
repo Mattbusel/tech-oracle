@@ -40,7 +40,7 @@
   "corpus_days": 1,
   "fear_greed": {
     "label": "GREED",
-    "value": 64
+    "value": 70
   },
   "movers": [
     {
@@ -49,8 +49,13 @@
       "vel": 100
     },
     {
-      "count": 8,
+      "count": 9,
       "term": "APPLE",
+      "vel": 100
+    },
+    {
+      "count": 9,
+      "term": "GOOGLE",
       "vel": 100
     },
     {
@@ -61,11 +66,6 @@
     {
       "count": 7,
       "term": "CUP",
-      "vel": 100
-    },
-    {
-      "count": 7,
-      "term": "GOOGLE",
       "vel": 100
     },
     {
@@ -128,58 +128,58 @@
     ],
     "index": 71,
     "theme": "GAME",
-    "total": 260,
+    "total": 263,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 23,
+      "delta": 26,
       "index": 100,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 19,
-      "index": 83,
+      "index": 73,
       "name": "AI"
     },
     {
       "arrow": "UP",
       "delta": 4,
-      "index": 17,
+      "index": 15,
       "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 3,
-      "index": 13,
+      "index": 12,
+      "name": "CHIPS"
+    },
+    {
+      "arrow": "UP",
+      "delta": 3,
+      "index": 12,
       "name": "RUST"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 9,
+      "index": 8,
       "name": "CRYPTO"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 9,
+      "index": 8,
       "name": "CLOUD"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 9,
+      "index": 8,
       "name": "ROBOTS"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 4,
-      "name": "CHIPS"
     }
   ],
   "source_weights": [
@@ -284,5 +284,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 1620
+  "tracked_terms": 1648
 }

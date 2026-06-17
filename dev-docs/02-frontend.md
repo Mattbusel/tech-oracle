@@ -205,7 +205,8 @@ through a few `window.__*` globals (catalogued at the end).
 - `bloodline.html` is a LIVE channel: the day's population is baked in as `var BL`;
   the client renders animated standings with **per-organism stat lines** (win
   rate, streak, ROI, tail/fade), the rival house race, a births-and-deaths wire,
-  **THE CARDS** (rendered rookie/pro trading-card PNGs), a gold **HALL OF FAME**
+  **THE CARDS** (rendered rookie/pro trading-card PNGs; click any card to zoom it
+  full-size in a lightbox, click anywhere or Esc to close), a gold **HALL OF FAME**
   board, and a rolling commentary that cycles forever with an "ON AIR" indicator.
   A LISTEN button (Web Speech) reads the call aloud. Dark control-room aesthetic.
 - The main page shows a bloodline panel in the Engine Room (champion, top five
