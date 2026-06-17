@@ -1,29 +1,40 @@
 {
   "horizon": {
-    "defined": 1403,
+    "defined": 1791,
     "phases": {
-      "BOTTOMING": 94,
-      "CHURNING": 289,
-      "FALLING": 27,
-      "FLAT": 564,
-      "PEAKING": 50,
-      "RISING": 379
+      "BOTTOMING": 111,
+      "CHURNING": 322,
+      "FALLING": 35,
+      "FLAT": 827,
+      "PEAKING": 52,
+      "RISING": 444
     },
-    "scanned": 19383,
+    "scanned": 23171,
     "turns": [
       {
         "active_days": 118,
         "gamma": 1.0,
-        "geodesic": 51,
+        "geodesic": 45,
         "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 60,
+        "prob_rising": 59,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
       },
       {
-        "active_days": 85,
+        "active_days": 97,
+        "gamma": 1.02,
+        "geodesic": 85,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 67,
+        "regime": "SPACELIKE",
+        "term": "LANGUAGE"
+      },
+      {
+        "active_days": 88,
         "gamma": 1.0,
         "geodesic": -21,
         "peak": 8,
@@ -45,6 +56,28 @@
         "term": "LINUX"
       },
       {
+        "active_days": 78,
+        "gamma": 1.0,
+        "geodesic": 29,
+        "peak": 8,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 56,
+        "regime": "SPACELIKE",
+        "term": "COMPANY"
+      },
+      {
+        "active_days": 96,
+        "gamma": 1.01,
+        "geodesic": 90,
+        "peak": 7,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 68,
+        "regime": "SPACELIKE",
+        "term": "CODING"
+      },
+      {
         "active_days": 68,
         "gamma": 1.0,
         "geodesic": -35,
@@ -56,18 +89,7 @@
         "term": "GITHUB"
       },
       {
-        "active_days": 64,
-        "gamma": 1.0,
-        "geodesic": 43,
-        "peak": 7,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 59,
-        "regime": "SPACELIKE",
-        "term": "COMPANY"
-      },
-      {
-        "active_days": 87,
+        "active_days": 88,
         "gamma": 1.0,
         "geodesic": -39,
         "peak": 6,
@@ -76,6 +98,17 @@
         "prob_rising": 42,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
+      },
+      {
+        "active_days": 118,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 5,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "CHATGPT"
       },
       {
         "active_days": 46,
@@ -100,15 +133,26 @@
         "term": "SPACEX"
       },
       {
-        "active_days": 95,
-        "gamma": 1.01,
-        "geodesic": 90,
-        "peak": 5,
+        "active_days": 73,
+        "gamma": 1.0,
+        "geodesic": -15,
+        "peak": 6,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 68,
+        "prob_rising": 47,
         "regime": "SPACELIKE",
-        "term": "CODING"
+        "term": "MAY"
+      },
+      {
+        "active_days": 68,
+        "gamma": 1.0,
+        "geodesic": 52,
+        "peak": 6,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 60,
+        "regime": "SPACELIKE",
+        "term": "AGENTIC"
       },
       {
         "active_days": 65,
@@ -122,18 +166,7 @@
         "term": "API"
       },
       {
-        "active_days": 92,
-        "gamma": 1.02,
-        "geodesic": 85,
-        "peak": 5,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 67,
-        "regime": "SPACELIKE",
-        "term": "LANGUAGE"
-      },
-      {
-        "active_days": 87,
+        "active_days": 93,
         "gamma": 1.01,
         "geodesic": 90,
         "peak": 5,
@@ -144,18 +177,7 @@
         "term": "SYSTEM"
       },
       {
-        "active_days": 57,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 6,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "CEO"
-      },
-      {
-        "active_days": 82,
+        "active_days": 84,
         "gamma": 1.01,
         "geodesic": 78,
         "peak": 5,
@@ -164,28 +186,6 @@
         "prob_rising": 66,
         "regime": "SPACELIKE",
         "term": "WORK"
-      },
-      {
-        "active_days": 72,
-        "gamma": 1.0,
-        "geodesic": -15,
-        "peak": 5,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 47,
-        "regime": "SPACELIKE",
-        "term": "MAY"
-      },
-      {
-        "active_days": 42,
-        "gamma": 1.0,
-        "geodesic": 0,
-        "peak": 6,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 50,
-        "regime": "SPACELIKE",
-        "term": "LAW"
       }
     ]
   },

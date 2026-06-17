@@ -833,29 +833,44 @@ fn build_engine(
         })
         .collect();
 
-    // THE MANIFOLD readout for the day's fastest topics: each one's position on the
-    // relativistic attention manifold (regime, Lorentz factor, geodesic forecast).
-    // This is the prediction core, made machine-visible.
-    let manifold: Vec<serde_json::Value> = obs
-        .top_movers(8)
-        .into_iter()
-        .map(|(t, _vel, _c)| {
-            let r = manifold::analyze(&obs.trajectory(&t));
-            let r3 = |x: f64| (x * 1000.0).round() / 1000.0;
-            serde_json::json!({
-                "term": t.to_uppercase(),
-                "regime": r.regime.label(),
-                "defined": r.defined(),
-                "beta": r3(r.beta),
-                "gamma": r3(r.gamma),
-                "rel_momentum": r3(r.rel_return),
-                "ds2": r3(r.ds2),
-                "curvature": (r.curvature * 100.0).round() / 100.0,
-                "geodesic_trend": r3(r.trend),
-                "prob_rising": (r.prob_rising() * 100.0).round() as i64,
+    // THE MANIFOLD readout: the most prominent topics that actually have a
+    // trajectory to read (real history, not today's cold-start spikes), each placed
+    // on the relativistic attention manifold. Featuring defined topics is what keeps
+    // the live plot populated instead of stuck "warming up".
+    let manifold: Vec<serde_json::Value> = {
+        let r3 = |x: f64| (x * 1000.0).round() / 1000.0;
+        let mut scored: Vec<(f64, serde_json::Value)> = obs
+            .corpus
+            .terms
+            .iter()
+            .filter(|(_, rec)| rec.days >= 14)
+            .filter_map(|(t, rec)| {
+                let r = manifold::analyze(&obs.trajectory(t));
+                if !r.defined() {
+                    return None;
+                }
+                let prominence = rec.peak as f64 * (rec.days as f64).sqrt();
+                Some((
+                    prominence,
+                    serde_json::json!({
+                        "term": t.to_uppercase(),
+                        "regime": r.regime.label(),
+                        "phase": r.phase().label(),
+                        "defined": true,
+                        "beta": r3(r.beta),
+                        "gamma": r3(r.gamma),
+                        "rel_momentum": r3(r.rel_return),
+                        "ds2": r3(r.ds2),
+                        "curvature": (r.curvature * 100.0).round() / 100.0,
+                        "geodesic_trend": r3(r.trend),
+                        "prob_rising": (r.prob_rising() * 100.0).round() as i64,
+                    }),
+                ))
             })
-        })
-        .collect();
+            .collect();
+        scored.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
+        scored.into_iter().take(14).map(|(_, v)| v).collect()
+    };
 
     let mut learning: Vec<serde_json::Value> = ALL_SOURCES
         .iter()

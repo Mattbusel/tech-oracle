@@ -271,21 +271,25 @@ evaluation. Dependency-free; xorshift RNG; fixed seeds so results are reproducib
 ## `backfill.rs` (skip the warmup)
 
 The manifold needs a trajectory; a fresh corpus has none. Rather than wait days
-for it to accumulate, this reconstructs history from Hacker News' public Algolia
-archive (keyless, years deep), which directly matches what the corpus measures
-(term mentions in titles).
+for it to accumulate, this reconstructs history from the keyless archives that go
+back in time, blending three sources per day that span the diffusion funnel so
+even historical crossings register:
+- **arXiv** (technical origin, stage 0): papers submitted that day
+  (`export.arxiv.org` with a `submittedDate` range over cs.AI/LG/CL/SE),
+- **Hacker News** (developer, stage 4): that day's top ~150 stories
+  (`hn.algolia.com/api/v1/search`, popularity-ranked to match the live front page),
+- **Wikipedia** (general public, stage 9): that day's most-viewed ~80 articles
+  (`wikimedia.org` pageviews top endpoint).
 
-- `tech-oracle backfill [days]` (default 120, max 178) fetches each past day's top
-  ~150 stories (`hn.algolia.com/api/v1/search`, popularity-ranked to match the live
-  front-page scale), turns them into `Signal`s, and folds them in via
-  `observatory::build`, oldest first. `build` sorts and bounds `corpus.days`, so
-  out-of-order folding is safe and the term ledger / snapshots populate exactly as
-  the live methodology would. Then it exits; the normal daily run appends today's
-  full ten-source snapshot on top.
-- The historical portion is HN-only (a consistent, dev-centric attention proxy);
-  the live portion is all ten sources. Run once and commit `data/corpus.json` to
-  seed production. A 120-day backfill lands ~120 days and ~19k tracked terms in
-  about 35 seconds.
+- `tech-oracle backfill [days]` (default 120, max 178) fetches all three per day,
+  blends them into one `Vec<Signal>`, and folds them in via `observatory::build`,
+  oldest first. `build` sorts and bounds `corpus.days`, so out-of-order folding is
+  safe and the term ledger, snapshots, peaks, `days` counts and diffusion stages
+  populate exactly as the live methodology would. Each source is fail-soft (a dead
+  day/source just contributes less). Then it exits; the normal daily run appends
+  today's full ten-source snapshot on top.
+- Run once and commit `data/corpus.json` to seed production. A 120-day backfill
+  lands ~120 days and tens of thousands of tracked terms in a few minutes.
 
 ---
 
