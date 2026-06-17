@@ -80,7 +80,7 @@ setInterval(drawTable,1300);
 </script>
 <script>
 (function(){
- var POOL=[],ORGS=[],rounds=0,settled=0,RMS=4000,timer=null,KEY='signal_floor_v2';
+ var POOL=[],ORGS=[],rounds=0,settled=0,RMS=4000,timer=null,KEY='signal_floor_v3',CAP=5000000;
  function rnd(){return Math.random();}
  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
  function fmt(n){return Math.round(n||0).toLocaleString();}
@@ -101,7 +101,7 @@ setInterval(drawTable,1300);
    bank:(p?p.bank:1000),w:(p?p.w:0),l:(p?p.l:0),streak:(p?p.streak:0)};});
   if(prev&&prev.day===window.__FLDAY){rounds=prev.rounds||0;settled=prev.settled||0;}
   if(!ORGS.length)ORGS=[{id:0,name:'THE HOUSE',house:'',risk:0.4,sel:0.5,press:0.5,fade:false,bank:1000,w:0,l:0,streak:0}];
-  board();tick();
+  board();
  });
  function board(){
   var el=document.getElementById('floorboard');if(!el)return;
@@ -121,7 +121,7 @@ setInterval(drawTable,1300);
     if(o.bank<1)return;
     if(rnd()>(0.35+(1-o.sel)*0.5))return;
     var side=o.fade?-b.dir:b.dir;
-    var frac=(0.03+o.risk*0.22)*(1+o.press*Math.min(Math.abs(o.streak),5)*0.12);
+    var frac=(0.02+o.risk*0.10)*(1+o.press*Math.min(Math.abs(o.streak),5)*0.12);
     var stake=Math.max(1,Math.min(o.bank,Math.round(o.bank*frac)));
     var win=(side===actual);
     if(win){o.bank+=stake;o.w++;o.streak=o.streak>=0?o.streak+1:1;}
@@ -131,7 +131,12 @@ setInterval(drawTable,1300);
     if(rows.length<14)rows.push({term:b.term,name:o.name,side:side,stake:stake,win:win});
    });
   });
-  ORGS.forEach(function(o){if(o.bank<1){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.name=(o.name+"'").slice(0,22);}});
+  // Bounded churn: hit the ceiling and you cash out and start fresh; bust and you
+  // respawn. Either way the bank returns to the seed, so it never runs to infinity.
+  ORGS.forEach(function(o){
+   if(o.bank>=CAP){o.bank=1000;o.w=0;o.l=0;o.streak=0;}
+   else if(o.bank<1){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.name=(o.name+"'").slice(0,22);}
+  });
   rounds++;
   var tk=document.getElementById('floorticker');
   if(tk)tk.innerHTML=rows.map(function(r){var c=r.win?'#6ee07a':'#ff8c7d';return '<div style="padding:3px 0;border-bottom:1px dotted #232520"><b>'+esc(r.name)+'</b> '+(r.side>0?'backs':'fades')+' <b>'+esc(r.term)+'</b> '+(r.side>0?'UP':'DN')+' for '+fmt(r.stake)+'<span style="color:'+c+';font-weight:700;float:right">'+(r.win?'WON':'LOST')+'</span></div>';}).join('')||'<span style="color:#8d8a7c">no takers this round</span>';

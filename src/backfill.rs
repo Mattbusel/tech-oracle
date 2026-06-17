@@ -112,8 +112,9 @@ fn fetch_wiki_day(client: &reqwest::blocking::Client, d: NaiveDate, k: usize) ->
 
 fn fetch_arxiv_day(client: &reqwest::blocking::Client, d: NaiveDate, k: usize) -> Vec<Signal> {
     let day = d.format("%Y%m%d").to_string();
+    let cats = "cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.SE+OR+cat:cs.CR+OR+cat:cs.DC+OR+cat:cs.NI+OR+cat:cs.DS+OR+cat:cs.RO+OR+cat:stat.ML";
     let url = format!(
-        "http://export.arxiv.org/api/query?search_query=%28cat:cs.AI+OR+cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.SE%29+AND+submittedDate:[{day}0000+TO+{day}2359]&max_results={k}&sortBy=submittedDate&sortOrder=descending"
+        "http://export.arxiv.org/api/query?search_query=%28{cats}%29+AND+submittedDate:[{day}0000+TO+{day}2359]&max_results={k}&sortBy=submittedDate&sortOrder=descending"
     );
     let bytes = match client.get(url).send().and_then(|r| r.error_for_status()).and_then(|r| r.bytes()) {
         Ok(b) => b,

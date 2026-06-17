@@ -23,7 +23,7 @@
     },
     {
       "dir": 1,
-      "p": 0.59,
+      "p": 0.642,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
@@ -37,7 +37,7 @@
     },
     {
       "dir": 1,
-      "p": 0.606,
+      "p": 0.671,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
@@ -51,7 +51,7 @@
     },
     {
       "dir": 1,
-      "p": 0.695,
+      "p": 0.697,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -79,7 +79,7 @@
     },
     {
       "dir": 1,
-      "p": 0.697,
+      "p": 0.698,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CUP"
@@ -93,7 +93,7 @@
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.698,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "GAME"
@@ -107,7 +107,7 @@
     },
     {
       "dir": 1,
-      "p": 0.58,
+      "p": 0.601,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -135,7 +135,7 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.304,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
@@ -177,7 +177,7 @@
     },
     {
       "dir": -1,
-      "p": 0.417,
+      "p": 0.363,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LINUX"
@@ -239,15 +239,15 @@
       "term": "LARGE"
     },
     {
-      "dir": 1,
-      "p": 0.507,
+      "dir": -1,
+      "p": 0.43,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
     },
     {
       "dir": 1,
-      "p": 0.698,
+      "p": 0.699,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "UPDATE"
@@ -352,7 +352,7 @@
     },
     {
       "dir": 1,
-      "p": 0.689,
+      "p": 0.679,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "MEMORY"
@@ -408,7 +408,7 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
+      "p": 0.658,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "OLD"
@@ -441,28 +441,28 @@
       "term": "APPLE"
     },
     {
+      "days": 120,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "SYSTEM"
+    },
+    {
       "days": 119,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "GAME"
+      "term": "COULD"
     },
     {
       "days": 119,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "MICROSOFT"
-    },
-    {
-      "days": 119,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "OFF"
     }
   ],
   "corpus_days": 121,
   "fear_greed": {
     "label": "GREED",
-    "value": 66
+    "value": 78
   },
   "manifold": [
     {
@@ -505,16 +505,16 @@
       "term": "ANTHROPIC"
     },
     {
-      "beta": -0.042,
-      "curvature": -0.37,
+      "beta": -0.022,
+      "curvature": 0.02,
       "defined": true,
-      "ds2": 0.916,
-      "gamma": 1.001,
-      "geodesic_trend": 0.451,
+      "ds2": 0.955,
+      "gamma": 1.0,
+      "geodesic_trend": 0.708,
       "phase": "BOTTOMING",
-      "prob_rising": 59,
+      "prob_rising": 64,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.014,
+      "rel_momentum": -0.007,
       "term": "CLAUDE"
     },
     {
@@ -531,16 +531,16 @@
       "term": "FILM"
     },
     {
-      "beta": 0.144,
-      "curvature": -0.17,
+      "beta": 0.176,
+      "curvature": 0.72,
       "defined": true,
-      "ds2": 0.711,
-      "gamma": 1.011,
-      "geodesic_trend": 0.53,
+      "ds2": 0.649,
+      "gamma": 1.016,
+      "geodesic_trend": 0.853,
       "phase": "PEAKING",
-      "prob_rising": 61,
+      "prob_rising": 67,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.042,
+      "rel_momentum": 0.054,
       "term": "LANGUAGE"
     },
     {
@@ -557,16 +557,16 @@
       "term": "JACKSON"
     },
     {
-      "beta": 0.084,
-      "curvature": 1.74,
+      "beta": 0.092,
+      "curvature": 1.92,
       "defined": true,
-      "ds2": 0.833,
+      "ds2": 0.817,
       "gamma": 1.004,
-      "geodesic_trend": 0.974,
+      "geodesic_trend": 0.984,
       "phase": "RISING",
-      "prob_rising": 69,
+      "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.033,
+      "rel_momentum": 0.037,
       "term": "GOOGLE"
     },
     {
@@ -596,29 +596,29 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": 0.236,
-      "curvature": -0.31,
+      "beta": 0.243,
+      "curvature": -0.1,
       "defined": true,
-      "ds2": 0.528,
-      "gamma": 1.029,
-      "geodesic_trend": 0.989,
+      "ds2": 0.514,
+      "gamma": 1.031,
+      "geodesic_trend": 0.991,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.056,
+      "rel_momentum": 0.058,
       "term": "FIFA"
     },
     {
-      "beta": 0.274,
-      "curvature": 0.02,
+      "beta": 0.282,
+      "curvature": 0.35,
       "defined": true,
-      "ds2": 0.452,
-      "gamma": 1.04,
-      "geodesic_trend": 0.987,
+      "ds2": 0.435,
+      "gamma": 1.042,
+      "geodesic_trend": 0.99,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.05,
+      "rel_momentum": 0.053,
       "term": "CUP"
     },
     {
@@ -635,24 +635,24 @@
       "term": "LEARNING"
     },
     {
-      "beta": 0.04,
-      "curvature": 2.54,
+      "beta": 0.032,
+      "curvature": 2.42,
       "defined": true,
-      "ds2": 0.919,
+      "ds2": 0.935,
       "gamma": 1.001,
-      "geodesic_trend": 0.995,
+      "geodesic_trend": 0.992,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.014,
+      "rel_momentum": 0.01,
       "term": "GAME"
     }
   ],
   "movers": [
     {
-      "count": 7,
+      "count": 9,
       "term": "UPDATE",
-      "vel": 1125
+      "vel": 1475
     },
     {
       "count": 5,
@@ -661,28 +661,28 @@
     },
     {
       "count": 6,
-      "term": "MEMORY",
-      "vel": 740
-    },
-    {
-      "count": 6,
       "term": "APPLE",
       "vel": 500
     },
     {
-      "count": 11,
-      "term": "GAME",
-      "vel": 450
+      "count": 4,
+      "term": "MEMORY",
+      "vel": 460
+    },
+    {
+      "count": 4,
+      "term": "SYSTEM",
+      "vel": 460
     },
     {
       "count": 3,
-      "term": "OFF",
+      "term": "WINDOWS",
       "vel": 425
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
+    "delta_abs": 2,
     "delta_word": "RISING",
     "has_prev": true,
     "highest_days": 1,
@@ -729,33 +729,33 @@
       },
       {
         "date": "2026-06-17",
-        "index": 71
+        "index": 72
       }
     ],
-    "index": 71,
-    "theme": "GAME",
-    "total": 262,
+    "index": 72,
+    "theme": "WORLD",
+    "total": 264,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 6,
+      "delta": 7,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
-      "delta": 5,
-      "index": 86,
+      "delta": 7,
+      "index": 91,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
-      "delta": 1,
-      "index": 19,
-      "name": "CLOUD"
+      "delta": 2,
+      "index": 18,
+      "name": "ROBOTS"
     },
     {
       "arrow": "FLAT",
@@ -764,28 +764,28 @@
       "name": "SECURITY"
     },
     {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 14,
-      "name": "ROBOTS"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 10,
-      "name": "RUST"
+      "arrow": "DOWN",
+      "delta": -3,
+      "index": 9,
+      "name": "CHIPS"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 10,
+      "index": 9,
       "name": "CRYPTO"
     },
     {
       "arrow": "DOWN",
-      "delta": -4,
+      "delta": -1,
+      "index": 9,
+      "name": "CLOUD"
+    },
+    {
+      "arrow": "FLAT",
+      "delta": 0,
       "index": 5,
-      "name": "CHIPS"
+      "name": "RUST"
     }
   ],
   "source_weights": [
@@ -890,5 +890,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 23193
+  "tracked_terms": 23197
 }
