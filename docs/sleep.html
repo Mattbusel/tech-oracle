@@ -1,0 +1,30 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sleep Mode: the oracle dreams // THE SIGNAL</title>
+<meta name="description" content="The oracle never stops. In sleep mode it recombines everything it has seen into surreal far-future calls, endlessly. A living dreamscape.">
+<meta property="og:title" content="THE SIGNAL // SLEEP MODE">
+<meta property="og:description" content="The oracle dreams while you are away. A living, always-running dreamscape.">
+<meta property="og:image" content="https://mattbusel.github.io/tech-oracle/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mattbusel.github.io/tech-oracle/sleep.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>html,body{margin:0;height:100%}body{background:#07060f;color:#c3b4ff;font-family:'IBM Plex Mono',ui-monospace,monospace;overflow:hidden}#field{position:fixed;inset:0;transition:background 8s linear;background:radial-gradient(circle at 50% 30%,#171247,#07060f 72%)}.wrap{position:relative;z-index:2;height:100%;display:flex;flex-direction:column}.top{padding:26px 24px 8px;text-align:center;flex:0 0 auto}.h{font-size:12px;letter-spacing:.42em;color:#8a7ad6}.t{font-size:11px;letter-spacing:.18em;color:#6a5db0;margin-top:8px}.count{font-size:10.5px;letter-spacing:.16em;color:#4e4488;margin-top:6px}#stream{flex:1 1 auto;overflow:hidden;position:relative;padding:10px 24px 30px}.dream{max-width:660px;margin:0 auto;font-size:clamp(16px,3.6vw,24px);line-height:1.5;text-align:center;padding:14px 0;opacity:0;transform:translateY(14px);transition:opacity 2.2s ease,transform 2.2s ease}.dream.in{opacity:.92;transform:none}.dream.out{opacity:0;transform:translateY(-22px)}.dream b{color:#e7deff;font-weight:700}.deep{font-size:clamp(22px,5vw,34px);color:#efe9ff}.bar{position:fixed;bottom:0;left:0;right:0;z-index:3;display:flex;gap:16px;justify-content:center;padding:14px;background:linear-gradient(transparent,#07060f 60%)}.bar a,.bar button{color:#c3b4ff;background:none;border:1px solid rgba(195,180,255,.35);padding:9px 16px;text-decoration:none;font-family:inherit;letter-spacing:.1em;font-size:12px;cursor:pointer}.bar a:hover,.bar button:hover{background:rgba(195,180,255,.12)}.star{position:fixed;width:2px;height:2px;background:#b9a7ff;border-radius:50%;opacity:0;z-index:1;animation:tw 6s ease-in-out infinite}@keyframes tw{0%,100%{opacity:0}50%{opacity:.5}}@media (prefers-reduced-motion:reduce){.dream{transition:none}.star{animation:none}}</style></head>
+<body>
+<div id="field"></div>
+<div class="wrap"><div class="top"><div class="h">THE ORACLE IS DREAMING</div><div class="t">IT RECOMBINES WHAT IT HAS SEEN INTO FUTURES THAT DO NOT EXIST YET</div><div class="count" id="count">DREAM No. 0</div></div><div id="stream"></div></div>
+<div class="bar"><a href="https://mattbusel.github.io/tech-oracle/">[ WAKE THE ORACLE ]</a><button id="faster" type="button">[ DREAM FASTER ]</button></div>
+<script>
+var POOL=["APPLE","GAME","UPDATE","FIFA","TEAM","XBOX","CUP","ANDROID","GOOGLE","AGENT","AGENTS","DATASET","FOOTBALL","GAMES","JUNE","LAUNCH","LEARNING","MECHANICAL","MEMORY","NATIONAL","PRO","ADAPTIVE","AGENTIC","AIR"], FORMS=["In the long night, {a} and {b} are revealed to be the same machine.","The oracle dreams of {a} devouring {b}, and wakes unsure which won.","By the year nobody counts to, {a} is law and {b} is myth.","A vision: {b} was only ever the larva of {a}.","The press prints a future where {a} forgets it was ever about {b}.","In the dream, {a} crosses every chasm at once and finds {b} already there.","The machine sleeps and sees {a} priced in {b}, traded by no one.","Far ahead, {a} and {b} merge into a single word no one can pronounce."];
+if(!POOL.length){POOL=['THE SIGNAL','THE MACHINE','THE FUTURE'];}
+if(!FORMS.length){FORMS=['In the long night, {a} and {b} are the same machine.'];}
+var stream=document.getElementById('stream'),countEl=document.getElementById('count'),field=document.getElementById('field');
+var n=0, speed=3400, hues=[245,265,225,285,205];
+function pick(a){return a[Math.floor(Math.random()*a.length)];}
+function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+function make(){var a=pick(POOL),b=pick(POOL);for(var i=0;i<4&&b===a;i++)b=pick(POOL);var f=pick(FORMS);return f.split('{a}').join('<b>'+esc(a)+'</b>').split('{b}').join('<b>'+esc(b)+'</b>');}
+function emit(){n++;countEl.textContent='DREAM No. '+n;var el=document.createElement('div');var deep=Math.random()<0.15;el.className='dream'+(deep?' deep':'');el.innerHTML=make();stream.appendChild(el);requestAnimationFrame(function(){el.classList.add('in');});var kids=stream.children;if(kids.length>9){var old=kids[0];old.classList.add('out');setTimeout(function(){if(old.parentNode)old.parentNode.removeChild(old);},2300);}var hue=pick(hues);field.style.background='radial-gradient(circle at '+(30+Math.random()*40)+'% '+(20+Math.random()*30)+'%, hsl('+hue+',55%,18%), #07060f 72%)';}
+function loop(){emit();setTimeout(loop, speed + (Math.random()*1600-400));}
+for(var s=0;s<40;s++){var st=document.createElement('div');st.className='star';st.style.left=(Math.random()*100)+'vw';st.style.top=(Math.random()*100)+'vh';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}
+emit();emit();setTimeout(loop,speed);
+document.getElementById('faster').addEventListener('click',function(){speed=speed>1400?1500:3400;this.textContent=speed<2000?'[ DREAM SLOWER ]':'[ DREAM FASTER ]';});
+</script>
+</body></html>

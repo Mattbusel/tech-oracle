@@ -434,6 +434,20 @@ pub fn render(
         urls.push(format!("{site}/arena.html"));
     }
 
+    // SLEEP MODE: a destination, not a takeover. A living dreamscape that never
+    // stops, recombining the corpus into new far-future calls forever, client
+    // side. Reached on purpose; it never ambushes anyone.
+    {
+        let pool_js = serde_json::to_string(dreams.get("pool").unwrap_or(&serde_json::json!([]))).unwrap_or_else(|_| "[]".to_string());
+        let forms_js = serde_json::to_string(dreams.get("forms").unwrap_or(&serde_json::json!([]))).unwrap_or_else(|_| "[]".to_string());
+        let sleep = format!(
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Sleep Mode: the oracle dreams // THE SIGNAL</title>\n<meta name=\"description\" content=\"The oracle never stops. In sleep mode it recombines everything it has seen into surreal far-future calls, endlessly. A living dreamscape.\">\n<meta property=\"og:title\" content=\"THE SIGNAL // SLEEP MODE\">\n<meta property=\"og:description\" content=\"The oracle dreams while you are away. A living, always-running dreamscape.\">\n<meta property=\"og:image\" content=\"{site}/og.png\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<link rel=\"canonical\" href=\"{site}/sleep.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>html,body{{margin:0;height:100%}}body{{background:#07060f;color:#c3b4ff;font-family:'IBM Plex Mono',ui-monospace,monospace;overflow:hidden}}#field{{position:fixed;inset:0;transition:background 8s linear;background:radial-gradient(circle at 50% 30%,#171247,#07060f 72%)}}.wrap{{position:relative;z-index:2;height:100%;display:flex;flex-direction:column}}.top{{padding:26px 24px 8px;text-align:center;flex:0 0 auto}}.h{{font-size:12px;letter-spacing:.42em;color:#8a7ad6}}.t{{font-size:11px;letter-spacing:.18em;color:#6a5db0;margin-top:8px}}.count{{font-size:10.5px;letter-spacing:.16em;color:#4e4488;margin-top:6px}}#stream{{flex:1 1 auto;overflow:hidden;position:relative;padding:10px 24px 30px}}.dream{{max-width:660px;margin:0 auto;font-size:clamp(16px,3.6vw,24px);line-height:1.5;text-align:center;padding:14px 0;opacity:0;transform:translateY(14px);transition:opacity 2.2s ease,transform 2.2s ease}}.dream.in{{opacity:.92;transform:none}}.dream.out{{opacity:0;transform:translateY(-22px)}}.dream b{{color:#e7deff;font-weight:700}}.deep{{font-size:clamp(22px,5vw,34px);color:#efe9ff}}.bar{{position:fixed;bottom:0;left:0;right:0;z-index:3;display:flex;gap:16px;justify-content:center;padding:14px;background:linear-gradient(transparent,#07060f 60%)}}.bar a,.bar button{{color:#c3b4ff;background:none;border:1px solid rgba(195,180,255,.35);padding:9px 16px;text-decoration:none;font-family:inherit;letter-spacing:.1em;font-size:12px;cursor:pointer}}.bar a:hover,.bar button:hover{{background:rgba(195,180,255,.12)}}.star{{position:fixed;width:2px;height:2px;background:#b9a7ff;border-radius:50%;opacity:0;z-index:1;animation:tw 6s ease-in-out infinite}}@keyframes tw{{0%,100%{{opacity:0}}50%{{opacity:.5}}}}@media (prefers-reduced-motion:reduce){{.dream{{transition:none}}.star{{animation:none}}}}</style></head>\n<body>\n<div id=\"field\"></div>\n<div class=\"wrap\"><div class=\"top\"><div class=\"h\">THE ORACLE IS DREAMING</div><div class=\"t\">IT RECOMBINES WHAT IT HAS SEEN INTO FUTURES THAT DO NOT EXIST YET</div><div class=\"count\" id=\"count\">DREAM No. 0</div></div><div id=\"stream\"></div></div>\n<div class=\"bar\"><a href=\"{site}/\">[ WAKE THE ORACLE ]</a><button id=\"faster\" type=\"button\">[ DREAM FASTER ]</button></div>\n<script>\nvar POOL={pool_js}, FORMS={forms_js};\nif(!POOL.length){{POOL=['THE SIGNAL','THE MACHINE','THE FUTURE'];}}\nif(!FORMS.length){{FORMS=['In the long night, {{a}} and {{b}} are the same machine.'];}}\nvar stream=document.getElementById('stream'),countEl=document.getElementById('count'),field=document.getElementById('field');\nvar n=0, speed=3400, hues=[245,265,225,285,205];\nfunction pick(a){{return a[Math.floor(Math.random()*a.length)];}}\nfunction esc(t){{var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}}\nfunction make(){{var a=pick(POOL),b=pick(POOL);for(var i=0;i<4&&b===a;i++)b=pick(POOL);var f=pick(FORMS);return f.split('{{a}}').join('<b>'+esc(a)+'</b>').split('{{b}}').join('<b>'+esc(b)+'</b>');}}\nfunction emit(){{n++;countEl.textContent='DREAM No. '+n;var el=document.createElement('div');var deep=Math.random()<0.15;el.className='dream'+(deep?' deep':'');el.innerHTML=make();stream.appendChild(el);requestAnimationFrame(function(){{el.classList.add('in');}});var kids=stream.children;if(kids.length>9){{var old=kids[0];old.classList.add('out');setTimeout(function(){{if(old.parentNode)old.parentNode.removeChild(old);}},2300);}}var hue=pick(hues);field.style.background='radial-gradient(circle at '+(30+Math.random()*40)+'% '+(20+Math.random()*30)+'%, hsl('+hue+',55%,18%), #07060f 72%)';}}\nfunction loop(){{emit();setTimeout(loop, speed + (Math.random()*1600-400));}}\nfor(var s=0;s<40;s++){{var st=document.createElement('div');st.className='star';st.style.left=(Math.random()*100)+'vw';st.style.top=(Math.random()*100)+'vh';st.style.animationDelay=(Math.random()*6)+'s';document.body.appendChild(st);}}\nemit();emit();setTimeout(loop,speed);\ndocument.getElementById('faster').addEventListener('click',function(){{speed=speed>1400?1500:3400;this.textContent=speed<2000?'[ DREAM SLOWER ]':'[ DREAM FASTER ]';}});\n</script>\n</body></html>\n",
+            site = site, pool_js = pool_js, forms_js = forms_js
+        );
+        std::fs::write(format!("{}/sleep.html", crate::OUT_DIR), sleep)?;
+        urls.push(format!("{site}/sleep.html"));
+    }
+
     let url_body: String = urls.iter().map(|u| format!("<url><loc>{u}</loc></url>")).collect();
     let sitemap = format!(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">{url_body}</urlset>\n"
@@ -510,7 +524,7 @@ pub fn render(
     // llms.txt: a machine-readable map so AI answer engines can find and cite it.
     let latest_no = total;
     let llms = format!(
-        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- The arena (bet against the machine): {site}/arena.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- The arena (bet against the machine): {site}/arena.html\n- Sleep mode (the oracle dreams, always running): {site}/sleep.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
 
@@ -649,10 +663,14 @@ pub fn render(
     write_agent_layer(
         &site, generated_human, &sorted, total, &scoreboard, &book, &calibration, &engine, pulse,
     )?;
-    // The dreams feed (also shown client-side in the oracle's sleep mode).
+    // The dreams feed: today's seed dreams plus the raw pool and forms so any
+    // client (or SLEEP MODE) can recombine new ones endlessly.
     let _ = std::fs::write(
         format!("{}/api/dreams.json", crate::OUT_DIR),
-        serde_json::to_string_pretty(&serde_json::json!({ "schema": "the-signal/dreams/1", "generated": generated_human, "dreams": dreams })).unwrap_or_default(),
+        serde_json::to_string_pretty(&serde_json::json!({
+            "schema": "the-signal/dreams/2", "generated": generated_human,
+            "dreams": dreams.get("dreams"), "pool": dreams.get("pool"), "forms": dreams.get("forms")
+        })).unwrap_or_default(),
     );
 
     let tmpl_src = include_str!("../templates/index.html");
@@ -679,7 +697,6 @@ pub fn render(
         mood => mood,
         engine => engine,
         calibration => calibration,
-        dreams_json => serde_json::to_string(dreams).unwrap_or_else(|_| "[]".to_string()),
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,

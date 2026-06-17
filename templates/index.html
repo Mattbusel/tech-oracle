@@ -820,7 +820,7 @@
             <footer class="foot">
               <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
               <p>NOT FINANCIAL ADVICE. SOURCES: ARXIV / GITHUB / CRATES.IO / LOBSTERS / HACKER NEWS / DEV.TO / REDDIT / ARS TECHNICA / THE NEWS / WIKIPEDIA.</p>
-              <p><a href="receipts.html">the receipts</a> // <a href="arena.html">the arena</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
+              <p><a href="receipts.html">the receipts</a> // <a href="arena.html">the arena</a> // <a href="sleep.html">sleep mode</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
               <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
             </footer>
           </main>
@@ -859,7 +859,6 @@
   <div id="toast" class="toast" aria-hidden="true"></div>
   <div id="bigstamp" class="bigstamp" aria-hidden="true"></div>
   <div id="flatline" class="flatline" aria-hidden="true"></div>
-  <div id="dreamscape" class="dreamscape" aria-hidden="true"></div>
 
   <script>
     function $id(id){ return document.getElementById(id); }
@@ -869,7 +868,6 @@
     var __FLOOR = {{ floor_json | safe }};
     var __LADREPO = "{{ ladder_repo }}";
     var __MOOD = {{ mood | safe }};
-    var __DREAMS = {{ dreams_json | safe }};
     // The organism repaints itself each day: today's accent recolors the screens.
     try { if (__MOOD && __MOOD.accent) { var _rs = document.documentElement.style; _rs.setProperty("--ac", __MOOD.accent); _rs.setProperty("--phos", __MOOD.accent); _rs.setProperty("--led", __MOOD.accent); } } catch (e) {}
     // MORTALITY: the book's vitality dims the whole world as the den bleeds out.
@@ -1863,37 +1861,16 @@
     })();
 
     // ----------------------------------------------------------------------
-    // MORTALITY death screen + THE DREAMS (the oracle's sleep mode).
+    // MORTALITY: fill the death screen (shown only when the book hits zero, i.e.
+    // when html.dead is set). Sleep mode lives at /sleep.html, never a takeover.
     // ----------------------------------------------------------------------
     (function () {
       var M = (typeof __MOOD !== "undefined" && __MOOD) || {};
-      // Death: fill the flatline screen (shown only when html.dead is set).
       var fl = $id("flatline");
       if (fl) {
         fl.innerHTML = '<div class="fl-h">THE DEN HAS GONE DARK</div><div class="fl-line"></div>' +
           '<div class="fl-s">THE BOOK HIT ZERO ON DAY ' + (M.age || 0) + ' // GENERATION ' + (M.gen || 0) + '<br>NO EDITS. NO DELETES. THE RECORD STANDS.<br>THE PRESS WILL TRY TO RISE AGAIN ON THE NEXT RUN.</div>';
       }
-
-      // Dreams: the oracle sleeps at night (local 23:00-05:00) or on demand
-      // (?dream). It recombines its own memory into surreal far-future calls.
-      var dreams = (typeof __DREAMS !== "undefined" && __DREAMS) || [];
-      var ds = $id("dreamscape");
-      if (!ds || !dreams.length) return;
-      var hr = new Date().getHours();
-      var forced = location.search.indexOf("dream") >= 0;
-      var asleep = forced || hr >= 23 || hr < 5;
-      function render() {
-        var body = dreams.map(function (d, i) { return '<div class="dream" style="animation-delay:' + (i * 0.5) + 's">' + (d.text || "") + '</div>'; }).join("");
-        ds.innerHTML = '<button class="dream-x" type="button" id="dream-x">[ WAKE THE ORACLE ]</button><div class="dw"><div class="dh">THE ORACLE IS DREAMING</div><div class="dt">IT RECOMBINES WHAT IT HAS SEEN INTO FUTURES THAT DO NOT EXIST YET</div>' + body + '</div>';
-      }
-      function open() { render(); ds.classList.add("on"); }
-      function closeit() { ds.classList.remove("on"); }
-      if (asleep) open();
-      document.addEventListener("click", function (e) {
-        if (e.target && e.target.id === "dream-x") { closeit(); return; }
-      });
-      // A quiet way back in: a tiny key combo or revisiting at night reopens it.
-      window.addEventListener("keydown", function (e) { if (e.key === "d" && (e.altKey || e.metaKey)) open(); });
     })();
   </script>
 </body>

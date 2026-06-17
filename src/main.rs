@@ -799,7 +799,9 @@ fn build_dreams(obs: &observatory::Observatory, date: &str) -> serde_json::Value
             "a": a, "b": b
         }));
     }
-    serde_json::json!(dreams)
+    // Hand the client the raw material (the pool and the forms) so SLEEP MODE can
+    // recombine new dreams forever, not just replay these six.
+    serde_json::json!({ "dreams": dreams, "pool": pool, "forms": FORMS })
 }
 
 fn genome_json(g: &Genome) -> serde_json::Value {
