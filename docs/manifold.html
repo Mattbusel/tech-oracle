@@ -1,0 +1,125 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Manifold: the prediction core // THE SIGNAL</title>
+<meta name="description" content="The oracle predicts through a manifold. Every topic is a trajectory through a curved relativistic space-time; its regime and geodesic forecast drive the calls. Benchmarked head-to-head against momentum, PageRank, and the rest.">
+<meta property="og:title" content="THE SIGNAL // THE MANIFOLD">
+<meta property="og:description" content="The prediction core: topics as geodesics on a curved manifold, benchmarked against the algorithms that run the internet.">
+<meta property="og:image" content="https://mattbusel.github.io/tech-oracle/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mattbusel.github.io/tech-oracle/manifold.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#06060c;color:#cfe9ff;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.s{max-width:760px;margin:0 auto;padding:40px 26px 80px}
+.b{display:inline-block;background:#cfe9ff;color:#06060c;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:700}
+h1{font-size:32px;letter-spacing:.04em;margin:16px 0 4px}
+h2{font-size:13px;letter-spacing:.22em;color:#6f86a8;margin:38px 0 10px;border-bottom:1px solid rgba(111,134,168,.3);padding-bottom:8px}
+.sub{font-size:13px;color:#8aa0bf;line-height:1.6}
+canvas{width:100%;height:420px;display:block;background:radial-gradient(circle at 50% 42%,#0e1330,#06060c 74%);border:1px solid rgba(111,134,168,.25);margin-top:14px}
+.legend{display:flex;gap:18px;flex-wrap:wrap;font-size:11px;letter-spacing:.08em;margin-top:10px;color:#8aa0bf}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;vertical-align:middle}
+table{width:100%;border-collapse:collapse;margin-top:12px}
+th,td{text-align:left;padding:8px 7px;border-bottom:1px dashed rgba(111,134,168,.28);font-size:13px}
+th{font-size:10px;letter-spacing:.12em;color:#6f86a8}
+td.num{text-align:right;font-variant-numeric:tabular-nums}
+tr.me{background:rgba(95,200,255,.12)}
+tr.me td{color:#dff1ff;font-weight:700}
+.win{color:#5fd08a;font-weight:700}
+.heat td{text-align:center;font-size:11.5px;color:#06060c;font-weight:600}
+.heat th{text-align:center}
+.note{font-size:12px;color:#6f86a8;background:rgba(111,134,168,.08);padding:12px;margin-top:14px;line-height:1.6}
+.btn{display:inline-block;border:1.5px solid #cfe9ff;padding:11px 17px;margin:22px 8px 0 0;text-decoration:none;color:#cfe9ff;font-weight:600;letter-spacing:.06em}
+.btn:hover{background:#cfe9ff;color:#06060c}
+code{background:rgba(111,134,168,.16);padding:1px 5px}
+a{color:#cfe9ff}
+</style></head>
+<body><div class="s">
+<div class="b">THE SIGNAL // THE MANIFOLD</div>
+<h1>THE PREDICTION CORE</h1>
+<p class="sub">The oracle does not predict on a flat line. Every topic is a trajectory through a curved relativistic space-time, and where it goes next is a geodesic on that manifold. Repurposed from a quant engine built to predict asset prices through topology, the core reads each topic's relativistic velocity, its Lorentz factor (fast moves carry more weight), its space-time regime, and a forward geodesic forecast. That regime shapes which bet the machine makes; the geodesic predicts the line.</p>
+
+<h2>THE LIVE MANIFOLD</h2>
+<p class="sub">Each point is a topic the engine is tracking, placed by its forward geodesic forecast (left falls, right rises) and its conviction (higher sits stronger). Color is the local regime.</p>
+<canvas id="m" width="708" height="420"></canvas>
+<div class="legend">
+<span><span class="dot" style="background:#5fd08a"></span>TIMELIKE / causal trend</span>
+<span><span class="dot" style="background:#5fb8ff"></span>LIGHTLIKE / transition</span>
+<span><span class="dot" style="background:#e88a4d"></span>SPACELIKE / stochastic</span>
+</div>
+<div id="mnote" class="note">Reading the manifold...</div>
+
+<h2>THE PROVING GROUND</h2>
+<p class="sub" id="benchhead">Benchmarking the manifold against the algorithms that run the internet...</p>
+<table id="bench"></table>
+<p class="sub" style="margin-top:18px">Directional accuracy by regime, the hardest test. Trend-followers ace clean trends and collapse on reversals; the manifold holds up across all of them.</p>
+<div style="overflow-x:auto"><table id="heat" class="heat"></table></div>
+<div class="note" id="realnote"></div>
+
+<a class="btn" href="https://mattbusel.github.io/tech-oracle/">[ BACK TO THE SIGNAL ]</a>
+<a class="btn" href="https://mattbusel.github.io/tech-oracle/api/benchmark.json">[ THE BENCHMARK, AS JSON ]</a>
+
+<script>
+var REG={TIMELIKE:'#5fd08a',LIGHTLIKE:'#5fb8ff',SPACELIKE:'#e88a4d'};
+function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+var cv=document.getElementById('m'),ctx=cv.getContext('2d'),DATA=[],tphase=0;
+function resize(){var r=cv.getBoundingClientRect();cv.width=r.width;cv.height=420;}
+window.addEventListener('resize',resize);resize();
+function draw(){
+ var W=cv.width,H=cv.height;ctx.clearRect(0,0,W,H);
+ // curved manifold mesh
+ ctx.strokeStyle='rgba(111,134,168,.16)';ctx.lineWidth=1;
+ for(var gy=0;gy<=8;gy++){ctx.beginPath();for(var gx=0;gx<=W;gx+=12){var yy=H*gy/8+Math.sin((gx/W*6)+(gy*0.6)+tphase*0.4)*8;if(gx===0)ctx.moveTo(gx,yy);else ctx.lineTo(gx,yy);}ctx.stroke();}
+ for(var gx2=0;gx2<=10;gx2++){var xx=W*gx2/10;ctx.beginPath();ctx.moveTo(xx,0);ctx.lineTo(xx,H);ctx.globalAlpha=.5;ctx.stroke();ctx.globalAlpha=1;}
+ // center axis (zero forecast) and light cone
+ ctx.strokeStyle='rgba(111,134,168,.4)';ctx.beginPath();ctx.moveTo(W/2,0);ctx.lineTo(W/2,H);ctx.stroke();
+ ctx.fillStyle='#6f86a8';ctx.font='10px IBM Plex Mono';ctx.fillText('FALLS',12,H-12);ctx.fillText('RISES',W-46,H-12);ctx.fillText('CONVICTION',12,18);
+ var pts=DATA.filter(function(d){return d.defined;});
+ if(!pts.length){ctx.fillStyle='#8aa0bf';ctx.font='13px IBM Plex Mono';ctx.textAlign='center';ctx.fillText('THE MANIFOLD IS WARMING UP',W/2,H/2-6);ctx.font='11px IBM Plex Mono';ctx.fillText('topics need a few days of history before a geodesic is defined',W/2,H/2+14);ctx.textAlign='left';return;}
+ pts.forEach(function(d,i){
+  var x=W/2 + d.trend*(W/2-50);
+  var conv=Math.max(0,Math.min(1,1-1/Math.max(1,d.gamma)));
+  var y=H-30 - conv*(H-70) + Math.sin(tphase+i)*3;
+  var rad=4+conv*9, col=REG[d.regime]||'#8aa0bf';
+  // geodesic arrow
+  ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+d.trend*34,y);ctx.stroke();
+  ctx.fillStyle=col;ctx.beginPath();ctx.arc(x,y,rad,0,7);ctx.fill();
+  ctx.fillStyle='rgba(207,233,255,.85)';ctx.font='10px IBM Plex Mono';ctx.fillText(d.term,x+rad+3,y-4);
+ });
+}
+function loop(){tphase+=0.03;draw();requestAnimationFrame(loop);}
+fetch('api/observatory.json').then(function(r){return r.json();}).then(function(o){
+ var m=(o&&o.manifold)||[];
+ DATA=m.map(function(d){return {term:d.term,regime:d.regime,gamma:d.gamma,trend:d.geodesic_trend,defined:d.defined};});
+ var def=DATA.filter(function(d){return d.defined;}).length;
+ document.getElementById('mnote').innerHTML=def?(def+' topics have a defined trajectory. Points drift live as new days land.'):'No topic has 3+ days of history yet, so every reading is warming up. This plot fills in as the corpus matures, one daily run at a time. The math is live now; the picture follows.';
+}).catch(function(){document.getElementById('mnote').textContent='Could not load the live manifold.';});
+loop();
+
+fetch('api/benchmark.json').then(function(r){return r.json();}).then(function(d){
+ var b=d&&d.benchmark;if(!b){return;}
+ var t=document.getElementById('bench');
+ t.innerHTML='<tr><th>ALGORITHM</th><th>WHAT IT IS</th><th class=num>ACC</th><th class=num>IC</th><th class=num>BRIER</th></tr>';
+ b.algos.forEach(function(a){
+  var tr=document.createElement('tr');if(a.is_manifold)tr.className='me';
+  tr.innerHTML='<td>'+esc(a.name)+'</td><td class=sub style="font-size:11px">'+esc(a.blurb)+'</td><td class=num>'+a.accuracy.toFixed(1)+'%</td><td class=num>'+a.ic.toFixed(3)+'</td><td class=num>'+a.brier.toFixed(3)+'</td>';
+  t.appendChild(tr);
+ });
+ var bits=[];if(b.manifold_best_ic)bits.push('the highest information coefficient');if(b.manifold_best_brier)bits.push('the best calibration (Brier)');
+ var head='Across '+b.samples.toLocaleString()+' forecasts over '+b.regimes.length+' market regimes, THE MANIFOLD posts '+(bits.length?bits.join(' and '):'a top-tier score')+' of the '+b.algos.length+' algorithms tested. ';
+ head+='IC is the standard quant yardstick (correlation of the forecast with what actually happened); Brier measures calibration, lower is better. The field includes EWMA momentum (the engine behind hot-feed ranking), moving-average crossover (classic technical analysis), PageRank (Google’s importance-by-structure), a recommender popularity baseline, and the random-walk null.';
+ document.getElementById('benchhead').innerHTML=head;
+ // heatmap
+ var h=document.getElementById('heat');
+ var hh='<tr><th>ALGORITHM</th>'+b.regimes.map(function(r){return '<th>'+esc(r)+'</th>';}).join('')+'</tr>';
+ b.algos.forEach(function(a){
+  var byr={};a.by_regime.forEach(function(x){byr[x.regime]=x.acc;});
+  hh+='<tr'+(a.is_manifold?' class=me':'')+'><td style="text-align:left;color:#cfe9ff;font-weight:600">'+esc(a.name)+'</td>'+b.regimes.map(function(r){
+   var v=byr[r]||0;var g=Math.max(0,Math.min(1,(v-30)/65));var bg='rgba('+Math.round(232-g*170)+','+Math.round(138+g*70)+','+Math.round(77+g*10)+','+(0.25+g*0.65)+')';
+   return '<td style="background:'+bg+'">'+v.toFixed(0)+'%</td>';
+  }).join('')+'</tr>';
+ });
+ h.innerHTML=hh;
+ var rn=document.getElementById('realnote');
+ rn.innerHTML=b.real_eligible>0?(b.real_eligible+' live topics now have enough history to be graded for real; the live benchmark is activating.'):'This is a controlled benchmark on synthetic topics with known regimes, designed to be fair (momentum should tie on clean trends; everyone should land at a coin flip on noise). A live benchmark on the real corpus activates automatically once topics accumulate 30+ days of history.';
+}).catch(function(){document.getElementById('benchhead').textContent='Could not load the benchmark.';});
+</script>
+</div></body></html>

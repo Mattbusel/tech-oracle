@@ -1,4 +1,5 @@
 mod access;
+mod bench;
 mod bloodline;
 mod card;
 mod fetch;
@@ -107,7 +108,7 @@ fn main() {
     let champ = blood.champion_genes();
     // A prolific slate: many dated calls a day so the record (and the market the
     // bloodline bets on) grows fast and there is always plenty to hold or trade.
-    let picks = rank::rank_and_select(signals, seed, 24, &weights);
+    let picks = rank::rank_and_select(signals, seed, 24, &weights, &obs);
     let mut todays = generate::generate(&picks, &date, seed, today_index, &obs, champ.aggr, champ.risk);
     // The press never misses an edition. If every source went dark, the machine
     // still prints: a dated call on its own Acceleration Index. There is always
@@ -176,7 +177,11 @@ fn main() {
     let new_weights = compute_weights(&source_stats);
     save_weights(&new_weights);
     // The Engine Room panel: everything the observatory and the book now know.
-    let engine = build_engine(&obs, &source_stats, &new_weights);
+    let mut engine = build_engine(&obs, &source_stats, &new_weights);
+    // THE PROVING GROUND: benchmark the manifold against the canonical algorithms.
+    if let Some(obj) = engine.as_object_mut() {
+        obj.insert("benchmark".to_string(), build_benchmark(&obs));
+    }
 
     // THE BLOODLINE evolves: score every organism on the settled record, cull
     // the broke, breed the rich. The new champion drives tomorrow's line.
@@ -683,6 +688,50 @@ fn save_weights(w: &HashMap<String, f64>) {
 }
 
 /// Assemble the Engine Room: the quantitative state the page dramatizes.
+/// THE PROVING GROUND: run the forecasting benchmark and shape it for the page
+/// and `api/benchmark.json`. `real_eligible` is how many tracked topics now have
+/// enough live history to be graded for real (the live test activates as the
+/// corpus matures); until then the controlled synthetic suite carries it.
+fn build_benchmark(obs: &observatory::Observatory) -> serde_json::Value {
+    let real_eligible = obs.corpus.terms.values().filter(|t| t.days >= 30).count();
+    let rep = bench::run(real_eligible);
+    let r1 = |x: f64| (x * 10.0).round() / 10.0;
+    let r3 = |x: f64| (x * 1000.0).round() / 1000.0;
+    let algos: Vec<serde_json::Value> = rep
+        .algos
+        .iter()
+        .map(|a| {
+            serde_json::json!({
+                "name": a.name,
+                "blurb": a.blurb,
+                "accuracy": r1(a.accuracy * 100.0),
+                "ic": r3(a.ic),
+                "brier": r3(a.brier),
+                "is_manifold": a.name == "MANIFOLD",
+                "by_regime": a.by_regime.iter()
+                    .map(|(reg, v)| serde_json::json!({ "regime": reg, "acc": r1(v * 100.0) }))
+                    .collect::<Vec<_>>(),
+            })
+        })
+        .collect();
+    // Where the manifold ranks on each metric (1 = best).
+    let acc_rank = 1 + rep.algos.iter().filter(|a| a.accuracy > rep.algos.iter().find(|x| x.name == "MANIFOLD").map(|m| m.accuracy).unwrap_or(0.0)).count();
+    let ic_best = rep.algos.iter().map(|a| a.ic).fold(f64::NEG_INFINITY, f64::max);
+    let brier_best = rep.algos.iter().map(|a| a.brier).fold(f64::INFINITY, f64::min);
+    let mani = rep.algos.iter().find(|a| a.name == "MANIFOLD");
+    serde_json::json!({
+        "horizon": rep.horizon,
+        "topics": rep.topics,
+        "samples": rep.samples,
+        "regimes": rep.regimes,
+        "algos": algos,
+        "real_eligible": rep.real_eligible,
+        "manifold_acc_rank": acc_rank,
+        "manifold_best_ic": mani.map(|m| (m.ic - ic_best).abs() < 1e-9).unwrap_or(false),
+        "manifold_best_brier": mani.map(|m| (m.brier - brier_best).abs() < 1e-9).unwrap_or(false),
+    })
+}
+
 fn build_engine(
     obs: &observatory::Observatory,
     stats: &HashMap<String, (i64, i64)>,
@@ -992,6 +1041,7 @@ fn fallback_call(date: &str, index: i64) -> Prediction {
         live: 60,
         live_prev: 60,
         live_date: date.to_string(),
+        ..Default::default()
     }
 }
 

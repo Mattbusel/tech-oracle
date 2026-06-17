@@ -20,11 +20,14 @@ A JSON array of `Prediction` (see `01-rust-engine.md::model.rs`):
   "signal_type":"hn","status":"HIT","keyword":"local","win_if":"WIN IF \"LOCAL\" ...",
   "resolves_by":"2026-07-15","resolved_on":"2026-06-16","confidence":0.58,
   "market":"RESURFACE","keyword2":"","target":0,"rationale":"VEL +x%/7d // ...",
-  "live":64,"live_prev":56,"live_date":"2026-06-17"
+  "live":64,"live_prev":56,"live_date":"2026-06-17",
+  "regime":"TIMELIKE","gamma":1.84,"geodesic":41
 }]
 ```
 `live`/`live_prev`/`live_date` are the mark-to-market likelihood (0-100), its
-prior reading, and the last day it was rolled. The engine now generates ~24 calls
+prior reading, and the last day it was rolled. `regime`/`gamma`/`geodesic` are the
+manifold stamp at call time (the space-time regime, the Lorentz factor, and the
+forward geodesic forecast in percent; empty/`0`/`1.0` while the manifold warms up). The engine now generates ~24 calls
 a day (a prolific slate) so the record and the betting market grow fast.
 Only revealed (age >= `REVEAL_DELAY_DAYS`) calls live here. Idempotent per day:
 a re-run drops today's and regenerates.
@@ -86,6 +89,10 @@ This file powers velocity, diffusion/CHASM, sectors, and the dataset.
 - `arena.html` - the prediction tournament board (client-side): reads GitHub
   issues labeled `arena` plus `api/record.json`, settles every `SIGNAL-BET`, and
   ranks all players against the machine and the anti-oracle.
+- `manifold.html` - THE MANIFOLD: the prediction core made visible (topics plotted
+  as points on the relativistic attention manifold by regime, conviction and
+  geodesic forecast) plus THE PROVING GROUND (the algorithm benchmark). Reads
+  `api/observatory.json` and `api/benchmark.json` at runtime.
 - `sleep.html` - SLEEP MODE: a standalone, always-running dreamscape destination
   (the term pool and forms are baked in; the client recombines new dreams
   forever). Not a takeover; reached from the footer.
@@ -120,6 +127,10 @@ Static, read-only, CORS-open (GitHub Pages sets `access-control-allow-origin: *`
   source_weights, corpus_days, tracked_terms`. `manifold` is one relativistic
   reading per top mover: `term, regime, defined, beta, gamma, rel_momentum, ds2,
   curvature, geodesic_trend, prob_rising`.
+- `api/benchmark.json` - the proving ground: the manifold vs the canonical
+  algorithms (momentum, MA-cross, popularity, PageRank, random walk) on the
+  forecasting task, with accuracy / IC / Brier and per-regime accuracy. Built by
+  `main::build_benchmark` from `bench::run`.
 - `openapi.json` - a real OpenAPI 3.0 spec for the three GET endpoints
   (operationIds getTodaysCalls / getRecord / getObservatory).
 - `.well-known/ai-plugin.json` - the de facto agent-discovery manifest, points to

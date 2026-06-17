@@ -117,8 +117,10 @@ build/                  Gitignored scratch: early_payload.json (the paid edge), 
      sources, velocity, diffusion, sectors, fear/greed, plus the time-series
      queries the grader settles on).
 4. **Select** (`rank.rs`): `load_weights()` reads `data/weights.json`;
-   `rank_and_select(signals, seed, 4, &weights)` normalizes momentum per source,
-   multiplies by the learned weight, dedups by topic, returns the top picks.
+   `rank_and_select(signals, seed, 24, &weights, obs)` normalizes momentum per
+   source, multiplies by the learned weight and by a manifold conviction boost
+   (`1 + 0.6 * |trend| * regime.certainty()`), dedups by topic, returns the top
+   picks.
 5. **Generate** (`generate.rs`): `generate(picks, date, seed, index, obs)`
    builds one `Prediction` per pick. The **manifold** (`manifold.rs`, repurposed
    from SRFM) reads each topic's attention trajectory as a path through a curved

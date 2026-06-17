@@ -1,0 +1,232 @@
+{
+  "benchmark": {
+    "algos": [
+      {
+        "accuracy": 64.8,
+        "blurb": "short vs long moving average: classic technical analysis",
+        "brier": 0.249,
+        "by_regime": [
+          {
+            "acc": 98.2,
+            "regime": "TREND"
+          },
+          {
+            "acc": 98.9,
+            "regime": "DECLINE"
+          },
+          {
+            "acc": 43.5,
+            "regime": "MEAN-REVERT"
+          },
+          {
+            "acc": 76.0,
+            "regime": "REGIME-SWITCH"
+          },
+          {
+            "acc": 38.4,
+            "regime": "VIRAL"
+          },
+          {
+            "acc": 47.7,
+            "regime": "NOISE"
+          }
+        ],
+        "ic": 0.228,
+        "is_manifold": false,
+        "name": "MA-CROSS"
+      },
+      {
+        "accuracy": 63.9,
+        "blurb": "EWMA trend-following: the heart of hot-feed ranking",
+        "brier": 0.239,
+        "by_regime": [
+          {
+            "acc": 93.5,
+            "regime": "TREND"
+          },
+          {
+            "acc": 95.5,
+            "regime": "DECLINE"
+          },
+          {
+            "acc": 27.3,
+            "regime": "MEAN-REVERT"
+          },
+          {
+            "acc": 86.6,
+            "regime": "REGIME-SWITCH"
+          },
+          {
+            "acc": 38.4,
+            "regime": "VIRAL"
+          },
+          {
+            "acc": 52.3,
+            "regime": "NOISE"
+          }
+        ],
+        "ic": 0.212,
+        "is_manifold": false,
+        "name": "MOMENTUM"
+      },
+      {
+        "accuracy": 63.5,
+        "blurb": "this engine: relativistic geometry of the attention path",
+        "brier": 0.216,
+        "by_regime": [
+          {
+            "acc": 98.2,
+            "regime": "TREND"
+          },
+          {
+            "acc": 99.4,
+            "regime": "DECLINE"
+          },
+          {
+            "acc": 35.1,
+            "regime": "MEAN-REVERT"
+          },
+          {
+            "acc": 77.2,
+            "regime": "REGIME-SWITCH"
+          },
+          {
+            "acc": 38.7,
+            "regime": "VIRAL"
+          },
+          {
+            "acc": 46.8,
+            "regime": "NOISE"
+          }
+        ],
+        "ic": 0.239,
+        "is_manifold": true,
+        "name": "MANIFOLD"
+      },
+      {
+        "accuracy": 63.3,
+        "blurb": "bet on what is already big: the recommender reflex",
+        "brier": 0.234,
+        "by_regime": [
+          {
+            "acc": 98.2,
+            "regime": "TREND"
+          },
+          {
+            "acc": 98.9,
+            "regime": "DECLINE"
+          },
+          {
+            "acc": 31.0,
+            "regime": "MEAN-REVERT"
+          },
+          {
+            "acc": 80.4,
+            "regime": "REGIME-SWITCH"
+          },
+          {
+            "acc": 37.0,
+            "regime": "VIRAL"
+          },
+          {
+            "acc": 47.4,
+            "regime": "NOISE"
+          }
+        ],
+        "ic": 0.232,
+        "is_manifold": false,
+        "name": "POPULARITY"
+      },
+      {
+        "accuracy": 50.0,
+        "blurb": "the efficient-market null: predict no change",
+        "brier": 0.25,
+        "by_regime": [
+          {
+            "acc": 50.0,
+            "regime": "TREND"
+          },
+          {
+            "acc": 50.0,
+            "regime": "DECLINE"
+          },
+          {
+            "acc": 50.0,
+            "regime": "MEAN-REVERT"
+          },
+          {
+            "acc": 50.0,
+            "regime": "REGIME-SWITCH"
+          },
+          {
+            "acc": 50.0,
+            "regime": "VIRAL"
+          },
+          {
+            "acc": 50.0,
+            "regime": "NOISE"
+          }
+        ],
+        "ic": 0.0,
+        "is_manifold": false,
+        "name": "RANDOM WALK"
+      },
+      {
+        "accuracy": 46.1,
+        "blurb": "centrality on the co-movement graph: importance-by-structure",
+        "brier": 0.337,
+        "by_regime": [
+          {
+            "acc": 51.9,
+            "regime": "TREND"
+          },
+          {
+            "acc": 74.2,
+            "regime": "DECLINE"
+          },
+          {
+            "acc": 48.7,
+            "regime": "MEAN-REVERT"
+          },
+          {
+            "acc": 25.2,
+            "regime": "REGIME-SWITCH"
+          },
+          {
+            "acc": 37.4,
+            "regime": "VIRAL"
+          },
+          {
+            "acc": 62.8,
+            "regime": "NOISE"
+          }
+        ],
+        "ic": -0.003,
+        "is_manifold": false,
+        "name": "PAGERANK"
+      }
+    ],
+    "horizon": 7,
+    "manifold_acc_rank": 3,
+    "manifold_best_brier": true,
+    "manifold_best_ic": true,
+    "real_eligible": 0,
+    "regimes": [
+      "TREND",
+      "DECLINE",
+      "MEAN-REVERT",
+      "REGIME-SWITCH",
+      "VIRAL",
+      "NOISE"
+    ],
+    "samples": 2064,
+    "topics": 48
+  },
+  "metrics": {
+    "accuracy": "directional hit rate, percent",
+    "brier": "probability calibration, lower is better",
+    "ic": "information coefficient (corr of score with realized forward move)"
+  },
+  "schema": "the-signal/benchmark/1",
+  "task": "Given a topic's attention series up to day t, predict P(attention is higher H days later)."
+}

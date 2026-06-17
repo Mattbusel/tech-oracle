@@ -52,4 +52,14 @@ pub struct Prediction {
     pub live_prev: i64, // the prior reading, to show the move
     #[serde(default)]
     pub live_date: String, // last day live was rolled (idempotent per day)
+
+    // THE MANIFOLD stamp: where the topic sat on the relativistic attention
+    // manifold when the call was made (manifold.rs). The regime that shaped the
+    // bet, the Lorentz factor, and the forward geodesic forecast in percent.
+    #[serde(default)]
+    pub regime: String, // TIMELIKE | SPACELIKE | LIGHTLIKE | "" (warming up)
+    #[serde(default)]
+    pub gamma: f64, // Lorentz factor at call time (>= 1.0)
+    #[serde(default)]
+    pub geodesic: i64, // forward geodesic forecast, -100..100
 }

@@ -73,7 +73,15 @@ provocative `challenge_template` text.
   factor (`gamma`), space-time regime (TIMELIKE causal trend / SPACELIKE noise /
   LIGHTLIKE transition), geodesic curvature, and a forward geodesic forecast. The
   regime shapes which market is bet; the forecast predicts confidence and the live
-  likelihood. Surfaced per top-mover in `api/observatory.json` as `manifold`.
+  likelihood. Surfaced per top-mover in `api/observatory.json` as `manifold`, and
+  visualized live on `manifold.html`.
+- **The Proving Ground** (`bench.rs`, `manifold.html`, `api/benchmark.json`): a
+  head-to-head forecasting benchmark of the manifold against the canonical
+  algorithms (EWMA momentum, moving-average crossover, a popularity/recommender
+  baseline, PageRank, and the random-walk null) on a controlled six-regime suite,
+  scored by directional accuracy, information coefficient and Brier. The manifold
+  leads on IC and calibration and ties for top accuracy. A live benchmark on the
+  real corpus activates once topics have 30+ days of history.
 - **The Chasm**: the point a term born technical reaches a general-public source.
   The CHASM market and the chasm watch track it.
 - **Diffusion funnel / stage**: sources ordered technical(0) to general(9); see

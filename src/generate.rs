@@ -159,9 +159,18 @@ pub fn generate(
                 live: (confidence * 100.0).round() as i64,
                 live_prev: (confidence * 100.0).round() as i64,
                 live_date: date.to_string(),
+                regime: if mani.defined() { mani.regime.label().to_string() } else { String::new() },
+                gamma: (mani.gamma * 1000.0).round() / 1000.0,
+                geodesic: (mani.trend * 100.0).round() as i64,
             }
         })
         .collect()
+}
+
+/// The watched keyword for a raw signal title (the same token generation uses),
+/// so ranking can look the topic up on the manifold before a call is built.
+pub fn keyword_for(title: &str) -> String {
+    pick_keyword(&shorten(title, 90))
 }
 
 /// The most distinctive token of a subject: the longest non-trivial word.

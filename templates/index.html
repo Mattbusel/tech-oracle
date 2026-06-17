@@ -544,6 +544,7 @@
                 <a class="sx" href="receipts.html">[ SEE THE RECEIPTS ]</a>
                 <a class="sx" href="arena.html">[ ENTER THE ARENA ]</a>
                 <a class="sx" href="bloodline.html">[ WATCH THE BLOODLINE ]</a>
+                <a class="sx" href="manifold.html">[ ENTER THE MANIFOLD ]</a>
                 <button class="sx" type="button" data-share data-text="An autonomous tech oracle that grades itself in public: {{ scoreboard.hits }} hits, {{ scoreboard.misses }} misses{% if scoreboard.has_rate %}, {{ scoreboard.rate }}% hit rate{% endif %}. No edits, no deletes.">[ SHARE THE RECORD ]</button>
                 <button class="sx alt" type="button" data-card data-dm="1" data-curve="book" data-headline="{% if scoreboard.has_rate %}{{ scoreboard.rate }}% HIT{% else %}ON RECORD{% endif %}" data-kicker="THE SCORECARD // SELF-GRADING" data-sub="{{ scoreboard.hits }} HITS / {{ scoreboard.misses }} MISSES / {{ scoreboard.open }} OPEN" data-stamp="PUBLIC RECORD" data-text="The SIGNAL oracle's public scorecard.">[ SAVE AS IMAGE ]</button>
               </div>
@@ -712,6 +713,20 @@
                 </div>
                 {% endfor %}
               </div>
+
+              {% if engine.benchmark %}
+              <div class="er-h2">THE PREDICTION CORE // THE MANIFOLD</div>
+              <div class="er-soft" style="margin-bottom:10px">Every topic is a trajectory through a curved relativistic space-time. Its regime shapes which bet the machine makes; the forward geodesic predicts the line. Repurposed from a quant engine built to predict asset prices through topology. Benchmarked head to head against the algorithms that run the internet:</div>
+              <div class="mf-grid">
+                {% for a in engine.benchmark.algos %}
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label"{% if a.is_manifold %} style="color:var(--ac);font-weight:700"{% endif %}>{{ a.name }}</span><span class="mf-count">{{ a.accuracy }}% ACC // IC {{ a.ic }} // BRIER {{ a.brier }}</span></div>
+                </div>
+                {% endfor %}
+              </div>
+              <div class="er-soft" style="margin-top:8px">Across {{ engine.benchmark.samples }} forecasts over {{ engine.benchmark.regimes | length }} market regimes, the manifold posts{% if engine.benchmark.manifold_best_ic %} the highest information coefficient{% endif %}{% if engine.benchmark.manifold_best_ic and engine.benchmark.manifold_best_brier %} and{% endif %}{% if engine.benchmark.manifold_best_brier %} the best calibration{% endif %} of the field. IC is the standard quant yardstick; Brier measures calibration, lower is better.</div>
+              <div class="sharebar" style="margin-top:10px"><a class="sx" href="manifold.html">[ ENTER THE MANIFOLD ]</a></div>
+              {% endif %}
             </section>
 
             <div class="perf" aria-hidden="true"></div>
@@ -835,7 +850,7 @@
             <footer class="foot">
               <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
               <p>NOT FINANCIAL ADVICE. SOURCES: ARXIV / GITHUB / CRATES.IO / LOBSTERS / HACKER NEWS / DEV.TO / REDDIT / ARS TECHNICA / THE NEWS / WIKIPEDIA.</p>
-              <p><a href="receipts.html">the receipts</a> // <a href="arena.html">the arena</a> // <a href="bloodline.html">the bloodline</a> // <a href="sleep.html">sleep mode</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
+              <p><a href="manifold.html">the manifold</a> // <a href="receipts.html">the receipts</a> // <a href="arena.html">the arena</a> // <a href="bloodline.html">the bloodline</a> // <a href="sleep.html">sleep mode</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
               <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
             </footer>
           </main>

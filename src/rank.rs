@@ -3,6 +3,7 @@
 //! then picking the top distinct items across the combined list.
 
 use crate::model::Signal;
+use crate::observatory::Observatory;
 use std::collections::HashMap;
 
 pub fn rank_and_select(
@@ -10,6 +11,7 @@ pub fn rank_and_select(
     seed: i64,
     max_picks: usize,
     weights: &HashMap<String, f64>,
+    obs: &Observatory,
 ) -> Vec<Signal> {
     if signals.is_empty() {
         return Vec::new();
@@ -41,7 +43,16 @@ pub fn rank_and_select(
             // The engine learns: sources whose calls actually landed get their
             // signals weighted up; chronic missers get weighted down.
             let w = weights.get(&s.signal_type).copied().unwrap_or(1.0);
-            (norm * w + bonus, s)
+            // THE MANIFOLD steers selection toward topics it reads with strong,
+            // trustworthy conviction (a clear geodesic in a causal regime), not
+            // flat noise. Zero effect until a topic has enough trajectory.
+            let r = crate::manifold::analyze(&obs.trajectory(&crate::generate::keyword_for(&s.title)));
+            let conviction = if r.defined() {
+                (r.trend.abs() * r.regime.certainty()).clamp(0.0, 1.0)
+            } else {
+                0.0
+            };
+            (norm * w * (1.0 + 0.6 * conviction) + bonus, s)
         })
         .collect();
 

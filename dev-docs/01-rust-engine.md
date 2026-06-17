@@ -77,6 +77,11 @@ The persisted source of truth for a call. All grading fields default via
 - `keyword2: String` - the rival, for HEAD-TO-HEAD / CROSSOVER.
 - `target: i64` - index threshold (INDEX) or mention threshold (OVER).
 - `rationale: String` - the machine reasoning tape.
+- `live, live_prev: i64`, `live_date: String` - the mark-to-market likelihood, its
+  prior reading, and the last day it rolled.
+- `regime: String`, `gamma: f64`, `geodesic: i64` - the manifold stamp at call
+  time: the space-time regime that shaped the bet, the Lorentz factor, and the
+  forward geodesic forecast in percent (`""`/`0`/`1.0` when warming up).
 
 ---
 
@@ -217,6 +222,37 @@ geodesic on that manifold. Dependency-free, deterministic, pure arithmetic.
 - `pub fn market_pool(regime) -> &[&str]` - the regime's preferred markets (how
   topology shapes the bet). Surfaced in `api/observatory.json` as `manifold` (one
   reading per top mover) and tested in `tests_manifold.rs`.
+
+Also wired into `rank.rs` (selection multiplies a topic's score by
+`1 + 0.6 * conviction`, where conviction is `|trend| * regime.certainty()`, so the
+engine selects topics it reads with strong, trustworthy conviction).
+
+---
+
+## `bench.rs` (the proving ground)
+
+A head-to-head forecasting benchmark of the manifold against the canonical
+algorithms it implicitly competes with. Same task for all: given a topic's
+attention series up to day t, output P(attention is higher H=7 days later). Scored
+on a controlled, deterministic suite of synthetic topics across six regimes
+(TREND, DECLINE, MEAN-REVERT, REGIME-SWITCH, VIRAL, NOISE) with walk-forward
+evaluation. Dependency-free; xorshift RNG; fixed seeds so results are reproducible.
+
+- Contenders: MANIFOLD (this engine), MOMENTUM (EWMA, the hot-feed-ranking
+  reflex), MA-CROSS (classic technical analysis), POPULARITY (the recommender
+  reflex), PAGERANK (centrality on the co-movement graph, importance-by-structure),
+  and RANDOM WALK (the efficient-market null, scored as a true coin flip).
+- Metrics: directional accuracy, information coefficient (IC, the correlation of
+  the score with the realized forward move), and Brier score (calibration, lower
+  better), plus per-regime accuracy.
+- `pub fn run(real_eligible) -> BenchReport` - builds the suite, runs every
+  contender walk-forward, returns the sorted leaderboard. `main::build_benchmark`
+  shapes it into the engine doc; `render.rs` writes `api/benchmark.json` and the
+  `manifold.html` page reads both. Tested in `tests_bench.rs` (determinism, the
+  null holding no edge, the manifold clearing a coin flip and finishing top-tier).
+  The manifold leads on IC and Brier and ties for top directional accuracy; the
+  full numbers live on the page. `real_eligible` counts tracked topics with 30+
+  days of history, so a live benchmark on the real corpus activates as it matures.
 
 ---
 

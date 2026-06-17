@@ -131,41 +131,48 @@ fn stdev(xs: &[f64]) -> f64 {
     var.sqrt()
 }
 
-/// Z-score of the last element against the whole slice.
-fn zscore_last(xs: &[f64]) -> f64 {
-    if xs.len() < 2 {
-        return 0.0;
-    }
-    let mean = xs.iter().sum::<f64>() / xs.len() as f64;
-    let sd = stdev(xs).max(1e-9);
-    (xs[xs.len() - 1] - mean) / sd
-}
-
 /// Follow the trajectory forward along its geodesic for HORIZON steps. Three
 /// forces, all from SRFM: momentum carries velocity forward, curvature (the
 /// acceleration) bends it and decays, and the metric resists travel through
 /// high-velocity (curved) space (the `/ sqrt(1 + |v|)` term). The regime sets how
 /// much momentum persists: a causal trend keeps going, stochastic noise reverts.
-fn forecast_trend(v0: f64, a0: f64, regime: Regime) -> f64 {
-    let persist = match regime {
-        Regime::Timelike => 0.85,
-        Regime::Lightlike => 0.55,
-        Regime::Spacelike => 0.25,
+fn forecast_trend(drift: f64, accel: f64, regime: Regime) -> f64 {
+    // The drift is the unbiased forward estimate, so it always carries. Only the
+    // ACCELERATION (the bend in the path) is trusted by regime: a causal trend
+    // believes its own curvature and rides a regime switch down; pure noise mostly
+    // ignores it. This is what keeps the manifold from chasing a viral peak.
+    let acc_w = match regime {
+        Regime::Timelike => 1.0,
+        Regime::Lightlike => 0.5,
+        Regime::Spacelike => 0.2,
     };
-    let mut vel = v0;
-    let mut acc = a0;
-    let mut level = 0.0;
-    for _ in 0..HORIZON {
-        acc *= 0.6; // curvature decays
-        vel = vel * persist + acc;
-        level += vel / (1.0 + vel.abs()).sqrt(); // metric resistance
+    // The forward velocity is the drift bent once by its current curvature (scaled
+    // by how much the regime trusts that curvature). A mild deceleration shrinks
+    // the climb; a real reversal (curvature stronger than the drift) flips it, which
+    // is how the manifold steps off a viral peak or rides a regime switch down.
+    let fwd_vel = drift + accel * acc_w;
+    let level = fwd_vel * HORIZON as f64;
+    // Squash to [-1, 1]. GAIN maps a few weeks of typical daily drift onto a
+    // meaningful slice of the range so trends read strong and noise reads flat.
+    const GAIN: f64 = 6.0;
+    (level * GAIN).tanh()
+}
+
+fn mean(xs: &[f64]) -> f64 {
+    if xs.is_empty() {
+        return 0.0;
     }
-    level.tanh()
+    xs.iter().sum::<f64>() / xs.len() as f64
 }
 
 /// Build a manifold reading from a topic's daily attention series, oldest first.
 /// Counts may include quiet (zero) days; we work in log-attention ln(1 + count)
 /// so a return is a growth rate and zeros are handled.
+///
+/// The relativistic framing: DRIFT (the consistent directional move) is the time
+/// axis, NOISE (the random scatter) is the spatial axis. A trajectory dominated by
+/// drift is TIMELIKE (causal, predictable); one dominated by noise is SPACELIKE
+/// (stochastic); the boundary is LIGHTLIKE (a regime in transition).
 pub fn analyze(series: &[f64]) -> Reading {
     let n = series.len();
     if n < MIN_POINTS {
@@ -174,25 +181,22 @@ pub fn analyze(series: &[f64]) -> Reading {
     let lev: Vec<f64> = series.iter().map(|&c| (1.0 + c.max(0.0)).ln()).collect();
     let rets: Vec<f64> = (1..n).map(|i| lev[i] - lev[i - 1]).collect();
 
-    // Recent window. The local "speed of light" is the largest move in it, so a
-    // calm topic and a violent one are judged on their own scales.
     let w = WINDOW.min(rets.len());
     let recent = &rets[rets.len() - w..];
-    let maxv = recent.iter().fold(1e-6_f64, |m, &r| m.max(r.abs()));
 
-    let betas: Vec<f64> = recent.iter().map(|&r| (r / maxv).clamp(-BETA_MAX, BETA_MAX)).collect();
-    let gammas: Vec<f64> = betas.iter().map(|&b| 1.0 / (1.0 - b * b).sqrt()).collect();
+    let drift = mean(recent); // the causal signal
+    let noise = stdev(recent); // the spatial scatter
+    let scale = drift.abs() + noise + 1e-9;
 
-    let beta = *betas.last().unwrap();
-    let gamma = *gammas.last().unwrap();
-    let last_ret = *recent.last().unwrap();
-    let rel_return = gamma * last_ret;
+    // Beta: how directed the motion is (signal as a fraction of total motion). A
+    // pure trend approaches the light speed of conviction; pure noise sits at rest.
+    let beta = (drift / scale).clamp(-BETA_MAX, BETA_MAX);
+    let gamma = 1.0 / (1.0 - beta * beta).sqrt();
+    let rel_return = gamma * drift; // relativistic momentum
 
-    // Space-time interval in normalized (c = 1) units: ds2 = -1 + |v|^2 + |a|^2 + sigma^2.
-    let accel = if recent.len() >= 2 { last_ret - recent[recent.len() - 2] } else { 0.0 };
-    let accel_n = accel / maxv;
-    let vol_n = stdev(recent) / maxv;
-    let ds2 = -1.0 + beta * beta + accel_n * accel_n + vol_n * vol_n;
+    // Normalized space-time interval: noise^2 - drift^2, in units of the scale.
+    // Negative (drift wins) -> timelike; positive (noise wins) -> spacelike.
+    let ds2 = (noise * noise - drift * drift) / (scale * scale);
     let regime = if ds2.abs() < LIGHTLIKE_EPS {
         Regime::Lightlike
     } else if ds2 < 0.0 {
@@ -201,15 +205,18 @@ pub fn analyze(series: &[f64]) -> Reading {
         Regime::Spacelike
     };
 
-    // Geodesic-deviation signal: (delta gamma / gamma) * sign(beta), z-scored.
-    let mut geo = vec![0.0_f64; gammas.len()];
-    for i in 1..gammas.len() {
-        let dg = gammas[i] - gammas[i - 1];
-        geo[i] = (dg / gammas[i].max(1e-9)) * betas[i].signum();
-    }
-    let curvature = zscore_last(&geo);
+    // Acceleration of the trend: the recent half's drift vs the older half's. This
+    // is what flips the forecast ahead of a regime switch or a viral peak, where a
+    // momentum chaser keeps buying the top.
+    let half = recent.len() / 2;
+    let accel = mean(&recent[half..]) - mean(&recent[..half.max(1)]);
 
-    let trend = forecast_trend(last_ret, accel, regime);
+    // Curvature for the readout: how far today's move deviates from the trend, in
+    // sigmas (a surprise / bend in the path).
+    let last_ret = *recent.last().unwrap();
+    let curvature = (last_ret - drift) / (noise + 1e-9);
+
+    let trend = forecast_trend(drift, accel, regime);
 
     Reading { points: n, beta, gamma, rel_return, ds2, regime, curvature, trend }
 }
