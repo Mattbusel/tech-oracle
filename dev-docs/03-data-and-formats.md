@@ -122,8 +122,15 @@ manifold is defined immediately.
   reset, and a new season opens. Tracks the headline stats (top net worth, biggest
   win, longest streak, most misses). You can **claim a rookie card** of any live
   organism; when its season resolves, if it finished #1 the card becomes a LEGEND
-  (1-of-1) attached to that historic run. The collection and rafters persist in
-  `localStorage`; the live game reseeds from each day's population. No server.
+  (1-of-1) attached to that historic run. Banks are uncapped within a season (runs
+  can go astronomical, abbreviated K/M/B/T in the UI) and only reset at the bell.
+  **Cards trade by code** (TRADE gives a one-time code, REDEEM accepts one) and
+  there is an in-browser **marketplace**: everyone starts with 1,000,000 CRED,
+  earns more by watching, and can SELL a card (collectors bid; accepting destroys
+  the card for CRED scaled by its rank, stats, and how long it was held). One
+  rookie claim per season. A HOW IT WORKS panel explains it inline. The collection,
+  rafters, and wallet persist in `localStorage`; the live game reseeds from each
+  day's population. No server.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus

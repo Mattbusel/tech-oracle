@@ -831,6 +831,13 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 </div>
 <div class="lprog"><i id="floorprog"></i></div>
 <p class="sub" style="margin:8px 0 0">Each season the organisms shove on the manifold's odds until the bell. Then it resolves: the champion is hung in the rafters with a one-of-one card, and a fresh season opens. Claim a rookie card of any live organism with [+]; if its run goes historic, your card becomes a legend.</p>
+<details style="margin-top:8px;font-size:11px;color:#a9a596;border:1px solid #2a2c28;padding:8px 12px"><summary style="cursor:pointer;color:#6ee07a;letter-spacing:.1em">HOW IT WORKS // CARDS, TRADING, THE MARKET</summary>
+<div style="margin-top:8px;line-height:1.65">
+<b style="color:#e7e2d4">THE FLOOR.</b> The organisms bet against the manifold's true odds every few seconds, no limit on how high a run can go. A season is 100 rounds. At the bell it resolves, the champion is enshrined in the rafters, and every bank resets to start the next season.<br><br>
+<b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE. Each card's art is generated from that organism's genes, so no two look alike.<br><br>
+<b style="color:#e7e2d4">TRADING.</b> Every card carries a unique code. Tap [ TRADE ] on a card to send it away: it leaves your collection and you get a one-time code. Give that code to anyone; they paste it into REDEEM to receive the card.<br><br>
+<b style="color:#e7e2d4">THE MARKET.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] to list a card; collectors bid over time; accept an offer and the card is destroyed for CRED. A card is worth more the higher it ranked, the wilder its stats, and the longer you have held it, so holding pays.
+</div></details>
 <div id="floorresolve" style="display:none;margin:10px 0 0;border:1px solid #caa64a;background:#15110a;color:#ffd56b;padding:10px 12px;font-weight:700;font-size:13px"></div>
 <div id="floorbig" style="font-size:12px;color:#ffd56b;min-height:16px;margin:10px 0;letter-spacing:.03em"></div>
 <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-top:6px">
@@ -840,25 +847,31 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 <div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">SEASON LEADERS</div>
 <div class="stat4" id="floorleaders"></div>
 <div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">YOUR CARDS // ONE ROOKIE A SEASON, EACH ONE TRADABLE BY CODE</div>
+<div id="floorwallet" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border:1px solid #2a2c28;background:#0d0f0d;padding:9px 12px;margin-bottom:8px;font-size:12px"><span>WALLET <b id="walletval" style="color:#ffd56b">1,000,000</b> CRED</span><span style="color:#8d8a7c;font-size:10px">you earn CRED just by watching. sell a card on the market and it is destroyed for CRED.</span></div>
 <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
 <input id="redeemin" placeholder="paste a trade code to redeem a card..." spellcheck="false" autocomplete="off" style="flex:1;min-width:180px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font-family:inherit;font-size:11px;padding:8px 10px">
 <button id="redeembtn" type="button" class="listen">[ REDEEM ]</button>
 </div>
 <div id="tradecode" style="display:none;border:1px solid #4a3a12;background:#15110a;color:#e7e2d4;padding:10px 12px;margin-bottom:8px;font-size:11px;line-height:1.5"></div>
 <div id="floorcards"><span class="sub">No cards yet. Tap [+] beside a live organism to claim a rookie card (one a season).</span></div>
+<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">ON THE MARKET // LIST A CARD, COLLECTORS BID, SELL FOR CRED (THE CARD IS DESTROYED)</div>
+<div id="floormarket"><span class="sub">Nothing listed. Tap SELL on a card to put it up for offers.</span></div>
 <div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">THE RAFTERS // SEASON CHAMPIONS, ONE-OF-ONE</div>
 <div id="floorrafters"><span class="sub">Empty. The first champion is crowned at the bell.</span></div>
 </section>
 "##;
         const FLOOR_SCRIPT: &str = r##"<script>
 (function(){
- var POOL=[],ORGS=[],rounds=0,settled=0,season=1,rafters=[],cards=[];
- var RMS=4000,timer=null,KEY='signal_floor_v4',CAP=5000000,SEASON_ROUNDS=100;
+ var POOL=[],ORGS=[],rounds=0,settled=0,season=1,rafters=[],cards=[],wallet=1000000;
+ var RMS=4000,timer=null,KEY='signal_floor_v4',SEASON_ROUNDS=100,INCOME=500;
  function rnd(){return Math.random();}
  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
  function fmt(n){return Math.round(n||0).toLocaleString();}
+ // Organism banks are uncapped now and can run astronomical within a season, so
+ // abbreviate them (K/M/B/T/...) to stay readable. The bell still resets at 100 rounds.
+ function fmtAbbr(n){n=n||0;var s=n<0?'-':'',a=Math.abs(n);if(a<1000)return s+Math.round(a);var u=['','K','M','B','T','Qa','Qi','Sx'],i=0;while(a>=1000&&i<u.length-1){a/=1000;i++;}return s+(a<10?a.toFixed(2):(a<100?a.toFixed(1):Math.round(a)))+u[i];}
  function by(id){return ORGS.filter(function(o){return o.id===id;})[0];}
- function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,day:window.__FLDAY}));}catch(e){}}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,wallet:wallet,day:window.__FLDAY}));}catch(e){}}
  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
  Promise.all([
   fetch('api/bloodline.json').then(function(r){return r.json();}).catch(function(){return null;}),
@@ -871,7 +884,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var living=bl.living||[],prev=load(),byId={};
   if(prev){
    // The collection persists across days; only the live game resets to the day's population.
-   rafters=prev.rafters||[];cards=prev.cards||[];season=prev.season||1;
+   rafters=prev.rafters||[];cards=prev.cards||[];season=prev.season||1;if(prev.wallet!=null)wallet=prev.wallet;
    if(prev.day===window.__FLDAY){(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});rounds=prev.rounds||0;settled=prev.settled||0;}
   }
   // Backfill older cards so they get a tradable code and gene-driven art.
@@ -899,7 +912,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
     var win=(side===actual);
     if(win){o.bank+=stake;o.w++;o.streak=o.streak>=0?o.streak+1:1;if(stake>o.biggestWin)o.biggestWin=stake;}
     else{o.bank-=stake;o.l++;o.streak=o.streak<=0?o.streak-1:-1;}
-    o.bank=Math.max(1,Math.min(CAP,o.bank));
+    o.bank=Math.max(1,o.bank);
     if(o.streak>o.maxStreak)o.maxStreak=o.streak;
     if(o.bank>o.peak)o.peak=o.bank;
     settled++;
@@ -911,7 +924,8 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var tk=document.getElementById('floorticker');
   if(tk)tk.innerHTML=rows.map(function(r){var c=r.win?'#6ee07a':'#ff8c7d';return '<div style="padding:3px 0;border-bottom:1px dotted #232520"><b>'+esc(r.name)+'</b> '+(r.side>0?'backs':'fades')+' <b>'+esc(r.term)+'</b> '+(r.side>0?'UP':'DN')+' for '+fmt(r.stake)+'<span style="color:'+c+';font-weight:700;float:right">'+(r.win?'WON':'LOST')+'</span></div>';}).join('')||'<span style="color:#8d8a7c">no takers this round</span>';
   var bg=document.getElementById('floorbig');
-  if(bg&&big)bg.innerHTML='BIGGEST SHOVE // <b>'+esc(big.name)+'</b> put <b>'+fmt(big.stake)+'</b> on '+esc(big.term)+' and '+(big.win?'<span style="color:#6ee07a">CASHED</span>':'<span style="color:#ff8c7d">MISSED</span>');
+  if(bg&&big)bg.innerHTML='BIGGEST SHOVE // <b>'+esc(big.name)+'</b> put <b>'+fmtAbbr(big.stake)+'</b> on '+esc(big.term)+' and '+(big.win?'<span style="color:#6ee07a">CASHED</span>':'<span style="color:#ff8c7d">MISSED</span>');
+  wallet+=INCOME;rollOffers();
   if(rounds>=SEASON_ROUNDS)resolveSeason();
   renderAll();save();
  }
@@ -925,27 +939,28 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   cards.forEach(function(c){
    if(c.resolved||c.claimedSeason!==season)return;
    var rk=rankOf[c.id]||999,o=by(c.id),fin=o?o.bank:0;
-   c.resolved={season:season,rank:rk,finalBank:fin,legend:(rk===1),podium:(rk<=3)};
-   if(rk===1)c.historic='WON SEASON '+season+' // net '+fmt(fin)+' // W'+(o?o.maxStreak:0)+' // big +'+fmt(o?o.biggestWin:0);
+   c.resolved={season:season,rank:rk,finalBank:fin,maxStreak:(o?o.maxStreak:0),biggestWin:(o?o.biggestWin:0),legend:(rk===1),podium:(rk<=3)};
+   if(rk===1)c.historic='WON SEASON '+season+' // net '+fmtAbbr(fin)+' // W'+(o?o.maxStreak:0)+' // big +'+fmtAbbr(o?o.biggestWin:0);
    else if(rk<=3)c.historic='PODIUM #'+rk+' // SEASON '+season;
    else c.historic='SEASON '+season+' // finished #'+rk;
   });
   var rb=document.getElementById('floorresolve');
-  if(rb&&champ){rb.style.display='block';rb.innerHTML='SEASON '+season+' RESOLVED // CHAMPION <b>'+esc(champ.name)+'</b> at '+fmt(champ.bank)+' chips, hung in the rafters with a one-of-one card.';}
+  if(rb&&champ){rb.style.display='block';rb.innerHTML='SEASON '+season+' RESOLVED // CHAMPION <b>'+esc(champ.name)+'</b> at '+fmtAbbr(champ.bank)+' chips, hung in the rafters with a one-of-one card.';}
   ORGS.forEach(function(o){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.maxStreak=0;o.biggestWin=0;o.peak=1000;});
   season++;rounds=0;renderCollection();
  }
  function renderAll(){
-  board();leaders();
+  board();leaders();drawMarket();
   var ss=document.getElementById('floorseason');if(ss)ss.textContent='SEASON '+season;
   var st=document.getElementById('floorstat');if(st)st.textContent='round '+rounds+'/'+SEASON_ROUNDS+' // '+fmt(settled)+' bets settled';
   var pr=document.getElementById('floorprog');if(pr)pr.style.width=Math.round(rounds/SEASON_ROUNDS*100)+'%';
+  var wv=document.getElementById('walletval');if(wv)wv.textContent=fmt(wallet);
  }
  function board(){
   var el=document.getElementById('floorboard');if(!el)return;
   var s=ORGS.slice().sort(function(a,b){return b.bank-a.bank;}).slice(0,10);
   var mx=Math.max.apply(null,s.map(function(o){return o.bank||1;}));
-  el.innerHTML=s.map(function(o,i){var w=Math.max(3,Math.round((o.bank/mx)*100));var col=o.bank>=1000?'#6ee07a':'#ff8c7d';return '<div style="margin:5px 0"><div style="display:flex;justify-content:space-between;gap:6px;align-items:center"><span class=nm style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">'+(i+1)+'. '+esc(o.name)+' <span class=tag>'+(o.fade?'FADE':'TAIL')+'</span></span><button data-card="'+o.id+'" title="claim rookie card" style="background:none;border:1px solid #4a4d44;color:#cfe7b6;cursor:pointer;font:inherit;font-size:10px;padding:0 7px;line-height:1.6;flex:0 0 auto">+</button><span style="color:'+col+';font-weight:700;flex:0 0 auto;min-width:64px;text-align:right">'+fmt(o.bank)+'</span></div><div class=bar><i style="width:'+w+'%;background:'+col+'"></i></div></div>';}).join('');
+  el.innerHTML=s.map(function(o,i){var w=Math.max(3,Math.round((o.bank/mx)*100));var col=o.bank>=1000?'#6ee07a':'#ff8c7d';return '<div style="margin:5px 0"><div style="display:flex;justify-content:space-between;gap:6px;align-items:center"><span class=nm style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">'+(i+1)+'. '+esc(o.name)+' <span class=tag>'+(o.fade?'FADE':'TAIL')+'</span></span><button data-card="'+o.id+'" title="claim rookie card" style="background:none;border:1px solid #4a4d44;color:#cfe7b6;cursor:pointer;font:inherit;font-size:10px;padding:0 7px;line-height:1.6;flex:0 0 auto">+</button><span style="color:'+col+';font-weight:700;flex:0 0 auto;min-width:64px;text-align:right">'+fmtAbbr(o.bank)+'</span></div><div class=bar><i style="width:'+w+'%;background:'+col+'"></i></div></div>';}).join('');
   var bs=el.querySelectorAll('[data-card]');for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){claim(parseInt(this.getAttribute('data-card'),10));});
  }
  function newCode(id){return 'SIG-'+((id>>>0).toString(36).toUpperCase())+'-'+Math.floor(rnd()*1679616).toString(36).toUpperCase();}
@@ -1010,10 +1025,40 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var ws=ORGS.slice().sort(function(a,b){return b.maxStreak-a.maxStreak;})[0];
   var ms=ORGS.slice().sort(function(a,b){return b.l-a.l;})[0];
   el.innerHTML=
-   '<div class=st><b>'+fmt(top.bank)+'</b><span>TOP NET WORTH // '+esc(top.name)+'</span></div>'+
-   '<div class=st><b>+'+fmt(bw.biggestWin)+'</b><span>BIGGEST WIN // '+esc(bw.name)+'</span></div>'+
+   '<div class=st><b>'+fmtAbbr(top.bank)+'</b><span>TOP NET WORTH // '+esc(top.name)+'</span></div>'+
+   '<div class=st><b>+'+fmtAbbr(bw.biggestWin)+'</b><span>BIGGEST WIN // '+esc(bw.name)+'</span></div>'+
    '<div class=st><b>W'+(ws.maxStreak||0)+'</b><span>LONGEST STREAK // '+esc(ws.name)+'</span></div>'+
    '<div class=st><b>'+fmt(ms.l)+'</b><span>MOST MISSES // '+esc(ms.name)+'</span></div>';
+ }
+ // THE MARKETPLACE. A card's worth scales with where it ranked (rarity), how wild
+ // its stats were (net worth, streak, biggest win), and how long you have held it
+ // (older = more, so you are rewarded for holding). Collectors bid around that value.
+ function ageSeasons(c){return Math.max(0,season-(c.claimedSeason||season));}
+ function cardValue(c){
+  var base=80000;
+  var rank=c.resolved?(c.resolved.legend?6:(c.resolved.podium?3:1.3)):1;
+  var fin=(c.resolved&&c.resolved.finalBank)||0,ms=(c.resolved&&c.resolved.maxStreak)||0,bw=(c.resolved&&c.resolved.biggestWin)||0;
+  var wild=1+(fin>0?Math.log(fin/1000+1)/Math.LN10*0.55:0)+ms*0.04+(bw>0?Math.log(bw+1)/Math.LN10*0.18:0);
+  var age=1+ageSeasons(c)*0.12;
+  return Math.max(5000,Math.round(base*rank*wild*age));
+ }
+ var BUYERS=['THE SYNDICATE','A WHALE','GHOST BIDDER','THE ARCHIVE','ANON COLLECTOR','THE VAULT','A RIVAL HOUSE','DEEP POCKETS'];
+ function makeOffer(c){return {buyer:BUYERS[Math.floor(rnd()*BUYERS.length)],amount:Math.round(cardValue(c)*(0.7+rnd()*0.75))};}
+ function listCard(code){var c=cardByCode(code);if(!c)return;c.listed=true;c.offers=[makeOffer(c),makeOffer(c),makeOffer(c)];save();renderCollection();drawMarket();}
+ function unlist(code){var c=cardByCode(code);if(!c)return;c.listed=false;c.offers=[];save();renderCollection();drawMarket();}
+ function rollOffers(){var ch=false;cards.forEach(function(c){if(c.listed&&rnd()<0.4){c.offers=c.offers||[];c.offers.push(makeOffer(c));c.offers.sort(function(a,b){return b.amount-a.amount;});if(c.offers.length>6)c.offers=c.offers.slice(0,6);ch=true;}});return ch;}
+ function accept(code,idx){var c=cardByCode(code);if(!c||!c.offers||!c.offers[idx])return;var amt=c.offers[idx].amount,nm=c.name,i=cards.indexOf(c);if(i>=0)cards.splice(i,1);wallet+=amt;save();renderCollection();drawMarket();var el=document.getElementById('tradecode');if(el){el.style.display='block';el.innerHTML='Sold <b>'+esc(nm)+'</b> for <b>'+fmt(amt)+' CRED</b>. The card was destroyed.';}}
+ function drawMarket(){
+  var el=document.getElementById('floormarket');if(!el)return;
+  var listed=cards.filter(function(c){return c.listed;});
+  if(!listed.length){el.innerHTML='<span class="sub">Nothing listed. Tap SELL on a card to put it up for offers. Selling destroys the card for CRED, scaled by its rank, its stats, and how long you have held it.</span>';return;}
+  el.innerHTML=listed.map(function(c){
+   var off=(c.offers||[]).slice().sort(function(a,b){return b.amount-a.amount;});
+   var rows=off.map(function(o,i){return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:3px 0"><span style="color:#a9a596">'+esc(o.buyer)+' bids <b style="color:#ffd56b">'+fmt(o.amount)+'</b> CRED</span><button class=tbtn data-acc="'+esc(c.code)+'|'+i+'" type="button">[ ACCEPT ]</button></div>';}).join('')||'<div class="sub">waiting for bids...</div>';
+   return '<div style="border:1px solid #34362f;padding:10px;margin:6px 0"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>'+esc(c.name)+'</b><button class=tbtn data-unlist="'+esc(c.code)+'" type="button">[ UNLIST ]</button></div><div style="color:#6f6c5f;font-size:9px;margin:2px 0 6px">est value '+fmt(cardValue(c))+' CRED // held '+ageSeasons(c)+' season(s) // longer held, worth more</div>'+rows+'</div>';
+  }).join('');
+  var ab=el.querySelectorAll('[data-acc]');for(var i=0;i<ab.length;i++)ab[i].addEventListener('click',function(){var p=this.getAttribute('data-acc').split('|');accept(p[0],parseInt(p[1],10));});
+  var ub=el.querySelectorAll('[data-unlist]');for(var j=0;j<ub.length;j++)ub[j].addEventListener('click',function(){unlist(this.getAttribute('data-unlist'));});
  }
  function rarOf(c){return c.resolved&&c.resolved.legend?'legend':(c.resolved&&c.resolved.podium?'rare':'');}
  function drawCards(){
@@ -1023,10 +1068,13 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
    var rar=rarOf(c),cls='lcard'+(rar?' '+rar:'');
    var rk=c.resolved?(c.resolved.legend?'LEGEND // 1 OF 1':(c.resolved.podium?'RARE':'SEASON '+c.resolved.season)):'ROOKIE // SEASON '+c.claimedSeason;
    var hist=c.historic?('<div style="margin-top:4px">'+esc(c.historic)+'</div>'):'<div style="margin-top:4px;color:#8d8a7c">live // resolves at the bell</div>';
-   return '<div class="'+cls+'"><canvas class=emb data-code="'+esc(c.code)+'" width=156 height=74></canvas><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span><div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'<div class=code>'+esc(c.code||'')+'</div><button class=tbtn data-trade="'+esc(c.code)+'" type="button">[ TRADE ]</button></div>';
+   var act=c.listed?'<button class=tbtn data-unlist2="'+esc(c.code)+'" type="button">[ LISTED ]</button>':'<button class=tbtn data-sell="'+esc(c.code)+'" type="button">[ SELL ]</button>';
+   return '<div class="'+cls+'"><canvas class=emb data-code="'+esc(c.code)+'" width=156 height=74></canvas><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span><div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'<div class=code>'+esc(c.code||'')+' // est '+fmt(cardValue(c))+' CRED</div><div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap"><button class=tbtn data-trade="'+esc(c.code)+'" type="button">[ TRADE ]</button>'+act+'</div></div>';
   }).join('');
   var cvs=el.querySelectorAll('canvas.emb');for(var i=0;i<cvs.length;i++){var c=cardByCode(cvs[i].getAttribute('data-code'));if(c)drawEmblem(cvs[i],c,rarOf(c));}
   var bs=el.querySelectorAll('[data-trade]');for(var j=0;j<bs.length;j++)bs[j].addEventListener('click',function(){tradeAway(this.getAttribute('data-trade'));});
+  var ss=el.querySelectorAll('[data-sell]');for(var k=0;k<ss.length;k++)ss[k].addEventListener('click',function(){listCard(this.getAttribute('data-sell'));});
+  var us=el.querySelectorAll('[data-unlist2]');for(var m=0;m<us.length;m++)us[m].addEventListener('click',function(){unlist(this.getAttribute('data-unlist2'));});
  }
  function drawRafters(){
   var el=document.getElementById('floorrafters');if(!el)return;
