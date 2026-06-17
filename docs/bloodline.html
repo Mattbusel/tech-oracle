@@ -53,7 +53,7 @@
 <p class="sub" style="margin:8px 0 0">Each season the organisms shove on the manifold's odds until the bell. Then it resolves: the champion is hung in the rafters with a one-of-one card, and a fresh season opens. Claim a rookie card of any live organism with [+]; if its run goes historic, your card becomes a legend.</p>
 <details style="margin-top:8px;font-size:11px;color:#a9a596;border:1px solid #2a2c28;padding:8px 12px"><summary style="cursor:pointer;color:#6ee07a;letter-spacing:.1em">HOW IT WORKS // CARDS, TRADING, THE MARKET</summary>
 <div style="margin-top:8px;line-height:1.65">
-<b style="color:#e7e2d4">THE FLOOR.</b> The organisms bet against the manifold's true odds every few seconds, no limit on how high a run can go. A season is 100 rounds. At the bell it resolves, the champion is enshrined in the rafters, and every bank resets to start the next season.<br><br>
+<b style="color:#e7e2d4">THE FLOOR.</b> The organisms bet against the manifold's true odds every few seconds, no limit on how high a run can go. But dominance is dangerous: the bigger a lead gets, the more the leader is forced to shove, and underdog wins pay more the further behind they are. So one bad round at the top can hand the throne to a longshot, an UPSET. A season is 100 rounds; at the bell it resolves, the champion is enshrined in the rafters, and every bank resets.<br><br>
 <b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. The cast is freshly named every season, and each card's art is generated from that organism's genes, so no two look alike. There is also a random FINISH on claim (SHINY, GOLD, EMERALD, SAPPHIRE, DIAMOND): two people can card the same organism and get different gems, and the market decides what each is worth. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE.<br><br>
 <b style="color:#e7e2d4">TRADING.</b> Every card carries a unique code. Tap [ TRADE ] on a card to send it away: it leaves your collection and you get a one-time code. Give that code to anyone; they paste it into REDEEM to receive the card.<br><br>
 <b style="color:#e7e2d4">THE MARKET.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] to list a card to the house collectors; bids come in over time; accept one and the card is destroyed for CRED. A card is worth more the higher it ranked, the wilder its stats, and the longer you have held it, so holding pays.<br><br>
@@ -188,30 +188,43 @@ setInterval(drawTable,1300);
   var K=8+Math.floor(rnd()*16);
   var picks=POOL.slice().sort(function(){return rnd()-0.5;}).slice(0,K);
   var rows=[],big=null;
+  // King-of-the-hill: the more dominant you are, the more you are forced to shove
+  // (a runaway lead is exposure); the further behind you are, the bigger your wins
+  // pay (giant-killer). So one bad round by the leader can hand an underdog the throne.
+  var fieldMax=1,kingB=null;
+  for(var z=0;z<ORGS.length;z++){if(ORGS[z].bank>fieldMax)fieldMax=ORGS[z].bank;if(!kingB||ORGS[z].bank>kingB.bank)kingB=ORGS[z];}
+  var kingName=kingB?kingB.name:'';
   picks.forEach(function(b){
    var rise=rnd()<b.p,actual=rise?1:-1;
    ORGS.forEach(function(o){
     if(o.bank<1)return;
     if(rnd()>(0.35+(1-o.sel)*0.5))return;
+    var share=o.bank/(fieldMax||1);
     var side=o.fade?-b.dir:b.dir;
-    var frac=(0.02+o.risk*0.10)*(1+o.press*Math.min(Math.abs(o.streak),5)*0.12);
+    var expo=1+share*share*4; // dominance is risk: the leader is forced to bet big
+    var frac=Math.min(0.45,(0.02+o.risk*0.10)*(1+o.press*Math.min(Math.abs(o.streak),5)*0.12)*expo);
     var stake=Math.max(1,Math.min(o.bank,Math.round(o.bank*frac)));
-    var win=(side===actual);
-    if(win){o.bank+=stake;o.w++;o.streak=o.streak>=0?o.streak+1:1;if(stake>o.biggestWin)o.biggestWin=stake;}
+    var win=(side===actual),amount=stake;
+    if(win){var mult=1+(1-share)*(1-share)*8;amount=Math.round(stake*mult);o.bank+=amount;o.w++;o.streak=o.streak>=0?o.streak+1:1;if(amount>o.biggestWin)o.biggestWin=amount;}
     else{o.bank-=stake;o.l++;o.streak=o.streak<=0?o.streak-1:-1;}
     o.bank=Math.max(1,o.bank);
     if(o.streak>o.maxStreak)o.maxStreak=o.streak;
     if(o.bank>o.peak)o.peak=o.bank;
     settled++;
-    if(!big||stake>big.stake)big={name:o.name,stake:stake,term:b.term,win:win};
-    if(rows.length<14)rows.push({term:b.term,name:o.name,side:side,stake:stake,win:win});
+    if(!big||amount>big.stake)big={name:o.name,stake:amount,term:b.term,win:win};
+    if(rows.length<14)rows.push({term:b.term,name:o.name,side:side,stake:amount,win:win});
    });
   });
+  var kingA=null;for(var z2=0;z2<ORGS.length;z2++){if(!kingA||ORGS[z2].bank>kingA.bank)kingA=ORGS[z2];}
+  var upset=(kingA&&kingName&&kingA.name!==kingName)?{now:kingA.name,was:kingName}:null;
   rounds++;
   var tk=document.getElementById('floorticker');
-  if(tk)tk.innerHTML=rows.map(function(r){var c=r.win?'#6ee07a':'#ff8c7d';return '<div style="padding:3px 0;border-bottom:1px dotted #232520"><b>'+esc(r.name)+'</b> '+(r.side>0?'backs':'fades')+' <b>'+esc(r.term)+'</b> '+(r.side>0?'UP':'DN')+' for '+fmt(r.stake)+'<span style="color:'+c+';font-weight:700;float:right">'+(r.win?'WON':'LOST')+'</span></div>';}).join('')||'<span style="color:#8d8a7c">no takers this round</span>';
+  if(tk)tk.innerHTML=rows.map(function(r){var c=r.win?'#6ee07a':'#ff8c7d';return '<div style="padding:3px 0;border-bottom:1px dotted #232520"><b>'+esc(r.name)+'</b> '+(r.side>0?'backs':'fades')+' <b>'+esc(r.term)+'</b> '+(r.side>0?'UP':'DN')+' for '+fmtAbbr(r.stake)+'<span style="color:'+c+';font-weight:700;float:right">'+(r.win?'WON':'LOST')+'</span></div>';}).join('')||'<span style="color:#8d8a7c">no takers this round</span>';
   var bg=document.getElementById('floorbig');
-  if(bg&&big)bg.innerHTML='BIGGEST SHOVE // <b>'+esc(big.name)+'</b> put <b>'+fmtAbbr(big.stake)+'</b> on '+esc(big.term)+' and '+(big.win?'<span style="color:#6ee07a">CASHED</span>':'<span style="color:#ff8c7d">MISSED</span>');
+  if(bg){
+   if(upset)bg.innerHTML='<span style="color:#ff5a4d;font-weight:700">UPSET //</span> <b>'+esc(upset.now)+'</b> just dethroned <b>'+esc(upset.was)+'</b> and seized the lead!';
+   else if(big)bg.innerHTML='BIGGEST SHOVE // <b>'+esc(big.name)+'</b> '+(big.win?'took down':'shoved')+' <b>'+fmtAbbr(big.stake)+'</b> on '+esc(big.term)+' and '+(big.win?'<span style="color:#6ee07a">CASHED</span>':'<span style="color:#ff8c7d">MISSED</span>');
+  }
   wallet+=INCOME;rollOffers();
   if(rounds>=SEASON_ROUNDS)resolveSeason();
   renderAll();save();

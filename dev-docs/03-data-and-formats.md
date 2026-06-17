@@ -124,6 +124,10 @@ manifold is defined immediately.
   organism; when its season resolves, if it finished #1 the card becomes a LEGEND
   (1-of-1) attached to that historic run. Banks are uncapped within a season (runs
   can go astronomical, abbreviated K/M/B/T in the UI) and only reset at the bell.
+  **King-of-the-hill comeback math**: the more dominant an organism, the larger the
+  fraction it is forced to stake (dominance is exposure), and underdog wins pay a
+  multiplier that grows the further behind they sit (giant-killer), so one bad round
+  at the top can flip the lead and fire an UPSET banner.
   **Cards trade by code** (TRADE gives a one-time code, REDEEM accepts one) and
   there is an in-browser **marketplace**: everyone starts with 1,000,000 CRED,
   earns more by watching, and can SELL a card (collectors bid; accepting destroys
