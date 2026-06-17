@@ -15,6 +15,8 @@ use std::collections::HashSet;
 const DATA_PATH: &str = "data/predictions.json";
 // Committed, public: the daily acceleration index history (THE PULSE).
 const PULSE_PATH: &str = "data/pulse.json";
+// Committed, public: the organism's genome -- mutates once per day, never resets.
+const GENOME_PATH: &str = "data/genome.json";
 // Gitignored, synced from KV before the run: calls still under embargo.
 const EMBARGO_IN: &str = "build/embargoed_in.json";
 // Gitignored, synced to KV after the run: the subscriber edge payload.
@@ -75,6 +77,8 @@ fn main() {
     // The Pulse: one acceleration index aggregated from the day's signals,
     // persisted so it trends over time.
     let pulse = build_pulse(&signals, &date);
+    // The genome: mutates once per day so the site evolves on its own.
+    let genome = build_genome(&date);
     // Lowercased corpus of today's signals, for self-grading open calls.
     let corpus = signals
         .iter()
@@ -158,6 +162,7 @@ fn main() {
         &early_access_url,
         &intake,
         &pulse,
+        &genome,
     ) {
         eprintln!("render error: {e}");
         std::process::exit(1);
@@ -339,6 +344,56 @@ fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, index: i64)
             p.resolved_on = today.to_string();
         }
     }
+}
+
+#[derive(Serialize, Deserialize, Clone, Default)]
+struct Genome {
+    gen: i64,      // generation (days lived)
+    hue: f64,      // 0..1, drifts around the wheel
+    wear: f64,     // 0..1, accumulates -- the den ages
+    quirk: i64,    // 0..5, a rare mutation that changes the look
+    last: String,  // last date mutated (idempotent per day)
+}
+
+fn ghash(s: &str) -> u64 {
+    let mut h: u64 = 1469598103934665603;
+    for b in s.bytes() {
+        h ^= b as u64;
+        h = h.wrapping_mul(1099511628257);
+    }
+    h
+}
+
+/// Load the genome, mutate it once per calendar day (seeded by the date, so it
+/// is deterministic but path-dependent and never resets), persist, and return
+/// it. This is what makes the organism evolve overnight.
+fn build_genome(date: &str) -> serde_json::Value {
+    let mut g: Genome = std::fs::read_to_string(GENOME_PATH)
+        .ok()
+        .and_then(|s| serde_json::from_str(&s).ok())
+        .unwrap_or(Genome { gen: 0, hue: 0.42, wear: 0.0, quirk: 0, last: String::new() });
+
+    if g.last != date {
+        let seed = ghash(date);
+        // hue random-walks around the wheel
+        let dh = ((seed % 1000) as f64 / 1000.0 - 0.5) * 0.09;
+        g.hue = (g.hue + dh + 1.0).fract();
+        // the den ages, slowly, forever
+        g.wear = (g.wear + 0.006).min(1.0);
+        g.gen += 1;
+        // a rare quirk fires (~1 day in 5): a "mood" that repaints the room
+        if seed % 5 == 0 {
+            g.quirk = ((seed / 7) % 6) as i64;
+        } else {
+            g.quirk = 0;
+        }
+        g.last = date.to_string();
+        if let Ok(j) = serde_json::to_string_pretty(&g) {
+            let _ = std::fs::write(GENOME_PATH, j);
+        }
+    }
+
+    serde_json::json!({ "gen": g.gen, "hue": g.hue, "wear": g.wear, "quirk": g.quirk })
 }
 
 #[derive(Serialize, Deserialize, Clone)]

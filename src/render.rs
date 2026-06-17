@@ -22,6 +22,7 @@ pub fn render(
     early_access_url: &str,
     intake: &serde_json::Value,
     pulse: &serde_json::Value,
+    genome: &serde_json::Value,
 ) -> anyhow::Result<()> {
     std::fs::create_dir_all(crate::OUT_DIR)?;
 
@@ -433,6 +434,55 @@ pub fn render(
         .collect();
     let floor_json = serde_json::to_string(&floor).unwrap_or_else(|_| "[]".to_string());
 
+    // THE MOOD: how the organism looks today, from its genome + its own state.
+    let g_hue = genome.get("hue").and_then(|v| v.as_f64()).unwrap_or(0.42);
+    let g_wear = genome.get("wear").and_then(|v| v.as_f64()).unwrap_or(0.0);
+    let g_quirk = genome.get("quirk").and_then(|v| v.as_i64()).unwrap_or(0);
+    let p_index = pulse.get("index").and_then(|v| v.as_i64()).unwrap_or(50);
+    let p_verdict = pulse.get("verdict").and_then(|v| v.as_str()).unwrap_or("ACTIVE");
+    let streak = book.get("streak").and_then(|v| v.as_str()).unwrap_or("--").to_string();
+    let losing = streak.starts_with('L');
+    let hot_hand = streak.starts_with('W') && streak[1..].parse::<i64>().unwrap_or(0) >= 5;
+    let age = {
+        let today = Utc::now().date_naive();
+        sorted.last().and_then(|p| NaiveDate::parse_from_str(&p.date, "%Y-%m-%d").ok())
+            .map(|d| (today - d).num_days().max(0))
+            .unwrap_or(0)
+    };
+    let model = 1 + total / 25;
+    let heat = (p_index as f64 / 100.0).clamp(0.0, 1.0);
+    let agit = (if losing { 0.35 } else { 0.0 } + if p_index > 80 { 0.25 } else { 0.0 } + g_wear * 0.15).min(0.9);
+    // Accent hue: the genome's hue, warmed by heat. Quirks override the palette.
+    let mut hue = g_hue;
+    let (mut sat, mut light) = (0.5f64, 0.55f64);
+    match g_quirk {
+        1 => { hue = 0.02; sat = 0.7; light = 0.5; }   // blood moon
+        2 => { hue = 0.58; sat = 0.6; light = 0.6; }   // blue shift
+        4 => { hue = 0.12; sat = 0.7; light = 0.6; }   // gold rush
+        _ => {}
+    }
+    if hot_hand { hue = 0.12; sat = 0.75; light = 0.6; } // hot hand always gilds
+    let accent = hsl_hex(hue, sat, light);
+    let taglines = [
+        "IT PRINTS THE FUTURE AND NEVER REPRINTS IT.",
+        "NO EDITS. NO DELETES. ONLY PRINTS.",
+        "THE HOUSE BETS ON ITSELF.",
+        "TAIL THE ENGINE OR FADE IT.",
+        "INFORMATION IS THE WEAPON OF LABOR.",
+        "EVERY CALL CARRIES A WIN CONDITION.",
+        "THE DEN NEVER SLEEPS.",
+    ];
+    let quirk_name = match g_quirk { 1 => "BLOOD MOON", 2 => "BLUE SHIFT", 3 => "STATIC STORM", 4 => "GOLD RUSH", 5 => "GHOST SHIFT", _ => "" };
+    let mood = serde_json::json!({
+        "heat": heat, "agit": agit, "wear": g_wear, "hue": hue,
+        "accent": accent, "quirk": g_quirk, "quirkName": quirk_name,
+        "embers": 0.4 + heat * 0.6,
+        "gen": genome.get("gen").and_then(|v| v.as_i64()).unwrap_or(0),
+        "age": age, "model": model, "verdict": p_verdict,
+        "hotHand": hot_hand,
+        "tagline": taglines[(age as usize) % taglines.len()],
+    });
+
     let tmpl_src = include_str!("../templates/index.html");
     let mut env = minijinja::Environment::new();
     env.add_template("index", tmpl_src)?;
@@ -454,6 +504,7 @@ pub fn render(
         floor_json => floor_json,
         ladder_repo => ladder_repo,
         og_image => format!("{site}/og.png"),
+        mood => mood,
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,
@@ -511,6 +562,24 @@ fn enc(s: &str) -> String {
         }
     }
     o
+}
+
+/// HSL (0..1 each) to #rrggbb.
+fn hsl_hex(h: f64, s: f64, l: f64) -> String {
+    let c = (1.0 - (2.0 * l - 1.0).abs()) * s;
+    let hp = h * 6.0;
+    let x = c * (1.0 - ((hp % 2.0) - 1.0).abs());
+    let (r1, g1, b1) = match hp as i32 {
+        0 => (c, x, 0.0),
+        1 => (x, c, 0.0),
+        2 => (0.0, c, x),
+        3 => (0.0, x, c),
+        4 => (x, 0.0, c),
+        _ => (c, 0.0, x),
+    };
+    let m = l - c / 2.0;
+    let to = |v: f64| ((v + m) * 255.0).round().clamp(0.0, 255.0) as u8;
+    format!("#{:02x}{:02x}{:02x}", to(r1), to(g1), to(b1))
 }
 
 fn slug(s: &str) -> String {

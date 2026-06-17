@@ -20,7 +20,7 @@
     :root {
       --desk: #17181c; --desk-2: #1f2127; --steel: #2b2e34; --steel-2: #3c4047; --steel-d: #14151a;
       --paper: #efede4; --bar: #e4e9dc; --ink: #1b1a14; --ink-soft: #6d6b5e; --rule: rgba(27,26,20,0.30);
-      --stamp: #b23a2e; --led: #6ee07a; --phos: #5bf08a; --amber: #ffb454;
+      --stamp: #b23a2e; --led: #6ee07a; --phos: #5bf08a; --amber: #ffb454; --ac: #5bf08a;
       --panel-tx: #c8ccd3; --panel-tx-soft: #868b95;
       --mono: "IBM Plex Mono", ui-monospace, "Courier New", monospace;
     }
@@ -44,7 +44,7 @@
     .scene-grad { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(12,13,16,0.35), rgba(12,13,16,0) 28%, rgba(12,13,16,0) 58%, rgba(12,13,16,0.9)); }
     .scene-ui { position: absolute; left: 0; right: 0; bottom: 3.5%; text-align: center; z-index: 4; color: #efede4; font-family: var(--mono); padding: 0 16px; pointer-events: none; }
     .scene-title-sr { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); }
-    .scene-kicker { font-size: 11px; letter-spacing: 0.42em; color: #b9bdcb; margin-bottom: 12px; text-shadow: 0 2px 10px rgba(0,0,0,0.95); }
+    .scene-kicker { font-size: 11px; letter-spacing: 0.42em; color: var(--ac, #b9bdcb); margin-bottom: 12px; text-shadow: 0 2px 10px rgba(0,0,0,0.95); }
     .scene-enter { font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; color: #efede4; background: rgba(20,21,26,0.62); border: 1.5px solid rgba(239,237,228,0.55); border-radius: 6px; padding: 12px 22px; cursor: pointer; pointer-events: auto; }
     .scene-enter:hover { background: #efede4; color: #17181c; }
     @keyframes boot { from { opacity: 0; } to { opacity: 1; } }
@@ -55,9 +55,9 @@
     .stage-ui.on { display: block; }
     .ov { position: absolute; pointer-events: auto; font-family: var(--mono); box-sizing: border-box; border-radius: 3px; transition: box-shadow 0.15s; }
     .ov:hover { box-shadow: 0 0 0 1px rgba(239,237,228,0.3), 0 0 18px rgba(110,224,122,0.12); }
-    .ov-wire { overflow: hidden; font-size: 10px; line-height: 1.35; color: #6ee07a; padding: 7px 9px; background: rgba(8,12,10,0.62); }
+    .ov-wire { overflow: hidden; font-size: 10px; line-height: 1.35; color: var(--ac, #6ee07a); padding: 7px 9px; background: rgba(8,12,10,0.62); }
     .ov-wire .wl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0.92; }
-    .ov-station { color: #5bf08a; font-size: 11px; padding: 9px; display: flex; flex-direction: column; gap: 7px; background: rgba(8,12,10,0.6); }
+    .ov-station { color: var(--ac, #5bf08a); font-size: 11px; padding: 9px; display: flex; flex-direction: column; gap: 7px; background: rgba(8,12,10,0.6); }
     .ov-clock { font-size: 15px; letter-spacing: 0.08em; }
     .ov-sheet { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 8px; text-align: center; background: rgba(238,236,228,0.0); }
     .ov-call { color: #1b1a14; font-size: 11.5px; line-height: 1.3; font-weight: 600; max-height: 58%; overflow: hidden; background: rgba(238,236,228,0.78); padding: 4px 6px; border-radius: 3px; }
@@ -644,12 +644,6 @@
                 </div>
                 
                 <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
-                  <span class="mf-bar"><i class="s-devto" style="width:57%"></i></span>
-                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
-                </div>
-                
-                <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-lobsters">LOBSTERS</span><span class="mf-count">25</span></div>
                   <span class="mf-bar"><i class="s-lobsters" style="width:57%"></i></span>
                   <a class="mf-item" href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/" rel="noopener">TOP // curl summer of bliss</a>
@@ -708,14 +702,14 @@
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-arxiv">ARXIV</span>
-                  <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
+                  <span class="bs-label s-hn">HACKER NEWS</span>
+                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
                   <span class="bs-count">2</span>
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-hn">HACKER NEWS</span>
-                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
+                  <span class="bs-label s-arxiv">ARXIV</span>
+                  <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
                   <span class="bs-count">2</span>
                 </div>
                 
@@ -726,14 +720,14 @@
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-lobsters">LOBSTERS</span>
-                  <span class="bs-bar"><i class="s-lobsters" style="width:10%"></i></span>
+                  <span class="bs-label s-ars">ARS TECHNICA</span>
+                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
                   <span class="bs-count">1</span>
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-ars">ARS TECHNICA</span>
-                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
+                  <span class="bs-label s-lobsters">LOBSTERS</span>
+                  <span class="bs-bar"><i class="s-lobsters" style="width:10%"></i></span>
                   <span class="bs-count">1</span>
                 </div>
                 
@@ -742,7 +736,7 @@
                 <span class="sm-dot s-github" title="2026-06-02"></span><span class="sm-dot s-arxiv" title="2026-06-04"></span><span class="sm-dot s-lobsters" title="2026-06-05"></span><span class="sm-dot s-hn" title="2026-06-08"></span><span class="sm-dot s-ars" title="2026-06-09"></span><span class="sm-dot s-devto" title="2026-06-09"></span><span class="sm-dot s-github" title="2026-06-11"></span><span class="sm-dot s-github" title="2026-06-13"></span><span class="sm-dot s-arxiv" title="2026-06-14"></span><span class="sm-dot s-hn" title="2026-06-15"></span>
               </div>
               <div class="map-key">
-                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span>
+                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span>
               </div>
             </section>
 
@@ -990,6 +984,9 @@
     var REDUCE = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     var __FLOOR = [{"kw":"local","market":"RESURFACE","odds":"1.72","src":"Show HN: A local-first sync engine for your app","status":"HIT","t":"The HN front page is piling onto local-first sync ","win":"WIN IF \"LOCAL\" RESURFACES ACROSS THE FEEDS BY 2026-07-15"},{"kw":"compute","market":"RESURFACE","odds":"1.59","src":"Scaling Test-Time Compute Optimally for Reasoning Models","status":"HIT","t":"Fresh cs.AI/cs.LG work on test-time compute scalin","win":"WIN IF \"COMPUTE\" RESURFACES ACROSS THE FEEDS BY 2026-07-14"},{"kw":"llama","market":"RESURFACE","odds":"1.28","src":"ggml-org/llama.cpp","status":"HIT","t":"Devs are starring ggml-org/llama.cpp hard today. B","win":"WIN IF \"LLAMA\" RESURFACES ACROSS THE FEEDS BY 2026-07-03"},{"kw":"vercel","market":"RESURFACE","odds":"1.39","src":"vercel/ai","status":"HIT","t":"vercel/ai is rocketing up GitHub trending. The tra","win":"WIN IF \"VERCEL\" RESURFACES ACROSS THE FEEDS BY 2026-07-01"},{"kw":"typed","market":"RESURFACE","odds":"1.67","src":"Why typed API clients are taking over","status":"MISS","t":"Dev.to writers are rallying around typed API clien","win":"WIN IF \"TYPED\" RESURFACES ACROSS THE FEEDS BY 2026-06-14"},{"kw":"power","market":"RESURFACE","odds":"1.52","src":"The power bill for AI is coming due","status":"HIT","t":"Ars is covering AI data-center power demand. When ","win":"WIN IF \"POWER\" RESURFACES ACROSS THE FEEDS BY 2026-06-29"},{"kw":"inference","market":"RESURFACE","odds":"1.45","src":"On-device inference is finally good enough","status":"HIT","t":"The HN front page is piling onto on-device inferen","win":"WIN IF \"INFERENCE\" RESURFACES ACROSS THE FEEDS BY 2026-06-28"},{"kw":"deterministic","market":"RESURFACE","odds":"1.75","src":"On reproducible, deterministic builds","status":"MISS","t":"Lobsters is chewing on deterministic build systems","win":"WIN IF \"DETERMINISTIC\" RESURFACES ACROSS THE FEEDS BY 2026-06-12"}];
     var __LADREPO = "Mattbusel/tech-oracle";
+    var __MOOD = {"accent": "#e6bb4c", "age": 15, "agit": 0.0009, "embers": 0.796, "gen": 1, "heat": 0.66, "hotHand": true, "hue": 0.12, "model": 1, "quirk": 0, "quirkName": "", "tagline": "NO EDITS. NO DELETES. ONLY PRINTS.", "verdict": "SURGING", "wear": 0.006};
+    // The organism repaints itself each day: today's accent recolors the screens.
+    try { if (__MOOD && __MOOD.accent) { var _rs = document.documentElement.style; _rs.setProperty("--ac", __MOOD.accent); _rs.setProperty("--phos", __MOOD.accent); _rs.setProperty("--led", __MOOD.accent); } } catch (e) {}
 
     // ---- station clock + countdown to the next 13:17 UTC print ----
     (function () {
@@ -1681,7 +1678,12 @@
       var enter = $id("scene-enter");
       if (enter) enter.addEventListener("click", function () { var d = document.querySelector(".deck"); if (d) d.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth" }); });
       var kicker = $id("scene-kicker");
-      if (kicker && !REDUCE) { var states = ["SPOOLING PAPER", "INKING RIBBON", "WARMING THE HEAD", "ONLINE"]; var ki = 0; var kt = setInterval(function () { ki++; if (ki >= states.length) { kicker.textContent = "ONLINE // the den is open"; clearInterval(kt); return; } kicker.textContent = states[ki] + " ..."; }, 750); }
+      var _M = (typeof __MOOD !== "undefined" && __MOOD) || {};
+      var _evo = "GEN " + (_M.gen || 0) + " // DAY " + (_M.age || 0) + " // MODEL-" + (_M.model || 1) + " // " + (_M.verdict || "ACTIVE");
+      if (_M.quirkName) _evo += " // " + _M.quirkName;
+      if (_M.hotHand) _evo += " // HOT HAND";
+      if (kicker && !REDUCE) { var states = ["SPOOLING PAPER", "INKING RIBBON", "WARMING THE HEAD", "ONLINE"]; var ki = 0; var kt = setInterval(function () { ki++; if (ki >= states.length) { kicker.textContent = _evo; clearInterval(kt); return; } kicker.textContent = states[ki] + " ..."; }, 750); }
+      else if (kicker) { kicker.textContent = _evo; }
 
       var gl = null; try { gl = cv.getContext("webgl") || cv.getContext("experimental-webgl"); } catch (e) {}
       function fail() { scene.classList.add("nogl"); cv.style.display = "none"; }
@@ -1689,6 +1691,7 @@
       var FRAG = [
         "precision mediump float;",
         "varying vec2 uv; uniform sampler2D tex; uniform float t; uniform vec2 mouse; uniform vec2 res; uniform float ia;",
+        "uniform float heat; uniform float agit; uniform float wear; uniform vec3 tint;",
         "float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }",
         "void main(){",
         "  float ca = res.x/res.y;",
@@ -1702,14 +1705,17 @@
         "  vec2 cao = (uv-0.5)*0.0045*d;",
         "  float r = texture2D(tex, u+cao).r; float g = texture2D(tex, u).g; float b = texture2D(tex, u-cao).b;",
         "  vec3 col = vec3(r,g,b);",
-        "  col *= 0.95 + 0.05*hash(vec2(floor(t*11.0), 7.0));",
+        "  col *= 0.95 + (0.05 + agit*0.13)*hash(vec2(floor(t*(11.0+agit*40.0)), 7.0));",
         "  col *= 0.96 + 0.04*sin(uv.y*res.y*0.9);",
-        "  col += (hash(uv*res + t)*2.0-1.0)*0.045;",
-        "  col *= 0.5 + 0.5*smoothstep(1.05, 0.18, d);",
+        "  col += (hash(uv*res + t)*2.0-1.0)*(0.045 + agit*0.055);",
+        "  col *= 0.5 + 0.5*smoothstep(1.05, 0.18 - wear*0.10, d);",
         "  float ib = step(0.0,u.x)*step(u.x,1.0)*step(0.0,u.y)*step(u.y,1.0);",
         "  col = mix(vec3(0.035,0.04,0.05), col, ib);",
+        "  col = mix(col, col*vec3(1.14,0.95,0.74), heat*0.42);",
+        "  col = mix(col, col*tint, 0.18);",
+        "  col *= 1.0 - wear*0.12;",
         "  float lamp = smoothstep(0.34, 0.0, distance(uv, mouse));",
-        "  col += lamp * 0.13 * vec3(1.0, 0.88, 0.62) * ib;",
+        "  col += lamp * (0.13 + heat*0.10) * vec3(1.0, 0.88, 0.62) * ib;",
         "  gl_FragColor = vec4(col, 1.0);",
         "}"
       ].join("\n");
@@ -1723,6 +1729,10 @@
       var bf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, bf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
       var loc = gl.getAttribLocation(prog, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
       var uT = gl.getUniformLocation(prog, "t"), uM = gl.getUniformLocation(prog, "mouse"), uR = gl.getUniformLocation(prog, "res"), uIa = gl.getUniformLocation(prog, "ia");
+      var uHeat = gl.getUniformLocation(prog, "heat"), uAgit = gl.getUniformLocation(prog, "agit"), uWear = gl.getUniformLocation(prog, "wear"), uTint = gl.getUniformLocation(prog, "tint");
+      var MD = (typeof __MOOD !== "undefined" && __MOOD) || {};
+      function mhex(h) { h = (h || "#5bf08a").replace("#", ""); return [parseInt(h.slice(0, 2), 16) / 255, parseInt(h.slice(2, 4), 16) / 255, parseInt(h.slice(4, 6), 16) / 255]; }
+      var MTINT = mhex(MD.accent);
       var tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([20, 21, 26, 255]));
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
@@ -1737,11 +1747,12 @@
       // embers/dust over the painting, mapped onto the contained image rect.
       var pProg = null, ppLoc, uFit, pbuf, wstep = null, wmem = null, wptr = 0, wn = 0, pf = null;
       var pvs = sh(gl.VERTEX_SHADER, "attribute vec3 pp; varying float vz; uniform vec2 fit; void main(){ vz=pp.z; gl_PointSize=1.5+pp.z*5.0; vec2 q=(pp.xy-0.5); q.x*=fit.x; q.y*=fit.y; q+=0.5; gl_Position=vec4(q.x*2.0-1.0,(1.0-q.y)*2.0-1.0,0.0,1.0); }");
-      var pfs = sh(gl.FRAGMENT_SHADER, "precision mediump float; varying float vz; void main(){ vec2 c=gl_PointCoord-0.5; float d=dot(c,c); if(d>0.25) discard; float a=1.0-d*4.0; vec3 col=mix(vec3(0.72,0.62,0.40), vec3(1.0,0.82,0.5), vz); gl_FragColor=vec4(col, a*(0.05+vz*0.20)); }");
+      var pfs = sh(gl.FRAGMENT_SHADER, "precision mediump float; varying float vz; uniform float warm; void main(){ vec2 c=gl_PointCoord-0.5; float d=dot(c,c); if(d>0.25) discard; float a=1.0-d*4.0; vec3 col=mix(vec3(0.72,0.62,0.40), vec3(1.0,0.82,0.5), vz); col=mix(col, vec3(1.0,0.45,0.18), warm*0.6); gl_FragColor=vec4(col, a*(0.05+vz*0.20)); }");
+      var uWarm;
       if (pvs && pfs) {
         pProg = gl.createProgram(); gl.attachShader(pProg, pvs); gl.attachShader(pProg, pfs); gl.linkProgram(pProg);
         if (!gl.getProgramParameter(pProg, gl.LINK_STATUS)) pProg = null;
-        else { ppLoc = gl.getAttribLocation(pProg, "pp"); uFit = gl.getUniformLocation(pProg, "fit"); pbuf = gl.createBuffer(); }
+        else { ppLoc = gl.getAttribLocation(pProg, "pp"); uFit = gl.getUniformLocation(pProg, "fit"); uWarm = gl.getUniformLocation(pProg, "warm"); pbuf = gl.createBuffer(); }
       }
       if (pProg && !REDUCE && window.WebAssembly) {
         fetch("signal.wasm").then(function (r) { return r.arrayBuffer(); }).then(function (b) { return WebAssembly.instantiate(b, {}); }).then(function (m) {
@@ -1767,6 +1778,7 @@
           gl.bindBuffer(gl.ARRAY_BUFFER, bf); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
           gl.disable(gl.BLEND);
           gl.uniform1f(uT, tt); gl.uniform2f(uM, mx, my); gl.uniform2f(uR, cv.width, cv.height); gl.uniform1f(uIa, ia);
+          gl.uniform1f(uHeat, MD.heat || 0.4); gl.uniform1f(uAgit, MD.agit || 0.0); gl.uniform1f(uWear, MD.wear || 0.0); gl.uniform3f(uTint, MTINT[0], MTINT[1], MTINT[2]);
           gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
           // 2) the Rust-simulated embers
           if (wstep && pf) {
@@ -1777,9 +1789,9 @@
             gl.useProgram(pProg);
             gl.bindBuffer(gl.ARRAY_BUFFER, pbuf); gl.bufferData(gl.ARRAY_BUFFER, pf, gl.DYNAMIC_DRAW);
             gl.enableVertexAttribArray(ppLoc); gl.vertexAttribPointer(ppLoc, 3, gl.FLOAT, false, 0, 0);
-            gl.uniform2f(uFit, f[0], f[1]);
+            gl.uniform2f(uFit, f[0], f[1]); gl.uniform1f(uWarm, MD.heat || 0.4);
             gl.enable(gl.BLEND); gl.blendFunc(gl.SRC_ALPHA, gl.ONE);
-            gl.drawArrays(gl.POINTS, 0, wn);
+            gl.drawArrays(gl.POINTS, 0, Math.max(200, Math.floor(wn * (MD.embers || 0.7))));
             gl.disable(gl.BLEND);
           }
         }
