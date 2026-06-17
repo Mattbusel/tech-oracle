@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 16, 2026** // Index **70 (SURGING)** // hottest **LEARNING** // record **8-2**
+**June 17, 2026** // Index **56 (ACTIVE)** // hottest **APPLE** // record **8-2**
 
 > The HN front page is piling onto local-first sync engines. Expect the tooling around it to consolidate into one default winner within two quarters.
 

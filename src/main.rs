@@ -47,13 +47,15 @@ fn main() {
     let client = fetch::client();
     let signals = std::thread::scope(|scope| {
         let c = || client.clone();
-        let (c1, c2, c3, c4, c5, c6) = (c(), c(), c(), c(), c(), c());
+        let (c1, c2, c3, c4, c5, c6, c7, c8) = (c(), c(), c(), c(), c(), c(), c(), c());
         let hn = scope.spawn(move || fetch::fetch_hackernews(&c1));
         let ax = scope.spawn(move || fetch::fetch_arxiv(&c2));
         let gh = scope.spawn(move || fetch::fetch_github(&c3));
         let lo = scope.spawn(move || fetch::fetch_lobsters(&c4));
         let dv = scope.spawn(move || fetch::fetch_devto(&c5));
         let ar = scope.spawn(move || fetch::fetch_ars(&c6));
+        let rd = scope.spawn(move || fetch::fetch_reddit(&c7));
+        let nw = scope.spawn(move || fetch::fetch_news(&c8));
 
         let mut all = Vec::new();
         collect("Hacker News", hn.join(), &mut all);
@@ -62,6 +64,8 @@ fn main() {
         collect("Lobsters", lo.join(), &mut all);
         collect("dev.to", dv.join(), &mut all);
         collect("Ars Technica", ar.join(), &mut all);
+        collect("Reddit", rd.join(), &mut all);
+        collect("Google News", nw.join(), &mut all);
         all
     });
     eprintln!("collected {} signals total", signals.len());
@@ -167,11 +171,18 @@ fn main() {
     let latest = featured.first().map(|p| p.prediction_text.as_str()).unwrap_or("");
     let hits = revealed.iter().filter(|p| p.status == "HIT").count();
     let misses = revealed.iter().filter(|p| p.status == "MISS").count();
+    // Tag the subject so the post surfaces to that subject's existing audience.
+    let subj_tag = featured
+        .first()
+        .map(|p| p.keyword.clone())
+        .filter(|k| !k.is_empty())
+        .map(|k| format!(" #{}", k.replace(['.', '-', '/'], "")))
+        .unwrap_or_default();
 
     // Long form for Discord / Telegram / Mastodon: hook, the call, the record,
     // the index, a tail/fade nudge, and discovery hashtags.
     let social = format!(
-        "The tech oracle's call for {human}:\n\n{latest}\n\nIt grades itself in public, currently {hits}-{misses}. Acceleration Index {idx} ({verdict}), hottest cluster {theme}.\n\nTail it or fade it: {site}/\n\n#tech #AI #buildinpublic #rustlang"
+        "The tech oracle's call for {human}:\n\n{latest}\n\nIt grades itself in public, currently {hits}-{misses}. Acceleration Index {idx} ({verdict}), hottest cluster {theme}.\n\nTail it or fade it: {site}/\n\n#tech #AI #predictions{subj_tag}"
     );
     let _ = std::fs::write("build/social.txt", social);
 
@@ -192,7 +203,7 @@ fn main() {
     let _ = std::fs::write("build/dispatch_title.txt", format!("Dispatch {date}: {}", clip(latest, 70)));
     let _ = std::fs::write(
         "build/dispatch_body.md",
-        format!("**{human}** // Acceleration Index **{idx} ({verdict})** // hottest cluster **{theme}** // self-graded record **{hits}-{misses}**\n\n> {latest}\n\nTail it or fade it: {site}/\n\n_Watch this repo to get tomorrow's call in your notifications._\n"),
+        format!("**{human}** // Acceleration Index **{idx} ({verdict})** // hottest cluster **{theme}** // self-graded record **{hits}-{misses}**\n\n> {latest}\n\nTail it or fade it: {site}/\n\n_Amplify the wire (one tap): {site}/amplify.html_\n\n_Watch this repo to get tomorrow's call in your notifications._\n"),
     );
 
     eprintln!("wrote {DATA_PATH}, {EARLY_OUT}, {OUT_HTML}, feeds, social posts, and dispatch");
@@ -226,6 +237,8 @@ fn source_label(t: &str) -> &'static str {
         "lobsters" => "LOBSTERS",
         "devto" => "DEV.TO",
         "ars" => "ARS TECHNICA",
+        "reddit" => "REDDIT",
+        "news" => "THE NEWS",
         _ => "SIGNAL",
     }
 }
@@ -343,8 +356,8 @@ fn build_pulse(signals: &[model::Signal], date: &str) -> serde_json::Value {
     let breadth = signals.iter().map(|s| s.signal_type.as_str()).collect::<HashSet<_>>().len();
     let (theme, theme_share) = dominant_theme(signals);
 
-    let vol = (total as f64 / 180.0).min(1.0); // ~6 sources * 30 items
-    let br = breadth as f64 / 6.0;
+    let vol = (total as f64 / 240.0).min(1.0); // ~8 sources * 30 items
+    let br = breadth as f64 / 8.0;
     let index = ((0.5 * vol + 0.3 * br + 0.2 * theme_share) * 100.0).round() as i64;
     let index = index.clamp(0, 100);
 

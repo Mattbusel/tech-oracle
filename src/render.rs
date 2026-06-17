@@ -4,7 +4,7 @@
 //! whatever the caller decided is public, plus static subscribe links.
 
 use crate::model::Prediction;
-use chrono::NaiveDate;
+use chrono::{NaiveDate, Utc};
 use std::collections::{BTreeMap, HashMap};
 
 // IndexNow ownership key (not secret; proves we control the host via a key file).
@@ -230,6 +230,9 @@ pub fn render(
     // Programmatic SEO: one crawlable permalink page per revealed call.
     let _ = std::fs::create_dir_all(format!("{}/call", crate::OUT_DIR));
     let mut urls = vec![format!("{site}/")];
+    let mut img_entries = vec![format!(
+        "<url><loc>{site}/</loc><image:image><image:loc>{site}/og.png</image:loc><image:title>THE SIGNAL: daily tech oracle and live betting pit</image:title></image:image></url>"
+    )];
     for (i, p) in sorted.iter().enumerate() {
         let no = total - i;
         let status = if p.status.is_empty() { "OPEN" } else { p.status.as_str() };
@@ -248,6 +251,10 @@ pub fn render(
             &format!("{}/call/{no}.png", crate::OUT_DIR),
             &site, no as i64, status, market, &p.prediction_text,
         );
+        img_entries.push(format!(
+            "<url><loc>{site}/call/{no}.html</loc><image:image><image:loc>{site}/call/{no}.png</image:loc><image:caption>{cap}</image:caption></image:image></url>",
+            cap = xml(&clip_r(&p.prediction_text, 140))
+        ));
     }
     // Topic pages: group the archive by subject so the site matches real search
     // queries ("<topic> predictions"), not just one call's exact wording.
@@ -283,6 +290,14 @@ pub fn render(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">{url_body}</urlset>\n"
     );
     std::fs::write(format!("{}/sitemap.xml", crate::OUT_DIR), sitemap)?;
+
+    // Image sitemap: surface the dot-matrix "oracle cards" in Google Images,
+    // where general (non-dev) people actually browse and search.
+    let img_body: String = img_entries.join("");
+    let img_sitemap = format!(
+        "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\" xmlns:image=\"http://www.google.com/schemas/sitemap-image/1.1\">{img_body}</urlset>\n"
+    );
+    std::fs::write(format!("{}/sitemap-images.xml", crate::OUT_DIR), img_sitemap)?;
 
     // IndexNow: host the ownership key file, and write the payload the Action
     // POSTs so search engines crawl new pages immediately (free, no account).
@@ -349,6 +364,53 @@ pub fn render(
         "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## How it works\nReads Hacker News, arXiv, GitHub, Lobsters, dev.to and Ars Technica. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
+
+    // robots.txt -> sitemap, so crawlers reliably discover every page.
+    std::fs::write(
+        format!("{}/robots.txt", crate::OUT_DIR),
+        format!("User-agent: *\nAllow: /\nSitemap: {site}/sitemap.xml\nSitemap: {site}/sitemap-images.xml\n"),
+    )?;
+
+    // Amplify console: pre-filled one-tap submit links, baked daily. Turns the
+    // unavoidable human spark into a 10-second ritual anyone can do.
+    let atitle = enc(&format!("THE SIGNAL: a self-grading tech oracle ({hits}-{misses})"));
+    let atext = enc(&format!("A self-grading tech oracle that makes dated tech calls and keeps score in public. Record {hits}-{misses}, index {idx} {verdict}. {site}/"));
+    let u = enc(&format!("{site}/"));
+    let amp = format!(
+        "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><title>Amplify the wire // THE SIGNAL</title><meta name=\"robots\" content=\"noindex\"><link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\"><style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:560px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}h1{{font-size:24px}}a.btn{{display:block;text-align:center;border:1.5px solid #1b1a14;padding:13px;margin:10px 0;text-decoration:none;color:#1b1a14;font-weight:600;letter-spacing:.06em}}a.btn:hover{{background:#1b1a14;color:#efede4}}.m{{font-size:12px;color:#6d6b5e}}</style></head><body><div class=\"s\"><div class=\"b\">THE SIGNAL // AMPLIFY</div><h1>File today's wire</h1><p class=\"m\">One tap each. Pre-filled with today's headline. The press files its dispatch; you point it at the wires.</p>\
+<a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://news.ycombinator.com/submitlink?u={u}&t={t}\">Submit to Hacker News</a>\
+<a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://lobste.rs/stories/new?url={u}\">Submit to Lobsters</a>\
+<a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://www.reddit.com/submit?url={u}&title={t}\">Submit to Reddit</a>\
+<a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://bsky.app/intent/compose?text={tx}\">Post to Bluesky</a>\
+<a class=\"btn\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/intent/tweet?text={tx}\">Post to X</a>\
+<p class=\"m\"><a href=\"{site}/\">back to THE SIGNAL</a></p></div></body></html>\n",
+        u = u, t = atitle, tx = atext, site = site
+    );
+    std::fs::write(format!("{}/amplify.html", crate::OUT_DIR), amp)?;
+
+    // Calendar wire: a subscribable .ics so anyone can add THE SIGNAL to their
+    // calendar. Each call becomes an event on the day it is set to resolve.
+    let dtstamp = Utc::now().format("%Y%m%dT%H%M%SZ").to_string();
+    let mut ics = String::from(
+        "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//THE SIGNAL//Oracle//EN\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\nNAME:THE SIGNAL\r\nX-WR-CALNAME:THE SIGNAL\r\nX-WR-CALDESC:Dated tech prophecies, resolved in public.\r\nREFRESH-INTERVAL;VALUE=DURATION:PT12H\r\nX-PUBLISHED-TTL:PT12H\r\n",
+    );
+    for (i, p) in sorted.iter().enumerate() {
+        let no = total - i;
+        let day = if p.resolves_by.is_empty() { &p.date } else { &p.resolves_by };
+        let dstart = match NaiveDate::parse_from_str(day, "%Y-%m-%d") {
+            Ok(d) => d.format("%Y%m%d").to_string(),
+            Err(_) => continue,
+        };
+        let status = if p.status.is_empty() { "OPEN" } else { p.status.as_str() };
+        let summary = ics_escape(&format!("[{status}] {}", clip_r(&p.prediction_text, 90)));
+        let desc = ics_escape(&format!("{}  //  {}  //  {site}/call/{no}.html", clip_r(&p.prediction_text, 160), p.win_if));
+        ics.push_str(&format!(
+            "BEGIN:VEVENT\r\nUID:signal-{no}@{host}\r\nDTSTAMP:{dtstamp}\r\nDTSTART;VALUE=DATE:{dstart}\r\nSUMMARY:THE SIGNAL // {summary}\r\nDESCRIPTION:{desc}\r\nURL:{site}/call/{no}.html\r\nEND:VEVENT\r\n",
+            no = no, host = host, dtstamp = dtstamp, dstart = dstart, summary = summary, desc = desc, site = site
+        ));
+    }
+    ics.push_str("END:VCALENDAR\r\n");
+    std::fs::write(format!("{}/signal.ics", crate::OUT_DIR), ics)?;
 
     // Live floor positions: the most recent calls the desk marks against the
     // live feeds (client-side, continuously).
@@ -433,6 +495,22 @@ fn wrap_chars(s: &str, n: usize) -> Vec<String> {
         lines.push(cur);
     }
     lines
+}
+
+fn ics_escape(s: &str) -> String {
+    s.replace('\\', "\\\\").replace(';', "\\;").replace(',', "\\,").replace('\n', "\\n").replace('\r', "")
+}
+
+fn enc(s: &str) -> String {
+    let mut o = String::new();
+    for b in s.bytes() {
+        if b.is_ascii_alphanumeric() || matches!(b, b'-' | b'_' | b'.' | b'~') {
+            o.push(b as char);
+        } else {
+            o.push_str(&format!("%{b:02X}"));
+        }
+    }
+    o
 }
 
 fn slug(s: &str) -> String {

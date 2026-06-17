@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-{%- set labels = {"hn": "HACKER NEWS", "arxiv": "ARXIV", "github": "GITHUB", "lobsters": "LOBSTERS", "devto": "DEV.TO", "ars": "ARS TECHNICA"} -%}
+{%- set labels = {"hn": "HACKER NEWS", "arxiv": "ARXIV", "github": "GITHUB", "lobsters": "LOBSTERS", "devto": "DEV.TO", "ars": "ARS TECHNICA", "reddit": "REDDIT", "news": "THE NEWS"} -%}
 {%- set delay_word = "DAY" if reveal_delay_days == 1 else "DAYS" -%}
 <head>
   <meta charset="utf-8" />
@@ -171,6 +171,18 @@
     .foot { text-align: center; }
     .foot p { font-size: 10.5px; letter-spacing: 0.1em; color: var(--ink-soft); margin: 6px 0; }
     :focus-visible { outline: 2px solid var(--stamp); outline-offset: 2px; }
+
+    /* ASK THE ORACLE */
+    .ask-sub { font-size: 13px; color: #3b3a30; line-height: 1.55; max-width: 60ch; margin: 0 0 14px; }
+    .ask-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .ask-row input { flex: 1 1 240px; font-family: var(--mono); font-size: 15px; padding: 12px; border: 1.5px solid var(--ink); background: #fff; color: var(--ink); }
+    .ask-out { margin-top: 16px; }
+    .proph { border: 2px dashed var(--ink); padding: 18px; }
+    .proph-q { font-size: 11px; letter-spacing: 0.08em; color: var(--ink-soft); margin-bottom: 10px; }
+    .proph-v { font-size: clamp(22px, 5.5vw, 34px); font-weight: 700; letter-spacing: 0.01em; line-height: 1.12; }
+    .proph-f { font-size: 14px; color: #3b3a30; margin: 8px 0; }
+    .proph-m { font-size: 11px; letter-spacing: 0.1em; color: var(--ink-soft); margin-top: 10px; }
+    .proph-fine { font-size: 10px; letter-spacing: 0.08em; color: var(--ink-soft); margin-top: 8px; }
 
     /* THE SCORECARD */
     .sb-grid { display: flex; gap: 10px; flex-wrap: wrap; align-items: stretch; margin: 4px 0 14px; }
@@ -419,6 +431,18 @@
 
             <div class="perf" aria-hidden="true"></div>
 
+            <section class="ask" aria-label="Ask the oracle">
+              <div class="band">ASK THE ORACLE // YOUR QUESTION, READ BY THE PRESS</div>
+              <p class="ask-sub">Type any question about your life, your work, or the future. The press prints you a dated prophecy with odds. For entertainment; the oracle is not liable for your life choices.</p>
+              <div class="ask-row">
+                <input id="ask-in" type="text" maxlength="120" placeholder="Will my startup make it? Will I get the job?" autocomplete="off" />
+                <button class="sx" type="button" id="ask-go">[ ASK ]</button>
+              </div>
+              <div id="ask-out" class="ask-out"></div>
+            </section>
+
+            <div class="perf" aria-hidden="true"></div>
+
             <section class="scoreboard" aria-label="Track record scorecard">
               <div class="band">THE SCORECARD / SELF-GRADING / NO EDITS / NO DELETES</div>
               <div class="sb-grid">
@@ -504,7 +528,7 @@
                   <div class="pm-line">HOTTEST CLUSTER // <b>{{ pulse.theme }}</b></div>
                   {% if pulse.has_prev %}<div class="pm-line">{{ pulse.delta_word }} {{ pulse.delta_abs }} VS PRIOR PRINT</div>{% else %}<div class="pm-line">FIRST READING ON RECORD</div>{% endif %}
                   {% if pulse.highest_days >= 2 %}<div class="pm-line pm-alert">HIGHEST IN {{ pulse.highest_days }} DAYS</div>{% endif %}
-                  <div class="pm-line pm-soft">{{ pulse.total }} SIGNALS // {{ pulse.breadth }} OF 6 SOURCES LIVE</div>
+                  <div class="pm-line pm-soft">{{ pulse.total }} SIGNALS // {{ pulse.breadth }} OF 8 SOURCES LIVE</div>
                 </div>
               </div>
               <canvas class="seismo" id="seismo" data-energy="{{ pulse.index }}" aria-hidden="true"></canvas>
@@ -637,7 +661,8 @@
 
             <footer class="foot">
               <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
-              <p>NOT FINANCIAL ADVICE. SOURCES: HACKER NEWS / ARXIV / GITHUB / LOBSTERS / DEV.TO / ARS TECHNICA.</p>
+              <p>NOT FINANCIAL ADVICE. SOURCES: HACKER NEWS / ARXIV / GITHUB / LOBSTERS / DEV.TO / ARS TECHNICA / REDDIT / THE NEWS.</p>
+              <p><a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">subscribe in your calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
               <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
             </footer>
           </main>
@@ -656,7 +681,7 @@
           <dl class="stats">
             <div class="row"><dt>NEXT PRINT</dt><dd id="countdown">--:--:--</dd></div>
             <div class="row"><dt>CALLS ON FILE</dt><dd>{{ total }}</dd></div>
-            <div class="row"><dt>SOURCES</dt><dd>6 MONITORED</dd></div>
+            <div class="row"><dt>SOURCES</dt><dd>8 MONITORED</dd></div>
             <div class="row"><dt>HEAD</dt><dd id="machine-status">ONLINE</dd></div>
           </dl>
           <div class="log" id="log" aria-hidden="true"></div>
@@ -1000,6 +1025,51 @@
           });
       }
       load(); setInterval(load, 5 * 60 * 1000);    // refresh the wire every 5 min
+    })();
+
+    // ---- ASK THE ORACLE: a fortune for anyone's question (deterministic) ----
+    (function () {
+      var inp = $id("ask-in"), out = $id("ask-out"); if (!inp) return;
+      var SITE = location.origin + location.pathname;
+      var V = [
+        { v: "YES.", f: "The momentum is with you." },
+        { v: "NOT YET.", f: "It cools before it heats." },
+        { v: "YES, BUT LATE.", f: "Later than you want, sooner than they think." },
+        { v: "FADE IT.", f: "The crowd is loud and wrong." },
+        { v: "PRESS YOUR BET.", f: "The line is moving your way." },
+        { v: "TOO CLOSE TO CALL.", f: "Ask again when the index moves." },
+        { v: "INEVITABLE.", f: "The only question was ever timing." },
+        { v: "DON'T BET ON IT.", f: "Hope is not a signal." },
+        { v: "QUIETLY, YES.", f: "No one sees it coming but you." },
+        { v: "NOT THIS CYCLE.", f: "The next one, maybe." },
+        { v: "THE SIGNAL IS STRONG.", f: "Back it before the odds shorten." },
+        { v: "THE SIGNAL IS WEAK.", f: "Walk away while you still can." }
+      ];
+      var TF = ["by Q3", "within ~6 months", "by year end", "inside two quarters", "before you expect it", "within the year"];
+      function hash(s) { var h = 2166136261; for (var i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+      function today() { return new Date().toISOString().slice(0, 10); }
+      function esc(s) { var d = document.createElement("div"); d.textContent = s == null ? "" : s; return d.innerHTML; }
+      function ask() {
+        var q = (inp.value || "").trim(); if (!q) { inp.focus(); return; }
+        var seed = hash(q.toLowerCase() + "|" + today());
+        var v = V[seed % V.length], odds = (1.2 + ((seed >> 3) % 30) / 10).toFixed(2), conf = 50 + ((seed >> 8) % 45), tf = TF[(seed >> 5) % TF.length];
+        out.innerHTML = '<div class="proph"><div class="proph-q">YOU ASKED: <b>' + esc(q) + '</b></div><div class="proph-v">' + esc(v.v) + '</div><div class="proph-f">' + esc(v.f) + '</div><div class="proph-m">ODDS ' + odds + 'x // CONFIDENCE ' + conf + '% // RESOLVES ' + tf + '</div><div class="proph-fine">THE PRESS HAS PRINTED YOUR PROPHECY. IT DOES NOT REPRINT.</div><div class="sharebar"><button class="sx" type="button" data-pshare>[ SHARE THIS PROPHECY ]</button><button class="sx alt" type="button" data-pcard>[ SAVE AS IMAGE ]</button></div></div>';
+        out._q = q; out._v = v; out._odds = odds;
+      }
+      $id("ask-go").addEventListener("click", ask);
+      inp.addEventListener("keydown", function (e) { if (e.key === "Enter") ask(); });
+      document.addEventListener("click", function (e) {
+        if (e.target.closest("[data-pshare]")) {
+          var t = 'I asked THE SIGNAL oracle: "' + out._q + '" -> ' + out._v.v + " (" + out._odds + "x). Ask yours:";
+          if (navigator.share) navigator.share({ title: "THE SIGNAL", text: t, url: SITE }).catch(function () {});
+          else window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(t) + "&url=" + encodeURIComponent(SITE), "_blank", "noopener");
+          return;
+        }
+        if (e.target.closest("[data-pcard]")) {
+          if (window.__signalCard) window.__signalCard({ headline: out._v.v, dm: true, kicker: "THE ORACLE HAS READ YOUR QUESTION", sub: '"' + out._q + '" // ODDS ' + out._odds + "x", stamp: "PROPHECY" }, "My SIGNAL prophecy.");
+          return;
+        }
+      });
     })();
 
     // ---- THE LADDER: top runs, stored as public GitHub issues (no server) ----

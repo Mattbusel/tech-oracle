@@ -263,6 +263,97 @@ pub fn fetch_ars(client: &reqwest::blocking::Client) -> anyhow::Result<Vec<Signa
 }
 
 // ---------------------------------------------------------------------------
+// Reddit r/technology (JSON, no auth) -- a general, non-dev crowd
+// ---------------------------------------------------------------------------
+
+#[derive(serde::Deserialize)]
+struct RedditResp {
+    data: RedditData,
+}
+#[derive(serde::Deserialize)]
+struct RedditData {
+    children: Vec<RedditChild>,
+}
+#[derive(serde::Deserialize)]
+struct RedditChild {
+    data: RedditPost,
+}
+#[derive(serde::Deserialize)]
+struct RedditPost {
+    title: String,
+    url: Option<String>,
+    score: Option<f64>,
+    permalink: Option<String>,
+}
+
+pub fn fetch_reddit(client: &reqwest::blocking::Client) -> anyhow::Result<Vec<Signal>> {
+    let resp: RedditResp = client
+        .get("https://www.reddit.com/r/technology/top.json?t=day&limit=30")
+        .send()?
+        .error_for_status()?
+        .json()?;
+    Ok(resp
+        .data
+        .children
+        .into_iter()
+        .take(25)
+        .filter_map(|c| {
+            let p = c.data;
+            let title = collapse_ws(&p.title);
+            if title.is_empty() {
+                return None;
+            }
+            let url = p
+                .url
+                .filter(|u| u.starts_with("http"))
+                .or_else(|| p.permalink.map(|pl| format!("https://www.reddit.com{pl}")))?;
+            Some(Signal {
+                signal_type: "reddit".into(),
+                title,
+                url,
+                momentum_score: p.score.unwrap_or(0.0),
+            })
+        })
+        .collect())
+}
+
+// ---------------------------------------------------------------------------
+// Google News (Technology), RSS -- mainstream headlines, no auth
+// ---------------------------------------------------------------------------
+
+pub fn fetch_news(client: &reqwest::blocking::Client) -> anyhow::Result<Vec<Signal>> {
+    let url = "https://news.google.com/rss/headlines/section/topic/TECHNOLOGY?hl=en-US&gl=US&ceid=US:en";
+    let bytes = client.get(url).send()?.error_for_status()?.bytes()?;
+    let feed = feed_rs::parser::parse(&bytes[..])?;
+    let n = feed.entries.len();
+    Ok(feed
+        .entries
+        .into_iter()
+        .enumerate()
+        .filter_map(|(i, e)| {
+            // Google News titles end with " - Publisher"; trim that tail.
+            let raw = e.title.map(|t| collapse_ws(&t.content))?;
+            let title = raw.rsplit_once(" - ").map(|(h, _)| h.to_string()).unwrap_or(raw);
+            if title.is_empty() {
+                return None;
+            }
+            let link = e
+                .links
+                .iter()
+                .find(|l| l.rel.as_deref() == Some("alternate"))
+                .or_else(|| e.links.first())
+                .map(|l| l.href.clone())?;
+            Some(Signal {
+                signal_type: "news".into(),
+                title,
+                url: link,
+                momentum_score: (n - i) as f64,
+            })
+        })
+        .collect())
+}
+
+// ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
 

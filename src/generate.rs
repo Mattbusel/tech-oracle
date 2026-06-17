@@ -156,6 +156,18 @@ fn variants_for(signal_type: &str) -> &'static [&'static str] {
             "{s} is industry news now, not a rumor. Calling it: a concrete shipping consequence lands within ~6 months.",
             "Coverage of {s} is widening. This is the stage where it stops being optional for the incumbents.",
         ],
+        "reddit" => &[
+            "Reddit cannot stop arguing about {s}. When it breaks containment like this, it goes properly mainstream within a quarter.",
+            "{s} is blowing up on Reddit today. Betting it jumps from the feed to the news cycle within a month.",
+            "The crowd has found {s}. This is usually the moment before it becomes everyone's problem or everyone's product.",
+            "{s} is topping Reddit. Calling it: a brand or regulator reacts in public within two quarters.",
+        ],
+        "news" => &[
+            "{s} is in the headlines. The signal says a bigger move (a deal, a rule, or a backlash) follows within two quarters.",
+            "The press is circling {s}. Betting today's story is the small version of a much larger one by year end.",
+            "{s} made the news. This is the kind of story that quietly reshapes a market before anyone admits it.",
+            "{s} is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
+        ],
         _ => &["{s} is showing momentum. The signal points to it mattering more next quarter than it does today."],
     }
 }
