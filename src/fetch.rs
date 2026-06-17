@@ -2,6 +2,7 @@
 //! caller can fail soft: a dead source is logged and skipped, never fatal.
 
 use crate::model::Signal;
+use chrono::{Duration as ChronoDuration, Utc};
 use std::time::Duration;
 
 /// Shared HTTP client. `blocking::Client` is cheap to clone (Arc inside) and is
@@ -348,6 +349,114 @@ pub fn fetch_news(client: &reqwest::blocking::Client) -> anyhow::Result<Vec<Sign
                 title,
                 url: link,
                 momentum_score: (n - i) as f64,
+            })
+        })
+        .collect())
+}
+
+// ---------------------------------------------------------------------------
+// Wikipedia top pageviews -- the purest general-public attention signal. When a
+// tech term shows up here, it has truly left the dev bubble (no auth, no key).
+// ---------------------------------------------------------------------------
+
+#[derive(serde::Deserialize)]
+struct WikiResp {
+    items: Vec<WikiItems>,
+}
+#[derive(serde::Deserialize)]
+struct WikiItems {
+    articles: Vec<WikiArticle>,
+}
+#[derive(serde::Deserialize)]
+struct WikiArticle {
+    article: String,
+    views: f64,
+}
+
+pub fn fetch_wikipedia(client: &reqwest::blocking::Client) -> anyhow::Result<Vec<Signal>> {
+    // Pageview data lags ~a day and can lag more; walk back until a day resolves.
+    let mut resp: Option<WikiResp> = None;
+    let mut last_err: Option<anyhow::Error> = None;
+    for back in 1..=4 {
+        let day = (Utc::now() - ChronoDuration::days(back)).format("%Y/%m/%d").to_string();
+        let url = format!(
+            "https://wikimedia.org/api/rest_v1/metrics/pageviews/top/en.wikipedia/all-access/{day}"
+        );
+        match client.get(&url).send().and_then(|r| r.error_for_status()).and_then(|r| r.json::<WikiResp>()) {
+            Ok(r) => {
+                resp = Some(r);
+                break;
+            }
+            Err(e) => last_err = Some(e.into()),
+        }
+    }
+    let resp = match resp {
+        Some(r) => r,
+        None => return Err(last_err.unwrap_or_else(|| anyhow::anyhow!("wikipedia: no day resolved"))),
+    };
+    let mut out = Vec::new();
+    if let Some(items) = resp.items.into_iter().next() {
+        for a in items.articles.into_iter().take(120) {
+            // Skip namespaced and meta pages; keep real article titles.
+            if a.article.contains(':') || a.article == "Main_Page" || a.article == "-" {
+                continue;
+            }
+            let title = a.article.replace('_', " ");
+            let title = collapse_ws(&title);
+            if title.is_empty() {
+                continue;
+            }
+            out.push(Signal {
+                signal_type: "wiki".into(),
+                url: format!("https://en.wikipedia.org/wiki/{}", a.article),
+                title,
+                momentum_score: a.views,
+            });
+            if out.len() >= 40 {
+                break;
+            }
+        }
+    }
+    Ok(out)
+}
+
+// ---------------------------------------------------------------------------
+// crates.io summary -- real adoption (downloads), not chatter. No auth.
+// ---------------------------------------------------------------------------
+
+#[derive(serde::Deserialize)]
+struct CratesSummary {
+    most_recently_downloaded: Vec<CrateRow>,
+}
+#[derive(serde::Deserialize)]
+struct CrateRow {
+    name: String,
+    #[serde(default)]
+    recent_downloads: Option<f64>,
+    #[serde(default)]
+    downloads: Option<f64>,
+}
+
+pub fn fetch_crates(client: &reqwest::blocking::Client) -> anyhow::Result<Vec<Signal>> {
+    let resp: CratesSummary = client
+        .get("https://crates.io/api/v1/summary")
+        .send()?
+        .error_for_status()?
+        .json()?;
+    Ok(resp
+        .most_recently_downloaded
+        .into_iter()
+        .take(25)
+        .filter_map(|c| {
+            let title = collapse_ws(&c.name);
+            if title.is_empty() {
+                return None;
+            }
+            Some(Signal {
+                signal_type: "crates".into(),
+                url: format!("https://crates.io/crates/{}", c.name),
+                title,
+                momentum_score: c.recent_downloads.or(c.downloads).unwrap_or(0.0),
             })
         })
         .collect())

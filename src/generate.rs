@@ -5,14 +5,25 @@
 //! (date, signals): the template variant is chosen by the date seed.
 
 use crate::model::{Prediction, Signal};
+use crate::observatory::Observatory;
 use chrono::{Duration, NaiveDate};
 
 /// Days a call stays open before it misses if its subject never resurfaces.
 const HORIZON_DAYS: i64 = 30;
+const FUTURES_DAYS: i64 = 90;
 
-const MARKETS: &[&str] = &["RESURFACE", "SURVIVAL", "MOMENTUM", "HEAD-TO-HEAD", "INDEX"];
+const MARKETS: &[&str] = &[
+    "RESURFACE", "CHASM", "MOMENTUM", "OVER", "HEAD-TO-HEAD", "SURVIVAL", "CROSSOVER", "INDEX",
+    "FUTURES", "LONGSHOT",
+];
 
-pub fn generate(signals: &[Signal], date: &str, seed: i64, index: i64) -> Vec<Prediction> {
+pub fn generate(
+    signals: &[Signal],
+    date: &str,
+    seed: i64,
+    index: i64,
+    obs: &Observatory,
+) -> Vec<Prediction> {
     let n = signals.len();
     signals
         .iter()
@@ -20,39 +31,78 @@ pub fn generate(signals: &[Signal], date: &str, seed: i64, index: i64) -> Vec<Pr
         .map(|(i, s)| {
             let subject = subject_of(s);
             let keyword = pick_keyword(&subject);
-            let resolves_by = horizon(date);
+            let kw = keyword.to_uppercase();
 
-            // Rotate the market so the slate has variety in what it bets on.
+            // Features from the observatory: this is the engine showing its work.
+            let vel = obs.velocity_pct(&keyword);
+            let xsrc = obs.cross_source(&keyword);
+            let crossing = obs.is_crossing(&keyword);
+            let rationale = obs.rationale(&keyword);
+
+            // Rotate the market, then validate it against what the data supports.
             let mut market = MARKETS[(seed as usize).wrapping_add(i) % MARKETS.len()];
             let mut keyword2 = String::new();
             let mut target = 0i64;
-            if market == "HEAD-TO-HEAD" {
-                if n >= 2 {
-                    keyword2 = pick_keyword(&subject_of(&signals[(i + 1) % n]));
-                    if keyword2 == keyword || keyword2.is_empty() {
+            let mut horizon_days = HORIZON_DAYS;
+
+            match market {
+                "CHASM" => {
+                    // Only a bet if the term was born technical (room to cross).
+                    if !(crossing || obs.origin_stage(&keyword) <= 4) {
                         market = "RESURFACE";
                     }
-                } else {
-                    market = "RESURFACE";
                 }
-            }
-            if market == "INDEX" {
-                target = (index + 5 + ((seed as i64 + i as i64) % 6)).clamp(1, 100);
+                "HEAD-TO-HEAD" | "CROSSOVER" => {
+                    if n >= 2 {
+                        keyword2 = pick_keyword(&subject_of(&signals[(i + 1) % n]));
+                        if keyword2 == keyword || keyword2.is_empty() {
+                            market = "RESURFACE";
+                        }
+                    } else {
+                        market = "RESURFACE";
+                    }
+                }
+                "OVER" => {
+                    let today = obs.today_count(&keyword).max(1) as i64;
+                    target = today + 1 + ((seed + i as i64).rem_euclid(3));
+                }
+                "INDEX" => {
+                    target = (index + 5 + ((seed + i as i64).rem_euclid(6))).clamp(1, 100);
+                }
+                "FUTURES" => horizon_days = FUTURES_DAYS,
+                _ => {}
             }
 
-            let kw = keyword.to_uppercase();
+            let resolves_by = horizon(date, horizon_days);
             let win_if = match market {
                 "SURVIVAL" => format!("WIN IF \"{kw}\" HAS NOT GONE QUIET BY {resolves_by}"),
                 "MOMENTUM" => format!("WIN IF \"{kw}\" IS STILL MOVING ACROSS THE FEEDS BY {resolves_by}"),
                 "HEAD-TO-HEAD" => format!("WIN IF \"{kw}\" RESURFACES BEFORE \"{}\" BY {resolves_by}", keyword2.to_uppercase()),
+                "CROSSOVER" => format!("WIN IF \"{kw}\" OUT-MENTIONS \"{}\" BY {resolves_by}", keyword2.to_uppercase()),
                 "INDEX" => format!("WIN IF THE PULSE INDEX CROSSES {target} BY {resolves_by}"),
+                "OVER" => format!("WIN IF \"{kw}\" CLEARS {target} MENTIONS IN A DAY BY {resolves_by}"),
+                "CHASM" => format!("WIN IF \"{kw}\" REACHES THE GENERAL PUBLIC (REDDIT/NEWS/WIKIPEDIA) BY {resolves_by}"),
+                "FUTURES" => format!("WIN IF \"{kw}\" STILL MATTERS BY {resolves_by} (90-DAY FUTURE)"),
+                "LONGSHOT" => format!("LONGSHOT: WIN IF \"{kw}\" RESURFACES BY {resolves_by}"),
                 _ => format!("WIN IF \"{kw}\" RESURFACES ACROSS THE FEEDS BY {resolves_by}"),
             };
 
-            // Confidence sets the line: lead picks are favorites, later picks are
-            // longer shots. A small date-seeded jitter keeps it from being rote.
-            let jitter = ((seed.unsigned_abs() as usize + i) % 7) as f64 * 0.01;
-            let confidence = (0.78 - i as f64 * 0.06 + jitter).clamp(0.52, 0.86);
+            // Confidence comes from the data: cross-source confirmation and
+            // positive velocity raise the line; later picks, longshots and the
+            // genuinely-hard chasm bet lower it.
+            let mut confidence = 0.55
+                + (xsrc as f64 * 0.035).min(0.18)
+                + if vel > 0 { 0.06 } else { -0.04 }
+                - i as f64 * 0.03;
+            if market == "LONGSHOT" {
+                confidence = 0.40;
+            }
+            if market == "CHASM" {
+                confidence -= 0.06;
+            }
+            let jitter = ((seed.unsigned_abs() as usize + i) % 5) as f64 * 0.01;
+            let confidence = (confidence + jitter).clamp(0.34, 0.9);
+
             Prediction {
                 date: date.to_string(),
                 prediction_text: fill_template(&s.signal_type, &subject, seed, i),
@@ -68,6 +118,7 @@ pub fn generate(signals: &[Signal], date: &str, seed: i64, index: i64) -> Vec<Pr
                 market: market.to_string(),
                 keyword2,
                 target,
+                rationale,
             }
         })
         .collect()
@@ -103,9 +154,9 @@ fn pick_keyword(subject: &str) -> String {
     best.to_lowercase()
 }
 
-fn horizon(date: &str) -> String {
+fn horizon(date: &str, days: i64) -> String {
     match NaiveDate::parse_from_str(date, "%Y-%m-%d") {
-        Ok(d) => (d + Duration::days(HORIZON_DAYS)).format("%Y-%m-%d").to_string(),
+        Ok(d) => (d + Duration::days(days)).format("%Y-%m-%d").to_string(),
         Err(_) => date.to_string(),
     }
 }
@@ -167,6 +218,18 @@ fn variants_for(signal_type: &str) -> &'static [&'static str] {
             "The press is circling {s}. Betting today's story is the small version of a much larger one by year end.",
             "{s} made the news. This is the kind of story that quietly reshapes a market before anyone admits it.",
             "{s} is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
+        ],
+        "wiki" => &[
+            "{s} is pulling general-public attention on Wikipedia now. The signal says it stays in the mainstream conversation through next quarter.",
+            "Regular people are looking up {s}. This is what crossing the chasm looks like; betting a brand or regulator reacts within two quarters.",
+            "{s} broke into Wikipedia's most-read. Calling it: the mainstream story gets bigger before it gets smaller.",
+            "The public found {s}. This is usually the top of the hype, not the start; betting the cool-down lands within a quarter.",
+        ],
+        "crates" => &[
+            "{s} is climbing real download charts. Adoption, not chatter; betting it becomes a default dependency in its niche within a year.",
+            "Devs are actually pulling {s} into builds. The signal says a managed offering or corporate backer shows up within six months.",
+            "{s} is gaining real adoption. This is the boring-and-everywhere trajectory; calling it a standard tool within the year.",
+            "Downloads of {s} are accelerating. Expect the ecosystem to consolidate around it before Q4.",
         ],
         _ => &["{s} is showing momentum. The signal points to it mattering more next quarter than it does today."],
     }

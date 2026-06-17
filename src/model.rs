@@ -39,5 +39,7 @@ pub struct Prediction {
     #[serde(default)]
     pub keyword2: String, // the other side, for HEAD-TO-HEAD
     #[serde(default)]
-    pub target: i64, // index threshold, for INDEX bets
+    pub target: i64, // index threshold (INDEX) or mention threshold (OVER/UNDER)
+    #[serde(default)]
+    pub rationale: String, // the engine's machine-derived reasoning tape
 }

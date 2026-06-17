@@ -23,6 +23,7 @@ pub fn render(
     intake: &serde_json::Value,
     pulse: &serde_json::Value,
     genome: &serde_json::Value,
+    engine: &serde_json::Value,
 ) -> anyhow::Result<()> {
     std::fs::create_dir_all(crate::OUT_DIR)?;
 
@@ -53,6 +54,7 @@ pub fn render(
                 "odds": format!("{:.2}x", 1.0 / conf),
                 "conf": (conf * 100.0).round() as i64,
                 "market": if p.market.is_empty() { "RESURFACE".to_string() } else { p.market.clone() },
+                "rationale": p.rationale,
             }));
             i += 1;
         }
@@ -128,7 +130,7 @@ pub fn render(
     let (mut cur, mut best_win, mut best_loss, mut settled) = (0i64, 0i64, 0i64, 0i64);
     let mut last_win: Option<bool> = None;
     for p in &chrono {
-        let conf = if p.confidence > 0.0 { p.confidence.clamp(0.5, 0.95) } else { 0.65 };
+        let conf = if p.confidence > 0.0 { p.confidence.clamp(0.34, 0.95) } else { 0.65 };
         let win = match p.status.as_str() {
             "HIT" => true,
             "MISS" => false,
@@ -170,6 +172,62 @@ pub fn render(
         "streak": match last_win { Some(true) => format!("W{cur}"), Some(false) => format!("L{cur}"), None => "--".to_string() },
         "best_win": best_win, "best_loss": best_loss,
         "settled": settled, "history": book_history,
+    });
+
+    // CALIBRATION: the engine grades its own honesty. For every settled call,
+    // compare the confidence it set (predicted P(hit)) to the actual outcome.
+    // Brier score = mean squared error; lower is better, 0.25 = a coin flip.
+    let mut brier_sum = 0.0f64;
+    let mut cal_n = 0i64;
+    // Three confidence bands: longshots, even money, favorites.
+    let bands = [(0.0f64, 0.55f64, "LONGSHOTS"), (0.55, 0.7, "EVEN MONEY"), (0.7, 1.01, "FAVORITES")];
+    let mut band_acc: Vec<(f64, i64, i64)> = vec![(0.0, 0, 0); bands.len()]; // sum_pred, hits, n
+    for p in archive {
+        let outcome = match p.status.as_str() {
+            "HIT" => 1.0,
+            "MISS" => 0.0,
+            _ => continue,
+        };
+        let conf = if p.confidence > 0.0 { p.confidence.clamp(0.34, 0.95) } else { 0.65 };
+        brier_sum += (conf - outcome).powi(2);
+        cal_n += 1;
+        if let Some(bi) = bands.iter().position(|(lo, hi, _)| conf >= *lo && conf < *hi) {
+            band_acc[bi].0 += conf;
+            band_acc[bi].1 += outcome as i64;
+            band_acc[bi].2 += 1;
+        }
+    }
+    let brier = if cal_n > 0 { (brier_sum / cal_n as f64 * 1000.0).round() / 1000.0 } else { 0.0 };
+    let cal_buckets: Vec<serde_json::Value> = bands
+        .iter()
+        .enumerate()
+        .filter(|(i, _)| band_acc[*i].2 > 0)
+        .map(|(i, (_, _, label))| {
+            let (sum_pred, hits, n) = band_acc[i];
+            let pred = (sum_pred / n as f64 * 100.0).round() as i64;
+            let actual = (hits * 100) / n;
+            serde_json::json!({ "label": label, "pred": pred, "actual": actual, "n": n })
+        })
+        .collect();
+    // Skill grade: how close predicted tracks actual across the bands.
+    let cal_err: i64 = cal_buckets
+        .iter()
+        .map(|b| (b["pred"].as_i64().unwrap_or(0) - b["actual"].as_i64().unwrap_or(0)).abs())
+        .sum::<i64>()
+        .checked_div(cal_buckets.len().max(1) as i64)
+        .unwrap_or(0);
+    let cal_grade = match (cal_n, cal_err) {
+        (0, _) => "NO SETTLED CALLS YET",
+        (_, e) if e <= 8 => "SHARP: THE LINE MEANS WHAT IT SAYS",
+        (_, e) if e <= 18 => "HONEST: ROUGHLY CALIBRATED",
+        _ => "MISCALIBRATED, AND SHOWING IT",
+    };
+    let calibration = serde_json::json!({
+        "brier": format!("{:.3}", brier),
+        "has_data": cal_n > 0,
+        "n": cal_n,
+        "buckets": cal_buckets,
+        "grade": cal_grade,
     });
 
     let since_human = sorted.last().map(|p| human_date(&p.date)).unwrap_or_default();
@@ -362,7 +420,7 @@ pub fn render(
     // llms.txt: a machine-readable map so AI answer engines can find and cite it.
     let latest_no = total;
     let llms = format!(
-        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## How it works\nReads Hacker News, arXiv, GitHub, Lobsters, dev.to and Ars Technica. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
 
@@ -505,6 +563,8 @@ pub fn render(
         ladder_repo => ladder_repo,
         og_image => format!("{site}/og.png"),
         mood => mood,
+        engine => engine,
+        calibration => calibration,
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,

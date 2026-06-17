@@ -5,7 +5,12 @@
 use crate::model::Signal;
 use std::collections::HashMap;
 
-pub fn rank_and_select(signals: Vec<Signal>, seed: i64, max_picks: usize) -> Vec<Signal> {
+pub fn rank_and_select(
+    signals: Vec<Signal>,
+    seed: i64,
+    max_picks: usize,
+    weights: &HashMap<String, f64>,
+) -> Vec<Signal> {
     if signals.is_empty() {
         return Vec::new();
     }
@@ -33,7 +38,10 @@ pub fn rank_and_select(signals: Vec<Signal>, seed: i64, max_picks: usize) -> Vec
                 _ => 3,
             };
             let bonus = (((seed as usize).wrapping_add(src_idx)) % 3) as f64 * 1e-6;
-            (norm + bonus, s)
+            // The engine learns: sources whose calls actually landed get their
+            // signals weighted up; chronic missers get weighted down.
+            let w = weights.get(&s.signal_type).copied().unwrap_or(1.0);
+            (norm * w + bonus, s)
         })
         .collect();
 

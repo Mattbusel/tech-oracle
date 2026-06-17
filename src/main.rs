@@ -3,13 +3,14 @@ mod card;
 mod fetch;
 mod generate;
 mod model;
+mod observatory;
 mod rank;
 mod render;
 
 use chrono::{Datelike, Duration, NaiveDate, Utc};
 use model::Prediction;
 use serde::{Deserialize, Serialize};
-use std::collections::HashSet;
+use std::collections::{HashMap, HashSet};
 
 // Committed, public: the revealed track record. Renders the public page.
 const DATA_PATH: &str = "data/predictions.json";
@@ -17,6 +18,8 @@ const DATA_PATH: &str = "data/predictions.json";
 const PULSE_PATH: &str = "data/pulse.json";
 // Committed, public: the organism's genome -- mutates once per day, never resets.
 const GENOME_PATH: &str = "data/genome.json";
+// Committed, public: learned per-source weights (the engine improving itself).
+const WEIGHTS_PATH: &str = "data/weights.json";
 // Gitignored, synced from KV before the run: calls still under embargo.
 const EMBARGO_IN: &str = "build/embargoed_in.json";
 // Gitignored, synced to KV after the run: the subscriber edge payload.
@@ -49,7 +52,8 @@ fn main() {
     let client = fetch::client();
     let signals = std::thread::scope(|scope| {
         let c = || client.clone();
-        let (c1, c2, c3, c4, c5, c6, c7, c8) = (c(), c(), c(), c(), c(), c(), c(), c());
+        let (c1, c2, c3, c4, c5, c6, c7, c8, c9, c10) =
+            (c(), c(), c(), c(), c(), c(), c(), c(), c(), c());
         let hn = scope.spawn(move || fetch::fetch_hackernews(&c1));
         let ax = scope.spawn(move || fetch::fetch_arxiv(&c2));
         let gh = scope.spawn(move || fetch::fetch_github(&c3));
@@ -58,6 +62,8 @@ fn main() {
         let ar = scope.spawn(move || fetch::fetch_ars(&c6));
         let rd = scope.spawn(move || fetch::fetch_reddit(&c7));
         let nw = scope.spawn(move || fetch::fetch_news(&c8));
+        let wk = scope.spawn(move || fetch::fetch_wikipedia(&c9));
+        let cr = scope.spawn(move || fetch::fetch_crates(&c10));
 
         let mut all = Vec::new();
         collect("Hacker News", hn.join(), &mut all);
@@ -68,6 +74,8 @@ fn main() {
         collect("Ars Technica", ar.join(), &mut all);
         collect("Reddit", rd.join(), &mut all);
         collect("Google News", nw.join(), &mut all);
+        collect("Wikipedia", wk.join(), &mut all);
+        collect("crates.io", cr.join(), &mut all);
         all
     });
     eprintln!("collected {} signals total", signals.len());
@@ -79,16 +87,30 @@ fn main() {
     let pulse = build_pulse(&signals, &date);
     // The genome: mutates once per day so the site evolves on its own.
     let genome = build_genome(&date);
+    // THE OBSERVATORY: persist today into the growing corpus and derive the
+    // quantitative views (velocity, diffusion, sectors, fear/greed). Must run
+    // before rank/generate so calls can show their work.
+    let obs = observatory::build(&signals, &date);
     // Lowercased corpus of today's signals, for self-grading open calls.
     let corpus = signals
         .iter()
         .map(|s| s.title.to_lowercase())
         .collect::<Vec<_>>()
         .join(" || ");
+    // The general-public slice (Reddit, Ars, News, Wikipedia): a CHASM call
+    // settles when its subject resurfaces here, out of the dev bubble.
+    let general_corpus = signals
+        .iter()
+        .filter(|s| matches!(s.signal_type.as_str(), "reddit" | "ars" | "news" | "wiki"))
+        .map(|s| s.title.to_lowercase())
+        .collect::<Vec<_>>()
+        .join(" || ");
 
     let today_index = pulse.get("index").and_then(|v| v.as_i64()).unwrap_or(50);
-    let picks = rank::rank_and_select(signals, seed, 4);
-    let todays = generate::generate(&picks, &date, seed, today_index);
+    // Yesterday's learned weights steer today's selection (online learning).
+    let weights = load_weights();
+    let picks = rank::rank_and_select(signals, seed, 4, &weights);
+    let todays = generate::generate(&picks, &date, seed, today_index, &obs);
     eprintln!("generated {} call(s) for {date}", todays.len());
 
     // ---- merge across the embargo/reveal windows ----
@@ -102,8 +124,8 @@ fn main() {
 
     // Self-grade: resolve any open call whose subject resurfaced in today's
     // signals (a HIT) or whose deadline has passed without resurfacing (a MISS).
-    resolve_open(&mut revealed, &date, &corpus, today_index);
-    resolve_open(&mut embargoed, &date, &corpus, today_index);
+    resolve_open(&mut revealed, &date, &corpus, &general_corpus, today_index);
+    resolve_open(&mut embargoed, &date, &corpus, &general_corpus, today_index);
 
     // Promote any embargoed call old enough to go public.
     let mut still_embargoed = Vec::new();
@@ -138,6 +160,15 @@ fn main() {
         embargoed.len()
     );
 
+    // ---- the engine grades and improves itself ----
+    // Per-source realized hit rate over the resolved record drives the weights
+    // that steer tomorrow's selection. The organism gets smarter, not prettier.
+    let source_stats = source_hit_stats(&revealed);
+    let new_weights = compute_weights(&source_stats);
+    save_weights(&new_weights);
+    // The Engine Room panel: everything the observatory and the book now know.
+    let engine = build_engine(&obs, &source_stats, &new_weights);
+
     // ---- render the public (delayed) page ----
     let mut archive: Vec<Prediction> = revealed.clone();
     archive.sort_by(|a, b| b.date.cmp(&a.date)); // newest first
@@ -163,6 +194,7 @@ fn main() {
         &intake,
         &pulse,
         &genome,
+        &engine,
     ) {
         eprintln!("render error: {e}");
         std::process::exit(1);
@@ -244,6 +276,8 @@ fn source_label(t: &str) -> &'static str {
         "ars" => "ARS TECHNICA",
         "reddit" => "REDDIT",
         "news" => "THE NEWS",
+        "wiki" => "WIKIPEDIA",
+        "crates" => "CRATES.IO",
         _ => "SIGNAL",
     }
 }
@@ -295,7 +329,7 @@ fn build_intake(signals: &[model::Signal]) -> serde_json::Value {
 /// Resolve open calls against today's signal corpus. A call only resolves on a
 /// day after it was made (so it cannot settle on its own source), HITs if its
 /// keyword resurfaces before the deadline, and MISSes once the deadline passes.
-fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, index: i64) {
+fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, general: &str, index: i64) {
     for p in preds.iter_mut() {
         if p.status != "OPEN" || p.date.as_str() >= today {
             continue;
@@ -303,6 +337,7 @@ fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, index: i64)
         let within = p.resolves_by.is_empty() || today <= p.resolves_by.as_str();
         let expired = !p.resolves_by.is_empty() && today > p.resolves_by.as_str();
         let here = |kw: &str| !kw.is_empty() && corpus.contains(kw);
+        let count = |kw: &str| if kw.is_empty() { 0 } else { corpus.matches(kw).count() };
 
         let (mut hit, mut miss) = (false, false);
         match p.market.as_str() {
@@ -317,6 +352,15 @@ fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, index: i64)
                     miss = true;
                 }
             }
+            "CROSSOVER" => {
+                // The subject out-mentions its rival on any later day.
+                let (a, b) = (count(&p.keyword), count(&p.keyword2));
+                if within && a > b && a > 0 {
+                    hit = true;
+                } else if expired {
+                    miss = true;
+                }
+            }
             "INDEX" => {
                 if within && index >= p.target {
                     hit = true;
@@ -324,7 +368,25 @@ fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, index: i64)
                     miss = true;
                 }
             }
-            // RESURFACE / SURVIVAL / MOMENTUM / default: keyword resurfaces.
+            "OVER" => {
+                if within && (count(&p.keyword) as i64) >= p.target {
+                    hit = true;
+                } else if expired {
+                    miss = true;
+                }
+            }
+            "CHASM" => {
+                // Settles only when it reaches the general-public feeds.
+                if p.keyword.is_empty() {
+                    continue;
+                }
+                if within && general.contains(&p.keyword) {
+                    hit = true;
+                } else if expired {
+                    miss = true;
+                }
+            }
+            // RESURFACE / SURVIVAL / MOMENTUM / FUTURES / LONGSHOT: keyword resurfaces.
             _ => {
                 if p.keyword.is_empty() {
                     continue;
@@ -344,6 +406,122 @@ fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, index: i64)
             p.resolved_on = today.to_string();
         }
     }
+}
+
+/// All sources, in funnel order, for stable display of the learning panel.
+const ALL_SOURCES: &[&str] = &[
+    "arxiv", "github", "crates", "lobsters", "hn", "devto", "reddit", "ars", "news", "wiki",
+];
+
+/// Per-source (hits, misses) over the resolved public record.
+fn source_hit_stats(preds: &[Prediction]) -> HashMap<String, (i64, i64)> {
+    let mut m: HashMap<String, (i64, i64)> = HashMap::new();
+    for p in preds {
+        let e = m.entry(p.signal_type.clone()).or_insert((0, 0));
+        match p.status.as_str() {
+            "HIT" => e.0 += 1,
+            "MISS" => e.1 += 1,
+            _ => {}
+        }
+    }
+    m
+}
+
+/// Turn realized hit rates into selection weights. A source needs at least a few
+/// settled calls before it moves off the neutral 1.0 (shrinkage to the prior).
+fn compute_weights(stats: &HashMap<String, (i64, i64)>) -> HashMap<String, f64> {
+    let mut w = HashMap::new();
+    for &src in ALL_SOURCES {
+        let (h, m) = stats.get(src).copied().unwrap_or((0, 0));
+        let resolved = h + m;
+        let weight = if resolved >= 3 {
+            let rate = h as f64 / resolved as f64;
+            (0.6 + rate * 0.8).clamp(0.6, 1.5)
+        } else {
+            1.0
+        };
+        w.insert(src.to_string(), weight);
+    }
+    w
+}
+
+fn load_weights() -> HashMap<String, f64> {
+    std::fs::read_to_string(WEIGHTS_PATH)
+        .ok()
+        .and_then(|s| serde_json::from_str(&s).ok())
+        .unwrap_or_default()
+}
+
+fn save_weights(w: &HashMap<String, f64>) {
+    if let Some(parent) = std::path::Path::new(WEIGHTS_PATH).parent() {
+        let _ = std::fs::create_dir_all(parent);
+    }
+    if let Ok(j) = serde_json::to_string_pretty(w) {
+        let _ = std::fs::write(WEIGHTS_PATH, j);
+    }
+}
+
+/// Assemble the Engine Room: the quantitative state the page dramatizes.
+fn build_engine(
+    obs: &observatory::Observatory,
+    stats: &HashMap<String, (i64, i64)>,
+    weights: &HashMap<String, f64>,
+) -> serde_json::Value {
+    let sectors: Vec<serde_json::Value> = obs
+        .sectors
+        .iter()
+        .map(|(name, idx, delta)| {
+            serde_json::json!({
+                "name": name, "index": idx, "delta": delta,
+                "arrow": if *delta > 0 { "UP" } else if *delta < 0 { "DOWN" } else { "FLAT" },
+            })
+        })
+        .collect();
+
+    let movers: Vec<serde_json::Value> = obs
+        .top_movers(6)
+        .into_iter()
+        .map(|(t, vel, c)| serde_json::json!({ "term": t.to_uppercase(), "vel": vel, "count": c }))
+        .collect();
+
+    let chasm: Vec<serde_json::Value> = obs
+        .chasm_watch(6)
+        .into_iter()
+        .map(|(t, origin, reach, days)| {
+            serde_json::json!({ "term": t.to_uppercase(), "origin": origin, "reach": reach, "days": days })
+        })
+        .collect();
+
+    let mut learning: Vec<serde_json::Value> = ALL_SOURCES
+        .iter()
+        .map(|&src| {
+            let (h, m) = stats.get(src).copied().unwrap_or((0, 0));
+            let resolved = h + m;
+            let weight = weights.get(src).copied().unwrap_or(1.0);
+            serde_json::json!({
+                "source": src,
+                "label": source_label(src),
+                "weight": (weight * 100.0).round() / 100.0,
+                "hits": h, "misses": m,
+                "rate": if resolved > 0 { h * 100 / resolved } else { 0 },
+                "has_rate": resolved > 0,
+                "bar": ((weight / 1.5) * 100.0).round() as i64,
+            })
+        })
+        .collect();
+    learning.sort_by(|a, b| {
+        b["weight"].as_f64().unwrap_or(1.0).partial_cmp(&a["weight"].as_f64().unwrap_or(1.0)).unwrap_or(std::cmp::Ordering::Equal)
+    });
+
+    serde_json::json!({
+        "corpus_days": obs.corpus.days.len(),
+        "tracked_terms": obs.corpus.terms.len(),
+        "fear_greed": { "value": obs.greed, "label": obs.greed_label() },
+        "sectors": sectors,
+        "movers": movers,
+        "chasm": chasm,
+        "learning": learning,
+    })
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
@@ -411,8 +589,8 @@ fn build_pulse(signals: &[model::Signal], date: &str) -> serde_json::Value {
     let breadth = signals.iter().map(|s| s.signal_type.as_str()).collect::<HashSet<_>>().len();
     let (theme, theme_share) = dominant_theme(signals);
 
-    let vol = (total as f64 / 240.0).min(1.0); // ~8 sources * 30 items
-    let br = breadth as f64 / 8.0;
+    let vol = (total as f64 / 300.0).min(1.0); // ~10 sources * 30 items
+    let br = breadth as f64 / 10.0;
     let index = ((0.5 * vol + 0.3 * br + 0.2 * theme_share) * 100.0).round() as i64;
     let index = index.clamp(0, 100);
 
@@ -573,6 +751,9 @@ fn write_early_payload(path: &str, human: &str, delay_days: i64, embargoed: &[Pr
                 "source_title": p.source_title,
                 "source_url": p.source_url,
                 "signal_type": p.signal_type,
+                "market": p.market,
+                "win_if": p.win_if,
+                "rationale": p.rationale,
                 "public_reveal_date": reveal_date(&p.date, delay_days),
             })
         })
