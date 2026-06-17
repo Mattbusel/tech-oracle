@@ -79,9 +79,10 @@ The persisted source of truth for a call. All grading fields default via
 - `rationale: String` - the machine reasoning tape.
 - `live, live_prev: i64`, `live_date: String` - the mark-to-market likelihood, its
   prior reading, and the last day it rolled.
-- `regime: String`, `gamma: f64`, `geodesic: i64` - the manifold stamp at call
-  time: the space-time regime that shaped the bet, the Lorentz factor, and the
-  forward geodesic forecast in percent (`""`/`0`/`1.0` when warming up).
+- `regime: String`, `gamma: f64`, `geodesic: i64`, `phase: String` - the manifold
+  stamp at call time: the space-time regime that shaped the bet, the Lorentz
+  factor, the forward geodesic forecast in percent, and the phase (RISING /
+  PEAKING / FALLING / BOTTOMING / CHURNING / FLAT). Empty/`0`/`1.0` when warming up.
 
 ---
 
@@ -209,9 +210,19 @@ geodesic on that manifold. Dependency-free, deterministic, pure arithmetic.
   - `curvature`: the geodesic-deviation z-score `(d gamma / gamma) * sign(beta)`,
   - `trend`: the forward geodesic projection over the horizon, tanh-squashed to
     [-1, 1].
+  - `drift` (mean recent log-return, the causal velocity) and `accel` (its change,
+    the curvature).
   - `.defined()` (>= MIN_POINTS), `.prob_rising()` (0..1 P(attention rises),
     `0.5 + 0.5*trend*certainty`), `.confidence()` (0.34..0.92 from speed + regime
     + trend), `.tag()` (the readout for the rationale tape).
+  - `.forward_velocity()` (`drift + accel`, where it is actually headed next),
+    `.forecast_path(steps)` (the integrated geodesic curve for charts),
+    `.peak_in()` (days until the projected turn, the manifold's signature timing
+    capability), and `.phase() -> Phase`.
+- `enum Phase { Rising, Peaking, Falling, Bottoming, Churning, Flat }` with
+  `.label()` and `.is_turn()`. The reversal states (PEAKING = rising now but
+  forward velocity already negative; BOTTOMING = the mirror) are what the manifold
+  does best and the trend-followers structurally miss.
 - `pub fn analyze(series: &[f64]) -> Reading` - the whole pipeline: log-attention
   returns `ln(1+count)`, a local light speed = rolling max move, betas/gammas,
   the interval and regime, the curvature z-score, and the geodesic forecast.
@@ -360,8 +371,14 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
   `fn compute_weights(stats) -> HashMap<src,f64>` (0.6..1.5, needs >=3 settled or
   stays 1.0), `fn load_weights()`, `fn save_weights(w)`.
 - `fn build_engine(obs, stats, weights) -> Value` - the Engine Room JSON:
-  sectors, fear_greed, movers, chasm, learning (sorted by weight), corpus_days,
-  tracked_terms.
+  sectors, fear_greed, movers, chasm, manifold, learning (sorted by weight),
+  corpus_days, tracked_terms. `build_benchmark` and `build_horizon` are inserted
+  into it.
+- `fn build_horizon(obs) -> Value` - THE EVENT HORIZON: scans every tracked
+  topic's trajectory, surfaces the ones the manifold reads as turning (peaking /
+  bottoming) with a projected day, sorted by conviction and capped at 16, plus a
+  phase tally of the whole field. Written to `api/horizon.json`; `horizon.html`
+  renders it.
 - Dataset: `fn csv_escape(s)`, `fn write_dataset(obs, revealed)` - writes
   `docs/dataset/{predictions.csv, predictions.jsonl, diffusion.csv,
   datapackage.json, croissant.json, README.md, index.html}`.

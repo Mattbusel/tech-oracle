@@ -62,4 +62,6 @@ pub struct Prediction {
     pub gamma: f64, // Lorentz factor at call time (>= 1.0)
     #[serde(default)]
     pub geodesic: i64, // forward geodesic forecast, -100..100
+    #[serde(default)]
+    pub phase: String, // RISING | PEAKING | FALLING | BOTTOMING | CHURNING | FLAT | ""
 }

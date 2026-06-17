@@ -179,8 +179,10 @@ fn main() {
     // The Engine Room panel: everything the observatory and the book now know.
     let mut engine = build_engine(&obs, &source_stats, &new_weights);
     // THE PROVING GROUND: benchmark the manifold against the canonical algorithms.
+    // THE EVENT HORIZON: the topics the manifold calls turning (peaking / bottoming).
     if let Some(obj) = engine.as_object_mut() {
         obj.insert("benchmark".to_string(), build_benchmark(&obs));
+        obj.insert("horizon".to_string(), build_horizon(&obs));
     }
 
     // THE BLOODLINE evolves: score every organism on the settled record, cull
@@ -729,6 +731,52 @@ fn build_benchmark(obs: &observatory::Observatory) -> serde_json::Value {
         "manifold_acc_rank": acc_rank,
         "manifold_best_ic": mani.map(|m| (m.ic - ic_best).abs() < 1e-9).unwrap_or(false),
         "manifold_best_brier": mani.map(|m| (m.brier - brier_best).abs() < 1e-9).unwrap_or(false),
+    })
+}
+
+/// THE EVENT HORIZON: scan every tracked topic's trajectory and surface the ones
+/// the manifold says are TURNING (peaking or bottoming) with a projected day of the
+/// turn. This is the manifold's signature edge productized: calling reversals that
+/// a momentum chaser cannot see, and a tally of the whole field's phases.
+fn build_horizon(obs: &observatory::Observatory) -> serde_json::Value {
+    use std::collections::BTreeMap;
+    let mut turns: Vec<(f64, serde_json::Value)> = Vec::new();
+    let mut phases: BTreeMap<String, i64> = BTreeMap::new();
+    let mut scanned = 0i64;
+    let mut defined = 0i64;
+    for term in obs.corpus.terms.keys() {
+        scanned += 1;
+        let r = manifold::analyze(&obs.trajectory(term));
+        if !r.defined() {
+            continue;
+        }
+        defined += 1;
+        let ph = r.phase();
+        *phases.entry(ph.label().to_string()).or_insert(0) += 1;
+        if ph.is_turn() {
+            let conviction = r.trend.abs() * r.regime.certainty() * r.gamma;
+            turns.push((
+                conviction,
+                serde_json::json!({
+                    "term": term.to_uppercase(),
+                    "phase": ph.label(),
+                    "peak_in": r.peak_in().unwrap_or(0),
+                    "regime": r.regime.label(),
+                    "gamma": (r.gamma * 100.0).round() / 100.0,
+                    "geodesic": (r.trend * 100.0).round() as i64,
+                    "prob_rising": (r.prob_rising() * 100.0).round() as i64,
+                }),
+            ));
+        }
+    }
+    // Strongest convictions first; cap the board.
+    turns.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
+    let turns: Vec<serde_json::Value> = turns.into_iter().take(16).map(|(_, v)| v).collect();
+    serde_json::json!({
+        "turns": turns,
+        "phases": phases,
+        "scanned": scanned,
+        "defined": defined,
     })
 }
 

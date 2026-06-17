@@ -162,6 +162,7 @@ pub fn generate(
                 regime: if mani.defined() { mani.regime.label().to_string() } else { String::new() },
                 gamma: (mani.gamma * 1000.0).round() / 1000.0,
                 geodesic: (mani.trend * 100.0).round() as i64,
+                phase: if mani.defined() { mani.phase().label().to_string() } else { String::new() },
             }
         })
         .collect()

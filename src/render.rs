@@ -61,6 +61,7 @@ pub fn render(
                 "live_delta": p.live - p.live_prev,
                 "regime": p.regime,
                 "geodesic": p.geodesic,
+                "phase": p.phase,
             }));
             i += 1;
         }
@@ -590,6 +591,87 @@ fetch('api/benchmark.json').then(function(r){return r.json();}).then(function(d)
         urls.push(format!("{site}/manifold.html"));
     }
 
+    // THE EVENT HORIZON: the reversals the manifold is calling. A momentum feed can
+    // only tell you what is already hot; this names what is about to turn, peaking
+    // or bottoming, with a projected day. The manifold's signature edge, productized.
+    {
+        let tpl = r###"<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Event Horizon: what is about to turn // THE SIGNAL</title>
+<meta name="description" content="A live board of the reversals the machine is calling: topics peaking or bottoming, with the projected day of the turn. Momentum tells you what is already hot. The manifold tells you what is about to flip.">
+<meta property="og:title" content="THE SIGNAL // THE EVENT HORIZON">
+<meta property="og:description" content="The reversals the machine is calling before they happen. Peaks and troughs, dated.">
+<meta property="og:image" content="__SITE__/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="__SITE__/horizon.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0a0710;color:#f3e6d0;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.s{max-width:760px;margin:0 auto;padding:40px 26px 80px}
+.b{display:inline-block;background:#f3e6d0;color:#0a0710;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:700}
+h1{font-size:32px;letter-spacing:.04em;margin:16px 0 4px}
+h2{font-size:13px;letter-spacing:.22em;color:#a98b6f;margin:36px 0 8px;border-bottom:1px solid rgba(169,139,111,.3);padding-bottom:8px}
+.sub{font-size:13px;color:#c2a98c;line-height:1.6}
+.turn{display:flex;align-items:center;gap:14px;padding:14px 12px;border-bottom:1px dashed rgba(169,139,111,.3)}
+.tg{font-size:11px;font-weight:700;letter-spacing:.12em;padding:4px 9px;border-radius:2px;white-space:nowrap}
+.peak{background:rgba(232,138,77,.2);color:#f0a86a;border:1px solid rgba(232,138,77,.5)}
+.bottom{background:rgba(95,200,255,.16);color:#6fc7ff;border:1px solid rgba(95,200,255,.45)}
+.tm{font-size:17px;font-weight:700;color:#fff7ea;flex:1}
+.tw{font-size:11px;color:#a98b6f;text-align:right;line-height:1.5}
+.big{font-size:21px;color:#f0a86a;font-weight:700}
+.phases{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.ph{font-size:11px;letter-spacing:.08em;padding:6px 11px;border:1px solid rgba(169,139,111,.35);color:#c2a98c}
+.ph b{color:#fff7ea}
+.note{font-size:12px;color:#a98b6f;background:rgba(169,139,111,.08);padding:12px;margin-top:16px;line-height:1.6}
+.btn{display:inline-block;border:1.5px solid #f3e6d0;padding:11px 17px;margin:24px 8px 0 0;text-decoration:none;color:#f3e6d0;font-weight:600;letter-spacing:.06em}
+.btn:hover{background:#f3e6d0;color:#0a0710}
+a{color:#f3e6d0}
+</style></head>
+<body><div class="s">
+<div class="b">THE SIGNAL // THE EVENT HORIZON</div>
+<h1>WHAT IS ABOUT TO TURN</h1>
+<p class="sub">A momentum feed can only tell you what is already hot, which is why it buys every top and sells every bottom. This board is the opposite: the topics the manifold reads as <b>turning</b> right now, rising into a peak or falling into a trough, each with the projected day of the turn. In the benchmark this is exactly where the manifold pulls ahead of the trend-followers, so this is the page where it earns its keep.</p>
+
+<h2>THE TURNS</h2>
+<div id="turns"><p class="sub">Scanning the manifold for reversals...</p></div>
+
+<h2>THE FIELD</h2>
+<p class="sub">Every tracked topic, sorted into its phase. The shape of the whole discourse at a glance.</p>
+<div class="phases" id="phases"></div>
+<div class="note" id="note"></div>
+
+<a class="btn" href="__SITE__/manifold.html">[ THE MANIFOLD ]</a>
+<a class="btn" href="__SITE__/">[ BACK TO THE SIGNAL ]</a>
+
+<script>
+function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
+ var h=d&&d.horizon;if(!h){return;}
+ var box=document.getElementById('turns');
+ if(!h.turns||!h.turns.length){
+  box.innerHTML='<p class="sub">No turns called yet. Either the field is trending cleanly, or topics are still building the history the manifold needs (it reads a trajectory after a few days). This board fills in as the corpus matures, and a called peak that lands becomes a receipt no momentum feed could have printed.</p>';
+ } else {
+  box.innerHTML=h.turns.map(function(t){
+   var peak=t.phase==='PEAKING';
+   var when=t.peak_in>0?('in ~'+t.peak_in+'d'):'imminent';
+   return '<div class="turn"><span class="tg '+(peak?'peak':'bottom')+'">'+(peak?'PEAK':'TROUGH')+'</span>'
+    +'<span class="tm">'+esc(t.term)+'</span>'
+    +'<span class="tw"><span class="big">'+when+'</span><br>'+t.regime+' // gamma '+t.gamma.toFixed(2)+' // P(rise) '+t.prob_rising+'%</span></div>';
+  }).join('');
+ }
+ var ph=h.phases||{};var order=['RISING','PEAKING','FALLING','BOTTOMING','CHURNING','FLAT'];
+ var pe=document.getElementById('phases');
+ var any=Object.keys(ph).length;
+ pe.innerHTML=any?order.filter(function(k){return ph[k];}).map(function(k){return '<span class="ph"><b>'+ph[k]+'</b> '+k+'</span>';}).join(''):'<span class="sub">No topic has enough history to phase yet.</span>';
+ document.getElementById('note').innerHTML='Scanned '+(h.scanned||0)+' tracked topics; '+(h.defined||0)+' have enough trajectory to read. A peak means the topic is rising now but its geodesic has already curved down; a trough is the mirror. The reversal is what the others cannot see.';
+}).catch(function(){document.getElementById('turns').textContent='Could not load the event horizon.';});
+</script>
+</div></body></html>
+"###;
+        let horizon_page = tpl.replace("__SITE__", site.as_str());
+        std::fs::write(format!("{}/horizon.html", crate::OUT_DIR), horizon_page)?;
+        urls.push(format!("{site}/horizon.html"));
+    }
+
     // THE BLOODLINE, LIVE: a broadcast you tune into. The day's population is
     // baked in; the client runs it as a live channel with animated standings, a
     // house race, an events feed, and a rolling commentary you can switch the
@@ -724,7 +806,7 @@ fetch('api/benchmark.json').then(function(r){return r.json();}).then(function(d)
     // llms.txt: a machine-readable map so AI answer engines can find and cite it.
     let latest_no = total;
     let llms = format!(
-        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- The arena (bet against the machine): {site}/arena.html\n- Sleep mode (the oracle dreams, always running): {site}/sleep.html\n- The bloodline (the breeding population of strategies): {site}/bloodline.html\n- The manifold (the prediction core + the algorithm benchmark): {site}/manifold.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- Benchmark (the manifold vs momentum, PageRank and others): {site}/api/benchmark.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- The arena (bet against the machine): {site}/arena.html\n- Sleep mode (the oracle dreams, always running): {site}/sleep.html\n- The bloodline (the breeding population of strategies): {site}/bloodline.html\n- The manifold (the prediction core + the algorithm benchmark): {site}/manifold.html\n- The event horizon (the reversals the machine is calling): {site}/horizon.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- Benchmark (the manifold vs momentum, PageRank and others): {site}/api/benchmark.json\n- Event horizon (topics the manifold calls peaking/bottoming): {site}/api/horizon.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
 
@@ -956,7 +1038,7 @@ fn write_agent_layer(
             "resolved_on": p.resolved_on,
             "rationale": p.rationale,
             "live": p.live, "live_prev": p.live_prev,
-            "manifold": { "regime": p.regime, "gamma": p.gamma, "geodesic": p.geodesic },
+            "manifold": { "regime": p.regime, "gamma": p.gamma, "geodesic": p.geodesic, "phase": p.phase },
             "source": { "type": p.signal_type, "title": p.source_title, "url": p.source_url },
             "permalink": format!("{site}/call/{no}.html"),
         })
@@ -1014,6 +1096,14 @@ fn write_agent_layer(
     });
     std::fs::write(format!("{}/api/benchmark.json", crate::OUT_DIR), serde_json::to_string_pretty(&bench_doc)?)?;
 
+    // horizon.json: THE EVENT HORIZON. The reversals the manifold is calling.
+    let horizon_doc = serde_json::json!({
+        "schema": "the-signal/horizon/1",
+        "what": "Topics the manifold reads as turning: PEAKING (rising now, geodesic curving down) or BOTTOMING (falling now, curving up), with a projected day of the turn. The reversal calls trend-followers structurally miss.",
+        "horizon": engine.get("horizon"),
+    });
+    std::fs::write(format!("{}/api/horizon.json", crate::OUT_DIR), serde_json::to_string_pretty(&horizon_doc)?)?;
+
     // oracle.json: the discovery document an agent reads first.
     let oracle = serde_json::json!({
         "schema": "the-signal/oracle/1",
@@ -1025,7 +1115,8 @@ fn write_agent_layer(
             "today": format!("{site}/api/today.json"),
             "record": format!("{site}/api/record.json"),
             "observatory": format!("{site}/api/observatory.json"),
-            "benchmark": format!("{site}/api/benchmark.json")
+            "benchmark": format!("{site}/api/benchmark.json"),
+            "horizon": format!("{site}/api/horizon.json")
         },
         "markets": {
             "RESURFACE": "the subject reappears across the feeds before the deadline",

@@ -57,6 +57,36 @@ impl Regime {
     }
 }
 
+/// The shape of a trajectory's moment, the manifold's signature read. Reversal
+/// states (PEAKING / BOTTOMING) are what it does best: a topic still rising but
+/// whose geodesic curves back down is a top a momentum chaser cannot see coming.
+#[derive(Clone, Copy, PartialEq, Eq, Debug)]
+pub enum Phase {
+    Rising,    // moving up and the geodesic keeps climbing
+    Peaking,   // up now, but the geodesic turns down within the horizon (a top)
+    Falling,   // moving down and the geodesic keeps falling
+    Bottoming, // down now, but the geodesic turns up within the horizon (a trough)
+    Churning,  // no clean direction, noise dominates (spacelike)
+    Flat,      // quiet, no meaningful motion
+}
+
+impl Phase {
+    pub fn label(self) -> &'static str {
+        match self {
+            Phase::Rising => "RISING",
+            Phase::Peaking => "PEAKING",
+            Phase::Falling => "FALLING",
+            Phase::Bottoming => "BOTTOMING",
+            Phase::Churning => "CHURNING",
+            Phase::Flat => "FLAT",
+        }
+    }
+    /// A turning point the trend-followers structurally miss.
+    pub fn is_turn(self) -> bool {
+        matches!(self, Phase::Peaking | Phase::Bottoming)
+    }
+}
+
 #[derive(Clone, Copy, Debug)]
 pub struct Reading {
     pub points: usize,
@@ -67,6 +97,8 @@ pub struct Reading {
     pub regime: Regime,
     pub curvature: f64, // geodesic-deviation z-score (signed)
     pub trend: f64,     // forward geodesic projection, tanh-squashed to [-1, 1]
+    pub drift: f64,     // mean recent log-return (the causal velocity)
+    pub accel: f64,     // change in drift (recent half vs older half): the curvature
 }
 
 impl Reading {
@@ -80,6 +112,8 @@ impl Reading {
             regime: Regime::Lightlike,
             curvature: 0.0,
             trend: 0.0,
+            drift: 0.0,
+            accel: 0.0,
         }
     }
 
@@ -105,18 +139,89 @@ impl Reading {
         (0.5 + 0.18 * self.trend.abs() * self.regime.certainty() + 0.12 * speed).clamp(0.34, 0.92)
     }
 
+    /// Integrate the geodesic forward `steps` days: cumulative projected change in
+    /// log-attention, relative to today. The drift carries; the curvature bends and
+    /// decays it, so a decelerating climb arcs over into a peak. This is the curve
+    /// the forecast charts draw, and what `peak_in` reads to time a turn.
+    pub fn forecast_path(&self, steps: usize) -> Vec<f64> {
+        let mut vel = self.drift;
+        let mut acc = self.accel; // full curvature, so the path can arc over a peak
+        let mut level = 0.0;
+        let mut out = Vec::with_capacity(steps);
+        for _ in 0..steps {
+            vel += acc;
+            acc *= 0.6;
+            level += vel;
+            out.push(level);
+        }
+        out
+    }
+
+    /// The curvature-bent forward velocity: where the trajectory is actually headed
+    /// next, drift turned by its acceleration. The reversal signal lives in its sign
+    /// disagreeing with the current drift.
+    pub fn forward_velocity(&self) -> f64 {
+        self.drift + self.accel
+    }
+
+    /// If the trajectory is turning, how many days until the projected peak or
+    /// trough. None if it is not turning. The manifold's signature capability:
+    /// timing a reversal, not just spotting a trend.
+    pub fn peak_in(&self) -> Option<i64> {
+        if !self.defined() || !self.phase().is_turn() {
+            return None;
+        }
+        let path = self.forecast_path(HORIZON * 2);
+        // The extremum: argmax for a forming peak, argmin for a forming trough.
+        let peaking = self.drift > 0.0;
+        let mut best = 0usize;
+        for i in 1..path.len() {
+            if (peaking && path[i] > path[best]) || (!peaking && path[i] < path[best]) {
+                best = i;
+            }
+        }
+        // best is an index into a 0-based path; +1 makes it "days from now", and a
+        // turn that is already underway reports as imminent (1 day).
+        Some((best as i64 + 1).max(1))
+    }
+
+    /// The phase of the trajectory: its direction now, and whether its geodesic is
+    /// curving back. PEAKING (rising now, forward velocity already negative) and
+    /// BOTTOMING (falling now, forward velocity already positive) are the reversal
+    /// calls the trend-followers structurally miss.
+    pub fn phase(&self) -> Phase {
+        if !self.defined() {
+            return Phase::Flat;
+        }
+        const EPS: f64 = 0.004;
+        let fwd = self.forward_velocity();
+        if self.drift > EPS {
+            if fwd < -EPS { Phase::Peaking } else { Phase::Rising }
+        } else if self.drift < -EPS {
+            if fwd > EPS { Phase::Bottoming } else { Phase::Falling }
+        } else if self.regime == Regime::Spacelike {
+            Phase::Churning
+        } else {
+            Phase::Flat
+        }
+    }
+
     /// A compact human-readable readout for the reasoning tape.
     pub fn tag(&self) -> String {
         if !self.defined() {
             return "MANIFOLD WARMING UP".to_string();
         }
+        let turn = match (self.phase(), self.peak_in()) {
+            (p, Some(k)) if p.is_turn() => format!(" // {} IN {}D", p.label(), k),
+            (p, _) => format!(" // {}", p.label()),
+        };
         format!(
-            "MANIFOLD {} // gamma {:.2} // rel-mom {:+.2} // curv {:+.1} // geodesic {:+.0}%",
+            "MANIFOLD {} // gamma {:.2} // rel-mom {:+.2} // geodesic {:+.0}%{}",
             self.regime.label(),
             self.gamma,
             self.rel_return,
-            self.curvature,
-            self.trend * 100.0
+            self.trend * 100.0,
+            turn
         )
     }
 }
@@ -218,7 +323,7 @@ pub fn analyze(series: &[f64]) -> Reading {
 
     let trend = forecast_trend(drift, accel, regime);
 
-    Reading { points: n, beta, gamma, rel_return, ds2, regime, curvature, trend }
+    Reading { points: n, beta, gamma, rel_return, ds2, regime, curvature, trend, drift, accel }
 }
 
 /// The regime's preferred markets. Topology shapes the bet: a causal trend is bet

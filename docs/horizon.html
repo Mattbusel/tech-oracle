@@ -1,0 +1,71 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Event Horizon: what is about to turn // THE SIGNAL</title>
+<meta name="description" content="A live board of the reversals the machine is calling: topics peaking or bottoming, with the projected day of the turn. Momentum tells you what is already hot. The manifold tells you what is about to flip.">
+<meta property="og:title" content="THE SIGNAL // THE EVENT HORIZON">
+<meta property="og:description" content="The reversals the machine is calling before they happen. Peaks and troughs, dated.">
+<meta property="og:image" content="https://mattbusel.github.io/tech-oracle/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mattbusel.github.io/tech-oracle/horizon.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;background:#0a0710;color:#f3e6d0;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.s{max-width:760px;margin:0 auto;padding:40px 26px 80px}
+.b{display:inline-block;background:#f3e6d0;color:#0a0710;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:700}
+h1{font-size:32px;letter-spacing:.04em;margin:16px 0 4px}
+h2{font-size:13px;letter-spacing:.22em;color:#a98b6f;margin:36px 0 8px;border-bottom:1px solid rgba(169,139,111,.3);padding-bottom:8px}
+.sub{font-size:13px;color:#c2a98c;line-height:1.6}
+.turn{display:flex;align-items:center;gap:14px;padding:14px 12px;border-bottom:1px dashed rgba(169,139,111,.3)}
+.tg{font-size:11px;font-weight:700;letter-spacing:.12em;padding:4px 9px;border-radius:2px;white-space:nowrap}
+.peak{background:rgba(232,138,77,.2);color:#f0a86a;border:1px solid rgba(232,138,77,.5)}
+.bottom{background:rgba(95,200,255,.16);color:#6fc7ff;border:1px solid rgba(95,200,255,.45)}
+.tm{font-size:17px;font-weight:700;color:#fff7ea;flex:1}
+.tw{font-size:11px;color:#a98b6f;text-align:right;line-height:1.5}
+.big{font-size:21px;color:#f0a86a;font-weight:700}
+.phases{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.ph{font-size:11px;letter-spacing:.08em;padding:6px 11px;border:1px solid rgba(169,139,111,.35);color:#c2a98c}
+.ph b{color:#fff7ea}
+.note{font-size:12px;color:#a98b6f;background:rgba(169,139,111,.08);padding:12px;margin-top:16px;line-height:1.6}
+.btn{display:inline-block;border:1.5px solid #f3e6d0;padding:11px 17px;margin:24px 8px 0 0;text-decoration:none;color:#f3e6d0;font-weight:600;letter-spacing:.06em}
+.btn:hover{background:#f3e6d0;color:#0a0710}
+a{color:#f3e6d0}
+</style></head>
+<body><div class="s">
+<div class="b">THE SIGNAL // THE EVENT HORIZON</div>
+<h1>WHAT IS ABOUT TO TURN</h1>
+<p class="sub">A momentum feed can only tell you what is already hot, which is why it buys every top and sells every bottom. This board is the opposite: the topics the manifold reads as <b>turning</b> right now, rising into a peak or falling into a trough, each with the projected day of the turn. In the benchmark this is exactly where the manifold pulls ahead of the trend-followers, so this is the page where it earns its keep.</p>
+
+<h2>THE TURNS</h2>
+<div id="turns"><p class="sub">Scanning the manifold for reversals...</p></div>
+
+<h2>THE FIELD</h2>
+<p class="sub">Every tracked topic, sorted into its phase. The shape of the whole discourse at a glance.</p>
+<div class="phases" id="phases"></div>
+<div class="note" id="note"></div>
+
+<a class="btn" href="https://mattbusel.github.io/tech-oracle/manifold.html">[ THE MANIFOLD ]</a>
+<a class="btn" href="https://mattbusel.github.io/tech-oracle/">[ BACK TO THE SIGNAL ]</a>
+
+<script>
+function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
+ var h=d&&d.horizon;if(!h){return;}
+ var box=document.getElementById('turns');
+ if(!h.turns||!h.turns.length){
+  box.innerHTML='<p class="sub">No turns called yet. Either the field is trending cleanly, or topics are still building the history the manifold needs (it reads a trajectory after a few days). This board fills in as the corpus matures, and a called peak that lands becomes a receipt no momentum feed could have printed.</p>';
+ } else {
+  box.innerHTML=h.turns.map(function(t){
+   var peak=t.phase==='PEAKING';
+   var when=t.peak_in>0?('in ~'+t.peak_in+'d'):'imminent';
+   return '<div class="turn"><span class="tg '+(peak?'peak':'bottom')+'">'+(peak?'PEAK':'TROUGH')+'</span>'
+    +'<span class="tm">'+esc(t.term)+'</span>'
+    +'<span class="tw"><span class="big">'+when+'</span><br>'+t.regime+' // gamma '+t.gamma.toFixed(2)+' // P(rise) '+t.prob_rising+'%</span></div>';
+  }).join('');
+ }
+ var ph=h.phases||{};var order=['RISING','PEAKING','FALLING','BOTTOMING','CHURNING','FLAT'];
+ var pe=document.getElementById('phases');
+ var any=Object.keys(ph).length;
+ pe.innerHTML=any?order.filter(function(k){return ph[k];}).map(function(k){return '<span class="ph"><b>'+ph[k]+'</b> '+k+'</span>';}).join(''):'<span class="sub">No topic has enough history to phase yet.</span>';
+ document.getElementById('note').innerHTML='Scanned '+(h.scanned||0)+' tracked topics; '+(h.defined||0)+' have enough trajectory to read. A peak means the topic is rising now but its geodesic has already curved down; a trough is the mirror. The reversal is what the others cannot see.';
+}).catch(function(){document.getElementById('turns').textContent='Could not load the event horizon.';});
+</script>
+</div></body></html>

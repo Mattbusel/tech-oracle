@@ -21,13 +21,14 @@ A JSON array of `Prediction` (see `01-rust-engine.md::model.rs`):
   "resolves_by":"2026-07-15","resolved_on":"2026-06-16","confidence":0.58,
   "market":"RESURFACE","keyword2":"","target":0,"rationale":"VEL +x%/7d // ...",
   "live":64,"live_prev":56,"live_date":"2026-06-17",
-  "regime":"TIMELIKE","gamma":1.84,"geodesic":41
+  "regime":"TIMELIKE","gamma":1.84,"geodesic":41,"phase":"PEAKING"
 }]
 ```
 `live`/`live_prev`/`live_date` are the mark-to-market likelihood (0-100), its
 prior reading, and the last day it was rolled. `regime`/`gamma`/`geodesic` are the
-manifold stamp at call time (the space-time regime, the Lorentz factor, and the
-forward geodesic forecast in percent; empty/`0`/`1.0` while the manifold warms up). The engine now generates ~24 calls
+manifold stamp at call time (the space-time regime, the Lorentz factor, the
+forward geodesic forecast in percent, and the `phase` (RISING / PEAKING / FALLING /
+BOTTOMING / CHURNING / FLAT); empty/`0`/`1.0` while the manifold warms up). The engine now generates ~24 calls
 a day (a prolific slate) so the record and the betting market grow fast.
 Only revealed (age >= `REVEAL_DELAY_DAYS`) calls live here. Idempotent per day:
 a re-run drops today's and regenerates.
@@ -89,6 +90,10 @@ This file powers velocity, diffusion/CHASM, sectors, and the dataset.
 - `arena.html` - the prediction tournament board (client-side): reads GitHub
   issues labeled `arena` plus `api/record.json`, settles every `SIGNAL-BET`, and
   ranks all players against the machine and the anti-oracle.
+- `horizon.html` + `api/horizon.json` - THE EVENT HORIZON: the reversals the
+  manifold is calling (topics PEAKING or BOTTOMING) with a projected day of the
+  turn, plus a phase tally of the whole field. The manifold's signature edge
+  (timing reversals) productized.
 - `manifold.html` - THE MANIFOLD: the prediction core made visible (topics plotted
   as points on the relativistic attention manifold by regime, conviction and
   geodesic forecast) plus THE PROVING GROUND (the algorithm benchmark). Reads

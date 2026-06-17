@@ -72,6 +72,55 @@ fn regime_pools_cover_the_markets() {
 }
 
 #[test]
+fn forecast_path_runs_in_the_drift_direction() {
+    // Accelerating growth keeps the geodesic climbing, so the path runs up.
+    let up: Vec<f64> = (0..12).map(|i| (3.0_f64 * 1.4_f64.powi(i)).round()).collect();
+    let r = analyze(&up);
+    let path = r.forecast_path(7);
+    assert_eq!(path.len(), 7);
+    assert!(path[6] > path[0], "an accelerating topic projects an upward path");
+}
+
+#[test]
+fn accelerating_rise_reads_rising_no_turn() {
+    // Exponential growth: log-returns hold steady, so the geodesic does not turn.
+    let s: Vec<f64> = (0..12).map(|i| (2.0_f64 * 1.5_f64.powi(i)).round()).collect();
+    let r = analyze(&s);
+    assert_eq!(r.phase(), Phase::Rising);
+    assert!(r.peak_in().is_none(), "a steady accelerating climb should not be timed to turn");
+}
+
+#[test]
+fn decelerating_rise_is_peaking_and_timed() {
+    // Still climbing, but each step smaller: the growth is rolling over.
+    let inc: [f64; 8] = [7.0, 6.0, 5.0, 4.0, 3.0, 2.0, 1.0, 1.0];
+    let mut s: Vec<f64> = vec![2.0];
+    for d in inc {
+        s.push(s.last().unwrap() + d);
+    }
+    let r = analyze(&s);
+    assert!(r.drift > 0.0, "still rising on average");
+    assert_eq!(r.phase(), Phase::Peaking, "a decelerating climb is a peak forming");
+    assert!(r.peak_in().is_some(), "the turn should be timed");
+}
+
+#[test]
+fn v_bottom_is_bottoming() {
+    // A hard drop that flattens and ticks back up: forward velocity flips positive
+    // while the window is still net down. A trough forming.
+    let s: Vec<f64> = vec![60.0, 48.0, 39.0, 33.0, 30.0, 29.0, 29.0, 30.0, 31.0];
+    let r = analyze(&s);
+    assert!(r.drift < 0.0, "still net falling over the window");
+    assert!(r.forward_velocity() > 0.0, "but the geodesic has turned up");
+    assert_eq!(r.phase(), Phase::Bottoming);
+}
+
+#[test]
+fn phase_is_flat_when_warming_up() {
+    assert_eq!(analyze(&[3.0, 4.0]).phase(), Phase::Flat);
+}
+
+#[test]
 fn confidence_stays_in_band() {
     let s = vec![2.0, 5.0, 9.0, 6.0, 11.0, 14.0, 10.0, 18.0, 22.0];
     let r = analyze(&s);

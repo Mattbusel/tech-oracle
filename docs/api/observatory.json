@@ -40,7 +40,7 @@
   "corpus_days": 1,
   "fear_greed": {
     "label": "EXTREME GREED",
-    "value": 81
+    "value": 85
   },
   "manifold": [
     {
@@ -65,18 +65,6 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
-      "term": "FIFA"
-    },
-    {
-      "beta": 0.0,
-      "curvature": 0.0,
-      "defined": false,
-      "ds2": -1.0,
-      "gamma": 1.0,
-      "geodesic_trend": 0.0,
-      "prob_rising": 50,
-      "regime": "LIGHTLIKE",
-      "rel_momentum": 0.0,
       "term": "GOOGLE"
     },
     {
@@ -89,7 +77,7 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
-      "term": "UPDATE"
+      "term": "FIFA"
     },
     {
       "beta": 0.0,
@@ -113,6 +101,18 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
+      "term": "UPDATE"
+    },
+    {
+      "beta": 0.0,
+      "curvature": 0.0,
+      "defined": false,
+      "ds2": -1.0,
+      "gamma": 1.0,
+      "geodesic_trend": 0.0,
+      "prob_rising": 50,
+      "regime": "LIGHTLIKE",
+      "rel_momentum": 0.0,
       "term": "CUP"
     },
     {
@@ -125,7 +125,7 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
-      "term": "IOS"
+      "term": "JUNE"
     },
     {
       "beta": 0.0,
@@ -137,7 +137,7 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
-      "term": "XBOX"
+      "term": "IOS"
     }
   ],
   "movers": [
@@ -148,22 +148,22 @@
     },
     {
       "count": 8,
-      "term": "FIFA",
-      "vel": 100
-    },
-    {
-      "count": 8,
       "term": "GOOGLE",
       "vel": 100
     },
     {
-      "count": 7,
-      "term": "UPDATE",
+      "count": 8,
+      "term": "FIFA",
       "vel": 100
     },
     {
       "count": 7,
       "term": "AGENT",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "UPDATE",
       "vel": 100
     },
     {
@@ -226,33 +226,33 @@
     ],
     "index": 71,
     "theme": "GAME",
-    "total": 259,
+    "total": 260,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 22,
+      "delta": 23,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
       "delta": 20,
-      "index": 91,
+      "index": 87,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 3,
-      "index": 14,
+      "index": 13,
       "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 3,
-      "index": 14,
+      "index": 13,
       "name": "ROBOTS"
     },
     {
@@ -270,14 +270,14 @@
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 5,
-      "name": "RUST"
+      "index": 4,
+      "name": "CHIPS"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 0,
-      "name": "CHIPS"
+      "arrow": "UP",
+      "delta": 1,
+      "index": 4,
+      "name": "RUST"
     }
   ],
   "source_weights": [
@@ -382,5 +382,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 1308
+  "tracked_terms": 1324
 }

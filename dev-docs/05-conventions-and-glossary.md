@@ -82,6 +82,13 @@ provocative `challenge_template` text.
   scored by directional accuracy, information coefficient and Brier. The manifold
   leads on IC and calibration and ties for top accuracy. A live benchmark on the
   real corpus activates once topics have 30+ days of history.
+- **Phase / The Event Horizon** (`Phase` in `manifold.rs`, `horizon.html`,
+  `api/horizon.json`): each topic's trajectory has a phase, RISING / PEAKING /
+  FALLING / BOTTOMING / CHURNING / FLAT. PEAKING (rising now but the geodesic
+  already curving down) and BOTTOMING (the mirror) are reversals, the calls the
+  manifold is uniquely good at and trend-followers miss. The Event Horizon board
+  surfaces every topic the manifold reads as turning, with a projected day of the
+  turn (`peak_in`). Phase is stamped on every call.
 - **The Chasm**: the point a term born technical reaches a general-public source.
   The CHASM market and the chasm watch track it.
 - **Diffusion funnel / stage**: sources ordered technical(0) to general(9); see

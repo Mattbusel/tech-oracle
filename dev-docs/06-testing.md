@@ -21,7 +21,7 @@ Run:
 $env:CARGO_HOME="C:\tech-oracle\.cargo-home"; $env:CARGO_TARGET_DIR="C:\tech-oracle\target"
 cargo test --release
 ```
-Current state: **66 tests, all passing.**
+Current state: **71 tests, all passing.**
 
 What each file covers:
 - `main.rs` (inline) - the earned-but-fair grader `resolve_open` for every market
@@ -34,7 +34,10 @@ What each file covers:
 - `tests_bench.rs` - the proving ground: Pearson sanity, a well-formed and
   deterministic report, the random-walk null holding no directional edge while the
   leader beats a coin flip, and the manifold clearing 50% and finishing top-tier.
-- `tests_manifold.rs` - the prediction core: neutral below MIN_POINTS,
+- `tests_manifold.rs` - the prediction core, including the phase capability: a
+  steady accelerating climb reads RISING with no timed turn, a decelerating climb
+  is PEAKING and timed, a V-bottom is BOTTOMING, the forecast path runs in the
+  drift direction, and warming-up reads FLAT. Plus: neutral below MIN_POINTS,
   determinism, a steady climb forecasting up (P(rising) > 0.5), a decline
   forecasting down, gamma >= 1 and beta bounded, a violent series not reading
   TIMELIKE, a calm trend reading TIMELIKE, the regime market pools, and
