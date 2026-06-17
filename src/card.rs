@@ -12,6 +12,8 @@ const SOFT: Rgb = (109, 107, 94);
 const DESK: Rgb = (23, 24, 28);
 const STAMP: Rgb = (178, 58, 46);
 const GREEN: Rgb = (47, 111, 79);
+const GOLD: Rgb = (158, 116, 38);
+const TRACK: Rgb = (212, 208, 197);
 
 struct Canvas {
     w: i32,
@@ -46,6 +48,13 @@ impl Canvas {
                 if (dx * dx + dy * dy) as f32 <= r2 {
                     self.px(cx + dx, cy + dy, c);
                 }
+            }
+        }
+    }
+    fn fill_rect(&mut self, x: i32, y: i32, w: i32, h: i32, c: Rgb) {
+        for yy in y..y + h {
+            for xx in x..x + w {
+                self.px(xx, yy, c);
             }
         }
     }
@@ -170,6 +179,58 @@ pub fn call_card(path: &str, site: &str, no: i64, status: &str, market: &str, ca
         _ => INK,
     };
     stamp(&mut c, status, col);
+    footer(&mut c, site);
+    c.save(path)
+}
+
+/// A collectible bloodline trading card (ROOKIE / PRO / HALL OF FAME). Drawn as
+/// real dot-matrix dots, the same hand font as everything else. `kind` colors
+/// the band; `stats` is the stat line (label, value); `genes` are 0..100 bars.
+pub fn organism_card(
+    path: &str,
+    kind: &str,
+    name: &str,
+    house: &str,
+    born: &str,
+    headline: (&str, &str),
+    stats: &[(&str, String)],
+    genes: &[(&str, i64)],
+    fade: &str,
+    site: &str,
+) -> std::io::Result<()> {
+    let mut c = Canvas::new(720, 1000, PAPER);
+    sprockets(&mut c);
+    let kc = match kind {
+        "ROOKIE CARD" => GREEN,
+        "HALL OF FAME" => GOLD,
+        _ => STAMP,
+    };
+    // kind band
+    c.fill_rect(40, 58, 640, 50, kc);
+    c.text(56, 72, kind, 4, PAPER);
+    // name + identity
+    c.text(56, 150, name, 5, INK);
+    c.text(56, 212, &format!("{house} // BORN {born} // {fade}"), 3, SOFT);
+    // headline stat
+    c.text(56, 256, &format!("{} {}", headline.0, headline.1), 6, INK);
+    // stat line
+    let mut y = 372;
+    for (label, val) in stats {
+        c.text(56, y, label, 3, SOFT);
+        c.text(372, y, val, 3, INK);
+        y += 46;
+    }
+    // gene bars
+    y += 18;
+    c.text(56, y, "GENES", 3, SOFT);
+    y += 42;
+    for (label, pct) in genes {
+        c.text(56, y, label, 2, SOFT);
+        c.fill_rect(232, y, 432, 16, TRACK);
+        let w = ((*pct).clamp(0, 100) as f64 / 100.0 * 432.0) as i32;
+        c.fill_rect(232, y, w.max(2), 16, INK);
+        y += 40;
+    }
     footer(&mut c, site);
     c.save(path)
 }

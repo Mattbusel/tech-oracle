@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 17, 2026** // Index **70 (SURGING)** // hottest **WORLD** // record **8-2**
+**June 17, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **8-2**
 
-> Panniantong/Agent-Reach is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
+> mattpocock/skills is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

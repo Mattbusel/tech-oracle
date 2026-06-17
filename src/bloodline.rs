@@ -23,24 +23,50 @@ const NAMES: &[&str] = &[
     "ZINC", "BRASS", "CEDAR", "DRIFT", "FLINT", "GLASS", "IRON", "JADE", "NOVA", "PEARL", "SLATE",
 ];
 
+// Six strategy genes give a real behavior space: not just how bold the line is,
+// but how selective, how it presses a hot hand, and whether it tails or fades
+// the oracle entirely. A whole personality, heritable and mutable.
 #[derive(Serialize, Deserialize, Clone, Default)]
 pub struct Genes {
-    pub aggr: f64, // line aggressiveness (shifts confidence)
-    pub risk: f64, // longshot appetite (stake variance)
-    pub conf: f64, // baseline confidence bias
+    pub aggr: f64,   // -0.12..0.12  line aggressiveness (shifts its confidence)
+    pub risk: f64,   // 0..1         stake variance / longshot appetite
+    pub conf: f64,   // -0.08..0.08  baseline confidence bias
+    #[serde(default)]
+    pub select: f64, // 0..1         selectivity: how high a bar before it bets
+    #[serde(default)]
+    pub press: f64,  // 0..1         conviction: how hard it ramps stake on a hot streak
+    #[serde(default)]
+    pub fade: f64,   // 0..1         >0.5 = contrarian, it bets AGAINST the oracle
 }
 
-#[derive(Serialize, Deserialize, Clone)]
+#[derive(Serialize, Deserialize, Clone, Default)]
 pub struct Organism {
     pub id: u64,
     pub name: String,
     pub born: String,
     pub parents: Vec<u64>,
     pub genes: Genes,
-    pub fitness: f64,
+    pub fitness: f64, // current shadow bankroll over the whole record
     pub age: i64,
     pub alive: bool,
     pub died: String,
+    // The stat line: what makes a run impressive and a card worth holding.
+    #[serde(default)]
+    pub best: f64, // career-high bankroll ever reached
+    #[serde(default)]
+    pub bets: i64,
+    #[serde(default)]
+    pub wins: i64,
+    #[serde(default)]
+    pub losses: i64,
+    #[serde(default)]
+    pub win_rate: i64, // %
+    #[serde(default)]
+    pub max_streak: i64, // longest winning run
+    #[serde(default)]
+    pub biggest: i64, // biggest single win
+    #[serde(default)]
+    pub roi: i64, // % return on the 1000-chip stake
 }
 
 #[derive(Serialize, Deserialize, Default)]
@@ -50,6 +76,19 @@ pub struct Bloodline {
     pub population: Vec<Organism>,
     #[serde(default)]
     pub last_evolved: String, // date of the last aging/cull/breed (idempotent per day)
+    #[serde(default)]
+    pub hall_of_fame: Vec<Organism>, // the all-time greats, never pruned
+}
+
+/// The full outcome of one organism shadow-betting the record.
+struct SimStats {
+    bank: f64,
+    bets: i64,
+    wins: i64,
+    losses: i64,
+    max_streak: i64,
+    biggest: f64,
+    peak: f64,
 }
 
 struct Rng(u64);
@@ -79,24 +118,56 @@ fn conf_of(p: &Prediction) -> f64 {
     if p.confidence > 0.0 { p.confidence } else { 0.65 }
 }
 
-/// One organism's shadow bankroll over the settled record, betting each call
-/// with a stake and line set by its own genes. This is its fitness.
-fn simulate(g: &Genes, calls: &[(f64, bool)]) -> f64 {
+/// One organism shadow-betting the whole settled record with its own genes:
+/// selectivity (skip marginal calls), tail-or-fade, stake variance, and pressing
+/// a hot hand. Returns the full stat line. An organism can bust to zero.
+fn simulate(g: &Genes, calls: &[(f64, bool)]) -> SimStats {
     let mut bank = 1000.0_f64;
+    let mut streak = 0i64;
+    let (mut bets, mut wins, mut losses, mut max_streak) = (0i64, 0i64, 0i64, 0i64);
+    let (mut biggest, mut peak) = (0.0f64, 1000.0f64);
+    let bar = 0.34 + g.select * 0.45; // the confidence floor this organism demands
+    let fading = g.fade > 0.5;
     for (conf, hit) in calls {
         let c = (conf + g.aggr + g.conf).clamp(0.34, 0.95);
-        let stake = (100.0 * (1.0 + g.risk * (1.5 - c))).max(20.0);
-        if *hit {
-            bank += stake * ((1.0 / c) - 1.0);
+        if c < bar {
+            continue; // too marginal for this temperament
+        }
+        let won = if fading { !*hit } else { *hit };
+        let p = if fading { (1.0 - c).max(0.05) } else { c }; // its own line -> odds
+        let streak_bonus = 1.0 + g.press * (streak.min(5) as f64) * 0.25;
+        let stake = (100.0 * (1.0 + g.risk * (1.5 - c)) * streak_bonus).max(20.0).min(bank.max(20.0));
+        bets += 1;
+        if won {
+            let w = stake * ((1.0 / p) - 1.0);
+            bank += w;
+            wins += 1;
+            streak += 1;
+            if streak > max_streak { max_streak = streak; }
+            if w > biggest { biggest = w; }
         } else {
             bank -= stake;
+            losses += 1;
+            streak = 0;
+        }
+        if bank > peak { peak = bank; }
+        if bank <= 0.0 {
+            bank = 0.0;
+            break; // busted out
         }
     }
-    bank
+    SimStats { bank, bets, wins, losses, max_streak, biggest, peak }
 }
 
 fn random_genes(r: &mut Rng) -> Genes {
-    Genes { aggr: r.range(-0.10, 0.10), risk: r.range(0.0, 1.0), conf: r.range(-0.05, 0.05) }
+    Genes {
+        aggr: r.range(-0.10, 0.10),
+        risk: r.range(0.0, 1.0),
+        conf: r.range(-0.05, 0.05),
+        select: r.range(0.0, 1.0),
+        press: r.range(0.0, 1.0),
+        fade: r.range(0.0, 1.0),
+    }
 }
 
 fn crossover(a: &Genes, b: &Genes, r: &mut Rng) -> Genes {
@@ -105,11 +176,16 @@ fn crossover(a: &Genes, b: &Genes, r: &mut Rng) -> Genes {
         aggr: pick(a.aggr, b.aggr, r),
         risk: pick(a.risk, b.risk, r),
         conf: pick(a.conf, b.conf, r),
+        select: pick(a.select, b.select, r),
+        press: pick(a.press, b.press, r),
+        fade: pick(a.fade, b.fade, r),
     };
-    // mutation
     g.aggr = (g.aggr + r.range(-0.03, 0.03)).clamp(-0.12, 0.12);
     g.risk = (g.risk + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
     g.conf = (g.conf + r.range(-0.02, 0.02)).clamp(-0.08, 0.08);
+    g.select = (g.select + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
+    g.press = (g.press + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
+    g.fade = (g.fade + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
     g
 }
 
@@ -153,7 +229,8 @@ impl Bloodline {
                 let g = random_genes(&mut rng);
                 self.population.push(Organism {
                     id, name: name(&mut rng), born: date.to_string(), parents: vec![],
-                    genes: g, fitness: 1000.0, age: 0, alive: true, died: String::new(),
+                    genes: g, fitness: 1000.0, best: 1000.0, age: 0, alive: true,
+                    died: String::new(), ..Default::default()
                 });
             }
             self.gen = 1;
@@ -170,10 +247,36 @@ impl Bloodline {
             })
             .collect();
 
-        // Fitness is recomputed every run (idempotent: same record, same score).
+        // The full stat line is recomputed every run (idempotent: same record,
+        // same numbers). career-high `best` only ratchets up.
         for o in self.population.iter_mut().filter(|o| o.alive) {
-            o.fitness = simulate(&o.genes, &calls);
+            let s = simulate(&o.genes, &calls);
+            o.fitness = s.bank;
+            o.bets = s.bets;
+            o.wins = s.wins;
+            o.losses = s.losses;
+            o.win_rate = if s.bets > 0 { s.wins * 100 / s.bets } else { 0 };
+            o.max_streak = s.max_streak;
+            o.biggest = s.biggest.round() as i64;
+            o.roi = ((s.bank - 1000.0) / 10.0).round() as i64;
+            if s.peak > o.best {
+                o.best = s.peak;
+            }
         }
+
+        // The Hall of Fame: the all-time greats by career-high bankroll, kept
+        // forever even after they are pruned from the living population. Updated
+        // every run (idempotent: `best` only ratchets up).
+        let snapshot: Vec<Organism> = self.population.iter().cloned().collect();
+        for o in snapshot {
+            if let Some(e) = self.hall_of_fame.iter_mut().find(|h| h.id == o.id) {
+                *e = o;
+            } else {
+                self.hall_of_fame.push(o);
+            }
+        }
+        self.hall_of_fame.sort_by(|a, b| b.best.partial_cmp(&a.best).unwrap_or(std::cmp::Ordering::Equal));
+        self.hall_of_fame.truncate(12);
 
         // Aging, culling and breeding happen at most once per calendar day, so a
         // redundant cron run (a backstop firing) never over-ages or over-breeds.
@@ -208,7 +311,8 @@ impl Bloodline {
                     let nm = name(&mut rng);
                     self.population.push(Organism {
                         id, name: nm, born: date.to_string(), parents, genes: g,
-                        fitness: 1000.0, age: 0, alive: true, died: String::new(),
+                        fitness: 1000.0, best: 1000.0, age: 0, alive: true,
+                        died: String::new(), ..Default::default()
                     });
                 }
             }
@@ -244,10 +348,17 @@ impl Bloodline {
         let org = |o: &Organism| {
             serde_json::json!({
                 "id": o.id, "name": o.name, "born": o.born, "age": o.age,
-                "fitness": o.fitness.round() as i64, "parents": o.parents, "died": o.died,
+                "fitness": o.fitness.round() as i64, "best": o.best.round() as i64,
+                "parents": o.parents, "died": o.died,
                 "house": house(&o.genes),
+                "bets": o.bets, "wins": o.wins, "losses": o.losses,
+                "win_rate": o.win_rate, "max_streak": o.max_streak,
+                "biggest": o.biggest, "roi": o.roi,
                 "aggr": (o.genes.aggr * 100.0).round() / 100.0,
                 "risk": (o.genes.risk * 100.0).round() / 100.0,
+                "select": (o.genes.select * 100.0).round() as i64,
+                "press": (o.genes.press * 100.0).round() as i64,
+                "fade": if o.genes.fade > 0.5 { "FADE" } else { "TAIL" },
             })
         };
 
@@ -266,6 +377,13 @@ impl Bloodline {
 
         let newborns: Vec<serde_json::Value> = living.iter().filter(|o| o.age == 0).map(|o| org(o)).collect();
 
+        // ROOKIES: the most promising young blood (alive, age <= 3), by current
+        // bankroll. PROS: the highest career stat lines among the living, by best.
+        let mut rookies: Vec<&Organism> = living.iter().filter(|o| o.age <= 3).copied().collect();
+        rookies.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).unwrap_or(std::cmp::Ordering::Equal));
+        let mut pros: Vec<&Organism> = living.clone();
+        pros.sort_by(|a, b| b.best.partial_cmp(&a.best).unwrap_or(std::cmp::Ordering::Equal));
+
         serde_json::json!({
             "gen": self.gen,
             "living_count": living.len(),
@@ -276,6 +394,9 @@ impl Bloodline {
             "dead": dead.iter().take(12).map(|o| org(o)).collect::<Vec<_>>(),
             "houses": house_rows,
             "newborns": newborns,
+            "rookies": rookies.iter().take(4).map(|o| org(o)).collect::<Vec<_>>(),
+            "pros": pros.iter().take(4).map(|o| org(o)).collect::<Vec<_>>(),
+            "hall_of_fame": self.hall_of_fame.iter().take(10).map(|o| org(o)).collect::<Vec<_>>(),
         })
     }
 }

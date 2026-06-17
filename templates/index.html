@@ -660,6 +660,7 @@
                 <div class="er-h">THE BLOODLINE // GEN {{ bloodline.gen }} // {{ bloodline.living_count }} ALIVE OF {{ bloodline.total_ever }} EVER BORN</div>
                 <div class="er-big">{{ bloodline.champion.name }} <small>CHAMPION // {{ bloodline.champion.house }}</small></div>
                 <div class="er-soft">DRIVES TODAY'S LINE // SHADOW BANKROLL {{ bloodline.champion.fitness }} // AGGR {{ bloodline.champion.aggr }} / RISK {{ bloodline.champion.risk }}</div>
+                <div class="er-soft">{{ bloodline.champion.win_rate }}% WIN // BEST RUN W{{ bloodline.champion.max_streak }} // ROI {{ bloodline.champion.roi }}% // CAREER BEST {{ bloodline.champion.best }} // {{ bloodline.champion.fade }}</div>
                 <ol class="er-list" style="margin-top:10px">
                   {% for o in bloodline.living %}{% if loop.index <= 5 %}<li><b>{{ loop.index }}. {{ o.name }}</b> <span>{{ o.house }} // {{ o.fitness }}</span></li>{% endif %}{% endfor %}
                 </ol>
