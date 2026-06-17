@@ -14,6 +14,12 @@
     },
     {
       "days": 0,
+      "origin": "ARXIV",
+      "reach": "ARS",
+      "term": "AGENTS"
+    },
+    {
+      "days": 0,
       "origin": "GITHUB",
       "reach": "ARS",
       "term": "ANDROID"
@@ -29,12 +35,6 @@
       "origin": "ARXIV",
       "reach": "ARS",
       "term": "ANTHROPIC"
-    },
-    {
-      "days": 0,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "BEATS"
     }
   ],
   "corpus_days": 1,
@@ -44,7 +44,7 @@
   },
   "movers": [
     {
-      "count": 10,
+      "count": 12,
       "term": "GAME",
       "vel": 100
     },
@@ -55,7 +55,12 @@
     },
     {
       "count": 7,
-      "term": "XBOX",
+      "term": "CUP",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "UPDATE",
       "vel": 100
     },
     {
@@ -64,13 +69,8 @@
       "vel": 100
     },
     {
-      "count": 7,
+      "count": 6,
       "term": "TEAM",
-      "vel": 100
-    },
-    {
-      "count": 7,
-      "term": "CUP",
       "vel": 100
     }
   ],
@@ -127,59 +127,59 @@
       }
     ],
     "index": 71,
-    "theme": "WORLD",
-    "total": 258,
+    "theme": "GAME",
+    "total": 259,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 20,
+      "delta": 22,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
       "delta": 19,
-      "index": 95,
+      "index": 86,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 3,
-      "index": 15,
+      "index": 14,
       "name": "SECURITY"
     },
     {
       "arrow": "UP",
+      "delta": 3,
+      "index": 14,
+      "name": "ROBOTS"
+    },
+    {
+      "arrow": "UP",
       "delta": 2,
-      "index": 10,
+      "index": 9,
       "name": "CHIPS"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 10,
-      "name": "RUST"
-    },
-    {
-      "arrow": "UP",
-      "delta": 2,
-      "index": 10,
+      "index": 9,
       "name": "CRYPTO"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 10,
+      "index": 9,
       "name": "CLOUD"
     },
     {
       "arrow": "UP",
-      "delta": 2,
-      "index": 10,
-      "name": "ROBOTS"
+      "delta": 1,
+      "index": 5,
+      "name": "RUST"
     }
   ],
   "source_weights": [
@@ -284,5 +284,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 1270
+  "tracked_terms": 1279
 }
