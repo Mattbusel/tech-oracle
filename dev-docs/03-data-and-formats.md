@@ -169,4 +169,5 @@ screenshot/preview scratch), `/worker/node_modules`.
 When you add or change a `Prediction` field, touch all of:
 `model.rs` (the struct), `generate.rs` (set it), `main.rs::resolve_open` (grade
 it) and `write_early_payload`/`write_dataset` (export it), `render.rs` (pages
-item + `call/N.html` + `api/*` + receipts), and the template (display).
+item + `call/N.html` + `api/*` + receipts), and the template (display). Then
+extend the relevant `tests_*.rs` and re-run the validation in `06-testing.md`.

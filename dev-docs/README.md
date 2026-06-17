@@ -18,6 +18,9 @@ Read the files in this order:
    Cloudflare Worker, secrets, and the premium/credential flows.
 6. `05-conventions-and-glossary.md`: house style, markets, genome/mood, build
    and run commands, and known gotchas.
+7. `06-testing.md`: the test suite and the four verification layers (unit tests,
+   artifact validation, idempotency, the client-JS console sweep) plus the
+   crypto interop check, with exact commands.
 
 ---
 
@@ -61,6 +64,7 @@ src/
   render.rs             minijinja render of docs/index.html + every other artifact + agent API
   card.rs               Server-side PNG dot-matrix share cards + ASCII banner (hand-coded 5x7 font)
   access.rs             Per-code AES-GCM encryption of the early feed (the "god pass")
+  tests_*.rs            #[cfg(test)] companions (one per module; main.rs has inline tests). See 06-testing.md
 templates/
   index.html            The entire single-page app: HTML + CSS + all client JS (embedded at compile time)
 wasm/
@@ -189,6 +193,7 @@ The lead time is the product. The record is the proof.
 ```
 # from C:\tech-oracle, PowerShell
 $env:CARGO_HOME="C:\tech-oracle\.cargo-home"; $env:CARGO_TARGET_DIR="C:\tech-oracle\target"
+cargo test --release        # 41 unit tests must stay green
 cargo build --release
 .\target\release\tech-oracle.exe
 # em-dash / emoji must be zero:
@@ -196,3 +201,6 @@ $h = Get-Content docs/index.html -Raw
 ([regex]::Matches($h, [char]0x2014)).Count   # em dashes
 ([regex]::Matches($h, '[\uD800-\uDBFF][\uDC00-\uDFFF]')).Count  # emoji
 ```
+
+The full verification protocol (artifact validation, idempotency, the JS console
+sweep, crypto interop) is in `06-testing.md`.

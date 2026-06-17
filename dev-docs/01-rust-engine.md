@@ -24,7 +24,11 @@ The oracle's strategy is evolved by a population, not a single hill-climb.
 - `pub fn load() -> Bloodline`.
 - `Bloodline::champion_genes()` - the fittest living organism's genes (drives the
   live line in `generate`).
-- `Bloodline::evolve(date, resolved)` - seed the founding population if empty;
+- `Bloodline::evolve(date, resolved)` - calls `evolve_in_memory` then `save()`.
+- `Bloodline::evolve_in_memory(date, resolved)` - the IO-free selection core
+  (seed/score/age/cull/breed), idempotent per day via `last_evolved`. Split out
+  so tests can exercise it without touching `data/bloodline.json`. Seed the
+  founding population if empty;
   else score everyone via `simulate`, age them, and once there are >= 5 settled
   calls cull to `SURVIVORS` (7), breed back to `TARGET` (10) via `crossover` +
   mutation, prune the graveyard, persist.
@@ -221,7 +225,12 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
   keyword2), CROSSOVER (keyword out-mentions keyword2 via substring counts),
   INDEX (index >= target), OVER (count >= target), CHASM (keyword appears in the
   general-public corpus), default RESURFACE/SURVIVAL/MOMENTUM/FUTURES/LONGSHOT
-  (keyword resurfaces). MISS when the deadline passes.
+  (keyword resurfaces). MISS when the deadline passes. Tested per market in the
+  inline `main.rs` tests.
+- `fn fallback_call(date, index) -> Prediction` - the guaranteed daily print when
+  every source fails: a dated, self-checkable INDEX bet. The press never prints a
+  blank edition. (`REVEAL_DELAY_DAYS` defaults to 0 so the call is public the day
+  it is made; see `04-distribution-and-ops.md`.)
 - Genome: `struct Genome { gen, hue, wear, quirk, last, ... }`, `fn ghash(s)`
   (FNV-1a), `fn build_genome(date) -> Genome` (mutate the look once/day),
   `fn genome_json(g)`. Strategy evolution now lives in `bloodline.rs` (the

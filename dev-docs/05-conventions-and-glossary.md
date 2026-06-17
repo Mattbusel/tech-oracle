@@ -161,3 +161,7 @@ git fetch origin; git merge -X ours origin/main -m "merge"; git push
   `templates/index.html` (markup + CSS), then rebuild.
 - Visual evolution: `main::build_genome` (DNA) and `render.rs` mood + template
   shader uniforms / `--ac`.
+- Any logic change: add or extend the matching `tests_*.rs` (or the inline
+  `main.rs` tests) and keep `cargo test --release` green. Template/output changes:
+  re-run the artifact validation and console sweep in `06-testing.md`. The
+  em-dash / emoji / unrendered-tag counts must stay zero.
