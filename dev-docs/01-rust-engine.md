@@ -106,7 +106,9 @@ CSS (`.s-x` and `i.s-x`/`.sm-dot.s-x`).
 - `const HORIZON_DAYS: i64 = 30`, `const FUTURES_DAYS: i64 = 90`.
 - `const MARKETS: &[&str]` - the rotation pool: RESURFACE, CHASM, MOMENTUM, OVER,
   HEAD-TO-HEAD, SURVIVAL, CROSSOVER, INDEX, FUTURES, LONGSHOT.
-- `pub fn generate(signals, date, seed, index, obs: &Observatory) -> Vec<Prediction>`
+- `pub fn generate(signals, date, seed, index, obs: &Observatory, aggr: f64, risk: f64) -> Vec<Prediction>`
+  (`aggr` shifts confidence, `risk` turns some calls into longshots; both are
+  strategy genes from the genome)
   - For each pick: derive `subject` and `keyword`; pull features from the
     observatory (`velocity_pct`, `cross_source`, `is_crossing`, `rationale`).
   - Pick a market by `(seed + i) % len`, then validate against the data:
@@ -201,9 +203,17 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
   INDEX (index >= target), OVER (count >= target), CHASM (keyword appears in the
   general-public corpus), default RESURFACE/SURVIVAL/MOMENTUM/FUTURES/LONGSHOT
   (keyword resurfaces). MISS when the deadline passes.
-- Genome: `struct Genome { gen, hue, wear, quirk, last }`, `fn ghash(s)` (FNV-1a),
-  `fn build_genome(date) -> Value` (mutate once/day: hue random-walk, wear +0.006,
-  gen++, rare quirk via `seed % 5 == 0`).
+- Genome: `struct Genome { gen, hue, wear, quirk, last, aggr, risk, sgen, fit,
+  p_aggr, p_risk }`, `fn ghash(s)` (FNV-1a), `fn build_genome(date) -> Genome`
+  (mutate once/day: look genes + propose a strategy mutation),
+  `fn evolve_strategy(g, hit_rate, resolved)` (the fitness loop: keep the
+  mutation if hit rate held, else revert toward the prior genes),
+  `fn genome_json(g)` (the Value for render). `build_genome` runs before
+  generation (so `generate` uses `aggr`/`risk`); `evolve_strategy` runs after
+  grading.
+- Dreams: `fn build_dreams(obs, date) -> Value` - recombine the corpus's
+  highest-peak terms into surreal far-future calls via fixed forms (no LLM),
+  deterministic per date.
 - Pulse: `struct PulseDay { date, index, theme }`, `fn build_pulse(signals, date)
   -> Value` (index from volume/breadth/theme-share, persists history, computes
   delta and "highest in N"), `fn dominant_theme(signals) -> (String, f64)`.
@@ -228,7 +238,7 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
 
 `pub fn render(generated_human, reveal_delay_days, featured_date_human,
 featured, archive, payment_link, portal_url, early_access_url, intake, pulse,
-genome, engine) -> anyhow::Result<()>`.
+genome, engine, dreams) -> anyhow::Result<()>`.
 
 It builds the template context and writes everything. What it computes:
 
@@ -251,6 +261,11 @@ Artifacts written (all under `docs/` unless noted):
   receipt stamp) and `call/N.png` (per-call og card via `card.rs`).
 - `topic/<slug>.html` (per-keyword SEO pages).
 - `receipts.html` (the credibility wall; HITs and MISSes with lead time).
+- `arena.html` (the prediction-tournament board; client-side, settles GitHub-
+  issue bets against `api/record.json`).
+- `api/dreams.json` (the surreal recombined dream calls; `mood` also carries the
+  mortality fields `vitality`/`lifeState`/`bank` and the strategy fields
+  `sgen`/`aggr`/`risk`/`fit`).
 - `sitemap.xml`, `sitemap-images.xml`, `robots.txt`, `<INDEXNOW_KEY>.txt`, and
   `build/indexnow.json` (the ping payload).
 - `widget.js` (embeddable wire), `og.png` (daily homepage card), `badge.svg`.

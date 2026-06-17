@@ -29,12 +29,16 @@ Array of daily readings: `[{ "date":"YYYY-MM-DD", "index":0..100, "theme":"WORD"
 Drives the seismograph and the index history (last 14 shown).
 
 ### `data/genome.json`
-The organism's DNA, mutated once per calendar day:
+The organism's DNA, mutated once per calendar day. Look genes plus strategy genes:
 ```json
-{ "gen": 1, "hue": 0.445, "wear": 0.006, "quirk": 0, "last": "2026-06-17" }
+{ "gen": 1, "hue": 0.445, "wear": 0.006, "quirk": 0, "last": "2026-06-17",
+  "aggr": 0.0, "risk": 0.0, "sgen": 1, "fit": 0.8, "p_aggr": 0.0, "p_risk": 0.0 }
 ```
-`gen` days lived, `hue` 0..1 (random walk), `wear` 0..1 (accumulates), `quirk`
-0..5 (rare, via `seed % 5 == 0`), `last` idempotency guard. Feeds `mood`.
+Look: `gen` days lived, `hue` 0..1 (random walk), `wear` 0..1 (accumulates),
+`quirk` 0..5 (rare), `last` idempotency guard. Strategy (self-evolution):
+`aggr` confidence shift, `risk` longshot appetite, `sgen` accepted strategies,
+`fit` best realized hit rate (the bar), `p_aggr`/`p_risk` the pre-mutation
+values to revert to. Feeds `mood` and generation.
 
 ### `data/weights.json`
 Learned per-source selection weights (online learning):
@@ -66,6 +70,11 @@ This file powers velocity, diffusion/CHASM, sectors, and the dataset.
 - `topic/<slug>.html` - per-keyword SEO page grouping all calls on a subject.
 - `receipts.html` - the credibility wall: every settled call, HITs then MISSes,
   newest first, with "N days on the record".
+- `arena.html` - the prediction tournament board (client-side): reads GitHub
+  issues labeled `arena` plus `api/record.json`, settles every `SIGNAL-BET`, and
+  ranks all players against the machine and the anti-oracle.
+- `api/dreams.json` - the surreal recombined "dream" calls (also embedded in the
+  page for the sleep-mode overlay).
 
 ### Feeds, SEO, discovery
 - `feed.xml` (RSS), `sitemap.xml`, `sitemap-images.xml`, `robots.txt`,

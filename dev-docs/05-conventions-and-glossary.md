@@ -76,6 +76,24 @@ crossing terms get the provocative `challenge_template` text.
 - **Access code / god pass**: a code that unlocks the encrypted early feed
   client-side (`access.rs` + `docs/edge/`).
 - **Presence / ghosts**: live multiplayer cursors and chip-drops over MQTT.
+- **Mortality / Vitality**: the book is the den's life force. `render.rs` derives
+  `vitality` (0..1 from the bankroll) and `lifeState` (ALIVE / FADING / FLATLINE
+  / DEAD). The world dims (`html.fading`) as it bleeds and shows a death screen
+  (`html.dead` -> `#flatline`) at zero.
+- **Strategy genes / self-evolution**: `genome.aggr` (line aggressiveness) and
+  `genome.risk` (longshot appetite). Each day proposes a mutation that
+  `generate.rs` bets on; `main::evolve_strategy` keeps it if realized hit rate
+  held up, else reverts. `sgen` counts accepted strategies, `fit` is the bar to
+  beat. The engine hill-climbs its own betting strategy.
+- **The Dreams**: the oracle's sleep mode. `main::build_dreams` recombines the
+  corpus's most-burned-in terms into surreal far-future calls (rules-based, no
+  LLM); shown at local night or `?dream` as a violet sleep-world (`#dreamscape`)
+  and served at `api/dreams.json`.
+- **The Arena**: a serverless prediction tournament (`arena.html`). Bets are
+  GitHub issues labeled `arena` with a `SIGNAL-BET` line; the board settles them
+  against `api/record.json` and ranks all players against the machine and the
+  anti-oracle. The Press Credential carries a rap-sheet rank/title earned there
+  and in the pit.
 
 ---
 

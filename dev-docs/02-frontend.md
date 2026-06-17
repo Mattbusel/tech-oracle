@@ -179,9 +179,28 @@ through a few `window.__*` globals (catalogued at the end).
   occupant and the den works unchanged. See `04-distribution-and-ops.md` for the
   reliability caveat.
 
-### 13. Genome/mood accent
+### 13. Genome/mood accent + mortality
 - Applies `__MOOD.accent` to `--ac/--phos/--led` and writes the GEN/DAY/MODEL/
-  verdict/quirk/HOT HAND readout into `#scene-kicker`.
+  verdict/quirk/HOT HAND/VIT/STRAT readout into `#scene-kicker`.
+- Mortality: sets `--vitality` and toggles `html.fading` / `html.dead` from
+  `__MOOD.vitality`/`lifeState`, dimming the world as the book bleeds.
+
+### 14. Death screen + dreams (the sleep mode)
+- Fills `#flatline` (shown only when `html.dead`): the death notice.
+- Dreams: if local time is 23:00-05:00 or `?dream` is present (or Alt/Meta+D),
+  opens `#dreamscape`, a violet sleep-world rendering `__DREAMS` (the recombined
+  far-future calls) with a "WAKE THE ORACLE" button.
+
+### 15. The arena board (in `arena.html`, not the main page)
+- Client-side tournament: fetches GitHub issues labeled `arena` plus
+  `api/record.json`, parses `SIGNAL-BET kw=.. market=.. side=.. by=..`, settles
+  each, and ranks all players against THE MACHINE and THE ANTI-ORACLE with
+  earned titles. "ENTER A BET" opens a prefilled new-issue link. Reuses the
+  ladder's GitHub-issues-as-database pattern.
+
+### 16. Reputation (accounts IIFE)
+- `rapSheet()` computes a rank/title from the local wallet (net record); shown on
+  the Press Credential view, linking to the arena.
 
 ---
 
@@ -189,7 +208,8 @@ through a few `window.__*` globals (catalogued at the end).
 
 | global | defined in | used by |
 | --- | --- | --- |
-| `__MOOD` | injected (render `mood`) | shader uniforms, particles, accent, kicker |
+| `__MOOD` | injected (render `mood`) | shader uniforms, particles, accent, kicker, mortality |
+| `__DREAMS` | injected (render `dreams_json`) | the sleep-mode dreamscape |
 | `__FLOOR` | injected (render `floor_json`) | pit, overlays (#ov-tiles) |
 | `__LADREPO` | injected (render `ladder_repo`) | ladder |
 | `__spike()` / `__pulseSpike()` | station/scope | log, wire, presence |

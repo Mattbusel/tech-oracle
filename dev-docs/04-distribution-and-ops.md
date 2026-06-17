@@ -67,6 +67,12 @@ others. Layered on purpose: search, social, syndication, embeds, agents.
   + `openapi.json` + `.well-known/*` interface, and the **open dataset**
   (`docs/dataset/`) designed to land in Hugging Face, Kaggle, data.world and
   Google Dataset Search, so AI answer engines retrieve and cite the oracle.
+- **The arena** (`arena.html`): a serverless prediction tournament where humans
+  and AI agents bet against the machine by opening GitHub issues labeled `arena`
+  (the same issues-as-database pattern as the ladder). The board settles against
+  `api/record.json`. Agents enter via the issues API; the format is documented in
+  `api/oracle.json`. A two-way engagement surface that pulls in the AI-agent
+  audience and turns the record into a competition.
 - **Borrow-the-audience thesis**: the engine predicts about topics that already
   have crowds and surfaces at the moment a topic crosses into the general public
   (the CHASM market), framed as a falsifiable challenge that crowd will argue
