@@ -15,7 +15,7 @@
     {
       "days": 0,
       "origin": "ARXIV",
-      "reach": "THE NEWS",
+      "reach": "ARXIV",
       "term": "AGENTS"
     },
     {
@@ -27,59 +27,59 @@
     {
       "days": 0,
       "origin": "GITHUB",
-      "reach": "THE NEWS",
+      "reach": "ARS",
       "term": "ANDROID"
     },
     {
       "days": 0,
       "origin": "HN",
-      "reach": "HN",
+      "reach": "THE NEWS",
       "term": "ANNOUNCES"
     }
   ],
   "corpus_days": 1,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 53
+    "value": 58
   },
   "movers": [
     {
-      "count": 7,
-      "term": "FIFA",
-      "vel": 100
-    },
-    {
-      "count": 7,
-      "term": "TEAM",
-      "vel": 100
-    },
-    {
-      "count": 6,
-      "term": "CUP",
-      "vel": 100
-    },
-    {
-      "count": 5,
-      "term": "UPDATE",
-      "vel": 100
-    },
-    {
-      "count": 5,
+      "count": 11,
       "term": "GAME",
       "vel": 100
     },
     {
-      "count": 4,
+      "count": 9,
+      "term": "UPDATE",
+      "vel": 100
+    },
+    {
+      "count": 8,
+      "term": "FIFA",
+      "vel": 100
+    },
+    {
+      "count": 8,
       "term": "GOOGLE",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "CUP",
+      "vel": 100
+    },
+    {
+      "count": 6,
+      "term": "APPLE",
       "vel": 100
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 4,
-    "delta_word": "FALLING",
+    "delta_abs": 1,
+    "delta_word": "RISING",
     "has_prev": true,
-    "highest_days": 0,
+    "highest_days": 1,
     "history": [
       {
         "date": "2026-06-02",
@@ -123,63 +123,63 @@
       },
       {
         "date": "2026-06-17",
-        "index": 66
+        "index": 71
       }
     ],
-    "index": 66,
-    "theme": "WORLD",
-    "total": 233,
+    "index": 71,
+    "theme": "GAME",
+    "total": 261,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 18,
+      "delta": 20,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
-      "delta": 15,
-      "index": 83,
+      "delta": 20,
+      "index": 100,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
-      "delta": 3,
-      "index": 17,
-      "name": "CHIPS"
+      "delta": 4,
+      "index": 20,
+      "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 3,
-      "index": 17,
+      "index": 15,
       "name": "RUST"
     },
     {
       "arrow": "UP",
-      "delta": 3,
-      "index": 17,
-      "name": "ROBOTS"
-    },
-    {
-      "arrow": "UP",
       "delta": 2,
-      "index": 11,
+      "index": 10,
       "name": "CRYPTO"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 11,
-      "name": "SECURITY"
+      "index": 10,
+      "name": "CLOUD"
+    },
+    {
+      "arrow": "UP",
+      "delta": 2,
+      "index": 10,
+      "name": "ROBOTS"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 6,
-      "name": "CLOUD"
+      "index": 5,
+      "name": "CHIPS"
     }
   ],
   "source_weights": [
@@ -284,5 +284,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 1248
+  "tracked_terms": 1524
 }

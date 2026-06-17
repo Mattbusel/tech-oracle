@@ -48,6 +48,8 @@ pub struct Bloodline {
     pub next_id: u64,
     pub gen: i64,
     pub population: Vec<Organism>,
+    #[serde(default)]
+    pub last_evolved: String, // date of the last aging/cull/breed (idempotent per day)
 }
 
 struct Rng(u64);
@@ -148,6 +150,7 @@ impl Bloodline {
                 });
             }
             self.gen = 1;
+            self.last_evolved = date.to_string();
             self.save();
             return;
         }
@@ -161,10 +164,21 @@ impl Bloodline {
             })
             .collect();
 
+        // Fitness is recomputed every run (idempotent: same record, same score).
         for o in self.population.iter_mut().filter(|o| o.alive) {
             o.fitness = simulate(&o.genes, &calls);
+        }
+
+        // Aging, culling and breeding happen at most once per calendar day, so a
+        // redundant cron run (a backstop firing) never over-ages or over-breeds.
+        if self.last_evolved == date {
+            self.save();
+            return;
+        }
+        for o in self.population.iter_mut().filter(|o| o.alive) {
             o.age += 1;
         }
+        self.last_evolved = date.to_string();
 
         // Cull and breed only once there is a real record to judge on.
         if calls.len() >= JUDGE_MIN {

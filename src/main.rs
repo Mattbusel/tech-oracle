@@ -32,10 +32,14 @@ pub const OUT_HTML: &str = "docs/index.html";
 fn main() {
     // The release window. Subscribers see a call immediately; the public page
     // reveals it `delay_days` later. 0 = no embargo (acts like a free blog).
+    // 0 = no embargo: today's call is public today. This is the reliable default
+    // and needs no external state. A positive delay only works when the embargoed
+    // pool is persisted across runs (Cloudflare KV); without that infra a delay
+    // would silently drop every call, so we default to 0.
     let delay_days: i64 = std::env::var("REVEAL_DELAY_DAYS")
         .ok()
         .and_then(|v| v.parse().ok())
-        .unwrap_or(1);
+        .unwrap_or(0);
 
     let now = Utc::now().date_naive();
     let date = now.format("%Y-%m-%d").to_string();
@@ -115,7 +119,13 @@ fn main() {
     let mut blood = bloodline::load();
     let champ = blood.champion_genes();
     let picks = rank::rank_and_select(signals, seed, 4, &weights);
-    let todays = generate::generate(&picks, &date, seed, today_index, &obs, champ.aggr, champ.risk);
+    let mut todays = generate::generate(&picks, &date, seed, today_index, &obs, champ.aggr, champ.risk);
+    // The press never misses an edition. If every source went dark, the machine
+    // still prints: a dated call on its own Acceleration Index. There is always
+    // a print of record.
+    if todays.is_empty() {
+        todays.push(fallback_call(&date, today_index));
+    }
     eprintln!("generated {} call(s) for {date}", todays.len());
 
     // ---- merge across the embargo/reveal windows ----
@@ -736,6 +746,34 @@ fn build_genome(date: &str) -> Genome {
     }
 
     g
+}
+
+/// The guaranteed daily call when every source failed: a dated, self-checkable
+/// bet on the engine's own Acceleration Index. Keeps the press from ever
+/// printing a blank edition.
+fn fallback_call(date: &str, index: i64) -> Prediction {
+    let target = (index + 6).clamp(1, 100);
+    let resolves_by = match NaiveDate::parse_from_str(date, "%Y-%m-%d") {
+        Ok(d) => (d + Duration::days(30)).format("%Y-%m-%d").to_string(),
+        Err(_) => date.to_string(),
+    };
+    Prediction {
+        date: date.to_string(),
+        prediction_text: "The wire fell quiet today, every source dark at once. The press prints anyway: it calls its own Acceleration Index back above the line within the month. The machine never misses an edition.".to_string(),
+        source_title: "THE SIGNAL // self-reference".to_string(),
+        source_url: "#".to_string(),
+        signal_type: "news".to_string(),
+        status: "OPEN".to_string(),
+        keyword: "signal".to_string(),
+        win_if: format!("WIN IF THE PULSE INDEX CROSSES {target} BY {resolves_by}"),
+        resolves_by,
+        resolved_on: String::new(),
+        confidence: 0.6,
+        market: "INDEX".to_string(),
+        keyword2: String::new(),
+        target,
+        rationale: "ALL SOURCES DARK // FALLBACK PRINT ON THE INDEX".to_string(),
+    }
 }
 
 /// THE DREAMS: when the oracle sleeps it recombines its own memory into surreal,

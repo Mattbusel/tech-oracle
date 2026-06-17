@@ -1,9 +1,17 @@
 name: daily-prediction
 
 on:
-  # Edit this one line to change when the daily call drops (UTC).
+  # GitHub's scheduled trigger is best-effort and is frequently delayed or
+  # skipped. The whole run is idempotent per calendar day (genome, pulse, corpus,
+  # bloodline and the day's calls all key off the date), so we fire several
+  # backstop times: the first to actually land prints the day's edition, every
+  # later one that day is a no-op. This is how we make the daily print reliable
+  # on a free best-effort scheduler.
   schedule:
-    - cron: "17 13 * * *" # 13:17 UTC daily
+    - cron: "17 13 * * *" # 13:17 UTC (the headline print)
+    - cron: "17 17 * * *" # backstop
+    - cron: "17 21 * * *" # backstop
+    - cron: "47 1 * * *"  # backstop (next day, catches a fully missed slot)
   workflow_dispatch: {}
 
 # Needed so the Action can commit the regenerated files back.
@@ -19,8 +27,11 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     env:
-      # Release window. Subscribers see calls now; public reveals after this many days.
-      REVEAL_DELAY_DAYS: "1"
+      # 0 = the call is public the day it is made (reliable, self-contained).
+      # A positive delay only works with Cloudflare KV persisting the embargoed
+      # pool across runs; without it a delay silently drops every call. Leave at
+      # 0 unless the CF_* secrets below are set.
+      REVEAL_DELAY_DAYS: "0"
       # Public CTA URLs (repo Variables, not Secrets — a Payment Link is shareable).
       STRIPE_PAYMENT_LINK: ${{ vars.STRIPE_PAYMENT_LINK }}
       STRIPE_PORTAL_URL: ${{ vars.STRIPE_PORTAL_URL }}
