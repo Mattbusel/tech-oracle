@@ -79,7 +79,7 @@
     },
     {
       "dir": -1,
-      "p": 0.413,
+      "p": 0.433,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -121,8 +121,8 @@
     },
     {
       "dir": -1,
-      "p": 0.402,
-      "phase": "BOTTOMING",
+      "p": 0.384,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.687,
+      "p": 0.669,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -435,18 +435,6 @@
       "term": "UPDATE"
     },
     {
-      "days": 178,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "LAUNCH"
-    },
-    {
-      "days": 177,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "SURFACE"
-    },
-    {
       "days": 157,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -457,12 +445,24 @@
       "origin": "HN",
       "reach": "ARS",
       "term": "ABUSIVE"
+    },
+    {
+      "days": 148,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ACHIEVEMENT"
+    },
+    {
+      "days": 178,
+      "origin": "HN",
+      "reach": "ARS",
+      "term": "ACT"
     }
   ],
   "corpus_days": 179,
   "fear_greed": {
     "label": "GREED",
-    "value": 69
+    "value": 63
   },
   "manifold": [
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.103,
-      "curvature": 0.32,
+      "beta": -0.095,
+      "curvature": 0.49,
       "defined": true,
-      "ds2": 0.795,
+      "ds2": 0.81,
       "gamma": 1.005,
-      "geodesic_trend": -0.435,
+      "geodesic_trend": -0.337,
       "phase": "BOTTOMING",
-      "prob_rising": 41,
+      "prob_rising": 43,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.025,
+      "rel_momentum": -0.023,
       "term": "GOOGLE"
     },
     {
@@ -660,18 +660,18 @@
       "vel": 688
     },
     {
-      "count": 3,
-      "term": "LAUNCH",
-      "vel": 425
+      "count": 4,
+      "term": "PS5",
+      "vel": 400
     },
     {
-      "count": 3,
-      "term": "SURFACE",
-      "vel": 425
+      "count": 4,
+      "term": "ULTRA",
+      "vel": 400
     },
     {
-      "count": 5,
-      "term": "IPHONE",
+      "count": 4,
+      "term": "DATASET",
       "vel": 400
     },
     {
@@ -733,52 +733,52 @@
       }
     ],
     "index": 72,
-    "theme": "WORLD",
-    "total": 269,
+    "theme": "GAME",
+    "total": 268,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -38,
+      "delta": -40,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -14,
+      "delta": -16,
       "index": 100,
       "name": "PLATFORM"
     },
     {
+      "arrow": "DOWN",
+      "delta": -11,
+      "index": 20,
+      "name": "CHIPS"
+    },
+    {
       "arrow": "UP",
       "delta": 2,
-      "index": 18,
+      "index": 20,
       "name": "ROBOTS"
     },
     {
       "arrow": "DOWN",
-      "delta": -12,
-      "index": 14,
-      "name": "CHIPS"
-    },
-    {
-      "arrow": "DOWN",
       "delta": -5,
-      "index": 14,
+      "index": 15,
       "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
       "delta": -5,
-      "index": 9,
+      "index": 10,
       "name": "CRYPTO"
     },
     {
       "arrow": "DOWN",
       "delta": -5,
-      "index": 9,
+      "index": 10,
       "name": "CLOUD"
     },
     {
@@ -890,5 +890,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 43128
+  "tracked_terms": 43134
 }
