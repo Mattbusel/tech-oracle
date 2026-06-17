@@ -66,6 +66,14 @@ provocative `challenge_template` text.
   SHIFT, 3 STATIC STORM, 4 GOLD RUSH, 5 GHOST SHIFT.
 - **The Observatory / Corpus**: the growing discourse time series and the quant
   views built on it.
+- **The Manifold** (`manifold.rs`): the prediction core, repurposed from SRFM
+  (Special Relativity in Financial Modeling). A topic's daily attention is its
+  "price" and its time series a trajectory through a curved relativistic
+  space-time. The engine reads the topic's relativistic velocity (`beta`), Lorentz
+  factor (`gamma`), space-time regime (TIMELIKE causal trend / SPACELIKE noise /
+  LIGHTLIKE transition), geodesic curvature, and a forward geodesic forecast. The
+  regime shapes which market is bet; the forecast predicts confidence and the live
+  likelihood. Surfaced per top-mover in `api/observatory.json` as `manifold`.
 - **The Chasm**: the point a term born technical reaches a general-public source.
   The CHASM market and the chasm watch track it.
 - **Diffusion funnel / stage**: sources ordered technical(0) to general(9); see
@@ -81,7 +89,9 @@ provocative `challenge_template` text.
   crossing, climb, how much of the window is left). So it is a running estimate of
   the eventual outcome: when a market's HIT bar is already met it sits near
   certainty (it will settle HIT on the next grade), and it decays toward zero as
-  the deadline nears unmet. `main::live_likelihood` computes it, `main::update_live`
+  the deadline nears unmet. For trend markets the manifold's geodesic forecast
+  (`prob_rising`) is blended into the uncertain middle (the earned evidence still
+  owns the extremes). `main::live_likelihood` computes it, `main::update_live`
   rolls it once per day (`live_date` guards idempotency, `live_prev` shows the move).
   A held position gains or loses value as the likelihood moves, so long-horizon
   calls are worth holding, and the pit can **cash out** at the current mark

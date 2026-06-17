@@ -21,14 +21,21 @@ Run:
 $env:CARGO_HOME="C:\tech-oracle\.cargo-home"; $env:CARGO_TARGET_DIR="C:\tech-oracle\target"
 cargo test --release
 ```
-Current state: **45 tests, all passing.**
+Current state: **61 tests, all passing.**
 
 What each file covers:
-- `main.rs` (inline) - the grader `resolve_open` for every market (RESURFACE
-  hit/miss/expired, the never-settle-same-day guard, CHASM general-corpus-only,
-  INDEX, OVER, HEAD-TO-HEAD both ways, CROSSOVER), `fallback_call` shape,
+- `main.rs` (inline) - the earned-but-fair grader `resolve_open` for every market
+  against the corpus time series (RESURFACE real-return vs single-weak-day vs
+  expired, the never-settle-same-day guard, CHASM only on a real crossing, INDEX,
+  OVER above/below the bar, HEAD-TO-HEAD both ways, CROSSOVER, SURVIVAL hit and
+  goes-quiet, MOMENTUM climb and no-climb), `fallback_call` shape,
   `compute_weights` thresholds and bounds, `ghash` determinism, `age_days` /
   `reveal_date`, `csv_escape`, `dedup`.
+- `tests_manifold.rs` - the prediction core: neutral below MIN_POINTS,
+  determinism, a steady climb forecasting up (P(rising) > 0.5), a decline
+  forecasting down, gamma >= 1 and beta bounded, a violent series not reading
+  TIMELIKE, a calm trend reading TIMELIKE, the regime market pools, and
+  confidence staying in band.
 - `tests_observatory.rs` - the stage funnel and technical/general bands, term
   counts and velocity, chasm-crossing detection, the rationale tape, fear/greed
   bands.

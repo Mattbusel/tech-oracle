@@ -3,6 +3,7 @@ mod bloodline;
 mod card;
 mod fetch;
 mod generate;
+mod manifold;
 mod model;
 mod observatory;
 mod rank;
@@ -712,6 +713,30 @@ fn build_engine(
         })
         .collect();
 
+    // THE MANIFOLD readout for the day's fastest topics: each one's position on the
+    // relativistic attention manifold (regime, Lorentz factor, geodesic forecast).
+    // This is the prediction core, made machine-visible.
+    let manifold: Vec<serde_json::Value> = obs
+        .top_movers(8)
+        .into_iter()
+        .map(|(t, _vel, _c)| {
+            let r = manifold::analyze(&obs.trajectory(&t));
+            let r3 = |x: f64| (x * 1000.0).round() / 1000.0;
+            serde_json::json!({
+                "term": t.to_uppercase(),
+                "regime": r.regime.label(),
+                "defined": r.defined(),
+                "beta": r3(r.beta),
+                "gamma": r3(r.gamma),
+                "rel_momentum": r3(r.rel_return),
+                "ds2": r3(r.ds2),
+                "curvature": (r.curvature * 100.0).round() / 100.0,
+                "geodesic_trend": r3(r.trend),
+                "prob_rising": (r.prob_rising() * 100.0).round() as i64,
+            })
+        })
+        .collect();
+
     let mut learning: Vec<serde_json::Value> = ALL_SOURCES
         .iter()
         .map(|&src| {
@@ -740,6 +765,7 @@ fn build_engine(
         "sectors": sectors,
         "movers": movers,
         "chasm": chasm,
+        "manifold": manifold,
         "learning": learning,
     })
 }
@@ -901,7 +927,23 @@ fn live_likelihood(p: &Prediction, obs: &observatory::Observatory, index: i64, t
             else { (12.0 + 30.0 * frac_left).round() as i64 }
         }
     };
-    base.clamp(4, 97)
+
+    // THE MANIFOLD predicts the move. Trend markets (does attention rise / hold?)
+    // are exactly what the geodesic forecast answers, so blend its P(rising) into
+    // the uncertain middle. The earned evidence still owns the extremes: a bar
+    // that is essentially met (>=90) or essentially dead (<=8) is left to settle.
+    let mani = manifold::analyze(&obs.trajectory(kw));
+    let blended = if mani.defined()
+        && base > 8
+        && base < 90
+        && matches!(p.market.as_str(), "RESURFACE" | "FUTURES" | "LONGSHOT" | "SURVIVAL" | "MOMENTUM")
+    {
+        let mp = mani.prob_rising() * 100.0;
+        (base as f64 * 0.55 + mp * 0.45).round() as i64
+    } else {
+        base
+    };
+    blended.clamp(4, 97)
 }
 
 /// Roll the live mark for every open call once per day (idempotent via live_date).

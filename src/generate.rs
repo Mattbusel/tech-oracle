@@ -39,10 +39,23 @@ pub fn generate(
             let vel = obs.velocity_pct(&keyword);
             let xsrc = obs.cross_source(&keyword);
             let crossing = obs.is_crossing(&keyword);
-            let rationale = obs.rationale(&keyword);
 
-            // Rotate the market, then validate it against what the data supports.
-            let mut market = MARKETS[(seed as usize).wrapping_add(i) % MARKETS.len()];
+            // THE MANIFOLD: read the topic's attention trajectory as a relativistic
+            // path through space-time. Its regime shapes which market we bet, and
+            // its geodesic forecast predicts the line.
+            let mani = crate::manifold::analyze(&obs.trajectory(&keyword));
+            let rationale = format!("{} // {}", obs.rationale(&keyword), mani.tag());
+
+            // Topology shapes the bet. Once the manifold has a trajectory to read,
+            // the local regime picks the market (a causal trend is bet as a trend, a
+            // transition as a crossing, noise as a spike); before then, the plain
+            // date-seeded rotation keeps early days varied.
+            let mut market = if mani.defined() {
+                let pool = crate::manifold::market_pool(mani.regime);
+                pool[(seed as usize).wrapping_add(i) % pool.len()]
+            } else {
+                MARKETS[(seed as usize).wrapping_add(i) % MARKETS.len()]
+            };
             let mut keyword2 = String::new();
             let mut target = 0i64;
             let mut horizon_days = HORIZON_DAYS;
@@ -98,10 +111,17 @@ pub fn generate(
             // Confidence comes from the data: cross-source confirmation and
             // positive velocity raise the line; later picks, longshots and the
             // genuinely-hard chasm bet lower it.
-            let mut confidence = 0.55
+            let data_conf = 0.55
                 + (xsrc as f64 * 0.035).min(0.18)
                 + if vel > 0 { 0.06 } else { -0.04 }
                 - i as f64 * 0.012;
+            // The manifold predicts the line: once it has a trajectory, the geodesic
+            // forecast leads and the raw data heuristic supports it.
+            let mut confidence = if mani.defined() {
+                0.35 * data_conf + 0.65 * mani.confidence()
+            } else {
+                data_conf
+            };
             if market == "LONGSHOT" {
                 confidence = 0.40;
             }

@@ -116,8 +116,10 @@ Static, read-only, CORS-open (GitHub Pages sets `access-control-allow-origin: *`
   status, resolved_on, rationale, source{type,title,url}, permalink`.
 - `api/record.json` - `total, scoreboard, book, calibration, calls[]` (the whole
   record).
-- `api/observatory.json` - `pulse, fear_greed, sectors, movers, chasm,
-  source_weights, corpus_days, tracked_terms`.
+- `api/observatory.json` - `pulse, fear_greed, sectors, movers, chasm, manifold,
+  source_weights, corpus_days, tracked_terms`. `manifold` is one relativistic
+  reading per top mover: `term, regime, defined, beta, gamma, rel_momentum, ds2,
+  curvature, geodesic_trend, prob_rising`.
 - `openapi.json` - a real OpenAPI 3.0 spec for the three GET endpoints
   (operationIds getTodaysCalls / getRecord / getObservatory).
 - `.well-known/ai-plugin.json` - the de facto agent-discovery manifest, points to

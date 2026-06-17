@@ -148,16 +148,25 @@ CSS (`.s-x` and `i.s-x`/`.sm-dot.s-x`).
   current bloodline champion's genes)
   - For each pick: derive `subject` and `keyword`; pull features from the
     observatory (`velocity_pct`, `cross_source`, `is_crossing`, `rationale`).
-  - Pick a market by `(seed + i) % len`, then validate against the data:
+  - **The manifold shapes the bet.** `manifold::analyze(obs.trajectory(keyword))`
+    reads the topic's attention trajectory; once it is defined (3+ days of
+    history) the local space-time regime selects the market from
+    `manifold::market_pool` (TIMELIKE -> trend bets MOMENTUM/SURVIVAL/RESURFACE/
+    FUTURES; LIGHTLIKE -> transition bets CHASM/HEAD-TO-HEAD/CROSSOVER; SPACELIKE
+    -> spike bets OVER/LONGSHOT/INDEX). Before it is defined, the plain
+    `(seed + i) % MARKETS.len()` rotation runs (early days stay varied). Then
+    validate against the data:
     - CHASM only survives if the term has a technical origin (room to cross),
       else falls back to RESURFACE.
     - HEAD-TO-HEAD / CROSSOVER need a distinct `keyword2` from the next pick.
     - OVER sets `target` = today's mention count + small jitter.
     - INDEX sets `target` = current index + 5 + jitter.
     - FUTURES uses the 90-day horizon.
-  - Build `win_if` per market. Compute `confidence` from the data
-    (cross-source confirmation and positive velocity raise it; later picks,
-    LONGSHOT and CHASM lower it; clamped 0.34..0.9).
+  - Build `win_if` per market. Compute `confidence`: once the manifold is defined
+    the geodesic forecast leads (`0.35 * data_conf + 0.65 * manifold.confidence()`),
+    otherwise the data heuristic stands alone (cross-source confirmation and
+    positive velocity raise it; later picks, LONGSHOT and CHASM lower it; clamped
+    0.34..0.9). The manifold readout is appended to the `rationale` tape.
   - `prediction_text`: a challenge frame (`challenge_template`) when the call is
     CHASM or the term is crossing, else a source-specific `fill_template`.
 - `fn pick_keyword(subject) -> String` - the longest non-trivial token (the
@@ -170,6 +179,44 @@ CSS (`.s-x` and `i.s-x`/`.sm-dot.s-x`).
   falsifiable framing for crossing topics ("tail it or fade it").
 - `fn subject_of(s) -> String` and `fn shorten(t, max)` - trim a title to a word
   boundary.
+
+---
+
+## `manifold.rs` (the prediction core)
+
+Repurposed from SRFM (Special Relativity in Financial Modeling): a topic's daily
+attention is treated as the "price" of an asset and its time series as a
+trajectory through a curved relativistic space-time. Where it goes next is a
+geodesic on that manifold. Dependency-free, deterministic, pure arithmetic.
+
+- Constants: `BETA_MAX` (0.9999, the velocity ceiling), `LIGHTLIKE_EPS` (0.15,
+  the transition band on the normalized interval), `HORIZON` (7, geodesic
+  forecast steps), `WINDOW` (20, lookback), `MIN_POINTS` (3, below which the
+  reading is neutral).
+- `enum Regime { Timelike, Lightlike, Spacelike }` with `.label()` and
+  `.certainty()` (1.0 / 0.6 / 0.4: how far a directional forecast is trusted).
+- `struct Reading { points, beta, gamma, rel_return, ds2, regime, curvature, trend }`
+  - `beta`: relativistic velocity of attention (move / local light speed),
+  - `gamma`: Lorentz factor `1/sqrt(1 - beta^2)` (fast moves weigh more),
+  - `rel_return`: `gamma * last_return`, the relativistic momentum,
+  - `ds2`: normalized space-time interval `-1 + |v|^2 + |a|^2 + sigma^2` (its sign
+    is the regime),
+  - `curvature`: the geodesic-deviation z-score `(d gamma / gamma) * sign(beta)`,
+  - `trend`: the forward geodesic projection over the horizon, tanh-squashed to
+    [-1, 1].
+  - `.defined()` (>= MIN_POINTS), `.prob_rising()` (0..1 P(attention rises),
+    `0.5 + 0.5*trend*certainty`), `.confidence()` (0.34..0.92 from speed + regime
+    + trend), `.tag()` (the readout for the rationale tape).
+- `pub fn analyze(series: &[f64]) -> Reading` - the whole pipeline: log-attention
+  returns `ln(1+count)`, a local light speed = rolling max move, betas/gammas,
+  the interval and regime, the curvature z-score, and the geodesic forecast.
+- `fn forecast_trend(v0, a0, regime)` - integrates the geodesic forward HORIZON
+  steps: momentum carries velocity (persistence by regime), curvature bends and
+  decays it, and the metric resists travel through high-velocity space
+  (`/ sqrt(1 + |v|)`).
+- `pub fn market_pool(regime) -> &[&str]` - the regime's preferred markets (how
+  topology shapes the bet). Surfaced in `api/observatory.json` as `manifold` (one
+  reading per top mover) and tested in `tests_manifold.rs`.
 
 ---
 

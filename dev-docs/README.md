@@ -120,9 +120,12 @@ build/                  Gitignored scratch: early_payload.json (the paid edge), 
    `rank_and_select(signals, seed, 4, &weights)` normalizes momentum per source,
    multiplies by the learned weight, dedups by topic, returns the top picks.
 5. **Generate** (`generate.rs`): `generate(picks, date, seed, index, obs)`
-   builds one `Prediction` per pick: a market (rotated and validated against the
-   data), a keyword, a machine-checkable `win_if`, a `resolves_by` horizon,
-   data-driven `confidence`, and a reasoning tape (`rationale`). Crossing/CHASM
+   builds one `Prediction` per pick. The **manifold** (`manifold.rs`, repurposed
+   from SRFM) reads each topic's attention trajectory as a path through a curved
+   relativistic space-time: its regime shapes the market (causal trend vs
+   transition vs noise) and its geodesic forecast predicts the `confidence`. Plus
+   a keyword, a machine-checkable `win_if`, a `resolves_by` horizon, and a
+   reasoning tape (`rationale`) carrying the manifold readout. Crossing/CHASM
    topics get a challenge frame.
 6. **Merge across the embargo window**: load `data/predictions.json` (revealed)
    and `build/embargoed_in.json` (the subscriber pool, synced from KV). Drop

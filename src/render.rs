@@ -858,6 +858,7 @@ fn write_agent_layer(
         "sectors": engine.get("sectors"),
         "movers": engine.get("movers"),
         "chasm": engine.get("chasm"),
+        "manifold": engine.get("manifold"),
         "source_weights": engine.get("learning"),
         "corpus_days": engine.get("corpus_days"),
         "tracked_terms": engine.get("tracked_terms"),

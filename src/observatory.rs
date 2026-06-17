@@ -364,6 +364,21 @@ impl Observatory {
             .sum::<usize>() as i64
     }
 
+    /// The term's daily attention trajectory, oldest first, ending with today's
+    /// true count: the price series the manifold rides. Past days come from the
+    /// committed corpus snapshots (>= 2 presence floor); today uses the live count.
+    pub fn trajectory(&self, term: &str) -> Vec<f64> {
+        let mut v: Vec<f64> = self
+            .corpus
+            .days
+            .iter()
+            .filter(|d| d.date.as_str() < self.today.as_str())
+            .map(|d| d.terms.get(term).copied().unwrap_or(0) as f64)
+            .collect();
+        v.push(self.today_count(term) as f64);
+        v
+    }
+
     /// The most recent date the term had real presence, across all history.
     pub fn last_active(&self, term: &str) -> Option<String> {
         if term.is_empty() {
