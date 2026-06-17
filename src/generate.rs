@@ -23,6 +23,8 @@ pub fn generate(
     seed: i64,
     index: i64,
     obs: &Observatory,
+    aggr: f64,
+    risk: f64,
 ) -> Vec<Prediction> {
     let n = signals.len();
     signals
@@ -73,6 +75,12 @@ pub fn generate(
                 _ => {}
             }
 
+            // Strategy gene `risk`: a higher appetite turns some plain calls into
+            // longshots (the engine evolving toward or away from gambling).
+            if market == "RESURFACE" && risk > 0.5 && (seed + i as i64).rem_euclid(3) == 0 {
+                market = "LONGSHOT";
+            }
+
             let resolves_by = horizon(date, horizon_days);
             let win_if = match market {
                 "SURVIVAL" => format!("WIN IF \"{kw}\" HAS NOT GONE QUIET BY {resolves_by}"),
@@ -101,7 +109,9 @@ pub fn generate(
                 confidence -= 0.06;
             }
             let jitter = ((seed.unsigned_abs() as usize + i) % 5) as f64 * 0.01;
-            let confidence = (confidence + jitter).clamp(0.34, 0.9);
+            // Strategy gene `aggr`: shift the whole line up or down (how bold the
+            // engine is about its confidence). Evolved by the fitness loop.
+            let confidence = (confidence + jitter + aggr).clamp(0.34, 0.9);
 
             // A topic leaving the dev bubble gets a challenge frame: dated,
             // falsifiable, and built to make the arriving crowd argue with it.

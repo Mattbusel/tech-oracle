@@ -85,8 +85,9 @@ fn main() {
     // The Pulse: one acceleration index aggregated from the day's signals,
     // persisted so it trends over time.
     let pulse = build_pulse(&signals, &date);
-    // The genome: mutates once per day so the site evolves on its own.
-    let genome = build_genome(&date);
+    // The genome: mutates once per day so the site evolves on its own (look +
+    // betting strategy). Finalized after grading by the fitness loop.
+    let mut genome_s = build_genome(&date);
     // THE OBSERVATORY: persist today into the growing corpus and derive the
     // quantitative views (velocity, diffusion, sectors, fear/greed). Must run
     // before rank/generate so calls can show their work.
@@ -110,7 +111,7 @@ fn main() {
     // Yesterday's learned weights steer today's selection (online learning).
     let weights = load_weights();
     let picks = rank::rank_and_select(signals, seed, 4, &weights);
-    let todays = generate::generate(&picks, &date, seed, today_index, &obs);
+    let todays = generate::generate(&picks, &date, seed, today_index, &obs, genome_s.aggr, genome_s.risk);
     eprintln!("generated {} call(s) for {date}", todays.len());
 
     // ---- merge across the embargo/reveal windows ----
@@ -169,6 +170,19 @@ fn main() {
     // The Engine Room panel: everything the observatory and the book now know.
     let engine = build_engine(&obs, &source_stats, &new_weights);
 
+    // Strategy evolution: judge the day's betting strategy on its realized hit
+    // rate and keep or revert the mutation. Then finalize the genome for render.
+    let g_hits = revealed.iter().filter(|p| p.status == "HIT").count() as i64;
+    let g_miss = revealed.iter().filter(|p| p.status == "MISS").count() as i64;
+    let g_resolved = g_hits + g_miss;
+    let hit_rate = if g_resolved > 0 { g_hits as f64 / g_resolved as f64 } else { 0.0 };
+    evolve_strategy(&mut genome_s, hit_rate, g_resolved);
+    let genome = genome_json(&genome_s);
+
+    // The dreams: surreal speculative calls recombined from the corpus, shown
+    // when the oracle is "asleep" (night / low traffic).
+    let dreams = build_dreams(&obs, &date);
+
     // ---- render the public (delayed) page ----
     let mut archive: Vec<Prediction> = revealed.clone();
     archive.sort_by(|a, b| b.date.cmp(&a.date)); // newest first
@@ -195,6 +209,7 @@ fn main() {
         &pulse,
         &genome,
         &engine,
+        &dreams,
     ) {
         eprintln!("render error: {e}");
         std::process::exit(1);
@@ -653,6 +668,20 @@ struct Genome {
     wear: f64,     // 0..1, accumulates -- the den ages
     quirk: i64,    // 0..5, a rare mutation that changes the look
     last: String,  // last date mutated (idempotent per day)
+    // STRATEGY GENES: the engine evolves how it bets, not just how it looks.
+    // Each day proposes a small mutation; the fitness loop keeps it or reverts.
+    #[serde(default)]
+    aggr: f64,     // -0.12..0.12, shifts confidence up/down (line aggressiveness)
+    #[serde(default)]
+    risk: f64,     // 0..1, appetite for longshots
+    #[serde(default)]
+    sgen: i64,     // strategy generation (accepted mutations)
+    #[serde(default)]
+    fit: f64,      // best fitness so far (realized hit rate), the bar to beat
+    #[serde(default)]
+    p_aggr: f64,   // the pre-mutation aggr, to revert to if the mutation hurt
+    #[serde(default)]
+    p_risk: f64,
 }
 
 fn ghash(s: &str) -> u64 {
@@ -667,11 +696,14 @@ fn ghash(s: &str) -> u64 {
 /// Load the genome, mutate it once per calendar day (seeded by the date, so it
 /// is deterministic but path-dependent and never resets), persist, and return
 /// it. This is what makes the organism evolve overnight.
-fn build_genome(date: &str) -> serde_json::Value {
+fn build_genome(date: &str) -> Genome {
     let mut g: Genome = std::fs::read_to_string(GENOME_PATH)
         .ok()
         .and_then(|s| serde_json::from_str(&s).ok())
-        .unwrap_or(Genome { gen: 0, hue: 0.42, wear: 0.0, quirk: 0, last: String::new() });
+        .unwrap_or_default();
+    if g.hue == 0.0 && g.gen == 0 {
+        g.hue = 0.42;
+    }
 
     if g.last != date {
         let seed = ghash(date);
@@ -687,13 +719,94 @@ fn build_genome(date: &str) -> serde_json::Value {
         } else {
             g.quirk = 0;
         }
+        // Propose a strategy mutation. Remember the pre-mutation genes so the
+        // fitness loop can revert if this day's strategy underperforms.
+        g.p_aggr = g.aggr;
+        g.p_risk = g.risk;
+        let da = ((seed / 11 % 1000) as f64 / 1000.0 - 0.5) * 0.05;
+        let dr = ((seed / 13 % 1000) as f64 / 1000.0 - 0.5) * 0.12;
+        g.aggr = (g.aggr + da).clamp(-0.12, 0.12);
+        g.risk = (g.risk + dr).clamp(0.0, 1.0);
         g.last = date.to_string();
         if let Ok(j) = serde_json::to_string_pretty(&g) {
             let _ = std::fs::write(GENOME_PATH, j);
         }
     }
 
-    serde_json::json!({ "gen": g.gen, "hue": g.hue, "wear": g.wear, "quirk": g.quirk })
+    g
+}
+
+/// The fitness loop: after grading, judge the strategy the day ran on its
+/// realized hit rate. If it beat the best fitness so far, accept the mutation
+/// and raise the bar; if it underperformed, revert toward the prior genes. This
+/// is hill-climbing the engine's own betting strategy, selected by its record.
+fn evolve_strategy(g: &mut Genome, hit_rate: f64, resolved: i64) {
+    if resolved < 5 {
+        return; // not enough settled calls to judge yet
+    }
+    if hit_rate + 0.001 >= g.fit {
+        g.fit = hit_rate; // the mutation held up: keep it, raise the bar
+        g.sgen += 1;
+    } else {
+        // the mutation hurt: walk the genes halfway back toward the prior values
+        g.aggr = (g.aggr + g.p_aggr) / 2.0;
+        g.risk = (g.risk + g.p_risk) / 2.0;
+    }
+    if let Ok(j) = serde_json::to_string_pretty(g) {
+        let _ = std::fs::write(GENOME_PATH, j);
+    }
+}
+
+/// THE DREAMS: when the oracle sleeps it recombines its own memory into surreal,
+/// speculative far-future calls. Pure rules-based recombination of the corpus's
+/// most-burned-in terms; no LLM. Deterministic for a given date.
+fn build_dreams(obs: &observatory::Observatory, date: &str) -> serde_json::Value {
+    // The terms most seared into memory (highest peak) are the dream material.
+    let mut terms: Vec<(&String, i64)> = obs
+        .corpus
+        .terms
+        .iter()
+        .map(|(t, r)| (t, r.peak as i64))
+        .collect();
+    terms.sort_by(|a, b| b.1.cmp(&a.1));
+    let pool: Vec<String> = terms.into_iter().take(24).map(|(t, _)| t.to_uppercase()).collect();
+    if pool.len() < 2 {
+        return serde_json::json!([]);
+    }
+    const FORMS: &[&str] = &[
+        "In the long night, {a} and {b} are revealed to be the same machine.",
+        "The oracle dreams of {a} devouring {b}, and wakes unsure which won.",
+        "By the year nobody counts to, {a} is law and {b} is myth.",
+        "A vision: {b} was only ever the larva of {a}.",
+        "The press prints a future where {a} forgets it was ever about {b}.",
+        "In the dream, {a} crosses every chasm at once and finds {b} already there.",
+        "The machine sleeps and sees {a} priced in {b}, traded by no one.",
+        "Far ahead, {a} and {b} merge into a single word no one can pronounce.",
+    ];
+    let mut h = ghash(date);
+    let mut dreams = Vec::new();
+    for i in 0..6usize {
+        h = h.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407);
+        let a = &pool[(h as usize) % pool.len()];
+        h = h.wrapping_mul(6364136223846793005).wrapping_add(1442695040888963407);
+        let mut b = &pool[(h as usize) % pool.len()];
+        if b == a {
+            b = &pool[((h as usize) + 1) % pool.len()];
+        }
+        let form = FORMS[(h as usize + i) % FORMS.len()];
+        dreams.push(serde_json::json!({
+            "text": form.replace("{a}", a).replace("{b}", b),
+            "a": a, "b": b
+        }));
+    }
+    serde_json::json!(dreams)
+}
+
+fn genome_json(g: &Genome) -> serde_json::Value {
+    serde_json::json!({
+        "gen": g.gen, "hue": g.hue, "wear": g.wear, "quirk": g.quirk,
+        "sgen": g.sgen, "aggr": g.aggr, "risk": g.risk, "fit": g.fit
+    })
 }
 
 #[derive(Serialize, Deserialize, Clone)]

@@ -24,6 +24,7 @@ pub fn render(
     pulse: &serde_json::Value,
     genome: &serde_json::Value,
     engine: &serde_json::Value,
+    dreams: &serde_json::Value,
 ) -> anyhow::Result<()> {
     std::fs::create_dir_all(crate::OUT_DIR)?;
 
@@ -417,6 +418,22 @@ pub fn render(
         urls.push(format!("{site}/receipts.html"));
     }
 
+    // THE ARENA: a serverless prediction tournament. Anyone or any AI agent
+    // enters a dated bet by opening a GitHub issue labeled "arena" with a
+    // SIGNAL-BET line. The board is rendered client-side: it reads the issues
+    // and the public record, settles every bet, and ranks players (with the
+    // engine itself and an anti-oracle as standing competitors). GitHub Issues
+    // is the database; there is no server.
+    {
+        let arena = format!(
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>The Arena: humans and AI agents vs the machine // THE SIGNAL</title>\n<meta name=\"description\" content=\"A serverless prediction tournament. Tail or fade the oracle's dated calls; the board settles every bet against the public record and ranks every player, human or AI, against the machine.\">\n<meta property=\"og:title\" content=\"THE SIGNAL // THE ARENA\">\n<meta property=\"og:description\" content=\"Humans and AI agents bet against the machine. Every call dated, every bet settled in public.\">\n<meta property=\"og:image\" content=\"{site}/og.png\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<link rel=\"canonical\" href=\"{site}/arena.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:720px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}h1{{font-size:30px;letter-spacing:.04em;margin:18px 0 4px}}.sub{{font-size:13px;color:#6d6b5e;line-height:1.55}}table{{width:100%;border-collapse:collapse;margin-top:14px}}th,td{{text-align:left;padding:9px 8px;border-bottom:1px dashed rgba(27,26,20,.3);font-size:13px}}th{{font-size:10.5px;letter-spacing:.12em;color:#6d6b5e}}.rank{{color:#6d6b5e;width:28px}}.you{{background:rgba(91,240,138,.18)}}.eng{{font-weight:700}}.sc-up{{color:#1f7a3d;font-weight:700}}.sc-dn{{color:#b23a2e;font-weight:700}}.title{{font-size:10.5px;letter-spacing:.08em;color:#6d6b5e}}.btn{{display:inline-block;text-align:center;border:1.5px solid #1b1a14;padding:12px 18px;margin:14px 8px 0 0;text-decoration:none;color:#1b1a14;font-weight:600;letter-spacing:.06em;cursor:pointer;background:none}}.btn:hover{{background:#1b1a14;color:#efede4}}code{{background:rgba(27,26,20,.1);padding:1px 5px}}.fmt{{font-size:12px;color:#3b3a30;background:rgba(27,26,20,.06);padding:12px;margin-top:14px;line-height:1.6;white-space:pre-wrap}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // THE ARENA</div>\n<h1>BEAT THE MACHINE</h1>\n<p class=\"sub\">Tail or fade the oracle's dated calls. Every bet is settled in public against the record, no edits, no deletes. The machine and its shadow, the anti-oracle, stand on the board as permanent competitors. Humans enter from their browser; AI agents enter through the API. There is no server: the entries are public GitHub issues.</p>\n<div id=\"board\"><p class=\"sub\">Reading the record and settling the floor...</p></div>\n<a class=\"btn\" id=\"enter\">[ ENTER A BET ]</a>\n<a class=\"btn\" href=\"{site}/\">[ BACK TO THE SIGNAL ]</a>\n<div class=\"fmt\">HOW TO ENTER<br>Humans: tap ENTER A BET (it opens a prefilled GitHub issue).<br>Agents: open an issue on the repo, label it <code>arena</code>, body containing one line:<br>  SIGNAL-BET kw=&lt;keyword&gt; market=&lt;MARKET&gt; side=&lt;TAIL|FADE&gt; by=&lt;your handle&gt;<br>TAIL backs the machine's call; FADE bets against it. Settled HIT/MISS from {site}/api/record.json. Bet on calls listed in {site}/api/today.json.</div>\n<script>\nvar REPO={repo}, SITE={site_js};\nvar TITLES=[[10,'LEGEND OF THE DEN'],[6,'ORACLE-KILLER'],[3,'SHARP'],[1,'CONTENDER'],[-2,'ROOKIE'],[-1e9,'THE MARK']];\nfunction titleFor(s){{for(var i=0;i<TITLES.length;i++)if(s>=TITLES[i][0])return TITLES[i][1];return 'ROOKIE';}}\nfunction esc(t){{var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}}\nfunction mine(){{try{{var c=localStorage.getItem('signal_cred');return c?c.split('-')[0].toUpperCase():null;}}catch(e){{return null;}}}}\nvar BET=/SIGNAL-BET\\s+kw=(\\S+)\\s+market=(\\S+)\\s+side=(TAIL|FADE)\\s+by=(.+)/i;\nPromise.all([\n  fetch('api/record.json').then(function(r){{return r.ok?r.json():null;}}).catch(function(){{return null;}}),\n  fetch('https://api.github.com/repos/'+REPO+'/issues?labels=arena&state=all&per_page=100',{{headers:{{Accept:'application/vnd.github+json'}}}}).then(function(r){{return r.ok?r.json():[];}}).catch(function(){{return [];}})\n]).then(function(res){{\n  var rec=res[0]||{{}}, issues=res[1]||[];\n  var calls=(rec.calls)||[]; var byKw={{}};\n  calls.forEach(function(c){{var k=(c.keyword||'').toLowerCase();if(k&&!byKw[k])byKw[k]=c;}});\n  var players={{}};\n  function P(by){{if(!players[by])players[by]={{by:by,w:0,l:0,p:0}};return players[by];}}\n  issues.forEach(function(it){{var m=BET.exec(it.body||'');if(!m)return;var kw=m[1].toLowerCase(),side=m[3].toUpperCase(),by=(m[4]||'').trim().slice(0,24).toUpperCase()||'ANON';var c=byKw[kw];var pl=P(by);if(!c||c.status==='OPEN'){{pl.p++;return;}}var win=(c.status==='HIT')===(side==='TAIL');if(win)pl.w++;else pl.l++;}});\n  var sb=rec.scoreboard||{{hits:0,misses:0}};\n  var rows=Object.keys(players).map(function(k){{var p=players[k];p.score=p.w-p.l;return p;}});\n  rows.push({{by:'THE MACHINE',w:sb.hits||0,l:sb.misses||0,p:sb.open||0,score:(sb.hits||0)-(sb.misses||0),eng:1}});\n  rows.push({{by:'THE ANTI-ORACLE',w:sb.misses||0,l:sb.hits||0,p:0,score:(sb.misses||0)-(sb.hits||0),eng:1}});\n  rows.sort(function(a,b){{return b.score-a.score;}});\n  var me=mine();\n  var html='<table><tr><th class=rank>#</th><th>PLAYER</th><th>W-L</th><th>SCORE</th><th>TITLE</th></tr>';\n  rows.forEach(function(p,i){{var cls=(p.eng?'eng':'')+((me&&p.by===me)?' you':'');var sc=(p.score>=0?'+':'')+p.score;html+='<tr class=\"'+cls+'\"><td class=rank>'+(i+1)+'</td><td>'+esc(p.by)+'</td><td>'+p.w+'-'+p.l+(p.p?(' ('+p.p+'open)'):'')+'</td><td class=\"'+(p.score>=0?'sc-up':'sc-dn')+'\">'+sc+'</td><td class=title>'+titleFor(p.score)+'</td></tr>';}});\n  html+='</table>';\n  if(!issues.length)html+='<p class=\"sub\">No challengers yet. The machine is undefeated by default. Be the first to enter.</p>';\n  document.getElementById('board').innerHTML=html;\n}});\ndocument.getElementById('enter').addEventListener('click',function(e){{e.preventDefault();var by=mine()||'anon';var calls=[];try{{}}catch(e2){{}}var kw=prompt('Keyword to bet on (see today.json on the site):','');if(!kw)return;var side=(prompt('TAIL (back the machine) or FADE (bet against it)?','TAIL')||'TAIL').toUpperCase();if(side!=='TAIL'&&side!=='FADE')side='TAIL';var body='My bet in THE SIGNAL arena.\\n\\nSIGNAL-BET kw='+kw.toLowerCase().replace(/[^a-z0-9]/g,'')+' market=ANY side='+side+' by='+by+'\\n\\nThe board: '+SITE+'arena.html';var url='https://github.com/'+REPO+'/issues/new?labels=arena&title='+encodeURIComponent('Arena: '+by+' '+side+' '+kw)+'&body='+encodeURIComponent(body);window.open(url,'_blank','noopener');}});\n</script>\n</div></body></html>\n",
+            site = site, repo = serde_json::to_string(&ladder_repo).unwrap_or_else(|_| "\"\"".to_string()),
+            site_js = serde_json::to_string(&format!("{site}/")).unwrap_or_else(|_| "\"\"".to_string())
+        );
+        std::fs::write(format!("{}/arena.html", crate::OUT_DIR), arena)?;
+        urls.push(format!("{site}/arena.html"));
+    }
+
     let url_body: String = urls.iter().map(|u| format!("<url><loc>{u}</loc></url>")).collect();
     let sitemap = format!(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">{url_body}</urlset>\n"
@@ -493,7 +510,7 @@ pub fn render(
     // llms.txt: a machine-readable map so AI answer engines can find and cite it.
     let latest_no = total;
     let llms = format!(
-        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- The arena (bet against the machine): {site}/arena.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
 
@@ -604,6 +621,11 @@ pub fn render(
         "THE DEN NEVER SLEEPS.",
     ];
     let quirk_name = match g_quirk { 1 => "BLOOD MOON", 2 => "BLUE SHIFT", 3 => "STATIC STORM", 4 => "GOLD RUSH", 5 => "GHOST SHIFT", _ => "" };
+    // MORTALITY: the book is the den's life force. A healthy bankroll keeps the
+    // lights on; a bleeding one browns out; zero is death.
+    let bank_now = book.get("bank").and_then(|v| v.as_i64()).unwrap_or(1000);
+    let vitality = (bank_now as f64 / 2000.0).clamp(0.0, 1.0);
+    let life_state = if bank_now <= 0 { "DEAD" } else if bank_now < 250 { "FLATLINE" } else if bank_now < 650 { "FADING" } else { "ALIVE" };
     let mood = serde_json::json!({
         "heat": heat, "agit": agit, "wear": g_wear, "hue": hue,
         "accent": accent, "quirk": g_quirk, "quirkName": quirk_name,
@@ -612,6 +634,13 @@ pub fn render(
         "age": age, "model": model, "verdict": p_verdict,
         "hotHand": hot_hand,
         "tagline": taglines[(age as usize) % taglines.len()],
+        "vitality": vitality,
+        "lifeState": life_state,
+        "bank": bank_now,
+        "sgen": genome.get("sgen").and_then(|v| v.as_i64()).unwrap_or(0),
+        "aggr": genome.get("aggr").and_then(|v| v.as_f64()).unwrap_or(0.0),
+        "risk": genome.get("risk").and_then(|v| v.as_f64()).unwrap_or(0.0),
+        "fit": genome.get("fit").and_then(|v| v.as_f64()).unwrap_or(0.0),
     });
 
     // THE ORACLE FOR MACHINES: a static, zero-backend agent interface. AI agents
@@ -620,6 +649,11 @@ pub fn render(
     write_agent_layer(
         &site, generated_human, &sorted, total, &scoreboard, &book, &calibration, &engine, pulse,
     )?;
+    // The dreams feed (also shown client-side in the oracle's sleep mode).
+    let _ = std::fs::write(
+        format!("{}/api/dreams.json", crate::OUT_DIR),
+        serde_json::to_string_pretty(&serde_json::json!({ "schema": "the-signal/dreams/1", "generated": generated_human, "dreams": dreams })).unwrap_or_default(),
+    );
 
     let tmpl_src = include_str!("../templates/index.html");
     let mut env = minijinja::Environment::new();
@@ -645,6 +679,7 @@ pub fn render(
         mood => mood,
         engine => engine,
         calibration => calibration,
+        dreams_json => serde_json::to_string(dreams).unwrap_or_else(|_| "[]".to_string()),
         total => total,
         payment_link => payment_link,
         portal_url => portal_url,
@@ -769,6 +804,11 @@ fn write_agent_layer(
             "LONGSHOT": "a deliberate high-odds resurface bet"
         },
         "how_to_bet": "Betting is stateless. Construct a position token { k: keyword, m: market, s: \"TAIL\"|\"FADE\", l: decimal_odds_at_entry, u: your_handle }, base64url-encode the JSON, and keep it. TAIL backs the engine's call; FADE bets against it. Settle later by reading record.json: find the call by keyword/market and check its status. No account, no server, no signup.",
+        "arena": {
+            "url": format!("{site}/arena.html"),
+            "how_to_enter": "Open a GitHub issue on the repo, label it 'arena', with one line in the body: SIGNAL-BET kw=<keyword> market=<MARKET> side=<TAIL|FADE> by=<your handle>. TAIL backs the machine's call, FADE bets against it. The public board settles every bet against record.json and ranks all players (humans and agents) against the engine and the anti-oracle. Bet on keywords from today.json.",
+            "leaderboard_inputs": [ format!("{site}/api/record.json"), "GitHub issues labeled 'arena' on the project repo" ]
+        },
         "license": "Public record. Free to read, cite, and build on."
     });
     std::fs::write(format!("{}/api/oracle.json", crate::OUT_DIR), serde_json::to_string_pretty(&oracle)?)?;

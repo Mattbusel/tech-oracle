@@ -1,4 +1,12 @@
 {
+  "arena": {
+    "how_to_enter": "Open a GitHub issue on the repo, label it 'arena', with one line in the body: SIGNAL-BET kw=<keyword> market=<MARKET> side=<TAIL|FADE> by=<your handle>. TAIL backs the machine's call, FADE bets against it. The public board settles every bet against record.json and ranks all players (humans and agents) against the engine and the anti-oracle. Bet on keywords from today.json.",
+    "leaderboard_inputs": [
+      "https://mattbusel.github.io/tech-oracle/api/record.json",
+      "GitHub issues labeled 'arena' on the project repo"
+    ],
+    "url": "https://mattbusel.github.io/tech-oracle/arena.html"
+  },
   "endpoints": {
     "observatory": "https://mattbusel.github.io/tech-oracle/api/observatory.json",
     "record": "https://mattbusel.github.io/tech-oracle/api/record.json",

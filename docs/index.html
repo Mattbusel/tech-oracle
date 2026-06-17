@@ -70,6 +70,22 @@
     @keyframes chipdrop { 0% { transform: translate(-50%, -120%) scale(0.4); opacity: 0; } 18% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
     .den-count { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); font: 600 11px/1 var(--mono, ui-monospace, monospace); letter-spacing: 0.18em; color: var(--ac, #5bf08a); background: rgba(8, 12, 10, 0.55); border: 1px solid rgba(91, 240, 138, 0.32); padding: 6px 13px; z-index: 7; pointer-events: none; }
     @media (prefers-reduced-motion: reduce) { .ghost { transition: none; } .ghost-chip { animation: none; display: none; } }
+    /* MORTALITY: the den dims as the book bleeds; goes dark at zero. */
+    html.fading body { filter: saturate(calc(0.35 + var(--vitality, 1) * 0.65)) brightness(calc(0.72 + var(--vitality, 1) * 0.28)); transition: filter 1.2s ease; }
+    .flatline { display: none; }
+    html.dead .flatline { display: flex; position: fixed; inset: 0; z-index: 9999; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 14px; background: #08090b; color: var(--ac, #5bf08a); font-family: var(--mono, ui-monospace, monospace); padding: 24px; }
+    .flatline .fl-h { font-size: clamp(22px, 6vw, 44px); letter-spacing: 0.22em; font-weight: 700; }
+    .flatline .fl-s { font-size: 12px; letter-spacing: 0.16em; color: #6d6b5e; line-height: 1.7; }
+    .flatline .fl-line { width: min(420px, 80vw); height: 1px; background: var(--ac, #5bf08a); opacity: 0.5; }
+    /* THE DREAMS: the oracle's sleep mode. */
+    .dreamscape { display: none; position: fixed; inset: 0; z-index: 60; overflow: auto; padding: 64px 24px; background: radial-gradient(circle at 50% 28%, #171247, #07060f 72%); color: #c3b4ff; font-family: var(--mono, ui-monospace, monospace); }
+    .dreamscape.on { display: block; }
+    .dreamscape .dw { max-width: 640px; margin: 0 auto; }
+    .dreamscape .dh { font-size: 12px; letter-spacing: 0.4em; color: #8a7ad6; text-align: center; margin-bottom: 8px; }
+    .dreamscape .dt { font-size: 11px; letter-spacing: 0.18em; color: #6a5db0; text-align: center; margin-bottom: 30px; }
+    .dream { font-size: clamp(16px, 3.6vw, 23px); line-height: 1.5; margin: 24px 0; opacity: 0; animation: dreamin 1.4s ease forwards; }
+    @keyframes dreamin { to { opacity: 0.9; } }
+    .dream-x { position: fixed; top: 16px; right: 18px; color: #c3b4ff; background: none; border: 1px solid rgba(195, 180, 255, 0.4); padding: 7px 13px; cursor: pointer; font-family: var(--mono, ui-monospace, monospace); letter-spacing: 0.1em; }
     .ov-sheet { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 8px; text-align: center; background: rgba(238,236,228,0.0); }
     .ov-call { color: #1b1a14; font-size: 11.5px; line-height: 1.3; font-weight: 600; max-height: 58%; overflow: hidden; background: rgba(238,236,228,0.78); padding: 4px 6px; border-radius: 3px; }
     .ov-actions { display: flex; gap: 8px; margin-top: 8px; }
@@ -523,6 +539,7 @@
               <div class="sb-fine">EVERY CALL CARRIES A CONCRETE WIN CONDITION. THE MACHINE GRADES ITSELF AGAINST THE FEEDS, IN PUBLIC, AND NEVER UNPRINTS A LOSS.</div>
               <div class="sharebar" style="justify-content:center">
                 <a class="sx" href="receipts.html">[ SEE THE RECEIPTS ]</a>
+                <a class="sx" href="arena.html">[ ENTER THE ARENA ]</a>
                 <button class="sx" type="button" data-share data-text="An autonomous tech oracle that grades itself in public: 8 hits, 2 misses, 80% hit rate. No edits, no deletes.">[ SHARE THE RECORD ]</button>
                 <button class="sx alt" type="button" data-card data-dm="1" data-curve="book" data-headline="80% HIT" data-kicker="THE SCORECARD // SELF-GRADING" data-sub="8 HITS / 2 MISSES / 0 OPEN" data-stamp="PUBLIC RECORD" data-text="The SIGNAL oracle's public scorecard.">[ SAVE AS IMAGE ]</button>
               </div>
@@ -632,7 +649,7 @@
               .tape { font-size:10.5px; letter-spacing:.06em; color:#6d6b5e; margin-top:5px; opacity:.92; }
             </style>
             <section class="manifest engine-room" aria-label="The engine room">
-              <div class="band">THE ENGINE ROOM / 1 DAY OF CORPUS // 1219 TERMS TRACKED</div>
+              <div class="band">THE ENGINE ROOM / 1 DAY OF CORPUS // 1233 TERMS TRACKED</div>
 
               <div class="er-grid">
                 <div class="er-card">
@@ -663,7 +680,7 @@
               <div class="er-grid">
                 <div class="er-card">
                   <div class="er-h">FASTEST MOVERS // 7-DAY VELOCITY</div>
-                  <ol class="er-list"><li><b>TEAM</b> <span>+100% // 7 TODAY</span></li><li><b>FIFA</b> <span>+100% // 7 TODAY</span></li><li><b>CUP</b> <span>+100% // 6 TODAY</span></li><li><b>APPLE</b> <span>+100% // 5 TODAY</span></li><li><b>GOOGLE</b> <span>+100% // 5 TODAY</span></li><li><b>LEARNING</b> <span>+100% // 4 TODAY</span></li></ol>
+                  <ol class="er-list"><li><b>FIFA</b> <span>+100% // 7 TODAY</span></li><li><b>TEAM</b> <span>+100% // 7 TODAY</span></li><li><b>CUP</b> <span>+100% // 6 TODAY</span></li><li><b>APPLE</b> <span>+100% // 5 TODAY</span></li><li><b>GOOGLE</b> <span>+100% // 5 TODAY</span></li><li><b>UPDATE</b> <span>+100% // 5 TODAY</span></li></ol>
                 </div>
                 <div class="er-card">
                   <div class="er-h">THE CHASM WATCH // LEAVING THE DEV BUBBLE</div>
@@ -773,27 +790,27 @@
                 </div>
                 
                 <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-arxiv">ARXIV</span><span class="mf-count">30</span></div>
-                  <span class="mf-bar"><i class="s-arxiv" style="width:73%"></i></span>
-                  <a class="mf-item" href="https://arxiv.org/abs/2606.18247v1" rel="noopener">TOP // Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement</a>
-                </div>
-                
-                <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-hn">HACKER NEWS</span><span class="mf-count">30</span></div>
                   <span class="mf-bar"><i class="s-hn" style="width:73%"></i></span>
                   <a class="mf-item" href="https://vickiboykis.com/2026/06/15/running-local-models-is-good-now/" rel="noopener">TOP // Running local models is good now</a>
                 </div>
                 
                 <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
-                  <span class="mf-bar"><i class="s-devto" style="width:61%"></i></span>
-                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
+                  <div class="mf-top"><span class="mf-label s-arxiv">ARXIV</span><span class="mf-count">30</span></div>
+                  <span class="mf-bar"><i class="s-arxiv" style="width:73%"></i></span>
+                  <a class="mf-item" href="https://arxiv.org/abs/2606.18247v1" rel="noopener">TOP // Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement</a>
                 </div>
                 
                 <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-lobsters">LOBSTERS</span><span class="mf-count">25</span></div>
                   <span class="mf-bar"><i class="s-lobsters" style="width:61%"></i></span>
                   <a class="mf-item" href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/" rel="noopener">TOP // curl summer of bliss</a>
+                </div>
+                
+                <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
+                  <span class="mf-bar"><i class="s-devto" style="width:61%"></i></span>
+                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
                 </div>
                 
                 <div class="mf-row">
@@ -849,14 +866,14 @@
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-hn">HACKER NEWS</span>
-                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
+                  <span class="bs-label s-arxiv">ARXIV</span>
+                  <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
                   <span class="bs-count">2</span>
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-arxiv">ARXIV</span>
-                  <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
+                  <span class="bs-label s-hn">HACKER NEWS</span>
+                  <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
                   <span class="bs-count">2</span>
                 </div>
                 
@@ -867,14 +884,14 @@
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-devto">DEV.TO</span>
-                  <span class="bs-bar"><i class="s-devto" style="width:10%"></i></span>
+                  <span class="bs-label s-ars">ARS TECHNICA</span>
+                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
                   <span class="bs-count">1</span>
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-ars">ARS TECHNICA</span>
-                  <span class="bs-bar"><i class="s-ars" style="width:10%"></i></span>
+                  <span class="bs-label s-devto">DEV.TO</span>
+                  <span class="bs-bar"><i class="s-devto" style="width:10%"></i></span>
                   <span class="bs-count">1</span>
                 </div>
                 
@@ -883,7 +900,7 @@
                 <span class="sm-dot s-github" title="2026-06-02"></span><span class="sm-dot s-arxiv" title="2026-06-04"></span><span class="sm-dot s-lobsters" title="2026-06-05"></span><span class="sm-dot s-hn" title="2026-06-08"></span><span class="sm-dot s-ars" title="2026-06-09"></span><span class="sm-dot s-devto" title="2026-06-09"></span><span class="sm-dot s-github" title="2026-06-11"></span><span class="sm-dot s-github" title="2026-06-13"></span><span class="sm-dot s-arxiv" title="2026-06-14"></span><span class="sm-dot s-hn" title="2026-06-15"></span>
               </div>
               <div class="map-key">
-                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span>
+                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span>
               </div>
             </section>
 
@@ -1095,7 +1112,7 @@
             <footer class="foot">
               <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
               <p>NOT FINANCIAL ADVICE. SOURCES: ARXIV / GITHUB / CRATES.IO / LOBSTERS / HACKER NEWS / DEV.TO / REDDIT / ARS TECHNICA / THE NEWS / WIKIPEDIA.</p>
-              <p><a href="receipts.html">the receipts</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
+              <p><a href="receipts.html">the receipts</a> // <a href="arena.html">the arena</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
               <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
             </footer>
           </main>
@@ -1133,6 +1150,8 @@
 
   <div id="toast" class="toast" aria-hidden="true"></div>
   <div id="bigstamp" class="bigstamp" aria-hidden="true"></div>
+  <div id="flatline" class="flatline" aria-hidden="true"></div>
+  <div id="dreamscape" class="dreamscape" aria-hidden="true"></div>
 
   <script>
     function $id(id){ return document.getElementById(id); }
@@ -1141,9 +1160,17 @@
     var REDUCE = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     var __FLOOR = [{"kw":"local","market":"RESURFACE","odds":"1.72","src":"Show HN: A local-first sync engine for your app","status":"HIT","t":"The HN front page is piling onto local-first sync ","win":"WIN IF \"LOCAL\" RESURFACES ACROSS THE FEEDS BY 2026-07-15"},{"kw":"compute","market":"RESURFACE","odds":"1.59","src":"Scaling Test-Time Compute Optimally for Reasoning Models","status":"HIT","t":"Fresh cs.AI/cs.LG work on test-time compute scalin","win":"WIN IF \"COMPUTE\" RESURFACES ACROSS THE FEEDS BY 2026-07-14"},{"kw":"llama","market":"RESURFACE","odds":"1.28","src":"ggml-org/llama.cpp","status":"HIT","t":"Devs are starring ggml-org/llama.cpp hard today. B","win":"WIN IF \"LLAMA\" RESURFACES ACROSS THE FEEDS BY 2026-07-03"},{"kw":"vercel","market":"RESURFACE","odds":"1.39","src":"vercel/ai","status":"HIT","t":"vercel/ai is rocketing up GitHub trending. The tra","win":"WIN IF \"VERCEL\" RESURFACES ACROSS THE FEEDS BY 2026-07-01"},{"kw":"typed","market":"RESURFACE","odds":"1.67","src":"Why typed API clients are taking over","status":"MISS","t":"Dev.to writers are rallying around typed API clien","win":"WIN IF \"TYPED\" RESURFACES ACROSS THE FEEDS BY 2026-06-14"},{"kw":"power","market":"RESURFACE","odds":"1.52","src":"The power bill for AI is coming due","status":"HIT","t":"Ars is covering AI data-center power demand. When ","win":"WIN IF \"POWER\" RESURFACES ACROSS THE FEEDS BY 2026-06-29"},{"kw":"inference","market":"RESURFACE","odds":"1.45","src":"On-device inference is finally good enough","status":"HIT","t":"The HN front page is piling onto on-device inferen","win":"WIN IF \"INFERENCE\" RESURFACES ACROSS THE FEEDS BY 2026-06-28"},{"kw":"deterministic","market":"RESURFACE","odds":"1.75","src":"On reproducible, deterministic builds","status":"MISS","t":"Lobsters is chewing on deterministic build systems","win":"WIN IF \"DETERMINISTIC\" RESURFACES ACROSS THE FEEDS BY 2026-06-12"}];
     var __LADREPO = "Mattbusel/tech-oracle";
-    var __MOOD = {"accent": "#e6bb4c", "age": 15, "agit": 0.0009, "embers": 0.802, "gen": 1, "heat": 0.67, "hotHand": true, "hue": 0.12, "model": 1, "quirk": 0, "quirkName": "", "tagline": "NO EDITS. NO DELETES. ONLY PRINTS.", "verdict": "SURGING", "wear": 0.006};
+    var __MOOD = {"accent": "#e6bb4c", "age": 15, "aggr": 0.0, "agit": 0.0009, "bank": 1194, "embers": 0.802, "fit": 0.8, "gen": 1, "heat": 0.67, "hotHand": true, "hue": 0.12, "lifeState": "ALIVE", "model": 1, "quirk": 0, "quirkName": "", "risk": 0.0, "sgen": 3, "tagline": "NO EDITS. NO DELETES. ONLY PRINTS.", "verdict": "SURGING", "vitality": 0.597, "wear": 0.006};
+    var __DREAMS = [{"a":"LEARNING","b":"ANDROID","text":"Far ahead, LEARNING and ANDROID merge into a single word no one can pronounce."},{"a":"MEMORY","b":"MECHANICAL","text":"By the year nobody counts to, MEMORY is law and MECHANICAL is myth."},{"a":"FOOTBALL","b":"DATASET","text":"In the dream, FOOTBALL crosses every chasm at once and finds DATASET already there."},{"a":"JUNE","b":"GAMES","text":"In the long night, JUNE and GAMES are revealed to be the same machine."},{"a":"LEARNING","b":"ANDROID","text":"A vision: ANDROID was only ever the larva of LEARNING."},{"a":"UPDATE","b":"AGENT","text":"The machine sleeps and sees UPDATE priced in AGENT, traded by no one."}];
     // The organism repaints itself each day: today's accent recolors the screens.
     try { if (__MOOD && __MOOD.accent) { var _rs = document.documentElement.style; _rs.setProperty("--ac", __MOOD.accent); _rs.setProperty("--phos", __MOOD.accent); _rs.setProperty("--led", __MOOD.accent); } } catch (e) {}
+    // MORTALITY: the book's vitality dims the whole world as the den bleeds out.
+    try {
+      var _v = (__MOOD && typeof __MOOD.vitality === "number") ? __MOOD.vitality : 1;
+      document.documentElement.style.setProperty("--vitality", _v.toFixed(3));
+      if (__MOOD && (__MOOD.lifeState === "FADING" || __MOOD.lifeState === "FLATLINE")) document.documentElement.classList.add("fading");
+      if (__MOOD && __MOOD.lifeState === "DEAD") document.documentElement.classList.add("dead");
+    } catch (e) {}
 
     // ---- station clock + countdown to the next 13:17 UTC print ----
     (function () {
@@ -1655,11 +1682,23 @@
       function open(h) { body.innerHTML = h; modal.classList.add("open"); }
       function close() { modal.classList.remove("open"); }
 
+      // Reputation: a credential is a character with a rap sheet. The title is
+      // earned in the pit (and on the arena board) by beating the machine.
+      function rapSheet() {
+        var w = null; try { w = JSON.parse(localStorage.getItem("signal_wallet") || "null"); } catch (e) {}
+        if (!w) return { title: "UNPROVEN", line: "No bets on record yet. Enter the pit." };
+        var net = (w.wins || 0) - (w.losses || 0), real = Math.round(w.realized || 0);
+        var T = [[10, "LEGEND OF THE DEN"], [6, "ORACLE-KILLER"], [3, "SHARP"], [1, "CONTENDER"], [-2, "ROOKIE"]];
+        var title = "THE MARK"; for (var i = 0; i < T.length; i++) if (net >= T[i][0]) { title = T[i][1]; break; }
+        return { title: title, line: (w.wins || 0) + "-" + (w.losses || 0) + " record // " + (real >= 0 ? "+" : "") + real + " chips realized // streak " + (w.streak || 0) };
+      }
       function viewNew() {
         var c = getCred() || rand(); setCred(c);
+        var rs = rapSheet();
         open('<div class="band">YOUR PRESS CREDENTIAL</div><div class="am-cred">' + esc(c) + '</div>' +
+          '<div class="band" style="margin-top:10px">RANK // ' + esc(rs.title) + '</div><p class="soft" style="margin:6px 0 12px">' + esc(rs.line) + '</p>' +
           '<p><b>This is your account.</b> It lives in this browser, not on a server. Copy it somewhere safe; it is the only key, and there is no email or password to recover it.</p>' +
-          '<div class="am-row"><button class="sx" type="button" data-cp="' + esc(c) + '">[ COPY ]</button><button class="sx alt" type="button" data-pass="1">[ SAVE AS PRESS PASS ]</button><button class="sx alt" type="button" data-close>[ DONE ]</button></div>');
+          '<div class="am-row"><button class="sx" type="button" data-cp="' + esc(c) + '">[ COPY ]</button><button class="sx alt" type="button" data-pass="1">[ SAVE AS PRESS PASS ]</button><a class="sx alt" href="arena.html">[ THE ARENA ]</a><button class="sx alt" type="button" data-close>[ DONE ]</button></div>');
       }
       function viewEarly() {
         var c = getCred() || "";
@@ -1840,6 +1879,8 @@
       var _evo = "GEN " + (_M.gen || 0) + " // DAY " + (_M.age || 0) + " // MODEL-" + (_M.model || 1) + " // " + (_M.verdict || "ACTIVE");
       if (_M.quirkName) _evo += " // " + _M.quirkName;
       if (_M.hotHand) _evo += " // HOT HAND";
+      if (typeof _M.vitality === "number") _evo += " // VIT " + Math.round(_M.vitality * 100) + "%";
+      if (_M.sgen) _evo += " // STRAT g" + _M.sgen;
       if (kicker && !REDUCE) { var states = ["SPOOLING PAPER", "INKING RIBBON", "WARMING THE HEAD", "ONLINE"]; var ki = 0; var kt = setInterval(function () { ki++; if (ki >= states.length) { kicker.textContent = _evo; clearInterval(kt); return; } kicker.textContent = states[ki] + " ..."; }, 750); }
       else if (kicker) { kicker.textContent = _evo; }
 
@@ -2111,6 +2152,40 @@
       s.onload = function () { connect(0); };
       s.onerror = function () { /* presence simply stays dark; the den still works */ };
       document.head.appendChild(s);
+    })();
+
+    // ----------------------------------------------------------------------
+    // MORTALITY death screen + THE DREAMS (the oracle's sleep mode).
+    // ----------------------------------------------------------------------
+    (function () {
+      var M = (typeof __MOOD !== "undefined" && __MOOD) || {};
+      // Death: fill the flatline screen (shown only when html.dead is set).
+      var fl = $id("flatline");
+      if (fl) {
+        fl.innerHTML = '<div class="fl-h">THE DEN HAS GONE DARK</div><div class="fl-line"></div>' +
+          '<div class="fl-s">THE BOOK HIT ZERO ON DAY ' + (M.age || 0) + ' // GENERATION ' + (M.gen || 0) + '<br>NO EDITS. NO DELETES. THE RECORD STANDS.<br>THE PRESS WILL TRY TO RISE AGAIN ON THE NEXT RUN.</div>';
+      }
+
+      // Dreams: the oracle sleeps at night (local 23:00-05:00) or on demand
+      // (?dream). It recombines its own memory into surreal far-future calls.
+      var dreams = (typeof __DREAMS !== "undefined" && __DREAMS) || [];
+      var ds = $id("dreamscape");
+      if (!ds || !dreams.length) return;
+      var hr = new Date().getHours();
+      var forced = location.search.indexOf("dream") >= 0;
+      var asleep = forced || hr >= 23 || hr < 5;
+      function render() {
+        var body = dreams.map(function (d, i) { return '<div class="dream" style="animation-delay:' + (i * 0.5) + 's">' + (d.text || "") + '</div>'; }).join("");
+        ds.innerHTML = '<button class="dream-x" type="button" id="dream-x">[ WAKE THE ORACLE ]</button><div class="dw"><div class="dh">THE ORACLE IS DREAMING</div><div class="dt">IT RECOMBINES WHAT IT HAS SEEN INTO FUTURES THAT DO NOT EXIST YET</div>' + body + '</div>';
+      }
+      function open() { render(); ds.classList.add("on"); }
+      function closeit() { ds.classList.remove("on"); }
+      if (asleep) open();
+      document.addEventListener("click", function (e) {
+        if (e.target && e.target.id === "dream-x") { closeit(); return; }
+      });
+      // A quiet way back in: a tiny key combo or revisiting at night reopens it.
+      window.addEventListener("keydown", function (e) { if (e.key === "d" && (e.altKey || e.metaKey)) open(); });
     })();
   </script>
 </body>
