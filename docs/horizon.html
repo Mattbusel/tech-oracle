@@ -58,7 +58,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
    var when=t.peak_in>0?('in ~'+t.peak_in+'d'):'imminent';
    return '<div class="turn"><span class="tg '+(peak?'peak':'bottom')+'">'+(peak?'PEAK':'TROUGH')+'</span>'
     +'<span class="tm">'+esc(t.term)+'</span>'
-    +'<span class="tw"><span class="big">'+when+'</span><br>'+t.regime+' // gamma '+t.gamma.toFixed(2)+' // P(rise) '+t.prob_rising+'%</span></div>';
+    +'<span class="tw"><span class="big">'+when+'</span><br>peaked '+(t.peak||0)+' // seen '+(t.active_days||0)+'d // P(rise) '+t.prob_rising+'%</span></div>';
   }).join('');
  }
  var ph=h.phases||{};var order=['RISING','PEAKING','FALLING','BOTTOMING','CHURNING','FLAT'];

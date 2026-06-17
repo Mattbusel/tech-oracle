@@ -36,6 +36,40 @@
         "name": "MA-CROSS"
       },
       {
+        "accuracy": 64.5,
+        "blurb": "this engine: relativistic geometry of the attention path",
+        "brier": 0.21,
+        "by_regime": [
+          {
+            "acc": 98.2,
+            "regime": "TREND"
+          },
+          {
+            "acc": 99.4,
+            "regime": "DECLINE"
+          },
+          {
+            "acc": 39.7,
+            "regime": "MEAN-REVERT"
+          },
+          {
+            "acc": 75.1,
+            "regime": "REGIME-SWITCH"
+          },
+          {
+            "acc": 39.7,
+            "regime": "VIRAL"
+          },
+          {
+            "acc": 49.4,
+            "regime": "NOISE"
+          }
+        ],
+        "ic": 0.252,
+        "is_manifold": true,
+        "name": "MANIFOLD"
+      },
+      {
         "accuracy": 63.9,
         "blurb": "EWMA trend-following: the heart of hot-feed ranking",
         "brier": 0.239,
@@ -68,40 +102,6 @@
         "ic": 0.212,
         "is_manifold": false,
         "name": "MOMENTUM"
-      },
-      {
-        "accuracy": 63.5,
-        "blurb": "this engine: relativistic geometry of the attention path",
-        "brier": 0.216,
-        "by_regime": [
-          {
-            "acc": 98.2,
-            "regime": "TREND"
-          },
-          {
-            "acc": 99.4,
-            "regime": "DECLINE"
-          },
-          {
-            "acc": 35.1,
-            "regime": "MEAN-REVERT"
-          },
-          {
-            "acc": 77.2,
-            "regime": "REGIME-SWITCH"
-          },
-          {
-            "acc": 38.7,
-            "regime": "VIRAL"
-          },
-          {
-            "acc": 46.8,
-            "regime": "NOISE"
-          }
-        ],
-        "ic": 0.239,
-        "is_manifold": true,
-        "name": "MANIFOLD"
       },
       {
         "accuracy": 63.3,
@@ -207,10 +207,10 @@
       }
     ],
     "horizon": 7,
-    "manifold_acc_rank": 3,
+    "manifold_acc_rank": 2,
     "manifold_best_brier": true,
     "manifold_best_ic": true,
-    "real_eligible": 0,
+    "real_eligible": 468,
     "regimes": [
       "TREND",
       "DECLINE",

@@ -1,4 +1,5 @@
 mod access;
+mod backfill;
 mod bench;
 mod bloodline;
 mod card;
@@ -32,6 +33,16 @@ pub const OUT_DIR: &str = "docs";
 pub const OUT_HTML: &str = "docs/index.html";
 
 fn main() {
+    // One-time historical backfill: `tech-oracle backfill [days]` reconstructs the
+    // corpus's daily trajectory from Hacker News so the manifold skips warmup, then
+    // exits. The normal daily run appends today's full ten-source snapshot after.
+    let args: Vec<String> = std::env::args().collect();
+    if args.get(1).map(|s| s.as_str()) == Some("backfill") {
+        let days = args.get(2).and_then(|s| s.parse::<i64>().ok()).unwrap_or(120).clamp(1, 178);
+        backfill::run(days);
+        return;
+    }
+
     // The release window. Subscribers see a call immediately; the public page
     // reveals it `delay_days` later. 0 = no embargo (acts like a free blog).
     // 0 = no embargo: today's call is public today. This is the reliable default
@@ -740,12 +751,19 @@ fn build_benchmark(obs: &observatory::Observatory) -> serde_json::Value {
 /// a momentum chaser cannot see, and a tally of the whole field's phases.
 fn build_horizon(obs: &observatory::Observatory) -> serde_json::Value {
     use std::collections::BTreeMap;
+    // Only topics with a real trajectory get phased. Individual terms in the long
+    // tail land once or twice and are pure noise; a topic needs a sustained
+    // presence (enough active days) before its shape means anything.
+    const MIN_ACTIVE_DAYS: i64 = 14;
     let mut turns: Vec<(f64, serde_json::Value)> = Vec::new();
     let mut phases: BTreeMap<String, i64> = BTreeMap::new();
     let mut scanned = 0i64;
     let mut defined = 0i64;
-    for term in obs.corpus.terms.keys() {
+    for (term, rec) in obs.corpus.terms.iter() {
         scanned += 1;
+        if rec.days < MIN_ACTIVE_DAYS {
+            continue;
+        }
         let r = manifold::analyze(&obs.trajectory(term));
         if !r.defined() {
             continue;
@@ -754,9 +772,12 @@ fn build_horizon(obs: &observatory::Observatory) -> serde_json::Value {
         let ph = r.phase();
         *phases.entry(ph.label().to_string()).or_insert(0) += 1;
         if ph.is_turn() {
-            let conviction = r.trend.abs() * r.regime.certainty() * r.gamma;
+            // Surface the most PROMINENT turning topics (real mass: how big the
+            // peak, how persistent), not the highest gamma, which is near-flat
+            // across noisy count data.
+            let prominence = rec.peak as f64 * (rec.days as f64).sqrt();
             turns.push((
-                conviction,
+                prominence,
                 serde_json::json!({
                     "term": term.to_uppercase(),
                     "phase": ph.label(),
@@ -765,11 +786,13 @@ fn build_horizon(obs: &observatory::Observatory) -> serde_json::Value {
                     "gamma": (r.gamma * 100.0).round() / 100.0,
                     "geodesic": (r.trend * 100.0).round() as i64,
                     "prob_rising": (r.prob_rising() * 100.0).round() as i64,
+                    "peak": rec.peak,
+                    "active_days": rec.days,
                 }),
             ));
         }
     }
-    // Strongest convictions first; cap the board.
+    // Most prominent first; cap the board.
     turns.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
     let turns: Vec<serde_json::Value> = turns.into_iter().take(16).map(|(_, v)| v).collect();
     serde_json::json!({

@@ -224,8 +224,9 @@ geodesic on that manifold. Dependency-free, deterministic, pure arithmetic.
   forward velocity already negative; BOTTOMING = the mirror) are what the manifold
   does best and the trend-followers structurally miss.
 - `pub fn analyze(series: &[f64]) -> Reading` - the whole pipeline: log-attention
-  returns `ln(1+count)`, a local light speed = rolling max move, betas/gammas,
-  the interval and regime, the curvature z-score, and the geodesic forecast.
+  `ln(1+count)`, a short causal trailing smoothing (`smooth`, `SMOOTH_WINDOW = 3`,
+  to denoise sparse real-world counts), then drift/noise, beta/gamma, the interval
+  and regime, the curvature, and the geodesic forecast.
 - `fn forecast_trend(v0, a0, regime)` - integrates the geodesic forward HORIZON
   steps: momentum carries velocity (persistence by regime), curvature bends and
   decays it, and the metric resists travel through high-velocity space
@@ -264,6 +265,27 @@ evaluation. Dependency-free; xorshift RNG; fixed seeds so results are reproducib
   The manifold leads on IC and Brier and ties for top directional accuracy; the
   full numbers live on the page. `real_eligible` counts tracked topics with 30+
   days of history, so a live benchmark on the real corpus activates as it matures.
+
+---
+
+## `backfill.rs` (skip the warmup)
+
+The manifold needs a trajectory; a fresh corpus has none. Rather than wait days
+for it to accumulate, this reconstructs history from Hacker News' public Algolia
+archive (keyless, years deep), which directly matches what the corpus measures
+(term mentions in titles).
+
+- `tech-oracle backfill [days]` (default 120, max 178) fetches each past day's top
+  ~150 stories (`hn.algolia.com/api/v1/search`, popularity-ranked to match the live
+  front-page scale), turns them into `Signal`s, and folds them in via
+  `observatory::build`, oldest first. `build` sorts and bounds `corpus.days`, so
+  out-of-order folding is safe and the term ledger / snapshots populate exactly as
+  the live methodology would. Then it exits; the normal daily run appends today's
+  full ten-source snapshot on top.
+- The historical portion is HN-only (a consistent, dev-centric attention proxy);
+  the live portion is all ten sources. Run once and commit `data/corpus.json` to
+  seed production. A 120-day backfill lands ~120 days and ~19k tracked terms in
+  about 35 seconds.
 
 ---
 

@@ -30,6 +30,9 @@ pub const HORIZON: usize = 7;
 pub const WINDOW: usize = 20;
 /// Below this many trajectory points the manifold is undefined; fall back neutral.
 pub const MIN_POINTS: usize = 3;
+/// Trailing-smoothing width for the attention series. Real per-topic counts are
+/// sparse and spiky; this denoises just enough to recover the drift.
+pub const SMOOTH_WINDOW: usize = 3;
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug)]
 pub enum Regime {
@@ -270,6 +273,21 @@ fn mean(xs: &[f64]) -> f64 {
     xs.iter().sum::<f64>() / xs.len() as f64
 }
 
+/// Trailing moving average of width `w`: each point is the mean of itself and the
+/// up-to-(w-1) points before it. Causal (no lookahead), so it is honest for
+/// forecasting; it only denoises sparse series enough to expose the real drift.
+fn smooth(xs: &[f64], w: usize) -> Vec<f64> {
+    if w <= 1 {
+        return xs.to_vec();
+    }
+    (0..xs.len())
+        .map(|i| {
+            let lo = (i + 1).saturating_sub(w);
+            mean(&xs[lo..=i])
+        })
+        .collect()
+}
+
 /// Build a manifold reading from a topic's daily attention series, oldest first.
 /// Counts may include quiet (zero) days; we work in log-attention ln(1 + count)
 /// so a return is a growth rate and zeros are handled.
@@ -283,7 +301,12 @@ pub fn analyze(series: &[f64]) -> Reading {
     if n < MIN_POINTS {
         return Reading::neutral();
     }
-    let lev: Vec<f64> = series.iter().map(|&c| (1.0 + c.max(0.0)).ln()).collect();
+    // Log-attention, then a short causal (trailing) smoothing. Real per-topic
+    // counts are sparse and spiky (a term lands 0, 0, 3, 0, 2 across days); without
+    // smoothing every series reads as pure noise. The trailing window adds no
+    // lookahead, just enough to recover the underlying drift the manifold rides.
+    let raw: Vec<f64> = series.iter().map(|&c| (1.0 + c.max(0.0)).ln()).collect();
+    let lev = smooth(&raw, SMOOTH_WINDOW);
     let rets: Vec<f64> = (1..n).map(|i| lev[i] - lev[i - 1]).collect();
 
     let w = WINDOW.min(rets.len());

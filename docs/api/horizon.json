@@ -1,9 +1,193 @@
 {
   "horizon": {
-    "defined": 0,
-    "phases": {},
-    "scanned": 1324,
-    "turns": []
+    "defined": 1403,
+    "phases": {
+      "BOTTOMING": 94,
+      "CHURNING": 289,
+      "FALLING": 27,
+      "FLAT": 564,
+      "PEAKING": 50,
+      "RISING": 379
+    },
+    "scanned": 19383,
+    "turns": [
+      {
+        "active_days": 118,
+        "gamma": 1.0,
+        "geodesic": 51,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 60,
+        "regime": "SPACELIKE",
+        "term": "CLAUDE"
+      },
+      {
+        "active_days": 85,
+        "gamma": 1.0,
+        "geodesic": -21,
+        "peak": 8,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 46,
+        "regime": "SPACELIKE",
+        "term": "META"
+      },
+      {
+        "active_days": 107,
+        "gamma": 1.0,
+        "geodesic": -68,
+        "peak": 7,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 36,
+        "regime": "SPACELIKE",
+        "term": "LINUX"
+      },
+      {
+        "active_days": 68,
+        "gamma": 1.0,
+        "geodesic": -35,
+        "peak": 8,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 43,
+        "regime": "SPACELIKE",
+        "term": "GITHUB"
+      },
+      {
+        "active_days": 64,
+        "gamma": 1.0,
+        "geodesic": 43,
+        "peak": 7,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 59,
+        "regime": "SPACELIKE",
+        "term": "COMPANY"
+      },
+      {
+        "active_days": 87,
+        "gamma": 1.0,
+        "geodesic": -39,
+        "peak": 6,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 42,
+        "regime": "SPACELIKE",
+        "term": "SOFTWARE"
+      },
+      {
+        "active_days": 46,
+        "gamma": 1.0,
+        "geodesic": -43,
+        "peak": 8,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "NVIDIA"
+      },
+      {
+        "active_days": 56,
+        "gamma": 1.01,
+        "geodesic": 74,
+        "peak": 7,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 65,
+        "regime": "SPACELIKE",
+        "term": "SPACEX"
+      },
+      {
+        "active_days": 95,
+        "gamma": 1.01,
+        "geodesic": 90,
+        "peak": 5,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 68,
+        "regime": "SPACELIKE",
+        "term": "CODING"
+      },
+      {
+        "active_days": 65,
+        "gamma": 1.0,
+        "geodesic": -43,
+        "peak": 6,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "API"
+      },
+      {
+        "active_days": 92,
+        "gamma": 1.02,
+        "geodesic": 85,
+        "peak": 5,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 67,
+        "regime": "SPACELIKE",
+        "term": "LANGUAGE"
+      },
+      {
+        "active_days": 87,
+        "gamma": 1.01,
+        "geodesic": 90,
+        "peak": 5,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 68,
+        "regime": "SPACELIKE",
+        "term": "SYSTEM"
+      },
+      {
+        "active_days": 57,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 6,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "CEO"
+      },
+      {
+        "active_days": 82,
+        "gamma": 1.01,
+        "geodesic": 78,
+        "peak": 5,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 66,
+        "regime": "SPACELIKE",
+        "term": "WORK"
+      },
+      {
+        "active_days": 72,
+        "gamma": 1.0,
+        "geodesic": -15,
+        "peak": 5,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 47,
+        "regime": "SPACELIKE",
+        "term": "MAY"
+      },
+      {
+        "active_days": 42,
+        "gamma": 1.0,
+        "geodesic": 0,
+        "peak": 6,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 50,
+        "regime": "SPACELIKE",
+        "term": "LAW"
+      }
+    ]
   },
   "schema": "the-signal/horizon/1",
   "what": "Topics the manifold reads as turning: PEAKING (rising now, geodesic curving down) or BOTTOMING (falling now, curving up), with a projected day of the turn. The reversal calls trend-followers structurally miss."

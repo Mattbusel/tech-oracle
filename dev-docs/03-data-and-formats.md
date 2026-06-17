@@ -72,7 +72,10 @@ The growing discourse time series. Two parts:
 - `terms`: map `term -> TermRec { first_seen, first_stage, stages{src:date},
   peak, peak_date, days, last_seen, crossed, crossed_on }` (pruned after 120
   days unseen).
-This file powers velocity, diffusion/CHASM, sectors, and the dataset.
+This file powers velocity, diffusion/CHASM, sectors, the dataset, and the
+manifold's trajectories. It can be seeded past the warmup phase with
+`tech-oracle backfill` (see `01-rust-engine.md::backfill.rs`), which reconstructs
+~120 days of history from Hacker News so the manifold is defined immediately.
 
 ---
 
