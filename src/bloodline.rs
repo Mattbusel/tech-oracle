@@ -11,8 +11,8 @@ use crate::model::Prediction;
 use serde::{Deserialize, Serialize};
 
 const PATH: &str = "data/bloodline.json";
-const TARGET: usize = 10; // living population size
-const SURVIVORS: usize = 7; // how many live through each cull
+const TARGET: usize = 12; // living population size
+const SURVIVORS: usize = 5; // how many live through each cull (kill ~7, breed ~7 a day: fast churn)
 const KEEP_DEAD: usize = 40; // graveyard depth
 const JUDGE_MIN: usize = 5; // settled calls needed before any culling
 
@@ -130,7 +130,10 @@ fn simulate(g: &Genes, calls: &[(f64, bool)]) -> SimStats {
     let mut streak = 0i64;
     let (mut bets, mut wins, mut losses, mut max_streak) = (0i64, 0i64, 0i64, 0i64);
     let (mut biggest, mut peak, mut big_bet) = (0.0f64, 1000.0f64, 0.0f64);
-    let bar = 0.34 + g.select * 0.12; // barely a filter: they bet on nearly everything
+    // Selectivity now bites enough to actually differentiate win rates: picky
+    // organisms skip the low-confidence calls (fewer bets, higher win %), bold
+    // ones still bet nearly everything.
+    let bar = 0.34 + g.select * 0.30;
     let fading = g.fade > 0.5;
     let frac = 0.05 + g.risk * 0.95; // 5%..100%: no guardrail, an organism is free to shove it all
     for (conf, hit) in calls {
@@ -243,7 +246,8 @@ impl Bloodline {
             }
             self.gen = 1;
             self.last_evolved = date.to_string();
-            return;
+            // fall through so the founding generation gets a real stat line on
+            // the same run (the once-per-day guard below still skips the cull).
         }
 
         let calls: Vec<(f64, bool)> = resolved
