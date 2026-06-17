@@ -318,6 +318,111 @@ impl Observatory {
         self.today_sources.get(term).map(|s| s.len()).unwrap_or(0)
     }
 
+    // ----- grading queries over the corpus time series -----------------------
+    // A corpus-day snapshot only retains terms with >= 2 mentions that day, so
+    // "presence" in the history already means a real day of discourse, never a
+    // single stray match. These power the earned-but-fair grader.
+
+    /// Calendar days strictly after `after` (up to and including today) on which
+    /// the term had real presence (>= 2 mentions). The core "did it come back" count.
+    pub fn active_days_after(&self, term: &str, after: &str) -> i64 {
+        if term.is_empty() {
+            return 0;
+        }
+        self.corpus
+            .days
+            .iter()
+            .filter(|d| d.date.as_str() > after)
+            .filter(|d| d.terms.get(term).copied().unwrap_or(0) >= 2)
+            .count() as i64
+    }
+
+    /// The strongest single-day mention count strictly after `after`.
+    pub fn peak_after(&self, term: &str, after: &str) -> i64 {
+        if term.is_empty() {
+            return 0;
+        }
+        self.corpus
+            .days
+            .iter()
+            .filter(|d| d.date.as_str() > after)
+            .filter_map(|d| d.terms.get(term).copied())
+            .max()
+            .unwrap_or(0) as i64
+    }
+
+    /// Total mentions strictly after `after`.
+    pub fn total_after(&self, term: &str, after: &str) -> i64 {
+        if term.is_empty() {
+            return 0;
+        }
+        self.corpus
+            .days
+            .iter()
+            .filter(|d| d.date.as_str() > after)
+            .filter_map(|d| d.terms.get(term).copied())
+            .sum::<usize>() as i64
+    }
+
+    /// The most recent date the term had real presence, across all history.
+    pub fn last_active(&self, term: &str) -> Option<String> {
+        if term.is_empty() {
+            return None;
+        }
+        self.corpus
+            .days
+            .iter()
+            .rev()
+            .find(|d| d.terms.get(term).copied().unwrap_or(0) >= 2)
+            .map(|d| d.date.clone())
+    }
+
+    /// The first date strictly after `after` the term had real presence.
+    pub fn first_active_after(&self, term: &str, after: &str) -> Option<String> {
+        if term.is_empty() {
+            return None;
+        }
+        self.corpus
+            .days
+            .iter()
+            .filter(|d| d.date.as_str() > after)
+            .find(|d| d.terms.get(term).copied().unwrap_or(0) >= 2)
+            .map(|d| d.date.clone())
+    }
+
+    /// Did the term cross from a technical origin to a general-public source on
+    /// some date strictly after `after`? (The diffusion ledger marks `crossed`.)
+    pub fn crossed_after(&self, term: &str, after: &str) -> bool {
+        self.corpus
+            .terms
+            .get(term)
+            .map(|t| t.crossed && t.crossed_on.as_str() > after)
+            .unwrap_or(false)
+    }
+
+    /// Momentum: over the window since `after`, are mentions concentrated in the
+    /// back half (still climbing) rather than the front (fading)? True only with
+    /// enough of a window to judge and a non-empty recent half.
+    pub fn rising_since(&self, term: &str, after: &str, today: &str) -> bool {
+        if term.is_empty() {
+            return false;
+        }
+        let win: Vec<usize> = self
+            .corpus
+            .days
+            .iter()
+            .filter(|d| d.date.as_str() > after && d.date.as_str() <= today)
+            .map(|d| d.terms.get(term).copied().unwrap_or(0))
+            .collect();
+        if win.len() < 2 {
+            return false;
+        }
+        let mid = win.len() / 2;
+        let early: usize = win[..mid].iter().sum();
+        let late: usize = win[mid..].iter().sum();
+        late > 0 && late >= early
+    }
+
     /// Historical daily counts for a term, oldest-first, excluding today.
     fn history(&self, term: &str) -> Vec<usize> {
         self.corpus

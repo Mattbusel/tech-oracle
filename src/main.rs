@@ -97,20 +97,6 @@ fn main() {
     // quantitative views (velocity, diffusion, sectors, fear/greed). Must run
     // before rank/generate so calls can show their work.
     let obs = observatory::build(&signals, &date);
-    // Lowercased corpus of today's signals, for self-grading open calls.
-    let corpus = signals
-        .iter()
-        .map(|s| s.title.to_lowercase())
-        .collect::<Vec<_>>()
-        .join(" || ");
-    // The general-public slice (Reddit, Ars, News, Wikipedia): a CHASM call
-    // settles when its subject resurfaces here, out of the dev bubble.
-    let general_corpus = signals
-        .iter()
-        .filter(|s| matches!(s.signal_type.as_str(), "reddit" | "ars" | "news" | "wiki"))
-        .map(|s| s.title.to_lowercase())
-        .collect::<Vec<_>>()
-        .join(" || ");
 
     let today_index = pulse.get("index").and_then(|v| v.as_i64()).unwrap_or(50);
     // Yesterday's learned weights steer today's selection (online learning).
@@ -141,8 +127,8 @@ fn main() {
 
     // Self-grade: resolve any open call whose subject resurfaced in today's
     // signals (a HIT) or whose deadline has passed without resurfacing (a MISS).
-    resolve_open(&mut revealed, &date, &corpus, &general_corpus, today_index);
-    resolve_open(&mut embargoed, &date, &corpus, &general_corpus, today_index);
+    resolve_open(&mut revealed, &date, &obs, today_index);
+    resolve_open(&mut embargoed, &date, &obs, today_index);
 
     // Promote any embargoed call old enough to go public.
     let mut still_embargoed = Vec::new();
@@ -368,33 +354,73 @@ fn build_intake(signals: &[model::Signal]) -> serde_json::Value {
 /// Resolve open calls against today's signal corpus. A call only resolves on a
 /// day after it was made (so it cannot settle on its own source), HITs if its
 /// keyword resurfaces before the deadline, and MISSes once the deadline passes.
-fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, general: &str, index: i64) {
+/// Whole calendar days from `a` to `b` (negative if `b` precedes `a`, 0 if either
+/// fails to parse).
+fn days_between(a: &str, b: &str) -> i64 {
+    match (
+        NaiveDate::parse_from_str(a, "%Y-%m-%d"),
+        NaiveDate::parse_from_str(b, "%Y-%m-%d"),
+    ) {
+        (Ok(x), Ok(y)) => (y - x).num_days(),
+        _ => 0,
+    }
+}
+
+// The earned-but-fair grading bar. A HIT must be a real return, not a stray
+// mention: the corpus only records terms with >= 2 mentions on a day, and these
+// thresholds demand that presence repeat or spike. Each market is judged on its
+// own claim. Tuned here in one place so the whole record can be re-calibrated by
+// touching these constants.
+const RESURFACE_DAYS: i64 = 2; // came back on >= 2 distinct days, OR ...
+const RESURFACE_SPIKE: i64 = 4; // ... a single day this strong counts as a real return
+const SURVIVAL_FRESH: i64 = 10; // "still alive" = active within this many days of the deadline
+const SURVIVAL_QUIET: i64 = 21; // gone silent this long = it died (early MISS)
+const MOMENTUM_DAYS: i64 = 3; // momentum needs a sustained, climbing presence
+const CROSSOVER_DAYS: i64 = 2; // a crossover win must rest on a real, repeated lead
+
+/// Self-grade every open call against the corpus time series since it was made.
+/// HIT / MISS are earned: each market is checked on its actual claim (a genuine
+/// return, sustained survival, a real climb, a public crossing), never on a lone
+/// keyword match. Calls stay OPEN until the evidence settles them or the deadline
+/// passes. Idempotent: the same record yields the same grade.
+fn resolve_open(preds: &mut [Prediction], today: &str, obs: &observatory::Observatory, index: i64) {
     for p in preds.iter_mut() {
         if p.status != "OPEN" || p.date.as_str() >= today {
             continue;
         }
         let within = p.resolves_by.is_empty() || today <= p.resolves_by.as_str();
         let expired = !p.resolves_by.is_empty() && today > p.resolves_by.as_str();
-        let here = |kw: &str| !kw.is_empty() && corpus.contains(kw);
-        let count = |kw: &str| if kw.is_empty() { 0 } else { corpus.matches(kw).count() };
+        let kw = p.keyword.as_str();
+
+        // Evidence drawn from the same time series the live value reads.
+        let active_days = obs.active_days_after(kw, &p.date);
+        let peak = obs.peak_after(kw, &p.date);
 
         let (mut hit, mut miss) = (false, false);
         match p.market.as_str() {
             "HEAD-TO-HEAD" => {
-                let a = here(&p.keyword);
-                let b = here(&p.keyword2);
-                if within && a && !b {
-                    hit = true;
-                } else if b && !a {
-                    miss = true; // the other side moved first
-                } else if expired {
-                    miss = true;
+                // Whichever subject genuinely returns first wins.
+                let a = obs.first_active_after(&p.keyword, &p.date);
+                let b = obs.first_active_after(&p.keyword2, &p.date);
+                match (&a, &b) {
+                    (Some(da), Some(db)) => {
+                        if da <= db {
+                            hit = true;
+                        } else {
+                            miss = true;
+                        }
+                    }
+                    (Some(_), None) if within => hit = true,
+                    (None, Some(_)) => miss = true, // the rival moved first
+                    _ if expired => miss = true,
+                    _ => {}
                 }
             }
             "CROSSOVER" => {
-                // The subject out-mentions its rival on any later day.
-                let (a, b) = (count(&p.keyword), count(&p.keyword2));
-                if within && a > b && a > 0 {
+                // The subject must out-mention its rival on a real, repeated basis.
+                let ta = obs.total_after(&p.keyword, &p.date);
+                let tb = obs.total_after(&p.keyword2, &p.date);
+                if within && active_days >= CROSSOVER_DAYS && ta > tb {
                     hit = true;
                 } else if expired {
                     miss = true;
@@ -408,29 +434,67 @@ fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, general: &s
                 }
             }
             "OVER" => {
-                if within && (count(&p.keyword) as i64) >= p.target {
+                // A single day must clear the mention bar.
+                if within && peak >= p.target {
                     hit = true;
                 } else if expired {
                     miss = true;
                 }
             }
             "CHASM" => {
-                // Settles only when it reaches the general-public feeds.
-                if p.keyword.is_empty() {
+                // Settles only when the term actually crosses to a general-public
+                // source after the call was made.
+                if kw.is_empty() {
                     continue;
                 }
-                if within && general.contains(&p.keyword) {
+                if within && obs.crossed_after(kw, &p.date) {
                     hit = true;
                 } else if expired {
                     miss = true;
                 }
             }
-            // RESURFACE / SURVIVAL / MOMENTUM / FUTURES / LONGSHOT: keyword resurfaces.
-            _ => {
-                if p.keyword.is_empty() {
+            "SURVIVAL" => {
+                // The subject must stay alive through its window. It dies if it
+                // goes quiet for too long; it wins if it is still active near the end.
+                if kw.is_empty() {
                     continue;
                 }
-                if within && here(&p.keyword) {
+                let quiet = match obs.last_active(kw) {
+                    Some(la) => days_between(&la, today),
+                    None => days_between(&p.date, today),
+                };
+                if within && days_between(&p.date, today) >= SURVIVAL_QUIET && quiet >= SURVIVAL_QUIET {
+                    miss = true; // went silent: it did not survive
+                } else if expired {
+                    let alive_at_end = obs
+                        .last_active(kw)
+                        .map(|la| days_between(&la, &p.resolves_by).abs() <= SURVIVAL_FRESH)
+                        .unwrap_or(false);
+                    if alive_at_end && active_days >= 1 {
+                        hit = true;
+                    } else {
+                        miss = true;
+                    }
+                }
+            }
+            "MOMENTUM" => {
+                // Not just present: still climbing, with a sustained base.
+                if kw.is_empty() {
+                    continue;
+                }
+                if within && active_days >= MOMENTUM_DAYS && obs.rising_since(kw, &p.date, today) {
+                    hit = true;
+                } else if expired {
+                    miss = true;
+                }
+            }
+            // RESURFACE / FUTURES / LONGSHOT: the subject genuinely comes back,
+            // either across multiple days or in one strong spike.
+            _ => {
+                if kw.is_empty() {
+                    continue;
+                }
+                if within && (active_days >= RESURFACE_DAYS || peak >= RESURFACE_SPIKE) {
                     hit = true;
                 } else if expired {
                     miss = true;
@@ -772,26 +836,72 @@ fn live_likelihood(p: &Prediction, obs: &observatory::Observatory, index: i64, t
         _ => 0.5,
     };
     let kw = &p.keyword;
-    let active = obs.today_count(kw);
+    let active = obs.today_count(kw); // mentions today (any count)
     let vel = obs.velocity_pct(kw);
     let xs = obs.cross_source(kw) as i64;
+    // The same evidence the grader settles on, read as a running estimate of the
+    // eventual outcome. When a market's HIT bar is already met the value sits near
+    // certainty (it will settle HIT on the next grade); otherwise it reflects how
+    // far along the evidence is, decaying toward zero as the deadline nears unmet.
+    let active_days = obs.active_days_after(kw, &p.date);
+    let peak = obs.peak_after(kw, &p.date);
     let base = match p.market.as_str() {
         "INDEX" => {
-            if index >= p.target { 95 } else { (62 - (p.target - index) * 2).clamp(8, 88) }
+            if index >= p.target { 96 } else { (62 - (p.target - index) * 2).clamp(8, 90) }
         }
         "CHASM" => {
-            if obs.reach_stage(kw) >= 6 { 90 } else if active > 0 { 50 } else { (30.0 * frac_left) as i64 }
+            if obs.crossed_after(kw, &p.date) { 96 }
+            else if obs.reach_stage(kw) >= 5 { 60 }
+            else if active > 0 { 42 }
+            else { (16.0 + 26.0 * frac_left).round() as i64 }
         }
-        // RESURFACE / SURVIVAL / MOMENTUM / OVER / FUTURES / LONGSHOT / etc.:
-        // active now -> very likely; climbing -> likely; quiet -> decays as the
-        // deadline nears.
+        "SURVIVAL" => {
+            // Alive now and closer to the deadline -> more confident it lasts.
+            let recently = obs.last_active(kw).map(|la| days_between(&la, today) <= SURVIVAL_FRESH).unwrap_or(false);
+            if recently && active_days >= 1 { (72.0 + 22.0 * (1.0 - frac_left)).round() as i64 }
+            else if active > 0 { 50 }
+            else { (12.0 + 26.0 * frac_left).round() as i64 }
+        }
+        "MOMENTUM" => {
+            let rising = obs.rising_since(kw, &p.date, today);
+            if rising && active_days >= MOMENTUM_DAYS { 90 }
+            else if rising && active_days >= 1 { 66 }
+            else if active_days >= 1 { 44 }
+            else { (14.0 + 24.0 * frac_left).round() as i64 }
+        }
+        "OVER" => {
+            if peak >= p.target { 96 }
+            else if p.target > 0 && peak * 10 >= p.target * 6 { 60 }
+            else if active > 0 { 42 }
+            else { (15.0 + 27.0 * frac_left).round() as i64 }
+        }
+        "HEAD-TO-HEAD" => {
+            let a = obs.first_active_after(&p.keyword, &p.date);
+            let b = obs.first_active_after(&p.keyword2, &p.date);
+            match (a, b) {
+                (Some(da), Some(db)) => if da <= db { 88 } else { 12 },
+                (Some(_), None) => 86,
+                (None, Some(_)) => 12,
+                (None, None) => (44.0 - 8.0 * (1.0 - frac_left)).round() as i64,
+            }
+        }
+        "CROSSOVER" => {
+            let ta = obs.total_after(&p.keyword, &p.date);
+            let tb = obs.total_after(&p.keyword2, &p.date);
+            if active_days >= CROSSOVER_DAYS && ta > tb { 90 }
+            else if ta > tb { 60 }
+            else if ta == tb { 45 }
+            else { 20 }
+        }
+        // RESURFACE / FUTURES / LONGSHOT: the HIT bar is a real return.
         _ => {
-            if active > 0 { (82 + xs * 2).min(95) }
-            else if vel > 0 { 58 }
-            else { (15.0 + 35.0 * frac_left).round() as i64 }
+            if active_days >= RESURFACE_DAYS || peak >= RESURFACE_SPIKE { 96 }
+            else if active_days >= 1 || peak >= 2 { (66 + xs * 2).min(82) }
+            else if active > 0 || vel > 0 { 50 }
+            else { (12.0 + 30.0 * frac_left).round() as i64 }
         }
     };
-    base.clamp(5, 95)
+    base.clamp(4, 97)
 }
 
 /// Roll the live mark for every open call once per day (idempotent via live_date).
@@ -1147,82 +1257,194 @@ mod tests {
         }
     }
 
+    /// Build an Observatory whose corpus time series is exactly the given days.
+    /// Each day is (date, &[(term, count)]); a term is "present" that day at its
+    /// count (the real corpus only keeps count >= 2, so tests use >= 2).
+    fn obs_from(today: &str, days: &[(&str, &[(&str, usize)])]) -> observatory::Observatory {
+        let mut cdays = Vec::new();
+        for (date, terms) in days {
+            let mut tm: std::collections::BTreeMap<String, usize> = std::collections::BTreeMap::new();
+            for (t, c) in *terms {
+                tm.insert((*t).to_string(), *c);
+            }
+            cdays.push(observatory::CorpusDay {
+                date: (*date).to_string(),
+                terms: tm,
+                ..Default::default()
+            });
+        }
+        observatory::Observatory {
+            today: today.to_string(),
+            corpus: observatory::Corpus { days: cdays, terms: std::collections::BTreeMap::new() },
+            today_terms: std::collections::HashMap::new(),
+            today_sources: std::collections::HashMap::new(),
+            greed: 50,
+            sectors: Vec::new(),
+        }
+    }
+
+    /// Mark a term as having crossed to the general public on a given date.
+    fn mark_crossed(obs: &mut observatory::Observatory, term: &str, on: &str) {
+        obs.corpus.terms.insert(
+            term.to_string(),
+            observatory::TermRec { crossed: true, crossed_on: on.to_string(), ..Default::default() },
+        );
+    }
+
     #[test]
-    fn resurface_hits_when_keyword_returns() {
+    fn resurface_hits_on_a_real_return() {
+        // Active on two distinct days -> a genuine resurfacing, not a stray match.
+        let obs = obs_from("2026-06-10", &[("2026-06-05", &[("rust", 3)]), ("2026-06-08", &[("rust", 2)])]);
         let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-07-01", 0)];
-        resolve_open(&mut v, "2026-06-10", "everyone loves rust today", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "HIT");
         assert_eq!(v[0].resolved_on, "2026-06-10");
     }
 
     #[test]
+    fn resurface_hits_on_a_strong_single_spike() {
+        let obs = obs_from("2026-06-10", &[("2026-06-06", &[("rust", 5)])]);
+        let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn resurface_does_not_hit_on_a_single_weak_day() {
+        // One day at the minimum presence is not yet an earned return.
+        let obs = obs_from("2026-06-10", &[("2026-06-06", &[("rust", 2)])]);
+        let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
+        assert_eq!(v[0].status, "OPEN");
+    }
+
+    #[test]
     fn resurface_misses_after_deadline() {
+        let obs = obs_from("2026-06-10", &[]);
         let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-06-05", 0)];
-        resolve_open(&mut v, "2026-06-10", "nothing relevant here", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "MISS");
     }
 
     #[test]
     fn never_settles_on_its_own_day() {
         // A call cannot resolve on or before the day it was made.
+        let obs = obs_from("2026-06-10", &[("2026-06-10", &[("rust", 9)])]);
         let mut v = vec![mk("2026-06-10", "RESURFACE", "rust", "", "2026-07-01", 0)];
-        resolve_open(&mut v, "2026-06-10", "rust rust rust", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "OPEN");
     }
 
     #[test]
     fn open_stays_open_when_unmet_and_within_window() {
+        let obs = obs_from("2026-06-10", &[]);
         let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-07-01", 0)];
-        resolve_open(&mut v, "2026-06-10", "no match", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "OPEN");
     }
 
     #[test]
-    fn chasm_only_settles_on_the_general_corpus() {
-        // Present in the full corpus but NOT in the general slice: stays open.
+    fn chasm_settles_only_on_a_real_crossing() {
+        // Active in the corpus but not yet crossed to the general public: open.
+        let obs = obs_from("2026-06-10", &[("2026-06-05", &[("anthropic", 4)])]);
         let mut v = vec![mk("2026-06-01", "CHASM", "anthropic", "", "2026-07-01", 0)];
-        resolve_open(&mut v, "2026-06-10", "anthropic on hn", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "OPEN");
-        // Now it reaches the general public.
-        resolve_open(&mut v, "2026-06-11", "x", "anthropic hits the news", 50);
+        // Now the diffusion ledger records a crossing after the call date.
+        let mut obs2 = obs_from("2026-06-11", &[("2026-06-05", &[("anthropic", 4)])]);
+        mark_crossed(&mut obs2, "anthropic", "2026-06-11");
+        resolve_open(&mut v, "2026-06-11", &obs2, 50);
         assert_eq!(v[0].status, "HIT");
     }
 
     #[test]
     fn index_hits_when_index_clears_target() {
+        let obs = obs_from("2026-06-10", &[]);
         let mut v = vec![mk("2026-06-01", "INDEX", "signal", "", "2026-07-01", 70)];
-        resolve_open(&mut v, "2026-06-10", "", "", 60);
+        resolve_open(&mut v, "2026-06-10", &obs, 60);
         assert_eq!(v[0].status, "OPEN");
-        resolve_open(&mut v, "2026-06-11", "", "", 75);
+        let obs2 = obs_from("2026-06-11", &[]);
+        resolve_open(&mut v, "2026-06-11", &obs2, 75);
         assert_eq!(v[0].status, "HIT");
     }
 
     #[test]
-    fn over_hits_on_mention_threshold() {
+    fn over_hits_when_a_day_clears_the_mention_bar() {
+        let obs = obs_from("2026-06-10", &[("2026-06-07", &[("gpt", 4)])]);
         let mut v = vec![mk("2026-06-01", "OVER", "gpt", "", "2026-07-01", 3)];
-        resolve_open(&mut v, "2026-06-10", "gpt gpt gpt gpt everywhere", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "HIT");
     }
 
     #[test]
-    fn head_to_head_hits_when_subject_leads_rival() {
+    fn over_stays_open_below_the_bar() {
+        let obs = obs_from("2026-06-10", &[("2026-06-07", &[("gpt", 2)])]);
+        let mut v = vec![mk("2026-06-01", "OVER", "gpt", "", "2026-07-01", 5)];
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
+        assert_eq!(v[0].status, "OPEN");
+    }
+
+    #[test]
+    fn head_to_head_hits_when_subject_returns_first() {
+        let obs = obs_from("2026-06-10", &[("2026-06-05", &[("rust", 3)])]);
         let mut v = vec![mk("2026-06-01", "HEAD-TO-HEAD", "rust", "zig", "2026-07-01", 0)];
-        resolve_open(&mut v, "2026-06-10", "rust is back", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "HIT");
     }
 
     #[test]
-    fn head_to_head_misses_when_rival_leads() {
+    fn head_to_head_misses_when_rival_returns_first() {
+        let obs = obs_from("2026-06-10", &[("2026-06-05", &[("zig", 3)])]);
         let mut v = vec![mk("2026-06-01", "HEAD-TO-HEAD", "rust", "zig", "2026-07-01", 0)];
-        resolve_open(&mut v, "2026-06-10", "zig is winning", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "MISS");
     }
 
     #[test]
-    fn crossover_hits_when_subject_outmentions_rival() {
+    fn crossover_hits_on_a_real_repeated_lead() {
+        let obs = obs_from(
+            "2026-06-10",
+            &[("2026-06-05", &[("rust", 3), ("zig", 2)]), ("2026-06-08", &[("rust", 4)])],
+        );
         let mut v = vec![mk("2026-06-01", "CROSSOVER", "rust", "zig", "2026-07-01", 0)];
-        resolve_open(&mut v, "2026-06-10", "rust rust rust zig", "", 50);
+        resolve_open(&mut v, "2026-06-10", &obs, 50);
         assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn survival_hits_when_still_alive_at_the_deadline() {
+        let obs = obs_from("2026-06-13", &[("2026-06-05", &[("rust", 2)]), ("2026-06-11", &[("rust", 3)])]);
+        let mut v = vec![mk("2026-06-01", "SURVIVAL", "rust", "", "2026-06-12", 0)];
+        resolve_open(&mut v, "2026-06-13", &obs, 50);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn survival_misses_when_it_goes_quiet() {
+        // Active early then silent for over three weeks: it did not survive.
+        let obs = obs_from("2026-06-25", &[("2026-06-02", &[("rust", 2)])]);
+        let mut v = vec![mk("2026-06-01", "SURVIVAL", "rust", "", "2026-07-15", 0)];
+        resolve_open(&mut v, "2026-06-25", &obs, 50);
+        assert_eq!(v[0].status, "MISS");
+    }
+
+    #[test]
+    fn momentum_hits_when_sustained_and_climbing() {
+        let obs = obs_from(
+            "2026-06-12",
+            &[("2026-06-04", &[("x", 2)]), ("2026-06-07", &[("x", 3)]), ("2026-06-10", &[("x", 5)])],
+        );
+        let mut v = vec![mk("2026-06-01", "MOMENTUM", "x", "", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-12", &obs, 50);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn momentum_misses_at_deadline_without_a_climb() {
+        let obs = obs_from("2026-06-11", &[("2026-06-03", &[("x", 2)])]);
+        let mut v = vec![mk("2026-06-01", "MOMENTUM", "x", "", "2026-06-10", 0)];
+        resolve_open(&mut v, "2026-06-11", &obs, 50);
+        assert_eq!(v[0].status, "MISS");
     }
 
     #[test]

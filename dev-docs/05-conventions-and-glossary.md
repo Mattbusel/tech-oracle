@@ -29,21 +29,29 @@ Quick reference for the rules, the domain vocabulary, and the commands.
 
 Defined in `generate.rs::MARKETS`, graded in `main.rs::resolve_open`.
 
+Grading is **earned but fair** and runs against the corpus *time series* since
+the call was made, not a substring scan of one day. A corpus-day snapshot only
+keeps a term once it has >= 2 mentions that day, so every "active day" already
+means real discourse, never a stray match. Each market is judged on its own claim
+(the tuning constants live at the top of `resolve_open`):
+
 | Market | The bet | Settles HIT when (before `resolves_by`) |
 | --- | --- | --- |
-| RESURFACE | the subject comes back | keyword appears in the full corpus |
-| SURVIVAL | it doesn't go quiet | keyword resurfaces (same check, framed as survival) |
-| MOMENTUM | it keeps moving | keyword resurfaces |
-| HEAD-TO-HEAD | it beats a rival | keyword appears and keyword2 does not |
-| CROSSOVER | it out-mentions a rival | count(keyword) > count(keyword2) |
+| RESURFACE | the subject comes back | active on >= 2 days OR a single day with >= 4 mentions |
+| SURVIVAL | it doesn't go quiet | still active within 10 days of the deadline; early MISS if silent for 21+ days |
+| MOMENTUM | it keeps moving | active >= 3 days AND mentions concentrated in the back half (still climbing) |
+| HEAD-TO-HEAD | it beats a rival | the subject returns (>= 2 mentions) on or before the rival does |
+| CROSSOVER | it out-mentions a rival | active >= 2 days AND total mentions(keyword) > total(keyword2) over the window |
 | INDEX | the field heats up | acceleration index >= target |
-| OVER | a mention surge | count(keyword) >= target in a day |
-| CHASM | it leaves the dev bubble | keyword appears in the general-public corpus (reddit/ars/news/wiki) |
-| FUTURES | it still matters long term | keyword resurfaces, 90-day horizon |
-| LONGSHOT | a high-odds resurface | keyword resurfaces (low confidence -> long odds) |
+| OVER | a mention surge | a single day's mentions >= target |
+| CHASM | it leaves the dev bubble | the diffusion ledger marks the term `crossed` to a general-public source after the call |
+| FUTURES | it still matters long term | a real return (RESURFACE bar), 90-day horizon |
+| LONGSHOT | a high-odds resurface | a real return (RESURFACE bar), low confidence -> long odds |
 
-Any market MISSes once `resolves_by` passes without the condition. CHASM and
-crossing terms get the provocative `challenge_template` text.
+Any market MISSes once `resolves_by` passes without the condition (SURVIVAL also
+MISSes early if it goes quiet). The grade is deterministic and idempotent: the
+same record yields the same outcome on a re-run. CHASM and crossing terms get the
+provocative `challenge_template` text.
 
 ## Other domain terms
 
@@ -68,10 +76,13 @@ crossing terms get the provocative `challenge_template` text.
 - **The Book**: the engine's own flat-stake virtual bankroll on its calls (line
   = 1/confidence), computed in `render.rs`.
 - **Live likelihood / mark-to-market**: each open call carries a `live` value
-  (0-100, its current chance of hitting) that the engine recomputes every day
-  from evidence (is the keyword resurfacing now, its velocity, how much of the
-  window is left). `main::live_likelihood` computes it, `main::update_live` rolls
-  it once per day (`live_date` guards idempotency, `live_prev` shows the move).
+  (0-100, its current chance of hitting) that the engine recomputes every day from
+  the *same evidence the grader settles on* (active days so far, peak day,
+  crossing, climb, how much of the window is left). So it is a running estimate of
+  the eventual outcome: when a market's HIT bar is already met it sits near
+  certainty (it will settle HIT on the next grade), and it decays toward zero as
+  the deadline nears unmet. `main::live_likelihood` computes it, `main::update_live`
+  rolls it once per day (`live_date` guards idempotency, `live_prev` shows the move).
   A held position gains or loses value as the likelihood moves, so long-horizon
   calls are worth holding, and the pit can **cash out** at the current mark
   before the deadline (or hold to resolution for the full payout). The pit's line

@@ -234,16 +234,28 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
   signal list, logging failures/panics.
 - `fn source_label(t) -> &'static str` - the uppercase display label per source.
 - `fn build_intake(signals) -> Value` - per-source count, bar pct, hottest item.
-- `fn resolve_open(preds, today, corpus, general, index)` - the grader. Only
-  settles calls older than today. Per market: HEAD-TO-HEAD (keyword before
-  keyword2), CROSSOVER (keyword out-mentions keyword2 via substring counts),
-  INDEX (index >= target), OVER (count >= target), CHASM (keyword appears in the
-  general-public corpus), default RESURFACE/SURVIVAL/MOMENTUM/FUTURES/LONGSHOT
-  (keyword resurfaces). MISS when the deadline passes. Tested per market in the
-  inline `main.rs` tests.
+- `fn resolve_open(preds, today, obs, index)` - the **earned-but-fair grader**.
+  Only settles calls older than today, and judges each against the corpus *time
+  series since the call was made* (via `Observatory::active_days_after`,
+  `peak_after`, `total_after`, `first_active_after`, `last_active`,
+  `crossed_after`, `rising_since`) rather than a substring scan of one day. A
+  corpus-day snapshot only keeps terms with >= 2 mentions, so "active" already
+  means real discourse. Per market: RESURFACE/FUTURES/LONGSHOT (active >= 2 days
+  OR a >= 4 spike), SURVIVAL (alive near the deadline; early MISS if silent 21+
+  days), MOMENTUM (>= 3 active days AND climbing in the back half), HEAD-TO-HEAD
+  (subject returns on/before the rival), CROSSOVER (>= 2 active days AND
+  out-mentions keyword2 over the window), INDEX (index >= target), OVER (a single
+  day >= target), CHASM (the diffusion ledger marks it `crossed`). MISS when the
+  deadline passes. The bar constants (`RESURFACE_DAYS`, `RESURFACE_SPIKE`,
+  `SURVIVAL_FRESH`, `SURVIVAL_QUIET`, `MOMENTUM_DAYS`, `CROSSOVER_DAYS`) sit at the
+  top of the fn so the whole record can be re-calibrated in one place.
+  Deterministic and idempotent. `fn days_between(a, b)` is the date helper.
+  Tested per market in the inline `main.rs` tests.
 - `fn live_likelihood(p, obs, index, today) -> i64` and `fn update_live(preds,
-  obs, index, today)` - the mark-to-market: compute each open call's current
-  likelihood (0-100) from evidence and roll it once per day (idempotent via
+  obs, index, today)` - the mark-to-market: a running estimate of the eventual
+  outcome computed from the *same evidence the grader settles on*, so when a HIT
+  bar is already met the value sits near certainty (~96) and it decays toward
+  zero as the deadline nears unmet. Rolled once per day (idempotent via
   `live_date`, `live_prev` records the move). The daily slate is ~24 calls
   (`rank_and_select(.., 24, ..)`).
 - `fn fallback_call(date, index) -> Prediction` - the guaranteed daily print when

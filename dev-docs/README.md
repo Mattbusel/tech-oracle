@@ -114,9 +114,8 @@ build/                  Gitignored scratch: early_payload.json (the paid edge), 
      (hue walk, wear, generation, rare quirk).
    - `observatory::build(signals, date)` -> updates and persists
      `data/corpus.json` and returns the live `Observatory` (today's term counts,
-     sources, velocity, diffusion, sectors, fear/greed).
-   - `corpus` (all titles lowercased) and `general_corpus` (only
-     reddit/ars/news/wiki titles) strings for grading.
+     sources, velocity, diffusion, sectors, fear/greed, plus the time-series
+     queries the grader settles on).
 4. **Select** (`rank.rs`): `load_weights()` reads `data/weights.json`;
    `rank_and_select(signals, seed, 4, &weights)` normalizes momentum per source,
    multiplies by the learned weight, dedups by topic, returns the top picks.
@@ -130,8 +129,9 @@ build/                  Gitignored scratch: early_payload.json (the paid edge), 
    today's from both (idempotent re-run), add today's calls to the embargoed
    pool.
 7. **Grade** (`resolve_open`): for each open call older than today, settle HIT or
-   MISS per its market against `corpus` / `general_corpus` / the index, or MISS
-   if the deadline passed.
+   MISS per its market against the corpus time series since the call was made
+   (earned-but-fair: a real return, sustained survival, a true climb, a public
+   crossing), or MISS if the deadline passed.
 8. **Promote**: embargoed calls older than `delay_days` move into revealed.
    `dedup(revealed)`.
 9. **Persist**: `save_json(data/predictions.json)` (committed) and
