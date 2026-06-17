@@ -27,6 +27,14 @@
 #floor .lcard.legend .nm{color:#fff3cf}
 #floor .lcard.legend .rk{color:#e7c878}
 @keyframes foil{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+#floor .lcard.fin-shiny{border-color:#cfd8e3;box-shadow:0 0 8px rgba(207,216,227,.28)}
+#floor .lcard.fin-gold{border-color:#ffd56b;box-shadow:0 0 9px rgba(255,213,107,.32)}
+#floor .lcard.fin-emerald{border-color:#4fe0a0;box-shadow:0 0 11px rgba(79,224,160,.38)}
+#floor .lcard.fin-sapphire{border-color:#5fb8ff;box-shadow:0 0 11px rgba(95,184,255,.4)}
+#floor .lcard.fin-diamond{border-color:#d8f0ff;animation:diamond 3s ease-in-out infinite}
+@keyframes diamond{0%,100%{box-shadow:0 0 9px rgba(216,240,255,.4)}50%{box-shadow:0 0 20px rgba(180,230,255,.85)}}
+#floor .finbadge{display:inline-block;color:#0d0f0d;font-size:8px;font-weight:700;letter-spacing:.1em;padding:1px 5px;border-radius:2px;margin-left:5px;vertical-align:middle}
+@media(prefers-reduced-motion:reduce){#floor .lcard.fin-diamond{animation:none}}
 #floor .lprog{height:6px;background:#1c1e1a;margin-top:6px;overflow:hidden}
 #floor .lprog i{display:block;height:100%;background:#6ee07a;width:0;transition:width .6s linear}
 #floor .stat4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -46,7 +54,7 @@
 <details style="margin-top:8px;font-size:11px;color:#a9a596;border:1px solid #2a2c28;padding:8px 12px"><summary style="cursor:pointer;color:#6ee07a;letter-spacing:.1em">HOW IT WORKS // CARDS, TRADING, THE MARKET</summary>
 <div style="margin-top:8px;line-height:1.65">
 <b style="color:#e7e2d4">THE FLOOR.</b> The organisms bet against the manifold's true odds every few seconds, no limit on how high a run can go. A season is 100 rounds. At the bell it resolves, the champion is enshrined in the rafters, and every bank resets to start the next season.<br><br>
-<b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE. Each card's art is generated from that organism's genes, so no two look alike.<br><br>
+<b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. The cast is freshly named every season, and each card's art is generated from that organism's genes, so no two look alike. There is also a random FINISH on claim (SHINY, GOLD, EMERALD, SAPPHIRE, DIAMOND): two people can card the same organism and get different gems, and the market decides what each is worth. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE.<br><br>
 <b style="color:#e7e2d4">TRADING.</b> Every card carries a unique code. Tap [ TRADE ] on a card to send it away: it leaves your collection and you get a one-time code. Give that code to anyone; they paste it into REDEEM to receive the card.<br><br>
 <b style="color:#e7e2d4">THE MARKET.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] to list a card; collectors bid over time; accept an offer and the card is destroyed for CRED. A card is worth more the higher it ranked, the wilder its stats, and the longer you have held it, so holding pays.
 </div></details>
@@ -133,6 +141,17 @@ setInterval(drawTable,1300);
  // Organism banks are uncapped now and can run astronomical within a season, so
  // abbreviate them (K/M/B/T/...) to stay readable. The bell still resets at 100 rounds.
  function fmtAbbr(n){n=n||0;var s=n<0?'-':'',a=Math.abs(n);if(a<1000)return s+Math.round(a);var u=['','K','M','B','T','Qa','Qi','Sx'],i=0;while(a>=1000&&i<u.length-1){a/=1000;i++;}return s+(a<10?a.toFixed(2):(a<100?a.toFixed(1):Math.round(a)))+u[i];}
+ // Fresh, unique cast each season so cards feel distinct, not the same dozen names.
+ var NMA=['VANTA','NULL','HEX','OBSIDIAN','CINDER','VEX','ZEPHYR','ONYX','RAVEN','ECHO','NOVA','AXIOM','GLITCH','WRAITH','HALON','DRIFT','PYRE','KILO','RHO','SABLE','CRIMSON','VOID','EMBER','FROST','TALON','RIFT','SPECTER','GRIM','LUMEN','QUARK','ZENITH','OMEN','FERAL','MANTIS','VIPER','COBALT','SLATE','VESPER','ATLAS','NOCTIS'];
+ var NMB=['CORE','REAVER','FANG','HOLLOW','SPIRE','SURGE','GHOST','APEX','WARDEN','HUNTER','BARON','ORACLE','DRIVE','PROPHET','GAMBIT','RUIN','CROWN','EDGE','PULSE','HAVOC','MAW','VECTOR','SAINT','WIDOW','BLADE','STORM','TIDE','CIPHER','HUSK','WAKE','VANE','HELIX','KNELL','BRAND','CASE'];
+ function seasonName(s,i){var r=mulberry(hashStr('nm'+s+'-'+i));return NMA[Math.floor(r()*NMA.length)]+'-'+NMB[Math.floor(r()*NMB.length)]+'-'+('0'+Math.floor(r()*256).toString(16).toUpperCase()).slice(-2);}
+ function renameRoster(){for(var i=0;i<ORGS.length;i++)ORGS[i].name=seasonName(season,i);}
+ // Card finishes, rolled by chance on claim. Rarer finish = flashier + worth more;
+ // the market sets the rest. Two people can card the same organism and get different gems.
+ var FIN={shiny:{n:'SHINY',c:'#cfd8e3',m:1.5},gold:{n:'GOLD',c:'#ffd56b',m:2.2},emerald:{n:'EMERALD',c:'#4fe0a0',m:3.2},sapphire:{n:'SAPPHIRE',c:'#5fb8ff',m:4.2},diamond:{n:'DIAMOND',c:'#d8f0ff',m:7}};
+ function finMult(k){return (FIN[k]&&FIN[k].m)||1;}
+ function finBadge(k){return FIN[k]?'<span class=finbadge style="background:'+FIN[k].c+'">'+FIN[k].n+'</span>':'';}
+ function rollFinish(){var roll=[['',64],['shiny',18],['gold',9],['emerald',5],['sapphire',3],['diamond',1]],t=0,i;for(i=0;i<roll.length;i++)t+=roll[i][1];var x=rnd()*t,a=0;for(i=0;i<roll.length;i++){a+=roll[i][1];if(x<a)return roll[i][0];}return '';}
  function by(id){return ORGS.filter(function(o){return o.id===id;})[0];}
  function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,wallet:wallet,day:window.__FLDAY}));}catch(e){}}
  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
@@ -151,11 +170,12 @@ setInterval(drawTable,1300);
    if(prev.day===window.__FLDAY){(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});rounds=prev.rounds||0;settled=prev.settled||0;}
   }
   // Backfill older cards so they get a tradable code and gene-driven art.
-  cards.forEach(function(c){if(!c.code)c.code=newCode(c.id||0);if(c.risk==null)c.risk=0.4;});
+  cards.forEach(function(c){if(!c.code)c.code=newCode(c.id||0);if(c.risk==null)c.risk=0.4;if(c.finish==null)c.finish='';});
   ORGS=living.map(function(o){var p=byId[o.id];return {id:o.id,name:o.name,house:o.house||'',
    risk:(o.risk!=null?o.risk:0.4),sel:((o.select!=null?o.select:50)/100),press:((o.press!=null?o.press:50)/100),fade:(o.fade==='FADE'),
    bank:(p?p.bank:1000),w:(p?p.w:0),l:(p?p.l:0),streak:(p?p.streak:0),maxStreak:(p?p.maxStreak:0),biggestWin:(p?p.biggestWin:0),peak:(p?p.peak:1000)};});
   if(!ORGS.length)ORGS=[{id:0,name:'THE HOUSE',house:'',risk:0.4,sel:0.5,press:0.5,fade:false,bank:1000,w:0,l:0,streak:0,maxStreak:0,biggestWin:0,peak:1000}];
+  renameRoster();
   renderAll();renderCollection();
   timer=setInterval(tick,RMS);
  });
@@ -210,7 +230,7 @@ setInterval(drawTable,1300);
   var rb=document.getElementById('floorresolve');
   if(rb&&champ){rb.style.display='block';rb.innerHTML='SEASON '+season+' RESOLVED // CHAMPION <b>'+esc(champ.name)+'</b> at '+fmtAbbr(champ.bank)+' chips, hung in the rafters with a one-of-one card.';}
   ORGS.forEach(function(o){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.maxStreak=0;o.biggestWin=0;o.peak=1000;});
-  season++;rounds=0;renderCollection();
+  season++;rounds=0;renameRoster();renderCollection();
  }
  function renderAll(){
   board();leaders();drawMarket();
@@ -236,7 +256,7 @@ setInterval(drawTable,1300);
    if(rb){rb.style.display='block';rb.innerHTML='ONE ROOKIE A SEASON. You have already claimed your card for season '+season+'. Wait for the bell.';}
    return;
   }
-  cards.unshift({code:newCode(id),id:id,name:o.name,house:o.house,fade:o.fade,risk:o.risk,sel:o.sel,press:o.press,claimedSeason:season,claimedRound:rounds});
+  cards.unshift({code:newCode(id),id:id,name:o.name,house:o.house,fade:o.fade,risk:o.risk,sel:o.sel,press:o.press,finish:rollFinish(),claimedSeason:season,claimedRound:rounds});
   cards=cards.slice(0,60);save();renderCollection();
  }
  function tradeAway(code){
@@ -272,6 +292,7 @@ setInterval(drawTable,1300);
   ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
   var cx=W/2,cy=H/2,spokes=3+Math.floor(rng()*7),R=Math.min(W,H)*0.46;
   var col=rarity==='legend'?'#ffd56b':(rarity==='rare'?'#6fb8ff':'hsl('+hue2+',72%,66%)');
+  if(card.finish&&FIN[card.finish])col=FIN[card.finish].c;
   ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=1.2;
   for(var k=0;k<spokes;k++){
    var a=k/spokes*Math.PI*2+rng()*0.4,r1=R*(0.5+rng()*0.5);
@@ -303,7 +324,7 @@ setInterval(drawTable,1300);
   var fin=(c.resolved&&c.resolved.finalBank)||0,ms=(c.resolved&&c.resolved.maxStreak)||0,bw=(c.resolved&&c.resolved.biggestWin)||0;
   var wild=1+(fin>0?Math.log(fin/1000+1)/Math.LN10*0.55:0)+ms*0.04+(bw>0?Math.log(bw+1)/Math.LN10*0.18:0);
   var age=1+ageSeasons(c)*0.12;
-  return Math.max(5000,Math.round(base*rank*wild*age));
+  return Math.max(5000,Math.round(base*rank*wild*age*finMult(c.finish)));
  }
  var BUYERS=['THE SYNDICATE','A WHALE','GHOST BIDDER','THE ARCHIVE','ANON COLLECTOR','THE VAULT','A RIVAL HOUSE','DEEP POCKETS'];
  function makeOffer(c){return {buyer:BUYERS[Math.floor(rnd()*BUYERS.length)],amount:Math.round(cardValue(c)*(0.7+rnd()*0.75))};}
@@ -328,11 +349,11 @@ setInterval(drawTable,1300);
   var el=document.getElementById('floorcards');if(!el)return;
   if(!cards.length){el.innerHTML='<span class="sub">No cards yet. Tap [+] beside a live organism to claim a rookie card (one a season).</span>';return;}
   el.innerHTML=cards.map(function(c){
-   var rar=rarOf(c),cls='lcard'+(rar?' '+rar:'');
+   var rar=rarOf(c),cls='lcard'+(rar?' '+rar:'')+(c.finish?' fin-'+c.finish:'');
    var rk=c.resolved?(c.resolved.legend?'LEGEND // 1 OF 1':(c.resolved.podium?'RARE':'SEASON '+c.resolved.season)):'ROOKIE // SEASON '+c.claimedSeason;
    var hist=c.historic?('<div style="margin-top:4px">'+esc(c.historic)+'</div>'):'<div style="margin-top:4px;color:#8d8a7c">live // resolves at the bell</div>';
    var act=c.listed?'<button class=tbtn data-unlist2="'+esc(c.code)+'" type="button">[ LISTED ]</button>':'<button class=tbtn data-sell="'+esc(c.code)+'" type="button">[ SELL ]</button>';
-   return '<div class="'+cls+'"><canvas class=emb data-code="'+esc(c.code)+'" width=156 height=74></canvas><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span><div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'<div class=code>'+esc(c.code||'')+' // est '+fmt(cardValue(c))+' CRED</div><div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap"><button class=tbtn data-trade="'+esc(c.code)+'" type="button">[ TRADE ]</button>'+act+'</div></div>';
+   return '<div class="'+cls+'"><canvas class=emb data-code="'+esc(c.code)+'" width=156 height=74></canvas><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span>'+finBadge(c.finish)+'<div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'<div class=code>'+esc(c.code||'')+' // est '+fmt(cardValue(c))+' CRED</div><div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap"><button class=tbtn data-trade="'+esc(c.code)+'" type="button">[ TRADE ]</button>'+act+'</div></div>';
   }).join('');
   var cvs=el.querySelectorAll('canvas.emb');for(var i=0;i<cvs.length;i++){var c=cardByCode(cvs[i].getAttribute('data-code'));if(c)drawEmblem(cvs[i],c,rarOf(c));}
   var bs=el.querySelectorAll('[data-trade]');for(var j=0;j<bs.length;j++)bs[j].addEventListener('click',function(){tradeAway(this.getAttribute('data-trade'));});
