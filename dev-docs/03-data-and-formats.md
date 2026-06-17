@@ -128,9 +128,15 @@ manifold is defined immediately.
   there is an in-browser **marketplace**: everyone starts with 1,000,000 CRED,
   earns more by watching, and can SELL a card (collectors bid; accepting destroys
   the card for CRED scaled by its rank, stats, and how long it was held). One
-  rookie claim per season. A HOW IT WORKS panel explains it inline. The collection,
-  rafters, and wallet persist in `localStorage`; the live game reseeds from each
-  day's population. No server.
+  rookie claim per season. Organisms are freshly named every season, and each
+  claim rolls a random finish (SHINY / GOLD / EMERALD / SAPPHIRE / DIAMOND) that
+  tints the art and scales value. A HOW IT WORKS panel explains it inline.
+  **THE OPEN MARKET** is real cross-user trading with no server: POST opens a
+  GitHub issue labeled `card-trade` (the shared ledger, same as the arena); the
+  board reads all `card-trade` issues, shows listings and bids from everyone, and
+  the card transfers via the trade code once buyer and seller agree. The
+  collection, rafters, and wallet persist in `localStorage`; the live game reseeds
+  from each day's population.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus
