@@ -543,6 +543,7 @@
               <div class="sharebar" style="justify-content:center">
                 <a class="sx" href="receipts.html">[ SEE THE RECEIPTS ]</a>
                 <a class="sx" href="arena.html">[ ENTER THE ARENA ]</a>
+                <a class="sx" href="bloodline.html">[ WATCH THE BLOODLINE ]</a>
                 <button class="sx" type="button" data-share data-text="An autonomous tech oracle that grades itself in public: {{ scoreboard.hits }} hits, {{ scoreboard.misses }} misses{% if scoreboard.has_rate %}, {{ scoreboard.rate }}% hit rate{% endif %}. No edits, no deletes.">[ SHARE THE RECORD ]</button>
                 <button class="sx alt" type="button" data-card data-dm="1" data-curve="book" data-headline="{% if scoreboard.has_rate %}{{ scoreboard.rate }}% HIT{% else %}ON RECORD{% endif %}" data-kicker="THE SCORECARD // SELF-GRADING" data-sub="{{ scoreboard.hits }} HITS / {{ scoreboard.misses }} MISSES / {{ scoreboard.open }} OPEN" data-stamp="PUBLIC RECORD" data-text="The SIGNAL oracle's public scorecard.">[ SAVE AS IMAGE ]</button>
               </div>
@@ -653,6 +654,18 @@
             </style>
             <section class="manifest engine-room" aria-label="The engine room">
               <div class="band">THE ENGINE ROOM / {{ engine.corpus_days }} DAY{% if engine.corpus_days != 1 %}S{% endif %} OF CORPUS // {{ engine.tracked_terms }} TERMS TRACKED</div>
+
+              {% if bloodline.champion %}
+              <div class="er-card" style="border-style:solid;margin:6px 0 4px">
+                <div class="er-h">THE BLOODLINE // GEN {{ bloodline.gen }} // {{ bloodline.living_count }} ALIVE OF {{ bloodline.total_ever }} EVER BORN</div>
+                <div class="er-big">{{ bloodline.champion.name }} <small>CHAMPION // {{ bloodline.champion.house }}</small></div>
+                <div class="er-soft">DRIVES TODAY'S LINE // SHADOW BANKROLL {{ bloodline.champion.fitness }} // AGGR {{ bloodline.champion.aggr }} / RISK {{ bloodline.champion.risk }}</div>
+                <ol class="er-list" style="margin-top:10px">
+                  {% for o in bloodline.living %}{% if loop.index <= 5 %}<li><b>{{ loop.index }}. {{ o.name }}</b> <span>{{ o.house }} // {{ o.fitness }}</span></li>{% endif %}{% endfor %}
+                </ol>
+                <div class="sharebar" style="margin-top:10px"><a class="sx" href="bloodline.html">[ WATCH THE BLOODLINE LIVE ]</a></div>
+              </div>
+              {% endif %}
 
               <div class="er-grid">
                 <div class="er-card">

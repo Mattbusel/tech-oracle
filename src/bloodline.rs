@@ -216,7 +216,8 @@ impl Bloodline {
         }
     }
 
-    /// The view the page dramatizes: champion, the living ranked, the recent dead.
+    /// The view the broadcast dramatizes: champion, the living ranked, the recent
+    /// dead, the rival houses, and the newborns.
     pub fn to_json(&self) -> serde_json::Value {
         let mut living: Vec<&Organism> = self.population.iter().filter(|o| o.alive).collect();
         living.sort_by(|a, b| b.fitness.partial_cmp(&a.fitness).unwrap_or(std::cmp::Ordering::Equal));
@@ -227,17 +228,48 @@ impl Bloodline {
             serde_json::json!({
                 "id": o.id, "name": o.name, "born": o.born, "age": o.age,
                 "fitness": o.fitness.round() as i64, "parents": o.parents, "died": o.died,
+                "house": house(&o.genes),
                 "aggr": (o.genes.aggr * 100.0).round() / 100.0,
                 "risk": (o.genes.risk * 100.0).round() / 100.0,
             })
         };
+
+        // The rival houses: emergent lineages by temperament, racing for the den.
+        let mut houses: std::collections::BTreeMap<&str, (i64, f64)> = std::collections::BTreeMap::new();
+        for o in &living {
+            let e = houses.entry(house(&o.genes)).or_insert((0, 0.0));
+            e.0 += 1;
+            e.1 += o.fitness;
+        }
+        let mut house_rows: Vec<serde_json::Value> = houses
+            .into_iter()
+            .map(|(name, (n, fit))| serde_json::json!({ "name": name, "count": n, "fitness": fit.round() as i64 }))
+            .collect();
+        house_rows.sort_by(|a, b| b["fitness"].as_i64().unwrap_or(0).cmp(&a["fitness"].as_i64().unwrap_or(0)));
+
+        let newborns: Vec<serde_json::Value> = living.iter().filter(|o| o.age == 0).map(|o| org(o)).collect();
+
         serde_json::json!({
             "gen": self.gen,
             "living_count": living.len(),
             "total_ever": self.next_id,
             "champion": living.first().map(|o| org(o)),
+            "runner_up": living.get(1).map(|o| org(o)),
             "living": living.iter().map(|o| org(o)).collect::<Vec<_>>(),
             "dead": dead.iter().take(12).map(|o| org(o)).collect::<Vec<_>>(),
+            "houses": house_rows,
+            "newborns": newborns,
         })
+    }
+}
+
+/// The house an organism belongs to, emergent from its temperament (its genes).
+fn house(g: &Genes) -> &'static str {
+    if g.risk >= 0.62 {
+        "THE PLUNGERS"
+    } else if g.risk <= 0.34 {
+        "THE MISERS"
+    } else {
+        "THE STEADY"
     }
 }
