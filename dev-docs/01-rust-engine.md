@@ -1,0 +1,314 @@
+# 01: The Rust engine
+
+The crate is a single binary (`tech-oracle`) plus a separate `wasm/` crate. This
+file documents every module, type, function and constant. Signatures are exact.
+
+Crate manifest (`Cargo.toml`): deps are `reqwest` (blocking, json, rustls-tls,
+no OpenSSL), `serde`/`serde_json`, `feed-rs` (Atom/RSS), `regex` (GitHub scrape;
+`scraper` is deliberately avoided because its codegen pulled a `rand` that fails
+on rustc 1.91), `minijinja`, `chrono`, `anyhow`, `aes-gcm` + `pbkdf2` + `sha2` +
+`base64` + `getrandom` (access codes), `png` (share cards). Release profile is
+`opt-level = 2`.
+
+Module graph (declared in `main.rs`): `access`, `card`, `fetch`, `generate`,
+`model`, `observatory`, `rank`, `render`.
+
+---
+
+## `model.rs` (the data model)
+
+Two structs, both the shared vocabulary of the whole engine.
+
+### `struct Signal`
+One normalized item from any source.
+- `signal_type: String` - source tag: `hn | arxiv | github | lobsters | devto | ars | reddit | news | wiki | crates`.
+- `title: String` - sanitized headline (see `collapse_ws`).
+- `url: String`.
+- `momentum_score: f64` - source-native heat (HN score, GitHub stars-today, recency rank, downloads, pageviews). Comparable only within a source until `rank.rs` normalizes it.
+
+### `struct Prediction` (Serialize + Deserialize)
+The persisted source of truth for a call. All grading fields default via
+`#[serde(default)]` so old records load.
+- `date: String` (YYYY-MM-DD), `prediction_text`, `source_title`, `source_url`, `signal_type`.
+- `status: String` - `OPEN | HIT | MISS`.
+- `keyword: String` - the token watched for resurfacing.
+- `win_if: String` - human-readable win condition.
+- `resolves_by: String` - YYYY-MM-DD deadline.
+- `resolved_on: String` - settle date or "".
+- `confidence: f64` - 0.34..0.95; the line is `1/confidence`.
+- `market: String` - see markets in `05-conventions-and-glossary.md`.
+- `keyword2: String` - the rival, for HEAD-TO-HEAD / CROSSOVER.
+- `target: i64` - index threshold (INDEX) or mention threshold (OVER).
+- `rationale: String` - the machine reasoning tape.
+
+---
+
+## `fetch.rs` (the ten sources)
+
+All fetchers are independent, return `anyhow::Result<Vec<Signal>>`, and are run
+concurrently by `main`. A dead source is logged and skipped.
+
+- `pub fn client() -> reqwest::blocking::Client` - shared client, 20s timeout, a
+  descriptive User-Agent (required by Wikimedia and crates.io). Cheap to clone.
+- `pub fn fetch_hackernews(client)` - Firebase `topstories.json`, then the top 30
+  item lookups concurrently (a nested `thread::scope`). momentum = HN score.
+- `pub fn fetch_arxiv(client)` - Atom feed for `cs.AI OR cs.LG`, newest first;
+  momentum = recency rank (`n - i`).
+- `pub fn fetch_github(client)` - scrapes `github.com/trending?since=daily` with
+  two regexes (repo anchor, "N stars today") and zips them. Defensive: shifted
+  markup yields fewer signals, never a crash. momentum = stars today.
+- `pub fn fetch_lobsters(client)` - `lobste.rs/hottest.json`. momentum = score.
+- `pub fn fetch_devto(client)` - `dev.to/api/articles?per_page=30&top=7`.
+  momentum = positive reactions.
+- `pub fn fetch_ars(client)` - Ars Technica RSS. momentum = recency rank.
+- `pub fn fetch_reddit(client)` - `r/technology/top.json?t=day`. (Often HTTP 403
+  from datacenter IPs; works from the GitHub runner. Fails soft.)
+- `pub fn fetch_news(client)` - Google News Technology RSS; trims the
+  " - Publisher" tail. momentum = recency rank.
+- `pub fn fetch_wikipedia(client)` - Wikimedia REST top pageviews. **Project
+  string must be `en.wikipedia`** (not `en.wikipedia.org`). Walks back day-1..4
+  until a day resolves (pageview data lags). Skips namespaced/meta titles. This
+  is the general-public attention layer. momentum = views.
+- `pub fn fetch_crates(client)` - `crates.io/api/v1/summary`,
+  `most_recently_downloaded`. The real-adoption layer. momentum = recent downloads.
+
+Helpers:
+- `fn collapse_ws(s) -> String` - the house-style sanitizer. Normalizes
+  typographic dashes/quotes/ellipsis to ASCII, **strips emoji and pictographic
+  ranges** (0x1F000+, dingbats, arrows, regional indicators, ZWJ, variation
+  selectors), collapses whitespace. This is the first line of defense for the
+  no-em-dash/no-emoji rule.
+- `fn parse_leading_number(s) -> f64` - "1,234 stars today" -> 1234.0.
+
+To add a source: write `fetch_x`, add a `signal_type` tag, spawn it in `main`'s
+scope and `collect()` it, give it a stage in `observatory::stage_of`, a label in
+`main::source_label` and the template `labels` map, and a color in the template
+CSS (`.s-x` and `i.s-x`/`.sm-dot.s-x`).
+
+---
+
+## `rank.rs` (selection)
+
+- `pub fn rank_and_select(signals: Vec<Signal>, seed: i64, max_picks: usize, weights: &HashMap<String,f64>) -> Vec<Signal>`
+  - Computes per-source max momentum, normalizes each signal to `0..1` within its
+    source (cross-source comparability).
+  - Multiplies the normalized score by the learned source `weight` (default 1.0):
+    sources whose past calls landed get amplified, chronic missers shrink.
+  - Adds a tiny date-seeded per-source nudge so ties rotate which source leads.
+  - Greedily takes the top `max_picks`, skipping near-duplicate topics.
+- `fn near_duplicate(a, b) -> bool` - Jaccard token overlap > 0.6.
+- `fn tokens(s) -> HashSet<String>` - lowercased words len>2 minus a small stoplist.
+
+---
+
+## `generate.rs` (rules -> dated calls)
+
+- `const HORIZON_DAYS: i64 = 30`, `const FUTURES_DAYS: i64 = 90`.
+- `const MARKETS: &[&str]` - the rotation pool: RESURFACE, CHASM, MOMENTUM, OVER,
+  HEAD-TO-HEAD, SURVIVAL, CROSSOVER, INDEX, FUTURES, LONGSHOT.
+- `pub fn generate(signals, date, seed, index, obs: &Observatory) -> Vec<Prediction>`
+  - For each pick: derive `subject` and `keyword`; pull features from the
+    observatory (`velocity_pct`, `cross_source`, `is_crossing`, `rationale`).
+  - Pick a market by `(seed + i) % len`, then validate against the data:
+    - CHASM only survives if the term has a technical origin (room to cross),
+      else falls back to RESURFACE.
+    - HEAD-TO-HEAD / CROSSOVER need a distinct `keyword2` from the next pick.
+    - OVER sets `target` = today's mention count + small jitter.
+    - INDEX sets `target` = current index + 5 + jitter.
+    - FUTURES uses the 90-day horizon.
+  - Build `win_if` per market. Compute `confidence` from the data
+    (cross-source confirmation and positive velocity raise it; later picks,
+    LONGSHOT and CHASM lower it; clamped 0.34..0.9).
+  - `prediction_text`: a challenge frame (`challenge_template`) when the call is
+    CHASM or the term is crossing, else a source-specific `fill_template`.
+- `fn pick_keyword(subject) -> String` - the longest non-trivial token (the
+  watched keyword).
+- `fn horizon(date, days) -> String` - date + days.
+- `fn fill_template(signal_type, subject, seed, idx)` and
+  `fn variants_for(signal_type) -> &[&str]` - the per-source narrative templates
+  (4 variants each for all ten sources, plus a default). Variant chosen by seed+idx.
+- `fn challenge_template(subject, seed, idx)` - the provocative, dated,
+  falsifiable framing for crossing topics ("tail it or fade it").
+- `fn subject_of(s) -> String` and `fn shorten(t, max)` - trim a title to a word
+  boundary.
+
+---
+
+## `observatory.rs` (memory + quant core)
+
+The engine's memory. Persists `data/corpus.json` and derives every quantitative
+view. Pure arithmetic.
+
+### Stage funnel (diffusion axis)
+`pub fn stage_of(src) -> i64`: arxiv 0, github 1, crates 2, lobsters 3, hn 4,
+devto 5, reddit 6, ars 7, news 8, wiki 9. `is_technical` <= 4, `is_general` >= 6.
+A term born technical that reaches a general stage has "crossed the chasm".
+
+### Lexicons / constants
+- `STOP` - tokenizer stoplist (includes discourse-noise words).
+- `SECTORS: &[(&str, &[&str])]` - AI, CHIPS, RUST, CRYPTO, CLOUD, SECURITY,
+  ROBOTS, PLATFORM, each a set of member tokens.
+- `GREED_WORDS`, `FEAR_WORDS` - the sentiment lexicons.
+- `CORPUS_PATH`, `KEEP_DAYS` (180), `PRUNE_AFTER_DAYS` (120).
+
+### Persisted types (Serialize/Deserialize, all pub)
+- `struct CorpusDay { date, total, by_source: BTreeMap, terms: BTreeMap, sectors: BTreeMap, greed: i64 }` - one day's snapshot (terms kept only if count>=2).
+- `struct TermRec { first_seen, first_stage, stages: BTreeMap<source,date>, peak, peak_date, days, last_seen, crossed, crossed_on }` - one term's longitudinal ledger.
+- `struct Corpus { days: Vec<CorpusDay>, terms: BTreeMap<String, TermRec> }`.
+
+### Live type
+- `struct Observatory { today, corpus, today_terms: HashMap, today_sources: HashMap<term, HashSet<source>>, greed: i64, sectors: Vec<(name, index, delta)> }`.
+
+### `pub fn build(signals, date) -> Observatory`
+Reads the corpus (fail-soft to empty), counts today's terms and which sources
+carry each, computes today's sector counts and the greed index, updates each
+`TermRec` (first stage, per-source first-seen dates, peak, active days, chasm
+crossing), prunes terms unseen for 120 days, snapshots today (idempotent),
+trims to 180 days, persists, and computes the sector ticker with deltas vs
+yesterday.
+
+### Methods on `Observatory`
+- `today_count(term)`, `cross_source(term)` (distinct sources today).
+- `velocity_pct(term)` - today vs trailing 7-day average, as a percent (large for
+  a fresh spike off zero baseline).
+- `accel_pct(term)` - change in velocity (curvature).
+- `reach_stage(term)` / `origin_stage(term)` and `reach_label` / `origin_label`.
+- `is_crossing(term)` - technical origin and touching a general source now.
+- `half_life(term) -> Option<f64>` - exponential-decay estimate from the peak.
+- `rationale(term) -> String` - the reasoning tape: `VEL +x%/7d // n/10 FEEDS //
+  REACH X [// ACCEL // CROSSING FROM Y // HALF-LIFE Nd]`.
+- `top_movers(n)` - fastest terms today (count>=2), by velocity.
+- `chasm_watch(n)` - terms crossing now or crossed within 14 days, with origin,
+  reach, age.
+- `greed_label()` - EXTREME FEAR .. EXTREME GREED.
+
+---
+
+## `main.rs` (orchestration)
+
+Constants: `DATA_PATH`, `PULSE_PATH`, `GENOME_PATH`, `WEIGHTS_PATH` (committed
+state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
+
+`fn main()` is the flow in `README.md`. Key helpers:
+
+- `fn collect(name, joined, out)` - drains one fetcher's thread result into the
+  signal list, logging failures/panics.
+- `fn source_label(t) -> &'static str` - the uppercase display label per source.
+- `fn build_intake(signals) -> Value` - per-source count, bar pct, hottest item.
+- `fn resolve_open(preds, today, corpus, general, index)` - the grader. Only
+  settles calls older than today. Per market: HEAD-TO-HEAD (keyword before
+  keyword2), CROSSOVER (keyword out-mentions keyword2 via substring counts),
+  INDEX (index >= target), OVER (count >= target), CHASM (keyword appears in the
+  general-public corpus), default RESURFACE/SURVIVAL/MOMENTUM/FUTURES/LONGSHOT
+  (keyword resurfaces). MISS when the deadline passes.
+- Genome: `struct Genome { gen, hue, wear, quirk, last }`, `fn ghash(s)` (FNV-1a),
+  `fn build_genome(date) -> Value` (mutate once/day: hue random-walk, wear +0.006,
+  gen++, rare quirk via `seed % 5 == 0`).
+- Pulse: `struct PulseDay { date, index, theme }`, `fn build_pulse(signals, date)
+  -> Value` (index from volume/breadth/theme-share, persists history, computes
+  delta and "highest in N"), `fn dominant_theme(signals) -> (String, f64)`.
+- Learning: `const ALL_SOURCES`, `fn source_hit_stats(preds) -> HashMap<src,(hit,miss)>`,
+  `fn compute_weights(stats) -> HashMap<src,f64>` (0.6..1.5, needs >=3 settled or
+  stays 1.0), `fn load_weights()`, `fn save_weights(w)`.
+- `fn build_engine(obs, stats, weights) -> Value` - the Engine Room JSON:
+  sectors, fear_greed, movers, chasm, learning (sorted by weight), corpus_days,
+  tracked_terms.
+- Dataset: `fn csv_escape(s)`, `fn write_dataset(obs, revealed)` - writes
+  `docs/dataset/{predictions.csv, predictions.jsonl, diffusion.csv,
+  datapackage.json, croissant.json, README.md, index.html}`.
+- Persistence/util: `fn load(path)`, `fn save_json(path, archive)`,
+  `fn write_early_payload(path, human, delay_days, embargoed)` (the paid edge,
+  includes market/win_if/rationale/public_reveal_date), `fn dedup(v)`,
+  `fn age_days`, `fn reveal_date`, `fn human_date`, `fn env_or`, `fn clip`,
+  `fn update_readme_block(...)`.
+
+---
+
+## `render.rs` (artifacts)
+
+`pub fn render(generated_human, reveal_delay_days, featured_date_human,
+featured, archive, payment_link, portal_url, early_access_url, intake, pulse,
+genome, engine) -> anyhow::Result<()>`.
+
+It builds the template context and writes everything. What it computes:
+
+- `pages` - the ledger grouped by date; each item carries `no, prediction_text,
+  status, win_if, odds, conf, market, rationale, resolved_on`.
+- `calls` - the flat dot map (last 120).
+- `record` / `by_source` - per-source counts across the archive.
+- `scoreboard` - hits/misses/open/rate + a verdict line.
+- `book` - a flat-stake virtual bankroll settled chronologically (line = 1/conf,
+  conf clamped 0.34..0.95): bank, roi, streak, best run, history.
+- `calibration` - Brier score over settled calls plus a predicted-vs-actual
+  curve in three confidence bands, and a grade ("SHARP / HONEST / MISCALIBRATED").
+- `mood` - the daily look from genome + state: heat (pulse), agit (streak/index/
+  wear), wear, hue, `accent` hex, quirk + quirkName, embers, gen, age, model,
+  verdict, hotHand, tagline. Consumed by the template shaders and CSS.
+
+Artifacts written (all under `docs/` unless noted):
+- `index.html` (the page), `feed.xml` (RSS).
+- `call/N.html` (+ ClaimReview/Claim JSON-LD, the "called it first" date, a
+  receipt stamp) and `call/N.png` (per-call og card via `card.rs`).
+- `topic/<slug>.html` (per-keyword SEO pages).
+- `receipts.html` (the credibility wall; HITs and MISSes with lead time).
+- `sitemap.xml`, `sitemap-images.xml`, `robots.txt`, `<INDEXNOW_KEY>.txt`, and
+  `build/indexnow.json` (the ping payload).
+- `widget.js` (embeddable wire), `og.png` (daily homepage card), `badge.svg`.
+- `cli` + `cli.txt` (curl-able ASCII printout, via `card::ascii_banner`).
+- `llms.txt` (the agent/site map), `amplify.html` (pre-filled submit links),
+  `signal.ics` (subscribable calendar).
+- The agent layer via `write_agent_layer(...)`: `api/{oracle,today,record,
+  observatory}.json`, `openapi.json`, `.well-known/{ai-plugin,mcp}.json`. See
+  `03-data-and-formats.md`.
+- `floor_json` - the live pit positions handed to the template.
+
+Helpers: `hsl_hex`, `day_diff`, `human_date`, `rfc822`, `wrap_chars`,
+`ics_escape`, `enc` (URL), `slug`, `clip_r`, `xml`. Const `INDEXNOW_KEY`.
+
+---
+
+## `card.rs` (server-side PNG cards)
+
+Draws real dot-matrix dots to an RGB buffer with a hand-coded 5x7 font, encodes
+PNG. No font files, no services. Used for every shareable image.
+- `struct Canvas { w, h, buf }` with `new`, `px`, `dot` (filled circle), `text`
+  (dot-matrix glyph run), `save` (png crate).
+- `fn glyph(ch) -> [u8;5]` - the 5x7 font (digits, A-Z, and punctuation incl.
+  `- . , / : ! % + ( ) ' "`). 5 columns, bit i = row i.
+- `fn text_width`, `fn wrap`, `fn sprockets`, `fn wordmark`, `fn footer`, `fn stamp`.
+- `pub fn site_card(...)` - the daily homepage og:image (index, record, call).
+- `pub fn call_card(...)` - per-call og:image with a HIT/MISS/OPEN stamp.
+- `pub fn ascii_banner(text) -> String` - the same font as a 7-row ASCII banner
+  for `/cli`.
+Palette consts: PAPER, INK, SOFT, DESK, STAMP, GREEN.
+
+---
+
+## `access.rs` (the "god pass")
+
+Encrypts the early payload once per code so a shared code unlocks it entirely
+client-side. Format matches the browser decryptor exactly:
+PBKDF2-HMAC-SHA256 (100k) -> AES-256-GCM, ciphertext is `ct||tag`, fields base64.
+- `fn norm(code)` - uppercase, non-alphanumerics to single hyphens, trimmed
+  (so "GOLDEN TICKET" == "GOLDEN-TICKET").
+- `fn sha256hex(s)` - the file name is `sha256hex(norm(code)).json`.
+- `fn encrypt(plaintext, code) -> Result<String>` - random salt+iv, returns
+  `{v, salt, iv, ct}` JSON.
+- `pub fn publish(edge_dir, payload_json, codes)` - writes one
+  `docs/edge/<hash>.json` per code (codes separated by comma/newline), and
+  revokes (deletes) any edge file whose code is no longer listed. No-op when
+  `codes` is empty.
+
+---
+
+## `wasm/` (the particle engine)
+
+`no_std` cdylib compiled to `docs/signal.wasm` (~666 bytes). No wasm-bindgen, raw
+exports, JS reads the buffer straight from wasm memory.
+- `const N: usize = 1400`; `static mut BUF: [f32; N*4]` (x, y, z-depth, phase).
+- `fn rnd()` - xorshift32.
+- `pub extern "C" fn count() -> usize`, `particles() -> *const f32`,
+  `init(seed)`, `step(dt)` - drift up, triangle-wave sway, recycle at the top.
+- Build: `cargo build --release --target wasm32-unknown-unknown` then copy the
+  artifact to `docs/signal.wasm`. Use a forward-slash `CARGO_TARGET_DIR` to avoid
+  a backslash path-mangling bug.
