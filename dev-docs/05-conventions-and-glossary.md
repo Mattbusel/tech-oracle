@@ -87,7 +87,11 @@ crossing terms get the provocative `challenge_template` text.
   a full stat line (win rate, best streak, biggest win, ROI, career-high `best`).
   The all-time greats are kept in a **Hall of Fame**; the top organisms get
   collectible **rookie / pro / hall-of-fame cards** (`card::organism_card` ->
-  `docs/bloodline/cards/`). Daily, every organism shadow-bets the entire settled
+  `docs/bloodline/cards/`, click to zoom). Organisms bet a FRACTION of their
+  bankroll (8%-85% by `risk`, pressed harder on a streak), so a bold run
+  compounds into a fortune or busts to zero, and the standings swing wide. The
+  broadcast flashes a **BIG MONEY** alert for the wildest single shoves
+  (tracked as `big_bet`). Daily, every organism shadow-bets the entire settled
   record (`simulate`); the richest survive, the broke ones die, survivors mate
   (`crossover` + mutation) to refill the population. The fittest living organism
   (the **champion**) drives `generate.rs`'s real line. A genuine genetic

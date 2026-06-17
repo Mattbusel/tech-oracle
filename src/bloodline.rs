@@ -66,6 +66,8 @@ pub struct Organism {
     #[serde(default)]
     pub biggest: i64, // biggest single win
     #[serde(default)]
+    pub big_bet: i64, // largest single stake it shoved
+    #[serde(default)]
     pub roi: i64, // % return on the 1000-chip stake
 }
 
@@ -87,8 +89,9 @@ struct SimStats {
     wins: i64,
     losses: i64,
     max_streak: i64,
-    biggest: f64,
+    biggest: f64,  // biggest single win
     peak: f64,
+    big_bet: f64,  // largest single stake it ever shoved
 }
 
 struct Rng(u64);
@@ -118,16 +121,18 @@ fn conf_of(p: &Prediction) -> f64 {
     if p.confidence > 0.0 { p.confidence } else { 0.65 }
 }
 
-/// One organism shadow-betting the whole settled record with its own genes:
-/// selectivity (skip marginal calls), tail-or-fade, stake variance, and pressing
-/// a hot hand. Returns the full stat line. An organism can bust to zero.
+/// One organism shadow-betting the whole settled record with its own genes. It
+/// bets a FRACTION OF ITS BANKROLL (4% to 60% by `risk`), pressed harder on a hot
+/// streak, so a bold run compounds into a fortune or busts to zero. This is what
+/// makes the standings swing wide instead of bunching together.
 fn simulate(g: &Genes, calls: &[(f64, bool)]) -> SimStats {
     let mut bank = 1000.0_f64;
     let mut streak = 0i64;
     let (mut bets, mut wins, mut losses, mut max_streak) = (0i64, 0i64, 0i64, 0i64);
-    let (mut biggest, mut peak) = (0.0f64, 1000.0f64);
+    let (mut biggest, mut peak, mut big_bet) = (0.0f64, 1000.0f64, 0.0f64);
     let bar = 0.34 + g.select * 0.45; // the confidence floor this organism demands
     let fading = g.fade > 0.5;
+    let frac = 0.08 + g.risk * 0.77; // 8%..85% of the bankroll per bet: hog wild
     for (conf, hit) in calls {
         let c = (conf + g.aggr + g.conf).clamp(0.34, 0.95);
         if c < bar {
@@ -135,8 +140,9 @@ fn simulate(g: &Genes, calls: &[(f64, bool)]) -> SimStats {
         }
         let won = if fading { !*hit } else { *hit };
         let p = if fading { (1.0 - c).max(0.05) } else { c }; // its own line -> odds
-        let streak_bonus = 1.0 + g.press * (streak.min(5) as f64) * 0.25;
-        let stake = (100.0 * (1.0 + g.risk * (1.5 - c)) * streak_bonus).max(20.0).min(bank.max(20.0));
+        let ramp = 1.0 + g.press * (streak.min(6) as f64) * 0.55; // press a hot hand hard
+        let stake = (bank * frac * ramp).min(bank).max(10.0);
+        if stake > big_bet { big_bet = stake; }
         bets += 1;
         if won {
             let w = stake * ((1.0 / p) - 1.0);
@@ -151,12 +157,12 @@ fn simulate(g: &Genes, calls: &[(f64, bool)]) -> SimStats {
             streak = 0;
         }
         if bank > peak { peak = bank; }
-        if bank <= 0.0 {
+        if bank < 1.0 {
             bank = 0.0;
             break; // busted out
         }
     }
-    SimStats { bank, bets, wins, losses, max_streak, biggest, peak }
+    SimStats { bank, bets, wins, losses, max_streak, biggest, peak, big_bet }
 }
 
 fn random_genes(r: &mut Rng) -> Genes {
@@ -258,6 +264,7 @@ impl Bloodline {
             o.win_rate = if s.bets > 0 { s.wins * 100 / s.bets } else { 0 };
             o.max_streak = s.max_streak;
             o.biggest = s.biggest.round() as i64;
+            o.big_bet = s.big_bet.round() as i64;
             o.roi = ((s.bank - 1000.0) / 10.0).round() as i64;
             if s.peak > o.best {
                 o.best = s.peak;
@@ -353,7 +360,7 @@ impl Bloodline {
                 "house": house(&o.genes),
                 "bets": o.bets, "wins": o.wins, "losses": o.losses,
                 "win_rate": o.win_rate, "max_streak": o.max_streak,
-                "biggest": o.biggest, "roi": o.roi,
+                "biggest": o.biggest, "big_bet": o.big_bet, "roi": o.roi,
                 "aggr": (o.genes.aggr * 100.0).round() / 100.0,
                 "risk": (o.genes.risk * 100.0).round() / 100.0,
                 "select": (o.genes.select * 100.0).round() as i64,
