@@ -179,6 +179,25 @@ fn simulate(g: &Genes, calls: &[(f64, bool)], seed: u64) -> SimStats {
     SimStats { bank, bets, wins, losses, max_streak, biggest, peak, big_bet }
 }
 
+/// Run the season and write the full stat line onto an organism. Shared by the
+/// daily re-score and by newly bred organisms so a replacement is judged the
+/// instant it sits down.
+fn apply_stats(o: &mut Organism, calls: &[(f64, bool)]) {
+    let s = simulate(&o.genes, calls, o.id);
+    o.fitness = s.bank;
+    o.bets = s.bets;
+    o.wins = s.wins;
+    o.losses = s.losses;
+    o.win_rate = if s.bets > 0 { s.wins * 100 / s.bets } else { 0 };
+    o.max_streak = s.max_streak;
+    o.biggest = s.biggest.round() as i64;
+    o.big_bet = s.big_bet.round() as i64;
+    o.roi = ((s.bank - 1000.0) / 10.0).round() as i64;
+    if s.peak > o.best {
+        o.best = s.peak;
+    }
+}
+
 fn random_genes(r: &mut Rng) -> Genes {
     // Wide-open ranges so the founding population is genuinely diverse.
     Genes {
@@ -256,9 +275,8 @@ impl Bloodline {
                 });
             }
             self.gen = 1;
-            self.last_evolved = date.to_string();
-            // fall through so the founding generation gets a real stat line on
-            // the same run (the once-per-day guard below still skips the cull).
+            // Do NOT set last_evolved here: the founding generation runs the cull
+            // on its first day too, so it never sits at the table with zeros.
         }
 
         let calls: Vec<(f64, bool)> = resolved
@@ -273,19 +291,7 @@ impl Bloodline {
         // The full stat line is recomputed every run (idempotent: same record,
         // same numbers). career-high `best` only ratchets up.
         for o in self.population.iter_mut().filter(|o| o.alive) {
-            let s = simulate(&o.genes, &calls, o.id);
-            o.fitness = s.bank;
-            o.bets = s.bets;
-            o.wins = s.wins;
-            o.losses = s.losses;
-            o.win_rate = if s.bets > 0 { s.wins * 100 / s.bets } else { 0 };
-            o.max_streak = s.max_streak;
-            o.biggest = s.biggest.round() as i64;
-            o.big_bet = s.big_bet.round() as i64;
-            o.roi = ((s.bank - 1000.0) / 10.0).round() as i64;
-            if s.peak > o.best {
-                o.best = s.peak;
-            }
+            apply_stats(o, &calls);
         }
 
         // The Hall of Fame: the all-time greats by career-high bankroll, kept
@@ -314,6 +320,8 @@ impl Bloodline {
 
         // Cull and breed only once there is a real record to judge on.
         if calls.len() >= JUDGE_MIN {
+            // Selection: keep the top SURVIVORS that still have chips; the
+            // marginal AND anyone who busted to zero is sent to the grave.
             let mut alive: Vec<usize> = (0..self.population.len()).filter(|&i| self.population[i].alive).collect();
             alive.sort_by(|&a, &b| {
                 self.population[b].fitness.partial_cmp(&self.population[a].fitness).unwrap_or(std::cmp::Ordering::Equal)
@@ -322,22 +330,50 @@ impl Bloodline {
                 self.population[i].alive = false;
                 self.population[i].died = date.to_string();
             }
-            let survivors: Vec<usize> = alive.into_iter().take(SURVIVORS).collect();
-            if !survivors.is_empty() {
-                let need = TARGET.saturating_sub(survivors.len());
+            for &i in alive.iter().take(SURVIVORS) {
+                if self.population[i].fitness < 1.0 {
+                    self.population[i].alive = false;
+                    self.population[i].died = date.to_string();
+                }
+            }
+
+            // Repopulate to TARGET with fresh blood, and grave any newborn that
+            // busts the moment it sits down, so the living table NEVER shows a
+            // zero. Bounded rounds keep it from looping on a brutal record.
+            for _round in 0..8 {
+                let parents: Vec<usize> = (0..self.population.len()).filter(|&i| self.population[i].alive).collect();
+                if parents.len() >= TARGET {
+                    break;
+                }
+                let need = TARGET - parents.len();
+                let mut fresh: Vec<usize> = Vec::new();
                 for k in 0..need {
-                    let pa = survivors[k % survivors.len()];
-                    let pb = survivors[(k + 1) % survivors.len()];
-                    let g = crossover(&self.population[pa].genes, &self.population[pb].genes, &mut rng);
-                    let parents = vec![self.population[pa].id, self.population[pb].id];
+                    let g = if parents.len() >= 2 {
+                        crossover(&self.population[parents[k % parents.len()]].genes, &self.population[parents[(k + 1) % parents.len()]].genes, &mut rng)
+                    } else if parents.len() == 1 {
+                        let gg = self.population[parents[0]].genes.clone();
+                        crossover(&gg, &gg, &mut rng)
+                    } else {
+                        random_genes(&mut rng)
+                    };
+                    let prnts: Vec<u64> = parents.iter().take(2).map(|&i| self.population[i].id).collect();
                     let id = self.next_id;
                     self.next_id += 1;
                     let nm = name(&mut rng);
                     self.population.push(Organism {
-                        id, name: nm, born: date.to_string(), parents, genes: g,
+                        id, name: nm, born: date.to_string(), parents: prnts, genes: g,
                         fitness: 1000.0, best: 1000.0, age: 0, alive: true,
                         died: String::new(), ..Default::default()
                     });
+                    fresh.push(self.population.len() - 1);
+                }
+                // Judge the newborns immediately; a bust on arrival is graved at once.
+                for &i in fresh.iter() {
+                    apply_stats(&mut self.population[i], &calls);
+                    if self.population[i].fitness < 1.0 {
+                        self.population[i].alive = false;
+                        self.population[i].died = date.to_string();
+                    }
                 }
             }
             self.gen += 1;

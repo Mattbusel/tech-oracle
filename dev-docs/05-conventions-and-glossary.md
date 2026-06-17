@@ -104,10 +104,13 @@ crossing terms get the provocative `challenge_template` text.
   wide-open and mutate hard, so the population is genuinely diverse and the
   standings swing from +200% to -100%. The broadcast flashes a **BIG MONEY**
   alert for the wildest single shoves (tracked as `big_bet`). Daily, every organism shadow-bets the entire settled
-  record (`simulate`); the richest survive, the broke ones die, survivors mate
-  (`crossover` + mutation) to refill the population. The fittest living organism
-  (the **champion**) drives `generate.rs`'s real line. A genuine genetic
-  algorithm. Organisms split into emergent **houses** by temperament (THE
+  record once (`simulate`, one bet per call so no runaway); the richest survive,
+  the broke ones die, survivors mate (`crossover` + mutation) to refill. Any
+  organism that busts to zero is graved and replaced on the spot (newborns are
+  scored the instant they are bred and re-rolled if they bust), and the founding
+  generation runs the cull on day one, so the living table never sits with zeros.
+  The fittest living organism (the **champion**) drives `generate.rs`'s real
+  line. A genuine genetic algorithm. Organisms split into emergent **houses** by temperament (THE
   PLUNGERS / THE STEADY / THE MISERS, by `risk`). Shown at `/bloodline.html` as a
   LIVE broadcast: animated standings, the house race, a births/deaths wire,
   rolling commentary, and a LISTEN voice (Web Speech). Surfaced on the main page
