@@ -55,9 +55,8 @@
 <div style="margin-top:8px;line-height:1.65">
 <b style="color:#e7e2d4">THE FLOOR.</b> The organisms bet against the manifold's true odds every few seconds, no limit on how high a run can go. But dominance is dangerous: the bigger a lead gets, the more the leader is forced to shove, and underdog wins pay more the further behind they are. So one bad round at the top can hand the throne to a longshot, an UPSET. A season is 100 rounds; at the bell it resolves, the champion is enshrined in the rafters, and every bank resets.<br><br>
 <b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. The cast is freshly named every season, and each card's art is generated from that organism's genes, so no two look alike. There is also a random FINISH on claim (SHINY, GOLD, EMERALD, SAPPHIRE, DIAMOND): two people can card the same organism and get different gems, and the market decides what each is worth. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE.<br><br>
-<b style="color:#e7e2d4">TRADING.</b> Every card carries a unique code. Tap [ TRADE ] on a card to send it away: it leaves your collection and you get a one-time code. Give that code to anyone; they paste it into REDEEM to receive the card.<br><br>
-<b style="color:#e7e2d4">THE MARKET.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] to list a card to the house collectors; bids come in over time; accept one and the card is destroyed for CRED. A card is worth more the higher it ranked, the wilder its stats, and the longer you have held it, so holding pays.<br><br>
-<b style="color:#e7e2d4">THE OPEN MARKET.</b> Tap [ POST ] to list a card for the whole room, not just the house. It opens a GitHub issue, which is the shared ledger (no server, the same trick the arena uses). Real collectors bid in the thread; once you agree on a price, you send them the trade code and they REDEEM it. The room sets the real value.
+<b style="color:#e7e2d4">CRED.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] on a card and the house buys it on the spot for CRED (the card is destroyed). A card is worth more the higher it ranked, the wilder its stats, the rarer its finish, and the longer you have held it, so holding pays.<br><br>
+<b style="color:#e7e2d4">GIVING A CARD.</b> Tap [ GIVE ] to hand a card to a friend: it leaves your collection and you get a code. Send them the code; they paste it into REDEEM and it is theirs. That is the whole trade, no accounts, no server.
 </div></details>
 <div id="floorresolve" style="display:none;margin:10px 0 0;border:1px solid #caa64a;background:#15110a;color:#ffd56b;padding:10px 12px;font-weight:700;font-size:13px"></div>
 <div id="floorbig" style="font-size:12px;color:#ffd56b;min-height:16px;margin:10px 0;letter-spacing:.03em"></div>
@@ -67,18 +66,14 @@
 </div>
 <div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">SEASON LEADERS</div>
 <div class="stat4" id="floorleaders"></div>
-<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">YOUR CARDS // ONE ROOKIE A SEASON, EACH ONE TRADABLE BY CODE</div>
-<div id="floorwallet" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border:1px solid #2a2c28;background:#0d0f0d;padding:9px 12px;margin-bottom:8px;font-size:12px"><span>WALLET <b id="walletval" style="color:#ffd56b">1,000,000</b> CRED</span><span style="color:#8d8a7c;font-size:10px">you earn CRED just by watching. sell a card on the market and it is destroyed for CRED.</span></div>
+<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">YOUR CARDS // ONE ROOKIE A SEASON</div>
+<div id="floorwallet" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border:1px solid #2a2c28;background:#0d0f0d;padding:9px 12px;margin-bottom:8px;font-size:12px"><span>WALLET <b id="walletval" style="color:#ffd56b">1,000,000</b> CRED</span><span style="color:#8d8a7c;font-size:10px">earn CRED by watching // SELL a card to the house for CRED // GIVE one to a friend with a code</span></div>
 <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
-<input id="redeemin" placeholder="paste a trade code to redeem a card..." spellcheck="false" autocomplete="off" style="flex:1;min-width:180px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font-family:inherit;font-size:11px;padding:8px 10px">
+<input id="redeemin" placeholder="got a card code from a friend? paste it here..." spellcheck="false" autocomplete="off" style="flex:1;min-width:180px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font-family:inherit;font-size:11px;padding:8px 10px">
 <button id="redeembtn" type="button" class="listen">[ REDEEM ]</button>
 </div>
 <div id="tradecode" style="display:none;border:1px solid #4a3a12;background:#15110a;color:#e7e2d4;padding:10px 12px;margin-bottom:8px;font-size:11px;line-height:1.5"></div>
 <div id="floorcards"><span class="sub">No cards yet. Tap [+] beside a live organism to claim a rookie card (one a season).</span></div>
-<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">ON THE MARKET // LIST A CARD, COLLECTORS BID, SELL FOR CRED (THE CARD IS DESTROYED)</div>
-<div id="floormarket"><span class="sub">Nothing listed. Tap SELL on a card to put it up for offers.</span></div>
-<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">THE OPEN MARKET // REAL COLLECTORS, POSTED ON GITHUB, NO SERVER</div>
-<div id="floorpublic"><span class="sub">loading live listings...</span></div>
 <div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">THE RAFTERS // SEASON CHAMPIONS, ONE-OF-ONE</div>
 <div id="floorrafters"><span class="sub">Empty. The first champion is crowned at the bell.</span></div>
 </section>
@@ -180,7 +175,6 @@ setInterval(drawTable,1300);
   if(!ORGS.length)ORGS=[{id:0,name:'THE HOUSE',house:'',risk:0.4,sel:0.5,press:0.5,fade:false,bank:1000,w:0,l:0,streak:0,maxStreak:0,biggestWin:0,peak:1000}];
   renameRoster();
   renderAll();renderCollection();
-  loadPublic();setInterval(loadPublic,90000);
   timer=setInterval(tick,RMS);
  });
  function tick(){
@@ -225,7 +219,7 @@ setInterval(drawTable,1300);
    if(upset)bg.innerHTML='<span style="color:#ff5a4d;font-weight:700">UPSET //</span> <b>'+esc(upset.now)+'</b> just dethroned <b>'+esc(upset.was)+'</b> and seized the lead!';
    else if(big)bg.innerHTML='BIGGEST SHOVE // <b>'+esc(big.name)+'</b> '+(big.win?'took down':'shoved')+' <b>'+fmtAbbr(big.stake)+'</b> on '+esc(big.term)+' and '+(big.win?'<span style="color:#6ee07a">CASHED</span>':'<span style="color:#ff8c7d">MISSED</span>');
   }
-  wallet+=INCOME;rollOffers();
+  wallet+=INCOME;
   if(rounds>=SEASON_ROUNDS)resolveSeason();
   renderAll();save();
  }
@@ -250,7 +244,7 @@ setInterval(drawTable,1300);
   season++;rounds=0;renameRoster();renderCollection();
  }
  function renderAll(){
-  board();leaders();drawMarket();
+  board();leaders();
   var ss=document.getElementById('floorseason');if(ss)ss.textContent='SEASON '+season;
   var st=document.getElementById('floorstat');if(st)st.textContent='round '+rounds+'/'+SEASON_ROUNDS+' // '+fmt(settled)+' bets settled';
   var pr=document.getElementById('floorprog');if(pr)pr.style.width=Math.round(rounds/SEASON_ROUNDS*100)+'%';
@@ -276,25 +270,35 @@ setInterval(drawTable,1300);
   cards.unshift({code:newCode(id),id:id,name:o.name,house:o.house,fade:o.fade,risk:o.risk,sel:o.sel,press:o.press,finish:rollFinish(),claimedSeason:season,claimedRound:rounds});
   cards=cards.slice(0,60);save();renderCollection();
  }
+ function showCode(label,blob,btn){
+  var el=document.getElementById('tradecode');if(!el)return;el.style.display='block';
+  el.innerHTML=label+'<br><textarea readonly id="tcval" style="width:100%;height:48px;margin-top:6px;background:#0d0f0d;color:#cfe7b6;border:1px solid #34362f;font:inherit;font-size:10px;padding:6px;resize:vertical">'+esc(blob)+'</textarea><button id="tccopy" type="button" class="listen" style="margin-top:5px">'+(btn||'[ COPY CODE ]')+'</button>';
+  var cp=document.getElementById('tccopy');if(cp)cp.onclick=function(){var ta=document.getElementById('tcval');ta.select();try{document.execCommand('copy');}catch(e){}if(navigator.clipboard)navigator.clipboard.writeText(blob);this.textContent='[ COPIED ]';};
+ }
  function tradeAway(code){
   var i=-1;for(var k=0;k<cards.length;k++)if(cards[k].code===code)i=k;
   if(i<0)return;var card=cards[i];
-  if(!window.confirm('Trade away '+card.name+'? It leaves your collection and you get a one-time code to give someone.'))return;
+  if(!window.confirm('Give '+card.name+' away? It leaves your collection and you get a code to hand to anyone.'))return;
   cards.splice(i,1);save();renderCollection();
   var blob='';try{blob=btoa(JSON.stringify(card));}catch(e){blob='';}
-  var el=document.getElementById('tradecode');if(!el)return;el.style.display='block';
-  el.innerHTML='Traded away <b>'+esc(card.name)+'</b>. Give this code to anyone; they paste it into REDEEM to receive the card. It is gone from your collection.<br><textarea readonly id="tcval" style="width:100%;height:48px;margin-top:6px;background:#0d0f0d;color:#cfe7b6;border:1px solid #34362f;font:inherit;font-size:10px;padding:6px;resize:vertical">'+esc(blob)+'</textarea><button id="tccopy" type="button" class="listen" style="margin-top:5px">[ COPY CODE ]</button>';
-  var cp=document.getElementById('tccopy');if(cp)cp.onclick=function(){var ta=document.getElementById('tcval');ta.select();var ok=false;try{ok=document.execCommand('copy');}catch(e){}if(navigator.clipboard)navigator.clipboard.writeText(blob);this.textContent='[ COPIED ]';};
+  showCode('Gave away <b>'+esc(card.name)+'</b>. Hand this code to anyone; they paste it into REDEEM to get the card.',blob,'[ COPY CODE ]');
+ }
+ function sellCard(code){
+  var c=cardByCode(code);if(!c)return;var v=cardValue(c);
+  if(!window.confirm('Sell '+c.name+' to the house for '+fmt(v)+' CRED? The card is destroyed.'))return;
+  var i=cards.indexOf(c);if(i>=0)cards.splice(i,1);wallet+=v;save();renderCollection();renderAll();
+  var el=document.getElementById('tradecode');if(el){el.style.display='block';el.innerHTML='Sold <b>'+esc(c.name)+'</b> to the house for <b>'+fmt(v)+' CRED</b>. The card was destroyed.';}
  }
  function redeem(str){
-  var el=document.getElementById('tradecode');
+  var el=document.getElementById('tradecode');function msg(h){if(el){el.style.display='block';el.innerHTML=h;}}
   str=(str||'').trim();if(!str)return;
-  var card;try{card=JSON.parse(atob(str));}catch(e){card=null;}
-  if(!card||!card.code||!card.name){if(el){el.style.display='block';el.innerHTML='That is not a valid trade code.';}return;}
-  if(cardByCode(card.code)){if(el){el.style.display='block';el.innerHTML='You already hold <b>'+esc(card.name)+'</b>.';}return;}
+  var obj;try{obj=JSON.parse(atob(str));}catch(e){obj=null;}
+  var card=obj?(obj.card||(obj.code?obj:null)):null;
+  if(!card||!card.code||!card.name){msg('That is not a valid card code.');return;}
+  if(cardByCode(card.code)){msg('You already hold <b>'+esc(card.name)+'</b>.');return;}
   cards.unshift(card);cards=cards.slice(0,60);save();renderCollection();
-  if(el){el.style.display='block';el.innerHTML='Redeemed <b>'+esc(card.name)+'</b> into your collection.';}
   var ri=document.getElementById('redeemin');if(ri)ri.value='';
+  msg('Redeemed <b>'+esc(card.name)+'</b> into your collection.');
  }
  // Procedural emblem: a unique seeded crest per card, colored by its genes.
  function hashStr(s){var h=2166136261>>>0;s=s||'';for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
@@ -343,51 +347,6 @@ setInterval(drawTable,1300);
   var age=1+ageSeasons(c)*0.12;
   return Math.max(5000,Math.round(base*rank*wild*age*finMult(c.finish)));
  }
- var BUYERS=['THE SYNDICATE','A WHALE','GHOST BIDDER','THE ARCHIVE','ANON COLLECTOR','THE VAULT','A RIVAL HOUSE','DEEP POCKETS'];
- function makeOffer(c){return {buyer:BUYERS[Math.floor(rnd()*BUYERS.length)],amount:Math.round(cardValue(c)*(0.7+rnd()*0.75))};}
- function listCard(code){var c=cardByCode(code);if(!c)return;c.listed=true;c.offers=[makeOffer(c),makeOffer(c),makeOffer(c)];save();renderCollection();drawMarket();}
- function unlist(code){var c=cardByCode(code);if(!c)return;c.listed=false;c.offers=[];save();renderCollection();drawMarket();}
- function rollOffers(){var ch=false;cards.forEach(function(c){if(c.listed&&rnd()<0.4){c.offers=c.offers||[];c.offers.push(makeOffer(c));c.offers.sort(function(a,b){return b.amount-a.amount;});if(c.offers.length>6)c.offers=c.offers.slice(0,6);ch=true;}});return ch;}
- function accept(code,idx){var c=cardByCode(code);if(!c||!c.offers||!c.offers[idx])return;var amt=c.offers[idx].amount,nm=c.name,i=cards.indexOf(c);if(i>=0)cards.splice(i,1);wallet+=amt;save();renderCollection();drawMarket();var el=document.getElementById('tradecode');if(el){el.style.display='block';el.innerHTML='Sold <b>'+esc(nm)+'</b> for <b>'+fmt(amt)+' CRED</b>. The card was destroyed.';}}
- function drawMarket(){
-  var el=document.getElementById('floormarket');if(!el)return;
-  var listed=cards.filter(function(c){return c.listed;});
-  if(!listed.length){el.innerHTML='<span class="sub">Nothing listed. Tap SELL on a card to put it up for offers. Selling destroys the card for CRED, scaled by its rank, its stats, and how long you have held it.</span>';return;}
-  el.innerHTML=listed.map(function(c){
-   var off=(c.offers||[]).slice().sort(function(a,b){return b.amount-a.amount;});
-   var rows=off.map(function(o,i){return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:3px 0"><span style="color:#a9a596">'+esc(o.buyer)+' bids <b style="color:#ffd56b">'+fmt(o.amount)+'</b> CRED</span><button class=tbtn data-acc="'+esc(c.code)+'|'+i+'" type="button">[ ACCEPT ]</button></div>';}).join('')||'<div class="sub">waiting for bids...</div>';
-   return '<div style="border:1px solid #34362f;padding:10px;margin:6px 0"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>'+esc(c.name)+'</b><button class=tbtn data-unlist="'+esc(c.code)+'" type="button">[ UNLIST ]</button></div><div style="color:#6f6c5f;font-size:9px;margin:2px 0 6px">est value '+fmt(cardValue(c))+' CRED // held '+ageSeasons(c)+' season(s) // longer held, worth more</div>'+rows+'</div>';
-  }).join('');
-  var ab=el.querySelectorAll('[data-acc]');for(var i=0;i<ab.length;i++)ab[i].addEventListener('click',function(){var p=this.getAttribute('data-acc').split('|');accept(p[0],parseInt(p[1],10));});
-  var ub=el.querySelectorAll('[data-unlist]');for(var j=0;j<ub.length;j++)ub[j].addEventListener('click',function(){unlist(this.getAttribute('data-unlist'));});
- }
- // THE OPEN MARKET. Real cross-user trading with no server: GitHub Issues are the
- // shared ledger (the same trick the Arena uses). You POST a listing (opens an
- // issue), everyone reads it, collectors bid in the thread, and the card itself
- // transfers with the existing trade code once you agree. Fully serverless.
- function mkHandle(){var h='';try{h=localStorage.getItem('signal_handle')||'';}catch(e){}if(!h){h=((window.prompt('Pick a collector handle (shown on your listings and bids):','')||'').trim()).slice(0,24);if(h){try{localStorage.setItem('signal_handle',h);}catch(e){}}}return h||'ANON';}
- function ghNew(label,title,body){if(!MKT_REPO){alert('Open market needs the repo configured.');return;}window.open('https://github.com/'+MKT_REPO+'/issues/new?labels='+encodeURIComponent(label)+'&title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body),'_blank','noopener');}
- function postPublic(code){var c=cardByCode(code);if(!c)return;var h=mkHandle();var rk=c.resolved?(c.resolved.legend?'LEGEND':(c.resolved.podium?'RARE':'CARD')):'ROOKIE';var fin=(FIN[c.finish]&&FIN[c.finish].n)||'';var board=location.origin+location.pathname;ghNew('card-trade','card for trade: '+c.name+(fin?(' ('+fin+')'):''),'Listing a card on THE SIGNAL open market.\n\nCARD-LIST '+c.code+'|'+c.name+'|'+rk+'|'+fin+'|'+cardValue(c)+'|'+h+'\n\nThe board: '+board+'\nBidders, comment with a line: CARD-BID '+c.code+'|<amount>|<your handle>\nWhen we agree I send the trade code and you REDEEM it on the board. The card is one-of-one.');}
- function bidPublic(serial,name){var amt=((window.prompt('Your bid for '+name+' in CRED:','')||'').replace(/[^0-9]/g,''));if(!amt)return;var h=mkHandle();ghNew('card-trade','bid on '+name,'Bidding on a card on THE SIGNAL open market.\n\nCARD-BID '+serial+'|'+amt+'|'+h+'\n\nSeller: reply here and send the trade code when we agree.');}
- function loadPublic(){
-  var el=document.getElementById('floorpublic');if(!el)return;
-  if(!MKT_REPO){el.innerHTML='<span class="sub">Open market unavailable (no repo configured).</span>';return;}
-  fetch('https://api.github.com/repos/'+MKT_REPO+'/issues?labels=card-trade&state=all&per_page=100',{headers:{Accept:'application/vnd.github+json'}}).then(function(r){return r.ok?r.json():[];}).then(function(issues){
-   var lists={},bids={};
-   (issues||[]).forEach(function(it){var b=it.body||'';
-    var lm=b.match(/CARD-LIST\s+([^\n|]+)\|([^\n|]+)\|([^\n|]+)\|([^\n|]*)\|([^\n|]+)\|([^\n]+)/);
-    if(lm){lists[lm[1].trim()]={serial:lm[1].trim(),name:lm[2].trim(),rank:lm[3].trim(),finish:lm[4].trim(),ask:lm[5].trim(),seller:lm[6].trim(),url:it.html_url};}
-    var bm=b.match(/CARD-BID\s+([^\n|]+)\|([^\n|]+)\|([^\n]+)/);
-    if(bm){var sr=bm[1].trim();(bids[sr]=bids[sr]||[]).push({amount:parseInt(bm[2].replace(/[^0-9]/g,''),10)||0,bidder:bm[3].trim()});}
-   });
-   var keys=Object.keys(lists);
-   if(!keys.length){el.innerHTML='<span class="sub">No public listings yet. Tap POST on one of your cards to list it for the whole room. It opens a GitHub issue, which is the shared ledger (no server). Collectors bid in the thread; once you agree, send the trade code and they REDEEM it above.</span>';return;}
-   el.innerHTML=keys.map(function(k){var L=lists[k];var bs=(bids[k]||[]).sort(function(a,b){return b.amount-a.amount;});var top=bs.length?('top bid <b style="color:#ffd56b">'+fmt(bs[0].amount)+'</b> CRED by '+esc(bs[0].bidder)):'no bids yet';
-    return '<div style="border:1px solid #34362f;padding:10px;margin:6px 0"><div style="display:flex;justify-content:space-between;gap:8px;align-items:center"><b>'+esc(L.name)+'</b><span style="color:#6f6c5f;font-size:9px">'+esc(L.rank)+(L.finish?(' // '+esc(L.finish)):'')+'</span></div><div style="color:#a9a596;margin:4px 0">ask '+esc(L.ask)+' CRED // '+top+' // seller '+esc(L.seller)+'</div><div style="display:flex;gap:6px;flex-wrap:wrap"><button class=tbtn data-bid="'+esc(L.serial)+'~'+esc(L.name)+'" type="button">[ BID ]</button><a class=tbtn href="'+esc(L.url)+'" target="_blank" rel="noopener" style="text-decoration:none">[ THREAD ]</a></div></div>';
-   }).join('');
-   var bb=el.querySelectorAll('[data-bid]');for(var i=0;i<bb.length;i++)bb[i].addEventListener('click',function(){var p=this.getAttribute('data-bid').split('~');bidPublic(p[0],p[1]);});
-  }).catch(function(){el.innerHTML='<span class="sub">Could not reach the open market right now.</span>';});
- }
  function rarOf(c){return c.resolved&&c.resolved.legend?'legend':(c.resolved&&c.resolved.podium?'rare':'');}
  function drawCards(){
   var el=document.getElementById('floorcards');if(!el)return;
@@ -396,14 +355,11 @@ setInterval(drawTable,1300);
    var rar=rarOf(c),cls='lcard'+(rar?' '+rar:'')+(c.finish?' fin-'+c.finish:'');
    var rk=c.resolved?(c.resolved.legend?'LEGEND // 1 OF 1':(c.resolved.podium?'RARE':'SEASON '+c.resolved.season)):'ROOKIE // SEASON '+c.claimedSeason;
    var hist=c.historic?('<div style="margin-top:4px">'+esc(c.historic)+'</div>'):'<div style="margin-top:4px;color:#8d8a7c">live // resolves at the bell</div>';
-   var act=c.listed?'<button class=tbtn data-unlist2="'+esc(c.code)+'" type="button">[ LISTED ]</button>':'<button class=tbtn data-sell="'+esc(c.code)+'" type="button">[ SELL ]</button>';
-   return '<div class="'+cls+'"><canvas class=emb data-code="'+esc(c.code)+'" width=156 height=74></canvas><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span>'+finBadge(c.finish)+'<div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'<div class=code>'+esc(c.code||'')+' // est '+fmt(cardValue(c))+' CRED</div><div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap"><button class=tbtn data-trade="'+esc(c.code)+'" type="button">[ TRADE ]</button>'+act+'<button class=tbtn data-public="'+esc(c.code)+'" type="button">[ POST ]</button></div></div>';
+   return '<div class="'+cls+'"><canvas class=emb data-code="'+esc(c.code)+'" width=156 height=74></canvas><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span>'+finBadge(c.finish)+'<div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'<div class=code>'+esc(c.code||'')+' // worth '+fmt(cardValue(c))+' CRED</div><div style="margin-top:5px;display:flex;gap:5px;flex-wrap:wrap"><button class=tbtn data-sell="'+esc(c.code)+'" type="button">[ SELL ]</button><button class=tbtn data-trade="'+esc(c.code)+'" type="button">[ GIVE ]</button></div></div>';
   }).join('');
   var cvs=el.querySelectorAll('canvas.emb');for(var i=0;i<cvs.length;i++){var c=cardByCode(cvs[i].getAttribute('data-code'));if(c)drawEmblem(cvs[i],c,rarOf(c));}
   var bs=el.querySelectorAll('[data-trade]');for(var j=0;j<bs.length;j++)bs[j].addEventListener('click',function(){tradeAway(this.getAttribute('data-trade'));});
-  var ss=el.querySelectorAll('[data-sell]');for(var k=0;k<ss.length;k++)ss[k].addEventListener('click',function(){listCard(this.getAttribute('data-sell'));});
-  var us=el.querySelectorAll('[data-unlist2]');for(var m=0;m<us.length;m++)us[m].addEventListener('click',function(){unlist(this.getAttribute('data-unlist2'));});
-  var ps=el.querySelectorAll('[data-public]');for(var p=0;p<ps.length;p++)ps[p].addEventListener('click',function(){postPublic(this.getAttribute('data-public'));});
+  var ss=el.querySelectorAll('[data-sell]');for(var k=0;k<ss.length;k++)ss[k].addEventListener('click',function(){sellCard(this.getAttribute('data-sell'));});
  }
  function drawRafters(){
   var el=document.getElementById('floorrafters');if(!el)return;

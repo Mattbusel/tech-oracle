@@ -128,19 +128,17 @@ manifold is defined immediately.
   fraction it is forced to stake (dominance is exposure), and underdog wins pay a
   multiplier that grows the further behind they sit (giant-killer), so one bad round
   at the top can flip the lead and fire an UPSET banner.
-  **Cards trade by code** (TRADE gives a one-time code, REDEEM accepts one) and
-  there is an in-browser **marketplace**: everyone starts with 1,000,000 CRED,
-  earns more by watching, and can SELL a card (collectors bid; accepting destroys
-  the card for CRED scaled by its rank, stats, and how long it was held). One
-  rookie claim per season. Organisms are freshly named every season, and each
-  claim rolls a random finish (SHINY / GOLD / EMERALD / SAPPHIRE / DIAMOND) that
-  tints the art and scales value. A HOW IT WORKS panel explains it inline.
-  **THE OPEN MARKET** is real cross-user trading with no server: POST opens a
-  GitHub issue labeled `card-trade` (the shared ledger, same as the arena); the
-  board reads all `card-trade` issues, shows listings and bids from everyone, and
-  the card transfers via the trade code once buyer and seller agree. The
-  collection, rafters, and wallet persist in `localStorage`; the live game reseeds
-  from each day's population.
+  **Currency + cards (kept deliberately simple).** Everyone starts with 1,000,000
+  CRED and earns more just by watching. **SELL** has the house buy a card instantly
+  for CRED (the card is destroyed) at a value scaled by its rank, stats, finish, and
+  how long it was held, so holding pays. That keeps every CRED move exact and
+  atomic against the house, never an honor-system peer transfer. **GIVE** hands a
+  card to a friend by code (it leaves your collection; they REDEEM the code to
+  receive it), no accounts, no server. One rookie claim per season; organisms are
+  freshly named every season; each claim rolls a random finish (SHINY / GOLD /
+  EMERALD / SAPPHIRE / DIAMOND) that tints the art and scales value. A HOW IT WORKS
+  panel explains it inline. The collection, rafters, and wallet persist in
+  `localStorage`; the live game reseeds from each day's population.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus
