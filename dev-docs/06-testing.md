@@ -21,7 +21,7 @@ Run:
 $env:CARGO_HOME="C:\tech-oracle\.cargo-home"; $env:CARGO_TARGET_DIR="C:\tech-oracle\target"
 cargo test --release
 ```
-Current state: **41 tests, all passing.**
+Current state: **45 tests, all passing.**
 
 What each file covers:
 - `main.rs` (inline) - the grader `resolve_open` for every market (RESURFACE
@@ -36,10 +36,12 @@ What each file covers:
 - `tests_generate.rs` - `pick_keyword`, `challenge_template`, and that every
   generated call across many seeds is well-formed (valid market, win condition,
   confidence in 0.34..0.9, resolves_by after the call date).
-- `tests_bloodline.rs` - `simulate` determinism and gene sensitivity, house
-  assignment by temperament, neutral champion of an empty population, crossover
-  staying in gene bounds, and **evolve idempotency per day** (via
-  `evolve_in_memory`, the IO-free core of `evolve`).
+- `tests_bloodline.rs` - `simulate` determinism, gene sensitivity and a full
+  stat line, a fader losing to an accurate oracle, selectivity skipping marginal
+  calls, house assignment by temperament, neutral champion of an empty
+  population, crossover staying in gene bounds (all six genes), **evolve
+  idempotency per day** (via `evolve_in_memory`, the IO-free core), and the Hall
+  of Fame inducting and capping across generations.
 - `tests_access.rs` - code normalization, sha256hex stability, and that
   `encrypt` emits a parseable, base64 envelope.
 - `tests_card.rs` - the 5x7 font covers A-Z and 0-9, unknown chars render blank,

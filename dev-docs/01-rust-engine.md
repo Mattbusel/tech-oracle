@@ -16,11 +16,19 @@ Module graph (declared in `main.rs`): `access`, `bloodline`, `card`, `fetch`,
 ## `bloodline.rs` (the breeding population / genetic algorithm)
 
 The oracle's strategy is evolved by a population, not a single hill-climb.
-- `struct Genes { aggr, risk, conf }` - one organism's instincts.
-- `struct Organism { id, name, born, parents, genes, fitness, age, alive, died }`.
-- `struct Bloodline { next_id, gen, population }` - persisted to `data/bloodline.json`.
-- `fn simulate(genes, calls) -> f64` - the fitness function: shadow bankroll over
-  the settled record, each call staked/lined by the organism's genes.
+- `struct Genes { aggr, risk, conf, select, press, fade }` - six heritable
+  instincts: line aggressiveness, stake variance, confidence bias, selectivity
+  (how high a bar before it bets), conviction (pressing a hot streak), and
+  tail-vs-fade (>0.5 = contrarian, bets against the oracle).
+- `struct Organism { id, name, born, parents, genes, fitness, best, age, alive,
+  died, bets, wins, losses, win_rate, max_streak, biggest, roi }` - identity plus
+  the full stat line (career-high `best` ratchets up; the rest recompute daily).
+- `struct Bloodline { next_id, gen, population, last_evolved, hall_of_fame }` -
+  persisted to `data/bloodline.json`. `hall_of_fame` keeps the all-time greats by
+  career-high bankroll, never pruned.
+- `struct SimStats` + `fn simulate(genes, calls) -> SimStats` - the betting sim:
+  selectivity skips marginal calls, tail/fade, stake variance, pressing a streak,
+  and busting to zero. Returns bank plus the full stat line. This is the fitness.
 - `pub fn load() -> Bloodline`.
 - `Bloodline::champion_genes()` - the fittest living organism's genes (drives the
   live line in `generate`).
@@ -32,7 +40,10 @@ The oracle's strategy is evolved by a population, not a single hill-climb.
   else score everyone via `simulate`, age them, and once there are >= 5 settled
   calls cull to `SURVIVORS` (7), breed back to `TARGET` (10) via `crossover` +
   mutation, prune the graveyard, persist.
-- `Bloodline::to_json()` - champion + living (ranked) + recent dead, for the page.
+- `Bloodline::to_json()` - champion + living (ranked, with stat lines) + recent
+  dead + houses + newborns + rookies (promising young) + pros (top career) +
+  hall_of_fame, for the broadcast.
+The Hall of Fame updates every run (idempotent: `best` only ratchets).
 Internals: a small LCG `Rng` seeded by `ghash(date)` (deterministic), a `NAMES`
 word list for organism names.
 
@@ -320,6 +331,9 @@ PNG. No font files, no services. Used for every shareable image.
 - `fn text_width`, `fn wrap`, `fn sprockets`, `fn wordmark`, `fn footer`, `fn stamp`.
 - `pub fn site_card(...)` - the daily homepage og:image (index, record, call).
 - `pub fn call_card(...)` - per-call og:image with a HIT/MISS/OPEN stamp.
+- `pub fn organism_card(...)` - a collectible bloodline trading card (PRO /
+  ROOKIE / HALL OF FAME): colored kind band, name, house, a stat line, and gene
+  bars. `Canvas::fill_rect` draws the bars. Written to `docs/bloodline/cards/`.
 - `pub fn ascii_banner(text) -> String` - the same font as a 7-row ASCII banner
   for `/cli`.
 Palette consts: PAPER, INK, SOFT, DESK, STAMP, GREEN.

@@ -51,9 +51,11 @@ Learned per-source selection weights (online learning):
 
 ### `data/bloodline.json`
 The breeding population of strategy-organisms (the genetic algorithm). `{ next_id,
-gen, population: [{ id, name, born, parents, genes{aggr,risk,conf}, fitness, age,
-alive, died }] }`. The fittest living organism's genes drive the live betting
-line. Must be committed every run or the species resets.
+gen, last_evolved, population: [{ id, name, born, parents,
+genes{aggr,risk,conf,select,press,fade}, fitness, best, age, alive, died, bets,
+wins, losses, win_rate, max_streak, biggest, roi }], hall_of_fame: [...] }`. The
+fittest living organism's genes drive the live betting line; the Hall of Fame
+keeps the all-time greats. Must be committed every run or the species resets.
 
 ### `data/corpus.json` (the moat)
 The growing discourse time series. Two parts:
@@ -83,8 +85,11 @@ This file powers velocity, diffusion/CHASM, sectors, and the dataset.
 - `sleep.html` - SLEEP MODE: a standalone, always-running dreamscape destination
   (the term pool and forms are baked in; the client recombines new dreams
   forever). Not a takeover; reached from the footer.
-- `bloodline.html` + `api/bloodline.json` - THE BLOODLINE: the living population
-  of strategy-organisms, ranked, with the champion and the graveyard.
+- `bloodline.html` + `api/bloodline.json` - THE BLOODLINE, LIVE: the living
+  population with full stat lines, the rival houses, births/deaths wire, the Hall
+  of Fame, and rolling commentary with a voice.
+- `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
+  trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus
   the raw `pool` (top terms) and `forms` so any client can recombine endlessly.
 

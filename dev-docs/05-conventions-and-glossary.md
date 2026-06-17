@@ -82,8 +82,12 @@ crossing terms get the provocative `challenge_template` text.
   (`html.dead` -> `#flatline`) at zero.
 - **The Bloodline / self-evolution**: the oracle is a *breeding population* of
   gambler-organisms (`bloodline.rs`, `data/bloodline.json`), not one strategy.
-  Each organism has strategy genes (`aggr` line aggressiveness, `risk` longshot
-  appetite, `conf` bias). Daily, every organism shadow-bets the entire settled
+  Each organism has six strategy genes (`aggr` line, `risk` stake variance,
+  `conf` bias, `select` selectivity, `press` conviction, `fade` tail-vs-fade) and
+  a full stat line (win rate, best streak, biggest win, ROI, career-high `best`).
+  The all-time greats are kept in a **Hall of Fame**; the top organisms get
+  collectible **rookie / pro / hall-of-fame cards** (`card::organism_card` ->
+  `docs/bloodline/cards/`). Daily, every organism shadow-bets the entire settled
   record (`simulate`); the richest survive, the broke ones die, survivors mate
   (`crossover` + mutation) to refill the population. The fittest living organism
   (the **champion**) drives `generate.rs`'s real line. A genuine genetic
