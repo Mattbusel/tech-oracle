@@ -833,43 +833,53 @@ fn build_engine(
         })
         .collect();
 
-    // THE MANIFOLD readout: the most prominent topics that actually have a
-    // trajectory to read (real history, not today's cold-start spikes), each placed
-    // on the relativistic attention manifold. Featuring defined topics is what keeps
-    // the live plot populated instead of stuck "warming up".
-    let manifold: Vec<serde_json::Value> = {
+    // THE MANIFOLD readout + the live bet pool, from one scan of the topics that
+    // actually have a trajectory (real history, not today's cold-start spikes). The
+    // panel plots the top 14; the bet pool (top ~60, each with the manifold's true
+    // probability and direction) feeds the always-on client-side LIVE FLOOR where
+    // the bloodline gambles every round.
+    let (manifold, bet_pool): (Vec<serde_json::Value>, Vec<serde_json::Value>) = {
         let r3 = |x: f64| (x * 1000.0).round() / 1000.0;
-        let mut scored: Vec<(f64, serde_json::Value)> = obs
+        let mut scored: Vec<(f64, serde_json::Value, serde_json::Value)> = obs
             .corpus
             .terms
             .iter()
-            .filter(|(_, rec)| rec.days >= 14)
+            .filter(|(_, rec)| rec.days >= 10)
             .filter_map(|(t, rec)| {
                 let r = manifold::analyze(&obs.trajectory(t));
                 if !r.defined() {
                     return None;
                 }
                 let prominence = rec.peak as f64 * (rec.days as f64).sqrt();
-                Some((
-                    prominence,
-                    serde_json::json!({
-                        "term": t.to_uppercase(),
-                        "regime": r.regime.label(),
-                        "phase": r.phase().label(),
-                        "defined": true,
-                        "beta": r3(r.beta),
-                        "gamma": r3(r.gamma),
-                        "rel_momentum": r3(r.rel_return),
-                        "ds2": r3(r.ds2),
-                        "curvature": (r.curvature * 100.0).round() / 100.0,
-                        "geodesic_trend": r3(r.trend),
-                        "prob_rising": (r.prob_rising() * 100.0).round() as i64,
-                    }),
-                ))
+                let panel = serde_json::json!({
+                    "term": t.to_uppercase(),
+                    "regime": r.regime.label(),
+                    "phase": r.phase().label(),
+                    "defined": true,
+                    "beta": r3(r.beta),
+                    "gamma": r3(r.gamma),
+                    "rel_momentum": r3(r.rel_return),
+                    "ds2": r3(r.ds2),
+                    "curvature": (r.curvature * 100.0).round() / 100.0,
+                    "geodesic_trend": r3(r.trend),
+                    "prob_rising": (r.prob_rising() * 100.0).round() as i64,
+                });
+                // The bet: the manifold's call (rise/fall) and its true probability,
+                // so an organism that tails the algo wins at that rate.
+                let pool = serde_json::json!({
+                    "term": t.to_uppercase(),
+                    "p": r3(r.prob_rising()),
+                    "dir": if r.trend >= 0.0 { 1 } else { -1 },
+                    "phase": r.phase().label(),
+                    "regime": r.regime.label(),
+                });
+                Some((prominence, panel, pool))
             })
             .collect();
         scored.sort_by(|a, b| b.0.partial_cmp(&a.0).unwrap_or(std::cmp::Ordering::Equal));
-        scored.into_iter().take(14).map(|(_, v)| v).collect()
+        let manifold = scored.iter().take(14).map(|(_, p, _)| p.clone()).collect();
+        let bet_pool = scored.iter().take(60).map(|(_, _, p)| p.clone()).collect();
+        (manifold, bet_pool)
     };
 
     let mut learning: Vec<serde_json::Value> = ALL_SOURCES
@@ -901,6 +911,7 @@ fn build_engine(
         "movers": movers,
         "chasm": chasm,
         "manifold": manifold,
+        "bet_pool": bet_pool,
         "learning": learning,
     })
 }

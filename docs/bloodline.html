@@ -14,6 +14,19 @@
 <p class="sub">The oracle is a breeding population. Every organism shadow-bets the whole record with its own inherited nerve; the rich survive and mate, the broke die, and the champion sets tomorrow's real line. This is the channel. It does not stop.</p>
 <div class="comm"><div class="txt" id="comm">tuning in...</div><button class="listen" id="listen" type="button">[ LISTEN ]</button></div>
 <div class="bigmoney" id="bigmoney"></div>
+<section id="floor" style="margin-top:18px;border:1px solid #2a2c28;background:#101210;padding:16px">
+<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+<div class="hd" style="border:0;margin:0;padding:0;color:#6ee07a">THE LIVE FLOOR // THE BLOODLINE NEVER STOPS BETTING</div>
+<div style="display:flex;gap:8px;align-items:center"><span id="floorstat" style="font-size:11px;color:#8d8a7c"></span><button id="floorspeed" type="button" class="listen">[ FASTER ]</button></div>
+</div>
+<p class="sub" style="margin:6px 0 0">Every round the organisms shove on a fresh batch of topics, each settled against the manifold's true odds. Tail the algo and you grow; fade it and you bleed. It does not stop.</p>
+<div id="floorbig" style="font-size:12px;color:#ffd56b;min-height:16px;margin:10px 0;letter-spacing:.03em"></div>
+<div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-top:6px">
+<div><div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin-bottom:6px">LIVE BETS</div><div id="floorticker" style="font-size:12px;line-height:1.5">setting the line...</div></div>
+<div><div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin-bottom:6px">LIVE BANKROLLS</div><div id="floorboard" style="font-size:12px"></div></div>
+</div>
+</section>
+
 <div class="grid"><div><div class="hd" id="tablehd">THE TABLE // LIVING, BY SHADOW BANKROLL</div><div id="table"></div></div><div><div class="hd">THE HOUSES</div><div id="houses"></div><div class="hd">THE WIRE // BIRTHS &amp; DEATHS</div><div id="events"></div></div></div>
 <div class="hd">THE CARDS // PROS &amp; ROOKIES</div><div class="cards" id="cards"></div>
 <div class="hd">HALL OF FAME // ALL-TIME GREATS</div><div id="hof"></div>
@@ -65,4 +78,69 @@ window.addEventListener('keydown',function(e){if(e.key==='Escape')zoom.classList
 setInterval(nextLine,5200);
 setInterval(drawTable,1300);
 </script>
-</body></html>
+<script>
+(function(){
+ var POOL=[],ORGS=[],rounds=0,settled=0,RMS=20000,timer=null,KEY='signal_floor_v2';
+ function rnd(){return Math.random();}
+ function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+ function fmt(n){return Math.round(n||0).toLocaleString();}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,day:window.__FLDAY}));}catch(e){}}
+ function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
+ Promise.all([
+  fetch('api/bloodline.json').then(function(r){return r.json();}).catch(function(){return null;}),
+  fetch('api/observatory.json').then(function(r){return r.json();}).catch(function(){return null;})
+ ]).then(function(res){
+  var bl=(res[0]&&res[0].bloodline)||{},ob=res[1]||{};
+  window.__FLDAY=(res[0]&&res[0].generated)||'seed';
+  POOL=(ob.bet_pool||[]).filter(function(b){return b&&b.term;});
+  if(!POOL.length)POOL=[{term:'SIGNAL',p:0.6,dir:1},{term:'MACHINE',p:0.45,dir:-1},{term:'MANIFOLD',p:0.7,dir:1}];
+  var living=bl.living||[],prev=load(),byId={};
+  if(prev&&prev.day===window.__FLDAY)(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});
+  ORGS=living.map(function(o){var p=byId[o.id];return {id:o.id,name:o.name,house:o.house||'',
+   risk:(o.risk!=null?o.risk:0.4),sel:((o.select!=null?o.select:50)/100),press:((o.press!=null?o.press:50)/100),fade:(o.fade==='FADE'),
+   bank:(p?p.bank:1000),w:(p?p.w:0),l:(p?p.l:0),streak:(p?p.streak:0)};});
+  if(prev&&prev.day===window.__FLDAY){rounds=prev.rounds||0;settled=prev.settled||0;}
+  if(!ORGS.length)ORGS=[{id:0,name:'THE HOUSE',house:'',risk:0.4,sel:0.5,press:0.5,fade:false,bank:1000,w:0,l:0,streak:0}];
+  board();tick();
+ });
+ function board(){
+  var el=document.getElementById('floorboard');if(!el)return;
+  var s=ORGS.slice().sort(function(a,b){return b.bank-a.bank;}).slice(0,10);
+  var mx=Math.max.apply(null,s.map(function(o){return o.bank||1;}));
+  el.innerHTML=s.map(function(o,i){var w=Math.max(3,Math.round((o.bank/mx)*100));var col=o.bank>=1000?'#6ee07a':'#ff8c7d';return '<div style="margin:5px 0"><div style="display:flex;justify-content:space-between;gap:6px"><span class=nm style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(i+1)+'. '+esc(o.name)+' <span class=tag>'+(o.fade?'FADE':'TAIL')+'</span></span><span style="color:'+col+';font-weight:700;flex:0 0 auto">'+fmt(o.bank)+'</span></div><div class=bar><i style="width:'+w+'%;background:'+col+'"></i></div></div>';}).join('');
+  var st=document.getElementById('floorstat');if(st)st.textContent=rounds+' rounds // '+fmt(settled)+' bets settled';
+ }
+ function tick(){
+  if(!ORGS.length||!POOL.length)return;
+  var K=8+Math.floor(rnd()*16);
+  var picks=POOL.slice().sort(function(){return rnd()-0.5;}).slice(0,K);
+  var rows=[],big=null;
+  picks.forEach(function(b){
+   var rise=rnd()<b.p,actual=rise?1:-1;
+   ORGS.forEach(function(o){
+    if(o.bank<1)return;
+    if(rnd()>(0.35+(1-o.sel)*0.5))return;
+    var side=o.fade?-b.dir:b.dir;
+    var frac=(0.03+o.risk*0.22)*(1+o.press*Math.min(Math.abs(o.streak),5)*0.12);
+    var stake=Math.max(1,Math.min(o.bank,Math.round(o.bank*frac)));
+    var win=(side===actual);
+    if(win){o.bank+=stake;o.w++;o.streak=o.streak>=0?o.streak+1:1;}
+    else{o.bank-=stake;o.l++;o.streak=o.streak<=0?o.streak-1:-1;}
+    settled++;
+    if(!big||stake>big.stake)big={name:o.name,stake:stake,term:b.term,win:win};
+    if(rows.length<14)rows.push({term:b.term,name:o.name,side:side,stake:stake,win:win});
+   });
+  });
+  ORGS.forEach(function(o){if(o.bank<1){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.name=(o.name+"'").slice(0,22);}});
+  rounds++;
+  var tk=document.getElementById('floorticker');
+  if(tk)tk.innerHTML=rows.map(function(r){var c=r.win?'#6ee07a':'#ff8c7d';return '<div style="padding:3px 0;border-bottom:1px dotted #232520"><b>'+esc(r.name)+'</b> '+(r.side>0?'backs':'fades')+' <b>'+esc(r.term)+'</b> '+(r.side>0?'UP':'DN')+' for '+fmt(r.stake)+'<span style="color:'+c+';font-weight:700;float:right">'+(r.win?'WON':'LOST')+'</span></div>';}).join('')||'<span style="color:#8d8a7c">no takers this round</span>';
+  var bg=document.getElementById('floorbig');
+  if(bg&&big)bg.innerHTML='BIGGEST SHOVE // <b>'+esc(big.name)+'</b> put <b>'+fmt(big.stake)+'</b> on '+esc(big.term)+' and '+(big.win?'<span style="color:#6ee07a">CASHED</span>':'<span style="color:#ff8c7d">MISSED</span>');
+  board();save();
+ }
+ var sb=document.getElementById('floorspeed');
+ if(sb)sb.addEventListener('click',function(){RMS=(RMS>9000)?5000:20000;this.textContent=(RMS<9000)?'[ SLOWER ]':'[ FASTER ]';if(timer){clearInterval(timer);timer=setInterval(tick,RMS);}});
+ timer=setInterval(tick,RMS);
+})();
+</script></body></html>

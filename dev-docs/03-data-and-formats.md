@@ -107,7 +107,12 @@ manifold is defined immediately.
   forever). Not a takeover; reached from the footer.
 - `bloodline.html` + `api/bloodline.json` - THE BLOODLINE, LIVE: the living
   population with full stat lines, the rival houses, births/deaths wire, the Hall
-  of Fame, and rolling commentary with a voice.
+  of Fame, and rolling commentary with a voice. Plus **THE LIVE FLOOR**: a
+  never-stopping client-side betting pit (injected into `bloodline.html`). Every
+  round (~20s, FASTER on demand) the organisms gamble on a batch of `bet_pool`
+  topics, settled against the manifold's true odds, so tailers grow and faders
+  bleed; banks compound across the day in `localStorage`. No server, no per-round
+  bet cap.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus
@@ -133,8 +138,10 @@ Static, read-only, CORS-open (GitHub Pages sets `access-control-allow-origin: *`
 - `api/record.json` - `total, scoreboard, book, calibration, calls[]` (the whole
   record).
 - `api/observatory.json` - `pulse, fear_greed, sectors, movers, chasm, manifold,
-  source_weights, corpus_days, tracked_terms`. `manifold` is one relativistic
-  reading per top mover: `term, regime, defined, beta, gamma, rel_momentum, ds2,
+  bet_pool, source_weights, corpus_days, tracked_terms`. `bet_pool` is ~60 topics
+  `{term, p (manifold P of rising), dir (+1/-1), phase, regime}` that feed the
+  always-on client-side LIVE FLOOR on `bloodline.html`. `manifold` is one
+  relativistic reading per prominent defined topic: `term, regime, defined, beta, gamma, rel_momentum, ds2,
   curvature, geodesic_trend, prob_rising`.
 - `api/benchmark.json` - the proving ground: the manifold vs the canonical
   algorithms (momentum, MA-cross, popularity, PageRank, random walk) on the
