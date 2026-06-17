@@ -537,7 +537,12 @@ function draw(){
  var pts=DATA.filter(function(d){return d.defined;});
  if(!pts.length){ctx.fillStyle='#8aa0bf';ctx.font='13px IBM Plex Mono';ctx.textAlign='center';ctx.fillText('THE MANIFOLD IS WARMING UP',W/2,H/2-6);ctx.font='11px IBM Plex Mono';ctx.fillText('topics need a few days of history before a geodesic is defined',W/2,H/2+14);ctx.textAlign='left';return;}
  pts.forEach(function(d,i){
-  var x=W/2 + d.trend*(W/2-50);
+  // Live drift: each point wanders around its geodesic forecast every frame, so
+  // the plot is alive without a reload (mean-reverting to the forecast + jitter).
+  if(d.live==null)d.live=d.trend;
+  d.live += (d.trend - d.live)*0.01 + (Math.random()-0.5)*0.02;
+  if(d.live>1)d.live=1; else if(d.live<-1)d.live=-1;
+  var x=W/2 + d.live*(W/2-50);
   var conv=Math.max(0,Math.min(1,1-1/Math.max(1,d.gamma)));
   var y=H-30 - conv*(H-70) + Math.sin(tphase+i)*3;
   var rad=4+conv*9, col=REG[d.regime]||'#8aa0bf';
@@ -743,7 +748,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 "##;
         const FLOOR_SCRIPT: &str = r##"<script>
 (function(){
- var POOL=[],ORGS=[],rounds=0,settled=0,RMS=20000,timer=null,KEY='signal_floor_v2';
+ var POOL=[],ORGS=[],rounds=0,settled=0,RMS=4000,timer=null,KEY='signal_floor_v2';
  function rnd(){return Math.random();}
  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
  function fmt(n){return Math.round(n||0).toLocaleString();}
@@ -803,7 +808,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   board();save();
  }
  var sb=document.getElementById('floorspeed');
- if(sb)sb.addEventListener('click',function(){RMS=(RMS>9000)?5000:20000;this.textContent=(RMS<9000)?'[ SLOWER ]':'[ FASTER ]';if(timer){clearInterval(timer);timer=setInterval(tick,RMS);}});
+ if(sb)sb.addEventListener('click',function(){RMS=(RMS>2500)?1200:4000;this.textContent=(RMS<2500)?'[ SLOWER ]':'[ FASTER ]';if(timer){clearInterval(timer);timer=setInterval(tick,RMS);}});
  timer=setInterval(tick,RMS);
 })();
 </script>"##;
@@ -1083,6 +1088,49 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
         early_access_url => early_access_url,
     })?;
 
+    // THE LIVE WIRE: a fixed, always-moving ticker on the front page, powered by
+    // the manifold bet pool. It streams a fresh read every ~2.6s with no reload, so
+    // the homepage is visibly alive the moment it loads. Injected post-render so its
+    // CSS/JS braces never hit the template engine. manifold.js is loaded here too,
+    // ready for the Oracle Box and any client-side algo use.
+    const LIVE_WIRE: &str = r#"<div id="livewire" style="position:fixed;left:0;right:0;bottom:0;z-index:60;background:#0b0c0a;border-top:1px solid #2a2c28;color:#cfe7b6;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:12px;letter-spacing:.02em;padding:7px 12px;display:flex;align-items:center;gap:10px">
+<span style="color:#ff5a4d;font-weight:700;flex:0 0 auto"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#ff5a4d;margin-right:5px;vertical-align:middle;animation:lwpulse 1.3s infinite"></span>LIVE</span>
+<span id="lwtxt" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1">the floor is opening...</span>
+</div>
+<style>@keyframes lwpulse{0%,100%{opacity:.3}50%{opacity:1}}body{padding-bottom:38px}@media(prefers-reduced-motion:reduce){#livewire span span{animation:none}}</style>
+<script src="manifold.js"></script>
+<script>
+(function(){
+ var POOL=[],ORGS=[],el=document.getElementById('lwtxt');
+ function rnd(){return Math.random();}
+ function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+ function pick(a){return a[Math.floor(rnd()*a.length)];}
+ Promise.all([
+  fetch('api/observatory.json').then(function(r){return r.json();}).catch(function(){return null;}),
+  fetch('api/bloodline.json').then(function(r){return r.json();}).catch(function(){return null;})
+ ]).then(function(res){
+  var ob=res[0]||{},bl=(res[1]&&res[1].bloodline)||{};
+  POOL=(ob.bet_pool||[]).filter(function(b){return b&&b.term;});
+  ORGS=(bl.living||[]).map(function(o){return {name:o.name,fade:o.fade==='FADE'};});
+  if(!POOL.length){if(el)el.textContent='the wire is warming up.';return;}
+  beat();setInterval(beat,2600);
+ });
+ function beat(){
+  if(!el)return; var b=pick(POOL); if(!b)return; var roll=rnd();
+  if(roll<0.5&&ORGS.length){
+   var o=pick(ORGS),side=o.fade?-b.dir:b.dir,rise=rnd()<b.p,win=(side===(rise?1:-1)),stake=Math.round(50+rnd()*900);
+   el.innerHTML='<b>'+esc(o.name)+'</b> '+(side>0?'backs':'fades')+' <b>'+esc(b.term)+'</b> '+(side>0?'UP':'DN')+' for '+stake+' <span style="color:'+(win?'#6ee07a':'#ff8c7d')+';font-weight:700">'+(win?'WON':'LOST')+'</span>';
+  } else if(roll<0.8){
+   el.innerHTML='MANIFOLD // <b>'+esc(b.term)+'</b> reads <b>'+esc(b.phase)+'</b> ('+esc(b.regime)+') // P(rise) '+Math.round(b.p*100)+'%';
+  } else {
+   var up=POOL.filter(function(x){return x.dir>0;}).length;
+   el.innerHTML='THE FIELD // <b>'+up+'</b> of '+POOL.length+' tracked topics reading UP right now';
+  }
+ }
+})();
+</script>
+"#;
+    let html = html.replacen("</body>", &format!("{LIVE_WIRE}</body>"), 1);
     std::fs::write(crate::OUT_HTML, html)?;
     Ok(())
 }
@@ -1179,6 +1227,52 @@ fn write_agent_layer(
         "tracked_terms": engine.get("tracked_terms"),
     });
     std::fs::write(format!("{}/api/observatory.json", crate::OUT_DIR), serde_json::to_string_pretty(&obs_doc)?)?;
+
+    // manifold.js: THE ALGORITHM, ported to the browser. A faithful, dependency-free
+    // JS port of src/manifold.rs::analyze, so any page (or any third party) can run
+    // the prediction core client-side and evolve it live on a timer, no server. This
+    // is what makes the site live without a refresh: the algorithm recomputes in the
+    // browser instead of being baked once at build time. Cross-checked against Rust.
+    const MANIFOLD_JS: &str = r#"// THE SIGNAL // manifold.js -- the prediction core, in the browser.
+// Faithful port of src/manifold.rs::analyze. window.Manifold.analyze(counts) -> reading.
+(function(g){
+  var BETA_MAX=0.9999, LIGHT=0.15, HORIZON=7, WINDOW=20, MIN=3, SMOOTH=3, GAIN=6.0;
+  function mean(a){if(!a.length)return 0;var s=0;for(var i=0;i<a.length;i++)s+=a[i];return s/a.length;}
+  function stdev(a){if(a.length<2)return 0;var m=mean(a),v=0;for(var i=0;i<a.length;i++){var d=a[i]-m;v+=d*d;}return Math.sqrt(v/a.length);}
+  function smooth(a,w){if(w<=1)return a.slice();var o=[];for(var i=0;i<a.length;i++){var lo=Math.max(0,i-w+1);o.push(mean(a.slice(lo,i+1)));}return o;}
+  function certainty(r){return r==='TIMELIKE'?1.0:(r==='LIGHTLIKE'?0.6:0.4);}
+  function fcTrend(drift,accel,regime){var aw=regime==='TIMELIKE'?1.0:(regime==='LIGHTLIKE'?0.5:0.2);return Math.tanh((drift+accel*aw)*HORIZON*GAIN);}
+  function fcPath(drift,accel,steps){var vel=drift,acc=accel,level=0,o=[];for(var i=0;i<steps;i++){vel+=acc;acc*=0.6;level+=vel;o.push(level);}return o;}
+  function neutral(){return {points:0,defined:false,regime:'LIGHTLIKE',phase:'FLAT',beta:0,gamma:1,rel:0,ds2:-1,curvature:0,trend:0,drift:0,accel:0,prob:0.5,peakIn:null,path:function(){return [];}};}
+  function analyze(series){
+    series=(series||[]).map(Number).filter(function(x){return !isNaN(x);});
+    var n=series.length; if(n<MIN)return neutral();
+    var raw=[]; for(var i=0;i<n;i++)raw.push(Math.log(1+Math.max(0,series[i])));
+    var lev=smooth(raw,SMOOTH), rets=[]; for(var i=1;i<n;i++)rets.push(lev[i]-lev[i-1]);
+    var w=Math.min(WINDOW,rets.length), recent=rets.slice(rets.length-w);
+    var drift=mean(recent), noise=stdev(recent), scale=Math.abs(drift)+noise+1e-9;
+    var beta=Math.max(-BETA_MAX,Math.min(BETA_MAX,drift/scale));
+    var gamma=1/Math.sqrt(1-beta*beta), rel=gamma*drift;
+    var ds2=(noise*noise-drift*drift)/(scale*scale);
+    var regime=Math.abs(ds2)<LIGHT?'LIGHTLIKE':(ds2<0?'TIMELIKE':'SPACELIKE');
+    var half=Math.floor(recent.length/2);
+    var accel=mean(recent.slice(half))-mean(recent.slice(0,Math.max(half,1)));
+    var lastRet=recent[recent.length-1];
+    var curvature=(lastRet-drift)/(noise+1e-9);
+    var trend=fcTrend(drift,accel,regime);
+    var prob=Math.max(0.02,Math.min(0.98,0.5+0.5*trend*certainty(regime)));
+    var EPS=0.004, fwd=drift+accel, phase;
+    if(drift>EPS)phase=(fwd<-EPS)?'PEAKING':'RISING';
+    else if(drift<-EPS)phase=(fwd>EPS)?'BOTTOMING':'FALLING';
+    else phase=(regime==='SPACELIKE')?'CHURNING':'FLAT';
+    var peakIn=null;
+    if(phase==='PEAKING'||phase==='BOTTOMING'){var p=fcPath(drift,accel,HORIZON*2),peaking=drift>0,best=0;for(var i=1;i<p.length;i++){if((peaking&&p[i]>p[best])||(!peaking&&p[i]<p[best]))best=i;}peakIn=Math.max(1,best+1);}
+    return {points:n,defined:true,regime:regime,phase:phase,beta:beta,gamma:gamma,rel:rel,ds2:ds2,curvature:curvature,trend:trend,drift:drift,accel:accel,prob:prob,peakIn:peakIn,path:function(s){return fcPath(drift,accel,s);}};
+  }
+  g.Manifold={analyze:analyze,VERSION:1};
+})(typeof window!=='undefined'?window:globalThis);
+"#;
+    std::fs::write(format!("{}/manifold.js", crate::OUT_DIR), MANIFOLD_JS)?;
 
     // benchmark.json: the proving ground. The manifold vs the canonical algorithms.
     let bench_doc = serde_json::json!({

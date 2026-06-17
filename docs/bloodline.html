@@ -80,7 +80,7 @@ setInterval(drawTable,1300);
 </script>
 <script>
 (function(){
- var POOL=[],ORGS=[],rounds=0,settled=0,RMS=20000,timer=null,KEY='signal_floor_v2';
+ var POOL=[],ORGS=[],rounds=0,settled=0,RMS=4000,timer=null,KEY='signal_floor_v2';
  function rnd(){return Math.random();}
  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
  function fmt(n){return Math.round(n||0).toLocaleString();}
@@ -140,7 +140,7 @@ setInterval(drawTable,1300);
   board();save();
  }
  var sb=document.getElementById('floorspeed');
- if(sb)sb.addEventListener('click',function(){RMS=(RMS>9000)?5000:20000;this.textContent=(RMS<9000)?'[ SLOWER ]':'[ FASTER ]';if(timer){clearInterval(timer);timer=setInterval(tick,RMS);}});
+ if(sb)sb.addEventListener('click',function(){RMS=(RMS>2500)?1200:4000;this.textContent=(RMS<2500)?'[ SLOWER ]':'[ FASTER ]';if(timer){clearInterval(timer);timer=setInterval(tick,RMS);}});
  timer=setInterval(tick,RMS);
 })();
 </script></body></html>
