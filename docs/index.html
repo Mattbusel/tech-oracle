@@ -5,7 +5,7 @@
   <title>THE SIGNAL // a public record of dated tech calls</title>
   <meta name="description" content="One or two specific, dated tech predictions printed every day from live signals. An append-only public record. No edits, no deletes. Subscribers get every call before it prints here." />
   <meta property="og:title" content="THE SIGNAL // a self-grading tech oracle, 8-2 on the record" />
-  <meta property="og:description" content="80% hit rate. The book is at 1194 units (+19%). Tech Acceleration Index 67 SURGING, hottest cluster TIME. Every call self-grades. No edits, no deletes." />
+  <meta property="og:description" content="80% hit rate. The book is at 1194 units (+19%). Tech Acceleration Index 71 SURGING, hottest cluster APPLE. Every call self-grades. No edits, no deletes." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta property="og:image" content="https://mattbusel.github.io/tech-oracle/og.png" />
   <meta name="twitter:image" content="https://mattbusel.github.io/tech-oracle/og.png" />
@@ -59,6 +59,17 @@
     .ov-wire .wl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0.92; }
     .ov-station { color: var(--ac, #5bf08a); font-size: 11px; padding: 9px; display: flex; flex-direction: column; gap: 7px; background: rgba(8,12,10,0.6); }
     .ov-clock { font-size: 15px; letter-spacing: 0.08em; }
+    .ov-den { font-size: 10px; letter-spacing: 0.1em; opacity: 0.85; margin-top: 4px; }
+    /* live presence: the ghosts of everyone else in the den */
+    .ghosts { position: absolute; inset: 0; pointer-events: none; z-index: 6; overflow: hidden; }
+    .ghost { position: absolute; transform: translate(-50%, -50%); transition: left 0.22s linear, top 0.22s linear; will-change: left, top; }
+    .ghost .gc { width: 9px; height: 9px; border: 1.5px solid var(--ac, #5bf08a); border-radius: 50%; box-shadow: 0 0 9px var(--ac, #5bf08a); }
+    .ghost .gh { font: 600 9px/1 var(--mono, ui-monospace, monospace); color: var(--ac, #5bf08a); letter-spacing: 0.1em; margin-top: 3px; white-space: nowrap; text-shadow: 0 1px 3px #000; opacity: 0.82; }
+    .ghost-chip { position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #5bf08a; z-index: 7; pointer-events: none; animation: chipdrop 1.7s ease-out forwards; }
+    .ghost-chip.fade { border-color: #d8624b; }
+    @keyframes chipdrop { 0% { transform: translate(-50%, -120%) scale(0.4); opacity: 0; } 18% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+    .den-count { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); font: 600 11px/1 var(--mono, ui-monospace, monospace); letter-spacing: 0.18em; color: var(--ac, #5bf08a); background: rgba(8, 12, 10, 0.55); border: 1px solid rgba(91, 240, 138, 0.32); padding: 6px 13px; z-index: 7; pointer-events: none; }
+    @media (prefers-reduced-motion: reduce) { .ghost { transition: none; } .ghost-chip { animation: none; display: none; } }
     .ov-sheet { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 8px; text-align: center; background: rgba(238,236,228,0.0); }
     .ov-call { color: #1b1a14; font-size: 11.5px; line-height: 1.3; font-weight: 600; max-height: 58%; overflow: hidden; background: rgba(238,236,228,0.78); padding: 4px 6px; border-radius: 3px; }
     .ov-actions { display: flex; gap: 8px; margin-top: 8px; }
@@ -418,9 +429,11 @@
   <section id="scene" class="scene" aria-label="THE SIGNAL // enter the den">
     <canvas id="glcanvas" aria-hidden="true"></canvas>
     <div class="scene-grad" aria-hidden="true"></div>
+    <div class="ghosts" id="ghosts" aria-hidden="true"></div>
+    <div class="den-count" id="den-count" aria-live="polite">IN THE DEN: 1</div>
     <div class="stage-ui" id="stage-ui" aria-hidden="true">
       <div class="ov ov-wire" id="ov-wire"></div>
-      <div class="ov ov-station"><div class="ov-clock" id="ov-clock">--:--:-- UTC</div><div class="ov-cd">NEXT PRINT <span id="ov-cd">--:--:--</span></div></div>
+      <div class="ov ov-station"><div class="ov-clock" id="ov-clock">--:--:-- UTC</div><div class="ov-cd">NEXT PRINT <span id="ov-cd">--:--:--</span></div><div class="ov-den" id="ov-den">DEN // 1 HERE</div></div>
       <div class="ov ov-sheet">
         <div class="ov-call" id="ov-call">reading the wire...</div>
         <div class="ov-actions"><button class="ov-btn tail" type="button" data-ovbet="1">TAIL</button><button class="ov-btn fade" type="button" data-ovbet="1">FADE</button></div>
@@ -573,25 +586,25 @@
               <div class="band">THE PULSE / TECH ACCELERATION INDEX</div>
               <div class="pulse-grid">
                 <div class="pulse-num">
-                  <div class="idx-big">67</div>
+                  <div class="idx-big">71</div>
                   <div class="pulse-verdict v-surging">SURGING</div>
                 </div>
                 <div class="pulse-meta">
-                  <div class="pm-line">HOTTEST CLUSTER // <b>TIME</b></div>
-                  <div class="pm-line">FALLING 3 VS PRIOR PRINT</div>
+                  <div class="pm-line">HOTTEST CLUSTER // <b>APPLE</b></div>
+                  <div class="pm-line">RISING 1 VS PRIOR PRINT</div>
                   
-                  <div class="pm-line pm-soft">238 SIGNALS // 9 OF 10 SOURCES LIVE</div>
+                  <div class="pm-line pm-soft">260 SIGNALS // 9 OF 10 SOURCES LIVE</div>
                 </div>
               </div>
-              <canvas class="seismo" id="seismo" data-energy="67" aria-hidden="true"></canvas>
+              <canvas class="seismo" id="seismo" data-energy="71" aria-hidden="true"></canvas>
               <div class="seismo-lbl">LIVE SIGNAL SEISMOGRAPH</div>
               <div class="pulse-hist" aria-hidden="true">
-                <span class="ph-bar" title="2026-06-02 :: 52" style="height:52%"></span><span class="ph-bar" title="2026-06-04 :: 58" style="height:58%"></span><span class="ph-bar" title="2026-06-05 :: 49" style="height:49%"></span><span class="ph-bar" title="2026-06-08 :: 64" style="height:64%"></span><span class="ph-bar" title="2026-06-09 :: 71" style="height:71%"></span><span class="ph-bar" title="2026-06-11 :: 67" style="height:67%"></span><span class="ph-bar" title="2026-06-13 :: 74" style="height:74%"></span><span class="ph-bar" title="2026-06-14 :: 66" style="height:66%"></span><span class="ph-bar" title="2026-06-15 :: 79" style="height:79%"></span><span class="ph-bar" title="2026-06-16 :: 70" style="height:70%"></span><span class="ph-bar" title="2026-06-17 :: 67" style="height:67%"></span>
+                <span class="ph-bar" title="2026-06-02 :: 52" style="height:52%"></span><span class="ph-bar" title="2026-06-04 :: 58" style="height:58%"></span><span class="ph-bar" title="2026-06-05 :: 49" style="height:49%"></span><span class="ph-bar" title="2026-06-08 :: 64" style="height:64%"></span><span class="ph-bar" title="2026-06-09 :: 71" style="height:71%"></span><span class="ph-bar" title="2026-06-11 :: 67" style="height:67%"></span><span class="ph-bar" title="2026-06-13 :: 74" style="height:74%"></span><span class="ph-bar" title="2026-06-14 :: 66" style="height:66%"></span><span class="ph-bar" title="2026-06-15 :: 79" style="height:79%"></span><span class="ph-bar" title="2026-06-16 :: 70" style="height:70%"></span><span class="ph-bar" title="2026-06-17 :: 71" style="height:71%"></span>
               </div>
               <div class="seismo-lbl">ACCELERATION INDEX // LAST 11 PRINTS</div>
               <div class="sharebar" style="justify-content:center">
-                <button class="sx" type="button" data-share data-text="Tech Acceleration Index today: 67 (SURGING). Hottest cluster: TIME. 238 signals across 10 sources.">[ SHARE THE PULSE ]</button>
-                <button class="sx alt" type="button" data-card data-dm="1" data-curve="pulse" data-headline="67 SURGING" data-kicker="TECH ACCELERATION INDEX // June 17, 2026" data-sub="HOTTEST CLUSTER: TIME / 238 SIGNALS" data-stamp="SURGING" data-text="Today's Tech Acceleration Index.">[ SAVE AS IMAGE ]</button>
+                <button class="sx" type="button" data-share data-text="Tech Acceleration Index today: 71 (SURGING). Hottest cluster: APPLE. 260 signals across 10 sources.">[ SHARE THE PULSE ]</button>
+                <button class="sx alt" type="button" data-card data-dm="1" data-curve="pulse" data-headline="71 SURGING" data-kicker="TECH ACCELERATION INDEX // June 17, 2026" data-sub="HOTTEST CLUSTER: APPLE / 260 SIGNALS" data-stamp="SURGING" data-text="Today's Tech Acceleration Index.">[ SAVE AS IMAGE ]</button>
               </div>
             </section>
 
@@ -618,13 +631,13 @@
               .tape { font-size:10.5px; letter-spacing:.06em; color:#6d6b5e; margin-top:5px; opacity:.92; }
             </style>
             <section class="manifest engine-room" aria-label="The engine room">
-              <div class="band">THE ENGINE ROOM / 1 DAY OF CORPUS // 1043 TERMS TRACKED</div>
+              <div class="band">THE ENGINE ROOM / 1 DAY OF CORPUS // 1214 TERMS TRACKED</div>
 
               <div class="er-grid">
                 <div class="er-card">
                   <div class="er-h">FIELD SENTIMENT // LEXICON FEAR-GREED</div>
-                  <div class="er-gauge"><span style="width:56%"></span></div>
-                  <div class="er-big">56 <small>NEUTRAL</small></div>
+                  <div class="er-gauge"><span style="width:50%"></span></div>
+                  <div class="er-big">50 <small>NEUTRAL</small></div>
                   <div class="er-soft">HYPE WORDS VS DOOM WORDS ACROSS TODAY'S WIRE</div>
                 </div>
                 <div class="er-card">
@@ -643,17 +656,17 @@
 
               <div class="er-h2">SECTOR INDICES // SHARE OF TODAY'S DISCOURSE</div>
               <div class="er-ticker">
-                <span class="er-tk a-up">AI 100 <i>+17</i></span><span class="er-tk a-up">PLATFORM 100 <i>+17</i></span><span class="er-tk a-up">CHIPS 24 <i>+4</i></span><span class="er-tk a-up">ROBOTS 18 <i>+3</i></span><span class="er-tk a-up">RUST 12 <i>+2</i></span><span class="er-tk a-up">CRYPTO 12 <i>+2</i></span><span class="er-tk a-up">SECURITY 12 <i>+2</i></span><span class="er-tk a-up">CLOUD 6 <i>+1</i></span>
+                <span class="er-tk a-up">PLATFORM 100 <i>+20</i></span><span class="er-tk a-up">AI 85 <i>+17</i></span><span class="er-tk a-up">CHIPS 25 <i>+5</i></span><span class="er-tk a-up">SECURITY 15 <i>+3</i></span><span class="er-tk a-up">ROBOTS 15 <i>+3</i></span><span class="er-tk a-up">RUST 10 <i>+2</i></span><span class="er-tk a-up">CRYPTO 10 <i>+2</i></span><span class="er-tk a-up">CLOUD 5 <i>+1</i></span>
               </div>
 
               <div class="er-grid">
                 <div class="er-card">
                   <div class="er-h">FASTEST MOVERS // 7-DAY VELOCITY</div>
-                  <ol class="er-list"><li><b>GOOGLE</b> <span>+100% // 5 TODAY</span></li><li><b>APPLE</b> <span>+100% // 5 TODAY</span></li><li><b>PRO</b> <span>+100% // 4 TODAY</span></li><li><b>AGENT</b> <span>+100% // 4 TODAY</span></li><li><b>UPDATE</b> <span>+100% // 4 TODAY</span></li><li><b>GAMES</b> <span>+100% // 4 TODAY</span></li></ol>
+                  <ol class="er-list"><li><b>APPLE</b> <span>+100% // 10 TODAY</span></li><li><b>GAME</b> <span>+100% // 9 TODAY</span></li><li><b>UPDATE</b> <span>+100% // 8 TODAY</span></li><li><b>FIFA</b> <span>+100% // 7 TODAY</span></li><li><b>XBOX</b> <span>+100% // 7 TODAY</span></li><li><b>TEAM</b> <span>+100% // 7 TODAY</span></li></ol>
                 </div>
                 <div class="er-card">
                   <div class="er-h">THE CHASM WATCH // LEAVING THE DEV BUBBLE</div>
-                  <ol class="er-list"><li><b>ACT</b> <span>ARXIV -&gt; ARS // 0d</span></li><li><b>AGENT</b> <span>ARXIV -&gt; ARS // 0d</span></li><li><b>AGENTS</b> <span>ARXIV -&gt; THE NEWS // 0d</span></li><li><b>AIR</b> <span>LOBSTERS -&gt; WIKIPEDIA // 0d</span></li><li><b>ANDROID</b> <span>GITHUB -&gt; THE NEWS // 0d</span></li><li><b>ANTHROPIC</b> <span>ARXIV -&gt; ARS // 0d</span></li></ol>
+                  <ol class="er-list"><li><b>ACT</b> <span>ARXIV -&gt; ARS // 0d</span></li><li><b>AGENT</b> <span>ARXIV -&gt; ARS // 0d</span></li><li><b>AGENTS</b> <span>ARXIV -&gt; THE NEWS // 0d</span></li><li><b>AIR</b> <span>LOBSTERS -&gt; ARS // 0d</span></li><li><b>ANDROID</b> <span>GITHUB -&gt; THE NEWS // 0d</span></li><li><b>ANNOUNCES</b> <span>HN -&gt; THE NEWS // 0d</span></li></ol>
                 </div>
               </div>
 
@@ -742,61 +755,61 @@
             <div class="perf" aria-hidden="true"></div>
 
             <section class="manifest" aria-label="Signals ingested today">
-              <div class="band">INTAKE MANIFEST / 238 SIGNALS TODAY</div>
+              <div class="band">INTAKE MANIFEST / 260 SIGNALS TODAY</div>
               
               <div class="mf-grid">
                 
                 <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-news">THE NEWS</span><span class="mf-count">45</span></div>
+                  <div class="mf-top"><span class="mf-label s-news">THE NEWS</span><span class="mf-count">67</span></div>
                   <span class="mf-bar"><i class="s-news" style="width:100%"></i></span>
                   <a class="mf-item" href="https://news.google.com/rss/articles/CBMipgFBVV95cUxNWTZoUUJ6N2dKMHVwR3BLT0N2YWRUQS00Q01xXzdpZ1lBbGQ0Z01UQzN4dmd1WHpTZXBYcWNQbGViVFlVRVRqb0FpSDBGTHpFVTE4anpuTVJILXpqMlp6c3JtMjhHamhfelpEX2FkWmR0N2JHUVd6Wm1SNHBrejBLREgxcHpSSzNLa19Gd3RURU1Wd1gyNEZjN21HeDJ0VUtRR29uOF9R0gGrAUFVX3lxTFBWUGpoVjI0X2RFS3kwZXdHR3BCQzVuWDBnd3dHeUZCWlZLYWxEb3UxN0ZzRi1jR3dkMG1LbEFqNV9DUkozdWhzaW8xN3QyajgwTUJlTy1ic0ZvQUtyaWxyZDVFNXZVNDlZdWIzVEJXZk1mRmFWWnA1eUdEbzJtR01meWZha2dBTXdXZExYSlROblV3azRmOGJKRzNTeWhtd0JHQXVERmo5NmFndw?oc=5" rel="noopener">TOP // Snap unveils $2,195 AR glasses as CEO Evan Spiegel bets on post-smartphone future</a>
                 </div>
                 
                 <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-wiki">WIKIPEDIA</span><span class="mf-count">40</span></div>
-                  <span class="mf-bar"><i class="s-wiki" style="width:89%"></i></span>
-                  <a class="mf-item" href="https://en.wikipedia.org/wiki/Oliver_Tree" rel="noopener">TOP // Oliver Tree</a>
-                </div>
-                
-                <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-hn">HACKER NEWS</span><span class="mf-count">30</span></div>
-                  <span class="mf-bar"><i class="s-hn" style="width:67%"></i></span>
-                  <a class="mf-item" href="https://vickiboykis.com/2026/06/15/running-local-models-is-good-now/" rel="noopener">TOP // Running local models is good now</a>
+                  <span class="mf-bar"><i class="s-wiki" style="width:60%"></i></span>
+                  <a class="mf-item" href="https://en.wikipedia.org/wiki/2026_FIFA_World_Cup" rel="noopener">TOP // 2026 FIFA World Cup</a>
                 </div>
                 
                 <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-arxiv">ARXIV</span><span class="mf-count">30</span></div>
-                  <span class="mf-bar"><i class="s-arxiv" style="width:67%"></i></span>
+                  <span class="mf-bar"><i class="s-arxiv" style="width:45%"></i></span>
                   <a class="mf-item" href="https://arxiv.org/abs/2606.18247v1" rel="noopener">TOP // Visual Verification Enables Inference-time Steering and Autonomous Policy Improvement</a>
                 </div>
                 
                 <div class="mf-row">
-                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
-                  <span class="mf-bar"><i class="s-devto" style="width:56%"></i></span>
-                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
+                  <div class="mf-top"><span class="mf-label s-hn">HACKER NEWS</span><span class="mf-count">30</span></div>
+                  <span class="mf-bar"><i class="s-hn" style="width:45%"></i></span>
+                  <a class="mf-item" href="https://vickiboykis.com/2026/06/15/running-local-models-is-good-now/" rel="noopener">TOP // Running local models is good now</a>
                 </div>
                 
                 <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-lobsters">LOBSTERS</span><span class="mf-count">25</span></div>
-                  <span class="mf-bar"><i class="s-lobsters" style="width:56%"></i></span>
+                  <span class="mf-bar"><i class="s-lobsters" style="width:37%"></i></span>
                   <a class="mf-item" href="https://daniel.haxx.se/blog/2026/06/15/curl-summer-of-bliss/" rel="noopener">TOP // curl summer of bliss</a>
                 </div>
                 
                 <div class="mf-row">
+                  <div class="mf-top"><span class="mf-label s-devto">DEV.TO</span><span class="mf-count">25</span></div>
+                  <span class="mf-bar"><i class="s-devto" style="width:37%"></i></span>
+                  <a class="mf-item" href="https://dev.to/devteam/congrats-to-the-google-io-writing-challenge-winners-1364" rel="noopener">TOP // Congrats to the Google I/O 2026 Writing Challenge Winners!</a>
+                </div>
+                
+                <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-ars">ARS TECHNICA</span><span class="mf-count">20</span></div>
-                  <span class="mf-bar"><i class="s-ars" style="width:44%"></i></span>
+                  <span class="mf-bar"><i class="s-ars" style="width:30%"></i></span>
                   <a class="mf-item" href="https://arstechnica.com/tech-policy/2026/06/trump-admin-helps-xai-fight-pollution-lawsuit-says-military-needs-grok-for-war/" rel="noopener">TOP // Trump admin tries to block Clean Air Act lawsuit over xAI's gas turbines</a>
                 </div>
                 
                 <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-github">GITHUB</span><span class="mf-count">13</span></div>
-                  <span class="mf-bar"><i class="s-github" style="width:29%"></i></span>
+                  <span class="mf-bar"><i class="s-github" style="width:19%"></i></span>
                   <a class="mf-item" href="https://github.com/iptv-org/iptv" rel="noopener">TOP // iptv-org/iptv</a>
                 </div>
                 
                 <div class="mf-row">
                   <div class="mf-top"><span class="mf-label s-crates">CRATES.IO</span><span class="mf-count">10</span></div>
-                  <span class="mf-bar"><i class="s-crates" style="width:22%"></i></span>
+                  <span class="mf-bar"><i class="s-crates" style="width:15%"></i></span>
                   <a class="mf-item" href="https://crates.io/crates/hashbrown" rel="noopener">TOP // hashbrown</a>
                 </div>
                 
@@ -835,21 +848,15 @@
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-arxiv">ARXIV</span>
-                  <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
-                  <span class="bs-count">2</span>
-                </div>
-                
-                <div class="bs-row">
                   <span class="bs-label s-hn">HACKER NEWS</span>
                   <span class="bs-bar"><i class="s-hn" style="width:20%"></i></span>
                   <span class="bs-count">2</span>
                 </div>
                 
                 <div class="bs-row">
-                  <span class="bs-label s-devto">DEV.TO</span>
-                  <span class="bs-bar"><i class="s-devto" style="width:10%"></i></span>
-                  <span class="bs-count">1</span>
+                  <span class="bs-label s-arxiv">ARXIV</span>
+                  <span class="bs-bar"><i class="s-arxiv" style="width:20%"></i></span>
+                  <span class="bs-count">2</span>
                 </div>
                 
                 <div class="bs-row">
@@ -864,12 +871,18 @@
                   <span class="bs-count">1</span>
                 </div>
                 
+                <div class="bs-row">
+                  <span class="bs-label s-devto">DEV.TO</span>
+                  <span class="bs-bar"><i class="s-devto" style="width:10%"></i></span>
+                  <span class="bs-count">1</span>
+                </div>
+                
               </div>
               <div class="signalmap" aria-hidden="true">
                 <span class="sm-dot s-github" title="2026-06-02"></span><span class="sm-dot s-arxiv" title="2026-06-04"></span><span class="sm-dot s-lobsters" title="2026-06-05"></span><span class="sm-dot s-hn" title="2026-06-08"></span><span class="sm-dot s-ars" title="2026-06-09"></span><span class="sm-dot s-devto" title="2026-06-09"></span><span class="sm-dot s-github" title="2026-06-11"></span><span class="sm-dot s-github" title="2026-06-13"></span><span class="sm-dot s-arxiv" title="2026-06-14"></span><span class="sm-dot s-hn" title="2026-06-15"></span>
               </div>
               <div class="map-key">
-                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span>
+                <span class="key"><span class="sm-dot s-github"></span>GITHUB</span><span class="key"><span class="sm-dot s-hn"></span>HACKER NEWS</span><span class="key"><span class="sm-dot s-arxiv"></span>ARXIV</span><span class="key"><span class="sm-dot s-ars"></span>ARS TECHNICA</span><span class="key"><span class="sm-dot s-lobsters"></span>LOBSTERS</span><span class="key"><span class="sm-dot s-devto"></span>DEV.TO</span>
               </div>
             </section>
 
@@ -1127,7 +1140,7 @@
     var REDUCE = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     var __FLOOR = [{"kw":"local","market":"RESURFACE","odds":"1.72","src":"Show HN: A local-first sync engine for your app","status":"HIT","t":"The HN front page is piling onto local-first sync ","win":"WIN IF \"LOCAL\" RESURFACES ACROSS THE FEEDS BY 2026-07-15"},{"kw":"compute","market":"RESURFACE","odds":"1.59","src":"Scaling Test-Time Compute Optimally for Reasoning Models","status":"HIT","t":"Fresh cs.AI/cs.LG work on test-time compute scalin","win":"WIN IF \"COMPUTE\" RESURFACES ACROSS THE FEEDS BY 2026-07-14"},{"kw":"llama","market":"RESURFACE","odds":"1.28","src":"ggml-org/llama.cpp","status":"HIT","t":"Devs are starring ggml-org/llama.cpp hard today. B","win":"WIN IF \"LLAMA\" RESURFACES ACROSS THE FEEDS BY 2026-07-03"},{"kw":"vercel","market":"RESURFACE","odds":"1.39","src":"vercel/ai","status":"HIT","t":"vercel/ai is rocketing up GitHub trending. The tra","win":"WIN IF \"VERCEL\" RESURFACES ACROSS THE FEEDS BY 2026-07-01"},{"kw":"typed","market":"RESURFACE","odds":"1.67","src":"Why typed API clients are taking over","status":"MISS","t":"Dev.to writers are rallying around typed API clien","win":"WIN IF \"TYPED\" RESURFACES ACROSS THE FEEDS BY 2026-06-14"},{"kw":"power","market":"RESURFACE","odds":"1.52","src":"The power bill for AI is coming due","status":"HIT","t":"Ars is covering AI data-center power demand. When ","win":"WIN IF \"POWER\" RESURFACES ACROSS THE FEEDS BY 2026-06-29"},{"kw":"inference","market":"RESURFACE","odds":"1.45","src":"On-device inference is finally good enough","status":"HIT","t":"The HN front page is piling onto on-device inferen","win":"WIN IF \"INFERENCE\" RESURFACES ACROSS THE FEEDS BY 2026-06-28"},{"kw":"deterministic","market":"RESURFACE","odds":"1.75","src":"On reproducible, deterministic builds","status":"MISS","t":"Lobsters is chewing on deterministic build systems","win":"WIN IF \"DETERMINISTIC\" RESURFACES ACROSS THE FEEDS BY 2026-06-12"}];
     var __LADREPO = "Mattbusel/tech-oracle";
-    var __MOOD = {"accent": "#e6bb4c", "age": 15, "agit": 0.0009, "embers": 0.802, "gen": 1, "heat": 0.67, "hotHand": true, "hue": 0.12, "model": 1, "quirk": 0, "quirkName": "", "tagline": "NO EDITS. NO DELETES. ONLY PRINTS.", "verdict": "SURGING", "wear": 0.006};
+    var __MOOD = {"accent": "#e6bb4c", "age": 15, "agit": 0.0009, "embers": 0.8260000000000001, "gen": 1, "heat": 0.71, "hotHand": true, "hue": 0.12, "model": 1, "quirk": 0, "quirkName": "", "tagline": "NO EDITS. NO DELETES. ONLY PRINTS.", "verdict": "SURGING", "wear": 0.006};
     // The organism repaints itself each day: today's accent recolors the screens.
     try { if (__MOOD && __MOOD.accent) { var _rs = document.documentElement.style; _rs.setProperty("--ac", __MOOD.accent); _rs.setProperty("--phos", __MOOD.accent); _rs.setProperty("--led", __MOOD.accent); } } catch (e) {}
 
@@ -1319,6 +1332,7 @@
         sj("signal_wallet", W); sj("signal_pos", POS);
         pushTape("YOU " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase() + " @ " + b.line.toFixed(2) + "x");
         toast("PLACED // " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase()); beep(440, 0.08, "square", 0.05);
+        try { if (window.__ghostBet) window.__ghostBet(b.kw, sideSel); } catch (e) {}
         closeBet(); renderMy();
       }
       function cashOut(id) {
@@ -1977,6 +1991,125 @@
       layout(); setCall(); mirror();
       window.addEventListener("resize", layout, { passive: true });
       setInterval(mirror, 1500); setTimeout(setCall, 1400);
+    })();
+
+    // ----------------------------------------------------------------------
+    // LIVE PRESENCE: you are not alone in the den. Everyone here right now is
+    // drawn as a ghost cursor over the painting, and their tail/fade bets drop
+    // chips on the felt in real time. No accounts, no server of ours: a public
+    // MQTT broker over WebSocket carries it. Entirely fail-soft.
+    // ----------------------------------------------------------------------
+    (function () {
+      var scene = document.getElementById("scene");
+      var ghosts = document.getElementById("ghosts");
+      var denCount = document.getElementById("den-count");
+      var ovDen = document.getElementById("ov-den");
+      if (!scene || !ghosts || !window.WebSocket) return;
+
+      var TOPIC = "thesignal/den/v2";
+      var BROKERS = ["wss://broker.emqx.io:8084/mqtt", "wss://broker.hivemq.com:8884/mqtt"];
+      var ID = Math.random().toString(36).slice(2, 9);
+      function handle() {
+        try { var c = localStorage.getItem("signal_cred"); if (c) return c.split("-")[0].toUpperCase().slice(0, 10); } catch (e) {}
+        return "GHOST-" + ID.slice(0, 4).toUpperCase();
+      }
+      var ME = handle();
+      var peers = {}; // id -> { h, x, y, last, el }
+      var client = null, connected = false;
+
+      function count() {
+        var n = 1; for (var k in peers) if (peers.hasOwnProperty(k)) n++;
+        if (denCount) denCount.textContent = "IN THE DEN: " + n;
+        if (ovDen) ovDen.textContent = "DEN // " + n + (n === 1 ? " HERE" : " HERE NOW");
+      }
+      count();
+
+      function placeGhost(p) {
+        if (!p.el) {
+          p.el = document.createElement("div"); p.el.className = "ghost";
+          p.el.innerHTML = '<div class="gc"></div><div class="gh"></div>';
+          ghosts.appendChild(p.el);
+        }
+        p.el.style.left = (p.x * 100) + "%"; p.el.style.top = (p.y * 100) + "%";
+        var gh = p.el.querySelector(".gh"); if (gh && gh.textContent !== p.h) gh.textContent = p.h;
+      }
+      function dropChip(x, y, side) {
+        var c = document.createElement("div");
+        c.className = "ghost-chip" + (side === "FADE" ? " fade" : "");
+        c.style.left = (x * 100) + "%"; c.style.top = (y * 100) + "%";
+        ghosts.appendChild(c);
+        setTimeout(function () { if (c.parentNode) c.parentNode.removeChild(c); }, 1800);
+      }
+
+      // Expire silent peers.
+      setInterval(function () {
+        var now = Date.now(), changed = false;
+        for (var k in peers) {
+          if (!peers.hasOwnProperty(k)) continue;
+          if (now - peers[k].last > 6500) { if (peers[k].el && peers[k].el.parentNode) peers[k].el.parentNode.removeChild(peers[k].el); delete peers[k]; changed = true; }
+        }
+        if (changed) count();
+      }, 1500);
+
+      function onMsg(raw) {
+        var m; try { m = JSON.parse(raw); } catch (e) { return; }
+        if (!m || m.id === ID || typeof m.id !== "string") return;
+        var fresh = !peers[m.id];
+        if (m.t === "p") {
+          var x = Math.max(0, Math.min(1, +m.x || 0)), y = Math.max(0, Math.min(1, +m.y || 0));
+          var h = String(m.h || "GHOST").slice(0, 12);
+          peers[m.id] = peers[m.id] || {}; var p = peers[m.id];
+          p.h = h; p.x = x; p.y = y; p.last = Date.now();
+          if (Object.keys(peers).length <= 40) placeGhost(p);
+          if (fresh) count();
+        } else if (m.t === "b") {
+          var p2 = peers[m.id];
+          var bx = p2 ? p2.x : 0.5, by = p2 ? p2.y : 0.62;
+          dropChip(bx, by, m.side === "FADE" ? "FADE" : "TAIL");
+          if (window.__log) window.__log((String(m.h || "A GHOST").slice(0, 12)) + " " + (m.side === "FADE" ? "FADED" : "TAILED") + " <b>" + String(m.kw || "").toUpperCase().slice(0, 16) + "</b>");
+          if (window.__spike) window.__spike();
+        } else if (m.t === "x") {
+          if (peers[m.id]) { if (peers[m.id].el && peers[m.id].el.parentNode) peers[m.id].el.parentNode.removeChild(peers[m.id].el); delete peers[m.id]; count(); }
+        }
+      }
+
+      function pub(obj) { if (client && connected) { try { client.publish(TOPIC, JSON.stringify(obj)); } catch (e) {} } }
+
+      // Broadcast my cursor over the painting, throttled.
+      var lastSend = 0, mx = 0.5, my = 0.5, moved = false;
+      function onMove(cx, cy) {
+        var r = scene.getBoundingClientRect(); if (!r.width) return;
+        mx = Math.max(0, Math.min(1, (cx - r.left) / r.width));
+        my = Math.max(0, Math.min(1, (cy - r.top) / r.height));
+        moved = true;
+        var now = Date.now(); if (now - lastSend > 90) { lastSend = now; pub({ t: "p", id: ID, h: ME, x: +mx.toFixed(3), y: +my.toFixed(3) }); }
+      }
+      scene.addEventListener("mousemove", function (e) { onMove(e.clientX, e.clientY); }, { passive: true });
+      scene.addEventListener("touchmove", function (e) { if (e.touches && e.touches[0]) onMove(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+      // Heartbeat so others keep me alive even when still.
+      setInterval(function () { pub({ t: "p", id: ID, h: ME, x: +mx.toFixed(3), y: +my.toFixed(3) }); }, 3000);
+      window.addEventListener("beforeunload", function () { pub({ t: "x", id: ID }); });
+
+      // Bets from the pit broadcast a chip drop to the room.
+      window.__ghostBet = function (kw, side) { pub({ t: "b", id: ID, h: ME, kw: String(kw || ""), side: side }); };
+
+      // Lazy-load the MQTT client; try brokers in order; never block the page.
+      function connect(i) {
+        if (!window.mqtt || i >= BROKERS.length) return;
+        try {
+          client = window.mqtt.connect(BROKERS[i], { clean: true, connectTimeout: 6000, reconnectPeriod: 0, keepalive: 30 });
+          client.on("connect", function () { connected = true; client.subscribe(TOPIC); pub({ t: "p", id: ID, h: ME, x: 0.5, y: 0.5 }); });
+          client.on("message", function (_t, payload) { onMsg(payload.toString()); });
+          client.on("error", function () { try { client.end(true); } catch (e) {} connected = false; setTimeout(function () { connect(i + 1); }, 300); });
+          client.on("close", function () { connected = false; });
+        } catch (e) { connect(i + 1); }
+      }
+      var s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/mqtt@5/dist/mqtt.min.js";
+      s.async = true;
+      s.onload = function () { connect(0); };
+      s.onerror = function () { /* presence simply stays dark; the den still works */ };
+      document.head.appendChild(s);
     })();
   </script>
 </body>

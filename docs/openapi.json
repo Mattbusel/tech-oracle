@@ -1,0 +1,48 @@
+{
+  "info": {
+    "description": "Read a self-grading oracle of dated, falsifiable tech predictions, its public track record and calibration, and the underlying discourse-diffusion data. Static, read-only, CORS-open.",
+    "title": "THE SIGNAL Oracle API",
+    "version": "1.0.0"
+  },
+  "openapi": "3.0.0",
+  "paths": {
+    "/api/observatory.json": {
+      "get": {
+        "operationId": "getObservatory",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Discourse state: acceleration pulse, sector indices, fear/greed, fastest movers, and the chasm (mainstream-crossing) watch."
+      }
+    },
+    "/api/record.json": {
+      "get": {
+        "operationId": "getRecord",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "The full public record: every call, the scorecard, the book, and the Brier calibration."
+      }
+    },
+    "/api/today.json": {
+      "get": {
+        "operationId": "getTodaysCalls",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "summary": "Today's slate of dated tech calls with win conditions, odds and reasoning."
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://mattbusel.github.io/tech-oracle"
+    }
+  ]
+}

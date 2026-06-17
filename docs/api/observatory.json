@@ -1,0 +1,288 @@
+{
+  "chasm": [
+    {
+      "days": 0,
+      "origin": "ARXIV",
+      "reach": "ARS",
+      "term": "ACT"
+    },
+    {
+      "days": 0,
+      "origin": "ARXIV",
+      "reach": "ARS",
+      "term": "AGENT"
+    },
+    {
+      "days": 0,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "AGENTS"
+    },
+    {
+      "days": 0,
+      "origin": "LOBSTERS",
+      "reach": "ARS",
+      "term": "AIR"
+    },
+    {
+      "days": 0,
+      "origin": "GITHUB",
+      "reach": "THE NEWS",
+      "term": "ANDROID"
+    },
+    {
+      "days": 0,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ANNOUNCES"
+    }
+  ],
+  "corpus_days": 1,
+  "fear_greed": {
+    "label": "NEUTRAL",
+    "value": 50
+  },
+  "movers": [
+    {
+      "count": 10,
+      "term": "APPLE",
+      "vel": 100
+    },
+    {
+      "count": 9,
+      "term": "GAME",
+      "vel": 100
+    },
+    {
+      "count": 8,
+      "term": "UPDATE",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "FIFA",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "XBOX",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "TEAM",
+      "vel": 100
+    }
+  ],
+  "pulse": {
+    "breadth": 9,
+    "delta_abs": 1,
+    "delta_word": "RISING",
+    "has_prev": true,
+    "highest_days": 1,
+    "history": [
+      {
+        "date": "2026-06-02",
+        "index": 52
+      },
+      {
+        "date": "2026-06-04",
+        "index": 58
+      },
+      {
+        "date": "2026-06-05",
+        "index": 49
+      },
+      {
+        "date": "2026-06-08",
+        "index": 64
+      },
+      {
+        "date": "2026-06-09",
+        "index": 71
+      },
+      {
+        "date": "2026-06-11",
+        "index": 67
+      },
+      {
+        "date": "2026-06-13",
+        "index": 74
+      },
+      {
+        "date": "2026-06-14",
+        "index": 66
+      },
+      {
+        "date": "2026-06-15",
+        "index": 79
+      },
+      {
+        "date": "2026-06-16",
+        "index": 70
+      },
+      {
+        "date": "2026-06-17",
+        "index": 71
+      }
+    ],
+    "index": 71,
+    "theme": "APPLE",
+    "total": 260,
+    "verdict": "SURGING"
+  },
+  "schema": "the-signal/observatory/1",
+  "sectors": [
+    {
+      "arrow": "UP",
+      "delta": 20,
+      "index": 100,
+      "name": "PLATFORM"
+    },
+    {
+      "arrow": "UP",
+      "delta": 17,
+      "index": 85,
+      "name": "AI"
+    },
+    {
+      "arrow": "UP",
+      "delta": 5,
+      "index": 25,
+      "name": "CHIPS"
+    },
+    {
+      "arrow": "UP",
+      "delta": 3,
+      "index": 15,
+      "name": "SECURITY"
+    },
+    {
+      "arrow": "UP",
+      "delta": 3,
+      "index": 15,
+      "name": "ROBOTS"
+    },
+    {
+      "arrow": "UP",
+      "delta": 2,
+      "index": 10,
+      "name": "RUST"
+    },
+    {
+      "arrow": "UP",
+      "delta": 2,
+      "index": 10,
+      "name": "CRYPTO"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 5,
+      "name": "CLOUD"
+    }
+  ],
+  "source_weights": [
+    {
+      "bar": 93,
+      "has_rate": true,
+      "hits": 3,
+      "label": "GITHUB",
+      "misses": 0,
+      "rate": 100,
+      "source": "github",
+      "weight": 1.4
+    },
+    {
+      "bar": 67,
+      "has_rate": true,
+      "hits": 2,
+      "label": "ARXIV",
+      "misses": 0,
+      "rate": 100,
+      "source": "arxiv",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": false,
+      "hits": 0,
+      "label": "CRATES.IO",
+      "misses": 0,
+      "rate": 0,
+      "source": "crates",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": true,
+      "hits": 0,
+      "label": "LOBSTERS",
+      "misses": 1,
+      "rate": 0,
+      "source": "lobsters",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": true,
+      "hits": 2,
+      "label": "HACKER NEWS",
+      "misses": 0,
+      "rate": 100,
+      "source": "hn",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": true,
+      "hits": 0,
+      "label": "DEV.TO",
+      "misses": 1,
+      "rate": 0,
+      "source": "devto",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": false,
+      "hits": 0,
+      "label": "REDDIT",
+      "misses": 0,
+      "rate": 0,
+      "source": "reddit",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": true,
+      "hits": 1,
+      "label": "ARS TECHNICA",
+      "misses": 0,
+      "rate": 100,
+      "source": "ars",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": false,
+      "hits": 0,
+      "label": "THE NEWS",
+      "misses": 0,
+      "rate": 0,
+      "source": "news",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
+      "has_rate": false,
+      "hits": 0,
+      "label": "WIKIPEDIA",
+      "misses": 0,
+      "rate": 0,
+      "source": "wiki",
+      "weight": 1.0
+    }
+  ],
+  "tracked_terms": 1214
+}

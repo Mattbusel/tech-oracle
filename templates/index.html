@@ -62,6 +62,17 @@
     .ov-wire .wl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0.92; }
     .ov-station { color: var(--ac, #5bf08a); font-size: 11px; padding: 9px; display: flex; flex-direction: column; gap: 7px; background: rgba(8,12,10,0.6); }
     .ov-clock { font-size: 15px; letter-spacing: 0.08em; }
+    .ov-den { font-size: 10px; letter-spacing: 0.1em; opacity: 0.85; margin-top: 4px; }
+    /* live presence: the ghosts of everyone else in the den */
+    .ghosts { position: absolute; inset: 0; pointer-events: none; z-index: 6; overflow: hidden; }
+    .ghost { position: absolute; transform: translate(-50%, -50%); transition: left 0.22s linear, top 0.22s linear; will-change: left, top; }
+    .ghost .gc { width: 9px; height: 9px; border: 1.5px solid var(--ac, #5bf08a); border-radius: 50%; box-shadow: 0 0 9px var(--ac, #5bf08a); }
+    .ghost .gh { font: 600 9px/1 var(--mono, ui-monospace, monospace); color: var(--ac, #5bf08a); letter-spacing: 0.1em; margin-top: 3px; white-space: nowrap; text-shadow: 0 1px 3px #000; opacity: 0.82; }
+    .ghost-chip { position: absolute; width: 14px; height: 14px; border-radius: 50%; border: 2px solid #5bf08a; z-index: 7; pointer-events: none; animation: chipdrop 1.7s ease-out forwards; }
+    .ghost-chip.fade { border-color: #d8624b; }
+    @keyframes chipdrop { 0% { transform: translate(-50%, -120%) scale(0.4); opacity: 0; } 18% { opacity: 1; } 100% { transform: translate(-50%, -50%) scale(1); opacity: 0; } }
+    .den-count { position: absolute; left: 50%; top: 16px; transform: translateX(-50%); font: 600 11px/1 var(--mono, ui-monospace, monospace); letter-spacing: 0.18em; color: var(--ac, #5bf08a); background: rgba(8, 12, 10, 0.55); border: 1px solid rgba(91, 240, 138, 0.32); padding: 6px 13px; z-index: 7; pointer-events: none; }
+    @media (prefers-reduced-motion: reduce) { .ghost { transition: none; } .ghost-chip { animation: none; display: none; } }
     .ov-sheet { display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding: 8px; text-align: center; background: rgba(238,236,228,0.0); }
     .ov-call { color: #1b1a14; font-size: 11.5px; line-height: 1.3; font-weight: 600; max-height: 58%; overflow: hidden; background: rgba(238,236,228,0.78); padding: 4px 6px; border-radius: 3px; }
     .ov-actions { display: flex; gap: 8px; margin-top: 8px; }
@@ -421,9 +432,11 @@
   <section id="scene" class="scene" aria-label="THE SIGNAL // enter the den">
     <canvas id="glcanvas" aria-hidden="true"></canvas>
     <div class="scene-grad" aria-hidden="true"></div>
+    <div class="ghosts" id="ghosts" aria-hidden="true"></div>
+    <div class="den-count" id="den-count" aria-live="polite">IN THE DEN: 1</div>
     <div class="stage-ui" id="stage-ui" aria-hidden="true">
       <div class="ov ov-wire" id="ov-wire"></div>
-      <div class="ov ov-station"><div class="ov-clock" id="ov-clock">--:--:-- UTC</div><div class="ov-cd">NEXT PRINT <span id="ov-cd">--:--:--</span></div></div>
+      <div class="ov ov-station"><div class="ov-clock" id="ov-clock">--:--:-- UTC</div><div class="ov-cd">NEXT PRINT <span id="ov-cd">--:--:--</span></div><div class="ov-den" id="ov-den">DEN // 1 HERE</div></div>
       <div class="ov ov-sheet">
         <div class="ov-call" id="ov-call">reading the wire...</div>
         <div class="ov-actions"><button class="ov-btn tail" type="button" data-ovbet="1">TAIL</button><button class="ov-btn fade" type="button" data-ovbet="1">FADE</button></div>
@@ -1027,6 +1040,7 @@
         sj("signal_wallet", W); sj("signal_pos", POS);
         pushTape("YOU " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase() + " @ " + b.line.toFixed(2) + "x");
         toast("PLACED // " + sideSel + " " + Math.round(stake) + "u on " + b.kw.toUpperCase()); beep(440, 0.08, "square", 0.05);
+        try { if (window.__ghostBet) window.__ghostBet(b.kw, sideSel); } catch (e) {}
         closeBet(); renderMy();
       }
       function cashOut(id) {
@@ -1685,6 +1699,125 @@
       layout(); setCall(); mirror();
       window.addEventListener("resize", layout, { passive: true });
       setInterval(mirror, 1500); setTimeout(setCall, 1400);
+    })();
+
+    // ----------------------------------------------------------------------
+    // LIVE PRESENCE: you are not alone in the den. Everyone here right now is
+    // drawn as a ghost cursor over the painting, and their tail/fade bets drop
+    // chips on the felt in real time. No accounts, no server of ours: a public
+    // MQTT broker over WebSocket carries it. Entirely fail-soft.
+    // ----------------------------------------------------------------------
+    (function () {
+      var scene = document.getElementById("scene");
+      var ghosts = document.getElementById("ghosts");
+      var denCount = document.getElementById("den-count");
+      var ovDen = document.getElementById("ov-den");
+      if (!scene || !ghosts || !window.WebSocket) return;
+
+      var TOPIC = "thesignal/den/v2";
+      var BROKERS = ["wss://broker.emqx.io:8084/mqtt", "wss://broker.hivemq.com:8884/mqtt"];
+      var ID = Math.random().toString(36).slice(2, 9);
+      function handle() {
+        try { var c = localStorage.getItem("signal_cred"); if (c) return c.split("-")[0].toUpperCase().slice(0, 10); } catch (e) {}
+        return "GHOST-" + ID.slice(0, 4).toUpperCase();
+      }
+      var ME = handle();
+      var peers = {}; // id -> { h, x, y, last, el }
+      var client = null, connected = false;
+
+      function count() {
+        var n = 1; for (var k in peers) if (peers.hasOwnProperty(k)) n++;
+        if (denCount) denCount.textContent = "IN THE DEN: " + n;
+        if (ovDen) ovDen.textContent = "DEN // " + n + (n === 1 ? " HERE" : " HERE NOW");
+      }
+      count();
+
+      function placeGhost(p) {
+        if (!p.el) {
+          p.el = document.createElement("div"); p.el.className = "ghost";
+          p.el.innerHTML = '<div class="gc"></div><div class="gh"></div>';
+          ghosts.appendChild(p.el);
+        }
+        p.el.style.left = (p.x * 100) + "%"; p.el.style.top = (p.y * 100) + "%";
+        var gh = p.el.querySelector(".gh"); if (gh && gh.textContent !== p.h) gh.textContent = p.h;
+      }
+      function dropChip(x, y, side) {
+        var c = document.createElement("div");
+        c.className = "ghost-chip" + (side === "FADE" ? " fade" : "");
+        c.style.left = (x * 100) + "%"; c.style.top = (y * 100) + "%";
+        ghosts.appendChild(c);
+        setTimeout(function () { if (c.parentNode) c.parentNode.removeChild(c); }, 1800);
+      }
+
+      // Expire silent peers.
+      setInterval(function () {
+        var now = Date.now(), changed = false;
+        for (var k in peers) {
+          if (!peers.hasOwnProperty(k)) continue;
+          if (now - peers[k].last > 6500) { if (peers[k].el && peers[k].el.parentNode) peers[k].el.parentNode.removeChild(peers[k].el); delete peers[k]; changed = true; }
+        }
+        if (changed) count();
+      }, 1500);
+
+      function onMsg(raw) {
+        var m; try { m = JSON.parse(raw); } catch (e) { return; }
+        if (!m || m.id === ID || typeof m.id !== "string") return;
+        var fresh = !peers[m.id];
+        if (m.t === "p") {
+          var x = Math.max(0, Math.min(1, +m.x || 0)), y = Math.max(0, Math.min(1, +m.y || 0));
+          var h = String(m.h || "GHOST").slice(0, 12);
+          peers[m.id] = peers[m.id] || {}; var p = peers[m.id];
+          p.h = h; p.x = x; p.y = y; p.last = Date.now();
+          if (Object.keys(peers).length <= 40) placeGhost(p);
+          if (fresh) count();
+        } else if (m.t === "b") {
+          var p2 = peers[m.id];
+          var bx = p2 ? p2.x : 0.5, by = p2 ? p2.y : 0.62;
+          dropChip(bx, by, m.side === "FADE" ? "FADE" : "TAIL");
+          if (window.__log) window.__log((String(m.h || "A GHOST").slice(0, 12)) + " " + (m.side === "FADE" ? "FADED" : "TAILED") + " <b>" + String(m.kw || "").toUpperCase().slice(0, 16) + "</b>");
+          if (window.__spike) window.__spike();
+        } else if (m.t === "x") {
+          if (peers[m.id]) { if (peers[m.id].el && peers[m.id].el.parentNode) peers[m.id].el.parentNode.removeChild(peers[m.id].el); delete peers[m.id]; count(); }
+        }
+      }
+
+      function pub(obj) { if (client && connected) { try { client.publish(TOPIC, JSON.stringify(obj)); } catch (e) {} } }
+
+      // Broadcast my cursor over the painting, throttled.
+      var lastSend = 0, mx = 0.5, my = 0.5, moved = false;
+      function onMove(cx, cy) {
+        var r = scene.getBoundingClientRect(); if (!r.width) return;
+        mx = Math.max(0, Math.min(1, (cx - r.left) / r.width));
+        my = Math.max(0, Math.min(1, (cy - r.top) / r.height));
+        moved = true;
+        var now = Date.now(); if (now - lastSend > 90) { lastSend = now; pub({ t: "p", id: ID, h: ME, x: +mx.toFixed(3), y: +my.toFixed(3) }); }
+      }
+      scene.addEventListener("mousemove", function (e) { onMove(e.clientX, e.clientY); }, { passive: true });
+      scene.addEventListener("touchmove", function (e) { if (e.touches && e.touches[0]) onMove(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
+      // Heartbeat so others keep me alive even when still.
+      setInterval(function () { pub({ t: "p", id: ID, h: ME, x: +mx.toFixed(3), y: +my.toFixed(3) }); }, 3000);
+      window.addEventListener("beforeunload", function () { pub({ t: "x", id: ID }); });
+
+      // Bets from the pit broadcast a chip drop to the room.
+      window.__ghostBet = function (kw, side) { pub({ t: "b", id: ID, h: ME, kw: String(kw || ""), side: side }); };
+
+      // Lazy-load the MQTT client; try brokers in order; never block the page.
+      function connect(i) {
+        if (!window.mqtt || i >= BROKERS.length) return;
+        try {
+          client = window.mqtt.connect(BROKERS[i], { clean: true, connectTimeout: 6000, reconnectPeriod: 0, keepalive: 30 });
+          client.on("connect", function () { connected = true; client.subscribe(TOPIC); pub({ t: "p", id: ID, h: ME, x: 0.5, y: 0.5 }); });
+          client.on("message", function (_t, payload) { onMsg(payload.toString()); });
+          client.on("error", function () { try { client.end(true); } catch (e) {} connected = false; setTimeout(function () { connect(i + 1); }, 300); });
+          client.on("close", function () { connected = false; });
+        } catch (e) { connect(i + 1); }
+      }
+      var s = document.createElement("script");
+      s.src = "https://cdn.jsdelivr.net/npm/mqtt@5/dist/mqtt.min.js";
+      s.async = true;
+      s.onload = function () { connect(0); };
+      s.onerror = function () { /* presence simply stays dark; the den still works */ };
+      document.head.appendChild(s);
     })();
   </script>
 </body>

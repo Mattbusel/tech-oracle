@@ -420,7 +420,7 @@ pub fn render(
     // llms.txt: a machine-readable map so AI answer engines can find and cite it.
     let latest_no = total;
     let llms = format!(
-        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
 
@@ -541,6 +541,13 @@ pub fn render(
         "tagline": taglines[(age as usize) % taglines.len()],
     });
 
+    // THE ORACLE FOR MACHINES: a static, zero-backend agent interface. AI agents
+    // consult the oracle as structured truth and settle their own bets against
+    // the public record. GitHub Pages serves these with permissive CORS.
+    write_agent_layer(
+        &site, generated_human, &sorted, total, &scoreboard, &book, &calibration, &engine, pulse,
+    )?;
+
     let tmpl_src = include_str!("../templates/index.html");
     let mut env = minijinja::Environment::new();
     env.add_template("index", tmpl_src)?;
@@ -580,6 +587,162 @@ fn human_date(date: &str) -> String {
         Ok(d) => d.format("%B %-d, %Y").to_string(),
         Err(_) => date.to_string(),
     }
+}
+
+/// Emit the agent-native layer: a static JSON API plus discovery manifests so AI
+/// agents can read the oracle and place stateless bets. No server, no keys.
+#[allow(clippy::too_many_arguments)]
+fn write_agent_layer(
+    site: &str,
+    generated_human: &str,
+    sorted: &[&Prediction],
+    total: usize,
+    scoreboard: &serde_json::Value,
+    book: &serde_json::Value,
+    calibration: &serde_json::Value,
+    engine: &serde_json::Value,
+    pulse: &serde_json::Value,
+) -> anyhow::Result<()> {
+    std::fs::create_dir_all(format!("{}/api", crate::OUT_DIR))?;
+    std::fs::create_dir_all(format!("{}/.well-known", crate::OUT_DIR))?;
+
+    let today = sorted.first().map(|p| p.date.clone()).unwrap_or_default();
+    let to_call = |i: usize, p: &Prediction| -> serde_json::Value {
+        let no = total - i;
+        let conf = if p.confidence > 0.0 { p.confidence } else { 0.65 };
+        serde_json::json!({
+            "id": no,
+            "date": p.date,
+            "market": if p.market.is_empty() { "RESURFACE" } else { p.market.as_str() },
+            "keyword": p.keyword,
+            "keyword2": p.keyword2,
+            "prediction": p.prediction_text,
+            "win_if": p.win_if,
+            "resolves_by": p.resolves_by,
+            "confidence": (conf * 100.0).round() / 100.0,
+            "odds": (100.0 / conf).round() / 100.0,
+            "status": if p.status.is_empty() { "OPEN" } else { p.status.as_str() },
+            "resolved_on": p.resolved_on,
+            "rationale": p.rationale,
+            "source": { "type": p.signal_type, "title": p.source_title, "url": p.source_url },
+            "permalink": format!("{site}/call/{no}.html"),
+        })
+    };
+
+    // today.json: the latest revealed date's full slate.
+    let todays: Vec<serde_json::Value> = sorted
+        .iter()
+        .enumerate()
+        .filter(|(_, p)| p.date == today)
+        .map(|(i, p)| to_call(i, p))
+        .collect();
+    let today_doc = serde_json::json!({
+        "schema": "the-signal/today/1",
+        "date": today,
+        "generated_human": generated_human,
+        "count": todays.len(),
+        "calls": todays,
+    });
+    std::fs::write(format!("{}/api/today.json", crate::OUT_DIR), serde_json::to_string_pretty(&today_doc)?)?;
+
+    // calls.json: the whole open + settled record, newest first.
+    let all_calls: Vec<serde_json::Value> = sorted.iter().enumerate().map(|(i, p)| to_call(i, *p)).collect();
+    let record_doc = serde_json::json!({
+        "schema": "the-signal/record/1",
+        "total": total,
+        "scoreboard": scoreboard,
+        "book": book,
+        "calibration": calibration,
+        "calls": all_calls,
+    });
+    std::fs::write(format!("{}/api/record.json", crate::OUT_DIR), serde_json::to_string_pretty(&record_doc)?)?;
+
+    // observatory.json: the quantitative discourse state.
+    let obs_doc = serde_json::json!({
+        "schema": "the-signal/observatory/1",
+        "pulse": pulse,
+        "fear_greed": engine.get("fear_greed"),
+        "sectors": engine.get("sectors"),
+        "movers": engine.get("movers"),
+        "chasm": engine.get("chasm"),
+        "source_weights": engine.get("learning"),
+        "corpus_days": engine.get("corpus_days"),
+        "tracked_terms": engine.get("tracked_terms"),
+    });
+    std::fs::write(format!("{}/api/observatory.json", crate::OUT_DIR), serde_json::to_string_pretty(&obs_doc)?)?;
+
+    // oracle.json: the discovery document an agent reads first.
+    let oracle = serde_json::json!({
+        "schema": "the-signal/oracle/1",
+        "name": "THE SIGNAL",
+        "tagline": "A self-grading oracle of dated, falsifiable tech predictions. Rules-based, no LLM.",
+        "site": format!("{site}/"),
+        "generated": today,
+        "endpoints": {
+            "today": format!("{site}/api/today.json"),
+            "record": format!("{site}/api/record.json"),
+            "observatory": format!("{site}/api/observatory.json")
+        },
+        "markets": {
+            "RESURFACE": "the subject reappears across the feeds before the deadline",
+            "SURVIVAL": "the subject does not go quiet before the deadline",
+            "MOMENTUM": "the subject keeps moving across the feeds",
+            "HEAD-TO-HEAD": "the subject resurfaces before its named rival",
+            "CROSSOVER": "the subject out-mentions its named rival",
+            "INDEX": "the acceleration index crosses a target",
+            "OVER": "the subject clears a mention threshold in a day",
+            "CHASM": "the subject leaves the dev bubble and reaches the general public (Reddit, the news, Wikipedia)",
+            "FUTURES": "the subject still matters at a 90-day horizon",
+            "LONGSHOT": "a deliberate high-odds resurface bet"
+        },
+        "how_to_bet": "Betting is stateless. Construct a position token { k: keyword, m: market, s: \"TAIL\"|\"FADE\", l: decimal_odds_at_entry, u: your_handle }, base64url-encode the JSON, and keep it. TAIL backs the engine's call; FADE bets against it. Settle later by reading record.json: find the call by keyword/market and check its status. No account, no server, no signup.",
+        "license": "Public record. Free to read, cite, and build on."
+    });
+    std::fs::write(format!("{}/api/oracle.json", crate::OUT_DIR), serde_json::to_string_pretty(&oracle)?)?;
+
+    // OpenAPI: a real, agent-consumable description of the three GET endpoints.
+    let openapi = serde_json::json!({
+        "openapi": "3.0.0",
+        "info": { "title": "THE SIGNAL Oracle API", "version": "1.0.0",
+            "description": "Read a self-grading oracle of dated, falsifiable tech predictions, its public track record and calibration, and the underlying discourse-diffusion data. Static, read-only, CORS-open." },
+        "servers": [ { "url": site } ],
+        "paths": {
+            "/api/today.json": { "get": { "operationId": "getTodaysCalls", "summary": "Today's slate of dated tech calls with win conditions, odds and reasoning.", "responses": { "200": { "description": "OK" } } } },
+            "/api/record.json": { "get": { "operationId": "getRecord", "summary": "The full public record: every call, the scorecard, the book, and the Brier calibration.", "responses": { "200": { "description": "OK" } } } },
+            "/api/observatory.json": { "get": { "operationId": "getObservatory", "summary": "Discourse state: acceleration pulse, sector indices, fear/greed, fastest movers, and the chasm (mainstream-crossing) watch.", "responses": { "200": { "description": "OK" } } } }
+        }
+    });
+    std::fs::write(format!("{}/openapi.json", crate::OUT_DIR), serde_json::to_string_pretty(&openapi)?)?;
+
+    // ai-plugin manifest (the de facto agent-discovery descriptor).
+    let plugin = serde_json::json!({
+        "schema_version": "v1",
+        "name_for_human": "THE SIGNAL",
+        "name_for_model": "the_signal_oracle",
+        "description_for_human": "A self-grading oracle of dated, falsifiable tech predictions. Reads ten public sources, keeps score in public.",
+        "description_for_model": "Consult THE SIGNAL, a rules-based (no-LLM) oracle that makes dated, falsifiable technology predictions and grades itself in public. GET /api/today.json for the current slate of calls (each with a market type, a machine-checkable win condition, decimal odds, and a reasoning tape). GET /api/record.json for the full track record, the virtual book, and the Brier calibration score. GET /api/observatory.json for the acceleration index, sector indices, a fear/greed gauge, fastest-moving terms, and the chasm watch (terms crossing from technical audiences to the general public). All endpoints are static JSON, read-only, and CORS-open. Agents may place stateless bets per the how_to_bet field of /api/oracle.json.",
+        "api": { "type": "openapi", "url": format!("{site}/openapi.json") },
+        "logo_url": format!("{site}/og.png"),
+        "contact_email": "press@thesignal.invalid",
+        "legal_info_url": format!("{site}/")
+    });
+    std::fs::write(format!("{}/.well-known/ai-plugin.json", crate::OUT_DIR), serde_json::to_string_pretty(&plugin)?)?;
+
+    // A resource manifest for MCP-style clients: read-only resources mapped to
+    // the static endpoints.
+    let mcp = serde_json::json!({
+        "schema": "the-signal/mcp-resources/1",
+        "name": "the-signal",
+        "description": "Read-only resources from THE SIGNAL oracle.",
+        "resources": [
+            { "uri": format!("{site}/api/today.json"), "name": "today", "mimeType": "application/json", "description": "Today's dated tech calls with win conditions and odds." },
+            { "uri": format!("{site}/api/record.json"), "name": "record", "mimeType": "application/json", "description": "Full track record, the book, and Brier calibration." },
+            { "uri": format!("{site}/api/observatory.json"), "name": "observatory", "mimeType": "application/json", "description": "Acceleration pulse, sector indices, fear/greed, movers, chasm watch." }
+        ]
+    });
+    std::fs::write(format!("{}/.well-known/mcp.json", crate::OUT_DIR), serde_json::to_string_pretty(&mcp)?)?;
+
+    Ok(())
 }
 
 fn rfc822(date: &str) -> String {
