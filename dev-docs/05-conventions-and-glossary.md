@@ -80,11 +80,15 @@ crossing terms get the provocative `challenge_template` text.
   `vitality` (0..1 from the bankroll) and `lifeState` (ALIVE / FADING / FLATLINE
   / DEAD). The world dims (`html.fading`) as it bleeds and shows a death screen
   (`html.dead` -> `#flatline`) at zero.
-- **Strategy genes / self-evolution**: `genome.aggr` (line aggressiveness) and
-  `genome.risk` (longshot appetite). Each day proposes a mutation that
-  `generate.rs` bets on; `main::evolve_strategy` keeps it if realized hit rate
-  held up, else reverts. `sgen` counts accepted strategies, `fit` is the bar to
-  beat. The engine hill-climbs its own betting strategy.
+- **The Bloodline / self-evolution**: the oracle is a *breeding population* of
+  gambler-organisms (`bloodline.rs`, `data/bloodline.json`), not one strategy.
+  Each organism has strategy genes (`aggr` line aggressiveness, `risk` longshot
+  appetite, `conf` bias). Daily, every organism shadow-bets the entire settled
+  record (`simulate`); the richest survive, the broke ones die, survivors mate
+  (`crossover` + mutation) to refill the population. The fittest living organism
+  (the **champion**) drives `generate.rs`'s real line. A genuine genetic
+  algorithm, shown at `/bloodline.html` with the living ranked, the champion, and
+  the graveyard. (This replaced the earlier single-genome hill-climb.)
 - **Sleep mode / The Dreams**: a destination (`/sleep.html`), not a takeover.
   `main::build_dreams` exposes the corpus's most-burned-in terms (`pool`) and the
   `forms`; `sleep.html` recombines them into surreal far-future calls forever,

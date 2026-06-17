@@ -30,7 +30,8 @@ Steps in order:
     fires if its secret/var is present; a failed post never fails the run.
 11. **Commit revealed output**: stages exactly
     `docs README.md data/predictions.json data/pulse.json data/genome.json
-    data/corpus.json data/weights.json`, commits and pushes if anything changed.
+    data/corpus.json data/weights.json data/bloodline.json`, commits and pushes
+    if anything changed.
     `build/` is gitignored so the paid edge never lands in the public repo.
 
 The push to `docs/` is what GitHub Pages redeploys. Re-runs are idempotent

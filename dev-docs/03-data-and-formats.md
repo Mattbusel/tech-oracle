@@ -8,8 +8,9 @@ scratch** (`build/*`, including the paid edge). Schemas below are exact.
 
 ## Committed state (`data/`)
 
-These MUST be committed by the Action every run or memory/learning resets. The
-daily commit stages all five explicitly.
+These MUST be committed by the Action every run or memory/learning/evolution
+resets. The daily commit stages all six explicitly (predictions, pulse, genome,
+weights, corpus, bloodline).
 
 ### `data/predictions.json` (the public record, source of truth)
 A JSON array of `Prediction` (see `01-rust-engine.md::model.rs`):
@@ -48,6 +49,12 @@ Learned per-source selection weights (online learning):
 0.6..1.5, computed from realized hit rate (needs >= 3 settled calls to move off
 1.0). Read by `rank.rs` before selection; recomputed and saved after grading.
 
+### `data/bloodline.json`
+The breeding population of strategy-organisms (the genetic algorithm). `{ next_id,
+gen, population: [{ id, name, born, parents, genes{aggr,risk,conf}, fitness, age,
+alive, died }] }`. The fittest living organism's genes drive the live betting
+line. Must be committed every run or the species resets.
+
 ### `data/corpus.json` (the moat)
 The growing discourse time series. Two parts:
 - `days`: array of `CorpusDay` `{ date, total, by_source{src:n}, terms{term:n},
@@ -76,6 +83,8 @@ This file powers velocity, diffusion/CHASM, sectors, and the dataset.
 - `sleep.html` - SLEEP MODE: a standalone, always-running dreamscape destination
   (the term pool and forms are baked in; the client recombines new dreams
   forever). Not a takeover; reached from the footer.
+- `bloodline.html` + `api/bloodline.json` - THE BLOODLINE: the living population
+  of strategy-organisms, ranked, with the champion and the graveyard.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus
   the raw `pool` (top terms) and `forms` so any client can recombine endlessly.
 

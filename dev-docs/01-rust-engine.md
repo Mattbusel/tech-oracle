@@ -10,8 +10,27 @@ on rustc 1.91), `minijinja`, `chrono`, `anyhow`, `aes-gcm` + `pbkdf2` + `sha2` +
 `base64` + `getrandom` (access codes), `png` (share cards). Release profile is
 `opt-level = 2`.
 
-Module graph (declared in `main.rs`): `access`, `card`, `fetch`, `generate`,
-`model`, `observatory`, `rank`, `render`.
+Module graph (declared in `main.rs`): `access`, `bloodline`, `card`, `fetch`,
+`generate`, `model`, `observatory`, `rank`, `render`.
+
+## `bloodline.rs` (the breeding population / genetic algorithm)
+
+The oracle's strategy is evolved by a population, not a single hill-climb.
+- `struct Genes { aggr, risk, conf }` - one organism's instincts.
+- `struct Organism { id, name, born, parents, genes, fitness, age, alive, died }`.
+- `struct Bloodline { next_id, gen, population }` - persisted to `data/bloodline.json`.
+- `fn simulate(genes, calls) -> f64` - the fitness function: shadow bankroll over
+  the settled record, each call staked/lined by the organism's genes.
+- `pub fn load() -> Bloodline`.
+- `Bloodline::champion_genes()` - the fittest living organism's genes (drives the
+  live line in `generate`).
+- `Bloodline::evolve(date, resolved)` - seed the founding population if empty;
+  else score everyone via `simulate`, age them, and once there are >= 5 settled
+  calls cull to `SURVIVORS` (7), breed back to `TARGET` (10) via `crossover` +
+  mutation, prune the graveyard, persist.
+- `Bloodline::to_json()` - champion + living (ranked) + recent dead, for the page.
+Internals: a small LCG `Rng` seeded by `ghash(date)` (deterministic), a `NAMES`
+word list for organism names.
 
 ---
 
@@ -107,8 +126,8 @@ CSS (`.s-x` and `i.s-x`/`.sm-dot.s-x`).
 - `const MARKETS: &[&str]` - the rotation pool: RESURFACE, CHASM, MOMENTUM, OVER,
   HEAD-TO-HEAD, SURVIVAL, CROSSOVER, INDEX, FUTURES, LONGSHOT.
 - `pub fn generate(signals, date, seed, index, obs: &Observatory, aggr: f64, risk: f64) -> Vec<Prediction>`
-  (`aggr` shifts confidence, `risk` turns some calls into longshots; both are
-  strategy genes from the genome)
+  (`aggr` shifts confidence, `risk` turns some calls into longshots; both are the
+  current bloodline champion's genes)
   - For each pick: derive `subject` and `keyword`; pull features from the
     observatory (`velocity_pct`, `cross_source`, `is_crossing`, `rationale`).
   - Pick a market by `(seed + i) % len`, then validate against the data:
@@ -203,14 +222,10 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
   INDEX (index >= target), OVER (count >= target), CHASM (keyword appears in the
   general-public corpus), default RESURFACE/SURVIVAL/MOMENTUM/FUTURES/LONGSHOT
   (keyword resurfaces). MISS when the deadline passes.
-- Genome: `struct Genome { gen, hue, wear, quirk, last, aggr, risk, sgen, fit,
-  p_aggr, p_risk }`, `fn ghash(s)` (FNV-1a), `fn build_genome(date) -> Genome`
-  (mutate once/day: look genes + propose a strategy mutation),
-  `fn evolve_strategy(g, hit_rate, resolved)` (the fitness loop: keep the
-  mutation if hit rate held, else revert toward the prior genes),
-  `fn genome_json(g)` (the Value for render). `build_genome` runs before
-  generation (so `generate` uses `aggr`/`risk`); `evolve_strategy` runs after
-  grading.
+- Genome: `struct Genome { gen, hue, wear, quirk, last, ... }`, `fn ghash(s)`
+  (FNV-1a), `fn build_genome(date) -> Genome` (mutate the look once/day),
+  `fn genome_json(g)`. Strategy evolution now lives in `bloodline.rs` (the
+  champion's genes feed `generate`); the genome carries the visual DNA only.
 - Dreams: `fn build_dreams(obs, date) -> Value` - returns `{ dreams, pool, forms }`:
   six seed dreams plus the raw term pool and form strings so SLEEP MODE can
   recombine endlessly client-side. `render.rs` writes `api/dreams.json` and bakes
@@ -239,7 +254,7 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
 
 `pub fn render(generated_human, reveal_delay_days, featured_date_human,
 featured, archive, payment_link, portal_url, early_access_url, intake, pulse,
-genome, engine, dreams) -> anyhow::Result<()>`.
+genome, engine, dreams, bloodline) -> anyhow::Result<()>`.
 
 It builds the template context and writes everything. What it computes:
 
@@ -265,8 +280,10 @@ Artifacts written (all under `docs/` unless noted):
 - `arena.html` (the prediction-tournament board; client-side, settles GitHub-
   issue bets against `api/record.json`).
 - `sleep.html` (SLEEP MODE: the always-running dreamscape destination, pool/forms
-  baked in) and `api/dreams.json`. `mood` also carries the mortality fields
-  `vitality`/`lifeState`/`bank` and the strategy fields `sgen`/`aggr`/`risk`/`fit`.
+  baked in) and `api/dreams.json`.
+- `bloodline.html` (the breeding population: living ranked, champion, graveyard)
+  and `api/bloodline.json`. `mood` carries the mortality fields
+  `vitality`/`lifeState`/`bank` and the bloodline `sgen` (generation) + `champion`.
 - `sitemap.xml`, `sitemap-images.xml`, `robots.txt`, `<INDEXNOW_KEY>.txt`, and
   `build/indexnow.json` (the ping payload).
 - `widget.js` (embeddable wire), `og.png` (daily homepage card), `badge.svg`.
