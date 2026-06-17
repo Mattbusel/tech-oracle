@@ -293,3 +293,7 @@ fn shorten(t: &str, max: usize) -> String {
         out
     }
 }
+
+#[cfg(test)]
+#[path = "tests_generate.rs"]
+mod tests_generate;

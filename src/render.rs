@@ -994,3 +994,7 @@ fn xml(s: &str) -> String {
         .replace('"', "&quot;")
         .replace('\'', "&apos;")
 }
+
+#[cfg(test)]
+#[path = "tests_render.rs"]
+mod tests_render;

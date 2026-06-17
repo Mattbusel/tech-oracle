@@ -39,18 +39,13 @@
   ],
   "corpus_days": 1,
   "fear_greed": {
-    "label": "NEUTRAL",
-    "value": 58
+    "label": "GREED",
+    "value": 66
   },
   "movers": [
     {
-      "count": 11,
-      "term": "GAME",
-      "vel": 100
-    },
-    {
       "count": 9,
-      "term": "UPDATE",
+      "term": "GAME",
       "vel": 100
     },
     {
@@ -60,26 +55,31 @@
     },
     {
       "count": 8,
-      "term": "GOOGLE",
+      "term": "APPLE",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "TEAM",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "UPDATE",
       "vel": 100
     },
     {
       "count": 7,
       "term": "CUP",
       "vel": 100
-    },
-    {
-      "count": 6,
-      "term": "TEAM",
-      "vel": 100
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
-    "delta_word": "RISING",
+    "delta_abs": 0,
+    "delta_word": "FLAT",
     "has_prev": true,
-    "highest_days": 1,
+    "highest_days": 0,
     "history": [
       {
         "date": "2026-06-02",
@@ -123,39 +123,45 @@
       },
       {
         "date": "2026-06-17",
-        "index": 71
+        "index": 70
       }
     ],
-    "index": 71,
-    "theme": "GAME",
-    "total": 261,
+    "index": 70,
+    "theme": "WORLD",
+    "total": 255,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 20,
-      "index": 100,
-      "name": "AI"
-    },
-    {
-      "arrow": "UP",
-      "delta": 20,
+      "delta": 21,
       "index": 100,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
+      "delta": 20,
+      "index": 95,
+      "name": "AI"
+    },
+    {
+      "arrow": "UP",
       "delta": 4,
-      "index": 20,
+      "index": 19,
       "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 3,
-      "index": 15,
+      "index": 14,
       "name": "RUST"
+    },
+    {
+      "arrow": "UP",
+      "delta": 2,
+      "index": 10,
+      "name": "CHIPS"
     },
     {
       "arrow": "UP",
@@ -174,12 +180,6 @@
       "delta": 2,
       "index": 10,
       "name": "ROBOTS"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 5,
-      "name": "CHIPS"
     }
   ],
   "source_weights": [
@@ -284,5 +284,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 1524
+  "tracked_terms": 1567
 }

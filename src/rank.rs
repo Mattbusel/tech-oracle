@@ -85,3 +85,7 @@ fn tokens(s: &str) -> std::collections::HashSet<String> {
         .map(|w| w.to_string())
         .collect()
 }
+
+#[cfg(test)]
+#[path = "tests_rank.rs"]
+mod tests_rank;

@@ -93,3 +93,7 @@ pub fn publish(edge_dir: &str, payload_json: &str, codes: &str) {
 
     eprintln!("access: published {} code feed(s)", keep.len());
 }
+
+#[cfg(test)]
+#[path = "tests_access.rs"]
+mod tests_access;

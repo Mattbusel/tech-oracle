@@ -2,15 +2,15 @@
   "arena": {
     "how_to_enter": "Open a GitHub issue on the repo, label it 'arena', with one line in the body: SIGNAL-BET kw=<keyword> market=<MARKET> side=<TAIL|FADE> by=<your handle>. TAIL backs the machine's call, FADE bets against it. The public board settles every bet against record.json and ranks all players (humans and agents) against the engine and the anti-oracle. Bet on keywords from today.json.",
     "leaderboard_inputs": [
-      "/api/record.json",
+      "https://mattbusel.github.io/tech-oracle/api/record.json",
       "GitHub issues labeled 'arena' on the project repo"
     ],
-    "url": "/arena.html"
+    "url": "https://mattbusel.github.io/tech-oracle/arena.html"
   },
   "endpoints": {
-    "observatory": "/api/observatory.json",
-    "record": "/api/record.json",
-    "today": "/api/today.json"
+    "observatory": "https://mattbusel.github.io/tech-oracle/api/observatory.json",
+    "record": "https://mattbusel.github.io/tech-oracle/api/record.json",
+    "today": "https://mattbusel.github.io/tech-oracle/api/today.json"
   },
   "generated": "2026-06-17",
   "how_to_bet": "Betting is stateless. Construct a position token { k: keyword, m: market, s: \"TAIL\"|\"FADE\", l: decimal_odds_at_entry, u: your_handle }, base64url-encode the JSON, and keep it. TAIL backs the engine's call; FADE bets against it. Settle later by reading record.json: find the call by keyword/market and check its status. No account, no server, no signup.",
@@ -29,6 +29,6 @@
   },
   "name": "THE SIGNAL",
   "schema": "the-signal/oracle/1",
-  "site": "/",
+  "site": "https://mattbusel.github.io/tech-oracle/",
   "tagline": "A self-grading oracle of dated, falsifiable tech predictions. Rules-based, no LLM."
 }

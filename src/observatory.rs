@@ -490,3 +490,7 @@ impl Observatory {
         }
     }
 }
+
+#[cfg(test)]
+#[path = "tests_observatory.rs"]
+mod tests_observatory;

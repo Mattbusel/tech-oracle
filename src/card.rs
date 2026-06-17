@@ -248,3 +248,7 @@ fn glyph(ch: char) -> [u8; 5] {
         _ => [0x00, 0x00, 0x00, 0x00, 0x00],
     }
 }
+
+#[cfg(test)]
+#[path = "tests_card.rs"]
+mod tests_card;

@@ -1051,3 +1051,167 @@ fn human_date(date: &str) -> String {
         Err(_) => date.to_string(),
     }
 }
+
+// ===========================================================================
+// Tests: the grading engine and the helpers that decide what gets printed.
+// ===========================================================================
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn mk(date: &str, market: &str, kw: &str, kw2: &str, resolves_by: &str, target: i64) -> Prediction {
+        Prediction {
+            date: date.into(),
+            prediction_text: "x".into(),
+            source_title: "".into(),
+            source_url: "".into(),
+            signal_type: "hn".into(),
+            status: "OPEN".into(),
+            keyword: kw.into(),
+            win_if: "".into(),
+            resolves_by: resolves_by.into(),
+            resolved_on: "".into(),
+            confidence: 0.7,
+            market: market.into(),
+            keyword2: kw2.into(),
+            target,
+            rationale: "".into(),
+        }
+    }
+
+    #[test]
+    fn resurface_hits_when_keyword_returns() {
+        let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", "everyone loves rust today", "", 50);
+        assert_eq!(v[0].status, "HIT");
+        assert_eq!(v[0].resolved_on, "2026-06-10");
+    }
+
+    #[test]
+    fn resurface_misses_after_deadline() {
+        let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-06-05", 0)];
+        resolve_open(&mut v, "2026-06-10", "nothing relevant here", "", 50);
+        assert_eq!(v[0].status, "MISS");
+    }
+
+    #[test]
+    fn never_settles_on_its_own_day() {
+        // A call cannot resolve on or before the day it was made.
+        let mut v = vec![mk("2026-06-10", "RESURFACE", "rust", "", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", "rust rust rust", "", 50);
+        assert_eq!(v[0].status, "OPEN");
+    }
+
+    #[test]
+    fn open_stays_open_when_unmet_and_within_window() {
+        let mut v = vec![mk("2026-06-01", "RESURFACE", "rust", "", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", "no match", "", 50);
+        assert_eq!(v[0].status, "OPEN");
+    }
+
+    #[test]
+    fn chasm_only_settles_on_the_general_corpus() {
+        // Present in the full corpus but NOT in the general slice: stays open.
+        let mut v = vec![mk("2026-06-01", "CHASM", "anthropic", "", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", "anthropic on hn", "", 50);
+        assert_eq!(v[0].status, "OPEN");
+        // Now it reaches the general public.
+        resolve_open(&mut v, "2026-06-11", "x", "anthropic hits the news", 50);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn index_hits_when_index_clears_target() {
+        let mut v = vec![mk("2026-06-01", "INDEX", "signal", "", "2026-07-01", 70)];
+        resolve_open(&mut v, "2026-06-10", "", "", 60);
+        assert_eq!(v[0].status, "OPEN");
+        resolve_open(&mut v, "2026-06-11", "", "", 75);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn over_hits_on_mention_threshold() {
+        let mut v = vec![mk("2026-06-01", "OVER", "gpt", "", "2026-07-01", 3)];
+        resolve_open(&mut v, "2026-06-10", "gpt gpt gpt gpt everywhere", "", 50);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn head_to_head_hits_when_subject_leads_rival() {
+        let mut v = vec![mk("2026-06-01", "HEAD-TO-HEAD", "rust", "zig", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", "rust is back", "", 50);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn head_to_head_misses_when_rival_leads() {
+        let mut v = vec![mk("2026-06-01", "HEAD-TO-HEAD", "rust", "zig", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", "zig is winning", "", 50);
+        assert_eq!(v[0].status, "MISS");
+    }
+
+    #[test]
+    fn crossover_hits_when_subject_outmentions_rival() {
+        let mut v = vec![mk("2026-06-01", "CROSSOVER", "rust", "zig", "2026-07-01", 0)];
+        resolve_open(&mut v, "2026-06-10", "rust rust rust zig", "", 50);
+        assert_eq!(v[0].status, "HIT");
+    }
+
+    #[test]
+    fn fallback_call_is_a_valid_dated_index_bet() {
+        let p = fallback_call("2026-06-10", 50);
+        assert_eq!(p.market, "INDEX");
+        assert_eq!(p.status, "OPEN");
+        assert!(!p.win_if.is_empty());
+        assert!(p.target >= 1 && p.target <= 100);
+        assert_eq!(p.resolves_by, "2026-07-10");
+        assert!((p.confidence - 0.6).abs() < 1e-9);
+    }
+
+    #[test]
+    fn weights_need_evidence_before_moving() {
+        let mut stats = HashMap::new();
+        stats.insert("hn".to_string(), (2i64, 0i64)); // only 2 settled -> stays neutral
+        stats.insert("arxiv".to_string(), (3i64, 0i64)); // 3 settled, perfect -> moves up
+        stats.insert("ars".to_string(), (0i64, 4i64)); // all misses -> moves down
+        let w = compute_weights(&stats);
+        assert!((w["hn"] - 1.0).abs() < 1e-9);
+        assert!(w["arxiv"] > 1.0);
+        assert!(w["ars"] < 1.0);
+        // every known source is present and bounded
+        for &s in ALL_SOURCES {
+            let v = w[s];
+            assert!((0.6..=1.5).contains(&v));
+        }
+    }
+
+    #[test]
+    fn ghash_is_deterministic_and_varies() {
+        assert_eq!(ghash("2026-06-10"), ghash("2026-06-10"));
+        assert_ne!(ghash("2026-06-10"), ghash("2026-06-11"));
+    }
+
+    #[test]
+    fn age_and_reveal_dates() {
+        let now = NaiveDate::parse_from_str("2026-06-10", "%Y-%m-%d").unwrap();
+        assert_eq!(age_days("2026-06-08", now), 2);
+        assert_eq!(reveal_date("2026-06-08", 1), "2026-06-09");
+    }
+
+    #[test]
+    fn csv_escape_quotes_and_flattens() {
+        assert_eq!(csv_escape("a,b"), "\"a,b\"");
+        assert_eq!(csv_escape("he said \"hi\""), "\"he said \"\"hi\"\"\"");
+        assert!(!csv_escape("line\nbreak").contains('\n'));
+    }
+
+    #[test]
+    fn dedup_drops_same_day_same_text() {
+        let mut v = vec![
+            mk("2026-06-01", "RESURFACE", "a", "", "2026-07-01", 0),
+            mk("2026-06-01", "RESURFACE", "a", "", "2026-07-01", 0),
+        ];
+        dedup(&mut v);
+        assert_eq!(v.len(), 1);
+    }
+}

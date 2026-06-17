@@ -135,8 +135,15 @@ impl Bloodline {
             .unwrap_or_default()
     }
 
-    /// One day of selection: score everyone, cull the broke, breed the rich.
+    /// One day of selection: score everyone, cull the broke, breed the rich,
+    /// then persist. Disk write is isolated in `save` so the core is testable.
     pub fn evolve(&mut self, date: &str, resolved: &[Prediction]) {
+        self.evolve_in_memory(date, resolved);
+        self.save();
+    }
+
+    /// The selection logic with no IO (so tests can exercise idempotency).
+    pub fn evolve_in_memory(&mut self, date: &str, resolved: &[Prediction]) {
         let mut rng = Rng(ghash(date) ^ self.next_id.wrapping_mul(2654435761).wrapping_add(1));
 
         if self.population.is_empty() {
@@ -151,7 +158,6 @@ impl Bloodline {
             }
             self.gen = 1;
             self.last_evolved = date.to_string();
-            self.save();
             return;
         }
 
@@ -172,7 +178,6 @@ impl Bloodline {
         // Aging, culling and breeding happen at most once per calendar day, so a
         // redundant cron run (a backstop firing) never over-ages or over-breeds.
         if self.last_evolved == date {
-            self.save();
             return;
         }
         for o in self.population.iter_mut().filter(|o| o.alive) {
@@ -217,8 +222,6 @@ impl Bloodline {
                 self.population.retain(|_| { let keep = !drop.contains(&idx); idx += 1; keep });
             }
         }
-
-        self.save();
     }
 
     fn save(&self) {
@@ -287,3 +290,7 @@ fn house(g: &Genes) -> &'static str {
         "THE STEADY"
     }
 }
+
+#[cfg(test)]
+#[path = "tests_bloodline.rs"]
+mod tests_bloodline;
