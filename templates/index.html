@@ -41,6 +41,19 @@
     a { color: inherit; }
     .filter-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 
+    /* the living-painting hero (WebGL) */
+    .scene { position: relative; height: 100vh; min-height: 560px; overflow: hidden; background: #0c0d10 url('assets/scene.jpg') center/cover no-repeat; animation: boot 1.6s ease both; }
+    #glcanvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+    .scene-grad { position: absolute; inset: 0; pointer-events: none; background: linear-gradient(180deg, rgba(12,13,16,0.35), rgba(12,13,16,0) 28%, rgba(12,13,16,0) 58%, rgba(12,13,16,0.9)); }
+    .scene-ui { position: absolute; left: 0; right: 0; bottom: 7%; text-align: center; z-index: 2; color: #efede4; font-family: var(--mono); padding: 0 16px; }
+    .scene-kicker { font-size: 11px; letter-spacing: 0.42em; color: #9aa0bd; margin-bottom: 12px; }
+    .scene-title { font-size: clamp(42px, 12vw, 132px); font-weight: 700; letter-spacing: 0.16em; margin: 0; text-indent: 0.16em; line-height: 0.95; text-shadow: 0 6px 40px rgba(0,0,0,0.85); }
+    .scene-sub { font-size: clamp(10px, 2.3vw, 14px); letter-spacing: 0.3em; color: #cdd0d7; margin-top: 10px; text-shadow: 0 2px 14px rgba(0,0,0,0.95); }
+    .scene-enter { margin-top: 28px; font-family: var(--mono); font-size: 13px; font-weight: 600; letter-spacing: 0.14em; color: #efede4; background: rgba(20,21,26,0.55); border: 1.5px solid rgba(239,237,228,0.55); border-radius: 6px; padding: 13px 22px; cursor: pointer; }
+    .scene-enter:hover { background: #efede4; color: #17181c; }
+    @keyframes boot { from { opacity: 0; } to { opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .scene { animation: none; } }
+
     .deck { position: relative; max-width: 1320px; margin: 0 auto; padding-top: 30px; }
     .regmark { position: absolute; width: 16px; height: 16px; opacity: 0.18; pointer-events: none; }
     .regmark::before, .regmark::after { content: ""; position: absolute; background: #fff; }
@@ -381,6 +394,17 @@
       <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G" />
     </filter>
   </svg>
+
+  <section id="scene" class="scene" aria-label="THE SIGNAL // enter the den">
+    <canvas id="glcanvas" aria-hidden="true"></canvas>
+    <div class="scene-grad" aria-hidden="true"></div>
+    <div class="scene-ui">
+      <div class="scene-kicker" id="scene-kicker">PRESS POWERING ON</div>
+      <h1 class="scene-title">THE SIGNAL</h1>
+      <div class="scene-sub">CONTINUOUS-FORM ORACLE // AUTONOMOUS WAGER PRINTER</div>
+      <button class="scene-enter" type="button" id="scene-enter">[ ENTER THE DEN ]</button>
+    </div>
+  </section>
 
   <div class="deck">
     <div class="regmark tl" aria-hidden="true"></div>
@@ -1380,6 +1404,82 @@
           return;
         }
       });
+    })();
+
+    // ----------------------------------------------------------------------
+    // The living painting: a WebGL hero that makes the den breathe, flicker,
+    // drift with the cursor, with chromatic aberration, scanlines, grain and a
+    // vignette. Falls back to a static image if WebGL is unavailable.
+    // ----------------------------------------------------------------------
+    (function () {
+      var scene = $id("scene"), cv = $id("glcanvas"); if (!scene || !cv) return;
+      var enter = $id("scene-enter");
+      if (enter) enter.addEventListener("click", function () { var d = document.querySelector(".deck"); if (d) d.scrollIntoView({ behavior: REDUCE ? "auto" : "smooth" }); });
+      var kicker = $id("scene-kicker");
+      if (kicker && !REDUCE) { var states = ["SPOOLING PAPER", "INKING RIBBON", "WARMING THE HEAD", "ONLINE"]; var ki = 0; var kt = setInterval(function () { ki++; if (ki >= states.length) { kicker.textContent = "ONLINE // the den is open"; clearInterval(kt); return; } kicker.textContent = states[ki] + " ..."; }, 750); }
+
+      var gl = null; try { gl = cv.getContext("webgl") || cv.getContext("experimental-webgl"); } catch (e) {}
+      function fail() { scene.classList.add("nogl"); cv.style.display = "none"; }
+      if (!gl) { fail(); return; }
+      var FRAG = [
+        "precision mediump float;",
+        "varying vec2 uv; uniform sampler2D tex; uniform float t; uniform vec2 mouse; uniform vec2 res; uniform float ia;",
+        "float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }",
+        "void main(){",
+        "  float ca = res.x/res.y;",
+        "  vec2 u = uv-0.5;",
+        "  if(ca>ia){ u.y *= ia/ca; } else { u.x *= ca/ia; }",
+        "  float zoom = 1.03 + 0.006*sin(t*0.15);",
+        "  u /= zoom;",
+        "  u += (mouse-0.5)*0.018;",
+        "  u += 0.5;",
+        "  float d = distance(uv, vec2(0.5));",
+        "  vec2 cao = (uv-0.5)*0.0045*d;",
+        "  float r = texture2D(tex, u+cao).r; float g = texture2D(tex, u).g; float b = texture2D(tex, u-cao).b;",
+        "  vec3 col = vec3(r,g,b);",
+        "  col *= 0.95 + 0.05*hash(vec2(floor(t*11.0), 7.0));",
+        "  col *= 0.94 + 0.06*sin(uv.y*res.y*0.9);",
+        "  col += (hash(uv*res + t)*2.0-1.0)*0.05;",
+        "  col *= 0.45 + 0.55*smoothstep(0.95, 0.12, d);",
+        "  gl_FragColor = vec4(col, 1.0);",
+        "}"
+      ].join("\n");
+      function sh(ty, src) { var s = gl.createShader(ty); gl.shaderSource(s, src); gl.compileShader(s); return gl.getShaderParameter(s, gl.COMPILE_STATUS) ? s : null; }
+      var vs = sh(gl.VERTEX_SHADER, "attribute vec2 p; varying vec2 uv; void main(){ uv = p*0.5+0.5; uv.y = 1.0-uv.y; gl_Position = vec4(p,0.0,1.0); }");
+      var fs = sh(gl.FRAGMENT_SHADER, FRAG);
+      if (!vs || !fs) { fail(); return; }
+      var prog = gl.createProgram(); gl.attachShader(prog, vs); gl.attachShader(prog, fs); gl.linkProgram(prog);
+      if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) { fail(); return; }
+      gl.useProgram(prog);
+      var bf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, bf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW);
+      var loc = gl.getAttribLocation(prog, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      var uT = gl.getUniformLocation(prog, "t"), uM = gl.getUniformLocation(prog, "mouse"), uR = gl.getUniformLocation(prog, "res"), uIa = gl.getUniformLocation(prog, "ia");
+      var tex = gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D, tex);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([20, 21, 26, 255]));
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR); gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      var ia = 1672.0 / 941.0, ready = false;
+      var img = new Image();
+      img.onload = function () { ia = img.width / img.height; gl.bindTexture(gl.TEXTURE_2D, tex); gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img); ready = true; };
+      img.onerror = fail;
+      img.src = "assets/scene.jpg";
+      var mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5;
+      window.addEventListener("mousemove", function (e) { tx = e.clientX / window.innerWidth; ty = e.clientY / window.innerHeight; }, { passive: true });
+      window.addEventListener("deviceorientation", function (e) { if (e.gamma != null) { tx = 0.5 + Math.max(-1, Math.min(1, e.gamma / 45)) * 0.5; ty = 0.5 + Math.max(-1, Math.min(1, e.beta / 45)) * 0.5; } }, { passive: true });
+      function resize() { var dpr = Math.min(2, window.devicePixelRatio || 1); cv.width = Math.max(1, Math.round(scene.clientWidth * dpr)); cv.height = Math.max(1, Math.round(scene.clientHeight * dpr)); gl.viewport(0, 0, cv.width, cv.height); }
+      resize(); window.addEventListener("resize", resize, { passive: true });
+      var start = null;
+      function frame(ts) {
+        if (start === null) start = ts;
+        if (ready && scene.getBoundingClientRect().bottom > 0) {
+          var tt = (ts - start) / 1000;
+          mx += (tx - mx) * 0.05; my += (ty - my) * 0.05;
+          gl.uniform1f(uT, tt); gl.uniform2f(uM, mx, my); gl.uniform2f(uR, cv.width, cv.height); gl.uniform1f(uIa, ia);
+          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        }
+        requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
     })();
   </script>
 </body>
