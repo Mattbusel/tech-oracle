@@ -201,6 +201,16 @@ through a few `window.__*` globals (catalogued at the end).
 - `rapSheet()` computes a rank/title from the local wallet (net record); shown on
   the Press Credential view, linking to the arena.
 
+### 17b. The bloodline broadcast (in `bloodline.html`) + main-page panel
+- `bloodline.html` is a LIVE channel: the day's population is baked in as `var BL`;
+  the client renders animated standings (bars, micro-jitter), the rival house
+  race, a births-and-deaths wire, and a rolling commentary that cycles forever
+  with an "ON AIR" indicator. A LISTEN button (Web Speech) reads the call aloud so
+  you can tune in by ear. Dark control-room aesthetic (not the paper palette).
+- The main page shows a bloodline panel in the Engine Room (champion, top five
+  living, WATCH LIVE link) and a watch button on the scorecard, both fed from the
+  `bloodline` template context.
+
 ### 17. Sleep mode (in `sleep.html`, a destination)
 - A standalone living dreamscape, reached on purpose (footer link "sleep mode"),
   never auto-opened. The Rust build bakes the term `POOL` and the `FORMS` into the

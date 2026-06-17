@@ -87,8 +87,12 @@ crossing terms get the provocative `challenge_template` text.
   record (`simulate`); the richest survive, the broke ones die, survivors mate
   (`crossover` + mutation) to refill the population. The fittest living organism
   (the **champion**) drives `generate.rs`'s real line. A genuine genetic
-  algorithm, shown at `/bloodline.html` with the living ranked, the champion, and
-  the graveyard. (This replaced the earlier single-genome hill-climb.)
+  algorithm. Organisms split into emergent **houses** by temperament (THE
+  PLUNGERS / THE STEADY / THE MISERS, by `risk`). Shown at `/bloodline.html` as a
+  LIVE broadcast: animated standings, the house race, a births/deaths wire,
+  rolling commentary, and a LISTEN voice (Web Speech). Surfaced on the main page
+  in the Engine Room and on the scorecard. (This replaced the earlier
+  single-genome hill-climb.)
 - **Sleep mode / The Dreams**: a destination (`/sleep.html`), not a takeover.
   `main::build_dreams` exposes the corpus's most-burned-in terms (`pool`) and the
   `forms`; `sleep.html` recombines them into surreal far-future calls forever,
