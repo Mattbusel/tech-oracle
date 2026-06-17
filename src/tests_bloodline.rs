@@ -63,9 +63,9 @@ fn crossover_stays_in_bounds() {
     let b = Genes { aggr: -0.1, risk: 0.1, conf: -0.05, select: 0.1, press: 0.1, fade: 0.1 };
     for _ in 0..200 {
         let c = crossover(&a, &b, &mut r);
-        assert!((-0.12..=0.12).contains(&c.aggr));
+        assert!((-0.20..=0.20).contains(&c.aggr));
         assert!((0.0..=1.0).contains(&c.risk));
-        assert!((-0.08..=0.08).contains(&c.conf));
+        assert!((-0.15..=0.15).contains(&c.conf));
         assert!((0.0..=1.0).contains(&c.select));
         assert!((0.0..=1.0).contains(&c.press));
         assert!((0.0..=1.0).contains(&c.fade));

@@ -130,18 +130,18 @@ fn simulate(g: &Genes, calls: &[(f64, bool)]) -> SimStats {
     let mut streak = 0i64;
     let (mut bets, mut wins, mut losses, mut max_streak) = (0i64, 0i64, 0i64, 0i64);
     let (mut biggest, mut peak, mut big_bet) = (0.0f64, 1000.0f64, 0.0f64);
-    let bar = 0.34 + g.select * 0.45; // the confidence floor this organism demands
+    let bar = 0.34 + g.select * 0.12; // barely a filter: they bet on nearly everything
     let fading = g.fade > 0.5;
-    let frac = 0.08 + g.risk * 0.77; // 8%..85% of the bankroll per bet: hog wild
+    let frac = 0.05 + g.risk * 0.95; // 5%..100%: no guardrail, an organism is free to shove it all
     for (conf, hit) in calls {
         let c = (conf + g.aggr + g.conf).clamp(0.34, 0.95);
         if c < bar {
-            continue; // too marginal for this temperament
+            continue; // only the very pickiest skip the lowest-confidence calls
         }
         let won = if fading { !*hit } else { *hit };
         let p = if fading { (1.0 - c).max(0.05) } else { c }; // its own line -> odds
-        let ramp = 1.0 + g.press * (streak.min(6) as f64) * 0.55; // press a hot hand hard
-        let stake = (bank * frac * ramp).min(bank).max(10.0);
+        let ramp = 1.0 + g.press * (streak.min(6) as f64) * 0.7; // press a hot hand hard
+        let stake = (bank * frac * ramp).min(bank).max(1.0); // can go all-in
         if stake > big_bet { big_bet = stake; }
         bets += 1;
         if won {
@@ -166,10 +166,11 @@ fn simulate(g: &Genes, calls: &[(f64, bool)]) -> SimStats {
 }
 
 fn random_genes(r: &mut Rng) -> Genes {
+    // Wide-open ranges so the founding population is genuinely diverse.
     Genes {
-        aggr: r.range(-0.10, 0.10),
+        aggr: r.range(-0.20, 0.20),
         risk: r.range(0.0, 1.0),
-        conf: r.range(-0.05, 0.05),
+        conf: r.range(-0.15, 0.15),
         select: r.range(0.0, 1.0),
         press: r.range(0.0, 1.0),
         fade: r.range(0.0, 1.0),
@@ -186,12 +187,13 @@ fn crossover(a: &Genes, b: &Genes, r: &mut Rng) -> Genes {
         press: pick(a.press, b.press, r),
         fade: pick(a.fade, b.fade, r),
     };
-    g.aggr = (g.aggr + r.range(-0.03, 0.03)).clamp(-0.12, 0.12);
-    g.risk = (g.risk + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
-    g.conf = (g.conf + r.range(-0.02, 0.02)).clamp(-0.08, 0.08);
-    g.select = (g.select + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
-    g.press = (g.press + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
-    g.fade = (g.fade + r.range(-0.12, 0.12)).clamp(0.0, 1.0);
+    // Big mutation steps for real generational variance.
+    g.aggr = (g.aggr + r.range(-0.08, 0.08)).clamp(-0.20, 0.20);
+    g.risk = (g.risk + r.range(-0.25, 0.25)).clamp(0.0, 1.0);
+    g.conf = (g.conf + r.range(-0.06, 0.06)).clamp(-0.15, 0.15);
+    g.select = (g.select + r.range(-0.25, 0.25)).clamp(0.0, 1.0);
+    g.press = (g.press + r.range(-0.25, 0.25)).clamp(0.0, 1.0);
+    g.fade = (g.fade + r.range(-0.25, 0.25)).clamp(0.0, 1.0);
     g
 }
 

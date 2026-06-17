@@ -476,7 +476,7 @@ pub fn render(
                 ("BIGGEST BET", i("big_bet").to_string()),
                 ("LIFESPAN", format!("{}d", i("age"))),
             ];
-            let aggr_pct = (((f("aggr") + 0.12) / 0.24) * 100.0) as i64;
+            let aggr_pct = (((f("aggr") + 0.20) / 0.40) * 100.0) as i64;
             let genes = vec![("AGGR", aggr_pct), ("RISK", (f("risk") * 100.0) as i64), ("SELECT", i("select")), ("PRESS", i("press"))];
             let best_s = i("best").to_string();
             let _ = crate::card::organism_card(
