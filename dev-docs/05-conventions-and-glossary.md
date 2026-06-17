@@ -85,10 +85,11 @@ crossing terms get the provocative `challenge_template` text.
   `generate.rs` bets on; `main::evolve_strategy` keeps it if realized hit rate
   held up, else reverts. `sgen` counts accepted strategies, `fit` is the bar to
   beat. The engine hill-climbs its own betting strategy.
-- **The Dreams**: the oracle's sleep mode. `main::build_dreams` recombines the
-  corpus's most-burned-in terms into surreal far-future calls (rules-based, no
-  LLM); shown at local night or `?dream` as a violet sleep-world (`#dreamscape`)
-  and served at `api/dreams.json`.
+- **Sleep mode / The Dreams**: a destination (`/sleep.html`), not a takeover.
+  `main::build_dreams` exposes the corpus's most-burned-in terms (`pool`) and the
+  `forms`; `sleep.html` recombines them into surreal far-future calls forever,
+  client-side (always running, self-updating). Seed dreams + pool + forms are also
+  at `api/dreams.json`.
 - **The Arena**: a serverless prediction tournament (`arena.html`). Bets are
   GitHub issues labeled `arena` with a `SIGNAL-BET` line; the board settles them
   against `api/record.json` and ranks all players against the machine and the

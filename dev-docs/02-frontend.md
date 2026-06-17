@@ -185,11 +185,10 @@ through a few `window.__*` globals (catalogued at the end).
 - Mortality: sets `--vitality` and toggles `html.fading` / `html.dead` from
   `__MOOD.vitality`/`lifeState`, dimming the world as the book bleeds.
 
-### 14. Death screen + dreams (the sleep mode)
-- Fills `#flatline` (shown only when `html.dead`): the death notice.
-- Dreams: if local time is 23:00-05:00 or `?dream` is present (or Alt/Meta+D),
-  opens `#dreamscape`, a violet sleep-world rendering `__DREAMS` (the recombined
-  far-future calls) with a "WAKE THE ORACLE" button.
+### 14. Death screen
+- Fills `#flatline` (shown only when `html.dead`): the death notice. Sleep mode
+  is NOT here; it is its own destination at `/sleep.html` (see below), never a
+  takeover of the main page.
 
 ### 15. The arena board (in `arena.html`, not the main page)
 - Client-side tournament: fetches GitHub issues labeled `arena` plus
@@ -202,6 +201,14 @@ through a few `window.__*` globals (catalogued at the end).
 - `rapSheet()` computes a rank/title from the local wallet (net record); shown on
   the Press Credential view, linking to the arena.
 
+### 17. Sleep mode (in `sleep.html`, a destination)
+- A standalone living dreamscape, reached on purpose (footer link "sleep mode"),
+  never auto-opened. The Rust build bakes the term `POOL` and the `FORMS` into the
+  page; client JS recombines a new dream every few seconds forever (Math.random),
+  streaming the last ~9, with a shifting violet field, twinkling stars, occasional
+  larger "deep" dreams, an incrementing DREAM No. counter, and WAKE / DREAM
+  FASTER controls. Always running and self-updating.
+
 ---
 
 ## `window.__*` globals (the bus)
@@ -209,7 +216,6 @@ through a few `window.__*` globals (catalogued at the end).
 | global | defined in | used by |
 | --- | --- | --- |
 | `__MOOD` | injected (render `mood`) | shader uniforms, particles, accent, kicker, mortality |
-| `__DREAMS` | injected (render `dreams_json`) | the sleep-mode dreamscape |
 | `__FLOOR` | injected (render `floor_json`) | pit, overlays (#ov-tiles) |
 | `__LADREPO` | injected (render `ladder_repo`) | ladder |
 | `__spike()` / `__pulseSpike()` | station/scope | log, wire, presence |

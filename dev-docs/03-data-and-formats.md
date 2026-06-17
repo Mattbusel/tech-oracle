@@ -73,8 +73,11 @@ This file powers velocity, diffusion/CHASM, sectors, and the dataset.
 - `arena.html` - the prediction tournament board (client-side): reads GitHub
   issues labeled `arena` plus `api/record.json`, settles every `SIGNAL-BET`, and
   ranks all players against the machine and the anti-oracle.
-- `api/dreams.json` - the surreal recombined "dream" calls (also embedded in the
-  page for the sleep-mode overlay).
+- `sleep.html` - SLEEP MODE: a standalone, always-running dreamscape destination
+  (the term pool and forms are baked in; the client recombines new dreams
+  forever). Not a takeover; reached from the footer.
+- `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus
+  the raw `pool` (top terms) and `forms` so any client can recombine endlessly.
 
 ### Feeds, SEO, discovery
 - `feed.xml` (RSS), `sitemap.xml`, `sitemap-images.xml`, `robots.txt`,

@@ -211,9 +211,10 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
   `fn genome_json(g)` (the Value for render). `build_genome` runs before
   generation (so `generate` uses `aggr`/`risk`); `evolve_strategy` runs after
   grading.
-- Dreams: `fn build_dreams(obs, date) -> Value` - recombine the corpus's
-  highest-peak terms into surreal far-future calls via fixed forms (no LLM),
-  deterministic per date.
+- Dreams: `fn build_dreams(obs, date) -> Value` - returns `{ dreams, pool, forms }`:
+  six seed dreams plus the raw term pool and form strings so SLEEP MODE can
+  recombine endlessly client-side. `render.rs` writes `api/dreams.json` and bakes
+  the pool/forms into the standalone `sleep.html` destination.
 - Pulse: `struct PulseDay { date, index, theme }`, `fn build_pulse(signals, date)
   -> Value` (index from volume/breadth/theme-share, persists history, computes
   delta and "highest in N"), `fn dominant_theme(signals) -> (String, f64)`.
@@ -263,9 +264,9 @@ Artifacts written (all under `docs/` unless noted):
 - `receipts.html` (the credibility wall; HITs and MISSes with lead time).
 - `arena.html` (the prediction-tournament board; client-side, settles GitHub-
   issue bets against `api/record.json`).
-- `api/dreams.json` (the surreal recombined dream calls; `mood` also carries the
-  mortality fields `vitality`/`lifeState`/`bank` and the strategy fields
-  `sgen`/`aggr`/`risk`/`fit`).
+- `sleep.html` (SLEEP MODE: the always-running dreamscape destination, pool/forms
+  baked in) and `api/dreams.json`. `mood` also carries the mortality fields
+  `vitality`/`lifeState`/`bank` and the strategy fields `sgen`/`aggr`/`risk`/`fit`.
 - `sitemap.xml`, `sitemap-images.xml`, `robots.txt`, `<INDEXNOW_KEY>.txt`, and
   `build/indexnow.json` (the ping payload).
 - `widget.js` (embeddable wire), `og.png` (daily homepage card), `badge.svg`.
