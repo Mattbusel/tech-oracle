@@ -65,6 +65,18 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
+      "term": "FIFA"
+    },
+    {
+      "beta": 0.0,
+      "curvature": 0.0,
+      "defined": false,
+      "ds2": -1.0,
+      "gamma": 1.0,
+      "geodesic_trend": 0.0,
+      "prob_rising": 50,
+      "regime": "LIGHTLIKE",
+      "rel_momentum": 0.0,
       "term": "GOOGLE"
     },
     {
@@ -77,7 +89,19 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
-      "term": "FIFA"
+      "term": "APPLE"
+    },
+    {
+      "beta": 0.0,
+      "curvature": 0.0,
+      "defined": false,
+      "ds2": -1.0,
+      "gamma": 1.0,
+      "geodesic_trend": 0.0,
+      "prob_rising": 50,
+      "regime": "LIGHTLIKE",
+      "rel_momentum": 0.0,
+      "term": "AGENT"
     },
     {
       "beta": 0.0,
@@ -113,42 +137,13 @@
       "prob_rising": 50,
       "regime": "LIGHTLIKE",
       "rel_momentum": 0.0,
-      "term": "AGENT"
-    },
-    {
-      "beta": 0.0,
-      "curvature": 0.0,
-      "defined": false,
-      "ds2": -1.0,
-      "gamma": 1.0,
-      "geodesic_trend": 0.0,
-      "prob_rising": 50,
-      "regime": "LIGHTLIKE",
-      "rel_momentum": 0.0,
-      "term": "APPLE"
-    },
-    {
-      "beta": 0.0,
-      "curvature": 0.0,
-      "defined": false,
-      "ds2": -1.0,
-      "gamma": 1.0,
-      "geodesic_trend": 0.0,
-      "prob_rising": 50,
-      "regime": "LIGHTLIKE",
-      "rel_momentum": 0.0,
       "term": "XBOX"
     }
   ],
   "movers": [
     {
-      "count": 12,
+      "count": 10,
       "term": "GAME",
-      "vel": 100
-    },
-    {
-      "count": 8,
-      "term": "GOOGLE",
       "vel": 100
     },
     {
@@ -157,18 +152,23 @@
       "vel": 100
     },
     {
-      "count": 7,
-      "term": "UPDATE",
+      "count": 8,
+      "term": "GOOGLE",
       "vel": 100
     },
     {
       "count": 7,
-      "term": "CUP",
+      "term": "APPLE",
       "vel": 100
     },
     {
       "count": 7,
       "term": "AGENT",
+      "vel": 100
+    },
+    {
+      "count": 7,
+      "term": "UPDATE",
       "vel": 100
     }
   ],
@@ -225,8 +225,8 @@
       }
     ],
     "index": 71,
-    "theme": "GAME",
-    "total": 258,
+    "theme": "WORLD",
+    "total": 259,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
@@ -382,5 +382,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 1283
+  "tracked_terms": 1284
 }
