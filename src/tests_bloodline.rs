@@ -8,29 +8,31 @@ fn genes(aggr: f64, risk: f64) -> Genes {
 fn simulate_is_deterministic_and_gene_sensitive() {
     let calls = vec![(0.7, true), (0.7, false), (0.6, true), (0.8, true)];
     let g = genes(0.0, 0.3);
-    assert_eq!(simulate(&g, &calls).bank, simulate(&g, &calls).bank);
+    assert_eq!(simulate(&g, &calls, 7).bank, simulate(&g, &calls, 7).bank);
     let bold = Genes { aggr: -0.1, risk: 0.9, press: 0.8, ..Default::default() };
-    assert_ne!(simulate(&g, &calls).bank, simulate(&bold, &calls).bank);
+    assert_ne!(simulate(&g, &calls, 7).bank, simulate(&bold, &calls, 7).bank);
 }
 
 #[test]
-fn simulate_reports_a_full_stat_line() {
-    let calls = vec![(0.7, true), (0.7, true), (0.6, false), (0.8, true)];
-    let s = simulate(&genes(0.0, 0.4), &calls);
-    assert!(s.bets >= 1);
+fn plays_many_laps_for_volume() {
+    // A 4-call record should still produce far more than 4 bets (it plays the
+    // season many laps), and that scales down as the record grows.
+    let small = vec![(0.7, true), (0.7, true), (0.6, false), (0.8, true)];
+    let s = simulate(&genes(0.0, 0.4), &small, 3);
+    assert!(s.bets > 10, "small record should still give volume, got {}", s.bets);
     assert_eq!(s.bets, s.wins + s.losses);
     assert!(s.peak >= 1000.0);
-    assert!(s.max_streak >= 1);
+    let big: Vec<(f64, bool)> = (0..200).map(|i| (0.7, i % 5 != 0)).collect();
+    let sb = simulate(&genes(0.0, 0.4), &big, 3);
+    assert!(sb.bets <= 220, "large record plays ~one lap, got {}", sb.bets);
 }
 
 #[test]
 fn a_fader_loses_against_an_accurate_oracle() {
-    // Mostly-correct record: a contrarian (fade > 0.5) should end up worse than
-    // a tailer.
     let calls: Vec<(f64, bool)> = (0..20).map(|i| (0.7, i % 5 != 0)).collect(); // 80% hit
     let tailer = Genes { fade: 0.0, ..Default::default() };
     let fader = Genes { fade: 1.0, ..Default::default() };
-    assert!(simulate(&tailer, &calls).bank > simulate(&fader, &calls).bank);
+    assert!(simulate(&tailer, &calls, 5).bank > simulate(&fader, &calls, 5).bank);
 }
 
 #[test]
@@ -38,7 +40,7 @@ fn selectivity_skips_marginal_calls() {
     let calls = vec![(0.40, true), (0.40, true), (0.90, true)];
     let picky = Genes { select: 1.0, ..Default::default() }; // very high bar
     let loose = Genes { select: 0.0, ..Default::default() };
-    assert!(simulate(&picky, &calls).bets < simulate(&loose, &calls).bets);
+    assert!(simulate(&picky, &calls, 9).bets < simulate(&loose, &calls, 9).bets);
 }
 
 #[test]
@@ -107,6 +109,7 @@ fn hall_of_fame_inducts_and_caps() {
             keyword2: "".into(),
             target: 0,
             rationale: "".into(),
+            ..Default::default()
         })
         .collect();
     bl.evolve_in_memory("2026-06-01", &resolved); // seed

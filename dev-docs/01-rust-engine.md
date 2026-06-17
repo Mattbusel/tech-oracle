@@ -238,6 +238,11 @@ state), `EMBARGO_IN`/`EARLY_OUT` (gitignored), `OUT_DIR`/`OUT_HTML`.
   general-public corpus), default RESURFACE/SURVIVAL/MOMENTUM/FUTURES/LONGSHOT
   (keyword resurfaces). MISS when the deadline passes. Tested per market in the
   inline `main.rs` tests.
+- `fn live_likelihood(p, obs, index, today) -> i64` and `fn update_live(preds,
+  obs, index, today)` - the mark-to-market: compute each open call's current
+  likelihood (0-100) from evidence and roll it once per day (idempotent via
+  `live_date`, `live_prev` records the move). The daily slate is ~24 calls
+  (`rank_and_select(.., 24, ..)`).
 - `fn fallback_call(date, index) -> Prediction` - the guaranteed daily print when
   every source fails: a dated, self-checkable INDEX bet. The press never prints a
   blank edition. (`REVEAL_DELAY_DAYS` defaults to 0 so the call is public the day

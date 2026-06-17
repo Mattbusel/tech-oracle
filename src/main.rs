@@ -118,7 +118,9 @@ fn main() {
     // THE BLOODLINE: the fittest organism's genes drive today's betting line.
     let mut blood = bloodline::load();
     let champ = blood.champion_genes();
-    let picks = rank::rank_and_select(signals, seed, 4, &weights);
+    // A prolific slate: many dated calls a day so the record (and the market the
+    // bloodline bets on) grows fast and there is always plenty to hold or trade.
+    let picks = rank::rank_and_select(signals, seed, 24, &weights);
     let mut todays = generate::generate(&picks, &date, seed, today_index, &obs, champ.aggr, champ.risk);
     // The press never misses an edition. If every source went dark, the machine
     // still prints: a dated call on its own Acceleration Index. There is always
@@ -151,9 +153,14 @@ fn main() {
             still_embargoed.push(p);
         }
     }
-    let embargoed = still_embargoed;
+    let mut embargoed = still_embargoed;
 
     dedup(&mut revealed);
+
+    // Mark every open call to market: today's live likelihood moves the value of
+    // a held position up or down before it ever resolves.
+    update_live(&mut revealed, &obs, today_index, &date);
+    update_live(&mut embargoed, &obs, today_index, &date);
 
     // ---- persist both outputs ----
     save_json(DATA_PATH, &revealed); // committed by the Action
@@ -748,6 +755,63 @@ fn build_genome(date: &str) -> Genome {
     g
 }
 
+/// The call's live likelihood of eventually hitting (0..100), from today's
+/// evidence: is the keyword resurfacing now, is it climbing, and how much of the
+/// window is left. This is the mark-to-market price that moves day to day.
+fn live_likelihood(p: &Prediction, obs: &observatory::Observatory, index: i64, today: &str) -> i64 {
+    let frac_left = match (
+        NaiveDate::parse_from_str(&p.date, "%Y-%m-%d"),
+        NaiveDate::parse_from_str(&p.resolves_by, "%Y-%m-%d"),
+        NaiveDate::parse_from_str(today, "%Y-%m-%d"),
+    ) {
+        (Ok(d0), Ok(dr), Ok(dt)) => {
+            let total = (dr - d0).num_days().max(1) as f64;
+            let left = (dr - dt).num_days().max(0) as f64;
+            (left / total).clamp(0.0, 1.0)
+        }
+        _ => 0.5,
+    };
+    let kw = &p.keyword;
+    let active = obs.today_count(kw);
+    let vel = obs.velocity_pct(kw);
+    let xs = obs.cross_source(kw) as i64;
+    let base = match p.market.as_str() {
+        "INDEX" => {
+            if index >= p.target { 95 } else { (62 - (p.target - index) * 2).clamp(8, 88) }
+        }
+        "CHASM" => {
+            if obs.reach_stage(kw) >= 6 { 90 } else if active > 0 { 50 } else { (30.0 * frac_left) as i64 }
+        }
+        // RESURFACE / SURVIVAL / MOMENTUM / OVER / FUTURES / LONGSHOT / etc.:
+        // active now -> very likely; climbing -> likely; quiet -> decays as the
+        // deadline nears.
+        _ => {
+            if active > 0 { (82 + xs * 2).min(95) }
+            else if vel > 0 { 58 }
+            else { (15.0 + 35.0 * frac_left).round() as i64 }
+        }
+    };
+    base.clamp(5, 95)
+}
+
+/// Roll the live mark for every open call once per day (idempotent via live_date).
+/// Newly minted calls keep their starting mark today and start moving tomorrow.
+fn update_live(preds: &mut [Prediction], obs: &observatory::Observatory, index: i64, today: &str) {
+    for p in preds.iter_mut() {
+        if p.status != "OPEN" || p.live_date == today {
+            continue;
+        }
+        let l = live_likelihood(p, obs, index, today);
+        if p.live_date.is_empty() {
+            p.live_prev = l;
+        } else {
+            p.live_prev = p.live;
+        }
+        p.live = l;
+        p.live_date = today.to_string();
+    }
+}
+
 /// The guaranteed daily call when every source failed: a dated, self-checkable
 /// bet on the engine's own Acceleration Index. Keeps the press from ever
 /// printing a blank edition.
@@ -773,6 +837,9 @@ fn fallback_call(date: &str, index: i64) -> Prediction {
         keyword2: String::new(),
         target,
         rationale: "ALL SOURCES DARK // FALLBACK PRINT ON THE INDEX".to_string(),
+        live: 60,
+        live_prev: 60,
+        live_date: date.to_string(),
     }
 }
 
@@ -1076,6 +1143,7 @@ mod tests {
             keyword2: kw2.into(),
             target,
             rationale: "".into(),
+            ..Default::default()
         }
     }
 

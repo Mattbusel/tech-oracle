@@ -57,6 +57,8 @@ pub fn render(
                 "conf": (conf * 100.0).round() as i64,
                 "market": if p.market.is_empty() { "RESURFACE".to_string() } else { p.market.clone() },
                 "rationale": p.rationale,
+                "live": p.live,
+                "live_delta": p.live - p.live_prev,
             }));
             i += 1;
         }
@@ -636,17 +638,23 @@ pub fn render(
 
     // Live floor positions: the most recent calls the desk marks against the
     // live feeds (client-side, continuously).
+    // The live floor: open calls only (you can hold or trade these), with the
+    // line set by the call's live likelihood so it marks to market.
     let floor: Vec<serde_json::Value> = sorted
         .iter()
+        .filter(|p| p.status.is_empty() || p.status == "OPEN")
         .take(8)
         .map(|p| {
             let conf = if p.confidence > 0.0 { p.confidence } else { 0.65 };
+            let live = if p.live > 0 { p.live } else { (conf * 100.0).round() as i64 };
             let kw = if p.keyword.is_empty() { "signal".to_string() } else { p.keyword.clone() };
             let t: String = p.prediction_text.chars().take(50).collect();
             serde_json::json!({
                 "t": t, "kw": kw,
                 "market": if p.market.is_empty() { "RESURFACE".to_string() } else { p.market.clone() },
-                "odds": format!("{:.2}", 1.0 / conf),
+                "live": live, "live_prev": p.live_prev, "live_delta": p.live - p.live_prev,
+                "odds": format!("{:.2}", 100.0 / (live.max(5) as f64)),
+                "resolves_by": p.resolves_by,
                 "status": if p.status.is_empty() { "OPEN" } else { p.status.as_str() },
                 "win": p.win_if,
                 "src": p.source_title,
@@ -808,6 +816,7 @@ fn write_agent_layer(
             "status": if p.status.is_empty() { "OPEN" } else { p.status.as_str() },
             "resolved_on": p.resolved_on,
             "rationale": p.rationale,
+            "live": p.live, "live_prev": p.live_prev,
             "source": { "type": p.signal_type, "title": p.source_title, "url": p.source_url },
             "permalink": format!("{site}/call/{no}.html"),
         })

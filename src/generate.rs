@@ -101,7 +101,7 @@ pub fn generate(
             let mut confidence = 0.55
                 + (xsrc as f64 * 0.035).min(0.18)
                 + if vel > 0 { 0.06 } else { -0.04 }
-                - i as f64 * 0.03;
+                - i as f64 * 0.012;
             if market == "LONGSHOT" {
                 confidence = 0.40;
             }
@@ -136,6 +136,9 @@ pub fn generate(
                 keyword2,
                 target,
                 rationale,
+                live: (confidence * 100.0).round() as i64,
+                live_prev: (confidence * 100.0).round() as i64,
+                live_date: date.to_string(),
             }
         })
         .collect()

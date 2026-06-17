@@ -19,9 +19,13 @@ A JSON array of `Prediction` (see `01-rust-engine.md::model.rs`):
   "date":"2026-06-15","prediction_text":"...","source_title":"...","source_url":"...",
   "signal_type":"hn","status":"HIT","keyword":"local","win_if":"WIN IF \"LOCAL\" ...",
   "resolves_by":"2026-07-15","resolved_on":"2026-06-16","confidence":0.58,
-  "market":"RESURFACE","keyword2":"","target":0,"rationale":"VEL +x%/7d // ..."
+  "market":"RESURFACE","keyword2":"","target":0,"rationale":"VEL +x%/7d // ...",
+  "live":64,"live_prev":56,"live_date":"2026-06-17"
 }]
 ```
+`live`/`live_prev`/`live_date` are the mark-to-market likelihood (0-100), its
+prior reading, and the last day it was rolled. The engine now generates ~24 calls
+a day (a prolific slate) so the record and the betting market grow fast.
 Only revealed (age >= `REVEAL_DELAY_DAYS`) calls live here. Idempotent per day:
 a re-run drops today's and regenerates.
 

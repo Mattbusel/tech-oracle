@@ -67,6 +67,17 @@ crossing terms get the provocative `challenge_template` text.
 - **Fear / Greed**: lexicon sentiment 0-100 over the day's headlines.
 - **The Book**: the engine's own flat-stake virtual bankroll on its calls (line
   = 1/confidence), computed in `render.rs`.
+- **Live likelihood / mark-to-market**: each open call carries a `live` value
+  (0-100, its current chance of hitting) that the engine recomputes every day
+  from evidence (is the keyword resurfacing now, its velocity, how much of the
+  window is left). `main::live_likelihood` computes it, `main::update_live` rolls
+  it once per day (`live_date` guards idempotency, `live_prev` shows the move).
+  A held position gains or loses value as the likelihood moves, so long-horizon
+  calls are worth holding, and the pit can **cash out** at the current mark
+  before the deadline (or hold to resolution for the full payout). The pit's line
+  is anchored to this likelihood (`line = 1 / (live/100)`), mean-reverting with
+  light noise. The daily slate is large (~24 calls) so the record and the market
+  grow fast.
 - **Calibration / Brier**: how well stated confidence matches realized hit rate.
 - **Source weights**: learned per-source multipliers from realized hit rate
   (`data/weights.json`), fed back into ranking.

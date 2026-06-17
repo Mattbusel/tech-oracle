@@ -814,6 +814,7 @@
                     <div class="entry-meta"><span class="no">No. {{ it.no }}</span><span class="verdict-stamp v-{{ it.status | lower }}">{{ it.status }}</span><span class="odds">LINE {{ it.odds }} @ {{ it.conf }}%</span><span class="mkt">{{ it.market }}</span><span class="tg s-{{ it.signal_type }}">{{ labels[it.signal_type] }}</span></div>
                     <p class="entry-text">{{ it.prediction_text }}</p>
                     {% if it.win_if %}<div class="winif">{{ it.win_if }}{% if it.status == 'HIT' %} <span class="res-hit">:: HIT {{ it.resolved_on }}</span>{% elif it.status == 'MISS' %} <span class="res-miss">:: MISSED</span>{% endif %}</div>{% endif %}
+                    {% if it.status == 'OPEN' %}<div class="tape">LIVE {{ it.live }}% TO HIT{% if it.live_delta > 0 %} <span class="res-hit">UP {{ it.live_delta }} SINCE YESTERDAY</span>{% elif it.live_delta < 0 %} <span class="res-miss">DOWN {{ it.live_delta * -1 }} SINCE YESTERDAY</span>{% endif %}</div>{% endif %}
                     {% if it.rationale %}<div class="tape">ENGINE TAPE // {{ it.rationale }}</div>{% endif %}
                     <div class="entry-actions">
                       <a href="{{ it.source_url }}" rel="noopener">[ SOURCE ]</a>
@@ -964,7 +965,7 @@
       function rnd(a, b) { return a + Math.random() * (b - a); }
 
       var bets = ((typeof __FLOOR !== "undefined" && __FLOOR) || []).map(function (b) {
-        var ln = parseFloat(b.odds) || 1.6; return { kw: b.kw, market: b.market, line: ln, prev: ln, hist: [ln] };
+        var ln = parseFloat(b.odds) || 1.6; return { kw: b.kw, market: b.market, line: ln, prev: ln, hist: [ln], anchor: ln, live: (b.live || 0), liveDelta: (b.live_delta || 0), resolvesBy: b.resolves_by || "" };
       });
       if (!bets.length) bets = [{ kw: "signal", market: "RESURFACE", line: 1.6, prev: 1.6, hist: [1.6] }];
       var W = lj("signal_wallet", { bal: 1000, realized: 0, wins: 0, losses: 0, streak: 0, best: 1000 });
@@ -1012,7 +1013,8 @@
       function buildBoard() {
         board.innerHTML = bets.map(function (b, i) {
           var claim = "Call: <b>" + esc(b.kw.toUpperCase()) + "</b> " + (CLAIM[b.market] || "moves") + ".";
-          return '<button class="tile" type="button" data-i="' + i + '"><span class="tile-act">TAIL / FADE</span><div class="tile-kw">' + esc(b.kw.toUpperCase()) + '</div><div class="tile-mkt">' + esc(b.market) + ' &middot; LINE</div><div class="tile-line" id="line-' + i + '">' + b.line.toFixed(2) + 'x</div><canvas class="tile-spark" id="spark-' + i + '"></canvas><div class="tile-claim">' + claim + '</div></button>';
+          var mv = b.liveDelta > 0 ? (' UP' + b.liveDelta) : (b.liveDelta < 0 ? (' DN' + (-b.liveDelta)) : '');
+          return '<button class="tile" type="button" data-i="' + i + '"><span class="tile-act">TAIL / FADE</span><div class="tile-kw">' + esc(b.kw.toUpperCase()) + '</div><div class="tile-mkt">' + esc(b.market) + ' &middot; LIVE ' + (b.live || 0) + '%' + mv + '</div><div class="tile-line" id="line-' + i + '">' + b.line.toFixed(2) + 'x</div><canvas class="tile-spark" id="spark-' + i + '"></canvas><div class="tile-claim">' + claim + '</div></button>';
         }).join("");
         bets.forEach(function (_, i) { drawSpark(i); });
       }
@@ -1058,7 +1060,8 @@
         bb.innerHTML = '<div class="band">TRADE // ' + esc(b.kw.toUpperCase()) + '</div>' +
           '<p class="soft" style="margin:0 0 4px">THE CALL</p>' +
           '<p style="margin:0 0 12px"><b>' + esc(b.kw.toUpperCase()) + '</b> ' + (CLAIM[b.market] || "moves") + '.<br><span class="soft">' + esc(b.win || "") + '</span></p>' +
-          '<p>Line now <b>' + b.line.toFixed(2) + 'x</b>. <b>TAIL</b> = bet the call heats up (line shortens). <b>FADE</b> = bet it cools (line drifts out). Marked to market live; cash out anytime.</p>' +
+          '<p class="soft" style="margin:0 0 8px">LIVE LIKELIHOOD <b>' + (b.live || 0) + '%</b>' + (b.liveDelta ? (' (' + (b.liveDelta > 0 ? 'UP ' : 'DOWN ') + Math.abs(b.liveDelta) + ' since yesterday)') : '') + (b.resolvesBy ? (' &middot; resolves by ' + esc(b.resolvesBy)) : '') + '</p>' +
+          '<p>Line now <b>' + b.line.toFixed(2) + 'x</b>. <b>TAIL</b> = bet the call heats up (line shortens). <b>FADE</b> = bet it cools (line drifts out). The value marks to market every day as the call gets more or less likely. <b>Hold to resolution</b> for the full payout, or <b>cash out</b> any time before the date to lock in the current mark.</p>' +
           '<div class="am-row"><button class="sx" type="button" data-side="TAIL">[ TAIL // WITH ]</button><button class="sx alt" type="button" data-side="FADE">[ FADE // AGAINST ]</button></div>' +
           '<p style="margin-top:14px">STAKE <b id="bet-stake-l">' + def + '</b>u &middot; chips ' + Math.round(W.bal) + '</p>' +
           '<input type="range" id="bet-stake" min="10" max="' + max + '" value="' + def + '" style="width:100%">' +
@@ -1130,7 +1133,13 @@
 
       function move() {
         var i = Math.floor(Math.random() * bets.length), b = bets[i];
-        b.prev = b.line; var dir = Math.random() < 0.5 ? -1 : 1; b.line = Math.max(1.05, Math.min(4.5, b.line + rnd(0.01, 0.07) * dir));
+        b.prev = b.line;
+        // The line mean-reverts to the call's live-likelihood anchor (set by the
+        // engine), with small noise, so it stays honest while still ticking.
+        var anchor = b.anchor || b.line;
+        var pull = (anchor - b.line) * 0.18;
+        b.line = Math.max(1.05, Math.min(8.0, b.line + pull + rnd(-0.05, 0.05)));
+        var dir = b.line <= b.prev ? -1 : 1;
         b.hist.push(b.line); if (b.hist.length > 60) b.hist.shift();
         var el = $id("line-" + i); if (el) el.textContent = b.line.toFixed(2) + "x"; drawSpark(i);
         var t = board.children[i]; if (t) { t.classList.remove("flash-up", "flash-down"); void t.offsetWidth; t.classList.add(dir < 0 ? "flash-up" : "flash-down"); }

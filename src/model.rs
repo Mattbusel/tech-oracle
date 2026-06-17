@@ -12,7 +12,7 @@ pub struct Signal {
 }
 
 /// One archived prediction. This is the persisted source of truth.
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Prediction {
     pub date: String, // YYYY-MM-DD
     pub prediction_text: String,
@@ -42,4 +42,14 @@ pub struct Prediction {
     pub target: i64, // index threshold (INDEX) or mention threshold (OVER/UNDER)
     #[serde(default)]
     pub rationale: String, // the engine's machine-derived reasoning tape
+
+    // Live mark-to-market: the call's current likelihood of hitting (0..100),
+    // recomputed daily from evidence so a held position gains or loses value
+    // over time. This is what makes long-horizon calls worth holding or selling.
+    #[serde(default)]
+    pub live: i64, // current likelihood now
+    #[serde(default)]
+    pub live_prev: i64, // the prior reading, to show the move
+    #[serde(default)]
+    pub live_date: String, // last day live was rolled (idempotent per day)
 }
