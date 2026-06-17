@@ -14,17 +14,18 @@ fn simulate_is_deterministic_and_gene_sensitive() {
 }
 
 #[test]
-fn plays_many_laps_for_volume() {
-    // A 4-call record should still produce far more than 4 bets (it plays the
-    // season many laps), and that scales down as the record grows.
+fn bets_the_record_once() {
+    // One bet per settled call (no replayed laps): bet count never exceeds the
+    // record size, so a perfect runaway run is impossible.
     let small = vec![(0.7, true), (0.7, true), (0.6, false), (0.8, true)];
     let s = simulate(&genes(0.0, 0.4), &small, 3);
-    assert!(s.bets > 10, "small record should still give volume, got {}", s.bets);
+    assert!(s.bets <= 4, "single pass over a 4-call record, got {}", s.bets);
     assert_eq!(s.bets, s.wins + s.losses);
     assert!(s.peak >= 1000.0);
     let big: Vec<(f64, bool)> = (0..200).map(|i| (0.7, i % 5 != 0)).collect();
     let sb = simulate(&genes(0.0, 0.4), &big, 3);
-    assert!(sb.bets <= 220, "large record plays ~one lap, got {}", sb.bets);
+    assert!(sb.bets <= 200, "single pass, got {}", sb.bets);
+    assert!(sb.bets > 4, "more record means more bets, got {}", sb.bets);
 }
 
 #[test]

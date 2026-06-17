@@ -121,19 +121,17 @@ fn conf_of(p: &Prediction) -> f64 {
     if p.confidence > 0.0 { p.confidence } else { 0.65 }
 }
 
-/// One organism shadow-betting the record with its own genes. It bets a FRACTION
-/// OF ITS BANKROLL (5%-100% by `risk`), pressed on a hot streak, so a bold run
-/// compounds into a fortune or busts to zero. Because the settled record is
-/// small, each organism plays the season MANY laps (shuffled per organism, so
-/// streaks and busts differ), which gives real betting volume now and auto-scales
-/// down to a single lap once the live record is large. `seed` makes it
-/// deterministic per organism.
+/// One organism shadow-betting the record ONCE with its own genes. It bets a
+/// FRACTION OF ITS BANKROLL (5%-100% by `risk`), pressed on a hot streak, so a
+/// bold run compounds into a fortune or busts to zero. One bet per settled call
+/// (shuffled per organism, so streaks and busts differ): a perfect run is
+/// impossible over a real, diverse record, which keeps the bankrolls sane while
+/// still swinging hard. `seed` makes it deterministic per organism.
 fn simulate(g: &Genes, calls: &[(f64, bool)], seed: u64) -> SimStats {
     let n = calls.len();
     if n == 0 {
         return SimStats { bank: 1000.0, bets: 0, wins: 0, losses: 0, max_streak: 0, biggest: 0.0, peak: 1000.0, big_bet: 0.0 };
     }
-    let laps = (120 / n).clamp(1, 20); // aim for ~120 bets; shrinks as the record grows
     let mut rng = Rng(seed | 1);
     let mut bank = 1000.0_f64;
     let mut streak = 0i64;
@@ -142,42 +140,40 @@ fn simulate(g: &Genes, calls: &[(f64, bool)], seed: u64) -> SimStats {
     let bar = 0.34 + g.select * 0.30;
     let fading = g.fade > 0.5;
     let frac = 0.05 + g.risk * 0.95; // 5%..100%: no guardrail, free to shove it all
+    // this organism's own run of luck through the record
     let mut order: Vec<usize> = (0..n).collect();
-    'season: for _lap in 0..laps {
-        // a fresh shuffle each lap: this organism's own run of luck
-        for i in (1..n).rev() {
-            let j = (rng.next() as usize) % (i + 1);
-            order.swap(i, j);
+    for i in (1..n).rev() {
+        let j = (rng.next() as usize) % (i + 1);
+        order.swap(i, j);
+    }
+    for &idx in &order {
+        let (conf, hit) = calls[idx];
+        let c = (conf + g.aggr + g.conf).clamp(0.34, 0.95);
+        if c < bar {
+            continue; // only the pickiest skip the lowest-confidence calls
         }
-        for &idx in &order {
-            let (conf, hit) = calls[idx];
-            let c = (conf + g.aggr + g.conf).clamp(0.34, 0.95);
-            if c < bar {
-                continue; // only the pickiest skip the lowest-confidence calls
-            }
-            let won = if fading { !hit } else { hit };
-            let p = if fading { (1.0 - c).max(0.05) } else { c };
-            let ramp = 1.0 + g.press * (streak.min(6) as f64) * 0.7;
-            let stake = (bank * frac * ramp).min(bank).max(1.0);
-            if stake > big_bet { big_bet = stake; }
-            bets += 1;
-            if won {
-                let w = stake * ((1.0 / p) - 1.0);
-                bank += w;
-                wins += 1;
-                streak += 1;
-                if streak > max_streak { max_streak = streak; }
-                if w > biggest { biggest = w; }
-            } else {
-                bank -= stake;
-                losses += 1;
-                streak = 0;
-            }
-            if bank > peak { peak = bank; }
-            if bank < 1.0 {
-                bank = 0.0;
-                break 'season; // busted out of the season
-            }
+        let won = if fading { !hit } else { hit };
+        let p = if fading { (1.0 - c).max(0.05) } else { c };
+        let ramp = 1.0 + g.press * (streak.min(6) as f64) * 0.7;
+        let stake = (bank * frac * ramp).min(bank).max(1.0);
+        if stake > big_bet { big_bet = stake; }
+        bets += 1;
+        if won {
+            let w = stake * ((1.0 / p) - 1.0);
+            bank += w;
+            wins += 1;
+            streak += 1;
+            if streak > max_streak { max_streak = streak; }
+            if w > biggest { biggest = w; }
+        } else {
+            bank -= stake;
+            losses += 1;
+            streak = 0;
+        }
+        if bank > peak { peak = bank; }
+        if bank < 1.0 {
+            bank = 0.0;
+            break; // busted out
         }
     }
     SimStats { bank, bets, wins, losses, max_streak, biggest, peak, big_bet }

@@ -26,9 +26,12 @@ The oracle's strategy is evolved by a population, not a single hill-climb.
 - `struct Bloodline { next_id, gen, population, last_evolved, hall_of_fame }` -
   persisted to `data/bloodline.json`. `hall_of_fame` keeps the all-time greats by
   career-high bankroll, never pruned.
-- `struct SimStats` + `fn simulate(genes, calls) -> SimStats` - the betting sim:
-  selectivity skips marginal calls, tail/fade, stake variance, pressing a streak,
-  and busting to zero. Returns bank plus the full stat line. This is the fitness.
+- `struct SimStats` + `fn simulate(genes, calls, seed) -> SimStats` - the betting
+  sim: ONE bet per settled call (shuffled per organism by `seed`), a fraction of
+  bankroll staked, selectivity skipping marginal calls, tail/fade, pressing a
+  streak, busting to zero. One pass (no replayed laps), so a runaway perfect run
+  is impossible over a real record and bankrolls stay sane. Returns bank plus the
+  full stat line. This is the fitness.
 - `pub fn load() -> Bloodline`.
 - `Bloodline::champion_genes()` - the fittest living organism's genes (drives the
   live line in `generate`).
