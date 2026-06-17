@@ -16,8 +16,8 @@
     },
     {
       "dir": -1,
-      "p": 0.347,
-      "phase": "FALLING",
+      "p": 0.39,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "SUPER"
     },
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.669,
+      "p": 0.676,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -426,6 +426,12 @@
       "days": 176,
       "origin": "HN",
       "reach": "THE NEWS",
+      "term": "XBOX"
+    },
+    {
+      "days": 176,
+      "origin": "HN",
+      "reach": "THE NEWS",
       "term": "UPDATE"
     },
     {
@@ -433,18 +439,6 @@
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "LAUNCH"
-    },
-    {
-      "days": 176,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "XBOX"
-    },
-    {
-      "days": 170,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "COMING"
     },
     {
       "days": 177,
@@ -457,6 +451,12 @@
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "12GB"
+    },
+    {
+      "days": 157,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ABUSED"
     }
   ],
   "corpus_days": 179,
@@ -492,16 +492,16 @@
       "term": "CUP"
     },
     {
-      "beta": -0.032,
-      "curvature": 1.17,
+      "beta": 0.0,
+      "curvature": 1.72,
       "defined": true,
-      "ds2": 0.936,
-      "gamma": 1.001,
-      "geodesic_trend": -0.767,
-      "phase": "FALLING",
-      "prob_rising": 35,
+      "ds2": 1.0,
+      "gamma": 1.0,
+      "geodesic_trend": -0.548,
+      "phase": "CHURNING",
+      "prob_rising": 39,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.007,
+      "rel_momentum": 0.0,
       "term": "SUPER"
     },
     {
@@ -650,19 +650,14 @@
   ],
   "movers": [
     {
-      "count": 9,
-      "term": "UPDATE",
-      "vel": 688
-    },
-    {
-      "count": 4,
-      "term": "LAUNCH",
-      "vel": 600
-    },
-    {
-      "count": 5,
+      "count": 7,
       "term": "XBOX",
-      "vel": 483
+      "vel": 717
+    },
+    {
+      "count": 8,
+      "term": "UPDATE",
+      "vel": 600
     },
     {
       "count": 3,
@@ -671,12 +666,17 @@
     },
     {
       "count": 3,
-      "term": "COMING",
+      "term": "LAUNCH",
       "vel": 425
     },
     {
       "count": 6,
       "term": "FEATURES",
+      "vel": 400
+    },
+    {
+      "count": 5,
+      "term": "IPHONE",
       "vel": 400
     }
   ],
@@ -734,7 +734,7 @@
     ],
     "index": 72,
     "theme": "GAME",
-    "total": 266,
+    "total": 268,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
@@ -752,16 +752,16 @@
       "name": "PLATFORM"
     },
     {
-      "arrow": "DOWN",
-      "delta": -4,
-      "index": 20,
-      "name": "SECURITY"
-    },
-    {
       "arrow": "UP",
       "delta": 2,
       "index": 20,
       "name": "ROBOTS"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -5,
+      "index": 15,
+      "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
@@ -890,5 +890,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 43109
+  "tracked_terms": 43115
 }

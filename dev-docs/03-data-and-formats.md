@@ -117,8 +117,13 @@ manifold is defined immediately.
   never-stopping client-side betting pit (injected into `bloodline.html`). Every
   round (~20s, FASTER on demand) the organisms gamble on a batch of `bet_pool`
   topics, settled against the manifold's true odds, so tailers grow and faders
-  bleed; banks compound across the day in `localStorage`. No server, no per-round
-  bet cap.
+  bleed. It runs as **seasons** (100 rounds): at the bell the season resolves, the
+  champion is enshrined in **THE RAFTERS** with a one-of-one foil card, the banks
+  reset, and a new season opens. Tracks the headline stats (top net worth, biggest
+  win, longest streak, most misses). You can **claim a rookie card** of any live
+  organism; when its season resolves, if it finished #1 the card becomes a LEGEND
+  (1-of-1) attached to that historic run. The collection and rafters persist in
+  `localStorage`; the live game reseeds from each day's population. No server.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus

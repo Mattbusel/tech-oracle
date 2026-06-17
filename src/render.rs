@@ -802,26 +802,54 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
         // live. No server, no limit on bets per round; banks compound across the
         // day in localStorage. Injected as raw strings to avoid format! escaping.
         const FLOOR_MARKUP: &str = r##"
+<style>
+#floor .lcard{display:inline-block;width:150px;vertical-align:top;border:1px solid #34362f;padding:8px;margin:6px 6px 0 0;font-size:10px;line-height:1.45}
+#floor .lcard .nm{font-weight:700;color:#e7e2d4;font-size:12px;display:block}
+#floor .lcard .rk{font-size:9px;letter-spacing:.12em;color:#6f6c5f;display:block;margin-bottom:4px}
+#floor .lcard.rare{border-color:#6fb8ff;box-shadow:0 0 0 1px rgba(111,184,255,.25)}
+#floor .lcard.legend{border:1px solid #caa64a;background:linear-gradient(135deg,#1a1405,#5a4a14,#caa64a,#5a4a14,#1a1405);background-size:300% 300%;animation:foil 7s ease infinite;color:#ffe9a8}
+#floor .lcard.legend .nm{color:#fff3cf}
+#floor .lcard.legend .rk{color:#e7c878}
+@keyframes foil{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+#floor .lprog{height:6px;background:#1c1e1a;margin-top:6px;overflow:hidden}
+#floor .lprog i{display:block;height:100%;background:#6ee07a;width:0;transition:width .6s linear}
+#floor .stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+#floor .stat4 .st{border:1px solid #2a2c28;padding:8px}
+#floor .stat4 .st b{display:block;color:#ffd56b;font-size:15px}
+#floor .stat4 .st span{font-size:9.5px;letter-spacing:.08em;color:#8d8a7c;display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+@media(max-width:680px){#floor .stat4{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){#floor .lcard.legend{animation:none}}
+</style>
 <section id="floor" style="margin-top:18px;border:1px solid #2a2c28;background:#101210;padding:16px">
 <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-<div class="hd" style="border:0;margin:0;padding:0;color:#6ee07a">THE LIVE FLOOR // THE BLOODLINE NEVER STOPS BETTING</div>
+<div class="hd" style="border:0;margin:0;padding:0;color:#6ee07a">THE LIVE FLOOR // <span id="floorseason">SEASON 1</span></div>
 <div style="display:flex;gap:8px;align-items:center"><span id="floorstat" style="font-size:11px;color:#8d8a7c"></span><button id="floorspeed" type="button" class="listen">[ FASTER ]</button></div>
 </div>
-<p class="sub" style="margin:6px 0 0">Every round the organisms shove on a fresh batch of topics, each settled against the manifold's true odds. Tail the algo and you grow; fade it and you bleed. It does not stop.</p>
+<div class="lprog"><i id="floorprog"></i></div>
+<p class="sub" style="margin:8px 0 0">Each season the organisms shove on the manifold's odds until the bell. Then it resolves: the champion is hung in the rafters with a one-of-one card, and a fresh season opens. Claim a rookie card of any live organism with [+]; if its run goes historic, your card becomes a legend.</p>
+<div id="floorresolve" style="display:none;margin:10px 0 0;border:1px solid #caa64a;background:#15110a;color:#ffd56b;padding:10px 12px;font-weight:700;font-size:13px"></div>
 <div id="floorbig" style="font-size:12px;color:#ffd56b;min-height:16px;margin:10px 0;letter-spacing:.03em"></div>
 <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:18px;margin-top:6px">
 <div><div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin-bottom:6px">LIVE BETS</div><div id="floorticker" style="font-size:12px;line-height:1.5">setting the line...</div></div>
-<div><div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin-bottom:6px">LIVE BANKROLLS</div><div id="floorboard" style="font-size:12px"></div></div>
+<div><div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin-bottom:6px">LIVE BANKROLLS // tap [+] to card a rookie</div><div id="floorboard" style="font-size:12px"></div></div>
 </div>
+<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">SEASON LEADERS</div>
+<div class="stat4" id="floorleaders"></div>
+<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">YOUR CARDS</div>
+<div id="floorcards"><span class="sub">No cards yet. Tap [+] beside a live organism to claim its rookie card.</span></div>
+<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">THE RAFTERS // SEASON CHAMPIONS, ONE-OF-ONE</div>
+<div id="floorrafters"><span class="sub">Empty. The first champion is crowned at the bell.</span></div>
 </section>
 "##;
         const FLOOR_SCRIPT: &str = r##"<script>
 (function(){
- var POOL=[],ORGS=[],rounds=0,settled=0,RMS=4000,timer=null,KEY='signal_floor_v3',CAP=5000000;
+ var POOL=[],ORGS=[],rounds=0,settled=0,season=1,rafters=[],cards=[];
+ var RMS=4000,timer=null,KEY='signal_floor_v4',CAP=5000000,SEASON_ROUNDS=100;
  function rnd(){return Math.random();}
  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
  function fmt(n){return Math.round(n||0).toLocaleString();}
- function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,day:window.__FLDAY}));}catch(e){}}
+ function by(id){return ORGS.filter(function(o){return o.id===id;})[0];}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,day:window.__FLDAY}));}catch(e){}}
  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
  Promise.all([
   fetch('api/bloodline.json').then(function(r){return r.json();}).catch(function(){return null;}),
@@ -832,21 +860,18 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   POOL=(ob.bet_pool||[]).filter(function(b){return b&&b.term;});
   if(!POOL.length)POOL=[{term:'SIGNAL',p:0.6,dir:1},{term:'MACHINE',p:0.45,dir:-1},{term:'MANIFOLD',p:0.7,dir:1}];
   var living=bl.living||[],prev=load(),byId={};
-  if(prev&&prev.day===window.__FLDAY)(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});
+  if(prev){
+   // The collection persists across days; only the live game resets to the day's population.
+   rafters=prev.rafters||[];cards=prev.cards||[];season=prev.season||1;
+   if(prev.day===window.__FLDAY){(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});rounds=prev.rounds||0;settled=prev.settled||0;}
+  }
   ORGS=living.map(function(o){var p=byId[o.id];return {id:o.id,name:o.name,house:o.house||'',
    risk:(o.risk!=null?o.risk:0.4),sel:((o.select!=null?o.select:50)/100),press:((o.press!=null?o.press:50)/100),fade:(o.fade==='FADE'),
-   bank:(p?p.bank:1000),w:(p?p.w:0),l:(p?p.l:0),streak:(p?p.streak:0)};});
-  if(prev&&prev.day===window.__FLDAY){rounds=prev.rounds||0;settled=prev.settled||0;}
-  if(!ORGS.length)ORGS=[{id:0,name:'THE HOUSE',house:'',risk:0.4,sel:0.5,press:0.5,fade:false,bank:1000,w:0,l:0,streak:0}];
-  board();
+   bank:(p?p.bank:1000),w:(p?p.w:0),l:(p?p.l:0),streak:(p?p.streak:0),maxStreak:(p?p.maxStreak:0),biggestWin:(p?p.biggestWin:0),peak:(p?p.peak:1000)};});
+  if(!ORGS.length)ORGS=[{id:0,name:'THE HOUSE',house:'',risk:0.4,sel:0.5,press:0.5,fade:false,bank:1000,w:0,l:0,streak:0,maxStreak:0,biggestWin:0,peak:1000}];
+  renderAll();
+  timer=setInterval(tick,RMS);
  });
- function board(){
-  var el=document.getElementById('floorboard');if(!el)return;
-  var s=ORGS.slice().sort(function(a,b){return b.bank-a.bank;}).slice(0,10);
-  var mx=Math.max.apply(null,s.map(function(o){return o.bank||1;}));
-  el.innerHTML=s.map(function(o,i){var w=Math.max(3,Math.round((o.bank/mx)*100));var col=o.bank>=1000?'#6ee07a':'#ff8c7d';return '<div style="margin:5px 0"><div style="display:flex;justify-content:space-between;gap:6px"><span class=nm style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(i+1)+'. '+esc(o.name)+' <span class=tag>'+(o.fade?'FADE':'TAIL')+'</span></span><span style="color:'+col+';font-weight:700;flex:0 0 auto">'+fmt(o.bank)+'</span></div><div class=bar><i style="width:'+w+'%;background:'+col+'"></i></div></div>';}).join('');
-  var st=document.getElementById('floorstat');if(st)st.textContent=rounds+' rounds // '+fmt(settled)+' bets settled';
- }
  function tick(){
   if(!ORGS.length||!POOL.length)return;
   var K=8+Math.floor(rnd()*16);
@@ -861,29 +886,91 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
     var frac=(0.02+o.risk*0.10)*(1+o.press*Math.min(Math.abs(o.streak),5)*0.12);
     var stake=Math.max(1,Math.min(o.bank,Math.round(o.bank*frac)));
     var win=(side===actual);
-    if(win){o.bank+=stake;o.w++;o.streak=o.streak>=0?o.streak+1:1;}
+    if(win){o.bank+=stake;o.w++;o.streak=o.streak>=0?o.streak+1:1;if(stake>o.biggestWin)o.biggestWin=stake;}
     else{o.bank-=stake;o.l++;o.streak=o.streak<=0?o.streak-1:-1;}
+    o.bank=Math.max(1,Math.min(CAP,o.bank));
+    if(o.streak>o.maxStreak)o.maxStreak=o.streak;
+    if(o.bank>o.peak)o.peak=o.bank;
     settled++;
     if(!big||stake>big.stake)big={name:o.name,stake:stake,term:b.term,win:win};
     if(rows.length<14)rows.push({term:b.term,name:o.name,side:side,stake:stake,win:win});
    });
-  });
-  // Bounded churn: hit the ceiling and you cash out and start fresh; bust and you
-  // respawn. Either way the bank returns to the seed, so it never runs to infinity.
-  ORGS.forEach(function(o){
-   if(o.bank>=CAP){o.bank=1000;o.w=0;o.l=0;o.streak=0;}
-   else if(o.bank<1){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.name=(o.name+"'").slice(0,22);}
   });
   rounds++;
   var tk=document.getElementById('floorticker');
   if(tk)tk.innerHTML=rows.map(function(r){var c=r.win?'#6ee07a':'#ff8c7d';return '<div style="padding:3px 0;border-bottom:1px dotted #232520"><b>'+esc(r.name)+'</b> '+(r.side>0?'backs':'fades')+' <b>'+esc(r.term)+'</b> '+(r.side>0?'UP':'DN')+' for '+fmt(r.stake)+'<span style="color:'+c+';font-weight:700;float:right">'+(r.win?'WON':'LOST')+'</span></div>';}).join('')||'<span style="color:#8d8a7c">no takers this round</span>';
   var bg=document.getElementById('floorbig');
   if(bg&&big)bg.innerHTML='BIGGEST SHOVE // <b>'+esc(big.name)+'</b> put <b>'+fmt(big.stake)+'</b> on '+esc(big.term)+' and '+(big.win?'<span style="color:#6ee07a">CASHED</span>':'<span style="color:#ff8c7d">MISSED</span>');
-  board();save();
+  if(rounds>=SEASON_ROUNDS)resolveSeason();
+  renderAll();save();
+ }
+ function resolveSeason(){
+  var ranked=ORGS.slice().sort(function(a,b){return b.bank-a.bank;});
+  var champ=ranked[0];
+  for(var i=0;i<Math.min(3,ranked.length);i++){var o=ranked[i];
+   rafters.unshift({season:season,name:o.name,house:o.house,finalBank:o.bank,biggestWin:o.biggestWin,maxStreak:o.maxStreak,w:o.w,l:o.l,fade:o.fade,rank:i+1,rarity:(i===0?'LEGEND':'RARE')});}
+  rafters=rafters.slice(0,24);
+  var rankOf={};ranked.forEach(function(o,i){rankOf[o.id]=i+1;});
+  cards.forEach(function(c){
+   if(c.resolved||c.claimedSeason!==season)return;
+   var rk=rankOf[c.id]||999,o=by(c.id),fin=o?o.bank:0;
+   c.resolved={season:season,rank:rk,finalBank:fin,legend:(rk===1),podium:(rk<=3)};
+   if(rk===1)c.historic='WON SEASON '+season+' // net '+fmt(fin)+' // W'+(o?o.maxStreak:0)+' // big +'+fmt(o?o.biggestWin:0);
+   else if(rk<=3)c.historic='PODIUM #'+rk+' // SEASON '+season;
+   else c.historic='SEASON '+season+' // finished #'+rk;
+  });
+  var rb=document.getElementById('floorresolve');
+  if(rb&&champ){rb.style.display='block';rb.innerHTML='SEASON '+season+' RESOLVED // CHAMPION <b>'+esc(champ.name)+'</b> at '+fmt(champ.bank)+' chips, hung in the rafters with a one-of-one card.';}
+  ORGS.forEach(function(o){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.maxStreak=0;o.biggestWin=0;o.peak=1000;});
+  season++;rounds=0;
+ }
+ function renderAll(){
+  board();leaders();drawCards();drawRafters();
+  var ss=document.getElementById('floorseason');if(ss)ss.textContent='SEASON '+season;
+  var st=document.getElementById('floorstat');if(st)st.textContent='round '+rounds+'/'+SEASON_ROUNDS+' // '+fmt(settled)+' bets settled';
+  var pr=document.getElementById('floorprog');if(pr)pr.style.width=Math.round(rounds/SEASON_ROUNDS*100)+'%';
+ }
+ function board(){
+  var el=document.getElementById('floorboard');if(!el)return;
+  var s=ORGS.slice().sort(function(a,b){return b.bank-a.bank;}).slice(0,10);
+  var mx=Math.max.apply(null,s.map(function(o){return o.bank||1;}));
+  el.innerHTML=s.map(function(o,i){var w=Math.max(3,Math.round((o.bank/mx)*100));var col=o.bank>=1000?'#6ee07a':'#ff8c7d';return '<div style="margin:5px 0"><div style="display:flex;justify-content:space-between;gap:6px;align-items:center"><span class=nm style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">'+(i+1)+'. '+esc(o.name)+' <span class=tag>'+(o.fade?'FADE':'TAIL')+'</span></span><button data-card="'+o.id+'" title="claim rookie card" style="background:none;border:1px solid #4a4d44;color:#cfe7b6;cursor:pointer;font:inherit;font-size:10px;padding:0 7px;line-height:1.6;flex:0 0 auto">+</button><span style="color:'+col+';font-weight:700;flex:0 0 auto;min-width:64px;text-align:right">'+fmt(o.bank)+'</span></div><div class=bar><i style="width:'+w+'%;background:'+col+'"></i></div></div>';}).join('');
+  var bs=el.querySelectorAll('[data-card]');for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){claim(parseInt(this.getAttribute('data-card'),10));});
+ }
+ function claim(id){
+  var o=by(id);if(!o)return;
+  if(cards.some(function(c){return c.id===id&&c.claimedSeason===season;}))return;
+  cards.unshift({id:id,name:o.name,house:o.house,fade:o.fade,claimedSeason:season,claimedRound:rounds});
+  cards=cards.slice(0,40);save();drawCards();
+ }
+ function leaders(){
+  var el=document.getElementById('floorleaders');if(!el||!ORGS.length)return;
+  var top=ORGS.slice().sort(function(a,b){return b.bank-a.bank;})[0];
+  var bw=ORGS.slice().sort(function(a,b){return b.biggestWin-a.biggestWin;})[0];
+  var ws=ORGS.slice().sort(function(a,b){return b.maxStreak-a.maxStreak;})[0];
+  var ms=ORGS.slice().sort(function(a,b){return b.l-a.l;})[0];
+  el.innerHTML=
+   '<div class=st><b>'+fmt(top.bank)+'</b><span>TOP NET WORTH // '+esc(top.name)+'</span></div>'+
+   '<div class=st><b>+'+fmt(bw.biggestWin)+'</b><span>BIGGEST WIN // '+esc(bw.name)+'</span></div>'+
+   '<div class=st><b>W'+(ws.maxStreak||0)+'</b><span>LONGEST STREAK // '+esc(ws.name)+'</span></div>'+
+   '<div class=st><b>'+fmt(ms.l)+'</b><span>MOST MISSES // '+esc(ms.name)+'</span></div>';
+ }
+ function cardEl(c){
+  var cls='lcard'+(c.resolved&&c.resolved.legend?' legend':(c.resolved&&c.resolved.podium?' rare':''));
+  var rk=c.resolved?(c.resolved.legend?'LEGEND // 1 OF 1':(c.resolved.podium?'RARE':'SEASON '+c.resolved.season)):'ROOKIE // SEASON '+c.claimedSeason;
+  var hist=c.historic?('<div style="margin-top:4px">'+esc(c.historic)+'</div>'):'<div style="margin-top:4px;color:#8d8a7c">live // resolves at the bell</div>';
+  return '<div class="'+cls+'"><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span><div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'</div>';
+ }
+ function drawCards(){
+  var el=document.getElementById('floorcards');if(!el)return;
+  el.innerHTML=cards.length?cards.map(cardEl).join(''):'<span class="sub">No cards yet. Tap [+] beside a live organism to claim its rookie card.</span>';
+ }
+ function drawRafters(){
+  var el=document.getElementById('floorrafters');if(!el)return;
+  el.innerHTML=rafters.length?rafters.map(function(r){var cls='lcard'+(r.rarity==='LEGEND'?' legend':' rare');return '<div class="'+cls+'"><span class=rk>'+r.rarity+' // SEASON '+r.season+' #'+r.rank+'</span><span class=nm>'+esc(r.name)+'</span><div>'+esc(r.house||'')+' // '+(r.fade?'FADE':'TAIL')+'</div><div style="margin-top:4px">net '+fmt(r.finalBank)+' // W'+(r.maxStreak||0)+' // big +'+fmt(r.biggestWin)+'</div></div>';}).join(''):'<span class="sub">Empty. The first champion is crowned at the bell.</span>';
  }
  var sb=document.getElementById('floorspeed');
  if(sb)sb.addEventListener('click',function(){RMS=(RMS>2500)?1200:4000;this.textContent=(RMS<2500)?'[ SLOWER ]':'[ FASTER ]';if(timer){clearInterval(timer);timer=setInterval(tick,RMS);}});
- timer=setInterval(tick,RMS);
 })();
 </script>"##;
         let bl_page = bl_page.replacen(
