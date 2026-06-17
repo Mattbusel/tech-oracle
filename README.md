@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 17, 2026** // Index **73 (SURGING)** // hottest **WORLD** // record **8-2**
+**June 17, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **8-2**
 
 > mattpocock/skills is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
 

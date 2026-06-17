@@ -79,7 +79,7 @@
     },
     {
       "dir": -1,
-      "p": 0.433,
+      "p": 0.413,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.66,
+      "p": 0.669,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -240,8 +240,8 @@
     },
     {
       "dir": -1,
-      "p": 0.351,
-      "phase": "FALLING",
+      "p": 0.444,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
     },
@@ -426,6 +426,12 @@
       "days": 176,
       "origin": "HN",
       "reach": "THE NEWS",
+      "term": "UPDATE"
+    },
+    {
+      "days": 176,
+      "origin": "HN",
+      "reach": "THE NEWS",
       "term": "XBOX"
     },
     {
@@ -435,28 +441,22 @@
       "term": "LAUNCH"
     },
     {
-      "days": 176,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "UPDATE"
-    },
-    {
-      "days": 170,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "COMING"
-    },
-    {
       "days": 177,
       "origin": "ARXIV",
       "reach": "THE NEWS",
       "term": "SURFACE"
     },
     {
-      "days": 146,
+      "days": 157,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "12GB"
+      "term": "ABUSED"
+    },
+    {
+      "days": 176,
+      "origin": "HN",
+      "reach": "ARS",
+      "term": "ABUSIVE"
     }
   ],
   "corpus_days": 179,
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.095,
-      "curvature": 0.49,
+      "beta": -0.103,
+      "curvature": 0.32,
       "defined": true,
-      "ds2": 0.81,
+      "ds2": 0.795,
       "gamma": 1.005,
-      "geodesic_trend": -0.337,
+      "geodesic_trend": -0.435,
       "phase": "BOTTOMING",
-      "prob_rising": 43,
+      "prob_rising": 41,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.023,
+      "rel_momentum": -0.025,
       "term": "GOOGLE"
     },
     {
@@ -650,23 +650,18 @@
   ],
   "movers": [
     {
-      "count": 7,
-      "term": "XBOX",
-      "vel": 717
-    },
-    {
-      "count": 4,
-      "term": "LAUNCH",
+      "count": 8,
+      "term": "UPDATE",
       "vel": 600
     },
     {
-      "count": 7,
-      "term": "UPDATE",
-      "vel": 513
+      "count": 6,
+      "term": "XBOX",
+      "vel": 600
     },
     {
       "count": 3,
-      "term": "COMING",
+      "term": "LAUNCH",
       "vel": 425
     },
     {
@@ -675,14 +670,19 @@
       "vel": 425
     },
     {
-      "count": 6,
+      "count": 5,
       "term": "FEATURES",
+      "vel": 400
+    },
+    {
+      "count": 4,
+      "term": "THINKING",
       "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 3,
+    "delta_abs": 2,
     "delta_word": "RISING",
     "has_prev": true,
     "highest_days": 1,
@@ -729,38 +729,38 @@
       },
       {
         "date": "2026-06-17",
-        "index": 73
+        "index": 72
       }
     ],
-    "index": 73,
-    "theme": "WORLD",
-    "total": 270,
+    "index": 72,
+    "theme": "GAME",
+    "total": 266,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -39,
+      "delta": -38,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -18,
+      "delta": -17,
       "index": 86,
       "name": "PLATFORM"
     },
     {
       "arrow": "DOWN",
       "delta": -4,
-      "index": 19,
+      "index": 18,
       "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 19,
+      "index": 18,
       "name": "ROBOTS"
     },
     {
@@ -772,13 +772,13 @@
     {
       "arrow": "DOWN",
       "delta": -5,
-      "index": 10,
+      "index": 9,
       "name": "CRYPTO"
     },
     {
       "arrow": "DOWN",
       "delta": -5,
-      "index": 10,
+      "index": 9,
       "name": "CLOUD"
     },
     {
@@ -890,5 +890,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 43120
+  "tracked_terms": 43121
 }

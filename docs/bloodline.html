@@ -15,7 +15,11 @@
 <div class="comm"><div class="txt" id="comm">tuning in...</div><button class="listen" id="listen" type="button">[ LISTEN ]</button></div>
 <div class="bigmoney" id="bigmoney"></div>
 <style>
-#floor .lcard{display:inline-block;width:150px;vertical-align:top;border:1px solid #34362f;padding:8px;margin:6px 6px 0 0;font-size:10px;line-height:1.45}
+#floor .lcard{display:inline-block;width:172px;vertical-align:top;border:1px solid #34362f;padding:8px;margin:6px 6px 0 0;font-size:10px;line-height:1.45}
+#floor .lcard canvas.emb{width:100%;height:74px;display:block;margin-bottom:6px;border:1px solid rgba(255,255,255,.06)}
+#floor .lcard .code{margin-top:5px;color:#6f6c5f;font-size:9px;letter-spacing:.06em}
+#floor .lcard .tbtn{margin-top:5px;background:none;border:1px solid #4a4d44;color:#cfe7b6;cursor:pointer;font:inherit;font-size:10px;padding:3px 8px}
+#floor .lcard .tbtn:hover{background:#cfe7b6;color:#0d0f0d}
 #floor .lcard .nm{font-weight:700;color:#e7e2d4;font-size:12px;display:block}
 #floor .lcard .rk{font-size:9px;letter-spacing:.12em;color:#6f6c5f;display:block;margin-bottom:4px}
 #floor .lcard.rare{border-color:#6fb8ff;box-shadow:0 0 0 1px rgba(111,184,255,.25)}
@@ -47,8 +51,13 @@
 </div>
 <div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">SEASON LEADERS</div>
 <div class="stat4" id="floorleaders"></div>
-<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">YOUR CARDS</div>
-<div id="floorcards"><span class="sub">No cards yet. Tap [+] beside a live organism to claim its rookie card.</span></div>
+<div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">YOUR CARDS // ONE ROOKIE A SEASON, EACH ONE TRADABLE BY CODE</div>
+<div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
+<input id="redeemin" placeholder="paste a trade code to redeem a card..." spellcheck="false" autocomplete="off" style="flex:1;min-width:180px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font-family:inherit;font-size:11px;padding:8px 10px">
+<button id="redeembtn" type="button" class="listen">[ REDEEM ]</button>
+</div>
+<div id="tradecode" style="display:none;border:1px solid #4a3a12;background:#15110a;color:#e7e2d4;padding:10px 12px;margin-bottom:8px;font-size:11px;line-height:1.5"></div>
+<div id="floorcards"><span class="sub">No cards yet. Tap [+] beside a live organism to claim a rookie card (one a season).</span></div>
 <div style="font-size:10px;letter-spacing:.16em;color:#8d8a7c;margin:16px 0 6px">THE RAFTERS // SEASON CHAMPIONS, ONE-OF-ONE</div>
 <div id="floorrafters"><span class="sub">Empty. The first champion is crowned at the bell.</span></div>
 </section>
@@ -128,11 +137,13 @@ setInterval(drawTable,1300);
    rafters=prev.rafters||[];cards=prev.cards||[];season=prev.season||1;
    if(prev.day===window.__FLDAY){(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});rounds=prev.rounds||0;settled=prev.settled||0;}
   }
+  // Backfill older cards so they get a tradable code and gene-driven art.
+  cards.forEach(function(c){if(!c.code)c.code=newCode(c.id||0);if(c.risk==null)c.risk=0.4;});
   ORGS=living.map(function(o){var p=byId[o.id];return {id:o.id,name:o.name,house:o.house||'',
    risk:(o.risk!=null?o.risk:0.4),sel:((o.select!=null?o.select:50)/100),press:((o.press!=null?o.press:50)/100),fade:(o.fade==='FADE'),
    bank:(p?p.bank:1000),w:(p?p.w:0),l:(p?p.l:0),streak:(p?p.streak:0),maxStreak:(p?p.maxStreak:0),biggestWin:(p?p.biggestWin:0),peak:(p?p.peak:1000)};});
   if(!ORGS.length)ORGS=[{id:0,name:'THE HOUSE',house:'',risk:0.4,sel:0.5,press:0.5,fade:false,bank:1000,w:0,l:0,streak:0,maxStreak:0,biggestWin:0,peak:1000}];
-  renderAll();
+  renderAll();renderCollection();
   timer=setInterval(tick,RMS);
  });
  function tick(){
@@ -185,10 +196,10 @@ setInterval(drawTable,1300);
   var rb=document.getElementById('floorresolve');
   if(rb&&champ){rb.style.display='block';rb.innerHTML='SEASON '+season+' RESOLVED // CHAMPION <b>'+esc(champ.name)+'</b> at '+fmt(champ.bank)+' chips, hung in the rafters with a one-of-one card.';}
   ORGS.forEach(function(o){o.bank=1000;o.w=0;o.l=0;o.streak=0;o.maxStreak=0;o.biggestWin=0;o.peak=1000;});
-  season++;rounds=0;
+  season++;rounds=0;renderCollection();
  }
  function renderAll(){
-  board();leaders();drawCards();drawRafters();
+  board();leaders();
   var ss=document.getElementById('floorseason');if(ss)ss.textContent='SEASON '+season;
   var st=document.getElementById('floorstat');if(st)st.textContent='round '+rounds+'/'+SEASON_ROUNDS+' // '+fmt(settled)+' bets settled';
   var pr=document.getElementById('floorprog');if(pr)pr.style.width=Math.round(rounds/SEASON_ROUNDS*100)+'%';
@@ -200,11 +211,60 @@ setInterval(drawTable,1300);
   el.innerHTML=s.map(function(o,i){var w=Math.max(3,Math.round((o.bank/mx)*100));var col=o.bank>=1000?'#6ee07a':'#ff8c7d';return '<div style="margin:5px 0"><div style="display:flex;justify-content:space-between;gap:6px;align-items:center"><span class=nm style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1">'+(i+1)+'. '+esc(o.name)+' <span class=tag>'+(o.fade?'FADE':'TAIL')+'</span></span><button data-card="'+o.id+'" title="claim rookie card" style="background:none;border:1px solid #4a4d44;color:#cfe7b6;cursor:pointer;font:inherit;font-size:10px;padding:0 7px;line-height:1.6;flex:0 0 auto">+</button><span style="color:'+col+';font-weight:700;flex:0 0 auto;min-width:64px;text-align:right">'+fmt(o.bank)+'</span></div><div class=bar><i style="width:'+w+'%;background:'+col+'"></i></div></div>';}).join('');
   var bs=el.querySelectorAll('[data-card]');for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){claim(parseInt(this.getAttribute('data-card'),10));});
  }
+ function newCode(id){return 'SIG-'+((id>>>0).toString(36).toUpperCase())+'-'+Math.floor(rnd()*1679616).toString(36).toUpperCase();}
+ function cardByCode(code){for(var i=0;i<cards.length;i++)if(cards[i].code===code)return cards[i];return null;}
  function claim(id){
   var o=by(id);if(!o)return;
-  if(cards.some(function(c){return c.id===id&&c.claimedSeason===season;}))return;
-  cards.unshift({id:id,name:o.name,house:o.house,fade:o.fade,claimedSeason:season,claimedRound:rounds});
-  cards=cards.slice(0,40);save();drawCards();
+  // One rookie card a season. No spamming the whole table.
+  if(cards.some(function(c){return c.claimedSeason===season;})){
+   var rb=document.getElementById('floorresolve');
+   if(rb){rb.style.display='block';rb.innerHTML='ONE ROOKIE A SEASON. You have already claimed your card for season '+season+'. Wait for the bell.';}
+   return;
+  }
+  cards.unshift({code:newCode(id),id:id,name:o.name,house:o.house,fade:o.fade,risk:o.risk,sel:o.sel,press:o.press,claimedSeason:season,claimedRound:rounds});
+  cards=cards.slice(0,60);save();renderCollection();
+ }
+ function tradeAway(code){
+  var i=-1;for(var k=0;k<cards.length;k++)if(cards[k].code===code)i=k;
+  if(i<0)return;var card=cards[i];
+  if(!window.confirm('Trade away '+card.name+'? It leaves your collection and you get a one-time code to give someone.'))return;
+  cards.splice(i,1);save();renderCollection();
+  var blob='';try{blob=btoa(JSON.stringify(card));}catch(e){blob='';}
+  var el=document.getElementById('tradecode');if(!el)return;el.style.display='block';
+  el.innerHTML='Traded away <b>'+esc(card.name)+'</b>. Give this code to anyone; they paste it into REDEEM to receive the card. It is gone from your collection.<br><textarea readonly id="tcval" style="width:100%;height:48px;margin-top:6px;background:#0d0f0d;color:#cfe7b6;border:1px solid #34362f;font:inherit;font-size:10px;padding:6px;resize:vertical">'+esc(blob)+'</textarea><button id="tccopy" type="button" class="listen" style="margin-top:5px">[ COPY CODE ]</button>';
+  var cp=document.getElementById('tccopy');if(cp)cp.onclick=function(){var ta=document.getElementById('tcval');ta.select();var ok=false;try{ok=document.execCommand('copy');}catch(e){}if(navigator.clipboard)navigator.clipboard.writeText(blob);this.textContent='[ COPIED ]';};
+ }
+ function redeem(str){
+  var el=document.getElementById('tradecode');
+  str=(str||'').trim();if(!str)return;
+  var card;try{card=JSON.parse(atob(str));}catch(e){card=null;}
+  if(!card||!card.code||!card.name){if(el){el.style.display='block';el.innerHTML='That is not a valid trade code.';}return;}
+  if(cardByCode(card.code)){if(el){el.style.display='block';el.innerHTML='You already hold <b>'+esc(card.name)+'</b>.';}return;}
+  cards.unshift(card);cards=cards.slice(0,60);save();renderCollection();
+  if(el){el.style.display='block';el.innerHTML='Redeemed <b>'+esc(card.name)+'</b> into your collection.';}
+  var ri=document.getElementById('redeemin');if(ri)ri.value='';
+ }
+ // Procedural emblem: a unique seeded crest per card, colored by its genes.
+ function hashStr(s){var h=2166136261>>>0;s=s||'';for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
+ function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+ function drawEmblem(cv,card,rarity){
+  var ctx=cv.getContext('2d'),W=cv.width,H=cv.height,rng=mulberry(hashStr(card.code||card.name));
+  var hue=Math.floor((card.risk!=null?card.risk:rng())*360),hue2=(hue+80+Math.floor(rng()*120))%360;
+  var g=ctx.createLinearGradient(0,0,W,H);
+  if(rarity==='legend'){g.addColorStop(0,'#3a2c08');g.addColorStop(1,'#0d0f0d');}
+  else if(rarity==='rare'){g.addColorStop(0,'hsl('+hue+',45%,13%)');g.addColorStop(1,'#0a1018');}
+  else{g.addColorStop(0,'hsl('+hue+',38%,11%)');g.addColorStop(1,'#0d0f0d');}
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  var cx=W/2,cy=H/2,spokes=3+Math.floor(rng()*7),R=Math.min(W,H)*0.46;
+  var col=rarity==='legend'?'#ffd56b':(rarity==='rare'?'#6fb8ff':'hsl('+hue2+',72%,66%)');
+  ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=1.2;
+  for(var k=0;k<spokes;k++){
+   var a=k/spokes*Math.PI*2+rng()*0.4,r1=R*(0.5+rng()*0.5);
+   ctx.globalAlpha=0.85;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1);ctx.stroke();
+   ctx.beginPath();ctx.arc(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1,1.4+rng()*1.8,0,7);ctx.fill();
+  }
+  ctx.globalAlpha=0.45;ctx.beginPath();ctx.arc(cx,cy,R*(0.42+rng()*0.32),0,7);ctx.stroke();
+  ctx.globalAlpha=1;ctx.beginPath();ctx.arc(cx,cy,2.4,0,7);ctx.fill();
  }
  function leaders(){
   var el=document.getElementById('floorleaders');if(!el||!ORGS.length)return;
@@ -218,21 +278,30 @@ setInterval(drawTable,1300);
    '<div class=st><b>W'+(ws.maxStreak||0)+'</b><span>LONGEST STREAK // '+esc(ws.name)+'</span></div>'+
    '<div class=st><b>'+fmt(ms.l)+'</b><span>MOST MISSES // '+esc(ms.name)+'</span></div>';
  }
- function cardEl(c){
-  var cls='lcard'+(c.resolved&&c.resolved.legend?' legend':(c.resolved&&c.resolved.podium?' rare':''));
-  var rk=c.resolved?(c.resolved.legend?'LEGEND // 1 OF 1':(c.resolved.podium?'RARE':'SEASON '+c.resolved.season)):'ROOKIE // SEASON '+c.claimedSeason;
-  var hist=c.historic?('<div style="margin-top:4px">'+esc(c.historic)+'</div>'):'<div style="margin-top:4px;color:#8d8a7c">live // resolves at the bell</div>';
-  return '<div class="'+cls+'"><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span><div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'</div>';
- }
+ function rarOf(c){return c.resolved&&c.resolved.legend?'legend':(c.resolved&&c.resolved.podium?'rare':'');}
  function drawCards(){
   var el=document.getElementById('floorcards');if(!el)return;
-  el.innerHTML=cards.length?cards.map(cardEl).join(''):'<span class="sub">No cards yet. Tap [+] beside a live organism to claim its rookie card.</span>';
+  if(!cards.length){el.innerHTML='<span class="sub">No cards yet. Tap [+] beside a live organism to claim a rookie card (one a season).</span>';return;}
+  el.innerHTML=cards.map(function(c){
+   var rar=rarOf(c),cls='lcard'+(rar?' '+rar:'');
+   var rk=c.resolved?(c.resolved.legend?'LEGEND // 1 OF 1':(c.resolved.podium?'RARE':'SEASON '+c.resolved.season)):'ROOKIE // SEASON '+c.claimedSeason;
+   var hist=c.historic?('<div style="margin-top:4px">'+esc(c.historic)+'</div>'):'<div style="margin-top:4px;color:#8d8a7c">live // resolves at the bell</div>';
+   return '<div class="'+cls+'"><canvas class=emb data-code="'+esc(c.code)+'" width=156 height=74></canvas><span class=rk>'+rk+'</span><span class=nm>'+esc(c.name)+'</span><div>'+esc(c.house||'')+' // '+(c.fade?'FADE':'TAIL')+'</div>'+hist+'<div class=code>'+esc(c.code||'')+'</div><button class=tbtn data-trade="'+esc(c.code)+'" type="button">[ TRADE ]</button></div>';
+  }).join('');
+  var cvs=el.querySelectorAll('canvas.emb');for(var i=0;i<cvs.length;i++){var c=cardByCode(cvs[i].getAttribute('data-code'));if(c)drawEmblem(cvs[i],c,rarOf(c));}
+  var bs=el.querySelectorAll('[data-trade]');for(var j=0;j<bs.length;j++)bs[j].addEventListener('click',function(){tradeAway(this.getAttribute('data-trade'));});
  }
  function drawRafters(){
   var el=document.getElementById('floorrafters');if(!el)return;
-  el.innerHTML=rafters.length?rafters.map(function(r){var cls='lcard'+(r.rarity==='LEGEND'?' legend':' rare');return '<div class="'+cls+'"><span class=rk>'+r.rarity+' // SEASON '+r.season+' #'+r.rank+'</span><span class=nm>'+esc(r.name)+'</span><div>'+esc(r.house||'')+' // '+(r.fade?'FADE':'TAIL')+'</div><div style="margin-top:4px">net '+fmt(r.finalBank)+' // W'+(r.maxStreak||0)+' // big +'+fmt(r.biggestWin)+'</div></div>';}).join(''):'<span class="sub">Empty. The first champion is crowned at the bell.</span>';
+  if(!rafters.length){el.innerHTML='<span class="sub">Empty. The first champion is crowned at the bell.</span>';return;}
+  el.innerHTML=rafters.map(function(r,idx){var lg=r.rarity==='LEGEND',cls='lcard'+(lg?' legend':' rare');return '<div class="'+cls+'"><canvas class=remb data-i="'+idx+'" width=156 height=74></canvas><span class=rk>'+r.rarity+' // SEASON '+r.season+' #'+r.rank+'</span><span class=nm>'+esc(r.name)+'</span><div>'+esc(r.house||'')+' // '+(r.fade?'FADE':'TAIL')+'</div><div style="margin-top:4px">net '+fmt(r.finalBank)+' // W'+(r.maxStreak||0)+' // big +'+fmt(r.biggestWin)+'</div></div>';}).join('');
+  var cvs=el.querySelectorAll('canvas.remb');for(var i=0;i<cvs.length;i++){var r=rafters[parseInt(cvs[i].getAttribute('data-i'),10)];if(r)drawEmblem(cvs[i],{code:r.name+r.season+r.rank,risk:null},r.rarity==='LEGEND'?'legend':'rare');}
  }
+ function renderCollection(){drawCards();drawRafters();}
  var sb=document.getElementById('floorspeed');
  if(sb)sb.addEventListener('click',function(){RMS=(RMS>2500)?1200:4000;this.textContent=(RMS<2500)?'[ SLOWER ]':'[ FASTER ]';if(timer){clearInterval(timer);timer=setInterval(tick,RMS);}});
+ var rdb=document.getElementById('redeembtn'),rdi=document.getElementById('redeemin');
+ if(rdb)rdb.addEventListener('click',function(){redeem(rdi?rdi.value:'');});
+ if(rdi)rdi.addEventListener('keydown',function(e){if(e.key==='Enter')redeem(rdi.value);});
 })();
 </script></body></html>
