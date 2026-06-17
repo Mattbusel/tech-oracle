@@ -1,0 +1,40 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "sc": "https://schema.org/"
+  },
+  "@type": "sc:Dataset",
+  "creator": {
+    "@type": "Organization",
+    "name": "THE SIGNAL",
+    "url": "https://mattbusel.github.io/tech-oracle/"
+  },
+  "description": "Dated, self-graded technology predictions and term diffusion data from THE SIGNAL. Rules-based, no LLM. Updated daily.",
+  "distribution": [
+    {
+      "@id": "predictions.csv",
+      "@type": "cr:FileObject",
+      "contentUrl": "https://mattbusel.github.io/tech-oracle/dataset/predictions.csv",
+      "encodingFormat": "text/csv",
+      "name": "predictions.csv"
+    },
+    {
+      "@id": "diffusion.csv",
+      "@type": "cr:FileObject",
+      "contentUrl": "https://mattbusel.github.io/tech-oracle/dataset/diffusion.csv",
+      "encodingFormat": "text/csv",
+      "name": "diffusion.csv"
+    }
+  ],
+  "keywords": [
+    "technology",
+    "predictions",
+    "forecasting",
+    "trend diffusion",
+    "time series"
+  ],
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "name": "the-signal-tech-predictions",
+  "url": "https://mattbusel.github.io/tech-oracle/dataset/"
+}

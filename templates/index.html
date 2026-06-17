@@ -525,6 +525,7 @@
               <div class="sb-verdict">{{ scoreboard.verdict }}</div>
               <div class="sb-fine">EVERY CALL CARRIES A CONCRETE WIN CONDITION. THE MACHINE GRADES ITSELF AGAINST THE FEEDS, IN PUBLIC, AND NEVER UNPRINTS A LOSS.</div>
               <div class="sharebar" style="justify-content:center">
+                <a class="sx" href="receipts.html">[ SEE THE RECEIPTS ]</a>
                 <button class="sx" type="button" data-share data-text="An autonomous tech oracle that grades itself in public: {{ scoreboard.hits }} hits, {{ scoreboard.misses }} misses{% if scoreboard.has_rate %}, {{ scoreboard.rate }}% hit rate{% endif %}. No edits, no deletes.">[ SHARE THE RECORD ]</button>
                 <button class="sx alt" type="button" data-card data-dm="1" data-curve="book" data-headline="{% if scoreboard.has_rate %}{{ scoreboard.rate }}% HIT{% else %}ON RECORD{% endif %}" data-kicker="THE SCORECARD // SELF-GRADING" data-sub="{{ scoreboard.hits }} HITS / {{ scoreboard.misses }} MISSES / {{ scoreboard.open }} OPEN" data-stamp="PUBLIC RECORD" data-text="The SIGNAL oracle's public scorecard.">[ SAVE AS IMAGE ]</button>
               </div>
@@ -801,8 +802,8 @@
 
             <footer class="foot">
               <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
-              <p>NOT FINANCIAL ADVICE. SOURCES: HACKER NEWS / ARXIV / GITHUB / LOBSTERS / DEV.TO / ARS TECHNICA / REDDIT / THE NEWS.</p>
-              <p><a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">subscribe in your calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
+              <p>NOT FINANCIAL ADVICE. SOURCES: ARXIV / GITHUB / CRATES.IO / LOBSTERS / HACKER NEWS / DEV.TO / REDDIT / ARS TECHNICA / THE NEWS / WIKIPEDIA.</p>
+              <p><a href="receipts.html">the receipts</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
               <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
             </footer>
           </main>

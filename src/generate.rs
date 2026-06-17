@@ -103,9 +103,16 @@ pub fn generate(
             let jitter = ((seed.unsigned_abs() as usize + i) % 5) as f64 * 0.01;
             let confidence = (confidence + jitter).clamp(0.34, 0.9);
 
+            // A topic leaving the dev bubble gets a challenge frame: dated,
+            // falsifiable, and built to make the arriving crowd argue with it.
+            let prediction_text = if market == "CHASM" || crossing {
+                challenge_template(&subject, seed, i)
+            } else {
+                fill_template(&s.signal_type, &subject, seed, i)
+            };
             Prediction {
                 date: date.to_string(),
-                prediction_text: fill_template(&s.signal_type, &subject, seed, i),
+                prediction_text,
                 source_title: s.title.clone(),
                 source_url: s.url.clone(),
                 signal_type: s.signal_type.clone(),
@@ -233,6 +240,21 @@ fn variants_for(signal_type: &str) -> &'static [&'static str] {
         ],
         _ => &["{s} is showing momentum. The signal points to it mattering more next quarter than it does today."],
     }
+}
+
+/// Challenge framing for a topic crossing into the general public. Dated,
+/// falsifiable, and provocative: the arriving crowd is invited to fade it.
+fn challenge_template(subject: &str, seed: i64, idx: usize) -> String {
+    const V: &[&str] = &[
+        "{s} is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+        "Normal people are about to find {s}. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+        "{s} just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+        "The machine flagged {s} crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+        "{s} is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+        "Watch {s} leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+    ];
+    let choice = ((seed as usize).wrapping_add(idx).wrapping_mul(7)) % V.len();
+    V[choice].replace("{s}", subject)
 }
 
 fn subject_of(s: &Signal) -> String {

@@ -33,29 +33,19 @@
     {
       "days": 0,
       "origin": "HN",
-      "reach": "THE NEWS",
+      "reach": "HN",
       "term": "ANNOUNCES"
     }
   ],
   "corpus_days": 1,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 50
+    "value": 53
   },
   "movers": [
     {
-      "count": 10,
-      "term": "APPLE",
-      "vel": 100
-    },
-    {
-      "count": 9,
-      "term": "GAME",
-      "vel": 100
-    },
-    {
-      "count": 8,
-      "term": "UPDATE",
+      "count": 7,
+      "term": "TEAM",
       "vel": 100
     },
     {
@@ -64,22 +54,32 @@
       "vel": 100
     },
     {
-      "count": 7,
-      "term": "XBOX",
+      "count": 6,
+      "term": "CUP",
       "vel": 100
     },
     {
-      "count": 7,
-      "term": "TEAM",
+      "count": 5,
+      "term": "APPLE",
+      "vel": 100
+    },
+    {
+      "count": 5,
+      "term": "GOOGLE",
+      "vel": 100
+    },
+    {
+      "count": 4,
+      "term": "LEARNING",
       "vel": 100
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
-    "delta_word": "RISING",
+    "delta_abs": 3,
+    "delta_word": "FALLING",
     "has_prev": true,
-    "highest_days": 1,
+    "highest_days": 0,
     "history": [
       {
         "date": "2026-06-02",
@@ -123,62 +123,62 @@
       },
       {
         "date": "2026-06-17",
-        "index": 71
+        "index": 67
       }
     ],
-    "index": 71,
-    "theme": "APPLE",
-    "total": 260,
+    "index": 67,
+    "theme": "WORLD",
+    "total": 234,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 20,
+      "delta": 17,
+      "index": 100,
+      "name": "AI"
+    },
+    {
+      "arrow": "UP",
+      "delta": 17,
       "index": 100,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
-      "delta": 17,
-      "index": 85,
-      "name": "AI"
-    },
-    {
-      "arrow": "UP",
-      "delta": 5,
-      "index": 25,
+      "delta": 3,
+      "index": 18,
       "name": "CHIPS"
     },
     {
       "arrow": "UP",
       "delta": 3,
-      "index": 15,
-      "name": "SECURITY"
-    },
-    {
-      "arrow": "UP",
-      "delta": 3,
-      "index": 15,
+      "index": 18,
       "name": "ROBOTS"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 10,
+      "index": 12,
       "name": "RUST"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 10,
+      "index": 12,
       "name": "CRYPTO"
     },
     {
       "arrow": "UP",
+      "delta": 2,
+      "index": 12,
+      "name": "SECURITY"
+    },
+    {
+      "arrow": "UP",
       "delta": 1,
-      "index": 5,
+      "index": 6,
       "name": "CLOUD"
     }
   ],
@@ -284,5 +284,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 1214
+  "tracked_terms": 1219
 }

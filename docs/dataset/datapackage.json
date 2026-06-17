@@ -1,0 +1,131 @@
+{
+  "description": "A daily, rules-based oracle of dated and falsifiable technology predictions, each graded HIT or MISS in public, plus the term-level diffusion data (how ideas travel from technical audiences to the general public) the calls are built on. No LLM.",
+  "homepage": "https://mattbusel.github.io/tech-oracle/",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0"
+    }
+  ],
+  "name": "the-signal-tech-predictions",
+  "resources": [
+    {
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "predictions",
+      "path": "predictions.csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "date",
+            "type": "date"
+          },
+          {
+            "name": "market",
+            "type": "string"
+          },
+          {
+            "name": "keyword",
+            "type": "string"
+          },
+          {
+            "name": "keyword2",
+            "type": "string"
+          },
+          {
+            "name": "target",
+            "type": "integer"
+          },
+          {
+            "name": "confidence",
+            "type": "number"
+          },
+          {
+            "name": "status",
+            "type": "string"
+          },
+          {
+            "name": "resolved_on",
+            "type": "string"
+          },
+          {
+            "name": "resolves_by",
+            "type": "date"
+          },
+          {
+            "name": "signal_type",
+            "type": "string"
+          },
+          {
+            "name": "source_url",
+            "type": "string"
+          },
+          {
+            "name": "prediction",
+            "type": "string"
+          },
+          {
+            "name": "win_if",
+            "type": "string"
+          },
+          {
+            "name": "rationale",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "format": "csv",
+      "mediatype": "text/csv",
+      "name": "diffusion",
+      "path": "diffusion.csv",
+      "schema": {
+        "fields": [
+          {
+            "name": "term",
+            "type": "string"
+          },
+          {
+            "name": "first_seen",
+            "type": "date"
+          },
+          {
+            "name": "first_stage",
+            "type": "integer"
+          },
+          {
+            "name": "reach_sources",
+            "type": "string"
+          },
+          {
+            "name": "peak",
+            "type": "integer"
+          },
+          {
+            "name": "peak_date",
+            "type": "date"
+          },
+          {
+            "name": "active_days",
+            "type": "integer"
+          },
+          {
+            "name": "last_seen",
+            "type": "date"
+          },
+          {
+            "name": "crossed",
+            "type": "boolean"
+          },
+          {
+            "name": "crossed_on",
+            "type": "string"
+          }
+        ]
+      }
+    }
+  ],
+  "title": "THE SIGNAL: dated, self-graded tech predictions and discourse diffusion"
+}

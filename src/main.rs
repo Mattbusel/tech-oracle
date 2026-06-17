@@ -199,6 +199,11 @@ fn main() {
         eprintln!("render error: {e}");
         std::process::exit(1);
     }
+
+    // Plant the record in the machine substrate: a living open dataset (CSV +
+    // JSONL + Frictionless + Croissant + a dataset card) so the diffusion data
+    // lands in the corpora that AI answer engines train on and retrieve from.
+    write_dataset(&obs, &revealed);
     // Ready-to-post syndication message for the daily auto-poster.
     let site = env_or("SITE_URL", "https://mattbusel.github.io/tech-oracle");
     let site = site.trim_end_matches('/');
@@ -406,6 +411,123 @@ fn resolve_open(preds: &mut [Prediction], today: &str, corpus: &str, general: &s
             p.resolved_on = today.to_string();
         }
     }
+}
+
+/// Escape a value for CSV: wrap in quotes, double internal quotes, flatten newlines.
+fn csv_escape(s: &str) -> String {
+    let clean = s.replace(['\n', '\r'], " ");
+    format!("\"{}\"", clean.replace('"', "\"\""))
+}
+
+/// Emit the open dataset under docs/dataset/: the public predictions with
+/// outcomes, the term diffusion ledger, and standard metadata (Frictionless
+/// datapackage + Croissant + an HF-style dataset card) so registries and AI
+/// answer engines can ingest it. Regenerates every run; commit it daily.
+fn write_dataset(obs: &observatory::Observatory, revealed: &[Prediction]) {
+    let dir = format!("{OUT_DIR}/dataset");
+    let _ = std::fs::create_dir_all(&dir);
+    let site = env_or("SITE_URL", "https://mattbusel.github.io/tech-oracle");
+    let site = site.trim_end_matches('/').to_string();
+
+    let mut preds: Vec<&Prediction> = revealed.iter().collect();
+    preds.sort_by(|a, b| b.date.cmp(&a.date));
+
+    // predictions.csv + predictions.jsonl
+    let mut csv = String::from("date,market,keyword,keyword2,target,confidence,status,resolved_on,resolves_by,signal_type,source_url,prediction,win_if,rationale\n");
+    let mut jsonl = String::new();
+    for p in &preds {
+        csv.push_str(&format!(
+            "{},{},{},{},{},{:.2},{},{},{},{},{},{},{},{}\n",
+            csv_escape(&p.date), csv_escape(&p.market), csv_escape(&p.keyword), csv_escape(&p.keyword2),
+            p.target, if p.confidence > 0.0 { p.confidence } else { 0.65 },
+            csv_escape(&p.status), csv_escape(&p.resolved_on), csv_escape(&p.resolves_by),
+            csv_escape(&p.signal_type), csv_escape(&p.source_url),
+            csv_escape(&p.prediction_text), csv_escape(&p.win_if), csv_escape(&p.rationale)
+        ));
+        if let Ok(line) = serde_json::to_string(&serde_json::json!({
+            "date": p.date, "market": p.market, "keyword": p.keyword, "keyword2": p.keyword2,
+            "target": p.target, "confidence": if p.confidence > 0.0 { p.confidence } else { 0.65 },
+            "status": p.status, "resolved_on": p.resolved_on, "resolves_by": p.resolves_by,
+            "signal_type": p.signal_type, "source_url": p.source_url,
+            "prediction": p.prediction_text, "win_if": p.win_if, "rationale": p.rationale
+        })) {
+            jsonl.push_str(&line);
+            jsonl.push('\n');
+        }
+    }
+    let _ = std::fs::write(format!("{dir}/predictions.csv"), &csv);
+    let _ = std::fs::write(format!("{dir}/predictions.jsonl"), &jsonl);
+
+    // diffusion.csv: each tracked term's path down the funnel.
+    let mut diff = String::from("term,first_seen,first_stage,reach_sources,peak,peak_date,active_days,last_seen,crossed,crossed_on\n");
+    let mut terms: Vec<(&String, &observatory::TermRec)> = obs.corpus.terms.iter().collect();
+    terms.sort_by(|a, b| b.1.peak.cmp(&a.1.peak));
+    for (term, r) in terms {
+        let reach: Vec<&str> = r.stages.keys().map(|s| s.as_str()).collect();
+        diff.push_str(&format!(
+            "{},{},{},{},{},{},{},{},{},{}\n",
+            csv_escape(term), csv_escape(&r.first_seen), r.first_stage, csv_escape(&reach.join(";")),
+            r.peak, csv_escape(&r.peak_date), r.days, csv_escape(&r.last_seen), r.crossed, csv_escape(&r.crossed_on)
+        ));
+    }
+    let _ = std::fs::write(format!("{dir}/diffusion.csv"), &diff);
+
+    // Frictionless data package (read by data.world, Datahub, datasette, etc.).
+    let datapackage = serde_json::json!({
+        "name": "the-signal-tech-predictions",
+        "title": "THE SIGNAL: dated, self-graded tech predictions and discourse diffusion",
+        "description": "A daily, rules-based oracle of dated and falsifiable technology predictions, each graded HIT or MISS in public, plus the term-level diffusion data (how ideas travel from technical audiences to the general public) the calls are built on. No LLM.",
+        "homepage": format!("{site}/"),
+        "licenses": [ { "name": "CC-BY-4.0", "title": "Creative Commons Attribution 4.0", "path": "https://creativecommons.org/licenses/by/4.0/" } ],
+        "resources": [
+            { "name": "predictions", "path": "predictions.csv", "format": "csv", "mediatype": "text/csv",
+              "schema": { "fields": [
+                {"name":"date","type":"date"},{"name":"market","type":"string"},{"name":"keyword","type":"string"},
+                {"name":"keyword2","type":"string"},{"name":"target","type":"integer"},{"name":"confidence","type":"number"},
+                {"name":"status","type":"string"},{"name":"resolved_on","type":"string"},{"name":"resolves_by","type":"date"},
+                {"name":"signal_type","type":"string"},{"name":"source_url","type":"string"},{"name":"prediction","type":"string"},
+                {"name":"win_if","type":"string"},{"name":"rationale","type":"string"} ] } },
+            { "name": "diffusion", "path": "diffusion.csv", "format": "csv", "mediatype": "text/csv",
+              "schema": { "fields": [
+                {"name":"term","type":"string"},{"name":"first_seen","type":"date"},{"name":"first_stage","type":"integer"},
+                {"name":"reach_sources","type":"string"},{"name":"peak","type":"integer"},{"name":"peak_date","type":"date"},
+                {"name":"active_days","type":"integer"},{"name":"last_seen","type":"date"},{"name":"crossed","type":"boolean"},
+                {"name":"crossed_on","type":"string"} ] } }
+        ]
+    });
+    let _ = std::fs::write(format!("{dir}/datapackage.json"), serde_json::to_string_pretty(&datapackage).unwrap_or_default());
+
+    // Croissant (MLCommons / Hugging Face / Google Dataset Search metadata).
+    let croissant = serde_json::json!({
+        "@context": { "@vocab": "https://schema.org/", "cr": "http://mlcommons.org/croissant/", "sc": "https://schema.org/" },
+        "@type": "sc:Dataset",
+        "name": "the-signal-tech-predictions",
+        "description": "Dated, self-graded technology predictions and term diffusion data from THE SIGNAL. Rules-based, no LLM. Updated daily.",
+        "url": format!("{site}/dataset/"),
+        "license": "https://creativecommons.org/licenses/by/4.0/",
+        "creator": { "@type": "Organization", "name": "THE SIGNAL", "url": format!("{site}/") },
+        "keywords": ["technology", "predictions", "forecasting", "trend diffusion", "time series"],
+        "distribution": [
+            { "@type": "cr:FileObject", "@id": "predictions.csv", "name": "predictions.csv", "contentUrl": format!("{site}/dataset/predictions.csv"), "encodingFormat": "text/csv" },
+            { "@type": "cr:FileObject", "@id": "diffusion.csv", "name": "diffusion.csv", "contentUrl": format!("{site}/dataset/diffusion.csv"), "encodingFormat": "text/csv" }
+        ]
+    });
+    let _ = std::fs::write(format!("{dir}/croissant.json"), serde_json::to_string_pretty(&croissant).unwrap_or_default());
+
+    // HF-style dataset card.
+    let resolved = revealed.iter().filter(|p| p.status == "HIT" || p.status == "MISS").count();
+    let readme = format!(
+        "---\nlicense: cc-by-4.0\nlanguage:\n- en\ntags:\n- predictions\n- technology\n- forecasting\n- trend-diffusion\n- time-series\npretty_name: \"THE SIGNAL: Dated, Self-Graded Tech Predictions\"\n---\n\n# THE SIGNAL: dated, self-graded tech predictions and discourse diffusion\n\nA daily, rules-based (no-LLM) oracle that makes dated, falsifiable technology predictions and grades every one HIT or MISS in public. This dataset is the full public record plus the term-level diffusion data the calls are built on. Live site: {site}/\n\n## Files\n- `predictions.csv` / `predictions.jsonl`: every public call ({total} so far, {resolved} settled), with its market type, machine-checkable win condition, confidence, status and resolution date.\n- `diffusion.csv`: each tracked term's path down the funnel, from the technical source where it first appeared to the most general audience it has reached, and whether and when it crossed into the general public.\n- `datapackage.json`: Frictionless Data descriptor. `croissant.json`: MLCommons/Croissant metadata.\n\n## How it is built\nEvery day the engine reads ten public sources ordered from technical to general (arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News, Wikipedia pageviews), measures each term's velocity and diffusion, and issues dated calls with concrete win conditions. Calls settle against later signals. No model weights, no inference.\n\n## Updated\nDaily. {total} calls on the record as of {date}.\n\n## Citation\nTHE SIGNAL, a self-grading tech oracle. {site}/\n",
+        site = site, total = revealed.len(), resolved = resolved, date = obs.today
+    );
+    let _ = std::fs::write(format!("{dir}/README.md"), readme);
+
+    // A human + agent landing page for the dataset.
+    let index = format!(
+        "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>The open dataset // THE SIGNAL</title>\n<meta name=\"description\" content=\"The full public record of THE SIGNAL's dated, self-graded tech predictions and term diffusion data, as open CSV and JSONL. CC-BY 4.0, updated daily.\">\n<meta property=\"og:image\" content=\"{site}/og.png\">\n<link rel=\"canonical\" href=\"{site}/dataset/\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:680px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}h1{{font-size:28px;letter-spacing:.03em}}ul{{list-style:none;padding:0}}li{{padding:10px 0;border-bottom:1px dashed rgba(27,26,20,.3)}}a{{color:#1b1a14}}.m{{font-size:12px;color:#6d6b5e;line-height:1.5}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // OPEN DATASET</div>\n<h1>The record, as data</h1>\n<p class=\"m\">Dated, self-graded tech predictions and the term-diffusion data behind them. CC-BY 4.0. Rebuilt every day. Free to read, cite, train on, and build on.</p>\n<ul>\n<li><a href=\"predictions.csv\">predictions.csv</a> // every public call with outcomes</li>\n<li><a href=\"predictions.jsonl\">predictions.jsonl</a> // same, line-delimited JSON</li>\n<li><a href=\"diffusion.csv\">diffusion.csv</a> // each term's path from the lab to the public</li>\n<li><a href=\"datapackage.json\">datapackage.json</a> // Frictionless descriptor</li>\n<li><a href=\"croissant.json\">croissant.json</a> // Croissant / ML metadata</li>\n<li><a href=\"README.md\">README.md</a> // dataset card</li>\n</ul>\n<p class=\"m\"><a href=\"{site}/\">back to THE SIGNAL</a> // <a href=\"{site}/receipts.html\">the receipts</a> // <a href=\"{site}/api/oracle.json\">the agent API</a></p></div></body></html>\n",
+        site = site
+    );
+    let _ = std::fs::write(format!("{dir}/index.html"), index);
 }
 
 /// All sources, in funnel order, for stable display of the learning panel.

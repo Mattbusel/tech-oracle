@@ -298,10 +298,38 @@ pub fn render(
         let market = if p.market.is_empty() { "RESURFACE" } else { p.market.as_str() };
         let desc = xml(&clip_r(&p.prediction_text, 150));
         let tt = xml(&clip_r(&p.prediction_text, 65));
+        // The call as a dated, machine-readable claim. A resolved call becomes a
+        // ClaimReview (the date proves we called it first); an open call is a
+        // dated Claim. This is what lets search and AI engines cite the receipt.
+        let claim_text = clip_r(&p.prediction_text, 240);
+        let claim_ld = match p.status.as_str() {
+            "HIT" | "MISS" => {
+                let (rv, name) = if p.status == "HIT" { (5, "Resolved HIT: the call was correct") } else { (1, "Resolved MISS: the call was wrong") };
+                serde_json::json!({
+                    "@context": "https://schema.org", "@type": "ClaimReview",
+                    "datePublished": p.date, "url": format!("{site}/call/{no}.html"),
+                    "claimReviewed": claim_text,
+                    "author": { "@type": "Organization", "name": "THE SIGNAL", "url": site },
+                    "reviewRating": { "@type": "Rating", "ratingValue": rv, "bestRating": 5, "worstRating": 1, "alternateName": name },
+                    "itemReviewed": { "@type": "Claim", "datePublished": p.date, "author": { "@type": "Organization", "name": "THE SIGNAL" }, "appearance": { "@type": "CreativeWork", "url": format!("{site}/call/{no}.html") } }
+                })
+            }
+            _ => serde_json::json!({
+                "@context": "https://schema.org", "@type": "CreativeWork",
+                "headline": claim_text, "datePublished": p.date,
+                "url": format!("{site}/call/{no}.html"),
+                "author": { "@type": "Organization", "name": "THE SIGNAL", "url": site }
+            }),
+        }.to_string();
         let page = format!(
-            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Call No. {no}: {tt} // THE SIGNAL</title>\n<meta name=\"description\" content=\"{desc}\">\n<meta property=\"og:title\" content=\"THE SIGNAL // Call No. {no} [{status}]\">\n<meta property=\"og:description\" content=\"{desc}\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<meta property=\"og:image\" content=\"{site}/call/{no}.png\">\n<meta name=\"twitter:image\" content=\"{site}/call/{no}.png\">\n<link rel=\"canonical\" href=\"{site}/call/{no}.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:620px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}.c{{font-size:25px;font-weight:600;line-height:1.35;margin:18px 0}}.m{{font-size:11px;letter-spacing:.1em;color:#6d6b5e}}.w{{font-size:12px;color:#6d6b5e;margin:14px 0}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // CALL No. {no}</div>\n<div class=\"m\">{date} // {market} // {status}</div>\n<p class=\"c\">{t}</p>\n<div class=\"w\">{win}</div>\n<p class=\"m\"><a href=\"{src}\" rel=\"noopener\">source signal</a> // <a href=\"{site}/#call-{no}\">on the public record</a> // <a href=\"{site}/\">THE SIGNAL</a></p>\n</div></body></html>\n",
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>Call No. {no}: {tt} // THE SIGNAL</title>\n<meta name=\"description\" content=\"{desc}\">\n<meta property=\"og:title\" content=\"THE SIGNAL // Call No. {no} [{status}]\">\n<meta property=\"og:description\" content=\"{desc}\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<meta property=\"og:image\" content=\"{site}/call/{no}.png\">\n<meta name=\"twitter:image\" content=\"{site}/call/{no}.png\">\n<link rel=\"canonical\" href=\"{site}/call/{no}.html\">\n<script type=\"application/ld+json\">{ld}</script>\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:620px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}.c{{font-size:25px;font-weight:600;line-height:1.35;margin:18px 0}}.m{{font-size:11px;letter-spacing:.1em;color:#6d6b5e}}.w{{font-size:12px;color:#6d6b5e;margin:14px 0}}.r{{display:inline-block;font-weight:600;padding:3px 10px;letter-spacing:.12em;font-size:12px}}.r-hit{{background:#1f7a3d;color:#efede4}}.r-miss{{background:#b23a2e;color:#efede4}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // CALL No. {no}</div>\n<div class=\"m\">{date} // {market} // {status}</div>\n{receipt}<p class=\"c\">{t}</p>\n<div class=\"w\">{win}</div>\n<p class=\"m\"><a href=\"{src}\" rel=\"noopener\">source signal</a> // <a href=\"{site}/receipts.html\">the receipts</a> // <a href=\"{site}/#call-{no}\">on the public record</a> // <a href=\"{site}/\">THE SIGNAL</a></p>\n</div></body></html>\n",
             no = no, tt = tt, t = xml(&p.prediction_text), desc = desc, status = status, market = market,
-            date = xml(&p.date), win = xml(&p.win_if), src = xml(&p.source_url), site = site
+            date = xml(&p.date), win = xml(&p.win_if), src = xml(&p.source_url), site = site, ld = claim_ld,
+            receipt = match p.status.as_str() {
+                "HIT" => format!("<p><span class=\"r r-hit\">CALLED IT // HIT</span> <span class=\"m\">called {} // resolved {} // {} days on the record</span></p>\n", p.date, p.resolved_on, day_diff(&p.date, &p.resolved_on)),
+                "MISS" => format!("<p><span class=\"r r-miss\">ON THE RECORD // MISS</span> <span class=\"m\">called {} // resolved {} // no edits, no deletes</span></p>\n", p.date, p.resolved_on),
+                _ => String::new(),
+            }
         );
         let _ = std::fs::write(format!("{}/call/{no}.html", crate::OUT_DIR), page);
         urls.push(format!("{site}/call/{no}.html"));
@@ -342,6 +370,51 @@ pub fn render(
         );
         let _ = std::fs::write(format!("{}/topic/{sl}.html", crate::OUT_DIR), page);
         urls.push(format!("{site}/topic/{sl}.html"));
+    }
+
+    // THE RECEIPTS: the credibility wall. Every dated call that has settled,
+    // newest first, with how many days early it went on the record. "We called
+    // it, here is the proof" is the most shareable thing the engine produces.
+    {
+        let mut hit_rows = String::new();
+        let mut miss_rows = String::new();
+        let (mut nh, mut nm) = (0i64, 0i64);
+        for (i, p) in sorted.iter().enumerate() {
+            let no = total - i;
+            match p.status.as_str() {
+                "HIT" => {
+                    nh += 1;
+                    hit_rows.push_str(&format!(
+                        "<li class=\"i\"><div class=\"rh\"><span class=\"r r-hit\">HIT</span> <span class=\"lead\">{lead} DAYS ON THE RECORD</span></div><a href=\"{site}/call/{no}.html\">{t}</a><div class=\"meta\">CALLED {called} // RESOLVED {res} // {mk}</div></li>",
+                        lead = day_diff(&p.date, &p.resolved_on), site = site, no = no,
+                        t = xml(&clip_r(&p.prediction_text, 150)), called = xml(&p.date), res = xml(&p.resolved_on),
+                        mk = if p.market.is_empty() { "RESURFACE" } else { p.market.as_str() }
+                    ));
+                }
+                "MISS" => {
+                    nm += 1;
+                    miss_rows.push_str(&format!(
+                        "<li class=\"i\"><div class=\"rh\"><span class=\"r r-miss\">MISS</span> <span class=\"lead\">NO EDITS, NO DELETES</span></div><a href=\"{site}/call/{no}.html\">{t}</a><div class=\"meta\">CALLED {called} // RESOLVED {res} // {mk}</div></li>",
+                        site = site, no = no, t = xml(&clip_r(&p.prediction_text, 150)), called = xml(&p.date), res = xml(&p.resolved_on),
+                        mk = if p.market.is_empty() { "RESURFACE" } else { p.market.as_str() }
+                    ));
+                }
+                _ => {}
+            }
+        }
+        let hits_block = if nh > 0 { format!("<h2>CALLED IT // HITS</h2><ul>{hit_rows}</ul>") } else { String::new() };
+        let miss_block = if nm > 0 { format!("<h2>ON THE RECORD // MISSES</h2><ul>{miss_rows}</ul>") } else { String::new() };
+        let body = if nh + nm > 0 {
+            format!("{hits_block}{miss_block}")
+        } else {
+            "<p class=\"empty\">No calls have settled yet. The first receipts print soon. Nothing here is editable once it does.</p>".to_string()
+        };
+        let receipts = format!(
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>The Receipts: tech predictions THE SIGNAL called first, dated and graded</title>\n<meta name=\"description\" content=\"Every dated, self-graded tech prediction from THE SIGNAL, printed before it resolved. {nh} hits and {nm} misses on the public record. No edits, no deletes.\">\n<meta property=\"og:title\" content=\"THE SIGNAL // THE RECEIPTS [{nh}-{nm}]\">\n<meta property=\"og:description\" content=\"We called it, here is the dated proof. {nh} hits, {nm} misses, every one on the record.\">\n<meta property=\"og:image\" content=\"{site}/og.png\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<link rel=\"canonical\" href=\"{site}/receipts.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:680px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}h1{{font-size:30px;letter-spacing:.04em;margin:18px 0 4px}}h2{{font-size:13px;letter-spacing:.16em;border-top:1px solid rgba(27,26,20,.25);padding-top:14px;margin-top:26px}}.sub{{font-size:13px;color:#6d6b5e;line-height:1.5}}ul{{list-style:none;padding:0}}.i{{padding:13px 0;border-bottom:1px dashed rgba(27,26,20,.3)}}.i a{{color:#1b1a14;font-size:15px;font-weight:600;line-height:1.4;text-decoration:none}}.i a:hover{{text-decoration:underline}}.rh{{margin-bottom:5px}}.r{{display:inline-block;font-weight:600;padding:2px 9px;letter-spacing:.12em;font-size:11px}}.r-hit{{background:#1f7a3d;color:#efede4}}.r-miss{{background:#b23a2e;color:#efede4}}.lead{{font-size:10.5px;letter-spacing:.1em;color:#6d6b5e;margin-left:6px}}.meta{{font-size:10.5px;letter-spacing:.08em;color:#6d6b5e;margin-top:5px}}.empty{{color:#6d6b5e}}a{{color:#1b1a14}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // THE RECEIPTS</div>\n<h1>WE CALLED IT</h1>\n<p class=\"sub\">Every prediction below was printed and dated before it resolved. The machine grades itself in public: {nh} hits, {nm} misses on the record. No edits, no deletes, only prints.</p>\n{body}\n<p class=\"meta\"><a href=\"{site}/\">back to THE SIGNAL</a> // <a href=\"{site}/dataset/\">the open dataset</a></p></div></body></html>\n",
+            nh = nh, nm = nm, site = site, body = body
+        );
+        std::fs::write(format!("{}/receipts.html", crate::OUT_DIR), receipts)?;
+        urls.push(format!("{site}/receipts.html"));
     }
 
     let url_body: String = urls.iter().map(|u| format!("<url><loc>{u}</loc></url>")).collect();
@@ -420,7 +493,7 @@ pub fn render(
     // llms.txt: a machine-readable map so AI answer engines can find and cite it.
     let latest_no = total;
     let llms = format!(
-        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
 
@@ -743,6 +816,14 @@ fn write_agent_layer(
     std::fs::write(format!("{}/.well-known/mcp.json", crate::OUT_DIR), serde_json::to_string_pretty(&mcp)?)?;
 
     Ok(())
+}
+
+/// Whole days between two YYYY-MM-DD dates (b - a), clamped at 0.
+fn day_diff(a: &str, b: &str) -> i64 {
+    match (NaiveDate::parse_from_str(a, "%Y-%m-%d"), NaiveDate::parse_from_str(b, "%Y-%m-%d")) {
+        (Ok(da), Ok(db)) => (db - da).num_days().max(0),
+        _ => 0,
+    }
 }
 
 fn rfc822(date: &str) -> String {
