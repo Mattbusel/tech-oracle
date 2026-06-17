@@ -98,6 +98,12 @@ manifold is defined immediately.
   manifold is calling (topics PEAKING or BOTTOMING) with a projected day of the
   turn, plus a phase tally of the whole field. The manifold's signature edge
   (timing reversals) productized.
+- `manifold.js` - the prediction core ported to the browser (faithful port of
+  `manifold.rs::analyze`); any page or third party runs `window.Manifold.analyze`
+  client-side. The keystone for live-without-a-server.
+- `api/trajectories.json` - daily attention series for the top ~1500 tracked
+  topics (`{schema, dates, days, count, series:{TERM:[counts...]}}`). Powers THE
+  ORACLE BOX (type any topic, forecast it live) and the watchlist on `manifold.html`.
 - `manifold.html` - THE MANIFOLD: the prediction core made visible (topics plotted
   as points on the relativistic attention manifold by regime, conviction and
   geodesic forecast) plus THE PROVING GROUND (the algorithm benchmark). Reads

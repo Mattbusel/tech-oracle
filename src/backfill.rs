@@ -159,16 +159,16 @@ pub fn run(days: i64) -> i64 {
         let start = d.and_hms_opt(0, 0, 0).map(|t| t.and_utc().timestamp()).unwrap_or(0);
         let end = start + 86_400;
 
-        let mut sigs = fetch_hn_day(&client, start, end, 150);
+        let mut sigs = fetch_hn_day(&client, start, end, 500);
         let hn = sigs.len();
         let wiki = {
-            let w = fetch_wiki_day(&client, d, 80);
+            let w = fetch_wiki_day(&client, d, 400);
             let n = w.len();
             sigs.extend(w);
             n
         };
         let arx = {
-            let a = fetch_arxiv_day(&client, d, 60);
+            let a = fetch_arxiv_day(&client, d, 200);
             let n = a.len();
             sigs.extend(a);
             n

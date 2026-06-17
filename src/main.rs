@@ -38,7 +38,7 @@ fn main() {
     // exits. The normal daily run appends today's full ten-source snapshot after.
     let args: Vec<String> = std::env::args().collect();
     if args.get(1).map(|s| s.as_str()) == Some("backfill") {
-        let days = args.get(2).and_then(|s| s.parse::<i64>().ok()).unwrap_or(120).clamp(1, 178);
+        let days = args.get(2).and_then(|s| s.parse::<i64>().ok()).unwrap_or(178).clamp(1, 365);
         backfill::run(days);
         return;
     }
@@ -243,6 +243,7 @@ fn main() {
     // JSONL + Frictionless + Croissant + a dataset card) so the diffusion data
     // lands in the corpora that AI answer engines train on and retrieve from.
     write_dataset(&obs, &revealed);
+    write_trajectories(&obs);
     // Ready-to-post syndication message for the daily auto-poster.
     let site = env_or("SITE_URL", "https://mattbusel.github.io/tech-oracle");
     let site = site.trim_end_matches('/');
@@ -540,6 +541,31 @@ fn csv_escape(s: &str) -> String {
 /// outcomes, the term diffusion ledger, and standard metadata (Frictionless
 /// datapackage + Croissant + an HF-style dataset card) so registries and AI
 /// answer engines can ingest it. Regenerates every run; commit it daily.
+/// Ship the daily attention series for the most-tracked topics so the browser can
+/// run the manifold on any of them live (the Oracle Box, the watchlist). Bounded
+/// to the top topics by active days to keep the file small.
+fn write_trajectories(obs: &observatory::Observatory) {
+    let mut days: Vec<&observatory::CorpusDay> = obs.corpus.days.iter().collect();
+    days.sort_by(|a, b| a.date.cmp(&b.date));
+    let dates: Vec<String> = days.iter().map(|d| d.date.clone()).collect();
+    let mut terms: Vec<(&String, i64)> = obs.corpus.terms.iter().map(|(t, r)| (t, r.days)).collect();
+    terms.sort_by(|a, b| b.1.cmp(&a.1));
+    let mut series = serde_json::Map::new();
+    for (t, _) in terms.into_iter().take(1500) {
+        let s: Vec<i64> = days.iter().map(|d| d.terms.get(t).copied().unwrap_or(0) as i64).collect();
+        series.insert(t.to_uppercase(), serde_json::json!(s));
+    }
+    let doc = serde_json::json!({
+        "schema": "the-signal/trajectories/1",
+        "dates": dates,
+        "days": days.len(),
+        "count": series.len(),
+        "series": series,
+    });
+    let _ = std::fs::create_dir_all(format!("{OUT_DIR}/api"));
+    let _ = std::fs::write(format!("{OUT_DIR}/api/trajectories.json"), serde_json::to_string(&doc).unwrap_or_default());
+}
+
 fn write_dataset(obs: &observatory::Observatory, revealed: &[Prediction]) {
     let dir = format!("{OUT_DIR}/dataset");
     let _ = std::fs::create_dir_all(&dir);

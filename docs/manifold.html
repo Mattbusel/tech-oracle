@@ -37,6 +37,19 @@ a{color:#cfe9ff}
 <h1>THE PREDICTION CORE</h1>
 <p class="sub">The oracle does not predict on a flat line. Every topic is a trajectory through a curved relativistic space-time, and where it goes next is a geodesic on that manifold. Repurposed from a quant engine built to predict asset prices through topology, the core reads each topic's relativistic velocity, its Lorentz factor (fast moves carry more weight), its space-time regime, and a forward geodesic forecast. That regime shapes which bet the machine makes; the geodesic predicts the line.</p>
 
+<h2>THE ORACLE BOX</h2>
+<p class="sub">Type any tracked topic. The algorithm runs in your browser and forecasts it on the spot: its regime, its phase, the day it turns, and the probability it rises. No server, no wait.</p>
+<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+<input id="obox" placeholder="rust, claude, nvidia, ai, llm, apple..." autocomplete="off" spellcheck="false" style="flex:1;min-width:200px;background:#0e1330;border:1px solid rgba(111,134,168,.4);color:#cfe9ff;font-family:inherit;font-size:14px;padding:11px 12px;letter-spacing:.04em">
+<button id="obtn" class="btn" style="margin:0">[ FORECAST ]</button>
+</div>
+<div id="obres" class="note" style="display:none"></div>
+<canvas id="ospark" width="708" height="92" style="width:100%;height:92px;display:none;background:#0e1330;border:1px solid rgba(111,134,168,.25);margin-top:10px"></canvas>
+
+<h2>YOUR WATCHLIST</h2>
+<p class="sub">Track topics and the manifold watches them for you, live. A peak or trough forming lights up as an alert. Saved in your browser, recomputed continuously.</p>
+<div id="watch"></div>
+
 <h2>THE LIVE MANIFOLD</h2>
 <p class="sub">Each point is a topic the engine is tracking, placed by its forward geodesic forecast (left falls, right rises) and its conviction (higher sits stronger). Color is the local regime.</p>
 <canvas id="m" width="708" height="420"></canvas>
@@ -126,5 +139,61 @@ fetch('api/benchmark.json').then(function(r){return r.json();}).then(function(d)
  var rn=document.getElementById('realnote');
  rn.innerHTML=b.real_eligible>0?(b.real_eligible+' live topics now have enough history to be graded for real; the live benchmark is activating.'):'This is a controlled benchmark on synthetic topics with known regimes, designed to be fair (momentum should tie on clean trends; everyone should land at a coin flip on noise). A live benchmark on the real corpus activates automatically once topics accumulate 30+ days of history.';
 }).catch(function(){document.getElementById('benchhead').textContent='Could not load the benchmark.';});
+</script>
+<script src="manifold.js"></script>
+<script>
+(function(){
+ var TRAJ=null, WKEY='signal_watch_v1';
+ var PHCOL={RISING:'#6ee07a',PEAKING:'#e88a4d',FALLING:'#ff8c7d',BOTTOMING:'#5fb8ff',CHURNING:'#8aa0bf',FLAT:'#6f86a8'};
+ function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+ function loadW(){try{return JSON.parse(localStorage.getItem(WKEY)||'[]');}catch(e){return [];}}
+ function saveW(a){try{localStorage.setItem(WKEY,JSON.stringify(a));}catch(e){}}
+ fetch('api/trajectories.json').then(function(r){return r.json();}).then(function(d){TRAJ=(d&&d.series)||{};drawWatch();}).catch(function(){});
+ function read(term){
+  if(!TRAJ||!window.Manifold)return null;
+  var key=(term||'').trim().toUpperCase(), ser=TRAJ[key];
+  if(!ser){var ks=Object.keys(TRAJ).filter(function(k){return k.indexOf(key)===0;});if(ks.length){key=ks[0];ser=TRAJ[key];}}
+  if(!ser)return null;
+  var r=window.Manifold.analyze(ser); r.term=key; r.series=ser; return r;
+ }
+ function spark(r){
+  var c=document.getElementById('ospark');if(!c)return;c.style.display='block';
+  var ctx=c.getContext('2d'),W=c.width,H=c.height;ctx.clearRect(0,0,W,H);
+  var s=r.series.slice(-60),n=s.length,fut=r.path?r.path(7):[];
+  var lastLog=Math.log(1+(s[n-1]||0)),proj=fut.map(function(f){return Math.exp(lastLog+f)-1;});
+  var lo=Math.min.apply(null,s.concat(proj)),hi=Math.max.apply(null,s.concat(proj).concat([1]));
+  function Y(v){return H-6-(v-lo)/((hi-lo)||1)*(H-12);}
+  ctx.strokeStyle='#6f86a8';ctx.lineWidth=1.5;ctx.beginPath();
+  for(var i=0;i<n;i++){var x=i/(n+6)*W;if(i===0)ctx.moveTo(x,Y(s[i]));else ctx.lineTo(x,Y(s[i]));}
+  ctx.stroke();
+  ctx.strokeStyle=PHCOL[r.phase]||'#cfe9ff';ctx.setLineDash([4,3]);ctx.beginPath();ctx.moveTo((n-1)/(n+6)*W,Y(s[n-1]));
+  for(var j=0;j<proj.length;j++)ctx.lineTo((n+j)/(n+6)*W,Y(proj[j]));
+  ctx.stroke();ctx.setLineDash([]);
+ }
+ function showForecast(term){
+  var el=document.getElementById('obres');if(!el)return;el.style.display='block';
+  var r=read(term);
+  if(!r){el.innerHTML='No trajectory for "'+esc(term)+'" yet. Try a tracked topic, like rust, claude, nvidia, ai, apple, llm.';document.getElementById('ospark').style.display='none';return;}
+  var col=PHCOL[r.phase]||'#cfe9ff',turn=r.peakIn?(' // turns in ~'+r.peakIn+'d'):'';
+  el.innerHTML='<b style="color:#dff1ff;font-size:15px">'+esc(r.term)+'</b> &mdash; <b style="color:'+col+'">'+r.phase+'</b> ('+r.regime+')'+turn+'<br>P(rise) <b>'+Math.round(r.prob*100)+'%</b> // geodesic '+(r.trend>=0?'+':'')+Math.round(r.trend*100)+'% // gamma '+r.gamma.toFixed(2)+'<br><button id="obwadd" class="btn" style="margin:9px 0 0;padding:6px 10px;font-size:11px">[ + ADD TO WATCHLIST ]</button>';
+  spark(r);
+  var ab=document.getElementById('obwadd');if(ab)ab.onclick=function(){var w=loadW();if(w.indexOf(r.term)<0){w.push(r.term);saveW(w);drawWatch();}this.textContent='[ WATCHING ]';};
+ }
+ var ob=document.getElementById('obox'),obtn=document.getElementById('obtn');
+ if(obtn)obtn.addEventListener('click',function(){showForecast(ob.value||'');});
+ if(ob)ob.addEventListener('keydown',function(e){if(e.key==='Enter')showForecast(ob.value||'');});
+ function drawWatch(){
+  var el=document.getElementById('watch');if(!el)return;var w=loadW();
+  if(!w.length){el.innerHTML='<p class="sub">Watchlist empty. Forecast a topic above, then add it.</p>';return;}
+  el.innerHTML=w.map(function(term){
+   var r=read(term),col=r?(PHCOL[r.phase]||'#cfe9ff'):'#6f86a8';
+   var line=r?('<b style="color:'+col+'">'+r.phase+'</b>'+(r.peakIn?(' ~'+r.peakIn+'d'):'')+' // P(rise) '+Math.round(r.prob*100)+'%'):'no data';
+   var al=(r&&(r.phase==='PEAKING'||r.phase==='BOTTOMING'))?' <span style="color:'+col+';font-weight:700">* ALERT *</span>':'';
+   return '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:8px 0;border-bottom:1px dashed rgba(111,134,168,.28)"><span class="nm" style="overflow:hidden;text-overflow:ellipsis">'+esc(term)+' &mdash; '+line+al+'</span><button data-rm="'+esc(term)+'" class="btn" style="margin:0;padding:5px 9px;font-size:11px;flex:0 0 auto">[ x ]</button></div>';
+  }).join('');
+  var bs=el.querySelectorAll('[data-rm]');for(var i=0;i<bs.length;i++)bs[i].addEventListener('click',function(){var t=this.getAttribute('data-rm');saveW(loadW().filter(function(x){return x!==t;}));drawWatch();});
+ }
+ setInterval(drawWatch,5000);
+})();
 </script>
 </div></body></html>
