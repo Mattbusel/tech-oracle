@@ -7,9 +7,22 @@ works, and where every secret lives.
 
 ## The daily Action (`.github/workflows/daily.yml`)
 
-Job `generate` on `ubuntu-latest`. Trigger: cron `17 13 * * *` (13:17 UTC) plus
-manual `workflow_dispatch`. Permissions: `contents: write` (to commit back),
-`issues: write` (the dispatch). `concurrency` group prevents overlap.
+Job `generate` on `ubuntu-latest`. Trigger: several backstop crons (13:17,
+17:17, 21:17, and 01:47 UTC) plus manual `workflow_dispatch`. GitHub's scheduler
+is best-effort and routinely drops or delays a single slot, so the run is
+idempotent per calendar day (genome/pulse/corpus/bloodline and the day's calls
+all key off the date): the first slot that lands prints the edition, every later
+slot that day is a no-op. Permissions: `contents: write`, `issues: write`.
+
+RELIABILITY NOTE: the daily print depends only on this Action committing. Two
+historical bugs broke it and are fixed: (1) `REVEAL_DELAY_DAYS` was 1, which
+embargoed every call into a Cloudflare KV pool that was never configured, so
+nothing was ever promoted to the public record. It now defaults to 0 (public the
+day made, self-contained). (2) The single cron never fired; hence the backstops.
+If even the backstops prove unreliable, the bulletproof path is an external free
+cron (cron-job.org / UptimeRobot) calling the GitHub API to `workflow_dispatch`
+this workflow, which needs a token. The engine also never prints a blank edition:
+if all sources fail, `main::fallback_call` emits a dated INDEX call.
 
 Steps in order:
 1. `checkout`.
@@ -43,7 +56,8 @@ The push to `docs/` is what GitHub Pages redeploys. Re-runs are idempotent
 - Secrets (`secrets.*`): `DISCORD_WEBHOOK_URL`, `TELEGRAM_BOT_TOKEN`,
   `TELEGRAM_CHAT_ID`, `MASTODON_TOKEN`, `BLUESKY_APP_PASSWORD`, `ACCESS_CODES`,
   `CF_API_TOKEN`, `CF_ACCOUNT_ID`, `CF_KV_NAMESPACE_ID`, `GITHUB_TOKEN` (auto).
-- `REVEAL_DELAY_DAYS` is set to "1" in the workflow env.
+- `REVEAL_DELAY_DAYS` is "0" in the workflow env (public same day; only raise it
+  if Cloudflare KV is configured to persist the embargoed pool, or calls vanish).
 
 ---
 
