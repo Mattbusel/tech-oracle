@@ -1,4 +1,5 @@
 mod access;
+mod bloodline;
 mod card;
 mod fetch;
 mod generate;
@@ -87,7 +88,7 @@ fn main() {
     let pulse = build_pulse(&signals, &date);
     // The genome: mutates once per day so the site evolves on its own (look +
     // betting strategy). Finalized after grading by the fitness loop.
-    let mut genome_s = build_genome(&date);
+    let genome_s = build_genome(&date);
     // THE OBSERVATORY: persist today into the growing corpus and derive the
     // quantitative views (velocity, diffusion, sectors, fear/greed). Must run
     // before rank/generate so calls can show their work.
@@ -110,8 +111,11 @@ fn main() {
     let today_index = pulse.get("index").and_then(|v| v.as_i64()).unwrap_or(50);
     // Yesterday's learned weights steer today's selection (online learning).
     let weights = load_weights();
+    // THE BLOODLINE: the fittest organism's genes drive today's betting line.
+    let mut blood = bloodline::load();
+    let champ = blood.champion_genes();
     let picks = rank::rank_and_select(signals, seed, 4, &weights);
-    let todays = generate::generate(&picks, &date, seed, today_index, &obs, genome_s.aggr, genome_s.risk);
+    let todays = generate::generate(&picks, &date, seed, today_index, &obs, champ.aggr, champ.risk);
     eprintln!("generated {} call(s) for {date}", todays.len());
 
     // ---- merge across the embargo/reveal windows ----
@@ -170,13 +174,10 @@ fn main() {
     // The Engine Room panel: everything the observatory and the book now know.
     let engine = build_engine(&obs, &source_stats, &new_weights);
 
-    // Strategy evolution: judge the day's betting strategy on its realized hit
-    // rate and keep or revert the mutation. Then finalize the genome for render.
-    let g_hits = revealed.iter().filter(|p| p.status == "HIT").count() as i64;
-    let g_miss = revealed.iter().filter(|p| p.status == "MISS").count() as i64;
-    let g_resolved = g_hits + g_miss;
-    let hit_rate = if g_resolved > 0 { g_hits as f64 / g_resolved as f64 } else { 0.0 };
-    evolve_strategy(&mut genome_s, hit_rate, g_resolved);
+    // THE BLOODLINE evolves: score every organism on the settled record, cull
+    // the broke, breed the rich. The new champion drives tomorrow's line.
+    blood.evolve(&date, &revealed);
+    let bloodline = blood.to_json();
     let genome = genome_json(&genome_s);
 
     // The dreams: surreal speculative calls recombined from the corpus, shown
@@ -210,6 +211,7 @@ fn main() {
         &genome,
         &engine,
         &dreams,
+        &bloodline,
     ) {
         eprintln!("render error: {e}");
         std::process::exit(1);
@@ -736,27 +738,6 @@ fn build_genome(date: &str) -> Genome {
     g
 }
 
-/// The fitness loop: after grading, judge the strategy the day ran on its
-/// realized hit rate. If it beat the best fitness so far, accept the mutation
-/// and raise the bar; if it underperformed, revert toward the prior genes. This
-/// is hill-climbing the engine's own betting strategy, selected by its record.
-fn evolve_strategy(g: &mut Genome, hit_rate: f64, resolved: i64) {
-    if resolved < 5 {
-        return; // not enough settled calls to judge yet
-    }
-    if hit_rate + 0.001 >= g.fit {
-        g.fit = hit_rate; // the mutation held up: keep it, raise the bar
-        g.sgen += 1;
-    } else {
-        // the mutation hurt: walk the genes halfway back toward the prior values
-        g.aggr = (g.aggr + g.p_aggr) / 2.0;
-        g.risk = (g.risk + g.p_risk) / 2.0;
-    }
-    if let Ok(j) = serde_json::to_string_pretty(g) {
-        let _ = std::fs::write(GENOME_PATH, j);
-    }
-}
-
 /// THE DREAMS: when the oracle sleeps it recombines its own memory into surreal,
 /// speculative far-future calls. Pure rules-based recombination of the corpus's
 /// most-burned-in terms; no LLM. Deterministic for a given date.
@@ -805,10 +786,7 @@ fn build_dreams(obs: &observatory::Observatory, date: &str) -> serde_json::Value
 }
 
 fn genome_json(g: &Genome) -> serde_json::Value {
-    serde_json::json!({
-        "gen": g.gen, "hue": g.hue, "wear": g.wear, "quirk": g.quirk,
-        "sgen": g.sgen, "aggr": g.aggr, "risk": g.risk, "fit": g.fit
-    })
+    serde_json::json!({ "gen": g.gen, "hue": g.hue, "wear": g.wear, "quirk": g.quirk })
 }
 
 #[derive(Serialize, Deserialize, Clone)]

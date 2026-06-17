@@ -25,6 +25,7 @@ pub fn render(
     genome: &serde_json::Value,
     engine: &serde_json::Value,
     dreams: &serde_json::Value,
+    bloodline: &serde_json::Value,
 ) -> anyhow::Result<()> {
     std::fs::create_dir_all(crate::OUT_DIR)?;
 
@@ -448,6 +449,49 @@ pub fn render(
         urls.push(format!("{site}/sleep.html"));
     }
 
+    // THE BLOODLINE: the living population of gambler-organisms, ranked, with the
+    // champion and the graveyard. The page is the family album of the species.
+    {
+        let empty: Vec<serde_json::Value> = Vec::new();
+        let living = bloodline.get("living").and_then(|v| v.as_array()).unwrap_or(&empty);
+        let dead = bloodline.get("dead").and_then(|v| v.as_array()).unwrap_or(&empty);
+        let gen = bloodline.get("gen").and_then(|v| v.as_i64()).unwrap_or(0);
+        let total_ever = bloodline.get("total_ever").and_then(|v| v.as_i64()).unwrap_or(0);
+        let getf = |o: &serde_json::Value, k: &str| o.get(k).and_then(|v| v.as_f64()).unwrap_or(0.0);
+        let geti = |o: &serde_json::Value, k: &str| o.get(k).and_then(|v| v.as_i64()).unwrap_or(0);
+        let gets = |o: &serde_json::Value, k: &str| o.get(k).and_then(|v| v.as_str()).unwrap_or("").to_string();
+        let mut rows = String::new();
+        for (i, o) in living.iter().enumerate() {
+            let crown = if i == 0 { " champ" } else { "" };
+            rows.push_str(&format!(
+                "<tr class=\"o{crown}\"><td class=rank>{r}</td><td><b>{name}</b></td><td>{age}d</td><td class=fit>{fit}</td><td class=g>aggr {aggr:+.2} / risk {risk:.2}</td></tr>",
+                crown = crown, r = i + 1, name = xml(&gets(o, "name")), age = geti(o, "age"),
+                fit = geti(o, "fitness"), aggr = getf(o, "aggr"), risk = getf(o, "risk")
+            ));
+        }
+        let mut graves = String::new();
+        for o in dead {
+            graves.push_str(&format!(
+                "<li><b>{name}</b> <span class=g>lived {age}d // died {died} // final {fit}</span></li>",
+                name = xml(&gets(o, "name")), age = geti(o, "age"), died = xml(&gets(o, "died")), fit = geti(o, "fitness")
+            ));
+        }
+        let champ_name = bloodline.get("champion").and_then(|c| c.get("name")).and_then(|v| v.as_str()).unwrap_or("none yet");
+        let bl_page = format!(
+            "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>The Bloodline: the oracle is a breeding species // THE SIGNAL</title>\n<meta name=\"description\" content=\"The oracle is not one strategy but a breeding population of gambler-organisms. Each shadow-bets the whole record; the rich survive and mate, the broke die. Natural selection in public.\">\n<meta property=\"og:title\" content=\"THE SIGNAL // THE BLOODLINE\">\n<meta property=\"og:description\" content=\"A living population of strategies that breed, mutate and die by their bets. Generation {gen}.\">\n<meta property=\"og:image\" content=\"{site}/og.png\">\n<meta name=\"twitter:card\" content=\"summary_large_image\">\n<link rel=\"canonical\" href=\"{site}/bloodline.html\">\n<link href=\"https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap\" rel=\"stylesheet\">\n<style>body{{margin:0;background:#17181c;color:#1b1a14;font-family:'IBM Plex Mono',ui-monospace,monospace}}.s{{max-width:720px;margin:0 auto;background:#efede4;min-height:100vh;padding:42px 34px}}.b{{display:inline-block;background:#1b1a14;color:#efede4;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:600}}h1{{font-size:30px;letter-spacing:.04em;margin:18px 0 4px}}h2{{font-size:13px;letter-spacing:.16em;border-top:1px solid rgba(27,26,20,.25);padding-top:14px;margin-top:26px}}.sub{{font-size:13px;color:#6d6b5e;line-height:1.55}}table{{width:100%;border-collapse:collapse;margin-top:10px}}td{{padding:9px 8px;border-bottom:1px dashed rgba(27,26,20,.3);font-size:14px}}.rank{{color:#6d6b5e;width:30px}}.fit{{font-weight:700}}.g{{color:#6d6b5e;font-size:11px;letter-spacing:.04em}}.o.champ{{background:rgba(31,122,61,.16)}}.o.champ .fit{{color:#1f7a3d}}ul{{list-style:none;padding:0}}li{{padding:8px 0;border-bottom:1px dotted rgba(27,26,20,.25);font-size:13px;color:#3b3a30}}a{{color:#1b1a14}}.btn{{display:inline-block;border:1.5px solid #1b1a14;padding:12px 18px;margin-top:16px;text-decoration:none;color:#1b1a14;font-weight:600;letter-spacing:.06em}}.btn:hover{{background:#1b1a14;color:#efede4}}</style></head>\n<body><div class=\"s\"><div class=\"b\">THE SIGNAL // THE BLOODLINE</div>\n<h1>THE BLOODLINE</h1>\n<p class=\"sub\">The oracle is not one strategy. It is a breeding population. Every day each organism shadow-bets the entire settled record with its own inherited instincts (how bold a line it sets, how hard it chases longshots). The richest survive and mate; the broke ones die. The champion's genes set tomorrow's real line. Generation <b>{gen}</b> // <b>{alive}</b> alive // <b>{ever}</b> ever born. The current bloodline runs through <b>{champ}</b>.</p>\n<h2>THE LIVING // RANKED BY SHADOW BANKROLL</h2>\n<table>{rows}</table>\n<h2>THE GRAVEYARD</h2>\n{graveyard}\n<a class=\"btn\" href=\"{site}/\">[ BACK TO THE SIGNAL ]</a></div></body></html>\n",
+            site = site, gen = gen, alive = living.len(), ever = total_ever, champ = xml(champ_name),
+            rows = if rows.is_empty() { "<tr><td class=g>The first generation is being born on the next run.</td></tr>".to_string() } else { rows },
+            graveyard = if graves.is_empty() { "<p class=\"sub\">No organism has died yet. The cull begins once the record is deep enough to judge.</p>".to_string() } else { format!("<ul>{graves}</ul>") }
+        );
+        std::fs::write(format!("{}/bloodline.html", crate::OUT_DIR), bl_page)?;
+        let _ = std::fs::create_dir_all(format!("{}/api", crate::OUT_DIR));
+        let _ = std::fs::write(
+            format!("{}/api/bloodline.json", crate::OUT_DIR),
+            serde_json::to_string_pretty(&serde_json::json!({ "schema": "the-signal/bloodline/1", "generated": generated_human, "bloodline": bloodline })).unwrap_or_default(),
+        );
+        urls.push(format!("{site}/bloodline.html"));
+    }
+
     let url_body: String = urls.iter().map(|u| format!("<url><loc>{u}</loc></url>")).collect();
     let sitemap = format!(
         "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">{url_body}</urlset>\n"
@@ -524,7 +568,7 @@ pub fn render(
     // llms.txt: a machine-readable map so AI answer engines can find and cite it.
     let latest_no = total;
     let llms = format!(
-        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- The arena (bet against the machine): {site}/arena.html\n- Sleep mode (the oracle dreams, always running): {site}/sleep.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
+        "# THE SIGNAL\n> A public, self-grading oracle that makes dated, falsifiable tech predictions every day and keeps score in the open. Rules-based, no LLM.\n\n## Pages\n- Homepage: {site}/\n- The receipts (dated calls, graded): {site}/receipts.html\n- The arena (bet against the machine): {site}/arena.html\n- Sleep mode (the oracle dreams, always running): {site}/sleep.html\n- The bloodline (the breeding population of strategies): {site}/bloodline.html\n- Open dataset: {site}/dataset/\n- Today's call (plain text): {site}/cli\n- RSS feed: {site}/feed.xml\n- Sitemap: {site}/sitemap.xml\n- Latest call: {site}/call/{latest_no}.html\n\n## API for agents\nStatic JSON, read-only, CORS-open. No key, no signup.\n- Discovery: {site}/api/oracle.json\n- Today's calls: {site}/api/today.json\n- Full record + calibration: {site}/api/record.json\n- Observatory (sectors, fear/greed, chasm watch): {site}/api/observatory.json\n- OpenAPI: {site}/openapi.json\n- Agent manifest: {site}/.well-known/ai-plugin.json\n- MCP resources: {site}/.well-known/mcp.json\nAgents can place stateless bets; see the how_to_bet field in oracle.json.\n\n## How it works\nReads ten public sources from technical to general: arXiv, GitHub, crates.io, Lobsters, Hacker News, dev.to, Reddit, Ars Technica, Google News and Wikipedia pageviews. It keeps a growing daily corpus, tracks each term's velocity and diffusion down the funnel (a CHASM bet fires when a term leaves the dev bubble for the general public), grades its own calibration (Brier score) and reweights its sources by realized hit rate. Each call carries a concrete win condition and is settled HIT or MISS against later signals. Current record: {hits}-{misses}. Tech Acceleration Index today: {idx} ({verdict}).\n",
     );
     std::fs::write(format!("{}/llms.txt", crate::OUT_DIR), llms)?;
 
@@ -651,10 +695,9 @@ pub fn render(
         "vitality": vitality,
         "lifeState": life_state,
         "bank": bank_now,
-        "sgen": genome.get("sgen").and_then(|v| v.as_i64()).unwrap_or(0),
-        "aggr": genome.get("aggr").and_then(|v| v.as_f64()).unwrap_or(0.0),
-        "risk": genome.get("risk").and_then(|v| v.as_f64()).unwrap_or(0.0),
-        "fit": genome.get("fit").and_then(|v| v.as_f64()).unwrap_or(0.0),
+        // Strategy now comes from the bloodline champion, not a single genome.
+        "sgen": bloodline.get("gen").and_then(|v| v.as_i64()).unwrap_or(0),
+        "champion": bloodline.get("champion").and_then(|c| c.get("name")).and_then(|v| v.as_str()).unwrap_or(""),
     });
 
     // THE ORACLE FOR MACHINES: a static, zero-backend agent interface. AI agents

@@ -820,7 +820,7 @@
             <footer class="foot">
               <p>THIS IS A PUBLIC RECORD. ENTRIES ARE APPENDED, NEVER ALTERED.</p>
               <p>NOT FINANCIAL ADVICE. SOURCES: ARXIV / GITHUB / CRATES.IO / LOBSTERS / HACKER NEWS / DEV.TO / REDDIT / ARS TECHNICA / THE NEWS / WIKIPEDIA.</p>
-              <p><a href="receipts.html">the receipts</a> // <a href="arena.html">the arena</a> // <a href="sleep.html">sleep mode</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
+              <p><a href="receipts.html">the receipts</a> // <a href="arena.html">the arena</a> // <a href="bloodline.html">the bloodline</a> // <a href="sleep.html">sleep mode</a> // <a href="dataset/">open dataset</a> // <a href="api/oracle.json">agent api</a> // <a href="webcal://mattbusel.github.io/tech-oracle/signal.ics">calendar</a> // <a href="feed.xml">rss</a> // <a href="cli">curl</a> // <a href="amplify.html">amplify the wire</a></p>
               <div class="barcode" aria-hidden="true" style="max-width:160px;height:26px;"></div>
             </footer>
           </main>
@@ -1586,7 +1586,8 @@
       if (_M.quirkName) _evo += " // " + _M.quirkName;
       if (_M.hotHand) _evo += " // HOT HAND";
       if (typeof _M.vitality === "number") _evo += " // VIT " + Math.round(_M.vitality * 100) + "%";
-      if (_M.sgen) _evo += " // STRAT g" + _M.sgen;
+      if (_M.sgen) _evo += " // BLOODLINE g" + _M.sgen;
+      if (_M.champion) _evo += " // LINE: " + _M.champion;
       if (kicker && !REDUCE) { var states = ["SPOOLING PAPER", "INKING RIBBON", "WARMING THE HEAD", "ONLINE"]; var ki = 0; var kt = setInterval(function () { ki++; if (ki >= states.length) { kicker.textContent = _evo; clearInterval(kt); return; } kicker.textContent = states[ki] + " ..."; }, 750); }
       else if (kicker) { kicker.textContent = _evo; }
 
