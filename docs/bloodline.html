@@ -25,8 +25,8 @@
 @keyframes foil{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 #floor .lprog{height:6px;background:#1c1e1a;margin-top:6px;overflow:hidden}
 #floor .lprog i{display:block;height:100%;background:#6ee07a;width:0;transition:width .6s linear}
-#floor .stat4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-#floor .stat4 .st{border:1px solid #2a2c28;padding:8px}
+#floor .stat4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+#floor .stat4 .st{border:1px solid #2a2c28;padding:8px;min-width:0;overflow:hidden}
 #floor .stat4 .st b{display:block;color:#ffd56b;font-size:15px}
 #floor .stat4 .st span{font-size:9.5px;letter-spacing:.08em;color:#8d8a7c;display:block;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:680px){#floor .stat4{grid-template-columns:repeat(2,1fr)}}
