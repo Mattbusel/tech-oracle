@@ -1207,7 +1207,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
    return;
   }
   cards.unshift({code:newCode(id),id:id,name:o.name,house:o.house,fade:o.fade,risk:o.risk,sel:o.sel,press:o.press,finish:rollFinish(),claimedSeason:season,claimedRound:rounds});
-  cards=cards.slice(0,60);save();renderCollection();
+  trimCards(150);save();renderCollection();
  }
  function showCode(label,blob,btn){
   var el=document.getElementById('tradecode');if(!el)return;el.style.display='block';
@@ -1260,7 +1260,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var card=obj?(obj.card||(obj.code?obj:null)):null;
   if(!card||!card.code||!card.name){msg('That is not a valid card code.');return;}
   if(cardByCode(card.code)){msg('You already hold <b>'+esc(card.name)+'</b>.');return;}
-  cards.unshift(card);cards=cards.slice(0,60);save();renderCollection();
+  cards.unshift(card);trimCards(150);save();renderCollection();
   var ri=document.getElementById('redeemin');if(ri)ri.value='';
   msg('Redeemed <b>'+esc(card.name)+'</b> into your collection.');
  }
@@ -1322,6 +1322,10 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  }
  var packBusy=false;
  function closePack(){var m=document.getElementById('packmodal');if(m)m.className='';packBusy=false;}
+ // Cap the collection by VALUE, never by age: keep the most valuable cards and only
+ // ever shed the cheapest commons. A treasured ASCENDED or LEGEND is never evicted
+ // by a flood of fresh pulls (the old blind newest-60 cap quietly deleted them).
+ function trimCards(max){max=max||150;if(cards.length<=max)return;var keep={},ranked=cards.slice().sort(function(a,b){return (ascended(b)?1e15:cardValue(b))-(ascended(a)?1e15:cardValue(a));}).slice(0,max),i;for(i=0;i<ranked.length;i++)keep[ranked[i].code]=1;cards=cards.filter(function(c){return keep[c.code];});}
  function openPack(tier){
   if(packBusy)return; // one rip at a time: blocks Enter-mashing / double-open
   var pk=PACKS[tier];if(!pk)return;
@@ -1333,7 +1337,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   if(!window.confirm(ask)){packBusy=false;return;}
   wallet-=total;
   var pulled=[],i,c;for(i=0;i<n;i++){c=mintCard(tier);cards.unshift(c);pulled.push(c);pushPull('YOU',c.rarPack,c.finish,(ascended(c)?1e15:cardValue(c)),true);}
-  cards=cards.slice(0,60);
+  trimCards(150);
   save();renderCollection();renderAll();
   if(n===1)showReveal(pulled[0],tier);else showBulk(pulled,tier);
  }
@@ -1473,7 +1477,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  function hideOffer(){var el=document.getElementById('offerbox');if(el){el.style.display='none';el.innerHTML='';}}
  function acceptOffer(){if(!curOffer)return;var o=curOffer,idx=-1,i;for(i=0;i<cards.length;i++)if(cards[i].code===o.yourCode)idx=i;if(idx<0){declineOffer();return;}var mine=cards[idx];
   if(o.type==='buy'){cards.splice(idx,1);wallet+=o.amt;feedPush('<b style="color:#6ee07a">You sold '+esc(mine.name)+' to '+esc(o.bot)+' for '+fmt(o.amt)+' CRED.</b>');}
-  else{cards.splice(idx,1);o.give.code=newCode(800+(rnd()*99|0));cards.unshift(o.give);cards=cards.slice(0,60);feedPush('<b style="color:#6ee07a">You traded '+esc(mine.name)+' to '+esc(o.bot)+' for '+esc(o.give.name)+'.</b>');}
+  else{cards.splice(idx,1);o.give.code=newCode(800+(rnd()*99|0));cards.unshift(o.give);trimCards(150);feedPush('<b style="color:#6ee07a">You traded '+esc(mine.name)+' to '+esc(o.bot)+' for '+esc(o.give.name)+'.</b>');}
   curOffer=null;hideOffer();save();renderCollection();renderAll();}
  function declineOffer(){if(curOffer)feedPush('<span style="color:#8d8a7c">You passed on '+esc(curOffer.bot)+'.</span>');curOffer=null;hideOffer();}
  function offerTick(){if(!curOffer&&cards.length&&rnd()<0.7)makeOffer();}
