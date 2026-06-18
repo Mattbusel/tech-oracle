@@ -166,8 +166,10 @@ manifold is defined immediately.
   the stat line (`vmul`), leans gem-heavy, and mints its own `series`. `mintCard()`
   rolls rarity+finish, synthesizes a `resolved` stat line so value scales
   (rare->millions, legend->billions x vmul, ascended->infinite), tags `origin:'pack'`;
-  a reveal modal (`#packmodal`) runs the rip ritual. SINGULARITY is a guaranteed
-  ASCENDED.
+  a reveal modal (`#packmodal`) runs the rip ritual. Odds are deliberately miserable
+  and scale by tier: ascended is ~1 in 50000 (STANDARD), 1 in 10000 (VAULT, the
+  anchor), 1 in 250 (COSMIC), 1 in 50 (SINGULARITY). VAULT+ floor at rare/legend so
+  the dear packs at least return their floor, but no pack guarantees an ascended.
   **The Collectors.** Resident NPC whale bots populate the floor with no backend: a
   live feed (`#collfeed`) of bot pack-rips and chatter, plus periodic real offers
   (`#offerbox`) on your cards (cash, lowball to overpay, or a trade for a bot-minted
