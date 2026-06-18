@@ -140,7 +140,9 @@ manifold is defined immediately.
   freshly named every season; each claim rolls a random finish (SHINY / GOLD /
   EMERALD / SAPPHIRE / DIAMOND) that tints the art and scales value. **SHARE**
   renders a card to a downloadable PNG (emblem + stat line) to post as a flex. A
-  HOW IT WORKS panel explains it inline. The collection, rafters, and wallet persist in
+  HOW IT WORKS panel explains it inline. YOUR CARDS and THE RAFTERS both paginate
+  (SHOW MORE) and filter/sort by rarity and value; rafter (champion) entries show
+  an estimated CRED value "if carded" so people can see what such a card is worth. The collection, rafters, and wallet persist in
   `localStorage`; the live game reseeds from each day's population.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.

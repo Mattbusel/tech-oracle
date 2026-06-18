@@ -9,7 +9,7 @@
     },
     {
       "dir": -1,
-      "p": 0.445,
+      "p": 0.47,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "CUP"
@@ -23,7 +23,7 @@
     },
     {
       "dir": 1,
-      "p": 0.626,
+      "p": 0.639,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "FIFA"
@@ -44,8 +44,8 @@
     },
     {
       "dir": -1,
-      "p": 0.309,
-      "phase": "CHURNING",
+      "p": 0.332,
+      "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
     },
@@ -78,8 +78,8 @@
       "term": "ASSEMBLY"
     },
     {
-      "dir": -1,
-      "p": 0.478,
+      "dir": 1,
+      "p": 0.527,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -331,8 +331,8 @@
     },
     {
       "dir": 1,
-      "p": 0.571,
-      "phase": "PEAKING",
+      "p": 0.6,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
     },
@@ -366,8 +366,8 @@
     },
     {
       "dir": -1,
-      "p": 0.305,
-      "phase": "FALLING",
+      "p": 0.319,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LOCAL"
     },
@@ -387,7 +387,7 @@
     },
     {
       "dir": -1,
-      "p": 0.315,
+      "p": 0.307,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
@@ -423,12 +423,6 @@
   ],
   "chasm": [
     {
-      "days": 179,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "IPHONE"
-    },
-    {
       "days": 169,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -444,6 +438,18 @@
       "days": 179,
       "origin": "HN",
       "reach": "THE NEWS",
+      "term": "HOME"
+    },
+    {
+      "days": 179,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "IPHONE"
+    },
+    {
+      "days": 179,
+      "origin": "HN",
+      "reach": "THE NEWS",
       "term": "SWITCH"
     },
     {
@@ -451,18 +457,12 @@
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "ULTRA"
-    },
-    {
-      "days": 179,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "DESIGN"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "NEUTRAL",
-    "value": 56
+    "label": "GREED",
+    "value": 66
   },
   "manifold": [
     {
@@ -479,16 +479,16 @@
       "term": "IRAN"
     },
     {
-      "beta": 0.068,
-      "curvature": -2.85,
+      "beta": 0.08,
+      "curvature": -2.71,
       "defined": true,
-      "ds2": 0.864,
-      "gamma": 1.002,
-      "geodesic_trend": -0.275,
+      "ds2": 0.839,
+      "gamma": 1.003,
+      "geodesic_trend": -0.15,
       "phase": "PEAKING",
-      "prob_rising": 44,
+      "prob_rising": 47,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.014,
+      "rel_momentum": 0.016,
       "term": "CUP"
     },
     {
@@ -505,16 +505,16 @@
       "term": "SUPER"
     },
     {
-      "beta": 0.188,
-      "curvature": -2.78,
+      "beta": 0.2,
+      "curvature": -2.66,
       "defined": true,
-      "ds2": 0.623,
-      "gamma": 1.018,
-      "geodesic_trend": 0.632,
+      "ds2": 0.6,
+      "gamma": 1.021,
+      "geodesic_trend": 0.696,
       "phase": "PEAKING",
-      "prob_rising": 63,
+      "prob_rising": 64,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.044,
+      "rel_momentum": 0.046,
       "term": "FIFA"
     },
     {
@@ -544,16 +544,16 @@
       "term": "CLAUDE"
     },
     {
-      "beta": -0.005,
-      "curvature": -1.92,
+      "beta": 0.026,
+      "curvature": -1.42,
       "defined": true,
-      "ds2": 0.99,
+      "ds2": 0.948,
       "gamma": 1.0,
-      "geodesic_trend": -0.956,
-      "phase": "CHURNING",
-      "prob_rising": 31,
+      "geodesic_trend": -0.838,
+      "phase": "PEAKING",
+      "prob_rising": 33,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.002,
+      "rel_momentum": 0.01,
       "term": "LANGUAGE"
     },
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.076,
-      "curvature": -0.31,
+      "beta": -0.06,
+      "curvature": 0.06,
       "defined": true,
-      "ds2": 0.847,
-      "gamma": 1.003,
-      "geodesic_trend": -0.109,
+      "ds2": 0.881,
+      "gamma": 1.002,
+      "geodesic_trend": 0.136,
       "phase": "BOTTOMING",
-      "prob_rising": 48,
+      "prob_rising": 53,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.018,
+      "rel_momentum": -0.014,
       "term": "GOOGLE"
     },
     {
@@ -656,12 +656,12 @@
     },
     {
       "count": 5,
-      "term": "IPHONE",
-      "vel": 775
+      "term": "SWITCH",
+      "vel": 600
     },
     {
-      "count": 5,
-      "term": "SWITCH",
+      "count": 4,
+      "term": "HOME",
       "vel": 600
     },
     {
@@ -671,21 +671,21 @@
     },
     {
       "count": 4,
-      "term": "FEATURES",
+      "term": "IPHONE",
       "vel": 600
     },
     {
-      "count": 5,
-      "term": "ULTRA",
-      "vel": 483
+      "count": 4,
+      "term": "FEATURES",
+      "vel": 600
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 0,
-    "delta_word": "FLAT",
+    "delta_abs": 1,
+    "delta_word": "RISING",
     "has_prev": true,
-    "highest_days": 0,
+    "highest_days": 2,
     "history": [
       {
         "date": "2026-06-02",
@@ -733,10 +733,10 @@
       },
       {
         "date": "2026-06-18",
-        "index": 72
+        "index": 73
       }
     ],
-    "index": 72,
+    "index": 73,
     "theme": "WORLD",
     "total": 270,
     "verdict": "SURGING"
@@ -751,27 +751,21 @@
     },
     {
       "arrow": "DOWN",
-      "delta": -3,
-      "index": 81,
+      "delta": -1,
+      "index": 90,
       "name": "PLATFORM"
     },
     {
-      "arrow": "UP",
-      "delta": 2,
+      "arrow": "FLAT",
+      "delta": 0,
       "index": 19,
-      "name": "CLOUD"
+      "name": "CHIPS"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
       "index": 19,
       "name": "ROBOTS"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 14,
-      "name": "CHIPS"
     },
     {
       "arrow": "UP",
@@ -786,9 +780,15 @@
       "name": "SECURITY"
     },
     {
-      "arrow": "UP",
-      "delta": 1,
+      "arrow": "FLAT",
+      "delta": 0,
       "index": 10,
+      "name": "CLOUD"
+    },
+    {
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 5,
       "name": "RUST"
     }
   ],
