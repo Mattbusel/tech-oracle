@@ -177,7 +177,8 @@ manifold is defined immediately.
   sum of every card's value) and RAREST PULLS, both ranking you against ~60 whale
   bots. Bot net worths are heavy-tailed (`seedNW`) with a few flagship whales
   hard-anchored into the quintillions (`MEGA`); they drift up over the session and
-  their big pack pulls feed the rarest-pulls board.
+  their big pack pulls feed the rarest-pulls board (`boardPulls`, persisted in `save`
+  so your pulls survive a refresh).
   **The card market** (`MARKET`, `#marketbar`): each rarity sector (common/rare/legend)
   is a mean-reverting random-walk index applied in `cardValue` via `marketMult`, so a
   card's worth (and your net worth) drifts up and down over time; ASCENDED is fixed.

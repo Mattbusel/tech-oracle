@@ -225,7 +225,7 @@ setInterval(drawTable,1300);
  function finBadge(k){return FIN[k]?'<span class=finbadge style="background:'+FIN[k].c+'">'+FIN[k].n+'</span>':'';}
  function rollFinish(){var roll=[['',64],['shiny',18],['gold',9],['emerald',5],['sapphire',3],['diamond',1]],t=0,i;for(i=0;i<roll.length;i++)t+=roll[i][1];var x=rnd()*t,a=0;for(i=0;i<roll.length;i++){a+=roll[i][1];if(x<a)return roll[i][0];}return '';}
  function by(id){return ORGS.filter(function(o){return o.id===id;})[0];}
- function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,wallet:wallet,market:MARKET,day:window.__FLDAY}));}catch(e){}}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,wallet:wallet,market:MARKET,pulls:(boardPulls||[]).slice(0,40),day:window.__FLDAY}));}catch(e){}}
  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
  Promise.all([
   fetch('api/bloodline.json').then(function(r){return r.json();}).catch(function(){return null;}),
@@ -240,6 +240,7 @@ setInterval(drawTable,1300);
    // The collection persists across days; only the live game resets to the day's population.
    rafters=prev.rafters||[];cards=prev.cards||[];season=prev.season||1;if(prev.wallet!=null)wallet=san(prev.wallet,1000000);
    if(prev.market)['common','rare','legend'].forEach(function(k){var v=prev.market[k];if(typeof v==='number'&&isFinite(v)&&v>0)MARKET[k]=Math.max(0.35,Math.min(3,v));});
+   if(prev.pulls&&prev.pulls.length)boardPulls=prev.pulls.slice(0,40); // the rarest-pulls board persists across refreshes
    if(prev.day===window.__FLDAY){(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});rounds=prev.rounds||0;settled=prev.settled||0;}
   }
   // Backfill older cards so they get a tradable code and gene-driven art.
@@ -439,12 +440,12 @@ setInterval(drawTable,1300);
  // them would be meaningless. Higher tiers floor the rarity, scale the stat line
  // (vmul) and lean gem-heavy, and mint a distinct SERIES so the cards feel unique.
  var PACKS={
-  std:{cost:250000,name:'STANDARD',series:'STREET',house:'THE STALL',vmul:1,odds:[['common',91],['rare',8],['legend',0.9],['ascended',0.1]],fin:[['',80],['shiny',13],['gold',4.5],['emerald',1.7],['sapphire',0.6],['diamond',0.2]]},
-  prime:{cost:1000000,name:'PRIME',series:'PRIME',house:'THE VAULT',vmul:1.4,odds:[['common',70],['rare',25],['legend',4.5],['ascended',0.5]],fin:[['',62],['shiny',22],['gold',10],['emerald',4],['sapphire',1.6],['diamond',0.4]]},
-  vault:{cost:50000000,name:'VAULT',series:'RESERVE',house:'THE RESERVE',vmul:2.2,odds:[['rare',80],['legend',18],['ascended',2]],fin:[['',42],['shiny',28],['gold',17],['emerald',8],['sapphire',3.5],['diamond',1]]},
-  eclipse:{cost:1000000000,name:'ECLIPSE',series:'ECLIPSE',house:'ECLIPSE LINE',vmul:4,odds:[['legend',94],['ascended',6]],fin:[['',16],['shiny',27],['gold',26],['emerald',16],['sapphire',9],['diamond',5]]},
-  cosmic:{cost:50000000000,name:'COSMIC',series:'COSMIC',house:'COSMIC SERIES',vmul:10,odds:[['legend',82],['ascended',18]],fin:[['shiny',24],['gold',32],['emerald',24],['sapphire',14],['diamond',6]]},
-  singularity:{cost:1000000000000,name:'SINGULARITY',series:'SINGULARITY',house:'SINGULARITY',vmul:1,odds:[['ascended',100]],fin:[['gold',34],['emerald',34],['sapphire',24],['diamond',8]]}
+  std:{cost:250000,name:'STANDARD',series:'STREET',house:'THE STALL',vmul:1,odds:[['common',96],['rare',3.6],['legend',0.35],['ascended',0.05]],fin:[['',90],['shiny',8],['gold',1.5],['emerald',0.4],['sapphire',0.08],['diamond',0.02]]},
+  prime:{cost:1000000,name:'PRIME',series:'PRIME',house:'THE VAULT',vmul:1.4,odds:[['common',86],['rare',12],['legend',1.8],['ascended',0.2]],fin:[['',80],['shiny',14],['gold',4.5],['emerald',1.2],['sapphire',0.25],['diamond',0.05]]},
+  vault:{cost:50000000,name:'VAULT',series:'RESERVE',house:'THE RESERVE',vmul:2.2,odds:[['rare',88],['legend',11],['ascended',1]],fin:[['',60],['shiny',24],['gold',11],['emerald',4],['sapphire',0.8],['diamond',0.2]]},
+  eclipse:{cost:1000000000,name:'ECLIPSE',series:'ECLIPSE',house:'ECLIPSE LINE',vmul:4,odds:[['legend',97],['ascended',3]],fin:[['',35],['shiny',30],['gold',22],['emerald',9],['sapphire',3],['diamond',1]]},
+  cosmic:{cost:50000000000,name:'COSMIC',series:'COSMIC',house:'COSMIC SERIES',vmul:10,odds:[['legend',88],['ascended',12]],fin:[['shiny',28],['gold',34],['emerald',24],['sapphire',11],['diamond',3]]},
+  singularity:{cost:1000000000000,name:'SINGULARITY',series:'SINGULARITY',house:'SINGULARITY',vmul:1,odds:[['ascended',100]],fin:[['gold',40],['emerald',36],['sapphire',20],['diamond',4]]}
  };
  var PACK_ORDER=['std','prime','vault','eclipse','cosmic','singularity'];
  function rollW(list){var t=0,i;for(i=0;i<list.length;i++)t+=list[i][1];var x=rnd()*t,a=0;for(i=0;i<list.length;i++){a+=list[i][1];if(x<a)return list[i][0];}return list[0][0];}
@@ -461,10 +462,14 @@ setInterval(drawTable,1300);
   var label=(rar==='ascended'?'ASCENDED':rar.toUpperCase());
   return {code:newCode(900+(rnd()*90|0)),id:-1-((rnd()*1e6)|0),name:exoticName(),house:pk.house||'THE VAULT',series:pk.series||'',fade:(rnd()<0.5),risk:risk,sel:0.5,press:0.5,finish:fin,origin:'pack',packTier:tier,rarPack:rar,claimedSeason:season,resolved:res,historic:pk.name+' SERIES // '+label+' // peak '+fmtAbbr(peak)+(fin?(' // '+FIN[fin].n):'')};
  }
+ var packBusy=false;
+ function closePack(){var m=document.getElementById('packmodal');if(m)m.className='';packBusy=false;}
  function openPack(tier){
+  if(packBusy)return; // one rip at a time: blocks Enter-mashing / double-open
   var pk=PACKS[tier];if(!pk)return;
   if(wallet<pk.cost){toast('Not enough CRED. A '+pk.name+' pack is '+fmt(pk.cost)+' CRED.');return;}
-  if(!window.confirm('Rip a '+pk.name+' pack for '+fmt(pk.cost)+' CRED? The pull is yours whatever it is.'))return;
+  packBusy=true;
+  if(!window.confirm('Rip a '+pk.name+' pack for '+fmt(pk.cost)+' CRED? The pull is yours whatever it is.')){packBusy=false;return;}
   wallet-=pk.cost;var c=mintCard(tier);cards.unshift(c);cards=cards.slice(0,60);
   pushPull('YOU',c.rarPack,c.finish,(ascended(c)?1e15:cardValue(c)),true);
   save();renderCollection();renderAll();showReveal(c,tier);
@@ -480,7 +485,7 @@ setInterval(drawTable,1300);
    modal.className='on reveal '+rar;
    modal.innerHTML='<div class="pkstate">'+pk.name+' PACK PULL</div><div class="pkrar" style="color:'+col+'">'+label+'</div><div class="pkcard"><canvas id="pkcanvas" width="320" height="170"></canvas><div style="font-size:18px;font-weight:700;color:#e7e2d4;margin-top:8px">'+esc(c.name)+'</div><div style="font-size:12px;color:#a9a596;margin-top:3px">'+esc(c.house)+' // worth '+(ascended(c)?'INFINITE CRED':fmtAbbr(cardValue(c))+' CRED')+'</div></div><div class="pkbtns"><button class="listen" id="pkdone" type="button">[ INTO THE COLLECTION ]</button><button class="listen" id="pkshare" type="button">[ SHARE ]</button></div>';
    var cv=document.getElementById('pkcanvas');if(cv)drawEmblem(cv,c,rarOf(c));
-   var d=document.getElementById('pkdone');if(d)d.onclick=function(){modal.className='';};
+   var d=document.getElementById('pkdone');if(d)d.onclick=function(){closePack();};
    var sh=document.getElementById('pkshare');if(sh)sh.onclick=function(){shareCard(c.code);};
   },1300);
  }
@@ -778,9 +783,9 @@ setInterval(drawTable,1300);
  var cmore=document.getElementById('cardmore');if(cmore)cmore.addEventListener('click',function(){cShown+=9;drawCards();});
  var rmore=document.getElementById('raftermore');if(rmore)rmore.addEventListener('click',function(){rShown+=9;drawRafters();});
  drawPackBar();
- var pbtns=document.getElementById('packbtns');if(pbtns)pbtns.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button[data-pk]');if(b)openPack(b.getAttribute('data-pk'));});
- var pm=document.getElementById('packmodal');if(pm)pm.addEventListener('click',function(e){if(e.target===pm)pm.className='';});
- window.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.getElementById('packmodal');if(m)m.className='';}});
+ var pbtns=document.getElementById('packbtns');if(pbtns)pbtns.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button[data-pk]');if(b){b.blur();openPack(b.getAttribute('data-pk'));}});
+ var pm=document.getElementById('packmodal');if(pm)pm.addEventListener('click',function(e){if(e.target===pm)closePack();});
+ window.addEventListener('keydown',function(e){if(e.key==='Escape')closePack();});
  var psb=document.getElementById('postscore');if(psb)psb.addEventListener('click',postScore);
  // Wake the floor: seed the boards + collectors feed + market, then keep alive.
  seedBoard();drawBoards();drawMarket();fetchGlobal();
