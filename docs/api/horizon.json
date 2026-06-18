@@ -2,14 +2,14 @@
   "horizon": {
     "defined": 7356,
     "phases": {
-      "BOTTOMING": 523,
-      "CHURNING": 1498,
-      "FALLING": 359,
-      "FLAT": 4155,
-      "PEAKING": 128,
-      "RISING": 693
+      "BOTTOMING": 522,
+      "CHURNING": 1489,
+      "FALLING": 361,
+      "FLAT": 4160,
+      "PEAKING": 132,
+      "RISING": 692
     },
-    "scanned": 42968,
+    "scanned": 42972,
     "turns": [
       {
         "active_days": 180,
@@ -80,11 +80,11 @@
       {
         "active_days": 180,
         "gamma": 1.0,
-        "geodesic": 14,
+        "geodesic": 24,
         "peak": 29,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 53,
+        "prob_rising": 55,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
       },
@@ -144,6 +144,17 @@
         "term": "SOFTWARE"
       },
       {
+        "active_days": 178,
+        "gamma": 1.0,
+        "geodesic": 35,
+        "peak": 16,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 57,
+        "regime": "SPACELIKE",
+        "term": "SYSTEM"
+      },
+      {
         "active_days": 139,
         "gamma": 1.04,
         "geodesic": -98,
@@ -175,17 +186,6 @@
         "prob_rising": 41,
         "regime": "SPACELIKE",
         "term": "OPENCLAW"
-      },
-      {
-        "active_days": 177,
-        "gamma": 1.01,
-        "geodesic": -85,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 33,
-        "regime": "SPACELIKE",
-        "term": "REAL"
       }
     ]
   },

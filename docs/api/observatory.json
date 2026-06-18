@@ -79,7 +79,7 @@
     },
     {
       "dir": 1,
-      "p": 0.527,
+      "p": 0.547,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -100,7 +100,7 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.308,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "WAR"
@@ -331,14 +331,14 @@
     },
     {
       "dir": 1,
-      "p": 0.6,
-      "phase": "RISING",
+      "p": 0.571,
+      "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
     },
     {
       "dir": -1,
-      "p": 0.325,
+      "p": 0.312,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
@@ -426,13 +426,7 @@
       "days": 179,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "SWITCH"
-    },
-    {
-      "days": 169,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "PS5"
+      "term": "HOME"
     },
     {
       "days": 179,
@@ -445,6 +439,12 @@
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "ULTRA"
+    },
+    {
+      "days": 179,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "SWITCH"
     },
     {
       "days": 179,
@@ -462,7 +462,7 @@
   "corpus_days": 180,
   "fear_greed": {
     "label": "GREED",
-    "value": 66
+    "value": 69
   },
   "manifold": [
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.06,
-      "curvature": 0.06,
+      "beta": -0.052,
+      "curvature": 0.22,
       "defined": true,
-      "ds2": 0.881,
-      "gamma": 1.002,
-      "geodesic_trend": 0.136,
+      "ds2": 0.896,
+      "gamma": 1.001,
+      "geodesic_trend": 0.236,
       "phase": "BOTTOMING",
-      "prob_rising": 53,
+      "prob_rising": 55,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.014,
+      "rel_momentum": -0.012,
       "term": "GOOGLE"
     },
     {
@@ -650,18 +650,8 @@
   ],
   "movers": [
     {
-      "count": 7,
-      "term": "SWITCH",
-      "vel": 880
-    },
-    {
-      "count": 5,
-      "term": "PS5",
-      "vel": 775
-    },
-    {
       "count": 4,
-      "term": "DATASET",
+      "term": "HOME",
       "vel": 600
     },
     {
@@ -670,13 +660,23 @@
       "vel": 600
     },
     {
+      "count": 4,
+      "term": "DATASET",
+      "vel": 600
+    },
+    {
       "count": 5,
       "term": "ULTRA",
       "vel": 483
     },
     {
+      "count": 4,
+      "term": "SWITCH",
+      "vel": 460
+    },
+    {
       "count": 3,
-      "term": "LAUNCH",
+      "term": "FEATURES",
       "vel": 425
     }
   ],
@@ -737,7 +737,7 @@
       }
     ],
     "index": 73,
-    "theme": "WORLD",
+    "theme": "GAME",
     "total": 270,
     "verdict": "SURGING"
   },
@@ -745,27 +745,27 @@
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 1,
+      "delta": 2,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -2,
+      "delta": -1,
       "index": 86,
       "name": "PLATFORM"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 19,
-      "name": "CHIPS"
+      "index": 18,
+      "name": "ROBOTS"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 19,
-      "name": "ROBOTS"
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 14,
+      "name": "CHIPS"
     },
     {
       "arrow": "UP",
@@ -782,7 +782,7 @@
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 10,
+      "index": 9,
       "name": "CLOUD"
     },
     {
@@ -894,5 +894,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 42968
+  "tracked_terms": 42972
 }

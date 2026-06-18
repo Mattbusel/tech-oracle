@@ -149,6 +149,26 @@ manifold is defined immediately.
   `FLOORSAVE1`) to one base64 code, and **RESTORE** reloads it on any device. The
   panel warns that clearing site data / private mode wipes the save and that a
   lost backup code is unrecoverable.
+  **Card art.** Emblems are drawn by a seeded generative engine: each card picks one
+  of six structural systems (orbital, mandala, constellation, circuit, wavefield,
+  crystal shards) from its code, with rarity-driven glow, real gem foil for finishes,
+  and a deliberately corrupted look (channel-shift datamosh + scanlines) for
+  ASCENDED cards so the most broken cards actually look broken. All deterministic
+  from the card code; the floor has an inline copy and `cardart.js` ships the same
+  engine as `window.CardArt` for the Hall of Champions.
+- `api/certified.json` - schema `the-signal/certified/1`: the engine's authoritative
+  one-of-one champions (reigning `champion` flagged `current:true`, plus the hall of
+  fame), each with genes, real career stats, and a content fingerprint `fp`
+  (`SIG-XXXXXXXX`, FNV-1a over `id|name|best|max_streak|biggest|born`, byte-identical
+  to the browser hash). Minted in CI; this file is the source of truth for whether a
+  card is a genuine champion. There is no backend, so the engine itself is the notary.
+- `champions.html` - THE HALL OF CHAMPIONS: renders the certified champions with the
+  shared card art, and a VERIFY box. Paste a card code (or open a `champions.html#v=<code>`
+  link, which SHARE now embeds) and it checks the organism against `api/certified.json`,
+  reporting CERTIFIED (engine-crowned), UNVERIFIED (claims a legend it cannot back), or
+  PLAYER CARD (real but not a champion). Browser-minted cards cannot be made
+  unforgeable without a backend; certification is rooted in the engine-published
+  registry on the canonical domain, which is the honest, server-free trust anchor.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus

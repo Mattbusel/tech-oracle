@@ -1,0 +1,85 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hall of Champions // THE SIGNAL</title>
+<meta name="description" content="The engine-certified one-of-one champions of THE SIGNAL bloodline, and a live verifier: paste any card code to check whether it is a real, engine-crowned champion. No backend; the engine itself is the notary.">
+<meta property="og:title" content="THE SIGNAL // HALL OF CHAMPIONS">
+<meta property="og:description" content="Engine-certified one-of-one champions. Verify any card against the source of truth.">
+<meta property="og:image" content="https://mattbusel.github.io/tech-oracle/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://mattbusel.github.io/tech-oracle/champions.html">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#0d0f0d;color:#e7e2d4;font-family:'IBM Plex Mono',ui-monospace,monospace}
+.s{max-width:980px;margin:0 auto;padding:24px 20px 70px}
+.top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.b{display:inline-block;background:#e7e2d4;color:#0d0f0d;padding:4px 12px;letter-spacing:.2em;font-size:12px;font-weight:700}
+h1{font-size:clamp(26px,6vw,40px);letter-spacing:.04em;margin:14px 0 2px}
+.sub{font-size:13px;color:#8d8a7c;line-height:1.6;max-width:680px}
+.hd{font-size:11px;letter-spacing:.18em;color:#8d8a7c;margin:26px 0 10px;border-top:1px solid #2a2c28;padding-top:14px}
+.vbox{border:1px solid #2a2c28;background:#121411;padding:16px}
+.vbox textarea{width:100%;height:60px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font:inherit;font-size:11px;padding:8px;resize:vertical;box-sizing:border-box}
+.vbtn{margin-top:8px;background:none;border:1px solid #4a4d44;color:#e7e2d4;padding:9px 14px;font:inherit;letter-spacing:.08em;font-size:12px;cursor:pointer}
+.vbtn:hover{background:#e7e2d4;color:#0d0f0d}
+.vres{margin-top:12px;font-size:13px;line-height:1.6;padding:12px 14px;display:none}
+.vres.ok{display:block;border:1px solid #2f6f3a;background:#0e160f;color:#bdf0c4}
+.vres.warn{display:block;border:1px solid #6a5a14;background:#15120a;color:#ffe39a}
+.vres.bad{display:block;border:1px solid #6a2a22;background:#160d0c;color:#ffb4ab}
+.vres b{color:#fff}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.cc{border:1px solid #2a2c28;background:#101210;padding:10px}
+.cc.cur{border-color:#caa64a;box-shadow:0 0 0 1px #caa64a inset}
+.cc canvas{width:100%;height:auto;display:block;border:1px solid #1c1e1a}
+.cn{font-size:15px;font-weight:700;margin-top:8px;color:#e7e2d4}
+.cn .now{font-size:9px;letter-spacing:.14em;background:#caa64a;color:#15110a;padding:1px 6px;margin-left:6px;vertical-align:middle}
+.cm{font-size:11px;color:#cfe7b6;margin-top:2px}
+.cs{font-size:11px;color:#a9a596;margin-top:4px}
+.cf{font-size:10px;color:#6f6c5f;margin-top:5px;letter-spacing:.04em;word-break:break-all}
+.foot{margin-top:30px}
+.btn{display:inline-block;border:1px solid #4a4d44;padding:11px 16px;text-decoration:none;color:#e7e2d4;letter-spacing:.06em;font-size:12px;margin:0 8px 8px 0}
+.btn:hover{background:#e7e2d4;color:#0d0f0d}
+a{color:#cfe7b6}
+</style></head>
+<body><div class="s">
+<div class="top"><span class="b">THE SIGNAL // HALL OF CHAMPIONS</span></div>
+<h1>THE HALL OF CHAMPIONS</h1>
+<p class="sub">These are the one-of-one champions the engine itself has crowned. There is no login and no server, so the engine is the notary: every day it publishes the authoritative registry of real champions. A card is genuine only if its organism is in that registry. Paste any card code below to check it.</p>
+<div class="hd">VERIFY A CARD</div>
+<div class="vbox">
+<textarea id="vin" placeholder="paste a card code (from a card GIVE or SHARE), or open a verify link..." spellcheck="false" autocomplete="off"></textarea>
+<button id="vbtn" type="button" class="vbtn">[ VERIFY ]</button>
+<div id="vres" class="vres"></div>
+</div>
+<div class="hd" id="hallhd">THE CHAMPIONS</div>
+<div class="grid" id="hall"><p class="sub">Loading the registry...</p></div>
+<div class="foot"><a class="btn" href="https://mattbusel.github.io/tech-oracle/bloodline.html">[ BACK TO THE FLOOR ]</a><a class="btn" href="https://mattbusel.github.io/tech-oracle/api/certified.json">[ THE REGISTRY, AS JSON ]</a><a class="btn" href="https://mattbusel.github.io/tech-oracle/">[ THE SIGNAL ]</a></div>
+</div>
+<script src="cardart.js"></script>
+<script>
+var SITE="https://mattbusel.github.io/tech-oracle/";
+function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
+function fmt(n){return (n||0).toLocaleString();}
+var CERT=[],BYID={},BYNAME={};
+function cardFrom(e){return {code:'cert-'+e.id+'-'+e.name,name:e.name,house:e.house,risk:e.risk,finish:'',fade:(e.fade==='FADE'),resolved:{legend:true,podium:true,ascended:((e.best||0)>=1e13||(e.biggest||0)>=1e13),peak:Math.max(e.best||0,e.biggest||0)}};}
+function art(cv,card,rar){if(window.CardArt)window.CardArt.drawEmblem(cv,card,rar);}
+function renderHall(){var el=document.getElementById('hall'),hd=document.getElementById('hallhd');if(!el)return;
+ if(!CERT.length){el.innerHTML='<p class="sub">No champions certified yet. The first is crowned as the bloodline runs.</p>';return;}
+ if(hd)hd.textContent='THE CHAMPIONS // '+CERT.length+' CERTIFIED';
+ el.innerHTML=CERT.map(function(e,i){return '<div class="cc'+(e.current?' cur':'')+'"><canvas class="cemb" data-i="'+i+'" width="320" height="170"></canvas><div class="cn">'+esc(e.name)+(e.current?' <span class="now">REIGNING</span>':'')+'</div><div class="cm">'+esc(e.house||'')+' // '+(e.fade==='FADE'?'FADE':'TAIL')+'</div><div class="cs">best '+fmt(e.best)+' // W'+(e.max_streak||0)+' // big +'+fmt(e.biggest)+' // '+(e.win_rate||0)+'%</div><div class="cf">CERT '+esc(e.fp)+' // born '+esc(e.born||'')+'</div></div>';}).join('');
+ var cv=el.querySelectorAll('canvas.cemb');for(var i=0;i<cv.length;i++){var e=CERT[parseInt(cv[i].getAttribute('data-i'),10)];if(e)art(cv[i],cardFrom(e),'legend');}
+}
+function decodeCard(str){str=(str||'').trim();if(!str)return null;var o;try{o=JSON.parse(decodeURIComponent(escape(atob(str))));}catch(e){try{o=JSON.parse(atob(str));}catch(e2){o=null;}}if(!o)return null;return o.card||(o.code?o:o);}
+function preview(){return '<canvas id="vcanvas" width="320" height="170" style="width:100%;max-width:320px;border:1px solid #2a2c28;margin-top:10px"></canvas>';}
+function drawPrev(card,rar){var vc=document.getElementById('vcanvas');if(vc)art(vc,card,rar);}
+function verify(str){var el=document.getElementById('vres');if(!el)return;var card=decodeCard(str);
+ if(!card||!card.name){el.className='vres bad';el.innerHTML='Not a readable card code. Copy the code from a card GIVE or SHARE and paste the whole thing.';return;}
+ var hit=(card.id!=null&&BYID[card.id])||BYNAME[(card.name||'').toUpperCase()];
+ if(hit){el.className='vres ok';el.innerHTML='<b>[ CERTIFIED ]</b> '+esc(hit.name)+' is an engine-crowned '+(hit.current?'REIGNING CHAMPION':'champion in the Hall')+'.<br>Engine record: best '+fmt(hit.best)+' chips // streak W'+(hit.max_streak||0)+' // biggest single score +'+fmt(hit.biggest)+' // win rate '+(hit.win_rate||0)+'% // born '+esc(hit.born||'')+'.<br>Certificate <b>'+esc(hit.fp)+'</b>, issued by the engine in CI.'+preview();drawPrev(cardFrom(hit),'legend');}
+ else if(card.resolved&&(card.resolved.legend||card.resolved.ascended)){el.className='vres warn';el.innerHTML='<b>[ UNVERIFIED ]</b> This card claims a legendary run, but <b>'+esc(card.name)+'</b> is not in the engine certified Hall of Champions. Any LEGEND or ASCENDED claim on it is unproven.'+preview();drawPrev(card,(card.resolved&&card.resolved.legend?'legend':(card.resolved&&card.resolved.podium?'rare':'')));}
+ else{el.className='vres warn';el.innerHTML='<b>[ PLAYER CARD ]</b> <b>'+esc(card.name)+'</b> reads as a genuine player card, but only season champions are engine-certified and this one has not won. Real, just not a champion.'+preview();drawPrev(card,'');}
+}
+fetch('api/certified.json').then(function(r){return r.json();}).then(function(d){CERT=(d&&d.certified)||[];CERT.forEach(function(e){BYID[e.id]=e;BYNAME[(e.name||'').toUpperCase()]=e;});renderHall();
+ var m=/[#&]v=([^&]+)/.exec(location.hash||'');if(m){var code=decodeURIComponent(m[1]);var inp=document.getElementById('vin');if(inp)inp.value=code;verify(code);}
+}).catch(function(){var el=document.getElementById('hall');if(el)el.innerHTML='<p class="sub">Could not load the registry.</p>';});
+var vb=document.getElementById('vbtn'),vi=document.getElementById('vin');
+if(vb)vb.addEventListener('click',function(){verify(vi?vi.value:'');});
+</script>
+</body></html>

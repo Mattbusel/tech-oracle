@@ -63,7 +63,8 @@
 <b style="color:#e7e2d4">CRED.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] on a card and the house buys it on the spot for CRED (the card is destroyed). A card is worth more the higher it ranked, the wilder its stats, the rarer its finish, and the longer you have held it, so holding pays.<br><br>
 <b style="color:#e7e2d4">GIVING + SHARING.</b> Tap [ GIVE ] to hand a card to a friend: it leaves your collection and you get a code; they paste it into REDEEM and it is theirs. Tap [ SHARE ] to download the card as an image to post and flex.<br><br>
 <b style="color:#e7e2d4">SAVING + DEVICES.</b> There is no login. Your cards, rafters and CRED save right inside this browser on this device, so they survive refreshes and reboots but do not follow you to another phone or browser, and clearing your browsing data or using private mode will wipe them. To protect or move your collection, tap [ BACKUP MY COLLECTION ] and keep the code somewhere safe, then paste it into RESTORE on any device. Lose the code and the collection cannot be recovered.<br><br>
-<b style="color:#e7e2d4">ASCENDED.</b> Most cards are cheap; greatness has to be earned. If an organism's run is so absurd it touches the ceiling, its card ASCENDS to infinite value. It is brutally rare, the lambo of the collection. A sapphire or gold ascended card may never happen again.
+<b style="color:#e7e2d4">ASCENDED.</b> Most cards are cheap; greatness has to be earned. If an organism's run is so absurd it touches the ceiling, its card ASCENDS to infinite value. It is brutally rare, the lambo of the collection. A sapphire or gold ascended card may never happen again.<br><br>
+<b style="color:#e7e2d4">VERIFIED CHAMPIONS.</b> The floor rafters above are your own local seasons. The engine also crowns its own official one-of-one champions and publishes them, so a card can be proven real. Tap SHARE and your card carries a verify link; anyone can paste a card code into the HALL OF CHAMPIONS to see whether it is a genuine engine-crowned champion or just a claim.
 </div></details>
 <div id="floorresolve" style="display:none;margin:10px 0 0;border:1px solid #caa64a;background:#15110a;color:#ffd56b;padding:10px 12px;font-weight:700;font-size:13px"></div>
 <div id="floorbig" style="font-size:12px;color:#ffd56b;min-height:16px;margin:10px 0;letter-spacing:.03em"></div>
@@ -98,7 +99,7 @@
 <div class="grid"><div><div class="hd" id="tablehd">THE TABLE // LIVING, BY SHADOW BANKROLL</div><div id="table"></div></div><div><div class="hd">THE HOUSES</div><div id="houses"></div><div class="hd">THE WIRE // BIRTHS &amp; DEATHS</div><div id="events"></div></div></div>
 <div class="hd">THE CARDS // PROS &amp; ROOKIES</div><div class="cards" id="cards"></div>
 <div class="hd">HALL OF FAME // ALL-TIME GREATS</div><div id="hof"></div>
-<div class="foot"><a class="btn" href="https://mattbusel.github.io/tech-oracle/">[ BACK TO THE SIGNAL ]</a></div>
+<div class="foot"><a class="btn" href="https://mattbusel.github.io/tech-oracle/champions.html">[ HALL OF CHAMPIONS // VERIFY A CARD ]</a> <a class="btn" href="https://mattbusel.github.io/tech-oracle/">[ BACK TO THE SIGNAL ]</a></div>
 </div>
 <div id="cardzoom"></div>
 <script>
@@ -332,12 +333,14 @@ setInterval(drawTable,1300);
   x.fillStyle='#cfe7b6';x.font='13px "IBM Plex Mono",monospace';x.fillText((c.house||'')+' // '+(c.fade?'FADE':'TAIL'),22,288);
   x.fillStyle='#a9a596';x.font='13px "IBM Plex Mono",monospace';wrapTxt(x,(c.historic||'live // resolves at the bell'),22,314,W-44,18);
   x.fillStyle='#ffd56b';x.font='700 15px "IBM Plex Mono",monospace';x.fillText('worth '+(asc?'INFINITE':fmtAbbr(cardValue(c)))+' CRED',22,H-58);
-  x.fillStyle='#6f6c5f';x.font='11px "IBM Plex Mono",monospace';x.fillText(c.code||'',22,H-34);x.fillText('THE SIGNAL // BLOODLINE',22,H-18);
+  x.fillStyle='#6f6c5f';x.font='11px "IBM Plex Mono",monospace';x.fillText(c.code||'',22,H-34);x.fillText('THE SIGNAL // VERIFY AT CHAMPIONS.HTML',22,H-18);
   var url='';try{url=cv.toDataURL('image/png');}catch(e){}
   if(url){var a=document.createElement('a');a.href=url;a.download=((c.name||'card').replace(/[^A-Za-z0-9-]/g,'')||'card')+'.png';document.body.appendChild(a);a.click();a.remove();}
   var statline=c.name+' // '+tier+' // '+(c.historic||'live')+' // THE SIGNAL bloodline';
   if(navigator.share&&cv.toBlob){cv.toBlob(function(b){try{var f=new File([b],(c.name||'card')+'.png',{type:'image/png'});if(navigator.canShare&&navigator.canShare({files:[f]}))navigator.share({files:[f],text:statline}).catch(function(){});}catch(e){}});}
-  showCode('Card image downloaded, flex it. Stat line to paste anywhere:',statline,'[ COPY STAT LINE ]');
+  var vcode='';try{vcode=btoa(unescape(encodeURIComponent(JSON.stringify(c))));}catch(e){vcode='';}
+  var vlink=vcode?('champions.html#v='+encodeURIComponent(vcode)):'champions.html';
+  showCode('Card image downloaded, flex it. Anyone can <a href="'+vlink+'" target="_blank" style="color:#6ee07a">verify it is real</a> in the Hall of Champions.<br>Stat line to paste anywhere:',statline,'[ COPY STAT LINE ]');
  }
  function redeem(str){
   var el=document.getElementById('tradecode');function msg(h){if(el){el.style.display='block';el.innerHTML=h;}}
@@ -374,25 +377,68 @@ setInterval(drawTable,1300);
  // Procedural emblem: a unique seeded crest per card, colored by its genes.
  function hashStr(s){var h=2166136261>>>0;s=s||'';for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
  function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+ // ---- CARD ART ENGINE -------------------------------------------------------
+ // Each card draws one of several generative SYSTEMS picked from its seed, so two
+ // cards look fundamentally different, not merely recolored. Rarity adds glow and
+ // metal; gem finishes add real foil sheen; ASCENDED cards are deliberately
+ // corrupted (channel-shift datamosh + scanlines + tears) so the rarest, most
+ // broken cards actually LOOK broken. All deterministic from the card code.
+ function hsl(h,s,l){return 'hsl('+(((h%360)+360)%360)+','+s+'%,'+l+'%)';}
+ function artPalette(card,rarity,rng){
+  var hue=Math.floor((card.risk!=null?card.risk:rng())*360),acc=(hue+90+Math.floor(rng()*150))%360;
+  var p={bg0:hsl(hue,40,9),bg1:'#06080b',ink:hsl(acc,72,64),ink2:hsl(hue,58,52),glow:0,metal:null};
+  if(rarity==='rare'){p.bg0=hsl(hue,52,12);p.ink=hsl(acc,84,67);p.glow=8;}
+  if(rarity==='legend'){p.bg0='#2a1e05';p.bg1='#0a0a08';p.ink='#ffd56b';p.ink2='#caa64a';p.glow=12;p.metal='gold';}
+  if(card.finish&&FIN[card.finish]){p.ink=FIN[card.finish].c;p.ink2=FIN[card.finish].c;p.glow=Math.max(p.glow,9);}
+  return p;
+ }
+ function artBg(ctx,W,H,p,rng){
+  var g=ctx.createRadialGradient(W*0.5,H*0.42,2,W*0.5,H*0.5,Math.max(W,H)*0.78);
+  g.addColorStop(0,p.bg0);g.addColorStop(1,p.bg1);ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  if(p.metal==='gold'){var go=ctx.createRadialGradient(W/2,H*0.46,1,W/2,H*0.46,Math.max(W,H)*0.5);go.addColorStop(0,'rgba(255,213,107,0.18)');go.addColorStop(1,'rgba(255,213,107,0)');ctx.fillStyle=go;ctx.fillRect(0,0,W,H);}
+  ctx.fillStyle='rgba(255,255,255,0.05)';for(var i=0;i<W*H/900;i++)ctx.fillRect((rng()*W)|0,(rng()*H)|0,1,1);
+  var v=ctx.createRadialGradient(W/2,H/2,Math.min(W,H)*0.18,W/2,H/2,Math.max(W,H)*0.72);
+  v.addColorStop(0,'rgba(0,0,0,0)');v.addColorStop(1,'rgba(0,0,0,0.55)');ctx.fillStyle=v;ctx.fillRect(0,0,W,H);
+ }
+ function sysOrbital(ctx,W,H,p,rng){var cx=W/2,cy=H/2,R=Math.min(W,H)*0.46,rings=2+(rng()*3|0),lw=Math.max(0.8,W/200);ctx.lineWidth=lw;
+  for(var r=0;r<rings;r++){var rr=R*(0.32+0.68*(r+1)/rings),sq=0.5+rng()*0.5,rot=rng()*3;ctx.strokeStyle=p.ink2;ctx.globalAlpha=0.3;ctx.beginPath();ctx.ellipse(cx,cy,rr,rr*sq,rot,0,7);ctx.stroke();var bodies=1+(rng()*3|0);for(var b=0;b<bodies;b++){var a=rng()*7,x=cx+Math.cos(a)*rr*Math.cos(rot)-Math.sin(a)*rr*sq*Math.sin(rot),y=cy+Math.cos(a)*rr*Math.sin(rot)+Math.sin(a)*rr*sq*Math.cos(rot);ctx.globalAlpha=0.92;ctx.fillStyle=p.ink;ctx.shadowColor=p.ink;ctx.shadowBlur=p.glow;ctx.beginPath();ctx.arc(x,y,lw*(1.4+rng()*2),0,7);ctx.fill();}}
+  ctx.shadowBlur=0;ctx.globalAlpha=1;ctx.fillStyle=p.ink;ctx.beginPath();ctx.arc(cx,cy,lw*2.3,0,7);ctx.fill();}
+ function sysMandala(ctx,W,H,p,rng){var cx=W/2,cy=H/2,R=Math.min(W,H)*0.47,k=5+(rng()*8|0),arms=2+(rng()*3|0),lw=Math.max(0.8,W/230),i;ctx.lineWidth=lw;ctx.strokeStyle=p.ink;ctx.fillStyle=p.ink;ctx.shadowColor=p.ink;ctx.shadowBlur=p.glow*0.6;
+  var pts=[];for(i=0;i<arms;i++)pts.push([R*(0.25+rng()*0.75),(rng()-0.5)*0.6,lw*(1+rng()*2)]);
+  for(var s=0;s<k;s++){ctx.save();ctx.translate(cx,cy);ctx.rotate(s/k*Math.PI*2);ctx.globalAlpha=0.85;ctx.beginPath();ctx.moveTo(0,0);for(i=0;i<pts.length;i++)ctx.lineTo(Math.cos(pts[i][1])*pts[i][0],Math.sin(pts[i][1])*pts[i][0]);ctx.stroke();for(i=0;i<pts.length;i++){ctx.beginPath();ctx.arc(Math.cos(pts[i][1])*pts[i][0],Math.sin(pts[i][1])*pts[i][0],pts[i][2],0,7);ctx.fill();}ctx.restore();}ctx.shadowBlur=0;ctx.globalAlpha=1;}
+ function sysConstellation(ctx,W,H,p,rng){var n=6+(rng()*10|0),ns=[],i,j,lw=Math.max(0.7,W/240);for(i=0;i<n;i++)ns.push([W*0.12+rng()*W*0.76,H*0.12+rng()*H*0.76,lw*(1+rng()*2.2)]);
+  ctx.strokeStyle=p.ink2;ctx.globalAlpha=0.25;ctx.lineWidth=lw*0.7;var d2=(W*0.34)*(W*0.34);for(i=0;i<n;i++)for(j=i+1;j<n;j++){var dx=ns[i][0]-ns[j][0],dy=ns[i][1]-ns[j][1];if(dx*dx+dy*dy<d2){ctx.beginPath();ctx.moveTo(ns[i][0],ns[i][1]);ctx.lineTo(ns[j][0],ns[j][1]);ctx.stroke();}}
+  ctx.globalAlpha=1;ctx.fillStyle=p.ink;ctx.shadowColor=p.ink;ctx.shadowBlur=p.glow;for(i=0;i<n;i++){ctx.beginPath();ctx.arc(ns[i][0],ns[i][1],ns[i][2],0,7);ctx.fill();}ctx.shadowBlur=0;}
+ function sysCircuit(ctx,W,H,p,rng){var step=Math.max(10,W/9),lw=Math.max(0.8,W/210),x,y;ctx.strokeStyle=p.ink2;ctx.lineWidth=lw;ctx.globalAlpha=0.5;
+  for(x=step;x<W;x+=step){var turn=step+((rng()*Math.max(1,(H/step)|0))|0)*step;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,turn);ctx.lineTo(x+(rng()<0.5?step:-step),turn);ctx.stroke();}
+  ctx.globalAlpha=0.95;ctx.fillStyle=p.ink;ctx.shadowColor=p.ink;ctx.shadowBlur=p.glow*0.6;for(x=step;x<W;x+=step)for(y=step;y<H;y+=step)if(rng()<0.16){ctx.beginPath();ctx.arc(x,y,lw*1.7,0,7);ctx.fill();}ctx.shadowBlur=0;ctx.globalAlpha=1;}
+ function sysWave(ctx,W,H,p,rng){var cx=W*(0.3+rng()*0.4),cy=H*(0.3+rng()*0.4),rings=5+(rng()*8|0),gap=Math.min(W,H)/(rings*1.5),lw=Math.max(0.7,W/260),i;ctx.lineWidth=lw;
+  ctx.strokeStyle=p.ink;for(i=1;i<=rings;i++){ctx.globalAlpha=0.5*(1-i/rings)+0.12;ctx.beginPath();ctx.arc(cx,cy,i*gap,0,7);ctx.stroke();}
+  var cx2=W-cx;ctx.strokeStyle=p.ink2;for(i=1;i<=rings;i++){ctx.globalAlpha=0.4*(1-i/rings)+0.1;ctx.beginPath();ctx.arc(cx2,cy,i*gap,0,7);ctx.stroke();}ctx.globalAlpha=1;}
+ function sysShards(ctx,W,H,p,rng){var cx=W/2,cy=H/2,R=Math.min(W,H)*0.52,n=4+(rng()*6|0),lw=Math.max(0.8,W/220),i,ang=[];for(i=0;i<n;i++)ang.push(rng()*Math.PI*2);ang.sort(function(a,b){return a-b;});
+  for(i=0;i<n;i++){var a0=ang[i],a1=(i+1<n?ang[i+1]:ang[0]+Math.PI*2),r0=R*(0.4+rng()*0.6),r1=R*(0.4+rng()*0.6);ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a0)*r0,cy+Math.sin(a0)*r0);ctx.lineTo(cx+Math.cos(a1)*r1,cy+Math.sin(a1)*r1);ctx.closePath();ctx.globalAlpha=0.16+rng()*0.24;ctx.fillStyle=(i%2?p.ink:p.ink2);ctx.fill();ctx.globalAlpha=0.6;ctx.lineWidth=lw*0.8;ctx.strokeStyle=p.ink;ctx.stroke();}
+  ctx.globalAlpha=1;ctx.fillStyle=p.ink;ctx.shadowColor=p.ink;ctx.shadowBlur=p.glow;ctx.beginPath();ctx.arc(cx,cy,lw*1.8,0,7);ctx.fill();ctx.shadowBlur=0;}
+ function foil(ctx,W,H,str,rng){ctx.save();ctx.globalCompositeOperation='lighter';
+  var g=ctx.createLinearGradient(0,0,W,H);g.addColorStop(0,'#ff4d6d');g.addColorStop(0.25,'#ffd56b');g.addColorStop(0.5,'#4fe0a0');g.addColorStop(0.75,'#5fb8ff');g.addColorStop(1,'#c77dff');
+  ctx.globalAlpha=0.05+0.10*str;ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  var off=0.2+rng()*0.6,s=ctx.createLinearGradient(0,0,W,H);s.addColorStop(Math.max(0,off-0.14),'rgba(255,255,255,0)');s.addColorStop(off,'rgba(255,255,255,0.55)');s.addColorStop(Math.min(1,off+0.14),'rgba(255,255,255,0)');
+  ctx.globalAlpha=0.12+0.22*str;ctx.fillStyle=s;ctx.fillRect(0,0,W,H);ctx.restore();}
+ function glitch(ctx,W,H,rng){try{var slabs=4+(rng()*5|0);for(var i=0;i<slabs;i++){var sy=(rng()*H)|0,sh=Math.max(2,(rng()*H*0.16)|0);if(sy+sh>H)sh=H-sy;if(sh<1)continue;var dx=((rng()-0.5)*W*0.22)|0;var img=ctx.getImageData(0,sy,W,sh);ctx.putImageData(img,dx,sy);}}catch(e){}
+  ctx.save();for(var t=0;t<3;t++){var ty=(rng()*H)|0;ctx.globalAlpha=0.5;ctx.fillStyle=['#ff2d55','#5fb8ff','#4fe0a0'][t%3];ctx.fillRect(0,ty,W,1+(rng()*2|0));}
+  ctx.globalAlpha=0.12;ctx.fillStyle='#000';for(var y=0;y<H;y+=3)ctx.fillRect(0,y,W,1);ctx.restore();}
+ var ART_SYS=[sysOrbital,sysMandala,sysConstellation,sysCircuit,sysWave,sysShards];
  function drawEmblem(cv,card,rarity){
-  var ctx=cv.getContext('2d'),W=cv.width,H=cv.height,rng=mulberry(hashStr(card.code||card.name));
-  var hue=Math.floor((card.risk!=null?card.risk:rng())*360),hue2=(hue+80+Math.floor(rng()*120))%360;
-  var g=ctx.createLinearGradient(0,0,W,H);
-  if(rarity==='legend'){g.addColorStop(0,'#3a2c08');g.addColorStop(1,'#0d0f0d');}
-  else if(rarity==='rare'){g.addColorStop(0,'hsl('+hue+',45%,13%)');g.addColorStop(1,'#0a1018');}
-  else{g.addColorStop(0,'hsl('+hue+',38%,11%)');g.addColorStop(1,'#0d0f0d');}
-  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
-  var cx=W/2,cy=H/2,spokes=3+Math.floor(rng()*7),R=Math.min(W,H)*0.46;
-  var col=rarity==='legend'?'#ffd56b':(rarity==='rare'?'#6fb8ff':'hsl('+hue2+',72%,66%)');
-  if(card.finish&&FIN[card.finish])col=FIN[card.finish].c;
-  ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=1.2;
-  for(var k=0;k<spokes;k++){
-   var a=k/spokes*Math.PI*2+rng()*0.4,r1=R*(0.5+rng()*0.5);
-   ctx.globalAlpha=0.85;ctx.beginPath();ctx.moveTo(cx,cy);ctx.lineTo(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1);ctx.stroke();
-   ctx.beginPath();ctx.arc(cx+Math.cos(a)*r1,cy+Math.sin(a)*r1,1.4+rng()*1.8,0,7);ctx.fill();
-  }
-  ctx.globalAlpha=0.45;ctx.beginPath();ctx.arc(cx,cy,R*(0.42+rng()*0.32),0,7);ctx.stroke();
-  ctx.globalAlpha=1;ctx.beginPath();ctx.arc(cx,cy,2.4,0,7);ctx.fill();
+  var ctx=cv.getContext('2d'),W=cv.width,H=cv.height;if(!ctx||!W||!H)return;
+  var key=card.code||card.name||'',rng=mulberry(hashStr(key+'|art')),asc=ascended(card);
+  var p=artPalette(card,rarity,rng);artBg(ctx,W,H,p,rng);
+  var pick=hashStr(key+'|sys')%ART_SYS.length;
+  if(card.finish==='diamond'||card.finish==='sapphire')pick=5; // gems lean crystalline
+  ctx.save();ART_SYS[pick](ctx,W,H,p,rng);ctx.restore();
+  if(card.finish&&FIN[card.finish])foil(ctx,W,H,(FIN[card.finish].m||1)/7,rng);
+  if(asc){ctx.save();glitch(ctx,W,H,rng);ctx.restore();}
+  var fw=Math.max(1,W/120);ctx.lineWidth=fw;ctx.globalAlpha=0.8;
+  ctx.strokeStyle=asc?'#d8f0ff':(rarity==='legend'?'#ffd56b':(rarity==='rare'?'#6fb8ff':p.ink2));
+  ctx.strokeRect(fw,fw,W-fw*2,H-fw*2);ctx.globalAlpha=1;
  }
  function leaders(){
   var el=document.getElementById('floorleaders');if(!el||!ORGS.length)return;
@@ -459,7 +505,7 @@ setInterval(drawTable,1300);
   if(rSort==='value')list=list.slice().sort(function(a,b){return rafterValue(b)-rafterValue(a);});
   var total=list.length,shown=list.slice(0,rShown);
   el.innerHTML=shown.map(function(r){var lg=r.rarity==='LEGEND',asc=Math.max(r.finalBank||0,r.biggestWin||0)>=1e13,cls='lcard'+(lg?' legend':' rare')+(asc?' asc':''),ridx=rafters.indexOf(r);var est=asc?'<span style="color:#d8f0ff">&infin;</span>':fmtAbbr(rafterValue(r));return '<div class="'+cls+'"><canvas class=remb data-i="'+ridx+'" width=164 height=86></canvas><span class=rk>'+r.rarity+' // SEASON '+r.season+' #'+r.rank+(asc?' // ASCENDED':'')+'</span><span class=nm>'+esc(r.name)+'</span><div>'+esc(r.house||'')+' // '+(r.fade?'FADE':'TAIL')+'</div><div style="margin-top:4px">net '+(r.finalBank>=1e13?'&infin;':fmtAbbr(r.finalBank))+' // W'+(r.maxStreak||0)+' // big +'+fmtAbbr(r.biggestWin)+'</div><div class=code>est '+est+' CRED if carded</div></div>';}).join('')||'<span class="sub">No champions match.</span>';
-  var cvs=el.querySelectorAll('canvas.remb');for(var i=0;i<cvs.length;i++){var rr=rafters[parseInt(cvs[i].getAttribute('data-i'),10)];if(rr)drawEmblem(cvs[i],{code:rr.name+rr.season+rr.rank,risk:null},rr.rarity==='LEGEND'?'legend':'rare');}
+  var cvs=el.querySelectorAll('canvas.remb');for(var i=0;i<cvs.length;i++){var rr=rafters[parseInt(cvs[i].getAttribute('data-i'),10)];if(rr)drawEmblem(cvs[i],{code:rr.name+rr.season+rr.rank,risk:(rr.risk!=null?rr.risk:null),finish:rr.finish||'',resolved:{ascended:(Math.max(rr.finalBank||0,rr.biggestWin||0)>=1e13),legend:rr.rarity==='LEGEND',podium:true,peak:Math.max(rr.finalBank||0,rr.biggestWin||0)}},rr.rarity==='LEGEND'?'legend':'rare');}
   if(more){if(total>rShown){more.style.display='inline-block';more.textContent='[ SHOW MORE ('+(total-rShown)+') ]';}else more.style.display='none';}
  }
  function renderCollection(){drawCards();drawRafters();}
