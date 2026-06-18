@@ -186,6 +186,19 @@ manifold is defined immediately.
   instantly cuts their net worth ~45% and marks them cursed for 120s (`Date.now`
   expiry), during which they bleed CRED in `nwDrift` and whiff every pack in `botRip`,
   with misfortune lines in the feed. Ephemeral (session only).
+  **The GLOBAL board** (cross-browser, server-free): POST MY SCORE opens a prefilled
+  GitHub issue (label `score`) whose body carries one line
+  `SIGNAL-FLOOR-SCORE v=1 handle= nw= pull= pullval=`. The daily Action runs
+  `tech-oracle harvest` (`src/scores.rs`): reads the `score` issues via the GitHub API
+  (token from `GITHUB_TOKEN`), validates/clamps (nw<=1e21, pullval<=1e15), dedupes to
+  one best entry per GitHub account (anti-spam), and bakes static
+  `docs/api/leaderboard.json` (schema `the-signal/leaderboard/1`, `networth` + `pulls`).
+  The site reads that static file (`fetchGlobal`), so reads never hit the API rate
+  limit. Scores are self-reported and engine-curated, not verifiable (no server can
+  certify a localStorage number); it is a bragging board by design. The CI step
+  (`Harvest floor scores` in daily.yml) creates the `score` label and is best-effort.
+- `api/leaderboard.json` - schema `the-signal/leaderboard/1`: `{networth:[{handle,nw}],
+  pulls:[{handle,pull,pullval}]}`, the harvested global floor leaderboard.
 - `api/certified.json` - schema `the-signal/certified/1`: the engine's authoritative
   one-of-one champions (reigning `champion` flagged `current:true`, plus the hall of
   fame), each with genes, real career stats, and a content fingerprint `fp`

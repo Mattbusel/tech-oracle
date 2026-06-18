@@ -10,6 +10,7 @@ mod model;
 mod observatory;
 mod rank;
 mod render;
+mod scores;
 
 use chrono::{Datelike, Duration, NaiveDate, Utc};
 use model::Prediction;
@@ -40,6 +41,15 @@ fn main() {
     if args.get(1).map(|s| s.as_str()) == Some("backfill") {
         let days = args.get(2).and_then(|s| s.parse::<i64>().ok()).unwrap_or(178).clamp(1, 365);
         backfill::run(days);
+        return;
+    }
+
+    // Cross-browser leaderboard: `tech-oracle harvest` reads the `score` issues and
+    // bakes docs/api/leaderboard.json. Run by the daily Action; safe to run anytime.
+    if args.get(1).map(|s| s.as_str()) == Some("harvest") {
+        let repo = std::env::var("LADDER_REPO").ok().filter(|s| !s.is_empty()).unwrap_or_else(|| "Mattbusel/tech-oracle".to_string());
+        let human = Utc::now().format("%B %-d, %Y").to_string();
+        scores::harvest(&repo, OUT_DIR, &human);
         return;
     }
 

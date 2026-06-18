@@ -95,6 +95,7 @@
 <b style="color:#e7e2d4">LEADERBOARDS.</b> You compete against the whole floor on two ladders. TOTAL NET WORTH ranks your liquid CRED plus the value of every card you hold against the bots. RAREST PULLS ranks the best cards anyone has pulled out of the packs. The bots start far ahead, so climbing past them is the long game.<br><br>
 <b style="color:#e7e2d4">THE MARKET.</b> Card values are not fixed. Each rarity sector is a live index that drifts up and down over time, so the exact same card is worth more on a hot day and less on a cold one. Watch the CARD MARKET ticker and sell into a pump. ASCENDED is the one constant. Your net worth moves with the market.<br><br>
 <b style="color:#e7e2d4">CURSES.</b> When a collector throws you an insulting lowball, do not just decline. Tap CURSE THEM. It instantly craters their net worth and saddles them with terrible luck for two minutes: they bleed CRED and whiff every pack they touch. Revenge is a feature.<br><br>
+<b style="color:#e7e2d4">THE GLOBAL BOARD.</b> The net worth and pull boards above are the local floor (you plus the resident bots). The GLOBAL board ranks real people across every browser. Tap POST MY SCORE: it opens a prefilled GitHub issue with your handle and numbers, and the daily build folds every posted score into one ranked board everyone sees. There is no server and no login to read it; posting just needs a free GitHub account. Scores are self-reported and curated by the engine (the absurd is clamped), so treat it as the floor's hall of bragging.<br><br>
 <b style="color:#e7e2d4">LIVING CARDS.</b> These are living organisms, so the art moves. Every card animates on its own seeded rhythm (orbiting, breathing, twinkling, a foil sheen that sweeps), gems shimmer, and ASCENDED cards flicker and tear. Tilt your screen and flex.<br><br>
 <b style="color:#e7e2d4">GIVING + SHARING.</b> Tap [ GIVE ] to hand a card to a friend: it leaves your collection and you get a code; they paste it into REDEEM and it is theirs. Tap [ SHARE ] to download the card as an image to post and flex.<br><br>
 <b style="color:#e7e2d4">SAVING + DEVICES.</b> There is no login. Your cards, rafters and CRED save right inside this browser on this device, so they survive refreshes and reboots but do not follow you to another phone or browser, and clearing your browsing data or using private mode will wipe them. To protect or move your collection, tap [ BACKUP MY COLLECTION ] and keep the code somewhere safe, then paste it into RESTORE on any device. Lose the code and the collection cannot be recovered.<br><br>
@@ -134,6 +135,12 @@
 <div class="lbgrid">
 <div><div class="lbhd">TOTAL NET WORTH // liquid CRED + every card you hold</div><div id="nwboard" class="lbbox"></div></div>
 <div><div class="lbhd">RAREST PULLS // best cards out of the packs</div><div id="pullboard" class="lbbox"></div></div>
+</div>
+<div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">THE GLOBAL BOARD // EVERYONE, ACROSS BROWSERS</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px"><button id="postscore" type="button" class="listen">[ POST MY SCORE ]</button><span style="font-size:10px;color:#8d8a7c">opens a GitHub issue with your score; it joins the global board on the next daily build. (a GitHub account is needed to post; anyone can read the board)</span></div>
+<div class="lbgrid">
+<div><div class="lbhd">GLOBAL NET WORTH</div><div id="gnwboard" class="lbbox"><span class="sub">loading the floor...</span></div></div>
+<div><div class="lbhd">GLOBAL RAREST PULLS</div><div id="gpullboard" class="lbbox"><span class="sub">loading the floor...</span></div></div>
 </div>
 <div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">THE RAFTERS // SEASON CHAMPIONS, ONE-OF-ONE</div>
 <div id="rafterbar" class="fbar"></div>
@@ -522,6 +529,30 @@ setInterval(drawTable,1300);
  function nowMs(){return Date.now();}
  function cursed(name){return (CURSES[name]||0)>nowMs();}
  function curseBot(name){ensureNW();CURSES[name]=nowMs()+120000;botNW[name]=Math.max(1e6,(botNW[name]||seedNW(name))*0.55);feedPush('<b style="color:#c77dff">You laid a CURSE on '+esc(name)+'. Terrible luck follows them for two minutes.</b>');drawNW();}
+ // ---- THE GLOBAL BOARD (cross-browser, server-free) ------------------------
+ // You post a score by opening a prefilled GitHub issue; the daily build harvests
+ // every score issue into a static leaderboard.json the site reads. No backend.
+ var REPO=(window.MKT_REPO||'Mattbusel/tech-oracle');
+ function getHandle(){try{return localStorage.getItem('signal_floor_handle')||'';}catch(e){return '';}}
+ function setHandle(h){try{localStorage.setItem('signal_floor_handle',h);}catch(e){}}
+ function bestPull(){var top=null,i;for(i=0;i<boardPulls.length;i++){var p=boardPulls[i];if(p.you&&(!top||p.val>top.val))top=p;}
+  for(i=0;i<cards.length;i++){var c=cards[i],v=ascended(c)?1e15:cardValue(c);if(!top||v>top.val)top={rar:tierOf(c).toLowerCase(),fin:c.finish,val:v};}return top;}
+ function postScore(){
+  var h=getHandle();
+  if(!h){h=(window.prompt('Pick a handle for the GLOBAL board (letters and numbers):','')||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,24).toUpperCase();if(!h)return;setHandle(h);}
+  var nw=Math.round(myNetWorth()),bp=bestPull();
+  var pull=bp?((bp.rar?bp.rar.toUpperCase():'CARD')+(bp.fin&&FIN[bp.fin]?('-'+FIN[bp.fin].n):'')):'NONE',pv=bp?Math.round(bp.val):0;
+  var line='SIGNAL-FLOOR-SCORE v=1 handle='+h+' nw='+nw+' pull='+pull+' pullval='+pv;
+  var title='Floor score: '+h+' // '+fmtAbbr(nw)+' CRED';
+  var body='My net worth on THE SIGNAL floor.\n\n'+line+'\n\nLeave the line above intact so the board can read it.\nThe board: '+location.origin+location.pathname;
+  var url='https://github.com/'+REPO+'/issues/new?labels=score&title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body);
+  window.open(url,'_blank','noopener');
+  toast('Opening GitHub to post your score. It joins the global board on the next daily build.');
+ }
+ function drawGlobal(d){var nb=document.getElementById('gnwboard'),pb=document.getElementById('gpullboard'),nw=(d&&d.networth)||[],pl=(d&&d.pulls)||[];
+  if(nb)nb.innerHTML=nw.length?nw.slice(0,12).map(function(r,i){return '<div class="lbrow"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(r.handle)+'</span><span class="lv">'+fmtAbbr(r.nw)+' CRED</span></div>';}).join(''):'<span class="sub">no scores posted yet. be the first to POST MY SCORE.</span>';
+  if(pb)pb.innerHTML=pl.length?pl.slice(0,12).map(function(r,i){var v=r.pullval>=1e15?'&infin;':fmtAbbr(r.pullval);return '<div class="lbrow"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(r.handle)+'</span><span class="lt">'+esc(r.pull||'')+'</span><span class="lv">'+v+'</span></div>';}).join(''):'<span class="sub">no pulls posted yet.</span>';}
+ function fetchGlobal(){fetch('api/leaderboard.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null;}).then(function(d){drawGlobal(d);}).catch(function(){drawGlobal(null);});}
  var feedItems=[];
  function feedPush(html){feedItems.unshift('<div style="padding:5px 0;border-bottom:1px dotted #2a2c28">'+html+'</div>');feedItems=feedItems.slice(0,28);var el=document.getElementById('collfeed');if(el)el.innerHTML=feedItems.join('');}
  // The collectors are unhinged whales: they rip the expensive tiers, so big pulls
@@ -750,8 +781,9 @@ setInterval(drawTable,1300);
  var pbtns=document.getElementById('packbtns');if(pbtns)pbtns.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button[data-pk]');if(b)openPack(b.getAttribute('data-pk'));});
  var pm=document.getElementById('packmodal');if(pm)pm.addEventListener('click',function(e){if(e.target===pm)pm.className='';});
  window.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.getElementById('packmodal');if(m)m.className='';}});
+ var psb=document.getElementById('postscore');if(psb)psb.addEventListener('click',postScore);
  // Wake the floor: seed the boards + collectors feed + market, then keep alive.
- seedBoard();drawBoards();drawMarket();
+ seedBoard();drawBoards();drawMarket();fetchGlobal();
  feedTick();feedTick();setTimeout(feedTick,2600);
  setInterval(feedTick,7000);
  setInterval(offerTick,21000);

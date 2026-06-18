@@ -115,6 +115,21 @@ jobs:
           TITLE="$(cat build/dispatch_title.txt)"
           gh issue create --title "$TITLE" --body-file build/dispatch_body.md --label dispatch >/dev/null 2>&1 && echo "dispatch posted" || echo "dispatch failed"
 
+      # Cross-browser leaderboard: read the `score` issues players opened and bake
+      # docs/api/leaderboard.json. The label is created if missing so the very first
+      # submission is found. Best-effort: never fails the run.
+      - name: Harvest floor scores
+        if: always()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          LADDER_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          set +e
+          gh label create score --color 5bf08a --description "Floor leaderboard submissions" >/dev/null 2>&1
+          ./target/release/tech-oracle harvest || echo "harvest skipped"
+
       # IndexNow: tell search engines to crawl the new/updated pages now. Free,
       # no account; the key file is served from the site. Best-effort.
       - name: IndexNow ping
