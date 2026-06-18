@@ -93,6 +93,8 @@
 <b style="color:#e7e2d4">PACKS.</b> Rip a pack to pull EXOTIC cards that exist nowhere on the floor. There are six tiers, from STANDARD (250,000) up to SINGULARITY (1 trillion). They are pricey on purpose: a single card can be worth tens of billions, so cheap packs would be pointless. The dear tiers floor the rarity and lean into the broken stuff (VAULT guarantees rare or better, ECLIPSE legend or better, COSMIC is gem-heavy, and a SINGULARITY pack is a guaranteed ASCENDED, the whale flex), and each tier mints its own distinct SERIES. Whatever you pull is yours.<br><br>
 <b style="color:#e7e2d4">THE COLLECTORS.</b> The floor is full of resident collectors, and they are unhinged whales with absurd net worths. They rip the expensive packs, browse and chatter in the live feed, and make you real offers on your cards: a cash buy (sometimes a lowball, sometimes over market) or a straight trade for one of theirs. Accept and the CRED or cards move on the spot. They are programs, not people, but the floor never feels empty.<br><br>
 <b style="color:#e7e2d4">LEADERBOARDS.</b> You compete against the whole floor on two ladders. TOTAL NET WORTH ranks your liquid CRED plus the value of every card you hold against the bots. RAREST PULLS ranks the best cards anyone has pulled out of the packs. The bots start far ahead, so climbing past them is the long game.<br><br>
+<b style="color:#e7e2d4">THE MARKET.</b> Card values are not fixed. Each rarity sector is a live index that drifts up and down over time, so the exact same card is worth more on a hot day and less on a cold one. Watch the CARD MARKET ticker and sell into a pump. ASCENDED is the one constant. Your net worth moves with the market.<br><br>
+<b style="color:#e7e2d4">CURSES.</b> When a collector throws you an insulting lowball, do not just decline. Tap CURSE THEM. It instantly craters their net worth and saddles them with terrible luck for two minutes: they bleed CRED and whiff every pack they touch. Revenge is a feature.<br><br>
 <b style="color:#e7e2d4">LIVING CARDS.</b> These are living organisms, so the art moves. Every card animates on its own seeded rhythm (orbiting, breathing, twinkling, a foil sheen that sweeps), gems shimmer, and ASCENDED cards flicker and tear. Tilt your screen and flex.<br><br>
 <b style="color:#e7e2d4">GIVING + SHARING.</b> Tap [ GIVE ] to hand a card to a friend: it leaves your collection and you get a code; they paste it into REDEEM and it is theirs. Tap [ SHARE ] to download the card as an image to post and flex.<br><br>
 <b style="color:#e7e2d4">SAVING + DEVICES.</b> There is no login. Your cards, rafters and CRED save right inside this browser on this device, so they survive refreshes and reboots but do not follow you to another phone or browser, and clearing your browsing data or using private mode will wipe them. To protect or move your collection, tap [ BACKUP MY COLLECTION ] and keep the code somewhere safe, then paste it into RESTORE on any device. Lose the code and the collection cannot be recovered.<br><br>
@@ -127,6 +129,7 @@
 <div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">THE COLLECTORS // other denizens of the floor</div>
 <div id="offerbox" style="display:none;border:1px solid #4a3a12;background:#15110a;color:#e7e2d4;padding:10px 12px;margin-bottom:8px;font-size:12px;line-height:1.5"></div>
 <div id="collfeed" style="font-size:12px;line-height:1.5;border:1px solid #2a2c28;background:#0d0f0d;padding:6px 12px;max-height:180px;overflow:auto"><span class="sub">the floor is waking up...</span></div>
+<div id="marketbar" style="font-size:12px;border:1px solid #2a2c28;background:#0d0f0d;padding:8px 12px;margin:14px 0 0"></div>
 <div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">LEADERBOARDS // YOU VS THE FLOOR</div>
 <div class="lbgrid">
 <div><div class="lbhd">TOTAL NET WORTH // liquid CRED + every card you hold</div><div id="nwboard" class="lbbox"></div></div>
@@ -195,6 +198,7 @@ setInterval(drawTable,1300);
  var POOL=[],ORGS=[],rounds=0,settled=0,season=1,rafters=[],cards=[],wallet=1000000;
  var RMS=4000,timer=null,KEY='signal_floor_v4',SEASON_ROUNDS=100,INCOME=500;
  var cFilter='ALL',cSort='value',cShown=9,rFilter='ALL',rSort='value',rShown=9;
+ var MARKET={common:1,rare:1,legend:1},CURSES={};
  function rnd(){return Math.random();}
  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
  function fmt(n){return Math.round(n||0).toLocaleString();}
@@ -214,7 +218,7 @@ setInterval(drawTable,1300);
  function finBadge(k){return FIN[k]?'<span class=finbadge style="background:'+FIN[k].c+'">'+FIN[k].n+'</span>':'';}
  function rollFinish(){var roll=[['',64],['shiny',18],['gold',9],['emerald',5],['sapphire',3],['diamond',1]],t=0,i;for(i=0;i<roll.length;i++)t+=roll[i][1];var x=rnd()*t,a=0;for(i=0;i<roll.length;i++){a+=roll[i][1];if(x<a)return roll[i][0];}return '';}
  function by(id){return ORGS.filter(function(o){return o.id===id;})[0];}
- function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,wallet:wallet,day:window.__FLDAY}));}catch(e){}}
+ function save(){try{localStorage.setItem(KEY,JSON.stringify({orgs:ORGS,rounds:rounds,settled:settled,season:season,rafters:rafters,cards:cards,wallet:wallet,market:MARKET,day:window.__FLDAY}));}catch(e){}}
  function load(){try{return JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){return null;}}
  Promise.all([
   fetch('api/bloodline.json').then(function(r){return r.json();}).catch(function(){return null;}),
@@ -228,6 +232,7 @@ setInterval(drawTable,1300);
   if(prev){
    // The collection persists across days; only the live game resets to the day's population.
    rafters=prev.rafters||[];cards=prev.cards||[];season=prev.season||1;if(prev.wallet!=null)wallet=san(prev.wallet,1000000);
+   if(prev.market)['common','rare','legend'].forEach(function(k){var v=prev.market[k];if(typeof v==='number'&&isFinite(v)&&v>0)MARKET[k]=Math.max(0.35,Math.min(3,v));});
    if(prev.day===window.__FLDAY){(prev.orgs||[]).forEach(function(o){byId[o.id]=o;});rounds=prev.rounds||0;settled=prev.settled||0;}
   }
   // Backfill older cards so they get a tradable code and gene-driven art.
@@ -503,13 +508,28 @@ setInterval(drawTable,1300);
  function drawPulls(){var el=document.getElementById('pullboard');if(!el)return;var list=boardPulls.slice(0,12);el.innerHTML=list.map(function(p,i){var v=p.val>=1e15?'&infin;':fmtAbbr(p.val);return '<div class="lbrow'+(p.you?' you':'')+'"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(p.who)+'</span><span class="lt" style="color:'+rarColor(p.rar)+'">'+(p.rar==='ascended'?'ASCENDED':p.rar.toUpperCase())+(p.fin&&FIN[p.fin]?(' '+FIN[p.fin].n):'')+'</span><span class="lv">'+v+'</span></div>';}).join('')||'<span class="sub">no pulls yet</span>';}
  function drawNW(){var el=document.getElementById('nwboard');if(!el)return;ensureNW();var rows=[],i;for(i=0;i<WHALES.length;i++)rows.push({name:WHALES[i],nw:botNW[WHALES[i]]||0});var me=myNetWorth();rows.push({name:'YOU',nw:me,you:true});rows.sort(function(a,b){return b.nw-a.nw;});var myRank=0;for(i=0;i<rows.length;i++)if(rows[i].you){myRank=i+1;break;}var html=rows.slice(0,12).map(function(r,i){return '<div class="lbrow'+(r.you?' you':'')+'"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(r.name)+'</span><span class="lv">'+fmtAbbr(r.nw)+' CRED</span></div>';}).join('');if(myRank>12)html+='<div class="lbrow you"><span class="lr">'+myRank+'</span><span class="ln">YOU</span><span class="lv">'+fmtAbbr(me)+' CRED</span></div>';el.innerHTML=html;}
  function drawBoards(){drawNW();drawPulls();}
- function nwDrift(){ensureNW();var n=2+(rnd()*3|0),i;for(i=0;i<n;i++){var b=WHALES[(rnd()*WHALES.length)|0];botNW[b]=Math.min(NWCAP,(botNW[b]||seedNW(b))*(1+rnd()*0.03));}drawNW();}
+ function nwDrift(){ensureNW();var n=2+(rnd()*3|0),i,b;
+  for(b in CURSES){if(cursed(b))botNW[b]=Math.max(1e6,(botNW[b]||seedNW(b))*(0.88+rnd()*0.07));} // the cursed bleed
+  for(i=0;i<n;i++){b=WHALES[(rnd()*WHALES.length)|0];if(cursed(b))continue;botNW[b]=Math.min(NWCAP,(botNW[b]||seedNW(b))*(1+rnd()*0.03));}drawNW();}
+ // ---- THE CARD MARKET ------------------------------------------------------
+ // Each rarity sector is an index that random-walks and reverts toward 1.0, so
+ // card values rise and fall over time like a real (small, weird) economy.
+ function tickMarket(){var k=['common','rare','legend'],i;for(i=0;i<k.length;i++){var m=MARKET[k[i]];m=m+(1-m)*0.03+(rnd()-0.5)*0.13;MARKET[k[i]]=Math.max(0.35,Math.min(3,m));}drawMarket();drawBoards();save();}
+ function drawMarket(){var el=document.getElementById('marketbar');if(!el)return;function cell(lbl,m){var pct=Math.round((m-1)*100),col=pct>=0?'#6ee07a':'#ff8c7d';return '<span style="margin-right:16px">'+lbl+' <b style="color:'+col+'">'+(pct>=0?'+':'')+pct+'%</b></span>';}el.innerHTML='<span style="color:#8d8a7c;letter-spacing:.1em;margin-right:8px">CARD MARKET</span>'+cell('COMMON',MARKET.common)+cell('RARE',MARKET.rare)+cell('LEGEND',MARKET.legend);}
+ // ---- CURSES ---------------------------------------------------------------
+ // Lowballed? Hex the collector. A curse instantly knocks down their net worth and
+ // gives them terrible luck (bleeding money, whiffing every pack) for two minutes.
+ function nowMs(){return Date.now();}
+ function cursed(name){return (CURSES[name]||0)>nowMs();}
+ function curseBot(name){ensureNW();CURSES[name]=nowMs()+120000;botNW[name]=Math.max(1e6,(botNW[name]||seedNW(name))*0.55);feedPush('<b style="color:#c77dff">You laid a CURSE on '+esc(name)+'. Terrible luck follows them for two minutes.</b>');drawNW();}
  var feedItems=[];
  function feedPush(html){feedItems.unshift('<div style="padding:5px 0;border-bottom:1px dotted #2a2c28">'+html+'</div>');feedItems=feedItems.slice(0,28);var el=document.getElementById('collfeed');if(el)el.innerHTML=feedItems.join('');}
  // The collectors are unhinged whales: they rip the expensive tiers, so big pulls
  // keep hitting the leaderboard and their net worths stay absurd.
  function botPackPick(){return rollW([['std',26],['prime',24],['vault',20],['eclipse',16],['cosmic',10],['singularity',4]]);}
- function botRip(){ensureNW();var tier=botPackPick(),pk=PACKS[tier],rar=rollW(pk.odds),fin=rollW(pk.fin),b=botName(),val=pullValue(rar,fin,pk.vmul||1);
+ function botRip(){ensureNW();var tier=botPackPick(),pk=PACKS[tier],b=botName();
+  if(cursed(b)){botNW[b]=Math.max(1e6,(botNW[b]||seedNW(b))*0.96);feedPush('<span style="color:#c77dff">'+esc(b)+' burned a '+pk.name+' pack and pulled NOTHING. The curse holds.</span>');drawNW();return;}
+  var rar=rollW(pk.odds),fin=rollW(pk.fin),val=pullValue(rar,fin,pk.vmul||1);
   botNW[b]=Math.min(NWCAP,(botNW[b]||seedNW(b))*(rar==='ascended'?1.05:(rar==='legend'?1.02:1.004)));
   if(rar==='ascended')feedPush('<b style="color:#d8f0ff">'+esc(b)+' RIPPED A '+pk.name+' PACK AND PULLED AN ASCENDED ONE-OF-ONE'+(fin?(' '+FIN[fin].n):'')+'. The floor is losing it.</b>');
   else if(rar==='legend')feedPush('<b style="color:#ffd56b">'+esc(b)+'</b> ripped a '+pk.name+' pack and hit a <b style="color:#ffd56b">LEGEND</b>'+(fin?(' '+FIN[fin].n):'')+'.');
@@ -523,7 +543,7 @@ setInterval(drawTable,1300);
   m.push(esc(b)+' listed a card on the floor.');
   if(c){m.push(esc(b)+' is eyeing your <b>'+esc(c.name)+'</b>.');m.push(esc(b)+' asked what you would take for <b>'+esc(c.name)+'</b>.');}
   feedPush('<span style="color:#a9a596">'+m[(rnd()*m.length)|0]+'</span>');}
- function feedTick(){if(rnd()<0.58)botRip();else botChatter();}
+ function feedTick(){var cu=[],k;for(k in CURSES)if(cursed(k))cu.push(k);if(cu.length&&rnd()<0.4){var b=cu[(rnd()*cu.length)|0],m=['stumbled and lost a card','got fleeced at the table','watched a sure bet collapse','keeps drawing dead','missed on everything'];feedPush('<span style="color:#c77dff">'+esc(b)+' '+m[(rnd()*m.length)|0]+'. (cursed)</span>');return;}if(rnd()<0.58)botRip();else botChatter();}
  var curOffer=null;
  function makeOffer(){
   if(curOffer||!cards.length)return;
@@ -534,7 +554,8 @@ setInterval(drawTable,1300);
    var tone=mult>1.25?' <span style="color:#6ee07a">(over market!)</span>':(mult<0.85?' <span style="color:#ff8c7d">(lowball)</span>':'');
    showOffer('<b>'+esc(b)+'</b> offers <b>'+fmt(amt)+' CRED</b> for your <b>'+esc(c.name)+'</b> (worth ~'+(ascended(c)?'INFINITE':fmtAbbr(v))+')'+tone+'.');}
  }
- function showOffer(html){var el=document.getElementById('offerbox');if(!el)return;el.style.display='block';el.innerHTML='<div style="margin-bottom:7px">'+html+'</div><div style="display:flex;gap:6px;flex-wrap:wrap"><button id="offyes" class="tbtn" type="button">[ ACCEPT ]</button><button id="offno" class="tbtn" type="button">[ DECLINE ]</button></div>';var y=document.getElementById('offyes'),n=document.getElementById('offno');if(y)y.onclick=acceptOffer;if(n)n.onclick=declineOffer;}
+ function showOffer(html){var el=document.getElementById('offerbox');if(!el)return;el.style.display='block';el.innerHTML='<div style="margin-bottom:7px">'+html+'</div><div style="display:flex;gap:6px;flex-wrap:wrap"><button id="offyes" class="tbtn" type="button">[ ACCEPT ]</button><button id="offno" class="tbtn" type="button">[ DECLINE ]</button><button id="offcurse" class="tbtn" type="button" style="border-color:#7a4ea8;color:#d8b6ff">[ CURSE THEM ]</button></div>';var y=document.getElementById('offyes'),n=document.getElementById('offno'),cu=document.getElementById('offcurse');if(y)y.onclick=acceptOffer;if(n)n.onclick=declineOffer;if(cu)cu.onclick=curseFromOffer;}
+ function curseFromOffer(){if(!curOffer)return;var b=curOffer.bot;curOffer=null;hideOffer();curseBot(b);}
  function hideOffer(){var el=document.getElementById('offerbox');if(el){el.style.display='none';el.innerHTML='';}}
  function acceptOffer(){if(!curOffer)return;var o=curOffer,idx=-1,i;for(i=0;i<cards.length;i++)if(cards[i].code===o.yourCode)idx=i;if(idx<0){declineOffer();return;}var mine=cards[idx];
   if(o.type==='buy'){cards.splice(idx,1);wallet+=o.amt;feedPush('<b style="color:#6ee07a">You sold '+esc(mine.name)+' to '+esc(o.bot)+' for '+fmt(o.amt)+' CRED.</b>');}
@@ -657,17 +678,21 @@ setInterval(drawTable,1300);
  function ageSeasons(c){return Math.max(0,season-(c.claimedSeason||season));}
  function peakOf(c){return c.resolved?Math.max(c.resolved.peak||0,c.resolved.finalBank||0,c.resolved.biggestWin||0):0;}
  function ascended(c){return !!(c.resolved&&(c.resolved.ascended||peakOf(c)>=1e13));}
+ // The card market drifts like a real one: each rarity sector is an index that
+ // random-walks (mean-reverting around 1.0), so the same card is worth more some
+ // days and less on others. ASCENDED is the one constant (its myth is fixed).
+ function marketMult(c){if(ascended(c))return 1;var t=tierOf(c);return t==='LEGEND'?MARKET.legend:(t==='RARE'?MARKET.rare:MARKET.common);}
  function cardValue(c){
   if(ascended(c))return 1e15; // the myth: a run that touched the ceiling. effectively infinite.
-  var age=1+ageSeasons(c)*0.08;
-  if(!c.resolved)return Math.round(Math.max(300,600*finMult(c.finish)*age)); // live rookies: a few hundred
+  var age=1+ageSeasons(c)*0.08,mm=marketMult(c);
+  if(!c.resolved)return Math.round(Math.max(120,600*finMult(c.finish)*age*mm)); // live rookies: a few hundred
   // Value tracks the HIGH-WATER MARK the organism reached, not where it ended, so a
   // monster run that later faded is still a monster card. Finish nudges it (a win is
-  // worth more than a podium than an also-ran), the gem finish scales it, and most
-  // organisms peak low so most cards stay cheap. Great runs go millions to trillions.
+  // worth more than a podium than an also-ran), the gem finish scales it, and the
+  // live market index pushes it up and down over time.
   var pk=peakOf(c);
   var share=c.resolved.legend?1.0:(c.resolved.podium?0.5:0.25);
-  return Math.round(Math.max(500,(500+pk*share)*finMult(c.finish)*age));
+  return Math.round(Math.max(200,(500+pk*share)*finMult(c.finish)*age*mm));
  }
  function rarOf(c){return c.resolved&&c.resolved.legend?'legend':(c.resolved&&c.resolved.podium?'rare':'');}
  function tierOf(c){return ascended(c)?'ASCENDED':(c.resolved&&c.resolved.legend?'LEGEND':(c.resolved&&c.resolved.podium?'RARE':'COMMON'));}
@@ -725,12 +750,13 @@ setInterval(drawTable,1300);
  var pbtns=document.getElementById('packbtns');if(pbtns)pbtns.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button[data-pk]');if(b)openPack(b.getAttribute('data-pk'));});
  var pm=document.getElementById('packmodal');if(pm)pm.addEventListener('click',function(e){if(e.target===pm)pm.className='';});
  window.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.getElementById('packmodal');if(m)m.className='';}});
- // Wake the floor: seed the boards + collectors feed, then keep them alive.
- seedBoard();drawBoards();
+ // Wake the floor: seed the boards + collectors feed + market, then keep alive.
+ seedBoard();drawBoards();drawMarket();
  feedTick();feedTick();setTimeout(feedTick,2600);
  setInterval(feedTick,7000);
  setInterval(offerTick,21000);
  setTimeout(offerTick,9000);
  setInterval(nwDrift,9000);
+ setInterval(tickMarket,8000);
 })();
 </script></body></html>

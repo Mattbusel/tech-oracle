@@ -174,10 +174,18 @@ manifold is defined immediately.
   card); accepting moves CRED/cards atomically and saves. Pack/bot cards verify as
   `[ EXOTIC ]` on champions.html (a real pull, not an engine-crowned floor champion).
   **Leaderboards** (`#nwboard` / `#pullboard`): TOTAL NET WORTH (your liquid CRED +
-  sum of every card's value) and RAREST PULLS, both ranking you against the whale
-  bots. Bot net worths are seeded huge (`seedNW`, up to ~1e14) and drift up over the
-  session; their big pack pulls feed the rarest-pulls board. Boards are derived/seeded
-  (not persisted), so no save-schema change.
+  sum of every card's value) and RAREST PULLS, both ranking you against ~60 whale
+  bots. Bot net worths are heavy-tailed (`seedNW`) with a few flagship whales
+  hard-anchored into the quintillions (`MEGA`); they drift up over the session and
+  their big pack pulls feed the rarest-pulls board.
+  **The card market** (`MARKET`, `#marketbar`): each rarity sector (common/rare/legend)
+  is a mean-reverting random-walk index applied in `cardValue` via `marketMult`, so a
+  card's worth (and your net worth) drifts up and down over time; ASCENDED is fixed.
+  Persisted in `save` (`market`).
+  **Curses** (`CURSES`): lowballed by a bot? The offer box has CURSE THEM. `curseBot`
+  instantly cuts their net worth ~45% and marks them cursed for 120s (`Date.now`
+  expiry), during which they bleed CRED in `nwDrift` and whiff every pack in `botRip`,
+  with misfortune lines in the feed. Ephemeral (session only).
 - `api/certified.json` - schema `the-signal/certified/1`: the engine's authoritative
   one-of-one champions (reigning `champion` flagged `current:true`, plus the hall of
   fame), each with genes, real career stats, and a content fingerprint `fp`
