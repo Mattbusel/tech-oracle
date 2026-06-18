@@ -996,7 +996,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var ss=document.getElementById('floorseason');if(ss)ss.textContent='SEASON '+season;
   var st=document.getElementById('floorstat');if(st)st.textContent='round '+rounds+'/'+SEASON_ROUNDS+' // '+fmt(settled)+' bets settled';
   var pr=document.getElementById('floorprog');if(pr)pr.style.width=Math.round(rounds/SEASON_ROUNDS*100)+'%';
-  var wv=document.getElementById('walletval');if(wv)wv.textContent=fmt(wallet);
+  var wv=document.getElementById('walletval');if(wv)wv.textContent=(wallet<1e7?fmt(wallet):fmtAbbr(wallet));
  }
  function board(){
   var el=document.getElementById('floorboard');if(!el)return;
@@ -1112,13 +1112,18 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  function ageSeasons(c){return Math.max(0,season-(c.claimedSeason||season));}
  function ascended(c){return !!(c.resolved&&(c.resolved.ascended||(c.resolved.finalBank||0)>=1e13));}
  function cardValue(c){
-  if(ascended(c))return 1e12; // the myth: a card whose organism touched the ceiling. effectively infinite.
-  var base=1200; // most cards are cheap; greatness has to be earned
-  var rank=c.resolved?(c.resolved.legend?7:(c.resolved.podium?2.5:1.2)):1;
-  var fin=(c.resolved&&c.resolved.finalBank)||0;
-  var wild=1+(fin>1000?Math.log(fin/1000)/Math.LN10*0.35:0); // each 10x net worth adds ~35%
-  var age=1+ageSeasons(c)*0.1;
-  return Math.max(400,Math.round(base*rank*wild*age*finMult(c.finish)));
+  if(ascended(c))return 1e15; // the myth: touched the ceiling. effectively infinite.
+  var age=1+ageSeasons(c)*0.08;
+  // Common cards (rookies + anyone who did not podium) stay a few hundred to a few
+  // thousand. Net worth is ignored here so the floor is genuinely cheap.
+  if(!c.resolved||(!c.resolved.legend&&!c.resolved.podium))return Math.round(Math.max(300,600*finMult(c.finish)*age));
+  // Podium and legend cards scale steeply with the bankroll that organism built: a
+  // legend is worth roughly its whole net worth, a podium a slice. So a season won
+  // with billions is a million/billion-CRED card, and only a freak run nears the
+  // ascended tier. The gap to infinity is a smooth climb, not a cliff from 47k.
+  var fin=Math.max(0,c.resolved.finalBank||0);
+  var share=c.resolved.legend?1.0:0.3;
+  return Math.round(Math.max(2000,(2000+fin*share)*finMult(c.finish)*age));
  }
  function rarOf(c){return c.resolved&&c.resolved.legend?'legend':(c.resolved&&c.resolved.podium?'rare':'');}
  function drawCards(){
