@@ -1281,12 +1281,12 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  // them would be meaningless. Higher tiers floor the rarity, scale the stat line
  // (vmul) and lean gem-heavy, and mint a distinct SERIES so the cards feel unique.
  var PACKS={
-  std:{cost:250000,name:'STANDARD',series:'STREET',house:'THE STALL',vmul:1,odds:[['common',74],['rare',20],['legend',5.5],['ascended',0.5]],fin:[['',60],['shiny',20],['gold',11],['emerald',6],['sapphire',2.5],['diamond',0.5]]},
-  prime:{cost:1000000,name:'PRIME',series:'PRIME',house:'THE VAULT',vmul:1.4,odds:[['common',45],['rare',35],['legend',17],['ascended',3]],fin:[['',38],['shiny',24],['gold',18],['emerald',12],['sapphire',6],['diamond',2]]},
-  vault:{cost:50000000,name:'VAULT',series:'RESERVE',house:'THE RESERVE',vmul:2.2,odds:[['rare',60],['legend',34],['ascended',6]],fin:[['',18],['shiny',26],['gold',24],['emerald',16],['sapphire',11],['diamond',5]]},
-  eclipse:{cost:1000000000,name:'ECLIPSE',series:'ECLIPSE',house:'ECLIPSE LINE',vmul:4,odds:[['legend',86],['ascended',14]],fin:[['',8],['shiny',16],['gold',22],['emerald',24],['sapphire',18],['diamond',12]]},
-  cosmic:{cost:50000000000,name:'COSMIC',series:'COSMIC',house:'COSMIC SERIES',vmul:10,odds:[['legend',64],['ascended',36]],fin:[['shiny',10],['gold',18],['emerald',24],['sapphire',28],['diamond',20]]},
-  singularity:{cost:1000000000000,name:'SINGULARITY',series:'SINGULARITY',house:'SINGULARITY',vmul:1,odds:[['ascended',100]],fin:[['gold',10],['emerald',16],['sapphire',32],['diamond',42]]}
+  std:{cost:250000,name:'STANDARD',series:'STREET',house:'THE STALL',vmul:1,odds:[['common',91],['rare',8],['legend',0.9],['ascended',0.1]],fin:[['',80],['shiny',13],['gold',4.5],['emerald',1.7],['sapphire',0.6],['diamond',0.2]]},
+  prime:{cost:1000000,name:'PRIME',series:'PRIME',house:'THE VAULT',vmul:1.4,odds:[['common',70],['rare',25],['legend',4.5],['ascended',0.5]],fin:[['',62],['shiny',22],['gold',10],['emerald',4],['sapphire',1.6],['diamond',0.4]]},
+  vault:{cost:50000000,name:'VAULT',series:'RESERVE',house:'THE RESERVE',vmul:2.2,odds:[['rare',80],['legend',18],['ascended',2]],fin:[['',42],['shiny',28],['gold',17],['emerald',8],['sapphire',3.5],['diamond',1]]},
+  eclipse:{cost:1000000000,name:'ECLIPSE',series:'ECLIPSE',house:'ECLIPSE LINE',vmul:4,odds:[['legend',94],['ascended',6]],fin:[['',16],['shiny',27],['gold',26],['emerald',16],['sapphire',9],['diamond',5]]},
+  cosmic:{cost:50000000000,name:'COSMIC',series:'COSMIC',house:'COSMIC SERIES',vmul:10,odds:[['legend',82],['ascended',18]],fin:[['shiny',24],['gold',32],['emerald',24],['sapphire',14],['diamond',6]]},
+  singularity:{cost:1000000000000,name:'SINGULARITY',series:'SINGULARITY',house:'SINGULARITY',vmul:1,odds:[['ascended',100]],fin:[['gold',34],['emerald',34],['sapphire',24],['diamond',8]]}
  };
  var PACK_ORDER=['std','prime','vault','eclipse','cosmic','singularity'];
  function rollW(list){var t=0,i;for(i=0;i<list.length;i++)t+=list[i][1];var x=rnd()*t,a=0;for(i=0;i<list.length;i++){a+=list[i][1];if(x<a)return list[i][0];}return list[0][0];}
