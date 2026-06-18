@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7370,
+    "defined": 7373,
     "phases": {
-      "BOTTOMING": 528,
-      "CHURNING": 1489,
-      "FALLING": 352,
-      "FLAT": 4142,
-      "PEAKING": 147,
-      "RISING": 712
+      "BOTTOMING": 532,
+      "CHURNING": 1479,
+      "FALLING": 356,
+      "FLAT": 4130,
+      "PEAKING": 148,
+      "RISING": 728
     },
-    "scanned": 43077,
+    "scanned": 43086,
     "turns": [
       {
         "active_days": 180,
@@ -69,24 +69,13 @@
       {
         "active_days": 180,
         "gamma": 1.0,
-        "geodesic": 2,
+        "geodesic": 24,
         "peak": 29,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 50,
+        "prob_rising": 55,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
-      },
-      {
-        "active_days": 180,
-        "gamma": 1.0,
-        "geodesic": -38,
-        "peak": 25,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 42,
-        "regime": "SPACELIKE",
-        "term": "AGENT"
       },
       {
         "active_days": 180,
@@ -109,6 +98,17 @@
         "prob_rising": 53,
         "regime": "SPACELIKE",
         "term": "ANTHROPIC"
+      },
+      {
+        "active_days": 180,
+        "gamma": 1.0,
+        "geodesic": 14,
+        "peak": 23,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 53,
+        "regime": "SPACELIKE",
+        "term": "APPLE"
       },
       {
         "active_days": 158,
@@ -168,11 +168,11 @@
       {
         "active_days": 178,
         "gamma": 1.01,
-        "geodesic": -68,
+        "geodesic": -91,
         "peak": 15,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 36,
+        "prob_rising": 32,
         "regime": "SPACELIKE",
         "term": "LOCAL"
       },
