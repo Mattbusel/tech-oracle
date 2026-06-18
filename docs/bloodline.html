@@ -477,15 +477,24 @@ setInterval(drawTable,1300);
  // No backend and no other humans, so the floor is populated by resident collector
  // bots: they rip packs, browse and chatter in a live feed, and make YOU real
  // offers (cash or trade) on your cards. Accepting moves CRED/cards atomically.
- var BOTS=['ZephyrTrades','NocturneByte','VoidHandler','NeonBaron','SableGhost','OrbitalKid','PrismFiend','HexCollector','LumenDealer','QuietRiot','AceOfVoid','GrailHunter','ByteWraith','EchoDealer','RiftRunner','GildedFox','NullSeeker','VantaWhale','OmenTrader','CinderKid','SaintVex','HollowApe','DeltaMyth','KiloCrown'];
+ var BOTS=['ZephyrTrades','NocturneByte','VoidHandler','NeonBaron','SableGhost','OrbitalKid','PrismFiend','HexCollector','LumenDealer','QuietRiot','AceOfVoid','GrailHunter','ByteWraith','EchoDealer','RiftRunner','GildedFox','NullSeeker','VantaWhale','OmenTrader','CinderKid','SaintVex','HollowApe','DeltaMyth','KiloCrown','MidasByte','TheArchivist','GhostOfTheVault','SolomonGrip','EmberQueen','ZeroCoolXX','VelvetRuin','OnyxBaron','StaticSaint','LunaVoid','CovenantX','TungstenJoe','ApexDegen','MoonlitFax','CardSharkAI','WraithMother','ObsidianOx','GammaWolf','HelixHazard','PaperHandsNo','DiamondMindy','TheCustodian','VaultJackal','NeuralNoir','QuantumFox','BlackSiteBet','CrownVulture','SilentLedger','TitaniumTia','RogueOracle','EchoChamberX','BezosOfBets','TheLiquidator','GoldfingerAI','MammonPrime','HouseAlwaysX'];
  function botName(){return BOTS[(rnd()*BOTS.length)|0];}
  // ---- LEADERBOARDS (you vs the floor) --------------------------------------
  // Two ladders: NET WORTH (your liquid CRED plus the value of every card you hold)
  // and RAREST PULLS. The whale bots seed both with absurd numbers so there is
  // always someone above you to chase. Their net worths drift up over the session.
- var WHALES=BOTS.slice(0,16),botNW={},nwSeeded=false,boardPulls=[];
- function seedNW(name){var r=mulberry(hashStr('nw|'+name)),tiers=[5e7,5e8,5e9,5e10,5e11,5e12,8e13];return Math.round(tiers[(r()*tiers.length)|0]*(0.4+r()*4.5));}
- function ensureNW(){if(nwSeeded)return;for(var i=0;i<WHALES.length;i++)botNW[WHALES[i]]=seedNW(WHALES[i]);nwSeeded=true;}
+ var WHALES=BOTS.slice(0),botNW={},nwSeeded=false,boardPulls=[],NWCAP=1e22;
+ // Heavy-tailed fortunes: most collectors sit in the millions-to-trillions, but the
+ // distribution has a fat tail so a handful are absurd (quadrillions, quintillions,
+ // even sextillions). With ~60 of them, there is always a monster above you.
+ function seedNW(name){var r=mulberry(hashStr('nw|'+name));
+  var tiers=[[1e8,16],[1e9,18],[1e10,16],[1e11,12],[1e12,10],[1e13,8],[1e14,6],[1e15,4],[5e15,3],[1e17,2],[1e18,1.2],[1e20,0.5],[1e21,0.2]];
+  var t=0,i;for(i=0;i<tiers.length;i++)t+=tiers[i][1];var x=r()*t,a=0,base=1e9;for(i=0;i<tiers.length;i++){a+=tiers[i][1];if(x<a){base=tiers[i][0];break;}}
+  return Math.round(base*(0.4+r()*4.6));}
+ // A few flagship whales are hard-anchored into the quintillions so the very top of
+ // the board is always cartoonishly rich, no matter how the seed falls.
+ var MEGA={'HouseAlwaysX':9.2e20,'MammonPrime':4.4e20,'BezosOfBets':8.0e19,'TheLiquidator':2.6e19,'GoldfingerAI':6.1e18,'TheCustodian':1.4e18};
+ function ensureNW(){if(nwSeeded)return;for(var i=0;i<WHALES.length;i++)botNW[WHALES[i]]=MEGA[WHALES[i]]||seedNW(WHALES[i]);nwSeeded=true;}
  function myNetWorth(){var s=wallet,i;for(i=0;i<cards.length;i++)s+=Math.min(cardValue(cards[i]),1e15);return s;}
  function pullValue(rar,fin,vm){if(rar==='ascended')return 1e15;var m=finMult(fin),v;if(rar==='legend')v=(1e9+rnd()*6e10)*(vm||1);else if(rar==='rare')v=(1e6+rnd()*1.2e7)*(vm||1);else v=(1500+rnd()*12000)*(vm||1);return Math.round(v*m);}
  function rarColor(r){return r==='ascended'?'#d8f0ff':(r==='legend'?'#ffd56b':(r==='rare'?'#6fb8ff':'#9ac46a'));}
@@ -494,14 +503,14 @@ setInterval(drawTable,1300);
  function drawPulls(){var el=document.getElementById('pullboard');if(!el)return;var list=boardPulls.slice(0,12);el.innerHTML=list.map(function(p,i){var v=p.val>=1e15?'&infin;':fmtAbbr(p.val);return '<div class="lbrow'+(p.you?' you':'')+'"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(p.who)+'</span><span class="lt" style="color:'+rarColor(p.rar)+'">'+(p.rar==='ascended'?'ASCENDED':p.rar.toUpperCase())+(p.fin&&FIN[p.fin]?(' '+FIN[p.fin].n):'')+'</span><span class="lv">'+v+'</span></div>';}).join('')||'<span class="sub">no pulls yet</span>';}
  function drawNW(){var el=document.getElementById('nwboard');if(!el)return;ensureNW();var rows=[],i;for(i=0;i<WHALES.length;i++)rows.push({name:WHALES[i],nw:botNW[WHALES[i]]||0});var me=myNetWorth();rows.push({name:'YOU',nw:me,you:true});rows.sort(function(a,b){return b.nw-a.nw;});var myRank=0;for(i=0;i<rows.length;i++)if(rows[i].you){myRank=i+1;break;}var html=rows.slice(0,12).map(function(r,i){return '<div class="lbrow'+(r.you?' you':'')+'"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(r.name)+'</span><span class="lv">'+fmtAbbr(r.nw)+' CRED</span></div>';}).join('');if(myRank>12)html+='<div class="lbrow you"><span class="lr">'+myRank+'</span><span class="ln">YOU</span><span class="lv">'+fmtAbbr(me)+' CRED</span></div>';el.innerHTML=html;}
  function drawBoards(){drawNW();drawPulls();}
- function nwDrift(){ensureNW();var n=2+(rnd()*3|0),i;for(i=0;i<n;i++){var b=WHALES[(rnd()*WHALES.length)|0];botNW[b]=Math.min(1e15,(botNW[b]||seedNW(b))*(1+rnd()*0.03));}drawNW();}
+ function nwDrift(){ensureNW();var n=2+(rnd()*3|0),i;for(i=0;i<n;i++){var b=WHALES[(rnd()*WHALES.length)|0];botNW[b]=Math.min(NWCAP,(botNW[b]||seedNW(b))*(1+rnd()*0.03));}drawNW();}
  var feedItems=[];
  function feedPush(html){feedItems.unshift('<div style="padding:5px 0;border-bottom:1px dotted #2a2c28">'+html+'</div>');feedItems=feedItems.slice(0,28);var el=document.getElementById('collfeed');if(el)el.innerHTML=feedItems.join('');}
  // The collectors are unhinged whales: they rip the expensive tiers, so big pulls
  // keep hitting the leaderboard and their net worths stay absurd.
  function botPackPick(){return rollW([['std',26],['prime',24],['vault',20],['eclipse',16],['cosmic',10],['singularity',4]]);}
  function botRip(){ensureNW();var tier=botPackPick(),pk=PACKS[tier],rar=rollW(pk.odds),fin=rollW(pk.fin),b=botName(),val=pullValue(rar,fin,pk.vmul||1);
-  botNW[b]=Math.min(1e15,(botNW[b]||seedNW(b))*(rar==='ascended'?1.05:(rar==='legend'?1.02:1.004)));
+  botNW[b]=Math.min(NWCAP,(botNW[b]||seedNW(b))*(rar==='ascended'?1.05:(rar==='legend'?1.02:1.004)));
   if(rar==='ascended')feedPush('<b style="color:#d8f0ff">'+esc(b)+' RIPPED A '+pk.name+' PACK AND PULLED AN ASCENDED ONE-OF-ONE'+(fin?(' '+FIN[fin].n):'')+'. The floor is losing it.</b>');
   else if(rar==='legend')feedPush('<b style="color:#ffd56b">'+esc(b)+'</b> ripped a '+pk.name+' pack and hit a <b style="color:#ffd56b">LEGEND</b>'+(fin?(' '+FIN[fin].n):'')+'.');
   else if(rar==='rare')feedPush('<b>'+esc(b)+'</b> ripped a '+pk.name+' pack: a RARE.');

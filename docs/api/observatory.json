@@ -107,7 +107,7 @@
     },
     {
       "dir": -1,
-      "p": 0.312,
+      "p": 0.309,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LLM"
@@ -128,8 +128,8 @@
     },
     {
       "dir": -1,
-      "p": 0.378,
-      "phase": "BOTTOMING",
+      "p": 0.358,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
     },
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.588,
+      "p": 0.562,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -331,7 +331,7 @@
     },
     {
       "dir": 1,
-      "p": 0.6,
+      "p": 0.621,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -380,7 +380,7 @@
     },
     {
       "dir": 1,
-      "p": 0.6,
+      "p": 0.636,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SOCIAL"
@@ -394,7 +394,7 @@
     },
     {
       "dir": 1,
-      "p": 0.688,
+      "p": 0.695,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "MEDIA"
@@ -415,7 +415,7 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.305,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -435,6 +435,12 @@
       "term": "ANALYSIS"
     },
     {
+      "days": 179,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "SWITCH"
+    },
+    {
       "days": 171,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -450,19 +456,13 @@
       "days": 179,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "HOME"
-    },
-    {
-      "days": 179,
-      "origin": "HN",
-      "reach": "THE NEWS",
       "term": "LAUNCH"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "GREED",
-    "value": 71
+    "value": 70
   },
   "manifold": [
     {
@@ -656,8 +656,18 @@
     },
     {
       "count": 4,
+      "term": "SWITCH",
+      "vel": 460
+    },
+    {
+      "count": 4,
       "term": "ANALYSIS",
       "vel": 460
+    },
+    {
+      "count": 3,
+      "term": "MULTI",
+      "vel": 425
     },
     {
       "count": 3,
@@ -667,16 +677,6 @@
     {
       "count": 3,
       "term": "COMING",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "PRODUCT",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "DESIGN",
       "vel": 425
     }
   ],
@@ -744,45 +744,45 @@
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "UP",
-      "delta": 2,
+      "arrow": "FLAT",
+      "delta": 0,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -2,
-      "index": 82,
+      "delta": -3,
+      "index": 85,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 18,
+      "index": 20,
       "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 14,
+      "index": 15,
       "name": "CHIPS"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 9,
+      "index": 10,
       "name": "CRYPTO"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 9,
+      "index": 10,
       "name": "CLOUD"
     },
     {
       "arrow": "DOWN",
       "delta": -2,
-      "index": 9,
+      "index": 10,
       "name": "ROBOTS"
     },
     {
