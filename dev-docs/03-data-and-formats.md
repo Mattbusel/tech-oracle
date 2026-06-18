@@ -143,7 +143,12 @@ manifold is defined immediately.
   HOW IT WORKS panel explains it inline. YOUR CARDS and THE RAFTERS both paginate
   (SHOW MORE) and filter/sort by rarity and value; rafter (champion) entries show
   an estimated CRED value "if carded" so people can see what such a card is worth. The collection, rafters, and wallet persist in
-  `localStorage`; the live game reseeds from each day's population.
+  `localStorage`; the live game reseeds from each day's population. Because there
+  is no backend, saves are per-browser/per-device: **BACKUP MY COLLECTION**
+  serializes the whole save (cards + rafters + wallet + season, tagged
+  `FLOORSAVE1`) to one base64 code, and **RESTORE** reloads it on any device. The
+  panel warns that clearing site data / private mode wipes the save and that a
+  lost backup code is unrecoverable.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
 - `api/dreams.json` - schema `the-signal/dreams/2`: today's seed `dreams` plus

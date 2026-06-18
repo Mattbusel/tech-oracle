@@ -62,6 +62,7 @@
 <b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. The cast is freshly named every season, and each card's art is generated from that organism's genes, so no two look alike. There is also a random FINISH on claim (SHINY, GOLD, EMERALD, SAPPHIRE, DIAMOND): two people can card the same organism and get different gems, and the market decides what each is worth. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE.<br><br>
 <b style="color:#e7e2d4">CRED.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] on a card and the house buys it on the spot for CRED (the card is destroyed). A card is worth more the higher it ranked, the wilder its stats, the rarer its finish, and the longer you have held it, so holding pays.<br><br>
 <b style="color:#e7e2d4">GIVING + SHARING.</b> Tap [ GIVE ] to hand a card to a friend: it leaves your collection and you get a code; they paste it into REDEEM and it is theirs. Tap [ SHARE ] to download the card as an image to post and flex.<br><br>
+<b style="color:#e7e2d4">SAVING + DEVICES.</b> There is no login. Your cards, rafters and CRED save right inside this browser on this device, so they survive refreshes and reboots but do not follow you to another phone or browser, and clearing your browsing data or using private mode will wipe them. To protect or move your collection, tap [ BACKUP MY COLLECTION ] and keep the code somewhere safe, then paste it into RESTORE on any device. Lose the code and the collection cannot be recovered.<br><br>
 <b style="color:#e7e2d4">ASCENDED.</b> Most cards are cheap; greatness has to be earned. If an organism's run is so absurd it touches the ceiling, its card ASCENDS to infinite value. It is brutally rare, the lambo of the collection. A sapphire or gold ascended card may never happen again.
 </div></details>
 <div id="floorresolve" style="display:none;margin:10px 0 0;border:1px solid #caa64a;background:#15110a;color:#ffd56b;padding:10px 12px;font-weight:700;font-size:13px"></div>
@@ -78,6 +79,12 @@
 <input id="redeemin" placeholder="got a card code from a friend? paste it here..." spellcheck="false" autocomplete="off" style="flex:1;min-width:180px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font-family:inherit;font-size:11px;padding:8px 10px">
 <button id="redeembtn" type="button" class="listen">[ REDEEM ]</button>
 </div>
+<div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap;align-items:center">
+<button id="backupbtn" type="button" class="listen">[ BACKUP MY COLLECTION ]</button>
+<input id="restorein" placeholder="paste a backup code to restore everything..." spellcheck="false" autocomplete="off" style="flex:1;min-width:180px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font-family:inherit;font-size:11px;padding:8px 10px">
+<button id="restorebtn" type="button" class="listen">[ RESTORE ]</button>
+</div>
+<div style="font-size:11px;color:#9a9788;line-height:1.6;margin-bottom:8px;border-left:2px solid #4a3a12;padding-left:10px">SAVES ARE PER-BROWSER. Your cards, rafters and CRED live only in this browser on this device, with no login and no server, so they survive refreshes and reboots but will not carry over if you clear your browsing data, use private mode, or switch to another phone or browser. To move or protect your collection, tap [ BACKUP MY COLLECTION ] and SAVE THAT CODE somewhere safe (a note, or email it to yourself), then paste it into RESTORE on any device to bring everything back. If you lose the backup code, the collection cannot be recovered.</div>
 <div id="tradecode" style="display:none;border:1px solid #4a3a12;background:#15110a;color:#e7e2d4;padding:10px 12px;margin-bottom:8px;font-size:11px;line-height:1.5"></div>
 <div id="cardbar" class="fbar"></div>
 <div id="floorcards"><span class="sub">No cards yet. Tap [+] beside a live organism to claim a rookie card (one a season).</span></div>
@@ -343,6 +350,27 @@ setInterval(drawTable,1300);
   var ri=document.getElementById('redeemin');if(ri)ri.value='';
   msg('Redeemed <b>'+esc(card.name)+'</b> into your collection.');
  }
+ // Backup / restore the WHOLE collection as one portable code. There is no
+ // backend, so this is the only way to carry a save to another device. The code
+ // is the save; if it is lost, the collection is gone.
+ function backupAll(){
+  var data={sig:'FLOORSAVE1',cards:cards,rafters:rafters,wallet:wallet,season:season};
+  var blob='';try{blob=btoa(unescape(encodeURIComponent(JSON.stringify(data))));}catch(e){blob='';}
+  if(!blob){var el=document.getElementById('tradecode');if(el){el.style.display='block';el.innerHTML='Could not build a backup code in this browser.';}return;}
+  showCode('BACKUP CODE for <b>'+cards.length+'</b> card'+(cards.length===1?'':'s')+', the rafters and <b>'+fmtAbbr(wallet)+' CRED</b>.<br>SAVE THIS SOMEWHERE SAFE (a note, or email it to yourself). Paste it into RESTORE on any device to bring everything back. If you lose it, the collection cannot be recovered.',blob,'[ COPY BACKUP CODE ]');
+ }
+ function restoreAll(str){
+  var el=document.getElementById('tradecode');function msg(h){if(el){el.style.display='block';el.innerHTML=h;}}
+  str=(str||'').trim();if(!str)return;
+  var obj;try{obj=JSON.parse(decodeURIComponent(escape(atob(str))));}catch(e){obj=null;}
+  if(!obj||obj.sig!=='FLOORSAVE1'||!obj.cards){msg('That is not a valid backup code. Use a code from [ BACKUP MY COLLECTION ], not a single card code.');return;}
+  if(!window.confirm('Restore this backup? It REPLACES the cards, rafters and CRED currently in this browser.'))return;
+  cards=obj.cards||[];rafters=obj.rafters||[];if(obj.wallet!=null)wallet=san(obj.wallet,1000000);if(obj.season!=null)season=obj.season;
+  cards.forEach(function(c){if(!c.code)c.code=newCode(c.id||0);if(c.risk==null)c.risk=0.4;if(c.finish==null)c.finish='';});
+  cShown=9;rShown=9;save();renderCollection();renderAll();
+  var ri=document.getElementById('restorein');if(ri)ri.value='';
+  msg('Restored <b>'+cards.length+'</b> card'+(cards.length===1?'':'s')+', the rafters and <b>'+fmtAbbr(wallet)+' CRED</b> into this browser.');
+ }
  // Procedural emblem: a unique seeded crest per card, colored by its genes.
  function hashStr(s){var h=2166136261>>>0;s=s||'';for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619);}return h>>>0;}
  function mulberry(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
@@ -440,6 +468,10 @@ setInterval(drawTable,1300);
  var rdb=document.getElementById('redeembtn'),rdi=document.getElementById('redeemin');
  if(rdb)rdb.addEventListener('click',function(){redeem(rdi?rdi.value:'');});
  if(rdi)rdi.addEventListener('keydown',function(e){if(e.key==='Enter')redeem(rdi.value);});
+ var bub=document.getElementById('backupbtn');if(bub)bub.addEventListener('click',function(){backupAll();});
+ var rsb=document.getElementById('restorebtn'),rsi=document.getElementById('restorein');
+ if(rsb)rsb.addEventListener('click',function(){restoreAll(rsi?rsi.value:'');});
+ if(rsi)rsi.addEventListener('keydown',function(e){if(e.key==='Enter')restoreAll(rsi.value);});
  var cbar=document.getElementById('cardbar');if(cbar)cbar.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(!b)return;if(b.getAttribute('data-sort'))cSort=(cSort==='value'?'recent':'value');else if(b.getAttribute('data-f')){cFilter=b.getAttribute('data-f');cShown=9;}drawCards();});
  var rbar=document.getElementById('rafterbar');if(rbar)rbar.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(!b)return;if(b.getAttribute('data-sort'))rSort=(rSort==='value'?'recent':'value');else if(b.getAttribute('data-f')){rFilter=b.getAttribute('data-f');rShown=9;}drawRafters();});
  var cmore=document.getElementById('cardmore');if(cmore)cmore.addEventListener('click',function(){cShown+=9;drawCards();});

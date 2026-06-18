@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.588,
+      "p": 0.562,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -338,7 +338,7 @@
     },
     {
       "dir": -1,
-      "p": 0.312,
+      "p": 0.325,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
@@ -423,22 +423,16 @@
   ],
   "chasm": [
     {
+      "days": 179,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "SWITCH"
+    },
+    {
       "days": 169,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "PS5"
-    },
-    {
-      "days": 179,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "FEATURES"
-    },
-    {
-      "days": 179,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "HOME"
     },
     {
       "days": 179,
@@ -450,13 +444,19 @@
       "days": 179,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "SWITCH"
+      "term": "ULTRA"
     },
     {
       "days": 179,
-      "origin": "HN",
+      "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "ULTRA"
+      "term": "DESIGN"
+    },
+    {
+      "days": 179,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "FEATURES"
     }
   ],
   "corpus_days": 180,
@@ -650,19 +650,14 @@
   ],
   "movers": [
     {
+      "count": 7,
+      "term": "SWITCH",
+      "vel": 880
+    },
+    {
       "count": 5,
       "term": "PS5",
       "vel": 775
-    },
-    {
-      "count": 5,
-      "term": "SWITCH",
-      "vel": 600
-    },
-    {
-      "count": 4,
-      "term": "HOME",
-      "vel": 600
     },
     {
       "count": 4,
@@ -675,9 +670,14 @@
       "vel": 600
     },
     {
-      "count": 4,
-      "term": "FEATURES",
-      "vel": 600
+      "count": 5,
+      "term": "ULTRA",
+      "vel": 483
+    },
+    {
+      "count": 3,
+      "term": "LAUNCH",
+      "vel": 425
     }
   ],
   "pulse": {
@@ -751,8 +751,8 @@
     },
     {
       "arrow": "DOWN",
-      "delta": -1,
-      "index": 90,
+      "delta": -2,
+      "index": 86,
       "name": "PLATFORM"
     },
     {
@@ -894,5 +894,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 42963
+  "tracked_terms": 42968
 }
