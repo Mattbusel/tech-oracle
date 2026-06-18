@@ -2,14 +2,14 @@
   "horizon": {
     "defined": 7362,
     "phases": {
-      "BOTTOMING": 524,
-      "CHURNING": 1489,
-      "FALLING": 359,
-      "FLAT": 4158,
-      "PEAKING": 137,
-      "RISING": 695
+      "BOTTOMING": 522,
+      "CHURNING": 1499,
+      "FALLING": 360,
+      "FLAT": 4157,
+      "PEAKING": 138,
+      "RISING": 686
     },
-    "scanned": 43019,
+    "scanned": 43022,
     "turns": [
       {
         "active_days": 180,
@@ -69,11 +69,11 @@
       {
         "active_days": 180,
         "gamma": 1.0,
-        "geodesic": 24,
+        "geodesic": 2,
         "peak": 29,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 55,
+        "prob_rising": 50,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
       },
@@ -87,17 +87,6 @@
         "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "AGENT"
-      },
-      {
-        "active_days": 180,
-        "gamma": 1.01,
-        "geodesic": -61,
-        "peak": 25,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 38,
-        "regime": "SPACELIKE",
-        "term": "AGENTS"
       },
       {
         "active_days": 164,
@@ -146,11 +135,11 @@
       {
         "active_days": 179,
         "gamma": 1.0,
-        "geodesic": -25,
+        "geodesic": 14,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 45,
+        "prob_rising": 53,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
       },
@@ -179,13 +168,24 @@
       {
         "active_days": 178,
         "gamma": 1.01,
-        "geodesic": -81,
+        "geodesic": -68,
         "peak": 15,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 34,
+        "prob_rising": 36,
         "regime": "SPACELIKE",
         "term": "LOCAL"
+      },
+      {
+        "active_days": 109,
+        "gamma": 1.0,
+        "geodesic": -43,
+        "peak": 19,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "OPENCLAW"
       }
     ]
   },

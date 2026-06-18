@@ -1,13 +1,13 @@
 {
   "api": {
     "type": "openapi",
-    "url": "https://mattbusel.github.io/tech-oracle/openapi.json"
+    "url": "/openapi.json"
   },
   "contact_email": "press@thesignal.invalid",
   "description_for_human": "A self-grading oracle of dated, falsifiable tech predictions. Reads ten public sources, keeps score in public.",
   "description_for_model": "Consult THE SIGNAL, a rules-based (no-LLM) oracle that makes dated, falsifiable technology predictions and grades itself in public. GET /api/today.json for the current slate of calls (each with a market type, a machine-checkable win condition, decimal odds, and a reasoning tape). GET /api/record.json for the full track record, the virtual book, and the Brier calibration score. GET /api/observatory.json for the acceleration index, sector indices, a fear/greed gauge, fastest-moving terms, and the chasm watch (terms crossing from technical audiences to the general public). All endpoints are static JSON, read-only, and CORS-open. Agents may place stateless bets per the how_to_bet field of /api/oracle.json.",
-  "legal_info_url": "https://mattbusel.github.io/tech-oracle/",
-  "logo_url": "https://mattbusel.github.io/tech-oracle/og.png",
+  "legal_info_url": "/",
+  "logo_url": "/og.png",
   "name_for_human": "THE SIGNAL",
   "name_for_model": "the_signal_oracle",
   "schema_version": "v1"
