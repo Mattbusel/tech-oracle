@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 17, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **8-2**
+**June 18, 2026** // Index **73 (SURGING)** // hottest **WORLD** // record **9-2**
 
-> mattpocock/skills is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
+> Devs are starring mattpocock/skills hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

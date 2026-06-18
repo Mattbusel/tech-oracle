@@ -124,10 +124,12 @@ manifold is defined immediately.
   organism; when its season resolves, if it finished #1 the card becomes a LEGEND
   (1-of-1) attached to that historic run. Banks are uncapped within a season (runs
   can go astronomical, abbreviated K/M/B/T in the UI) and only reset at the bell.
-  **King-of-the-hill comeback math**: the more dominant an organism, the larger the
-  fraction it is forced to stake (dominance is exposure), and underdog wins pay a
-  multiplier that grows the further behind they sit (giant-killer), so one bad round
-  at the top can flip the lead and fire an UPSET banner.
+  **Comeback + anti-runaway math**: bets are even money (no minting), underdogs
+  lever up to climb, and rising friction (above ~100k) slows big banks hard so
+  growth never overflows and the truly ridiculous is rare and earned. Numeric
+  guards clamp banks (and sanitize any glitched saved state). A lead change fires an
+  UPSET banner. If a run touches the ceiling the card is **ASCENDED** (infinite
+  value, the rarest flex).
   **Currency + cards (kept deliberately simple).** Everyone starts with 1,000,000
   CRED and earns more just by watching. **SELL** has the house buy a card instantly
   for CRED (the card is destroyed) at a value scaled by its rank, stats, finish, and
@@ -136,8 +138,9 @@ manifold is defined immediately.
   card to a friend by code (it leaves your collection; they REDEEM the code to
   receive it), no accounts, no server. One rookie claim per season; organisms are
   freshly named every season; each claim rolls a random finish (SHINY / GOLD /
-  EMERALD / SAPPHIRE / DIAMOND) that tints the art and scales value. A HOW IT WORKS
-  panel explains it inline. The collection, rafters, and wallet persist in
+  EMERALD / SAPPHIRE / DIAMOND) that tints the art and scales value. **SHARE**
+  renders a card to a downloadable PNG (emblem + stat line) to post as a flex. A
+  HOW IT WORKS panel explains it inline. The collection, rafters, and wallet persist in
   `localStorage`; the live game reseeds from each day's population.
 - `bloodline/cards/<kind>-<id>.png` - collectible rookie / pro / hall-of-fame
   trading cards per top organism.
