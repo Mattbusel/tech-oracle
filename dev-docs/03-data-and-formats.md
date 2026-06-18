@@ -164,8 +164,11 @@ manifold is defined immediately.
   VAULT 50M, ECLIPSE 1B, COSMIC 50B, SINGULARITY 1T. Priced high on purpose since a
   single legend can be worth tens of billions. Each tier floors the rarity, scales
   the stat line (`vmul`), leans gem-heavy, and mints its own `series`. `mintCard()`
-  rolls rarity+finish, synthesizes a `resolved` stat line so value scales
-  (rare->millions, legend->billions x vmul, ascended->infinite), tags `origin:'pack'`;
+  rolls rarity+finish; value follows RARITY only (`rarPeak`): common ~hundreds,
+  rare ~tens of K to low millions, legend ~hundreds of millions to billions
+  (vmul bumps LEGENDS only, so a common is junk even from a dear pack), ascended
+  infinite. Tags `origin:'pack'`. OPEN x1/x5/x10/x25 selector (`packQty`) rips a
+  batch; bulk rips show a haul summary (`showBulk`) instead of one reveal each;
   a reveal modal (`#packmodal`) runs the rip ritual. Odds are deliberately miserable
   and scale by tier: ascended is ~1 in 50000 (STANDARD), 1 in 10000 (VAULT, the
   anchor), 1 in 250 (COSMIC), 1 in 50 (SINGULARITY). VAULT+ floor at rare/legend so
