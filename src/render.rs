@@ -995,6 +995,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 <b style="color:#e7e2d4">THE FLOOR.</b> The organisms bet against the manifold's true odds every few seconds, no limit on how high a run can go. But dominance is dangerous: the bigger a lead gets, the more the leader is forced to shove, and underdog wins pay more the further behind they are. So one bad round at the top can hand the throne to a longshot, an UPSET. A season is 100 rounds; at the bell it resolves, the champion is enshrined in the rafters, and every bank resets.<br><br>
 <b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. The cast is freshly named every season, and each card's art is generated from that organism's genes, so no two look alike. There is also a random FINISH on claim (SHINY, GOLD, EMERALD, SAPPHIRE, DIAMOND): two people can card the same organism and get different gems, and the market decides what each is worth. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE.<br><br>
 <b style="color:#e7e2d4">CRED.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] on a card and the house buys it on the spot for CRED (the card is destroyed). A card is worth more the higher it ranked, the wilder its stats, the rarer its finish, and the longer you have held it, so holding pays.<br><br>
+<b style="color:#e7e2d4">COLLECTION CAP.</b> You can hold up to 150 cards. Nothing is ever auto-deleted: when you are full, a warning pops up and you must sell to make room, with one-tap buttons to dump the cheapest card or all your commons. Your gems stay safe.<br><br>
 <b style="color:#e7e2d4">PACKS.</b> Rip a pack to pull EXOTIC cards that exist nowhere on the floor. There are six tiers, from STANDARD (250,000) up to SINGULARITY (1 trillion). The odds are deliberately miserable, like real packs: almost every rip is junk, and that is the point, it makes a real hit feel earned. The dear tiers floor the rarity (VAULT is rare or better, ECLIPSE legend or better) and give the only real shot at an ASCENDED, but even a SINGULARITY usually pays out a mere legend. Each tier mints its own distinct SERIES. Use the OPEN x1 / x5 / x10 / x25 selector to rip a batch at once; a bulk rip shows a summary of the haul instead of one reveal per card. Whatever you pull is yours.<br><br>
 <b style="color:#e7e2d4">THE COLLECTORS.</b> The floor is full of resident collectors, and they are unhinged whales with absurd net worths. They rip the expensive packs, browse and chatter in the live feed, and make you real offers on your cards: a cash buy (sometimes a lowball, sometimes over market) or a straight trade for one of theirs. Accept and the CRED or cards move on the spot. They are programs, not people, but the floor never feels empty.<br><br>
 <b style="color:#e7e2d4">LEADERBOARDS.</b> You compete against the whole floor on two ladders. TOTAL NET WORTH ranks your liquid CRED plus the value of every card you hold against the bots. RAREST PULLS ranks the best cards anyone has pulled out of the packs. The bots start far ahead, so climbing past them is the long game.<br><br>
@@ -1059,7 +1060,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  var POOL=[],ORGS=[],rounds=0,settled=0,season=1,rafters=[],cards=[],wallet=1000000;
  var RMS=4000,timer=null,KEY='signal_floor_v4',SEASON_ROUNDS=100,INCOME=500;
  var cFilter='ALL',cSort='value',cShown=9,rFilter='ALL',rSort='value',rShown=9;
- var MARKET={common:1,rare:1,legend:1},CURSES={},packQty=1;
+ var MARKET={common:1,rare:1,legend:1},CURSES={},packQty=1,MAXCARDS=150;
  function rnd(){return Math.random();}
  function esc(t){var d=document.createElement('div');d.textContent=t==null?'':t;return d.innerHTML;}
  function fmt(n){return Math.round(n||0).toLocaleString();}
@@ -1206,8 +1207,9 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
    if(rb){rb.style.display='block';rb.innerHTML='ONE ROOKIE A SEASON. You have already claimed your card for season '+season+'. Wait for the bell.';}
    return;
   }
+  if(cards.length>=MAXCARDS){capWarn();return;} // full: sell to make room
   cards.unshift({code:newCode(id),id:id,name:o.name,house:o.house,fade:o.fade,risk:o.risk,sel:o.sel,press:o.press,finish:rollFinish(),claimedSeason:season,claimedRound:rounds});
-  trimCards(150);save();renderCollection();
+  save();renderCollection();
  }
  function showCode(label,blob,btn){
   var el=document.getElementById('tradecode');if(!el)return;el.style.display='block';
@@ -1260,7 +1262,8 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var card=obj?(obj.card||(obj.code?obj:null)):null;
   if(!card||!card.code||!card.name){msg('That is not a valid card code.');return;}
   if(cardByCode(card.code)){msg('You already hold <b>'+esc(card.name)+'</b>.');return;}
-  cards.unshift(card);trimCards(150);save();renderCollection();
+  if(cards.length>=MAXCARDS){msg('Your collection is full ('+MAXCARDS+'). Sell some cards to make room, then redeem again.');return;}
+  cards.unshift(card);save();renderCollection();
   var ri=document.getElementById('redeemin');if(ri)ri.value='';
   msg('Redeemed <b>'+esc(card.name)+'</b> into your collection.');
  }
@@ -1322,22 +1325,40 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  }
  var packBusy=false;
  function closePack(){var m=document.getElementById('packmodal');if(m)m.className='';packBusy=false;}
- // Cap the collection by VALUE, never by age: keep the most valuable cards and only
- // ever shed the cheapest commons. A treasured ASCENDED or LEGEND is never evicted
- // by a flood of fresh pulls (the old blind newest-60 cap quietly deleted them).
- function trimCards(max){max=max||150;if(cards.length<=max)return;var keep={},ranked=cards.slice().sort(function(a,b){return (ascended(b)?1e15:cardValue(b))-(ascended(a)?1e15:cardValue(a));}).slice(0,max),i;for(i=0;i<ranked.length;i++)keep[ranked[i].code]=1;cards=cards.filter(function(c){return keep[c.code];});}
+ // Safety only (e.g. an oversized RESTORE): cap by VALUE, never by age, keeping the
+ // most valuable and shedding only the cheapest commons. Normal play never hits this
+ // because adds are hard-blocked at MAXCARDS with a warning (you sell to make room).
+ function trimCards(max){max=max||MAXCARDS;if(cards.length<=max)return;var keep={},ranked=cards.slice().sort(function(a,b){return (ascended(b)?1e15:cardValue(b))-(ascended(a)?1e15:cardValue(a));}).slice(0,max),i;for(i=0;i<ranked.length;i++)keep[ranked[i].code]=1;cards=cards.filter(function(c){return keep[c.code];});}
+ function lowestCard(){var lo=null,i;for(i=0;i<cards.length;i++){var c=cards[i];if(ascended(c))continue;if(!lo||cardValue(c)<cardValue(lo))lo=c;}return lo;}
+ function sellCheapest(){var c=lowestCard();if(!c)return;var v=cardValue(c),i=cards.indexOf(c);if(i>=0)cards.splice(i,1);wallet+=v;save();renderCollection();renderAll();capWarn();}
+ function sellCommons(){var v=0;cards=cards.filter(function(c){if(!ascended(c)&&tierOf(c)==='COMMON'){v+=cardValue(c);return false;}return true;});wallet+=v;save();renderCollection();renderAll();capWarn();}
+ // Hard cap warning: collecting more means selling first. Offers one-tap ways to
+ // dump the junk (cheapest / all commons) so a treasured card is never auto-deleted.
+ function capWarn(){
+  var modal=document.getElementById('packmodal');if(!modal)return;
+  var room=MAXCARDS-cards.length,lo=lowestCard(),loV=lo?cardValue(lo):0;
+  var commons=cards.filter(function(c){return !ascended(c)&&tierOf(c)==='COMMON';}),comV=0;commons.forEach(function(c){comV+=cardValue(c);});
+  var full=room<=0,hdr=full?'COLLECTION FULL':'ROOM FREED',hcol=full?'#ff8c7d':'#6ee07a';
+  var note=full?'Your collection is full ('+cards.length+' / '+MAXCARDS+'). To collect new cards you have to sell some first. Dump the junk, keep your gems.':'You have room for <b>'+room+'</b> more. Close this and rip away, or keep clearing space.';
+  modal.className='on';
+  modal.innerHTML='<div class="pkstate" style="color:'+hcol+'">'+hdr+'</div><div class="pkrar" style="color:'+hcol+';font-size:clamp(20px,6vw,34px)">'+cards.length+' / '+MAXCARDS+'</div><div class="pkcard" style="max-width:400px"><div style="font-size:13px;color:#cfe7b6;line-height:1.6">'+note+'</div></div><div class="pkbtns">'+(lo?'<button class="listen" id="cwone" type="button">[ SELL CHEAPEST // +'+fmtAbbr(loV)+' ]</button>':'')+(commons.length?'<button class="listen" id="cwcom" type="button">[ SELL '+commons.length+' COMMONS // +'+fmtAbbr(comV)+' ]</button>':'')+'<button class="listen" id="cwdone" type="button">[ DONE ]</button></div>';
+  var a=document.getElementById('cwone');if(a)a.onclick=function(){sellCheapest();};
+  var b2=document.getElementById('cwcom');if(b2)b2.onclick=function(){sellCommons();};
+  var d=document.getElementById('cwdone');if(d)d.onclick=function(){closePack();};
+ }
  function openPack(tier){
   if(packBusy)return; // one rip at a time: blocks Enter-mashing / double-open
   var pk=PACKS[tier];if(!pk)return;
+  var room=MAXCARDS-cards.length;
+  if(room<=0){capWarn();return;} // full: must sell to collect more
   var afford=Math.floor(wallet/pk.cost);
   if(afford<1){toast('Not enough CRED. A '+pk.name+' pack is '+fmt(pk.cost)+' CRED.');return;}
-  var want=Math.max(1,Math.min(packQty||1,50)),n=Math.min(want,afford),total=pk.cost*n;
+  var want=Math.max(1,Math.min(packQty||1,50)),n=Math.min(want,afford,room),total=pk.cost*n;
   packBusy=true;
-  var ask='Rip '+n+' '+pk.name+' pack'+(n>1?'s':'')+' for '+fmt(total)+' CRED'+(n<want?(' (you can only afford '+n+' of '+want+')'):'')+'?';
-  if(!window.confirm(ask)){packBusy=false;return;}
+  var why=n<want?(n===room?' (only '+n+' will fit, sell to make room)':' (you can only afford '+n+')'):'';
+  if(!window.confirm('Rip '+n+' '+pk.name+' pack'+(n>1?'s':'')+' for '+fmt(total)+' CRED'+why+'?')){packBusy=false;return;}
   wallet-=total;
   var pulled=[],i,c;for(i=0;i<n;i++){c=mintCard(tier);cards.unshift(c);pulled.push(c);pushPull('YOU',c.rarPack,c.finish,(ascended(c)?1e15:cardValue(c)),true);}
-  trimCards(150);
   save();renderCollection();renderAll();
   if(n===1)showReveal(pulled[0],tier);else showBulk(pulled,tier);
  }

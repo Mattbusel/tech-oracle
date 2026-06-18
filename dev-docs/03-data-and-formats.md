@@ -169,6 +169,10 @@ manifold is defined immediately.
   (vmul bumps LEGENDS only, so a common is junk even from a dear pack), ascended
   infinite. Tags `origin:'pack'`. OPEN x1/x5/x10/x25 selector (`packQty`) rips a
   batch; bulk rips show a haul summary (`showBulk`) instead of one reveal each;
+  Collection is hard-capped at `MAXCARDS` (150), never auto-deleted: adds (open/claim/
+  redeem) block at the cap and `capWarn()` prompts you to sell, with one-tap SELL
+  CHEAPEST / SELL ALL COMMONS (`lowestCard`/`sellCommons`). `trimCards` remains only
+  as a value-aware safety for oversized RESTORE;
   a reveal modal (`#packmodal`) runs the rip ritual. Odds are deliberately miserable
   and scale by tier: ascended is ~1 in 50000 (STANDARD), 1 in 10000 (VAULT, the
   anchor), 1 in 250 (COSMIC), 1 in 50 (SINGULARITY). VAULT+ floor at rare/legend so

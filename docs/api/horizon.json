@@ -2,12 +2,12 @@
   "horizon": {
     "defined": 7362,
     "phases": {
-      "BOTTOMING": 523,
+      "BOTTOMING": 524,
       "CHURNING": 1489,
-      "FALLING": 360,
-      "FLAT": 4159,
+      "FALLING": 359,
+      "FLAT": 4158,
       "PEAKING": 137,
-      "RISING": 694
+      "RISING": 695
     },
     "scanned": 43019,
     "turns": [
@@ -87,6 +87,17 @@
         "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "AGENT"
+      },
+      {
+        "active_days": 180,
+        "gamma": 1.01,
+        "geodesic": -61,
+        "peak": 25,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 38,
+        "regime": "SPACELIKE",
+        "term": "AGENTS"
       },
       {
         "active_days": 164,
@@ -175,17 +186,6 @@
         "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "LOCAL"
-      },
-      {
-        "active_days": 109,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 19,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "OPENCLAW"
       }
     ]
   },
