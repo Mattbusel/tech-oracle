@@ -160,16 +160,24 @@ manifold is defined immediately.
   (~22fps, off under `prefers-reduced-motion`) blits it and draws a cheap seeded
   overlay so every card moves on its own rhythm (orbit / breathing / twinkle / sheen
   sweep), gems shimmer, ASCENDED cards flicker and tear.
-  **Packs.** Pricey CRED rips a pack (`STANDARD` 250k / `PRIME` 1M) for EXOTIC cards
-  that exist nowhere on the floor: `mintCard()` rolls a brutal rarity table
-  (common/rare/legend/ascended) plus a finish, synthesizes a `resolved` stat line so
-  value scales (rare->millions, legend->billions, ascended->infinite), tags the card
-  `origin:'pack'`, and a reveal modal (`#packmodal`) runs the rip ritual.
-  **The Collectors.** Resident NPC bots populate the floor with no backend: a live
-  feed (`#collfeed`) of bot pack-rips and chatter, plus periodic real offers
+  **Packs.** Six escalating tiers (`PACKS`/`PACK_ORDER`): STANDARD 250k, PRIME 1M,
+  VAULT 50M, ECLIPSE 1B, COSMIC 50B, SINGULARITY 1T. Priced high on purpose since a
+  single legend can be worth tens of billions. Each tier floors the rarity, scales
+  the stat line (`vmul`), leans gem-heavy, and mints its own `series`. `mintCard()`
+  rolls rarity+finish, synthesizes a `resolved` stat line so value scales
+  (rare->millions, legend->billions x vmul, ascended->infinite), tags `origin:'pack'`;
+  a reveal modal (`#packmodal`) runs the rip ritual. SINGULARITY is a guaranteed
+  ASCENDED.
+  **The Collectors.** Resident NPC whale bots populate the floor with no backend: a
+  live feed (`#collfeed`) of bot pack-rips and chatter, plus periodic real offers
   (`#offerbox`) on your cards (cash, lowball to overpay, or a trade for a bot-minted
   card); accepting moves CRED/cards atomically and saves. Pack/bot cards verify as
   `[ EXOTIC ]` on champions.html (a real pull, not an engine-crowned floor champion).
+  **Leaderboards** (`#nwboard` / `#pullboard`): TOTAL NET WORTH (your liquid CRED +
+  sum of every card's value) and RAREST PULLS, both ranking you against the whale
+  bots. Bot net worths are seeded huge (`seedNW`, up to ~1e14) and drift up over the
+  session; their big pack pulls feed the rarest-pulls board. Boards are derived/seeded
+  (not persisted), so no save-schema change.
 - `api/certified.json` - schema `the-signal/certified/1`: the engine's authoritative
   one-of-one champions (reigning `champion` flagged `current:true`, plus the hall of
   fame), each with genes, real career stats, and a content fingerprint `fp`

@@ -953,6 +953,18 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 #floor .stat4 .st span{font-size:11px;letter-spacing:.06em;color:#8d8a7c;display:block;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:680px){#floor .stat4{grid-template-columns:repeat(2,1fr)}}
 @media(prefers-reduced-motion:reduce){#floor .lcard.legend{animation:none}}
+#floor .lbgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:680px){#floor .lbgrid{grid-template-columns:1fr}}
+#floor .lbhd{font-size:10px;letter-spacing:.1em;color:#8d8a7c;margin-bottom:5px}
+#floor .lbbox{border:1px solid #2a2c28;background:#0d0f0d;padding:6px 10px}
+#floor .lbrow{display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px dotted #1f211d;font-size:12px}
+#floor .lbrow:last-child{border-bottom:0}
+#floor .lbrow .lr{color:#6f6c5f;width:20px;flex:0 0 auto;text-align:right}
+#floor .lbrow .ln{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#cfe7b6}
+#floor .lbrow .lt{flex:0 0 auto;font-size:10px;letter-spacing:.04em}
+#floor .lbrow .lv{flex:0 0 auto;color:#ffd56b;font-weight:700}
+#floor .lbrow.you{background:rgba(110,224,122,.12)}
+#floor .lbrow.you .ln{color:#6ee07a;font-weight:700}
 #packmodal{display:none;position:fixed;inset:0;z-index:60;background:rgba(7,8,7,.95);align-items:center;justify-content:center;padding:18px;flex-direction:column;gap:14px;text-align:center}
 #packmodal.on{display:flex}
 #packmodal .pkstate{font-size:12px;letter-spacing:.22em;color:#8d8a7c}
@@ -983,8 +995,9 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 <b style="color:#e7e2d4">THE FLOOR.</b> The organisms bet against the manifold's true odds every few seconds, no limit on how high a run can go. But dominance is dangerous: the bigger a lead gets, the more the leader is forced to shove, and underdog wins pay more the further behind they are. So one bad round at the top can hand the throne to a longshot, an UPSET. A season is 100 rounds; at the bell it resolves, the champion is enshrined in the rafters, and every bank resets.<br><br>
 <b style="color:#e7e2d4">ROOKIE CARDS.</b> Tap [+] next to a live organism to claim its rookie card. One a season, so choose well. The cast is freshly named every season, and each card's art is generated from that organism's genes, so no two look alike. There is also a random FINISH on claim (SHINY, GOLD, EMERALD, SAPPHIRE, DIAMOND): two people can card the same organism and get different gems, and the market decides what each is worth. When the season resolves: finish #1 and your card becomes a LEGEND (1 of 1) stamped with its historic run; podium becomes RARE.<br><br>
 <b style="color:#e7e2d4">CRED.</b> You start with 1,000,000 CRED and earn more just by leaving this running. Tap [ SELL ] on a card and the house buys it on the spot for CRED (the card is destroyed). A card is worth more the higher it ranked, the wilder its stats, the rarer its finish, and the longer you have held it, so holding pays.<br><br>
-<b style="color:#e7e2d4">PACKS.</b> Rip a pack to pull EXOTIC cards that exist nowhere on the floor. Packs are pricey on purpose and the top rarities are brutal: most pulls are cheap, a RARE is a treat, a LEGEND is a flex, and an ASCENDED pull is the lottery. PRIME packs cost more and bend the odds toward the broken stuff. Whatever you pull is yours.<br><br>
-<b style="color:#e7e2d4">THE COLLECTORS.</b> The floor is full of resident collectors. They rip packs, browse and chatter in the live feed, and make you real offers on your cards: a cash buy (sometimes a lowball, sometimes over market) or a straight trade for one of theirs. Accept and the CRED or cards move on the spot. They are programs, not people, but the floor never feels empty.<br><br>
+<b style="color:#e7e2d4">PACKS.</b> Rip a pack to pull EXOTIC cards that exist nowhere on the floor. There are six tiers, from STANDARD (250,000) up to SINGULARITY (1 trillion). They are pricey on purpose: a single card can be worth tens of billions, so cheap packs would be pointless. The dear tiers floor the rarity and lean into the broken stuff (VAULT guarantees rare or better, ECLIPSE legend or better, COSMIC is gem-heavy, and a SINGULARITY pack is a guaranteed ASCENDED, the whale flex), and each tier mints its own distinct SERIES. Whatever you pull is yours.<br><br>
+<b style="color:#e7e2d4">THE COLLECTORS.</b> The floor is full of resident collectors, and they are unhinged whales with absurd net worths. They rip the expensive packs, browse and chatter in the live feed, and make you real offers on your cards: a cash buy (sometimes a lowball, sometimes over market) or a straight trade for one of theirs. Accept and the CRED or cards move on the spot. They are programs, not people, but the floor never feels empty.<br><br>
+<b style="color:#e7e2d4">LEADERBOARDS.</b> You compete against the whole floor on two ladders. TOTAL NET WORTH ranks your liquid CRED plus the value of every card you hold against the bots. RAREST PULLS ranks the best cards anyone has pulled out of the packs. The bots start far ahead, so climbing past them is the long game.<br><br>
 <b style="color:#e7e2d4">LIVING CARDS.</b> These are living organisms, so the art moves. Every card animates on its own seeded rhythm (orbiting, breathing, twinkling, a foil sheen that sweeps), gems shimmer, and ASCENDED cards flicker and tear. Tilt your screen and flex.<br><br>
 <b style="color:#e7e2d4">GIVING + SHARING.</b> Tap [ GIVE ] to hand a card to a friend: it leaves your collection and you get a code; they paste it into REDEEM and it is theirs. Tap [ SHARE ] to download the card as an image to post and flex.<br><br>
 <b style="color:#e7e2d4">SAVING + DEVICES.</b> There is no login. Your cards, rafters and CRED save right inside this browser on this device, so they survive refreshes and reboots but do not follow you to another phone or browser, and clearing your browsing data or using private mode will wipe them. To protect or move your collection, tap [ BACKUP MY COLLECTION ] and keep the code somewhere safe, then paste it into RESTORE on any device. Lose the code and the collection cannot be recovered.<br><br>
@@ -1001,7 +1014,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 <div class="stat4" id="floorleaders"></div>
 <div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">YOUR CARDS // ONE ROOKIE A SEASON</div>
 <div id="floorwallet" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;border:1px solid #2a2c28;background:#0d0f0d;padding:9px 12px;margin-bottom:8px;font-size:12px"><span>WALLET <b id="walletval" style="color:#ffd56b">1,000,000</b> CRED</span><span style="color:#8d8a7c;font-size:10px">earn CRED by watching // SELL a card to the house for CRED // GIVE one to a friend with a code</span></div>
-<div id="packbar" style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:8px;border:1px solid #4a3a12;background:#15110a;padding:9px 12px"><span style="font-size:11px;letter-spacing:.1em;color:#ffd56b;font-weight:700">CARD PACKS</span><span style="font-size:10px;color:#8d8a7c">rip for a shot at exotic cards that exist nowhere on the floor. the top tiers are brutally rare.</span><button id="packstd" type="button" class="listen">[ RIP STANDARD // 250,000 ]</button><button id="packprime" type="button" class="listen">[ RIP PRIME // 1,000,000 ]</button></div>
+<div id="packbar" style="margin-bottom:8px;border:1px solid #4a3a12;background:#15110a;padding:9px 12px"><div style="margin-bottom:7px"><span style="font-size:11px;letter-spacing:.1em;color:#ffd56b;font-weight:700">CARD PACKS</span> <span style="font-size:10px;color:#8d8a7c">rip for exotic cards that exist nowhere on the floor. the dear tiers floor the rarity and pull the broken stuff. whatever you pull is yours.</span></div><div id="packbtns" style="display:flex;gap:6px;flex-wrap:wrap;align-items:center"></div></div>
 <div style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap">
 <input id="redeemin" placeholder="got a card code from a friend? paste it here..." spellcheck="false" autocomplete="off" style="flex:1;min-width:180px;background:#0d0f0d;border:1px solid #34362f;color:#cfe7b6;font-family:inherit;font-size:11px;padding:8px 10px">
 <button id="redeembtn" type="button" class="listen">[ REDEEM ]</button>
@@ -1019,6 +1032,11 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
 <div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">THE COLLECTORS // other denizens of the floor</div>
 <div id="offerbox" style="display:none;border:1px solid #4a3a12;background:#15110a;color:#e7e2d4;padding:10px 12px;margin-bottom:8px;font-size:12px;line-height:1.5"></div>
 <div id="collfeed" style="font-size:12px;line-height:1.5;border:1px solid #2a2c28;background:#0d0f0d;padding:6px 12px;max-height:180px;overflow:auto"><span class="sub">the floor is waking up...</span></div>
+<div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">LEADERBOARDS // YOU VS THE FLOOR</div>
+<div class="lbgrid">
+<div><div class="lbhd">TOTAL NET WORTH // liquid CRED + every card you hold</div><div id="nwboard" class="lbbox"></div></div>
+<div><div class="lbhd">RAREST PULLS // best cards out of the packs</div><div id="pullboard" class="lbbox"></div></div>
+</div>
 <div style="font-size:12px;letter-spacing:.14em;color:#8d8a7c;margin:16px 0 6px">THE RAFTERS // SEASON CHAMPIONS, ONE-OF-ONE</div>
 <div id="rafterbar" class="fbar"></div>
 <div id="floorrafters"><span class="sub">Empty. The first champion is crowned at the bell.</span></div>
@@ -1156,6 +1174,7 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var st=document.getElementById('floorstat');if(st)st.textContent='round '+rounds+'/'+SEASON_ROUNDS+' // '+fmt(settled)+' bets settled';
   var pr=document.getElementById('floorprog');if(pr)pr.style.width=Math.round(rounds/SEASON_ROUNDS*100)+'%';
   var wv=document.getElementById('walletval');if(wv)wv.textContent=(wallet<1e7?fmt(wallet):fmtAbbr(wallet));
+  if(document.getElementById('nwboard'))drawBoards();
  }
  function board(){
   var el=document.getElementById('floorboard');if(!el)return;
@@ -1257,30 +1276,42 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  // Pricey CRED buys a chance at exotic cards that exist nowhere on the floor:
  // pulled, not earned. The top rarities are brutally hard, so a pulled LEGEND or
  // ASCENDED is a real flex. Two tiers; PRIME shifts the odds toward the broken stuff.
+ // Tiers escalate from pocket change to whale-only. Because a single legend can be
+ // worth tens of billions, the high packs cost billions to trillions or ripping
+ // them would be meaningless. Higher tiers floor the rarity, scale the stat line
+ // (vmul) and lean gem-heavy, and mint a distinct SERIES so the cards feel unique.
  var PACKS={
-  std:{cost:250000,name:'STANDARD',odds:[['common',74],['rare',20],['legend',5.5],['ascended',0.5]],fin:[['',60],['shiny',20],['gold',11],['emerald',6],['sapphire',2.5],['diamond',0.5]]},
-  prime:{cost:1000000,name:'PRIME',odds:[['common',45],['rare',35],['legend',17],['ascended',3]],fin:[['',38],['shiny',24],['gold',18],['emerald',12],['sapphire',6],['diamond',2]]}
+  std:{cost:250000,name:'STANDARD',series:'STREET',house:'THE STALL',vmul:1,odds:[['common',74],['rare',20],['legend',5.5],['ascended',0.5]],fin:[['',60],['shiny',20],['gold',11],['emerald',6],['sapphire',2.5],['diamond',0.5]]},
+  prime:{cost:1000000,name:'PRIME',series:'PRIME',house:'THE VAULT',vmul:1.4,odds:[['common',45],['rare',35],['legend',17],['ascended',3]],fin:[['',38],['shiny',24],['gold',18],['emerald',12],['sapphire',6],['diamond',2]]},
+  vault:{cost:50000000,name:'VAULT',series:'RESERVE',house:'THE RESERVE',vmul:2.2,odds:[['rare',60],['legend',34],['ascended',6]],fin:[['',18],['shiny',26],['gold',24],['emerald',16],['sapphire',11],['diamond',5]]},
+  eclipse:{cost:1000000000,name:'ECLIPSE',series:'ECLIPSE',house:'ECLIPSE LINE',vmul:4,odds:[['legend',86],['ascended',14]],fin:[['',8],['shiny',16],['gold',22],['emerald',24],['sapphire',18],['diamond',12]]},
+  cosmic:{cost:50000000000,name:'COSMIC',series:'COSMIC',house:'COSMIC SERIES',vmul:10,odds:[['legend',64],['ascended',36]],fin:[['shiny',10],['gold',18],['emerald',24],['sapphire',28],['diamond',20]]},
+  singularity:{cost:1000000000000,name:'SINGULARITY',series:'SINGULARITY',house:'SINGULARITY',vmul:1,odds:[['ascended',100]],fin:[['gold',10],['emerald',16],['sapphire',32],['diamond',42]]}
  };
+ var PACK_ORDER=['std','prime','vault','eclipse','cosmic','singularity'];
  function rollW(list){var t=0,i;for(i=0;i<list.length;i++)t+=list[i][1];var x=rnd()*t,a=0;for(i=0;i<list.length;i++){a+=list[i][1];if(x<a)return list[i][0];}return list[0][0];}
  var EXA=['PRISM','OBLIVION','SERAPH','VANTA','CHRONO','NOVA','WRAITH','ZENITH','OMEGA','PHANTOM','RADIANT','ECLIPSE','TITAN','MIRAGE','QUASAR','SPECTER','AETHER','HALO','VESPER','NULLION','CRYO','PYRE','OBELISK','SABLE'];
  var EXB=['SOVEREIGN','CROWN','SIGIL','GENESIS','RELIC','ORACLE','THRONE','APEX','MYTH','REIGN','FLUX','ASCENT','PARADOX','ETERNA','ZERO','INFINITE','RIFT','HALON','PARAGON','WARDEN'];
  function exoticName(){var r=mulberry(hashStr('ex-'+Math.floor(rnd()*1e9)+'-'+cards.length));return EXA[(r()*EXA.length)|0]+'-'+EXB[(r()*EXB.length)|0]+'-'+('0'+((r()*256)|0).toString(16).toUpperCase()).slice(-2);}
  function mintCard(tier){
-  var pk=PACKS[tier]||PACKS.std,rar=rollW(pk.odds),fin=rollW(pk.fin),risk=rnd(),peak,res;
+  var pk=PACKS[tier]||PACKS.std,vm=pk.vmul||1,rar=rollW(pk.odds),fin=rollW(pk.fin),risk=rnd(),peak,res;
   if(rar==='ascended'){peak=1e13+rnd()*9e13;res={legend:true,podium:true,ascended:true};}
-  else if(rar==='legend'){peak=1e9+rnd()*6e10;res={legend:true,podium:true,ascended:false};}
-  else if(rar==='rare'){peak=1e6+rnd()*1.2e7;res={legend:false,podium:true,ascended:false};}
-  else{peak=1500+rnd()*12000;res={legend:false,podium:false,ascended:false};}
+  else if(rar==='legend'){peak=(1e9+rnd()*6e10)*vm;res={legend:true,podium:true,ascended:false};}
+  else if(rar==='rare'){peak=(1e6+rnd()*1.2e7)*vm;res={legend:false,podium:true,ascended:false};}
+  else{peak=(1500+rnd()*12000)*vm;res={legend:false,podium:false,ascended:false};}
   res.season=season;res.rank=(rar==='common'?(4+(rnd()*8|0)):1);res.finalBank=Math.round(peak*(0.3+rnd()*0.5));res.peak=Math.round(peak);res.maxStreak=(rar==='ascended'?20:(rar==='legend'?12:(rar==='rare'?7:3)))+(rnd()*8|0);res.biggestWin=Math.round(peak*(0.2+rnd()*0.4));res.fromPack=tier;
   var label=(rar==='ascended'?'ASCENDED':rar.toUpperCase());
-  return {code:newCode(900+(rnd()*90|0)),id:-1-((rnd()*1e6)|0),name:exoticName(),house:'THE VAULT',fade:(rnd()<0.5),risk:risk,sel:0.5,press:0.5,finish:fin,origin:'pack',packTier:tier,rarPack:rar,claimedSeason:season,resolved:res,historic:pk.name+' PACK PULL // '+label+' // peak '+fmtAbbr(peak)+(fin?(' // '+FIN[fin].n):'')};
+  return {code:newCode(900+(rnd()*90|0)),id:-1-((rnd()*1e6)|0),name:exoticName(),house:pk.house||'THE VAULT',series:pk.series||'',fade:(rnd()<0.5),risk:risk,sel:0.5,press:0.5,finish:fin,origin:'pack',packTier:tier,rarPack:rar,claimedSeason:season,resolved:res,historic:pk.name+' SERIES // '+label+' // peak '+fmtAbbr(peak)+(fin?(' // '+FIN[fin].n):'')};
  }
  function openPack(tier){
   var pk=PACKS[tier];if(!pk)return;
   if(wallet<pk.cost){toast('Not enough CRED. A '+pk.name+' pack is '+fmt(pk.cost)+' CRED.');return;}
   if(!window.confirm('Rip a '+pk.name+' pack for '+fmt(pk.cost)+' CRED? The pull is yours whatever it is.'))return;
-  wallet-=pk.cost;var c=mintCard(tier);cards.unshift(c);cards=cards.slice(0,60);save();renderCollection();renderAll();showReveal(c,tier);
+  wallet-=pk.cost;var c=mintCard(tier);cards.unshift(c);cards=cards.slice(0,60);
+  pushPull('YOU',c.rarPack,c.finish,(ascended(c)?1e15:cardValue(c)),true);
+  save();renderCollection();renderAll();showReveal(c,tier);
  }
+ function drawPackBar(){var el=document.getElementById('packbtns');if(!el)return;el.innerHTML=PACK_ORDER.map(function(k){var p=PACKS[k];return '<button class="listen packbtn" data-pk="'+k+'" type="button">[ '+p.name+' // '+fmtAbbr(p.cost)+' ]</button>';}).join('');}
  function showReveal(c,tier){
   var modal=document.getElementById('packmodal');if(!modal){return;}var pk=PACKS[tier]||PACKS.std,rar=c.rarPack;
   var col=rar==='ascended'?'#d8f0ff':(rar==='legend'?'#ffd56b':(rar==='rare'?'#6fb8ff':'#9ac46a'));
@@ -1302,13 +1333,35 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  // offers (cash or trade) on your cards. Accepting moves CRED/cards atomically.
  var BOTS=['ZephyrTrades','NocturneByte','VoidHandler','NeonBaron','SableGhost','OrbitalKid','PrismFiend','HexCollector','LumenDealer','QuietRiot','AceOfVoid','GrailHunter','ByteWraith','EchoDealer','RiftRunner','GildedFox','NullSeeker','VantaWhale','OmenTrader','CinderKid','SaintVex','HollowApe','DeltaMyth','KiloCrown'];
  function botName(){return BOTS[(rnd()*BOTS.length)|0];}
+ // ---- LEADERBOARDS (you vs the floor) --------------------------------------
+ // Two ladders: NET WORTH (your liquid CRED plus the value of every card you hold)
+ // and RAREST PULLS. The whale bots seed both with absurd numbers so there is
+ // always someone above you to chase. Their net worths drift up over the session.
+ var WHALES=BOTS.slice(0,16),botNW={},nwSeeded=false,boardPulls=[];
+ function seedNW(name){var r=mulberry(hashStr('nw|'+name)),tiers=[5e7,5e8,5e9,5e10,5e11,5e12,8e13];return Math.round(tiers[(r()*tiers.length)|0]*(0.4+r()*4.5));}
+ function ensureNW(){if(nwSeeded)return;for(var i=0;i<WHALES.length;i++)botNW[WHALES[i]]=seedNW(WHALES[i]);nwSeeded=true;}
+ function myNetWorth(){var s=wallet,i;for(i=0;i<cards.length;i++)s+=Math.min(cardValue(cards[i]),1e15);return s;}
+ function pullValue(rar,fin,vm){if(rar==='ascended')return 1e15;var m=finMult(fin),v;if(rar==='legend')v=(1e9+rnd()*6e10)*(vm||1);else if(rar==='rare')v=(1e6+rnd()*1.2e7)*(vm||1);else v=(1500+rnd()*12000)*(vm||1);return Math.round(v*m);}
+ function rarColor(r){return r==='ascended'?'#d8f0ff':(r==='legend'?'#ffd56b':(r==='rare'?'#6fb8ff':'#9ac46a'));}
+ function pushPull(who,rar,fin,val,you){boardPulls.push({who:who,rar:rar,fin:fin,val:val,you:!!you});boardPulls.sort(function(a,b){return b.val-a.val;});boardPulls=boardPulls.slice(0,40);drawPulls();}
+ function seedBoard(){ensureNW();if(boardPulls.length)return;for(var i=0;i<10;i++){var b=WHALES[(rnd()*WHALES.length)|0],rar=rollW([['legend',62],['ascended',38]]),fin=rollW([['gold',28],['emerald',26],['sapphire',26],['diamond',20]]);pushPull(b,rar,fin,pullValue(rar,fin,rar==='ascended'?1:7),false);}}
+ function drawPulls(){var el=document.getElementById('pullboard');if(!el)return;var list=boardPulls.slice(0,12);el.innerHTML=list.map(function(p,i){var v=p.val>=1e15?'&infin;':fmtAbbr(p.val);return '<div class="lbrow'+(p.you?' you':'')+'"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(p.who)+'</span><span class="lt" style="color:'+rarColor(p.rar)+'">'+(p.rar==='ascended'?'ASCENDED':p.rar.toUpperCase())+(p.fin&&FIN[p.fin]?(' '+FIN[p.fin].n):'')+'</span><span class="lv">'+v+'</span></div>';}).join('')||'<span class="sub">no pulls yet</span>';}
+ function drawNW(){var el=document.getElementById('nwboard');if(!el)return;ensureNW();var rows=[],i;for(i=0;i<WHALES.length;i++)rows.push({name:WHALES[i],nw:botNW[WHALES[i]]||0});var me=myNetWorth();rows.push({name:'YOU',nw:me,you:true});rows.sort(function(a,b){return b.nw-a.nw;});var myRank=0;for(i=0;i<rows.length;i++)if(rows[i].you){myRank=i+1;break;}var html=rows.slice(0,12).map(function(r,i){return '<div class="lbrow'+(r.you?' you':'')+'"><span class="lr">'+(i+1)+'</span><span class="ln">'+esc(r.name)+'</span><span class="lv">'+fmtAbbr(r.nw)+' CRED</span></div>';}).join('');if(myRank>12)html+='<div class="lbrow you"><span class="lr">'+myRank+'</span><span class="ln">YOU</span><span class="lv">'+fmtAbbr(me)+' CRED</span></div>';el.innerHTML=html;}
+ function drawBoards(){drawNW();drawPulls();}
+ function nwDrift(){ensureNW();var n=2+(rnd()*3|0),i;for(i=0;i<n;i++){var b=WHALES[(rnd()*WHALES.length)|0];botNW[b]=Math.min(1e15,(botNW[b]||seedNW(b))*(1+rnd()*0.03));}drawNW();}
  var feedItems=[];
  function feedPush(html){feedItems.unshift('<div style="padding:5px 0;border-bottom:1px dotted #2a2c28">'+html+'</div>');feedItems=feedItems.slice(0,28);var el=document.getElementById('collfeed');if(el)el.innerHTML=feedItems.join('');}
- function botRip(){var prime=rnd()<0.3,tier=prime?'PRIME':'STANDARD',rar=rollW(prime?[['common',45],['rare',35],['legend',17],['ascended',3]]:[['common',74],['rare',20],['legend',5.5],['ascended',0.5]]),b=botName();
-  if(rar==='ascended')feedPush('<b style="color:#d8f0ff">'+esc(b)+' RIPPED A '+tier+' PACK AND PULLED AN ASCENDED ONE-OF-ONE. The floor is losing it.</b>');
-  else if(rar==='legend')feedPush('<b style="color:#ffd56b">'+esc(b)+'</b> ripped a '+tier+' pack and hit a <b style="color:#ffd56b">LEGEND</b>.');
-  else if(rar==='rare')feedPush('<b>'+esc(b)+'</b> ripped a '+tier+' pack: a RARE.');
-  else feedPush('<span style="color:#8d8a7c">'+esc(b)+' ripped a '+tier+' pack. nothing wild.</span>');}
+ // The collectors are unhinged whales: they rip the expensive tiers, so big pulls
+ // keep hitting the leaderboard and their net worths stay absurd.
+ function botPackPick(){return rollW([['std',26],['prime',24],['vault',20],['eclipse',16],['cosmic',10],['singularity',4]]);}
+ function botRip(){ensureNW();var tier=botPackPick(),pk=PACKS[tier],rar=rollW(pk.odds),fin=rollW(pk.fin),b=botName(),val=pullValue(rar,fin,pk.vmul||1);
+  botNW[b]=Math.min(1e15,(botNW[b]||seedNW(b))*(rar==='ascended'?1.05:(rar==='legend'?1.02:1.004)));
+  if(rar==='ascended')feedPush('<b style="color:#d8f0ff">'+esc(b)+' RIPPED A '+pk.name+' PACK AND PULLED AN ASCENDED ONE-OF-ONE'+(fin?(' '+FIN[fin].n):'')+'. The floor is losing it.</b>');
+  else if(rar==='legend')feedPush('<b style="color:#ffd56b">'+esc(b)+'</b> ripped a '+pk.name+' pack and hit a <b style="color:#ffd56b">LEGEND</b>'+(fin?(' '+FIN[fin].n):'')+'.');
+  else if(rar==='rare')feedPush('<b>'+esc(b)+'</b> ripped a '+pk.name+' pack: a RARE.');
+  else feedPush('<span style="color:#8d8a7c">'+esc(b)+' ripped a '+pk.name+' pack. nothing wild.</span>');
+  if(rar==='legend'||rar==='ascended')pushPull(b,rar,fin,val,false);
+  drawNW();}
  function botChatter(){var b=botName(),c=cards.length?cards[(rnd()*cards.length)|0]:null,m=[];
   m.push(esc(botName())+' and '+esc(botName())+' just traded cards.');
   m.push(esc(b)+' is hunting for a diamond finish.');
@@ -1513,15 +1566,17 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  var rbar=document.getElementById('rafterbar');if(rbar)rbar.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button');if(!b)return;if(b.getAttribute('data-sort'))rSort=(rSort==='value'?'recent':'value');else if(b.getAttribute('data-f')){rFilter=b.getAttribute('data-f');rShown=9;}drawRafters();});
  var cmore=document.getElementById('cardmore');if(cmore)cmore.addEventListener('click',function(){cShown+=9;drawCards();});
  var rmore=document.getElementById('raftermore');if(rmore)rmore.addEventListener('click',function(){rShown+=9;drawRafters();});
- var pstd=document.getElementById('packstd');if(pstd)pstd.addEventListener('click',function(){openPack('std');});
- var pprm=document.getElementById('packprime');if(pprm)pprm.addEventListener('click',function(){openPack('prime');});
+ drawPackBar();
+ var pbtns=document.getElementById('packbtns');if(pbtns)pbtns.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('button[data-pk]');if(b)openPack(b.getAttribute('data-pk'));});
  var pm=document.getElementById('packmodal');if(pm)pm.addEventListener('click',function(e){if(e.target===pm)pm.className='';});
  window.addEventListener('keydown',function(e){if(e.key==='Escape'){var m=document.getElementById('packmodal');if(m)m.className='';}});
- // Wake the floor: seed the collectors feed, then keep it and the offers alive.
+ // Wake the floor: seed the boards + collectors feed, then keep them alive.
+ seedBoard();drawBoards();
  feedTick();feedTick();setTimeout(feedTick,2600);
  setInterval(feedTick,7000);
  setInterval(offerTick,21000);
  setTimeout(offerTick,9000);
+ setInterval(nwDrift,9000);
 })();
 </script>"##;
         let bl_page = bl_page.replacen(
