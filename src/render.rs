@@ -980,11 +980,11 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
   var rankOf={};ranked.forEach(function(o,i){rankOf[o.id]=i+1;});
   cards.forEach(function(c){
    if(c.resolved||c.claimedSeason!==season)return;
-   var rk=rankOf[c.id]||999,o=by(c.id),fin=o?o.bank:0;
-   c.resolved={season:season,rank:rk,finalBank:fin,maxStreak:(o?o.maxStreak:0),biggestWin:(o?o.biggestWin:0),legend:(rk===1),podium:(rk<=3),ascended:(fin>=1e13)};
-   if(rk===1)c.historic='WON SEASON '+season+' // net '+fmtAbbr(fin)+' // W'+(o?o.maxStreak:0)+' // big +'+fmtAbbr(o?o.biggestWin:0);
-   else if(rk<=3)c.historic='PODIUM #'+rk+' // SEASON '+season;
-   else c.historic='SEASON '+season+' // finished #'+rk;
+   var rk=rankOf[c.id]||999,o=by(c.id),fin=o?o.bank:0,pk=o?Math.max(o.peak||0,fin):fin,ms=o?o.maxStreak:0,bw=o?o.biggestWin:0;
+   c.resolved={season:season,rank:rk,finalBank:fin,peak:pk,maxStreak:ms,biggestWin:bw,legend:(rk===1),podium:(rk<=3),ascended:(pk>=1e13)};
+   if(rk===1)c.historic='WON SEASON '+season+' // net '+fmtAbbr(fin)+' // W'+ms+' // big +'+fmtAbbr(bw);
+   else if(rk<=3)c.historic='PODIUM #'+rk+' S'+season+' // peak '+fmtAbbr(pk)+' // W'+ms+' // big +'+fmtAbbr(bw);
+   else c.historic='S'+season+' #'+rk+' // peak '+fmtAbbr(pk)+' // W'+ms+' // big +'+fmtAbbr(bw);
   });
   var rb=document.getElementById('floorresolve');
   if(rb&&champ){rb.style.display='block';rb.innerHTML='SEASON '+season+' RESOLVED // CHAMPION <b>'+esc(champ.name)+'</b> at '+fmtAbbr(champ.bank)+' chips, hung in the rafters with a one-of-one card.';}
@@ -1110,20 +1110,19 @@ fetch('api/horizon.json').then(function(r){return r.json();}).then(function(d){
  // its stats were (net worth, streak, biggest win), and how long you have held it
  // (older = more, so you are rewarded for holding). Collectors bid around that value.
  function ageSeasons(c){return Math.max(0,season-(c.claimedSeason||season));}
- function ascended(c){return !!(c.resolved&&(c.resolved.ascended||(c.resolved.finalBank||0)>=1e13));}
+ function peakOf(c){return c.resolved?Math.max(c.resolved.peak||0,c.resolved.finalBank||0,c.resolved.biggestWin||0):0;}
+ function ascended(c){return !!(c.resolved&&(c.resolved.ascended||peakOf(c)>=1e13));}
  function cardValue(c){
-  if(ascended(c))return 1e15; // the myth: touched the ceiling. effectively infinite.
+  if(ascended(c))return 1e15; // the myth: a run that touched the ceiling. effectively infinite.
   var age=1+ageSeasons(c)*0.08;
-  // Common cards (rookies + anyone who did not podium) stay a few hundred to a few
-  // thousand. Net worth is ignored here so the floor is genuinely cheap.
-  if(!c.resolved||(!c.resolved.legend&&!c.resolved.podium))return Math.round(Math.max(300,600*finMult(c.finish)*age));
-  // Podium and legend cards scale steeply with the bankroll that organism built: a
-  // legend is worth roughly its whole net worth, a podium a slice. So a season won
-  // with billions is a million/billion-CRED card, and only a freak run nears the
-  // ascended tier. The gap to infinity is a smooth climb, not a cliff from 47k.
-  var fin=Math.max(0,c.resolved.finalBank||0);
-  var share=c.resolved.legend?1.0:0.3;
-  return Math.round(Math.max(2000,(2000+fin*share)*finMult(c.finish)*age));
+  if(!c.resolved)return Math.round(Math.max(300,600*finMult(c.finish)*age)); // live rookies: a few hundred
+  // Value tracks the HIGH-WATER MARK the organism reached, not where it ended, so a
+  // monster run that later faded is still a monster card. Finish nudges it (a win is
+  // worth more than a podium than an also-ran), the gem finish scales it, and most
+  // organisms peak low so most cards stay cheap. Great runs go millions to trillions.
+  var pk=peakOf(c);
+  var share=c.resolved.legend?1.0:(c.resolved.podium?0.5:0.25);
+  return Math.round(Math.max(500,(500+pk*share)*finMult(c.finish)*age));
  }
  function rarOf(c){return c.resolved&&c.resolved.legend?'legend':(c.resolved&&c.resolved.podium?'rare':'');}
  function drawCards(){
