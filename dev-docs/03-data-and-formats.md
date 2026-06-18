@@ -155,7 +155,21 @@ manifold is defined immediately.
   and a deliberately corrupted look (channel-shift datamosh + scanlines) for
   ASCENDED cards so the most broken cards actually look broken. All deterministic
   from the card code; the floor has an inline copy and `cardart.js` ships the same
-  engine as `window.CardArt` for the Hall of Champions.
+  engine as `window.CardArt` for the Hall of Champions. **Living cards:** the heavy
+  crest renders once into a cached offscreen buffer; a `requestAnimationFrame` loop
+  (~22fps, off under `prefers-reduced-motion`) blits it and draws a cheap seeded
+  overlay so every card moves on its own rhythm (orbit / breathing / twinkle / sheen
+  sweep), gems shimmer, ASCENDED cards flicker and tear.
+  **Packs.** Pricey CRED rips a pack (`STANDARD` 250k / `PRIME` 1M) for EXOTIC cards
+  that exist nowhere on the floor: `mintCard()` rolls a brutal rarity table
+  (common/rare/legend/ascended) plus a finish, synthesizes a `resolved` stat line so
+  value scales (rare->millions, legend->billions, ascended->infinite), tags the card
+  `origin:'pack'`, and a reveal modal (`#packmodal`) runs the rip ritual.
+  **The Collectors.** Resident NPC bots populate the floor with no backend: a live
+  feed (`#collfeed`) of bot pack-rips and chatter, plus periodic real offers
+  (`#offerbox`) on your cards (cash, lowball to overpay, or a trade for a bot-minted
+  card); accepting moves CRED/cards atomically and saves. Pack/bot cards verify as
+  `[ EXOTIC ]` on champions.html (a real pull, not an engine-crowned floor champion).
 - `api/certified.json` - schema `the-signal/certified/1`: the engine's authoritative
   one-of-one champions (reigning `champion` flagged `current:true`, plus the hall of
   fame), each with genes, real career stats, and a content fingerprint `fp`
