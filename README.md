@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 18, 2026** // Index **73 (SURGING)** // hottest **GAME** // record **9-2**
+**June 18, 2026** // Index **73 (SURGING)** // hottest **WORLD** // record **9-2**
 
 > Devs are starring mattpocock/skills hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.
 

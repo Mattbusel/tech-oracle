@@ -16,7 +16,7 @@
 <div class="bigmoney" id="bigmoney"></div>
 <style>
 #floor .lcard{display:inline-block;width:194px;vertical-align:top;border:1px solid #34362f;padding:10px;margin:7px 7px 0 0;font-size:12px;line-height:1.5}
-#floor .lcard canvas.emb{width:100%;height:86px;display:block;margin-bottom:7px;border:1px solid rgba(255,255,255,.06)}
+#floor .lcard canvas.emb,#floor .lcard canvas.remb{width:100%;height:86px;display:block;margin-bottom:7px;border:1px solid rgba(255,255,255,.06)}
 #floor .lcard .code{margin-top:6px;color:#8d8a7c;font-size:11px;letter-spacing:.04em}
 #floor .lcard .tbtn{margin-top:5px;background:none;border:1px solid #4a4d44;color:#cfe7b6;cursor:pointer;font:inherit;font-size:11px;padding:4px 9px}
 #floor .lcard .tbtn:hover{background:#cfe7b6;color:#0d0f0d}
@@ -403,7 +403,7 @@ setInterval(drawTable,1300);
  function drawRafters(){
   var el=document.getElementById('floorrafters');if(!el)return;
   if(!rafters.length){el.innerHTML='<span class="sub">Empty. The first champion is crowned at the bell.</span>';return;}
-  el.innerHTML=rafters.map(function(r,idx){var lg=r.rarity==='LEGEND',cls='lcard'+(lg?' legend':' rare');return '<div class="'+cls+'"><canvas class=remb data-i="'+idx+'" width=156 height=74></canvas><span class=rk>'+r.rarity+' // SEASON '+r.season+' #'+r.rank+'</span><span class=nm>'+esc(r.name)+'</span><div>'+esc(r.house||'')+' // '+(r.fade?'FADE':'TAIL')+'</div><div style="margin-top:4px">net '+fmt(r.finalBank)+' // W'+(r.maxStreak||0)+' // big +'+fmt(r.biggestWin)+'</div></div>';}).join('');
+  el.innerHTML=rafters.map(function(r,idx){var lg=r.rarity==='LEGEND',cls='lcard'+(lg?' legend':' rare');return '<div class="'+cls+'"><canvas class=remb data-i="'+idx+'" width=164 height=86></canvas><span class=rk>'+r.rarity+' // SEASON '+r.season+' #'+r.rank+'</span><span class=nm>'+esc(r.name)+'</span><div>'+esc(r.house||'')+' // '+(r.fade?'FADE':'TAIL')+'</div><div style="margin-top:4px">net '+(r.finalBank>=1e13?'&infin;':fmtAbbr(r.finalBank))+' // W'+(r.maxStreak||0)+' // big +'+fmtAbbr(r.biggestWin)+'</div></div>';}).join('');
   var cvs=el.querySelectorAll('canvas.remb');for(var i=0;i<cvs.length;i++){var r=rafters[parseInt(cvs[i].getAttribute('data-i'),10)];if(r)drawEmblem(cvs[i],{code:r.name+r.season+r.rank,risk:null},r.rarity==='LEGEND'?'legend':'rare');}
  }
  function renderCollection(){drawCards();drawRafters();}
