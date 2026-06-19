@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 19, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **10-2**
+**June 19, 2026** // Index **71 (SURGING)** // hottest **XBOX** // record **10-2**
 
-> DeusData/codebase-memory-mcp is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
+> chopratejas/headroom is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
