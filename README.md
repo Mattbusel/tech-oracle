@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 19, 2026** // Index **71 (SURGING)** // hottest **XBOX** // record **10-2**
+**June 19, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **10-2**
 
 > chopratejas/headroom is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
 

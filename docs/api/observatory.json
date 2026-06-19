@@ -79,7 +79,7 @@
     },
     {
       "dir": 1,
-      "p": 0.564,
+      "p": 0.6,
       "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -121,7 +121,7 @@
     },
     {
       "dir": -1,
-      "p": 0.32,
+      "p": 0.315,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -135,7 +135,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
@@ -149,7 +149,7 @@
     },
     {
       "dir": -1,
-      "p": 0.345,
+      "p": 0.356,
       "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -169,8 +169,8 @@
       "term": "JACKSON"
     },
     {
-      "dir": 1,
-      "p": 0.543,
+      "dir": -1,
+      "p": 0.414,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LARGE"
@@ -254,7 +254,7 @@
     },
     {
       "dir": -1,
-      "p": 0.323,
+      "p": 0.306,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AMAZON"
@@ -380,14 +380,14 @@
     },
     {
       "dir": -1,
-      "p": 0.316,
+      "p": 0.304,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SOCIAL"
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
@@ -415,7 +415,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -423,16 +423,16 @@
   ],
   "chasm": [
     {
-      "days": 180,
+      "days": 135,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "ADDS"
+      "term": "A12"
     },
     {
-      "days": 180,
+      "days": 37,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "ABUSE"
+      "term": "A13"
     },
     {
       "days": 178,
@@ -461,8 +461,8 @@
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "FEAR",
-    "value": 37
+    "label": "NEUTRAL",
+    "value": 41
   },
   "manifold": [
     {
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": -0.235,
-      "curvature": -1.43,
+      "beta": -0.226,
+      "curvature": -1.01,
       "defined": true,
-      "ds2": 0.529,
-      "gamma": 1.029,
+      "ds2": 0.547,
+      "gamma": 1.027,
       "geodesic_trend": -1.0,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.092,
+      "rel_momentum": -0.084,
       "term": "VIDEO"
     },
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.005,
-      "curvature": -0.51,
+      "beta": 0.013,
+      "curvature": -0.17,
       "defined": true,
-      "ds2": 0.99,
+      "ds2": 0.974,
       "gamma": 1.0,
-      "geodesic_trend": 0.322,
+      "geodesic_trend": 0.502,
       "phase": "CHURNING",
-      "prob_rising": 56,
+      "prob_rising": 60,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.001,
+      "rel_momentum": 0.003,
       "term": "GOOGLE"
     },
     {
@@ -650,23 +650,18 @@
   ],
   "movers": [
     {
-      "count": 3,
-      "term": "ADDS",
-      "vel": 425
-    },
-    {
       "count": 5,
       "term": "MULTI",
       "vel": 400
     },
     {
       "count": 4,
-      "term": "COMMUNITY",
+      "term": "SPEECH",
       "vel": 400
     },
     {
       "count": 4,
-      "term": "SONY",
+      "term": "COMMUNITY",
       "vel": 400
     },
     {
@@ -676,14 +671,19 @@
     },
     {
       "count": 3,
-      "term": "CAMERA",
+      "term": "EXECUTION",
+      "vel": 400
+    },
+    {
+      "count": 3,
+      "term": "DIED",
       "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
-    "delta_word": "FALLING",
+    "delta_abs": 0,
+    "delta_word": "FLAT",
     "has_prev": true,
     "highest_days": 0,
     "history": [
@@ -737,12 +737,12 @@
       },
       {
         "date": "2026-06-19",
-        "index": 71
+        "index": 72
       }
     ],
-    "index": 71,
-    "theme": "XBOX",
-    "total": 262,
+    "index": 72,
+    "theme": "GOOGLE",
+    "total": 265,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
@@ -751,31 +751,31 @@
       "arrow": "UP",
       "delta": 2,
       "index": 100,
-      "name": "AI"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 94,
       "name": "PLATFORM"
-    },
-    {
-      "arrow": "UP",
-      "delta": 3,
-      "index": 41,
-      "name": "SECURITY"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 12,
+      "index": 88,
+      "name": "AI"
+    },
+    {
+      "arrow": "UP",
+      "delta": 4,
+      "index": 47,
+      "name": "SECURITY"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 18,
       "name": "CHIPS"
     },
     {
       "arrow": "UP",
-      "delta": 2,
+      "delta": 1,
       "index": 12,
-      "name": "RUST"
+      "name": "CLOUD"
     },
     {
       "arrow": "DOWN",
@@ -786,8 +786,8 @@
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 6,
-      "name": "CLOUD"
+      "index": 0,
+      "name": "RUST"
     },
     {
       "arrow": "DOWN",
@@ -898,5 +898,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 42953
+  "tracked_terms": 42964
 }
