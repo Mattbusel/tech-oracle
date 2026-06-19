@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 18, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **9-2**
+**June 19, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **10-2**
 
-> Devs are starring DeusData/codebase-memory-mcp hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.
+> DeusData/codebase-memory-mcp is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
