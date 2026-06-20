@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 19, 2026** // Index **72 (SURGING)** // hottest **HERE** // record **10-2**
+**June 20, 2026** // Index **71 (SURGING)** // hottest **YEARS** // record **12-2**
 
-> chopratejas/headroom is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
+> How Transparent is DiffusionGemma? looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
