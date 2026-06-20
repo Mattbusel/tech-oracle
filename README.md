@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 20, 2026** // Index **71 (SURGING)** // hottest **YEARS** // record **12-2**
+**June 20, 2026** // Index **72 (SURGING)** // hottest **UPDATE** // record **12-2**
 
-> How Transparent is DiffusionGemma? looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
+> Hyundai buys Boston Dynamics is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
