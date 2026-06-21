@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 21, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **14-2**
+**June 21, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **14-2**
 
-> The HN front page is piling onto SMPTE Makes Its Standards Freely Accessible. Expect the tooling around it to consolidate into one default winner within two quarters.
+> chopratejas/headroom is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

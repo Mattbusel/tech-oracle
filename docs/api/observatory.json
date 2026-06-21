@@ -79,7 +79,7 @@
     },
     {
       "dir": -1,
-      "p": 0.311,
+      "p": 0.323,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -93,17 +93,17 @@
     },
     {
       "dir": -1,
-      "p": 0.305,
-      "phase": "FALLING",
-      "regime": "SPACELIKE",
-      "term": "WAR"
-    },
-    {
-      "dir": -1,
       "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SERIES"
+    },
+    {
+      "dir": -1,
+      "p": 0.305,
+      "phase": "FALLING",
+      "regime": "SPACELIKE",
+      "term": "WAR"
     },
     {
       "dir": -1,
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.645,
+      "p": 0.608,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -317,7 +317,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -429,34 +429,34 @@
       "term": "NINTENDO"
     },
     {
-      "days": 180,
+      "days": 182,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "ACCOUNT"
+      "term": "PLAYERS"
     },
     {
       "days": 182,
       "origin": "HN",
-      "reach": "HN",
-      "term": "ACCOUNTS"
+      "reach": "DEV.TO",
+      "term": "SKILLS"
+    },
+    {
+      "days": 182,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "TAKE"
+    },
+    {
+      "days": 180,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "KNOWING"
     },
     {
       "days": 181,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "ACQUIRED"
-    },
-    {
-      "days": 182,
-      "origin": "HN",
-      "reach": "HN",
-      "term": "ACROSS"
-    },
-    {
-      "days": 182,
-      "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "ACTUALLY"
+      "term": "PROBABLY"
     }
   ],
   "corpus_days": 180,
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": -0.179,
-      "curvature": 1.5,
+      "beta": -0.2,
+      "curvature": 1.08,
       "defined": true,
-      "ds2": 0.642,
-      "gamma": 1.016,
-      "geodesic_trend": -0.999,
+      "ds2": 0.601,
+      "gamma": 1.021,
+      "geodesic_trend": -1.0,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.063,
+      "rel_momentum": -0.071,
       "term": "VIDEO"
     },
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.08,
-      "curvature": -1.31,
+      "beta": -0.055,
+      "curvature": -0.75,
       "defined": true,
-      "ds2": 0.84,
-      "gamma": 1.003,
-      "geodesic_trend": -0.946,
+      "ds2": 0.891,
+      "gamma": 1.001,
+      "geodesic_trend": -0.884,
       "phase": "FALLING",
-      "prob_rising": 31,
+      "prob_rising": 32,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.019,
+      "rel_momentum": -0.012,
       "term": "GOOGLE"
     },
     {
@@ -635,49 +635,49 @@
       "term": "TRUMP"
     },
     {
-      "beta": -0.137,
-      "curvature": 0.97,
+      "beta": -0.31,
+      "curvature": -0.04,
       "defined": true,
-      "ds2": 0.727,
-      "gamma": 1.009,
-      "geodesic_trend": -0.977,
+      "ds2": 0.38,
+      "gamma": 1.052,
+      "geodesic_trend": -1.0,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.046,
-      "term": "WAR"
+      "rel_momentum": -0.093,
+      "term": "SERIES"
     }
   ],
   "movers": [
     {
+      "count": 5,
+      "term": "NINTENDO",
+      "vel": 775
+    },
+    {
       "count": 4,
-      "term": "X11",
-      "vel": 600
+      "term": "TAKE",
+      "vel": 460
+    },
+    {
+      "count": 4,
+      "term": "SKILLS",
+      "vel": 460
+    },
+    {
+      "count": 4,
+      "term": "PLAYERS",
+      "vel": 460
     },
     {
       "count": 3,
-      "term": "NINTENDO",
+      "term": "PROBABLY",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "FEST",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "PATCHES",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "RELEASE",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "PHONES",
-      "vel": 400
+      "term": "KNOWING",
+      "vel": 425
     }
   ],
   "pulse": {
@@ -745,53 +745,53 @@
       }
     ],
     "index": 72,
-    "theme": "APPLE",
-    "total": 267,
+    "theme": "GAME",
+    "total": 266,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "FLAT",
-      "delta": 0,
+      "arrow": "UP",
+      "delta": 2,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 94,
+      "index": 84,
       "name": "PLATFORM"
     },
     {
       "arrow": "DOWN",
-      "delta": -2,
-      "index": 29,
+      "delta": -4,
+      "index": 16,
       "name": "SECURITY"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 18,
-      "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 6,
-      "name": "RUST"
+      "index": 11,
+      "name": "CHIPS"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 6,
+      "index": 5,
       "name": "CRYPTO"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 6,
+      "index": 5,
       "name": "CLOUD"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -2,
+      "index": 0,
+      "name": "RUST"
     },
     {
       "arrow": "DOWN",
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 42693
+  "tracked_terms": 42743
 }
