@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7433,
+    "defined": 7434,
     "phases": {
       "BOTTOMING": 486,
-      "CHURNING": 1526,
-      "FALLING": 433,
-      "FLAT": 4340,
-      "PEAKING": 96,
-      "RISING": 552
+      "CHURNING": 1523,
+      "FALLING": 429,
+      "FLAT": 4347,
+      "PEAKING": 107,
+      "RISING": 542
     },
-    "scanned": 42743,
+    "scanned": 42756,
     "turns": [
       {
         "active_days": 160,
@@ -57,14 +57,25 @@
       },
       {
         "active_days": 154,
-        "gamma": 1.03,
-        "geodesic": -93,
+        "gamma": 1.02,
+        "geodesic": -86,
         "peak": 22,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 31,
+        "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "NVIDIA"
+      },
+      {
+        "active_days": 152,
+        "gamma": 1.0,
+        "geodesic": -21,
+        "peak": 21,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 46,
+        "regime": "SPACELIKE",
+        "term": "AMAZON"
       },
       {
         "active_days": 144,
@@ -102,11 +113,11 @@
       {
         "active_days": 182,
         "gamma": 1.0,
-        "geodesic": 38,
+        "geodesic": 11,
         "peak": 14,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 58,
+        "prob_rising": 52,
         "regime": "SPACELIKE",
         "term": "YEARS"
       },
@@ -157,11 +168,11 @@
       {
         "active_days": 168,
         "gamma": 1.0,
-        "geodesic": 34,
+        "geodesic": 7,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 57,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "TWO"
       },
@@ -175,17 +186,6 @@
         "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "BLUE"
-      },
-      {
-        "active_days": 182,
-        "gamma": 1.0,
-        "geodesic": -12,
-        "peak": 11,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 48,
-        "regime": "SPACELIKE",
-        "term": "MEMORY"
       }
     ]
   },
