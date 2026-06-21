@@ -16,7 +16,7 @@
     },
     {
       "dir": -1,
-      "p": 0.355,
+      "p": 0.452,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SUPER"
@@ -107,7 +107,7 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.303,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LLM"
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.608,
+      "p": 0.624,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -212,7 +212,7 @@
     },
     {
       "dir": -1,
-      "p": 0.328,
+      "p": 0.313,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
@@ -317,7 +317,7 @@
     },
     {
       "dir": -1,
-      "p": 0.303,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -408,14 +408,14 @@
     },
     {
       "dir": 1,
-      "p": 0.523,
+      "p": 0.552,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "YEARS"
     },
     {
       "dir": -1,
-      "p": 0.303,
+      "p": 0.301,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "REAL"
@@ -423,22 +423,10 @@
   ],
   "chasm": [
     {
-      "days": 181,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "NINTENDO"
-    },
-    {
       "days": 180,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "THESE"
-    },
-    {
-      "days": 178,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "DEALS"
     },
     {
       "days": 182,
@@ -454,15 +442,27 @@
     },
     {
       "days": 182,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "TAKE"
+    },
+    {
+      "days": 182,
       "origin": "ARXIV",
       "reach": "THE NEWS",
       "term": "FEATURES"
+    },
+    {
+      "days": 182,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "STUDIO"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 41
+    "value": 44
   },
   "manifold": [
     {
@@ -492,16 +492,16 @@
       "term": "CUP"
     },
     {
-      "beta": -0.148,
-      "curvature": 0.17,
+      "beta": -0.103,
+      "curvature": 1.17,
       "defined": true,
-      "ds2": 0.703,
-      "gamma": 1.011,
-      "geodesic_trend": -0.727,
+      "ds2": 0.794,
+      "gamma": 1.005,
+      "geodesic_trend": -0.239,
       "phase": "BOTTOMING",
-      "prob_rising": 35,
+      "prob_rising": 45,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.037,
+      "rel_momentum": -0.025,
       "term": "SUPER"
     },
     {
@@ -531,16 +531,16 @@
       "term": "FILM"
     },
     {
-      "beta": -0.151,
-      "curvature": 1.61,
+      "beta": -0.172,
+      "curvature": 1.22,
       "defined": true,
-      "ds2": 0.697,
-      "gamma": 1.012,
+      "ds2": 0.656,
+      "gamma": 1.015,
       "geodesic_trend": -1.0,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.068,
+      "rel_momentum": -0.077,
       "term": "CLAUDE"
     },
     {
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": -0.179,
-      "curvature": 1.5,
+      "beta": -0.164,
+      "curvature": 1.77,
       "defined": true,
-      "ds2": 0.642,
-      "gamma": 1.016,
-      "geodesic_trend": -0.999,
+      "ds2": 0.672,
+      "gamma": 1.014,
+      "geodesic_trend": -0.998,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.063,
+      "rel_momentum": -0.058,
       "term": "VIDEO"
     },
     {
@@ -650,23 +650,18 @@
   ],
   "movers": [
     {
-      "count": 4,
-      "term": "NINTENDO",
-      "vel": 600
-    },
-    {
-      "count": 6,
+      "count": 10,
       "term": "THESE",
-      "vel": 500
-    },
-    {
-      "count": 5,
-      "term": "DEALS",
-      "vel": 483
+      "vel": 900
     },
     {
       "count": 4,
       "term": "EARLY",
+      "vel": 460
+    },
+    {
+      "count": 4,
+      "term": "TAKE",
       "vel": 460
     },
     {
@@ -676,7 +671,12 @@
     },
     {
       "count": 3,
-      "term": "FEATURES",
+      "term": "TEST",
+      "vel": 425
+    },
+    {
+      "count": 3,
+      "term": "VOTE",
       "vel": 425
     }
   ],
@@ -745,34 +745,34 @@
       }
     ],
     "index": 72,
-    "theme": "GAME",
+    "theme": "THESE",
     "total": 267,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "FLAT",
-      "delta": 0,
+      "arrow": "DOWN",
+      "delta": -1,
       "index": 100,
       "name": "AI"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 88,
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 100,
       "name": "PLATFORM"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 18,
+      "arrow": "UP",
+      "delta": 1,
+      "index": 25,
       "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
       "delta": -4,
-      "index": 18,
+      "index": 19,
       "name": "SECURITY"
     },
     {
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 42756
+  "tracked_terms": 42771
 }

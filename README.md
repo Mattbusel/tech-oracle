@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 21, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **14-2**
+**June 21, 2026** // Index **72 (SURGING)** // hottest **THESE** // record **14-2**
 
-> chopratejas/headroom is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
+> The HN front page is piling onto Loupe - A iOS app that raises awareness about what native apps can see. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
