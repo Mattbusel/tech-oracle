@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 20, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **13-2**
+**June 21, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **14-2**
 
-> CSSQuake is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> The HN front page is piling onto SMPTE Makes Its Standards Freely Accessible. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

@@ -1,24 +1,24 @@
 {
   "book": {
-    "bank": 1830,
+    "bank": 1983,
     "best_loss": 1,
-    "best_win": 10,
+    "best_win": 11,
     "history": [
       {
         "date": "2026-06-02",
-        "pct": 10
+        "pct": 9
       },
       {
         "date": "2026-06-04",
-        "pct": 17
+        "pct": 15
       },
       {
         "date": "2026-06-05",
-        "pct": 6
+        "pct": 5
       },
       {
         "date": "2026-06-08",
-        "pct": 11
+        "pct": 10
       },
       {
         "date": "2026-06-09",
@@ -26,58 +26,62 @@
       },
       {
         "date": "2026-06-09",
-        "pct": 6
+        "pct": 5
       },
       {
         "date": "2026-06-11",
-        "pct": 10
+        "pct": 9
       },
       {
         "date": "2026-06-13",
-        "pct": 13
+        "pct": 11
       },
       {
         "date": "2026-06-14",
-        "pct": 20
+        "pct": 17
       },
       {
         "date": "2026-06-15",
-        "pct": 28
+        "pct": 24
       },
       {
         "date": "2026-06-17",
-        "pct": 37
+        "pct": 32
       },
       {
         "date": "2026-06-17",
-        "pct": 55
+        "pct": 47
       },
       {
         "date": "2026-06-17",
-        "pct": 72
+        "pct": 61
       },
       {
         "date": "2026-06-18",
-        "pct": 80
+        "pct": 69
       },
       {
         "date": "2026-06-18",
+        "pct": 85
+      },
+      {
+        "date": "2026-06-19",
         "pct": 100
       }
     ],
     "pnl_class": "sb-hit",
-    "roi_str": "+83%",
-    "settled": 15,
-    "streak": "W10"
+    "roi_str": "+98%",
+    "settled": 16,
+    "streak": "W11"
   },
   "calibration": {
-    "brier": "0.205",
+    "brier": "0.215",
     "buckets": [
       {
         "actual": 100,
         "label": "LONGSHOTS",
-        "n": 3,
-        "pred": 38
+        "n": 4,
+        "pred": 39
       },
       {
         "actual": 77,
@@ -94,16 +98,712 @@
     ],
     "grade": "MISCALIBRATED, AND SHOWING IT",
     "has_data": true,
-    "n": 15
+    "n": 16
   },
   "calls": [
+    {
+      "confidence": 0.58,
+      "date": "2026-06-21",
+      "id": 130,
+      "keyword": "accessible",
+      "keyword2": "",
+      "live": 58,
+      "live_prev": 58,
+      "manifold": {
+        "gamma": 1.033,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 1.72,
+      "permalink": "/call/130.html",
+      "prediction": "The HN front page is piling onto SMPTE Makes Its Standards Freely Accessible. Expect the tooling around it to consolidate into one default winner within two quarters.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL -200% // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "SMPTE Makes Its Standards Freely Accessible",
+        "type": "hn",
+        "url": "https://www.smpte.org/blog/smpte-makes-its-standards-freely-accessible-openingstandards-library-to-the-global-media-technology-community"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ACCESSIBLE\" CLEARS 3 MENTIONS IN A DAY BY 2026-07-21"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-06-21",
+      "id": 129,
+      "keyword": "chopratejas",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.63,
+      "permalink": "/call/129.html",
+      "prediction": "Devs are starring chopratejas/headroom hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "chopratejas/headroom",
+        "type": "github",
+        "url": "https://github.com/chopratejas/headroom"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"CHOPRATEJAS\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.51,
+      "date": "2026-06-21",
+      "id": 128,
+      "keyword": "representation",
+      "keyword2": "",
+      "live": 51,
+      "live_prev": 51,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 1.95,
+      "permalink": "/call/128.html",
+      "prediction": "This UNIEGO: Proxies as Mediators for Unified Egocentric Video Representation Learning paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 59.7d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "UNIEGO: Proxies as Mediators for Unified Egocentric Video Representation Learning",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20559v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"REPRESENTATION\" RESURFACES ACROSS THE FEEDS BY 2026-07-21"
+    },
+    {
+      "confidence": 0.52,
+      "date": "2026-06-21",
+      "id": 127,
+      "keyword": "reversing",
+      "keyword2": "",
+      "live": 52,
+      "live_prev": 52,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 1.93,
+      "permalink": "/call/127.html",
+      "prediction": "DOS Game \"F-15 Strike Eagle II\" reversing project needs DOS test pilots is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "DOS Game \"F-15 Strike Eagle II\" reversing project needs DOS test pilots",
+        "type": "hn",
+        "url": "https://neuviemeporte.github.io/f15-se2/2026/06/20/needyou.html"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-07-21"
+    },
+    {
+      "confidence": 0.54,
+      "date": "2026-06-21",
+      "id": 126,
+      "keyword": "attention",
+      "keyword2": "",
+      "live": 54,
+      "live_prev": 54,
+      "manifold": {
+        "gamma": 1.022,
+        "geodesic": 96,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 1.85,
+      "permalink": "/call/126.html",
+      "prediction": "Fresh cs.AI/cs.LG work on The Token Is a Group Element: On Lie-Algebra Attention over Matrix Lie Groups just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
+      "rationale": "VEL +250%/7d // 1/10 FEEDS // REACH ARXIV // HALF-LIFE 81.6d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.06 // geodesic +96% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "The Token Is a Group Element: On Lie-Algebra Attention over Matrix Lie Groups",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20547v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ATTENTION\" CLEARS 4 MENTIONS IN A DAY BY 2026-07-21"
+    },
+    {
+      "confidence": 0.37,
+      "date": "2026-06-21",
+      "id": 125,
+      "keyword": "multicalibration",
+      "keyword2": "",
+      "live": 37,
+      "live_prev": 37,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.7,
+      "permalink": "/call/125.html",
+      "prediction": "Optimal Deterministic Multicalibration and Omniprediction is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Optimal Deterministic Multicalibration and Omniprediction",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20557v1"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"MULTICALIBRATION\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-06-21",
+      "id": 124,
+      "keyword": "diffusiongemma",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
+      "manifold": {
+        "gamma": 1.002,
+        "geodesic": -22,
+        "phase": "PEAKING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.63,
+      "permalink": "/call/124.html",
+      "prediction": "This How Transparent is DiffusionGemma? paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic -22% // PEAKING IN 1D",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "How Transparent is DiffusionGemma?",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20560v1"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"DIFFUSIONGEMMA\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.49,
+      "date": "2026-06-21",
+      "id": 123,
+      "keyword": "recommendation",
+      "keyword2": "",
+      "live": 49,
+      "live_prev": 49,
+      "manifold": {
+        "gamma": 1.004,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.04,
+      "permalink": "/call/123.html",
+      "prediction": "Structuring and Tokenizing Distributed User Interest Context for Generative Recommendation looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 89d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Structuring and Tokenizing Distributed User Interest Context for Generative Recommendation",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20554v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-07-21"
+    },
+    {
+      "confidence": 0.53,
+      "date": "2026-06-21",
+      "id": 122,
+      "keyword": "visionos",
+      "keyword2": "",
+      "live": 53,
+      "live_prev": 53,
+      "manifold": {
+        "gamma": 1.033,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 1.89,
+      "permalink": "/call/122.html",
+      "prediction": "The HN front page is piling onto UHF X11: X11 Built for VisionOS and Apple Vision Pro. Expect the tooling around it to consolidate into one default winner within two quarters.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL -200% // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "UHF X11: X11 Built for VisionOS and Apple Vision Pro",
+        "type": "hn",
+        "url": "https://www.lispm.net/apps/uhf-x11/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"VISIONOS\" CLEARS 5 MENTIONS IN A DAY BY 2026-07-21"
+    },
+    {
+      "confidence": 0.36,
+      "date": "2026-06-21",
+      "id": 121,
+      "keyword": "predictability",
+      "keyword2": "",
+      "live": 36,
+      "live_prev": 36,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.77,
+      "permalink": "/call/121.html",
+      "prediction": "Predictability as a Fine-Grained Measure for Privacy is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Predictability as a Fine-Grained Measure for Privacy",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20546v1"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"PREDICTABILITY\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.51,
+      "date": "2026-06-21",
+      "id": 120,
+      "keyword": "distribution",
+      "keyword2": "",
+      "live": 51,
+      "live_prev": 51,
+      "manifold": {
+        "gamma": 1.002,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 1.97,
+      "permalink": "/call/120.html",
+      "prediction": "This Toward Calibrated Mixture-of-Experts Under Distribution Shift paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 114.2d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Toward Calibrated Mixture-of-Experts Under Distribution Shift",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20544v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"DISTRIBUTION\" RESURFACES ACROSS THE FEEDS BY 2026-07-21"
+    },
+    {
+      "confidence": 0.51,
+      "date": "2026-06-21",
+      "id": 119,
+      "keyword": "awareness",
+      "keyword2": "",
+      "live": 51,
+      "live_prev": 51,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 1.94,
+      "permalink": "/call/119.html",
+      "prediction": "Loupe - A iOS app that raises awareness about what native apps can see is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 136d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Loupe - A iOS app that raises awareness about what native apps can see",
+        "type": "hn",
+        "url": "https://github.com/mysk-research/loupe"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 82 BY 2026-07-21"
+    },
+    {
+      "confidence": 0.47,
+      "date": "2026-06-21",
+      "id": 118,
+      "keyword": "bayesian",
+      "keyword2": "",
+      "live": 47,
+      "live_prev": 47,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.13,
+      "permalink": "/call/118.html",
+      "prediction": "Fresh cs.AI/cs.LG work on Multi-Task Bayesian In-Context Learning just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 66.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Multi-Task Bayesian In-Context Learning",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20538v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"BAYESIAN\" CLEARS 2 MENTIONS IN A DAY BY 2026-07-21"
+    },
+    {
+      "confidence": 0.35,
+      "date": "2026-06-21",
+      "id": 117,
+      "keyword": "renting",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.85,
+      "permalink": "/call/117.html",
+      "prediction": "Renting a sewing machine from the library is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Renting a sewing machine from the library",
+        "type": "hn",
+        "url": "https://www.bbc.com/future/article/20260618-the-weird-and-wonderful-libraries-of-finland"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"RENTING\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.48,
+      "date": "2026-06-21",
+      "id": 116,
+      "keyword": "startupwiki",
+      "keyword2": "",
+      "live": 48,
+      "live_prev": 48,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.08,
+      "permalink": "/call/116.html",
+      "prediction": "Watching Show HN: StartupWiki - A Free Alternative to Crunchbase climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Show HN: StartupWiki - A Free Alternative to Crunchbase",
+        "type": "hn",
+        "url": "https://startupwiki.tech/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"STARTUPWIKI\" RESURFACES ACROSS THE FEEDS BY 2026-07-21"
+    },
+    {
+      "confidence": 0.49,
+      "date": "2026-06-21",
+      "id": 115,
+      "keyword": "checkpoint",
+      "keyword2": "",
+      "live": 49,
+      "live_prev": 49,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.05,
+      "permalink": "/call/115.html",
+      "prediction": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Execution-State Capsules: Graph-Bound Execution-State Checkpoint and Restore for Low-Latency, Small-Batch, On-Device Physical-AI Serving",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2606.20537v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-07-21"
+    },
+    {
+      "confidence": 0.47,
+      "date": "2026-06-21",
+      "id": 114,
+      "keyword": "cloudflare",
+      "keyword2": "",
+      "live": 47,
+      "live_prev": 47,
+      "manifold": {
+        "gamma": 1.001,
+        "geodesic": 10,
+        "phase": "BOTTOMING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.13,
+      "permalink": "/call/114.html",
+      "prediction": "The HN front page is piling onto Temporary Cloudflare accounts for AI agents. Expect the tooling around it to consolidate into one default winner within two quarters.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 55.6d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic +10% // BOTTOMING IN 1D",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Temporary Cloudflare accounts for AI agents",
+        "type": "hn",
+        "url": "https://blog.cloudflare.com/temporary-accounts/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"CLOUDFLARE\" CLEARS 3 MENTIONS IN A DAY BY 2026-07-21"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-06-21",
+      "id": 113,
+      "keyword": "eliminates",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.033,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.93,
+      "permalink": "/call/113.html",
+      "prediction": "Watch Linux eliminates the strncpy API after six years of work, 360 patches leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL -200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Linux eliminates the strncpy API after six years of work, 360 patches",
+        "type": "hn",
+        "url": "https://www.phoronix.com/news/Linux-7.2-Drops-strncpy"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"ELIMINATES\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.35,
+      "date": "2026-06-21",
+      "id": 112,
+      "keyword": "consumer",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.0,
+        "geodesic": -59,
+        "phase": "FALLING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.85,
+      "permalink": "/call/112.html",
+      "prediction": "Not TP-Link, Not Netgear: This Wi-Fi Router Gets Consumer Reports Top Rating is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 15.5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic -59% // FALLING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Not TP-Link, Not Netgear: This Wi-Fi Router Gets Consumer Reports Top Rating",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPRm1qTFFTWFp0ZGpyTmlxRF91enBrZGl2anR3aC1yb3hNZ1NQLXAwQjl6eE5CU1pZMjcyOTZ5alRmY21Yc3g4ODZQcU1JZkU2QmFReWRVSlNPVmpmT0dOMHRZVTA1M0JCYnNteVhxN0oyQ3dkd0VfSzktRTBKOEZSdVQyYXktdHRsYUw4M01QVHFKdw?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"CONSUMER\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.46,
+      "date": "2026-06-21",
+      "id": 111,
+      "keyword": "bevy",
+      "keyword2": "",
+      "live": 46,
+      "live_prev": 46,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.17,
+      "permalink": "/call/111.html",
+      "prediction": "Bevy 0.19 is the quiet Lobsters pick. This is usually how the next standard library or pattern starts.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH LOBSTERS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Bevy 0.19",
+        "type": "lobsters",
+        "url": "https://bevy.org/news/bevy-0-19/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-07-21"
+    },
+    {
+      "confidence": 0.47,
+      "date": "2026-06-21",
+      "id": 110,
+      "keyword": "organização",
+      "keyword2": "",
+      "live": 47,
+      "live_prev": 47,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.14,
+      "permalink": "/call/110.html",
+      "prediction": "Dev.to writers are rallying around Quando o Pomodoro não funciona: organização realista para TDAH em burnout. Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH DEV.TO // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Quando o Pomodoro não funciona: organização realista para TDAH em burnout",
+        "type": "devto",
+        "url": "https://dev.to/pddesign/quando-o-pomodoro-nao-funciona-organizacao-realista-para-tdah-em-burnout-2a4c"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ORGANIZAÇÃO\" CLEARS 4 MENTIONS IN A DAY BY 2026-07-21"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-06-21",
+      "id": 109,
+      "keyword": "hashbrown",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.63,
+      "permalink": "/call/109.html",
+      "prediction": "Devs are actually pulling hashbrown into builds. The signal says a managed offering or corporate backer shows up within six months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH CRATES // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "hashbrown",
+        "type": "crates",
+        "url": "https://crates.io/crates/hashbrown"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"HASHBROWN\" RESURFACES BY 2026-07-21"
+    },
+    {
+      "confidence": 0.43,
+      "date": "2026-06-21",
+      "id": 108,
+      "keyword": "guillemot",
+      "keyword2": "",
+      "live": 43,
+      "live_prev": 43,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.34,
+      "permalink": "/call/108.html",
+      "prediction": "Claude Guillemot, Ubisoft Co-Founder, Is Dead After Plane Crash in France is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Claude Guillemot, Ubisoft Co-Founder, Is Dead After Plane Crash in France",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxOVDJLdUE2a0ZXT09RQ1MyVUtQVTQzVVNKTHZoeEEyRjJrbFhvbkMyYVg2RTF6eXd5QkJLSDVPWFI4WDZCaEN5V1JMcVAweFVrQmxiWnBZYXZHOGpaYnE1enlFeUs3V1ZnYnZBMWNpRFktZF9ySkhLMVQxZmNpaWdRUnZfU0NJQVgyY25haVhjZw?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"GUILLEMOT\" RESURFACES ACROSS THE FEEDS BY 2026-07-21"
+    },
+    {
+      "confidence": 0.45,
+      "date": "2026-06-21",
+      "id": 107,
+      "keyword": "expected",
+      "keyword2": "",
+      "live": 45,
+      "live_prev": 45,
+      "manifold": {
+        "gamma": 1.004,
+        "geodesic": 79,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.2,
+      "permalink": "/call/107.html",
+      "prediction": "Watch Grand Theft Auto 6 Trailer 3: Expected Release Date And Details leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM ARXIV // HALF-LIFE 136.8d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-07-21",
+      "source": {
+        "title": "Grand Theft Auto 6 Trailer 3: Expected Release Date And Details",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOVWVReWpRZDdrWmZTYlZxNFlaNXhjMHVpVkQ3Q2pkTVNxWG02Rjc5SU51UDNDR21UZnlUVGZMam8zSlZDem8tY0JhdHVUZS1Pa2NqRlZIcDhXZXpzcXhIbzNxT1draWFWOVpnOWpqM1NmMlp1TmY3VjE5NkZEblVfQ2ZDd0JKcW9jekRBSkE5c2FLcS0yRGtxcGxVWVdJUUxzRHRRTTllelFWVURvaXVnNHNHMEZ0Q0k?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 82 BY 2026-07-21"
+    },
     {
       "confidence": 0.56,
       "date": "2026-06-20",
       "id": 106,
       "keyword": "cssquake",
       "keyword2": "",
-      "live": 56,
+      "live": 42,
       "live_prev": 56,
       "manifold": {
         "gamma": 1.018,
@@ -132,7 +832,7 @@
       "id": 105,
       "keyword": "diffusiongemma",
       "keyword2": "",
-      "live": 55,
+      "live": 42,
       "live_prev": 55,
       "manifold": {
         "gamma": 1.002,
@@ -161,7 +861,7 @@
       "id": 104,
       "keyword": "chopratejas",
       "keyword2": "",
-      "live": 38,
+      "live": 55,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -190,7 +890,7 @@
       "id": 103,
       "keyword": "representation",
       "keyword2": "",
-      "live": 51,
+      "live": 55,
       "live_prev": 51,
       "manifold": {
         "gamma": 1.018,
@@ -219,7 +919,7 @@
       "id": 102,
       "keyword": "multicalibration",
       "keyword2": "",
-      "live": 51,
+      "live": 46,
       "live_prev": 51,
       "manifold": {
         "gamma": 1.018,
@@ -248,7 +948,7 @@
       "id": 101,
       "keyword": "recommendation",
       "keyword2": "",
-      "live": 52,
+      "live": 42,
       "live_prev": 52,
       "manifold": {
         "gamma": 1.004,
@@ -277,7 +977,7 @@
       "id": 100,
       "keyword": "attention",
       "keyword2": "",
-      "live": 37,
+      "live": 69,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.012,
@@ -306,7 +1006,7 @@
       "id": 99,
       "keyword": "predictability",
       "keyword2": "",
-      "live": 38,
+      "live": 55,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -335,7 +1035,7 @@
       "id": 98,
       "keyword": "distribution",
       "keyword2": "",
-      "live": 49,
+      "live": 50,
       "live_prev": 49,
       "manifold": {
         "gamma": 1.002,
@@ -364,7 +1064,7 @@
       "id": 97,
       "keyword": "feature",
       "keyword2": "",
-      "live": 51,
+      "live": 42,
       "live_prev": 51,
       "manifold": {
         "gamma": 1.003,
@@ -393,7 +1093,7 @@
       "id": 96,
       "keyword": "bayesian",
       "keyword2": "",
-      "live": 36,
+      "live": 55,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
@@ -422,7 +1122,7 @@
       "id": 95,
       "keyword": "checkpoint",
       "keyword2": "",
-      "live": 50,
+      "live": 55,
       "live_prev": 50,
       "manifold": {
         "gamma": 1.018,
@@ -451,7 +1151,7 @@
       "id": 94,
       "keyword": "favorite",
       "keyword2": "",
-      "live": 51,
+      "live": 42,
       "live_prev": 51,
       "manifold": {
         "gamma": 1.002,
@@ -480,7 +1180,7 @@
       "id": 93,
       "keyword": "organização",
       "keyword2": "",
-      "live": 47,
+      "live": 42,
       "live_prev": 47,
       "manifold": {
         "gamma": 1.018,
@@ -509,7 +1209,7 @@
       "id": 92,
       "keyword": "hashbrown",
       "keyword2": "",
-      "live": 35,
+      "live": 55,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -538,7 +1238,7 @@
       "id": 91,
       "keyword": "macbooks",
       "keyword2": "",
-      "live": 48,
+      "live": 55,
       "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
@@ -567,7 +1267,7 @@
       "id": 90,
       "keyword": "instructions",
       "keyword2": "",
-      "live": 48,
+      "live": 46,
       "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
@@ -596,7 +1296,7 @@
       "id": 89,
       "keyword": "sashimi",
       "keyword2": "",
-      "live": 49,
+      "live": 42,
       "live_prev": 49,
       "manifold": {
         "gamma": 1.018,
@@ -625,7 +1325,7 @@
       "id": 88,
       "keyword": "francisco",
       "keyword2": "",
-      "live": 34,
+      "live": 55,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -654,7 +1354,7 @@
       "id": 87,
       "keyword": "juneteenth",
       "keyword2": "",
-      "live": 35,
+      "live": 55,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -683,7 +1383,7 @@
       "id": 86,
       "keyword": "relativity",
       "keyword2": "",
-      "live": 46,
+      "live": 50,
       "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
@@ -712,7 +1412,7 @@
       "id": 85,
       "keyword": "guillemot",
       "keyword2": "",
-      "live": 46,
+      "live": 42,
       "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
@@ -741,7 +1441,7 @@
       "id": 84,
       "keyword": "steam",
       "keyword2": "",
-      "live": 38,
+      "live": 69,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.006,
@@ -770,7 +1470,7 @@
       "id": 83,
       "keyword": "ledgeragent",
       "keyword2": "",
-      "live": 42,
+      "live": 55,
       "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
@@ -828,8 +1528,8 @@
       "id": 81,
       "keyword": "diffusiongemma",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 55,
+      "live": 42,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -858,7 +1558,7 @@
       "keyword": "representation",
       "keyword2": "",
       "live": 42,
-      "live_prev": 56,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -887,7 +1587,7 @@
       "keyword": "multicalibration",
       "keyword2": "",
       "live": 55,
-      "live_prev": 40,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -916,7 +1616,7 @@
       "keyword": "recommendation",
       "keyword2": "",
       "live": 55,
-      "live_prev": 52,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -944,8 +1644,8 @@
       "id": 77,
       "keyword": "predictability",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 52,
+      "live": 46,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -974,7 +1674,7 @@
       "keyword": "distribution",
       "keyword2": "",
       "live": 42,
-      "live_prev": 53,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -1003,7 +1703,7 @@
       "keyword": "bayesian",
       "keyword2": "",
       "live": 55,
-      "live_prev": 39,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1044,14 +1744,14 @@
       "permalink": "/call/74.html",
       "prediction": "This The Token Is a Group Element: On Lie-Algebra Attention over Matrix Lie Groups paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +200% // HALF-LIFE 80.6d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.00 // geodesic +0% // CHURNING",
-      "resolved_on": "",
+      "resolved_on": "2026-06-21",
       "resolves_by": "2026-07-19",
       "source": {
         "title": "The Token Is a Group Element: On Lie-Algebra Attention over Matrix Lie Groups",
         "type": "arxiv",
         "url": "https://arxiv.org/abs/2606.20547v1"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "LONGSHOT: WIN IF \"ATTENTION\" RESURFACES BY 2026-07-19"
     },
     {
@@ -1060,8 +1760,8 @@
       "id": 73,
       "keyword": "android",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 53,
+      "live": 50,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.011,
         "geodesic": 100,
@@ -1090,7 +1790,7 @@
       "keyword": "checkpoint",
       "keyword2": "",
       "live": 42,
-      "live_prev": 50,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1118,8 +1818,8 @@
       "id": 71,
       "keyword": "explained",
       "keyword2": "",
-      "live": 70,
-      "live_prev": 38,
+      "live": 52,
+      "live_prev": 70,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 79,
@@ -1147,8 +1847,8 @@
       "id": 70,
       "keyword": "dynamics",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 52,
+      "live": 45,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1176,8 +1876,8 @@
       "id": 69,
       "keyword": "organização",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 52,
+      "live": 42,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1206,7 +1906,7 @@
       "keyword": "relativity",
       "keyword2": "",
       "live": 42,
-      "live_prev": 48,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1234,8 +1934,8 @@
       "id": 67,
       "keyword": "ecosystem",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 37,
+      "live": 41,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -1264,7 +1964,7 @@
       "keyword": "daveigh",
       "keyword2": "",
       "live": 55,
-      "live_prev": 49,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1292,8 +1992,8 @@
       "id": 65,
       "keyword": "hashbrown",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 49,
+      "live": 46,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1321,8 +2021,8 @@
       "id": 64,
       "keyword": "releases",
       "keyword2": "",
-      "live": 60,
-      "live_prev": 50,
+      "live": 40,
+      "live_prev": 60,
       "manifold": {
         "gamma": 1.001,
         "geodesic": 59,
@@ -1351,7 +2051,7 @@
       "keyword": "instructions",
       "keyword2": "",
       "live": 55,
-      "live_prev": 36,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1379,8 +2079,8 @@
       "id": 62,
       "keyword": "reality",
       "keyword2": "",
-      "live": 58,
-      "live_prev": 37,
+      "live": 52,
+      "live_prev": 58,
       "manifold": {
         "gamma": 1.003,
         "geodesic": 79,
@@ -1408,8 +2108,8 @@
       "id": 61,
       "keyword": "snapdragon",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 47,
+      "live": 50,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1437,8 +2137,8 @@
       "id": 60,
       "keyword": "features",
       "keyword2": "",
-      "live": 41,
-      "live_prev": 48,
+      "live": 40,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.003,
         "geodesic": 83,
@@ -1467,7 +2167,7 @@
       "keyword": "smoother",
       "keyword2": "",
       "live": 45,
-      "live_prev": 40,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1553,7 +2253,7 @@
       "id": 56,
       "keyword": "ordinance",
       "keyword2": "",
-      "live": 40,
+      "live": 42,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -1582,8 +2282,8 @@
       "id": 55,
       "keyword": "parliament",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 41,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 59,
@@ -1611,8 +2311,8 @@
       "id": 54,
       "keyword": "rickrolled",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 55,
+      "live": 44,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1669,7 +2369,7 @@
       "id": 52,
       "keyword": "northrop",
       "keyword2": "",
-      "live": 44,
+      "live": 46,
       "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
@@ -1698,8 +2398,8 @@
       "id": 51,
       "keyword": "assistants",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1727,8 +2427,8 @@
       "id": 50,
       "keyword": "goalscorers",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 55,
+      "live": 44,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1785,7 +2485,7 @@
       "id": 48,
       "keyword": "homescreen",
       "keyword2": "",
-      "live": 48,
+      "live": 50,
       "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
@@ -1843,7 +2543,7 @@
       "id": 46,
       "keyword": "estimates",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
@@ -1872,7 +2572,7 @@
       "id": 45,
       "keyword": "counterparts",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
@@ -1901,7 +2601,7 @@
       "id": 44,
       "keyword": "getting",
       "keyword2": "",
-      "live": 40,
+      "live": 42,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.005,
@@ -1930,8 +2630,8 @@
       "id": 43,
       "keyword": "revealed",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1959,8 +2659,8 @@
       "id": 42,
       "keyword": "repositories",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 55,
+      "live": 44,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1988,7 +2688,7 @@
       "id": 41,
       "keyword": "wallpaper",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
@@ -2017,7 +2717,7 @@
       "id": 40,
       "keyword": "generation",
       "keyword2": "",
-      "live": 44,
+      "live": 46,
       "live_prev": 44,
       "manifold": {
         "gamma": 1.007,
@@ -2046,8 +2746,8 @@
       "id": 39,
       "keyword": "uncertainty",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 41,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2075,7 +2775,7 @@
       "id": 38,
       "keyword": "procurement",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
@@ -2133,7 +2833,7 @@
       "id": 36,
       "keyword": "distillation",
       "keyword2": "",
-      "live": 48,
+      "live": 50,
       "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
@@ -2191,8 +2891,8 @@
       "id": 34,
       "keyword": "mattpocock",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2220,7 +2920,7 @@
       "id": 33,
       "keyword": "superpowers",
       "keyword2": "",
-      "live": 55,
+      "live": 43,
       "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
@@ -2278,7 +2978,7 @@
       "id": 31,
       "keyword": "challenge",
       "keyword2": "",
-      "live": 40,
+      "live": 42,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.003,
@@ -2307,8 +3007,8 @@
       "id": 30,
       "keyword": "panniantong",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2336,8 +3036,8 @@
       "id": 29,
       "keyword": "foldable",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 52,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -2365,8 +3065,8 @@
       "id": 28,
       "keyword": "scalability",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 45,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2394,7 +3094,7 @@
       "id": 27,
       "keyword": "carcass",
       "keyword2": "",
-      "live": 44,
+      "live": 46,
       "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
@@ -2423,8 +3123,8 @@
       "id": 26,
       "keyword": "ridiculously",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 42,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2481,8 +3181,8 @@
       "id": 24,
       "keyword": "rickrolled",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 55,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2510,7 +3210,7 @@
       "id": 23,
       "keyword": "android",
       "keyword2": "",
-      "live": 48,
+      "live": 50,
       "live_prev": 48,
       "manifold": {
         "gamma": 1.014,
@@ -2539,8 +3239,8 @@
       "id": 22,
       "keyword": "reproducibility",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2597,7 +3297,7 @@
       "id": 20,
       "keyword": "correction",
       "keyword2": "",
-      "live": 68,
+      "live": 65,
       "live_prev": 68,
       "manifold": {
         "gamma": 1.018,
@@ -2626,7 +3326,7 @@
       "id": 19,
       "keyword": "dreamlight",
       "keyword2": "",
-      "live": 40,
+      "live": 42,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -2655,8 +3355,8 @@
       "id": 18,
       "keyword": "replicability",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2684,7 +3384,7 @@
       "id": 17,
       "keyword": "exclusive",
       "keyword2": "",
-      "live": 55,
+      "live": 43,
       "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
@@ -2713,8 +3413,8 @@
       "id": 16,
       "keyword": "motorola",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 41,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 21,
@@ -2742,7 +3442,7 @@
       "id": 15,
       "keyword": "oliver",
       "keyword2": "",
-      "live": 44,
+      "live": 46,
       "live_prev": 44,
       "manifold": {
         "gamma": 1.016,
@@ -2771,8 +3471,8 @@
       "id": 14,
       "keyword": "preflection",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2800,8 +3500,8 @@
       "id": 13,
       "keyword": "california",
       "keyword2": "",
-      "live": 60,
-      "live_prev": 64,
+      "live": 53,
+      "live_prev": 60,
       "manifold": {
         "gamma": 1.0,
         "geodesic": -58,
@@ -2858,7 +3558,7 @@
       "id": 11,
       "keyword": "organização",
       "keyword2": "",
-      "live": 48,
+      "live": 50,
       "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
@@ -3175,12 +3875,12 @@
   "schema": "the-signal/record/1",
   "scoreboard": {
     "has_rate": true,
-    "hits": 13,
+    "hits": 14,
     "misses": 2,
-    "open": 91,
-    "rate": 86,
-    "resolved": 15,
+    "open": 114,
+    "rate": 87,
+    "resolved": 16,
     "verdict": "THE ORACLE IS BEATING THE STREET"
   },
-  "total": 106
+  "total": 130
 }
