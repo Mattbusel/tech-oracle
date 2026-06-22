@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 21, 2026** // Index **72 (SURGING)** // hottest **THESE** // record **14-2**
+**June 22, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **16-2**
 
-> The HN front page is piling onto Loupe - A iOS app that raises awareness about what native apps can see. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Normal people are about to find Identity verification on Claude. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
