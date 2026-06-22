@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 22, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **16-2**
+**June 22, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **17-2**
 
-> Normal people are about to find Identity verification on Claude. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Devs are starring calesthio/OpenMontage hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

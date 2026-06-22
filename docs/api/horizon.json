@@ -1,31 +1,42 @@
 {
   "horizon": {
-    "defined": 7447,
+    "defined": 7455,
     "phases": {
-      "BOTTOMING": 492,
-      "CHURNING": 1487,
-      "FALLING": 411,
-      "FLAT": 4398,
-      "PEAKING": 93,
-      "RISING": 566
+      "BOTTOMING": 500,
+      "CHURNING": 1470,
+      "FALLING": 407,
+      "FLAT": 4396,
+      "PEAKING": 115,
+      "RISING": 567
     },
-    "scanned": 42579,
+    "scanned": 42632,
     "turns": [
       {
         "active_days": 162,
         "gamma": 1.01,
-        "geodesic": -35,
+        "geodesic": -78,
         "peak": 39,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 43,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "SUPER"
       },
       {
+        "active_days": 124,
+        "gamma": 1.0,
+        "geodesic": 21,
+        "peak": 37,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 54,
+        "regime": "SPACELIKE",
+        "term": "ASSEMBLY"
+      },
+      {
         "active_days": 184,
         "gamma": 1.01,
-        "geodesic": 97,
+        "geodesic": 96,
         "peak": 23,
         "peak_in": 1,
         "phase": "PEAKING",
@@ -102,11 +113,11 @@
       {
         "active_days": 175,
         "gamma": 1.0,
-        "geodesic": 23,
+        "geodesic": -5,
         "peak": 13,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 55,
+        "prob_rising": 49,
         "regime": "SPACELIKE",
         "term": "HIGH"
       },
@@ -124,11 +135,11 @@
       {
         "active_days": 183,
         "gamma": 1.0,
-        "geodesic": -64,
+        "geodesic": -34,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 37,
+        "prob_rising": 43,
         "regime": "SPACELIKE",
         "term": "LINUX"
       },
@@ -157,11 +168,11 @@
       {
         "active_days": 171,
         "gamma": 1.02,
-        "geodesic": -89,
+        "geodesic": -95,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 32,
+        "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "AGE"
       },
@@ -175,17 +186,6 @@
         "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "INDIAN"
-      },
-      {
-        "active_days": 169,
-        "gamma": 1.01,
-        "geodesic": -89,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 32,
-        "regime": "SPACELIKE",
-        "term": "TWO"
       }
     ]
   },
