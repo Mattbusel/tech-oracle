@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 23, 2026** // Index **68 (SURGING)** // hottest **WORLD** // record **20-2**
+**June 23, 2026** // Index **70 (SURGING)** // hottest **PRIME** // record **21-2**
 
-> calesthio/OpenMontage is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
+> Prime Day is here: We found 55+ deals to shop from Apple, Lego, Sony, and more just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
