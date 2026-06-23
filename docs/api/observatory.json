@@ -128,7 +128,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.675,
+      "p": 0.679,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -317,7 +317,7 @@
     },
     {
       "dir": -1,
-      "p": 0.305,
+      "p": 0.311,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -334,14 +334,14 @@
       "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
-      "term": "CHATGPT"
+      "term": "CODING"
     },
     {
       "dir": -1,
       "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
-      "term": "CODING"
+      "term": "CHATGPT"
     },
     {
       "dir": -1,
@@ -415,7 +415,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "REAL"
@@ -426,7 +426,7 @@
       "days": 184,
       "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "PRICE"
+      "term": "LIVE"
     },
     {
       "days": 178,
@@ -438,7 +438,7 @@
       "days": 184,
       "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "LIVE"
+      "term": "PRICE"
     },
     {
       "days": 183,
@@ -447,10 +447,10 @@
       "term": "RELEASES"
     },
     {
-      "days": 182,
+      "days": 56,
       "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "VALVE"
+      "reach": "ARS",
+      "term": "ABC"
     },
     {
       "days": 182,
@@ -462,7 +462,7 @@
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 52
+    "value": 50
   },
   "manifold": [
     {
@@ -531,16 +531,16 @@
       "term": "FILM"
     },
     {
-      "beta": -0.123,
-      "curvature": 0.4,
+      "beta": -0.115,
+      "curvature": 0.58,
       "defined": true,
-      "ds2": 0.754,
-      "gamma": 1.008,
-      "geodesic_trend": -0.999,
+      "ds2": 0.771,
+      "gamma": 1.007,
+      "geodesic_trend": -0.998,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.053,
+      "rel_momentum": -0.049,
       "term": "CLAUDE"
     },
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.253,
-      "curvature": -0.35,
+      "beta": -0.234,
+      "curvature": 0.31,
       "defined": true,
-      "ds2": 0.493,
-      "gamma": 1.034,
-      "geodesic_trend": -1.0,
+      "ds2": 0.532,
+      "gamma": 1.029,
+      "geodesic_trend": -0.999,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.086,
+      "rel_momentum": -0.077,
       "term": "GOOGLE"
     },
     {
@@ -650,9 +650,9 @@
   ],
   "movers": [
     {
-      "count": 6,
-      "term": "PRICE",
-      "vel": 950
+      "count": 4,
+      "term": "LIVE",
+      "vel": 600
     },
     {
       "count": 13,
@@ -661,12 +661,7 @@
     },
     {
       "count": 3,
-      "term": "VALVE",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "KINGDOM",
+      "term": "PRICE",
       "vel": 425
     },
     {
@@ -675,14 +670,19 @@
       "vel": 425
     },
     {
+      "count": 5,
+      "term": "TECH",
+      "vel": 400
+    },
+    {
       "count": 3,
-      "term": "LIVE",
-      "vel": 425
+      "term": "LOOK",
+      "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
+    "delta_abs": 3,
     "delta_word": "FALLING",
     "has_prev": true,
     "highest_days": 0,
@@ -741,12 +741,12 @@
       },
       {
         "date": "2026-06-23",
-        "index": 70
+        "index": 68
       }
     ],
-    "index": 70,
+    "index": 68,
     "theme": "PRIME",
-    "total": 254,
+    "total": 243,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
@@ -759,15 +759,9 @@
     },
     {
       "arrow": "DOWN",
-      "delta": -3,
-      "index": 80,
+      "delta": -1,
+      "index": 93,
       "name": "PLATFORM"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 27,
-      "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
@@ -782,6 +776,12 @@
       "name": "ROBOTS"
     },
     {
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 13,
+      "name": "CHIPS"
+    },
+    {
       "arrow": "FLAT",
       "delta": 0,
       "index": 13,
@@ -794,9 +794,9 @@
       "name": "CLOUD"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 7,
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 0,
       "name": "CRYPTO"
     }
   ],
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 42504
+  "tracked_terms": 42520
 }
