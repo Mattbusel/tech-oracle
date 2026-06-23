@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 23, 2026** // Index **68 (SURGING)** // hottest **PRIME** // record **21-2**
+**June 23, 2026** // Index **72 (SURGING)** // hottest **PRIME** // record **21-2**
 
-> Watching What we call "age verification" is actually mass surveillance climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> AirPods Max 2 are getting harder to resist with iOS 27 upgrades just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
