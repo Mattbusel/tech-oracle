@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 22, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **17-2**
+**June 23, 2026** // Index **68 (SURGING)** // hottest **WORLD** // record **20-2**
 
-> Steam Machine launches today is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> calesthio/OpenMontage is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
