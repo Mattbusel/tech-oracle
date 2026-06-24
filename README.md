@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 23, 2026** // Index **72 (SURGING)** // hottest **PRIME** // record **21-2**
+**June 24, 2026** // Index **65 (SURGING)** // hottest **WORLD** // record **22-2**
 
-> AirPods Max 2 are getting harder to resist with iOS 27 upgrades just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> InSight: Self-Guided Skill Acquisition via Steerable VLAs looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
