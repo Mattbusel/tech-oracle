@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 24, 2026** // Index **65 (SURGING)** // hottest **WORLD** // record **22-2**
+**June 24, 2026** // Index **68 (SURGING)** // hottest **WORLD** // record **22-2**
 
-> InSight: Self-Guided Skill Acquisition via Steerable VLAs looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
+> The machine flagged Prime Day deals are live: Shop today's best tech sales from Apple, Sony, Bose, Anker and crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
