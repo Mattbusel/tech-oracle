@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 24, 2026** // Index **63 (ACTIVE)** // hottest **WORLD** // record **23-2**
+**June 25, 2026** // Index **62 (ACTIVE)** // hottest **LEARNING** // record **23-2**
 
-> The machine flagged Prime Day deals are live: Shop today's best tech sales from Apple, Sony, Bose, Anker and crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> Fresh cs.AI/cs.LG work on Learning Action Priors for Cross-embodiment Robot Manipulation just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
