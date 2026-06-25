@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 25, 2026** // Index **63 (ACTIVE)** // hottest **WORLD** // record **24-2**
+**June 25, 2026** // Index **63 (ACTIVE)** // hottest **LEARNING** // record **24-2**
 
-> The HN front page is piling onto Half-Life 2 in a Browser. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Fresh cs.AI/cs.LG work on Learning Action Priors for Cross-embodiment Robot Manipulation just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
