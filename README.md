@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 25, 2026** // Index **62 (ACTIVE)** // hottest **LEARNING** // record **23-2**
+**June 25, 2026** // Index **64 (ACTIVE)** // hottest **WORLD** // record **24-2**
 
 > Fresh cs.AI/cs.LG work on Learning Action Priors for Cross-embodiment Robot Manipulation just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.
 
