@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 26, 2026** // Index **67 (SURGING)** // hottest **WORLD** // record **27-2**
+**June 26, 2026** // Index **69 (SURGING)** // hottest **PRIME** // record **33-2**
 
 > Watch google-labs-code/design.md leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
