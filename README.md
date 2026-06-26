@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 25, 2026** // Index **63 (ACTIVE)** // hottest **LEARNING** // record **24-2**
+**June 26, 2026** // Index **64 (ACTIVE)** // hottest **WORLD** // record **26-2**
 
-> Fresh cs.AI/cs.LG work on Learning Action Priors for Cross-embodiment Robot Manipulation just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.
+> DanceOPD: On-Policy Generative Field Distillation is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
