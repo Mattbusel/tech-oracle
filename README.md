@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 26, 2026** // Index **64 (ACTIVE)** // hottest **WORLD** // record **26-2**
+**June 26, 2026** // Index **67 (SURGING)** // hottest **WORLD** // record **27-2**
 
-> DanceOPD: On-Policy Generative Field Distillation is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.
+> Watch google-labs-code/design.md leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
