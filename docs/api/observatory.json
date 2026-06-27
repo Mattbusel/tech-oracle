@@ -198,7 +198,7 @@
     },
     {
       "dir": 1,
-      "p": 0.688,
+      "p": 0.695,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "VENEZUELA"
@@ -275,7 +275,7 @@
     },
     {
       "dir": -1,
-      "p": 0.381,
+      "p": 0.341,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -366,8 +366,8 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
-      "phase": "CHURNING",
+      "p": 0.302,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SOCIAL"
     },
@@ -380,7 +380,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.304,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
@@ -424,21 +424,21 @@
   "chasm": [
     {
       "days": 188,
-      "origin": "ARXIV",
-      "reach": "WIKIPEDIA",
-      "term": "SERIES"
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "LAUNCH"
     },
     {
       "days": 188,
       "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "TAKES"
+      "reach": "ARS",
+      "term": "HAD"
     },
     {
-      "days": 173,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "10TH"
+      "days": 188,
+      "origin": "ARXIV",
+      "reach": "WIKIPEDIA",
+      "term": "SERIES"
     },
     {
       "days": 152,
@@ -447,22 +447,22 @@
       "term": "11TH"
     },
     {
-      "days": 26,
+      "days": 188,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "5800X3D"
+      "term": "ACCESS"
     },
     {
-      "days": 186,
-      "origin": "ARXIV",
+      "days": 184,
+      "origin": "HN",
       "reach": "THE NEWS",
-      "term": "ABLE"
+      "term": "ACCORDING"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "GREED",
-    "value": 71
+    "value": 77
   },
   "manifold": [
     {
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": -0.31,
-      "curvature": -1.07,
+      "beta": -0.297,
+      "curvature": -0.36,
       "defined": true,
-      "ds2": 0.379,
-      "gamma": 1.052,
+      "ds2": 0.405,
+      "gamma": 1.047,
       "geodesic_trend": -1.0,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.143,
+      "rel_momentum": -0.131,
       "term": "VIDEO"
     },
     {
@@ -650,33 +650,33 @@
   ],
   "movers": [
     {
+      "count": 6,
+      "term": "LAUNCH",
+      "vel": 500
+    },
+    {
+      "count": 5,
+      "term": "HAD",
+      "vel": 483
+    },
+    {
       "count": 3,
       "term": "SERIES",
       "vel": 425
     },
     {
-      "count": 3,
-      "term": "TAKES",
-      "vel": 425
-    },
-    {
       "count": 4,
-      "term": "ACCESS",
-      "vel": 400
-    },
-    {
-      "count": 3,
       "term": "HARDWARE",
       "vel": 400
     },
     {
-      "count": 3,
-      "term": "LABS",
+      "count": 4,
+      "term": "CHAT",
       "vel": 400
     },
     {
       "count": 3,
-      "term": "JULY",
+      "term": "ACCESS",
       "vel": 400
     }
   ],
@@ -746,58 +746,58 @@
     ],
     "index": 71,
     "theme": "WORLD",
-    "total": 258,
+    "total": 262,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -1,
+      "delta": -3,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
       "delta": -3,
-      "index": 83,
+      "index": 94,
       "name": "PLATFORM"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 11,
+      "index": 13,
+      "name": "CHIPS"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 13,
       "name": "CLOUD"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 11,
+      "index": 13,
       "name": "SECURITY"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 11,
+      "index": 13,
       "name": "ROBOTS"
     },
     {
-      "arrow": "DOWN",
-      "delta": -2,
+      "arrow": "UP",
+      "delta": 1,
       "index": 6,
-      "name": "CHIPS"
+      "name": "CRYPTO"
     },
     {
       "arrow": "DOWN",
       "delta": -2,
       "index": 0,
       "name": "RUST"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 0,
-      "name": "CRYPTO"
     }
   ],
   "source_weights": [
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 42002
+  "tracked_terms": 42010
 }
