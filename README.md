@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 27, 2026** // Index **68 (SURGING)** // hottest **DEALS** // record **36-2**
+**June 27, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **40-2**
 
 > This DanceOPD: On-Policy Generative Field Distillation paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.
 
