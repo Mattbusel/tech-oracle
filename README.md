@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 28, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **44-2**
+**June 28, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **45-2**
 
 > Normal people are about to find GTA 6 could be the final death knell for physical media, but it still makes sense to. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
