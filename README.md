@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 27, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **41-2**
+**June 28, 2026** // Index **72 (SURGING)** // hottest **PRIME** // record **42-2**
 
-> This DanceOPD: On-Policy Generative Field Distillation paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.
+> Keep an eye on simplex-chat/simplex-chat. This kind of trending velocity usually precedes it becoming a default in its niche within the year.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
