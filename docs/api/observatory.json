@@ -79,14 +79,14 @@
     },
     {
       "dir": -1,
-      "p": 0.492,
-      "phase": "PEAKING",
+      "p": 0.449,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
     },
     {
       "dir": -1,
-      "p": 0.32,
+      "p": 0.367,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SERIES"
@@ -107,7 +107,7 @@
     },
     {
       "dir": -1,
-      "p": 0.303,
+      "p": 0.307,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LLM"
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.545,
+      "p": 0.562,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -212,7 +212,7 @@
     },
     {
       "dir": -1,
-      "p": 0.401,
+      "p": 0.47,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "META"
@@ -233,7 +233,7 @@
     },
     {
       "dir": -1,
-      "p": 0.45,
+      "p": 0.353,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
@@ -254,7 +254,7 @@
     },
     {
       "dir": -1,
-      "p": 0.339,
+      "p": 0.311,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MUSK"
@@ -274,8 +274,8 @@
       "term": "SOFTWARE"
     },
     {
-      "dir": -1,
-      "p": 0.472,
+      "dir": 1,
+      "p": 0.599,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -338,14 +338,14 @@
     },
     {
       "dir": -1,
-      "p": 0.305,
+      "p": 0.308,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CODING"
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.306,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "CHINA"
@@ -394,14 +394,14 @@
     },
     {
       "dir": -1,
-      "p": 0.3,
+      "p": 0.301,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "YEARS"
     },
     {
       "dir": 1,
-      "p": 0.618,
+      "p": 0.658,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SUPREME"
@@ -423,22 +423,16 @@
   ],
   "chasm": [
     {
-      "days": 188,
+      "days": 189,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "DISPLAY"
+      "term": "BUY"
     },
     {
       "days": 190,
       "origin": "ARXIV",
       "reach": "ARS",
       "term": "QUANTUM"
-    },
-    {
-      "days": 188,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "WATCH"
     },
     {
       "days": 183,
@@ -453,16 +447,22 @@
       "term": "ZERO"
     },
     {
-      "days": 84,
+      "days": 148,
+      "origin": "HN",
+      "reach": "ARS",
+      "term": "1940S"
+    },
+    {
+      "days": 173,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "140W"
+      "term": "1980S"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "GREED",
-    "value": 64
+    "value": 65
   },
   "manifold": [
     {
@@ -609,29 +609,29 @@
       "term": "EPSTEIN"
     },
     {
-      "beta": 0.025,
-      "curvature": 0.65,
+      "beta": 0.011,
+      "curvature": 0.37,
       "defined": true,
-      "ds2": 0.949,
+      "ds2": 0.978,
       "gamma": 1.0,
-      "geodesic_trend": -0.042,
-      "phase": "PEAKING",
-      "prob_rising": 49,
+      "geodesic_trend": -0.255,
+      "phase": "CHURNING",
+      "prob_rising": 45,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.007,
+      "rel_momentum": 0.003,
       "term": "GOOGLE"
     },
     {
-      "beta": -0.217,
-      "curvature": -0.16,
+      "beta": -0.192,
+      "curvature": 0.55,
       "defined": true,
-      "ds2": 0.566,
-      "gamma": 1.024,
-      "geodesic_trend": -0.901,
+      "ds2": 0.616,
+      "gamma": 1.019,
+      "geodesic_trend": -0.663,
       "phase": "BOTTOMING",
-      "prob_rising": 32,
+      "prob_rising": 37,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.087,
+      "rel_momentum": -0.075,
       "term": "SERIES"
     },
     {
@@ -650,23 +650,23 @@
   ],
   "movers": [
     {
+      "count": 5,
+      "term": "NEURAL",
+      "vel": 600
+    },
+    {
       "count": 4,
       "term": "QUANTUM",
       "vel": 600
     },
     {
       "count": 4,
-      "term": "DISPLAY",
+      "term": "BUY",
       "vel": 600
     },
     {
-      "count": 6,
-      "term": "WATCH",
-      "vel": 500
-    },
-    {
       "count": 4,
-      "term": "NEURAL",
+      "term": "SELF",
       "vel": 460
     },
     {
@@ -758,16 +758,28 @@
       "name": "PLATFORM"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 76,
+      "arrow": "UP",
+      "delta": 2,
+      "index": 90,
       "name": "AI"
     },
     {
       "arrow": "UP",
-      "delta": 4,
-      "index": 19,
+      "delta": 5,
+      "index": 24,
       "name": "RUST"
+    },
+    {
+      "arrow": "UP",
+      "delta": 3,
+      "index": 19,
+      "name": "SECURITY"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 14,
+      "name": "CHIPS"
     },
     {
       "arrow": "FLAT",
@@ -776,21 +788,9 @@
       "name": "CLOUD"
     },
     {
-      "arrow": "UP",
-      "delta": 2,
-      "index": 14,
-      "name": "SECURITY"
-    },
-    {
       "arrow": "DOWN",
       "delta": -2,
       "index": 10,
-      "name": "CHIPS"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -3,
-      "index": 5,
       "name": "ROBOTS"
     },
     {
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 41786
+  "tracked_terms": 41798
 }

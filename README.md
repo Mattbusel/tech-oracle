@@ -25,7 +25,7 @@ Worker for the paid gate. No server you operate, no database you run.
 
 **June 29, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **46-2**
 
-> The HN front page is piling onto HackerRank open sourced its ATS. My resume scored 90/100. Oh wait 74. No - 88. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Sony's next-gen PlayStation will go 'beyond the living room' just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
