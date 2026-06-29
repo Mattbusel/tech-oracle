@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 29, 2026** // Index **71 (SURGING)** // hottest **FIFA** // record **46-2**
+**June 29, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **46-2**
 
-> The HN front page is piling onto GLM 5.2 beats Claude in our benchmarks. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Leaked A20 Pro Image Hints at iPhone 18 Pro Performance Gains just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
