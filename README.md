@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 28, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **45-2**
+**June 29, 2026** // Index **71 (SURGING)** // hottest **FIFA** // record **46-2**
 
-> Normal people are about to find GTA 6 could be the final death knell for physical media, but it still makes sense to. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> The HN front page is piling onto GLM 5.2 beats Claude in our benchmarks. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

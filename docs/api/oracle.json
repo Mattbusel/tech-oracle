@@ -14,7 +14,7 @@
     "record": "/api/record.json",
     "today": "/api/today.json"
   },
-  "generated": "2026-06-28",
+  "generated": "2026-06-29",
   "how_to_bet": "Betting is stateless. Construct a position token { k: keyword, m: market, s: \"TAIL\"|\"FADE\", l: decimal_odds_at_entry, u: your_handle }, base64url-encode the JSON, and keep it. TAIL backs the engine's call; FADE bets against it. Settle later by reading record.json: find the call by keyword/market and check its status. No account, no server, no signup.",
   "license": "Public record. Free to read, cite, and build on.",
   "markets": {
