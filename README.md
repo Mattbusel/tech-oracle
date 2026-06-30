@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 30, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **50-2**
+**June 30, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **51-2**
 
-> The machine flagged Sony's next-gen PlayStation will go 'beyond the living room' crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> The machine flagged Samsung Music Studio 7 Review: A Great Speaker On Its Own, And Even Better In A Pair crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
