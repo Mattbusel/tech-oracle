@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**June 30, 2026** // Index **64 (ACTIVE)** // hottest **GOOGLE** // record **51-2**
+**June 30, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **52-2**
 
-> The machine flagged Sony's Cooling Neck Device Is Coming to the US, and I Got a First Look crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> Claude Code is steganographically marking requests is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

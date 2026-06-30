@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7552,
+    "defined": 7553,
     "phases": {
-      "BOTTOMING": 871,
-      "CHURNING": 977,
-      "FALLING": 111,
-      "FLAT": 4986,
-      "PEAKING": 54,
-      "RISING": 553
+      "BOTTOMING": 874,
+      "CHURNING": 932,
+      "FALLING": 110,
+      "FLAT": 4915,
+      "PEAKING": 58,
+      "RISING": 664
     },
-    "scanned": 41676,
+    "scanned": 41689,
     "turns": [
       {
         "active_days": 168,
@@ -24,12 +24,12 @@
       },
       {
         "active_days": 192,
-        "gamma": 1.03,
-        "geodesic": -86,
+        "gamma": 1.02,
+        "geodesic": -81,
         "peak": 38,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 33,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "CUP"
       },
@@ -58,24 +58,13 @@
       {
         "active_days": 191,
         "gamma": 1.02,
-        "geodesic": -85,
+        "geodesic": -78,
         "peak": 35,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 33,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
-      },
-      {
-        "active_days": 168,
-        "gamma": 1.0,
-        "geodesic": -10,
-        "peak": 36,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 48,
-        "regime": "SPACELIKE",
-        "term": "LEARNING"
       },
       {
         "active_days": 192,
@@ -123,23 +112,34 @@
       },
       {
         "active_days": 192,
-        "gamma": 1.03,
+        "gamma": 1.02,
+        "geodesic": -85,
+        "peak": 26,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 33,
+        "regime": "SPACELIKE",
+        "term": "LLM"
+      },
+      {
+        "active_days": 192,
+        "gamma": 1.04,
+        "geodesic": -90,
+        "peak": 25,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 32,
+        "regime": "SPACELIKE",
+        "term": "AGENTS"
+      },
+      {
+        "active_days": 176,
+        "gamma": 1.05,
         "geodesic": -99,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
         "prob_rising": 30,
-        "regime": "SPACELIKE",
-        "term": "LLM"
-      },
-      {
-        "active_days": 176,
-        "gamma": 1.04,
-        "geodesic": -97,
-        "peak": 26,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "ELECTION"
       },
@@ -167,25 +167,25 @@
       },
       {
         "active_days": 192,
-        "gamma": 1.01,
-        "geodesic": -41,
+        "gamma": 1.0,
+        "geodesic": -28,
         "peak": 23,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 42,
+        "prob_rising": 44,
         "regime": "SPACELIKE",
         "term": "APPLE"
       },
       {
-        "active_days": 173,
-        "gamma": 1.06,
-        "geodesic": -99,
-        "peak": 23,
+        "active_days": 170,
+        "gamma": 1.0,
+        "geodesic": 38,
+        "peak": 24,
         "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 30,
+        "phase": "PEAKING",
+        "prob_rising": 58,
         "regime": "SPACELIKE",
-        "term": "JACKSON"
+        "term": "MULTI"
       }
     ]
   },
