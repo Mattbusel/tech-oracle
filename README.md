@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 1, 2026** // Index **69 (SURGING)** // hottest **WORLD** // record **54-2**
+**July 1, 2026** // Index **68 (SURGING)** // hottest **WORLD** // record **55-2**
 
-> Watching Claude Code is steganographically marking requests climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> Sony is killing all physical PlayStation game discs is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
