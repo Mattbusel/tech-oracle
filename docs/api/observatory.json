@@ -44,7 +44,7 @@
     },
     {
       "dir": -1,
-      "p": 0.31,
+      "p": 0.306,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
@@ -78,8 +78,8 @@
       "term": "EPSTEIN"
     },
     {
-      "dir": 1,
-      "p": 0.5,
+      "dir": -1,
+      "p": 0.47,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -93,8 +93,8 @@
     },
     {
       "dir": -1,
-      "p": 0.308,
-      "phase": "BOTTOMING",
+      "p": 0.303,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "TRUMP"
     },
@@ -149,8 +149,8 @@
     },
     {
       "dir": -1,
-      "p": 0.394,
-      "phase": "BOTTOMING",
+      "p": 0.349,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "APPLE"
     },
@@ -211,8 +211,8 @@
       "term": "OLYMPICS"
     },
     {
-      "dir": -1,
-      "p": 0.412,
+      "dir": 1,
+      "p": 0.541,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "META"
@@ -254,7 +254,7 @@
     },
     {
       "dir": -1,
-      "p": 0.311,
+      "p": 0.303,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MUSK"
@@ -317,7 +317,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -352,7 +352,7 @@
     },
     {
       "dir": 1,
-      "p": 0.624,
+      "p": 0.564,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LOCAL"
@@ -415,7 +415,7 @@
     },
     {
       "dir": -1,
-      "p": 0.312,
+      "p": 0.305,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "REAL"
@@ -425,44 +425,44 @@
     {
       "days": 192,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "TRUMP"
+      "reach": "DEV.TO",
+      "term": "ENGINEER"
+    },
+    {
+      "days": 190,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "PLAYSTATION"
     },
     {
       "days": 192,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "HIGH"
+    },
+    {
+      "days": 129,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "100K"
+      "reach": "THE NEWS",
+      "term": "250M"
     },
     {
       "days": 190,
       "origin": "ARXIV",
-      "reach": "THE NEWS",
+      "reach": "ARS",
       "term": "ABLE"
     },
     {
       "days": 192,
       "origin": "HN",
-      "reach": "THE NEWS",
+      "reach": "ARXIV",
       "term": "ACCELERATES"
-    },
-    {
-      "days": 192,
-      "origin": "HN",
-      "reach": "ARS",
-      "term": "ACCOUNTS"
-    },
-    {
-      "days": 192,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "ACCUSED"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "NEUTRAL",
-    "value": 50
+    "label": "GREED",
+    "value": 66
   },
   "manifold": [
     {
@@ -544,16 +544,16 @@
       "term": "CLAUDE"
     },
     {
-      "beta": -0.081,
-      "curvature": -0.09,
+      "beta": -0.09,
+      "curvature": -0.3,
       "defined": true,
-      "ds2": 0.838,
-      "gamma": 1.003,
-      "geodesic_trend": -0.952,
+      "ds2": 0.82,
+      "gamma": 1.004,
+      "geodesic_trend": -0.969,
       "phase": "FALLING",
       "prob_rising": 31,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.03,
+      "rel_momentum": -0.034,
       "term": "LANGUAGE"
     },
     {
@@ -609,16 +609,16 @@
       "term": "EPSTEIN"
     },
     {
-      "beta": -0.08,
-      "curvature": 0.09,
+      "beta": -0.089,
+      "curvature": -0.12,
       "defined": true,
-      "ds2": 0.84,
-      "gamma": 1.003,
-      "geodesic_trend": 0.002,
+      "ds2": 0.822,
+      "gamma": 1.004,
+      "geodesic_trend": -0.148,
       "phase": "BOTTOMING",
-      "prob_rising": 50,
+      "prob_rising": 47,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.02,
+      "rel_momentum": -0.023,
       "term": "GOOGLE"
     },
     {
@@ -635,24 +635,34 @@
       "term": "SERIES"
     },
     {
-      "beta": -0.216,
-      "curvature": 2.57,
+      "beta": -0.255,
+      "curvature": 2.05,
       "defined": true,
-      "ds2": 0.567,
-      "gamma": 1.024,
-      "geodesic_trend": -0.961,
-      "phase": "BOTTOMING",
-      "prob_rising": 31,
+      "ds2": 0.491,
+      "gamma": 1.034,
+      "geodesic_trend": -0.985,
+      "phase": "FALLING",
+      "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.066,
+      "rel_momentum": -0.076,
       "term": "TRUMP"
     }
   ],
   "movers": [
     {
-      "count": 4,
-      "term": "TRUMP",
-      "vel": 600
+      "count": 6,
+      "term": "ENGINEER",
+      "vel": 500
+    },
+    {
+      "count": 8,
+      "term": "PLAYSTATION",
+      "vel": 460
+    },
+    {
+      "count": 3,
+      "term": "HIGH",
+      "vel": 425
     },
     {
       "count": 3,
@@ -660,23 +670,13 @@
       "vel": 425
     },
     {
-      "count": 5,
-      "term": "ENGINEER",
-      "vel": 400
-    },
-    {
-      "count": 5,
+      "count": 6,
       "term": "ENGINE",
       "vel": 400
     },
     {
       "count": 4,
       "term": "SEMANTIC",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "CONTEXT",
       "vel": 400
     }
   ],
@@ -753,38 +753,38 @@
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -6,
+      "delta": -5,
+      "index": 100,
+      "name": "AI"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -8,
       "index": 100,
       "name": "PLATFORM"
     },
     {
       "arrow": "DOWN",
-      "delta": -4,
-      "index": 93,
-      "name": "AI"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 33,
+      "delta": -1,
+      "index": 23,
       "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
-      "delta": -2,
-      "index": 20,
+      "delta": -3,
+      "index": 15,
       "name": "CLOUD"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 13,
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 8,
       "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
       "delta": -3,
-      "index": 7,
+      "index": 8,
       "name": "ROBOTS"
     },
     {
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 41572
+  "tracked_terms": 41582
 }

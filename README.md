@@ -25,7 +25,7 @@ Worker for the paid gate. No server you operate, no database you run.
 
 **July 1, 2026** // Index **66 (SURGING)** // hottest **WORLD** // record **56-2**
 
-> Sony will stop making physical copies of PlayStation games in 2028 is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Sony to end physical PlayStation game discs for new releases starting in 2028 is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
