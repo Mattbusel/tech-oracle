@@ -107,7 +107,7 @@
     },
     {
       "dir": -1,
-      "p": 0.382,
+      "p": 0.351,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LLM"
@@ -141,8 +141,8 @@
       "term": "ELECTION"
     },
     {
-      "dir": 1,
-      "p": 0.543,
+      "dir": -1,
+      "p": 0.414,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "ICE"
@@ -198,9 +198,9 @@
     },
     {
       "dir": 1,
-      "p": 0.5,
-      "phase": "FLAT",
-      "regime": "LIGHTLIKE",
+      "p": 0.618,
+      "phase": "RISING",
+      "regime": "SPACELIKE",
       "term": "WINTER"
     },
     {
@@ -212,7 +212,7 @@
     },
     {
       "dir": -1,
-      "p": 0.396,
+      "p": 0.464,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "META"
@@ -233,7 +233,7 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.315,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
@@ -275,7 +275,7 @@
     },
     {
       "dir": -1,
-      "p": 0.311,
+      "p": 0.324,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -338,14 +338,14 @@
     },
     {
       "dir": -1,
-      "p": 0.396,
+      "p": 0.443,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CODING"
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "CHINA"
@@ -380,7 +380,7 @@
     },
     {
       "dir": 1,
-      "p": 0.592,
+      "p": 0.519,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
@@ -423,16 +423,28 @@
   ],
   "chasm": [
     {
-      "days": 193,
-      "origin": "ARXIV",
-      "reach": "HN",
-      "term": "CONTROL"
-    },
-    {
-      "days": 181,
+      "days": 192,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "30K"
+      "term": "AVAILABLE"
+    },
+    {
+      "days": 187,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "2ND"
+    },
+    {
+      "days": 111,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "3DO"
+    },
+    {
+      "days": 146,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "8TH"
     },
     {
       "days": 191,
@@ -441,28 +453,16 @@
       "term": "ABLE"
     },
     {
-      "days": 189,
+      "days": 190,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "ADDRESSES"
-    },
-    {
-      "days": 193,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "AGAINST"
-    },
-    {
-      "days": 188,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "AGES"
+      "term": "ACCIDENTALLY"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "GREED",
-    "value": 66
+    "label": "NEUTRAL",
+    "value": 57
   },
   "manifold": [
     {
@@ -656,12 +656,17 @@
     },
     {
       "count": 3,
-      "term": "CONTROL",
+      "term": "AVAILABLE",
       "vel": 425
     },
     {
+      "count": 4,
+      "term": "LAYER",
+      "vel": 400
+    },
+    {
       "count": 3,
-      "term": "MEASURING",
+      "term": "TESTING",
       "vel": 400
     },
     {
@@ -671,19 +676,14 @@
     },
     {
       "count": 3,
-      "term": "HIRING",
-      "vel": 400
-    },
-    {
-      "count": 2,
-      "term": "PROGRESS",
+      "term": "HARNESS",
       "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
-    "delta_word": "FALLING",
+    "delta_abs": 0,
+    "delta_word": "FLAT",
     "has_prev": true,
     "highest_days": 0,
     "history": [
@@ -741,57 +741,57 @@
       },
       {
         "date": "2026-07-02",
-        "index": 65
+        "index": 66
       }
     ],
-    "index": 65,
+    "index": 66,
     "theme": "WORLD",
-    "total": 225,
+    "total": 231,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 5,
+      "delta": 7,
       "index": 100,
       "name": "AI"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 67,
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 65,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
-      "delta": 4,
-      "index": 28,
+      "delta": 2,
+      "index": 15,
       "name": "CHIPS"
     },
     {
       "arrow": "UP",
-      "delta": 3,
-      "index": 22,
+      "delta": 2,
+      "index": 15,
       "name": "ROBOTS"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 11,
+      "index": 10,
       "name": "CLOUD"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 11,
-      "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 6,
+      "index": 5,
       "name": "CRYPTO"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -2,
+      "index": 5,
+      "name": "SECURITY"
     },
     {
       "arrow": "FLAT",
@@ -844,7 +844,7 @@
     {
       "bar": 93,
       "has_rate": true,
-      "hits": 21,
+      "hits": 22,
       "label": "THE NEWS",
       "misses": 0,
       "rate": 100,
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 41437
+  "tracked_terms": 41457
 }

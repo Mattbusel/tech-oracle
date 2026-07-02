@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 2, 2026** // Index **65 (SURGING)** // hottest **WORLD** // record **60-2**
+**July 2, 2026** // Index **66 (SURGING)** // hottest **WORLD** // record **61-2**
 
-> Watch Sony to end physical PlayStation game discs for new releases starting in 2028 leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Measuring the Gap Between Human and LLM Research Ideas looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

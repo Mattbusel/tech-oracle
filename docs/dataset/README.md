@@ -16,7 +16,7 @@ pretty_name: "THE SIGNAL: Dated, Self-Graded Tech Predictions"
 A daily, rules-based (no-LLM) oracle that makes dated, falsifiable technology predictions and grades every one HIT or MISS in public. This dataset is the full public record plus the term-level diffusion data the calls are built on. Live site: https://mattbusel.github.io/tech-oracle/
 
 ## Files
-- `predictions.csv` / `predictions.jsonl`: every public call (394 so far, 62 settled), with its market type, machine-checkable win condition, confidence, status and resolution date.
+- `predictions.csv` / `predictions.jsonl`: every public call (394 so far, 63 settled), with its market type, machine-checkable win condition, confidence, status and resolution date.
 - `diffusion.csv`: each tracked term's path down the funnel, from the technical source where it first appeared to the most general audience it has reached, and whether and when it crossed into the general public.
 - `datapackage.json`: Frictionless Data descriptor. `croissant.json`: MLCommons/Croissant metadata.
 
