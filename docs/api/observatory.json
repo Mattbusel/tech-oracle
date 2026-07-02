@@ -107,7 +107,7 @@
     },
     {
       "dir": -1,
-      "p": 0.351,
+      "p": 0.382,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LLM"
@@ -149,7 +149,7 @@
     },
     {
       "dir": -1,
-      "p": 0.315,
+      "p": 0.31,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -198,9 +198,9 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
-      "phase": "RISING",
-      "regime": "SPACELIKE",
+      "p": 0.5,
+      "phase": "FLAT",
+      "regime": "LIGHTLIKE",
       "term": "WINTER"
     },
     {
@@ -233,14 +233,14 @@
     },
     {
       "dir": -1,
-      "p": 0.315,
+      "p": 0.332,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
     },
     {
       "dir": 1,
-      "p": 0.636,
+      "p": 0.531,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AMAZON"
@@ -254,7 +254,7 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.308,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MUSK"
@@ -275,7 +275,7 @@
     },
     {
       "dir": -1,
-      "p": 0.324,
+      "p": 0.311,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -324,7 +324,7 @@
     },
     {
       "dir": -1,
-      "p": 0.343,
+      "p": 0.384,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "STATES"
@@ -338,7 +338,7 @@
     },
     {
       "dir": -1,
-      "p": 0.443,
+      "p": 0.396,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CODING"
@@ -423,10 +423,10 @@
   ],
   "chasm": [
     {
-      "days": 192,
-      "origin": "HN",
+      "days": 193,
+      "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "AVAILABLE"
+      "term": "FEATURE"
     },
     {
       "days": 187,
@@ -441,6 +441,12 @@
       "term": "3DO"
     },
     {
+      "days": 184,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "4TH"
+    },
+    {
       "days": 146,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -451,18 +457,12 @@
       "origin": "ARXIV",
       "reach": "ARS",
       "term": "ABLE"
-    },
-    {
-      "days": 190,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "ACCIDENTALLY"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 57
+    "value": 46
   },
   "manifold": [
     {
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": -0.183,
-      "curvature": 0.22,
+      "beta": -0.172,
+      "curvature": 0.49,
       "defined": true,
-      "ds2": 0.635,
-      "gamma": 1.017,
-      "geodesic_trend": -0.996,
+      "ds2": 0.655,
+      "gamma": 1.015,
+      "geodesic_trend": -0.993,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.078,
+      "rel_momentum": -0.073,
       "term": "VIDEO"
     },
     {
@@ -656,7 +656,7 @@
     },
     {
       "count": 3,
-      "term": "AVAILABLE",
+      "term": "FEATURE",
       "vel": 425
     },
     {
@@ -666,17 +666,17 @@
     },
     {
       "count": 3,
-      "term": "TESTING",
-      "vel": 400
-    },
-    {
-      "count": 3,
       "term": "NASA",
       "vel": 400
     },
     {
       "count": 3,
-      "term": "HARNESS",
+      "term": "FINE",
+      "vel": 400
+    },
+    {
+      "count": 3,
+      "term": "MEASURING",
       "vel": 400
     }
   ],
@@ -746,34 +746,34 @@
     ],
     "index": 66,
     "theme": "WORLD",
-    "total": 231,
+    "total": 229,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 7,
+      "delta": 8,
       "index": 100,
       "name": "AI"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 65,
+      "arrow": "DOWN",
+      "delta": -2,
+      "index": 52,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 15,
-      "name": "CHIPS"
+      "index": 14,
+      "name": "ROBOTS"
     },
     {
       "arrow": "UP",
-      "delta": 2,
-      "index": 15,
-      "name": "ROBOTS"
+      "delta": 1,
+      "index": 10,
+      "name": "CHIPS"
     },
     {
       "arrow": "FLAT",
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 41457
+  "tracked_terms": 41471
 }
