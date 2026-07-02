@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 2, 2026** // Index **66 (SURGING)** // hottest **WORLD** // record **61-2**
+**July 2, 2026** // Index **65 (SURGING)** // hottest **WORLD** // record **61-2**
 
 > Measuring the Gap Between Human and LLM Research Ideas looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
 
