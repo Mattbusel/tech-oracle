@@ -9,14 +9,14 @@
     },
     {
       "dir": -1,
-      "p": 0.31,
+      "p": 0.312,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CUP"
     },
     {
       "dir": -1,
-      "p": 0.316,
+      "p": 0.32,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "FIFA"
@@ -79,7 +79,7 @@
     },
     {
       "dir": -1,
-      "p": 0.496,
+      "p": 0.454,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -114,7 +114,7 @@
     },
     {
       "dir": -1,
-      "p": 0.317,
+      "p": 0.324,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -129,7 +129,7 @@
     {
       "dir": -1,
       "p": 0.3,
-      "phase": "FALLING",
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
     },
@@ -170,7 +170,7 @@
     },
     {
       "dir": -1,
-      "p": 0.436,
+      "p": 0.347,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "TEAM"
@@ -183,8 +183,8 @@
       "term": "JACKSON"
     },
     {
-      "dir": 1,
-      "p": 0.543,
+      "dir": -1,
+      "p": 0.414,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "NATIONAL"
@@ -205,7 +205,7 @@
     },
     {
       "dir": -1,
-      "p": 0.391,
+      "p": 0.328,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "META"
@@ -268,35 +268,35 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
     },
     {
       "dir": -1,
-      "p": 0.316,
+      "p": 0.327,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LLMS"
     },
     {
       "dir": -1,
-      "p": 0.302,
-      "phase": "FALLING",
+      "p": 0.313,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "UNITED"
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.698,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "REASONING"
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.304,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SPACEX"
@@ -309,43 +309,43 @@
       "term": "FRAMEWORK"
     },
     {
-      "dir": 1,
-      "p": 0.59,
+      "dir": -1,
+      "p": 0.359,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "FOOTBALL"
     },
     {
       "dir": -1,
-      "p": 0.3,
+      "p": 0.301,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
     },
     {
       "dir": -1,
-      "p": 0.316,
+      "p": 0.404,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "STATES"
     },
     {
       "dir": -1,
-      "p": 0.316,
+      "p": 0.404,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
     },
     {
       "dir": -1,
-      "p": 0.389,
+      "p": 0.455,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CODING"
     },
     {
-      "dir": 1,
-      "p": 0.551,
+      "dir": -1,
+      "p": 0.452,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LOCAL"
@@ -359,7 +359,7 @@
     },
     {
       "dir": -1,
-      "p": 0.46,
+      "p": 0.393,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SOCIAL"
@@ -380,8 +380,8 @@
     },
     {
       "dir": 1,
-      "p": 0.5,
-      "phase": "CHURNING",
+      "p": 0.618,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
     },
@@ -414,8 +414,8 @@
       "term": "WEB"
     },
     {
-      "dir": -1,
-      "p": 0.445,
+      "dir": 1,
+      "p": 0.522,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "REAL"
@@ -423,22 +423,16 @@
   ],
   "chasm": [
     {
-      "days": 194,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "FUTURE"
-    },
-    {
-      "days": 194,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "BIG"
-    },
-    {
       "days": 193,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "ISN"
+    },
+    {
+      "days": 194,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "FUTURE"
     },
     {
       "days": 194,
@@ -450,19 +444,25 @@
       "days": 194,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "CALL"
+      "term": "BIG"
     },
     {
       "days": 193,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "DOESN"
+    },
+    {
+      "days": 188,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "2ND"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 45
+    "value": 47
   },
   "manifold": [
     {
@@ -479,29 +479,29 @@
       "term": "IRAN"
     },
     {
-      "beta": -0.295,
-      "curvature": 0.42,
+      "beta": -0.288,
+      "curvature": 0.63,
       "defined": true,
-      "ds2": 0.41,
-      "gamma": 1.047,
-      "geodesic_trend": -0.952,
+      "ds2": 0.423,
+      "gamma": 1.044,
+      "geodesic_trend": -0.938,
       "phase": "BOTTOMING",
       "prob_rising": 31,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.088,
+      "rel_momentum": -0.085,
       "term": "CUP"
     },
     {
-      "beta": -0.285,
-      "curvature": 0.64,
+      "beta": -0.278,
+      "curvature": 0.84,
       "defined": true,
-      "ds2": 0.43,
-      "gamma": 1.043,
-      "geodesic_trend": -0.921,
+      "ds2": 0.444,
+      "gamma": 1.041,
+      "geodesic_trend": -0.902,
       "phase": "BOTTOMING",
       "prob_rising": 32,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.075,
+      "rel_momentum": -0.073,
       "term": "FIFA"
     },
     {
@@ -531,16 +531,16 @@
       "term": "SUPER"
     },
     {
-      "beta": -0.232,
-      "curvature": -0.17,
+      "beta": -0.224,
+      "curvature": 0.08,
       "defined": true,
-      "ds2": 0.536,
-      "gamma": 1.028,
-      "geodesic_trend": -1.0,
+      "ds2": 0.552,
+      "gamma": 1.026,
+      "geodesic_trend": -0.999,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.113,
+      "rel_momentum": -0.108,
       "term": "CLAUDE"
     },
     {
@@ -609,16 +609,16 @@
       "term": "EPSTEIN"
     },
     {
-      "beta": -0.124,
-      "curvature": -0.85,
+      "beta": -0.134,
+      "curvature": -1.13,
       "defined": true,
-      "ds2": 0.752,
-      "gamma": 1.008,
-      "geodesic_trend": -0.018,
+      "ds2": 0.731,
+      "gamma": 1.009,
+      "geodesic_trend": -0.232,
       "phase": "BOTTOMING",
-      "prob_rising": 50,
+      "prob_rising": 45,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.033,
+      "rel_momentum": -0.037,
       "term": "GOOGLE"
     },
     {
@@ -651,41 +651,41 @@
   "movers": [
     {
       "count": 5,
-      "term": "FUTURE",
+      "term": "DISC",
+      "vel": 775
+    },
+    {
+      "count": 5,
+      "term": "ISN",
       "vel": 775
     },
     {
       "count": 4,
-      "term": "BIG",
+      "term": "FUTURE",
       "vel": 600
-    },
-    {
-      "count": 4,
-      "term": "DISC",
-      "vel": 600
-    },
-    {
-      "count": 4,
-      "term": "ISN",
-      "vel": 600
-    },
-    {
-      "count": 5,
-      "term": "REASONING",
-      "vel": 483
     },
     {
       "count": 4,
       "term": "SALES",
       "vel": 460
+    },
+    {
+      "count": 3,
+      "term": "DOESN",
+      "vel": 425
+    },
+    {
+      "count": 3,
+      "term": "BIG",
+      "vel": 425
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 6,
+    "delta_abs": 7,
     "delta_word": "RISING",
     "has_prev": true,
-    "highest_days": 2,
+    "highest_days": 3,
     "history": [
       {
         "date": "2026-06-20",
@@ -741,12 +741,12 @@
       },
       {
         "date": "2026-07-03",
-        "index": 71
+        "index": 72
       }
     ],
-    "index": 71,
+    "index": 72,
     "theme": "WORLD",
-    "total": 263,
+    "total": 264,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
@@ -759,14 +759,14 @@
     },
     {
       "arrow": "UP",
-      "delta": 6,
-      "index": 70,
+      "delta": 4,
+      "index": 61,
       "name": "PLATFORM"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 22,
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 17,
       "name": "SECURITY"
     },
     {
@@ -834,7 +834,7 @@
     {
       "bar": 93,
       "has_rate": true,
-      "hits": 6,
+      "hits": 7,
       "label": "ARS TECHNICA",
       "misses": 0,
       "rate": 100,
@@ -844,7 +844,7 @@
     {
       "bar": 93,
       "has_rate": true,
-      "hits": 26,
+      "hits": 27,
       "label": "THE NEWS",
       "misses": 0,
       "rate": 100,
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 41363
+  "tracked_terms": 41384
 }

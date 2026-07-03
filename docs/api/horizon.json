@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7593,
+    "defined": 7595,
     "phases": {
-      "BOTTOMING": 821,
-      "CHURNING": 820,
+      "BOTTOMING": 825,
+      "CHURNING": 808,
       "FALLING": 131,
-      "FLAT": 5233,
-      "PEAKING": 57,
-      "RISING": 531
+      "FLAT": 5230,
+      "PEAKING": 62,
+      "RISING": 539
     },
-    "scanned": 41363,
+    "scanned": 41384,
     "turns": [
       {
         "active_days": 168,
@@ -24,8 +24,8 @@
       },
       {
         "active_days": 195,
-        "gamma": 1.05,
-        "geodesic": -95,
+        "gamma": 1.04,
+        "geodesic": -94,
         "peak": 38,
         "peak_in": 1,
         "phase": "BOTTOMING",
@@ -36,7 +36,7 @@
       {
         "active_days": 195,
         "gamma": 1.04,
-        "geodesic": -92,
+        "geodesic": -90,
         "peak": 36,
         "peak_in": 1,
         "phase": "BOTTOMING",
@@ -80,11 +80,11 @@
       {
         "active_days": 195,
         "gamma": 1.01,
-        "geodesic": -2,
+        "geodesic": -23,
         "peak": 29,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 50,
+        "prob_rising": 45,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
       },
@@ -135,7 +135,7 @@
       {
         "active_days": 195,
         "gamma": 1.01,
-        "geodesic": -91,
+        "geodesic": -88,
         "peak": 25,
         "peak_in": 1,
         "phase": "BOTTOMING",
@@ -153,6 +153,17 @@
         "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "AGENTS"
+      },
+      {
+        "active_days": 178,
+        "gamma": 1.02,
+        "geodesic": -100,
+        "peak": 26,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 30,
+        "regime": "SPACELIKE",
+        "term": "ANTHROPIC"
       },
       {
         "active_days": 176,
@@ -175,17 +186,6 @@
         "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "MULTI"
-      },
-      {
-        "active_days": 161,
-        "gamma": 1.01,
-        "geodesic": -32,
-        "peak": 24,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 44,
-        "regime": "SPACELIKE",
-        "term": "TEAM"
       }
     ]
   },
