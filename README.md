@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 3, 2026** // Index **57 (ACTIVE)** // hottest **WORLD** // record **63-2**
+**July 3, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **68-2**
 
-> Sony's PlayStation disc factory is already being repurposed is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> Fresh cs.AI/cs.LG work on Distributed Attacks in Persistent-State AI Control just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
