@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 3, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **70-2**
+**July 3, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **70-2**
 
 > Fresh cs.AI/cs.LG work on Distributed Attacks in Persistent-State AI Control just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.
 
