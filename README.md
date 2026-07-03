@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 2, 2026** // Index **65 (SURGING)** // hottest **WORLD** // record **61-2**
+**July 3, 2026** // Index **57 (ACTIVE)** // hottest **WORLD** // record **63-2**
 
-> Measuring the Gap Between Human and LLM Research Ideas looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
+> Sony's PlayStation disc factory is already being repurposed is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
