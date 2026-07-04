@@ -37,7 +37,7 @@
     },
     {
       "dir": -1,
-      "p": 0.31,
+      "p": 0.306,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
@@ -58,7 +58,7 @@
     },
     {
       "dir": -1,
-      "p": 0.397,
+      "p": 0.421,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
@@ -239,8 +239,8 @@
       "term": "OPENAI"
     },
     {
-      "dir": 1,
-      "p": 0.55,
+      "dir": -1,
+      "p": 0.365,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AMAZON"
@@ -268,7 +268,7 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.304,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
@@ -317,8 +317,8 @@
     },
     {
       "dir": -1,
-      "p": 0.335,
-      "phase": "BOTTOMING",
+      "p": 0.31,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
     },
@@ -338,7 +338,7 @@
     },
     {
       "dir": 1,
-      "p": 0.671,
+      "p": 0.606,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CODING"
@@ -365,18 +365,18 @@
       "term": "SOCIAL"
     },
     {
+      "dir": 1,
+      "p": 0.618,
+      "phase": "RISING",
+      "regime": "SPACELIKE",
+      "term": "LEAGUE"
+    },
+    {
       "dir": -1,
       "p": 0.485,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
-    },
-    {
-      "dir": 1,
-      "p": 0.5,
-      "phase": "CHURNING",
-      "regime": "SPACELIKE",
-      "term": "LEAGUE"
     },
     {
       "dir": -1,
@@ -394,7 +394,7 @@
     },
     {
       "dir": -1,
-      "p": 0.31,
+      "p": 0.327,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -408,7 +408,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "WEB"
@@ -432,13 +432,13 @@
       "days": 195,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "BIG"
+      "term": "YEARS"
     },
     {
       "days": 195,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "WON"
+      "term": "BIG"
     },
     {
       "days": 180,
@@ -447,22 +447,22 @@
       "term": "250TH"
     },
     {
-      "days": 193,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "4GB"
-    },
-    {
       "days": 186,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "4TH"
+    },
+    {
+      "days": 195,
+      "origin": "HN",
+      "reach": "ARS",
+      "term": "ABILITY"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 46
+    "value": 58
   },
   "manifold": [
     {
@@ -531,16 +531,16 @@
       "term": "SUPER"
     },
     {
-      "beta": -0.158,
-      "curvature": 1.56,
+      "beta": -0.167,
+      "curvature": 1.4,
       "defined": true,
-      "ds2": 0.684,
-      "gamma": 1.013,
-      "geodesic_trend": -0.951,
+      "ds2": 0.666,
+      "gamma": 1.014,
+      "geodesic_trend": -0.968,
       "phase": "BOTTOMING",
       "prob_rising": 31,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.074,
+      "rel_momentum": -0.078,
       "term": "CLAUDE"
     },
     {
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": -0.112,
-      "curvature": 1.73,
+      "beta": -0.105,
+      "curvature": 1.84,
       "defined": true,
-      "ds2": 0.776,
+      "ds2": 0.789,
       "gamma": 1.006,
-      "geodesic_trend": -0.515,
+      "geodesic_trend": -0.396,
       "phase": "BOTTOMING",
-      "prob_rising": 40,
+      "prob_rising": 42,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.047,
+      "rel_momentum": -0.045,
       "term": "VIDEO"
     },
     {
@@ -655,9 +655,9 @@
       "vel": 600
     },
     {
-      "count": 3,
-      "term": "WON",
-      "vel": 425
+      "count": 4,
+      "term": "YEARS",
+      "vel": 600
     },
     {
       "count": 3,
@@ -666,17 +666,17 @@
     },
     {
       "count": 4,
+      "term": "YET",
+      "vel": 400
+    },
+    {
+      "count": 3,
+      "term": "WORK",
+      "vel": 400
+    },
+    {
+      "count": 3,
       "term": "RAM",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "TESTING",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "SKILLS",
       "vel": 400
     }
   ],
@@ -745,34 +745,34 @@
       }
     ],
     "index": 72,
-    "theme": "WORLD",
-    "total": 266,
+    "theme": "GAME",
+    "total": 268,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -2,
+      "delta": -1,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
-      "delta": 5,
-      "index": 100,
+      "delta": 2,
+      "index": 81,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
-      "delta": 2,
-      "index": 25,
+      "delta": 1,
+      "index": 19,
       "name": "SECURITY"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 15,
+      "index": 14,
       "name": "ROBOTS"
     },
     {
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 41268
+  "tracked_terms": 41285
 }

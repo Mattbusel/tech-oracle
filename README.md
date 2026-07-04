@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 4, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **78-2**
+**July 4, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **78-2**
 
 > Distributed Attacks in Persistent-State AI Control is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.
 
