@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 4, 2026** // Index **70 (SURGING)** // hottest **WORLD** // record **78-2**
+**July 4, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **78-2**
 
-> Normal people are about to find Samsung Galaxy Z Fold8, Fold8 Ultra, Flip8, Watch9, Watch Ultra 2 prices leak -. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Distributed Attacks in Persistent-State AI Control is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
