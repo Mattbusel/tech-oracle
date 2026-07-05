@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 4, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **78-2**
+**July 5, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **79-2**
 
-> Distributed Attacks in Persistent-State AI Control is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.
+> This Distributed Attacks in Persistent-State AI Control paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
