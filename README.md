@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 5, 2026** // Index **73 (SURGING)** // hottest **GAME** // record **85-2**
+**July 5, 2026** // Index **73 (SURGING)** // hottest **WORLD** // record **85-2**
 
-> This Distributed Attacks in Persistent-State AI Control paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.
+> 'iPhone Ultra' Likely to 'Repeat the iPhone X Story' just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

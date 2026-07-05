@@ -79,7 +79,7 @@
     },
     {
       "dir": 1,
-      "p": 0.522,
+      "p": 0.542,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -100,7 +100,7 @@
     },
     {
       "dir": -1,
-      "p": 0.306,
+      "p": 0.302,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "WAR"
@@ -114,14 +114,14 @@
     },
     {
       "dir": -1,
-      "p": 0.354,
+      "p": 0.339,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
     {
       "dir": -1,
-      "p": 0.382,
+      "p": 0.357,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.637,
+      "p": 0.601,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -205,7 +205,7 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.301,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "META"
@@ -267,8 +267,8 @@
       "term": "SONG"
     },
     {
-      "dir": 1,
-      "p": 0.543,
+      "dir": -1,
+      "p": 0.445,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
@@ -387,14 +387,14 @@
     },
     {
       "dir": -1,
-      "p": 0.307,
+      "p": 0.328,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MEDIA"
     },
     {
       "dir": 1,
-      "p": 0.629,
+      "p": 0.645,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -408,7 +408,7 @@
     },
     {
       "dir": -1,
-      "p": 0.306,
+      "p": 0.303,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "WEB"
@@ -430,9 +430,15 @@
     },
     {
       "days": 196,
-      "origin": "ARXIV",
+      "origin": "HN",
       "reach": "THE NEWS",
-      "term": "CORE"
+      "term": "MILLION"
+    },
+    {
+      "days": 196,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "YEARS"
     },
     {
       "days": 196,
@@ -441,28 +447,22 @@
       "term": "100K"
     },
     {
+      "days": 185,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "30TH"
+    },
+    {
       "days": 187,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "4TH"
-    },
-    {
-      "days": 186,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "5TH"
-    },
-    {
-      "days": 178,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "6TH"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "NEUTRAL",
-    "value": 54
+    "label": "GREED",
+    "value": 60
   },
   "manifold": [
     {
@@ -609,16 +609,16 @@
       "term": "EPSTEIN"
     },
     {
-      "beta": -0.037,
-      "curvature": 0.85,
+      "beta": -0.03,
+      "curvature": 0.98,
       "defined": true,
-      "ds2": 0.926,
-      "gamma": 1.001,
-      "geodesic_trend": 0.109,
+      "ds2": 0.94,
+      "gamma": 1.0,
+      "geodesic_trend": 0.21,
       "phase": "BOTTOMING",
-      "prob_rising": 52,
+      "prob_rising": 54,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.009,
+      "rel_momentum": -0.008,
       "term": "GOOGLE"
     },
     {
@@ -655,13 +655,18 @@
       "vel": 600
     },
     {
+      "count": 6,
+      "term": "YEARS",
+      "vel": 425
+    },
+    {
       "count": 3,
       "term": "EVOLUTION",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "CORE",
+      "term": "MILLION",
       "vel": 425
     },
     {
@@ -671,12 +676,7 @@
     },
     {
       "count": 3,
-      "term": "TRACK",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "BUTTON",
+      "term": "EDGE",
       "vel": 400
     }
   ],
@@ -745,7 +745,7 @@
       }
     ],
     "index": 73,
-    "theme": "GAME",
+    "theme": "WORLD",
     "total": 272,
     "verdict": "SURGING"
   },
@@ -753,45 +753,45 @@
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -1,
+      "delta": -4,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -3,
-      "index": 62,
+      "delta": -4,
+      "index": 67,
       "name": "PLATFORM"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 19,
-      "name": "ROBOTS"
-    },
-    {
       "arrow": "UP",
-      "delta": 1,
-      "index": 14,
+      "delta": 2,
+      "index": 22,
       "name": "RUST"
     },
     {
       "arrow": "DOWN",
+      "delta": -1,
+      "index": 17,
+      "name": "ROBOTS"
+    },
+    {
+      "arrow": "DOWN",
       "delta": -2,
-      "index": 10,
+      "index": 11,
       "name": "SECURITY"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 5,
-      "name": "CRYPTO"
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 6,
+      "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 0,
-      "name": "CHIPS"
+      "index": 6,
+      "name": "CRYPTO"
     },
     {
       "arrow": "DOWN",
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 41180
+  "tracked_terms": 41195
 }
