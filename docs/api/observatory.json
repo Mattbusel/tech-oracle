@@ -37,14 +37,14 @@
     },
     {
       "dir": -1,
-      "p": 0.416,
+      "p": 0.455,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
     },
     {
       "dir": -1,
-      "p": 0.495,
+      "p": 0.46,
       "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
@@ -79,7 +79,7 @@
     },
     {
       "dir": -1,
-      "p": 0.4,
+      "p": 0.375,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -107,21 +107,21 @@
     },
     {
       "dir": 1,
-      "p": 0.688,
+      "p": 0.693,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LLM"
     },
     {
       "dir": 1,
-      "p": 0.588,
+      "p": 0.614,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
     {
       "dir": -1,
-      "p": 0.31,
+      "p": 0.315,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
@@ -142,7 +142,7 @@
     },
     {
       "dir": -1,
-      "p": 0.359,
+      "p": 0.311,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -212,7 +212,7 @@
     },
     {
       "dir": -1,
-      "p": 0.428,
+      "p": 0.468,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LIST"
@@ -240,14 +240,14 @@
     },
     {
       "dir": -1,
-      "p": 0.308,
+      "p": 0.362,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AMAZON"
     },
     {
       "dir": -1,
-      "p": 0.402,
+      "p": 0.332,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MUSK"
@@ -295,8 +295,8 @@
       "term": "UNITED"
     },
     {
-      "dir": 1,
-      "p": 0.539,
+      "dir": -1,
+      "p": 0.461,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SPACEX"
@@ -345,15 +345,15 @@
     },
     {
       "dir": -1,
-      "p": 0.419,
+      "p": 0.471,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LOCAL"
     },
     {
-      "dir": -1,
-      "p": 0.414,
-      "phase": "BOTTOMING",
+      "dir": 1,
+      "p": 0.61,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "CHINA"
     },
@@ -365,8 +365,8 @@
       "term": "SOCIAL"
     },
     {
-      "dir": -1,
-      "p": 0.414,
+      "dir": 1,
+      "p": 0.583,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "GITHUB"
@@ -415,18 +415,24 @@
     },
     {
       "dir": 1,
-      "p": 0.679,
-      "phase": "CHURNING",
+      "p": 0.665,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "REAL"
     }
   ],
   "chasm": [
     {
-      "days": 196,
+      "days": 198,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "WATCH"
+      "term": "SHOULD"
+    },
+    {
+      "days": 198,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "DEVELOPER"
     },
     {
       "days": 197,
@@ -436,9 +442,9 @@
     },
     {
       "days": 198,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "REASON"
+      "origin": "HN",
+      "reach": "HN",
+      "term": "100K"
     },
     {
       "days": 183,
@@ -447,22 +453,16 @@
       "term": "10TH"
     },
     {
-      "days": 116,
+      "days": 164,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "128GB"
-    },
-    {
-      "days": 97,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "2TB"
+      "term": "40K"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "FEAR",
-    "value": 28
+    "value": 40
   },
   "manifold": [
     {
@@ -531,29 +531,29 @@
       "term": "SUPER"
     },
     {
-      "beta": -0.086,
-      "curvature": 0.09,
+      "beta": -0.078,
+      "curvature": 0.27,
       "defined": true,
-      "ds2": 0.828,
-      "gamma": 1.004,
-      "geodesic_trend": -0.419,
+      "ds2": 0.844,
+      "gamma": 1.003,
+      "geodesic_trend": -0.224,
       "phase": "BOTTOMING",
-      "prob_rising": 42,
+      "prob_rising": 46,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.037,
+      "rel_momentum": -0.033,
       "term": "CLAUDE"
     },
     {
-      "beta": 0.0,
-      "curvature": 0.85,
+      "beta": -0.011,
+      "curvature": 0.64,
       "defined": true,
-      "ds2": 1.0,
+      "ds2": 0.978,
       "gamma": 1.0,
-      "geodesic_trend": -0.023,
+      "geodesic_trend": -0.199,
       "phase": "CHURNING",
-      "prob_rising": 50,
+      "prob_rising": 46,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.0,
+      "rel_momentum": -0.003,
       "term": "LANGUAGE"
     },
     {
@@ -609,16 +609,16 @@
       "term": "EPSTEIN"
     },
     {
-      "beta": -0.082,
-      "curvature": -0.46,
+      "beta": -0.092,
+      "curvature": -0.7,
       "defined": true,
-      "ds2": 0.835,
-      "gamma": 1.003,
-      "geodesic_trend": -0.501,
+      "ds2": 0.816,
+      "gamma": 1.004,
+      "geodesic_trend": -0.623,
       "phase": "BOTTOMING",
-      "prob_rising": 40,
+      "prob_rising": 38,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.022,
+      "rel_momentum": -0.025,
       "term": "GOOGLE"
     },
     {
@@ -650,9 +650,9 @@
   ],
   "movers": [
     {
-      "count": 6,
-      "term": "WATCH",
-      "vel": 500
+      "count": 4,
+      "term": "SHOULD",
+      "vel": 460
     },
     {
       "count": 3,
@@ -661,13 +661,8 @@
     },
     {
       "count": 3,
-      "term": "REASON",
+      "term": "DEVELOPER",
       "vel": 425
-    },
-    {
-      "count": 5,
-      "term": "WHERE",
-      "vel": 400
     },
     {
       "count": 4,
@@ -676,13 +671,18 @@
     },
     {
       "count": 4,
-      "term": "UNDER",
+      "term": "GITHUB",
+      "vel": 400
+    },
+    {
+      "count": 4,
+      "term": "LOOK",
       "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 2,
+    "delta_abs": 1,
     "delta_word": "FALLING",
     "has_prev": true,
     "highest_days": 0,
@@ -741,62 +741,62 @@
       },
       {
         "date": "2026-07-07",
-        "index": 70
+        "index": 71
       }
     ],
-    "index": 70,
+    "index": 71,
     "theme": "XBOX",
-    "total": 254,
+    "total": 262,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "UP",
-      "delta": 5,
+      "arrow": "FLAT",
+      "delta": 0,
       "index": 100,
-      "name": "PLATFORM"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -4,
-      "index": 83,
       "name": "AI"
     },
     {
       "arrow": "UP",
+      "delta": 1,
+      "index": 74,
+      "name": "PLATFORM"
+    },
+    {
+      "arrow": "UP",
       "delta": 2,
-      "index": 22,
+      "index": 21,
       "name": "CLOUD"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 17,
-      "name": "SECURITY"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 11,
-      "name": "RUST"
-    },
-    {
       "arrow": "DOWN",
-      "delta": -4,
-      "index": 6,
+      "delta": -2,
+      "index": 16,
       "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
-      "delta": -4,
-      "index": 6,
+      "delta": -1,
+      "index": 11,
+      "name": "SECURITY"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -3,
+      "index": 11,
       "name": "ROBOTS"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 0,
+      "index": 5,
+      "name": "RUST"
+    },
+    {
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 5,
       "name": "CRYPTO"
     }
   ],
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 40909
+  "tracked_terms": 40932
 }

@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 7, 2026** // Index **70 (SURGING)** // hottest **XBOX** // record **93-2**
+**July 7, 2026** // Index **71 (SURGING)** // hottest **XBOX** // record **93-2**
 
-> Zackriya-Solutions/meetily is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
+> Siri AI can pull info from third-party apps in the latest developer beta is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
