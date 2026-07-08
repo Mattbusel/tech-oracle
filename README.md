@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 8, 2026** // Index **69 (SURGING)** // hottest **AGENT** // record **95-2**
+**July 8, 2026** // Index **68 (SURGING)** // hottest **AGENT** // record **95-2**
 
-> Watch The Steam Machine fits my TV, my desk, and my life leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Decoding the obfuscated bash script on a Uniqlo t-shirt is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
