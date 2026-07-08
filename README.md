@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 8, 2026** // Index **68 (SURGING)** // hottest **AGENT** // record **95-2**
+**July 8, 2026** // Index **67 (SURGING)** // hottest **AGENT** // record **96-2**
 
 > Decoding the obfuscated bash script on a Uniqlo t-shirt is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
