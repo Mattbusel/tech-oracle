@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 7, 2026** // Index **70 (SURGING)** // hottest **XBOX** // record **95-2**
+**July 8, 2026** // Index **67 (SURGING)** // hottest **WORLD** // record **95-2**
 
-> Microsoft fixes storage-hogging Windows 11 folder is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Watch Anthropic is launching Claude Cowork on mobile and web leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
