@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 9, 2026** // Index **70 (SURGING)** // hottest **GAME** // record **100-2**
+**July 9, 2026** // Index **69 (SURGING)** // hottest **WORLD** // record **101-2**
 
-> Anthropic's new Claude feature is quietly selling you on AI is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> GPT-5.6 is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

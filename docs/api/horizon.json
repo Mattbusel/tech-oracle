@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7689,
+    "defined": 7692,
     "phases": {
-      "BOTTOMING": 221,
-      "CHURNING": 564,
-      "FALLING": 77,
-      "FLAT": 6004,
-      "PEAKING": 112,
-      "RISING": 711
+      "BOTTOMING": 227,
+      "CHURNING": 563,
+      "FALLING": 74,
+      "FLAT": 6008,
+      "PEAKING": 108,
+      "RISING": 712
     },
-    "scanned": 40759,
+    "scanned": 40770,
     "turns": [
       {
         "active_days": 201,
@@ -78,13 +78,24 @@
         "term": "META"
       },
       {
+        "active_days": 201,
+        "gamma": 1.0,
+        "geodesic": 2,
+        "peak": 20,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 50,
+        "regime": "SPACELIKE",
+        "term": "LIST"
+      },
+      {
         "active_days": 191,
         "gamma": 1.0,
-        "geodesic": 6,
+        "geodesic": 43,
         "peak": 20,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 51,
+        "prob_rising": 59,
         "regime": "SPACELIKE",
         "term": "OPENAI"
       },
@@ -124,11 +135,11 @@
       {
         "active_days": 196,
         "gamma": 1.0,
-        "geodesic": 43,
+        "geodesic": 6,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 59,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "CHATGPT"
       },
@@ -145,47 +156,36 @@
       },
       {
         "active_days": 185,
-        "gamma": 1.02,
-        "geodesic": -52,
+        "gamma": 1.0,
+        "geodesic": 10,
         "peak": 15,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 40,
+        "prob_rising": 52,
         "regime": "SPACELIKE",
         "term": "SOCIAL"
       },
       {
-        "active_days": 199,
+        "active_days": 176,
         "gamma": 1.0,
-        "geodesic": 43,
-        "peak": 12,
+        "geodesic": -50,
+        "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 59,
+        "prob_rising": 40,
         "regime": "SPACELIKE",
-        "term": "LINUX"
+        "term": "MEDIA"
       },
       {
-        "active_days": 197,
+        "active_days": 200,
         "gamma": 1.0,
-        "geodesic": 43,
-        "peak": 12,
+        "geodesic": 45,
+        "peak": 14,
         "peak_in": 1,
-        "phase": "PEAKING",
+        "phase": "BOTTOMING",
         "prob_rising": 59,
         "regime": "SPACELIKE",
-        "term": "RUST"
-      },
-      {
-        "active_days": 196,
-        "gamma": 1.01,
-        "geodesic": 76,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 65,
-        "regime": "SPACELIKE",
-        "term": "TECH"
+        "term": "YEARS"
       }
     ]
   },
