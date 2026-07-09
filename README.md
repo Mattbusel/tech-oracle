@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 9, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **99-2**
+**July 9, 2026** // Index **70 (SURGING)** // hottest **GAME** // record **100-2**
 
-> This Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.
+> Anthropic's new Claude feature is quietly selling you on AI is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
