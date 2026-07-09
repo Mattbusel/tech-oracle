@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 9, 2026** // Index **57 (ACTIVE)** // hottest **WORLD** // record **98-2**
+**July 9, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **99-2**
 
-> Watching Decoding the obfuscated bash script on a Uniqlo t-shirt climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> This Accurate, Interdisciplinary and Transparent Structure-property Understanding with Deep paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
