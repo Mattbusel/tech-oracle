@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 8, 2026** // Index **67 (SURGING)** // hottest **AGENT** // record **96-2**
+**July 9, 2026** // Index **57 (ACTIVE)** // hottest **WORLD** // record **98-2**
 
-> Decoding the obfuscated bash script on a Uniqlo t-shirt is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> Watching Decoding the obfuscated bash script on a Uniqlo t-shirt climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
