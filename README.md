@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 10, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **107-2**
+**July 10, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **108-2**
 
-> Interview with Mitchell Hashimoto about Ghostty and Zig is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> OpenCoF: Learning to Reason Through Video Generation looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
