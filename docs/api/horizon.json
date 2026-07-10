@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7706,
+    "defined": 7708,
     "phases": {
-      "BOTTOMING": 212,
-      "CHURNING": 563,
-      "FALLING": 77,
-      "FLAT": 6015,
-      "PEAKING": 106,
-      "RISING": 733
+      "BOTTOMING": 215,
+      "CHURNING": 558,
+      "FALLING": 73,
+      "FLAT": 6010,
+      "PEAKING": 110,
+      "RISING": 742
     },
-    "scanned": 40657,
+    "scanned": 40668,
     "turns": [
       {
         "active_days": 202,
@@ -34,13 +34,24 @@
         "term": "LEARNING"
       },
       {
-        "active_days": 195,
+        "active_days": 200,
         "gamma": 1.01,
-        "geodesic": -24,
+        "geodesic": -89,
         "peak": 27,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 45,
+        "prob_rising": 32,
+        "regime": "SPACELIKE",
+        "term": "TRUMP"
+      },
+      {
+        "active_days": 195,
+        "gamma": 1.0,
+        "geodesic": 15,
+        "peak": 27,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 53,
         "regime": "SPACELIKE",
         "term": "WAR"
       },
@@ -67,6 +78,17 @@
         "term": "NATIONAL"
       },
       {
+        "active_days": 185,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 21,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "META"
+      },
+      {
         "active_days": 202,
         "gamma": 1.0,
         "geodesic": -40,
@@ -91,33 +113,22 @@
       {
         "active_days": 177,
         "gamma": 1.01,
-        "geodesic": 89,
+        "geodesic": 64,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 68,
+        "prob_rising": 63,
         "regime": "SPACELIKE",
         "term": "FRAMEWORK"
       },
       {
-        "active_days": 200,
-        "gamma": 1.0,
-        "geodesic": 11,
-        "peak": 16,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 52,
-        "regime": "SPACELIKE",
-        "term": "SYSTEM"
-      },
-      {
         "active_days": 197,
         "gamma": 1.0,
-        "geodesic": 6,
+        "geodesic": 43,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 51,
+        "prob_rising": 59,
         "regime": "SPACELIKE",
         "term": "CHATGPT"
       },
@@ -155,6 +166,17 @@
         "term": "YEARS"
       },
       {
+        "active_days": 192,
+        "gamma": 1.0,
+        "geodesic": 20,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 54,
+        "regime": "SPACELIKE",
+        "term": "MICROSOFT"
+      },
+      {
         "active_days": 174,
         "gamma": 1.0,
         "geodesic": -43,
@@ -164,28 +186,6 @@
         "prob_rising": 41,
         "regime": "SPACELIKE",
         "term": "MEN"
-      },
-      {
-        "active_days": 147,
-        "gamma": 1.0,
-        "geodesic": -50,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 40,
-        "regime": "SPACELIKE",
-        "term": "COURT"
-      },
-      {
-        "active_days": 187,
-        "gamma": 1.0,
-        "geodesic": -65,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 37,
-        "regime": "SPACELIKE",
-        "term": "AGE"
       }
     ]
   },
