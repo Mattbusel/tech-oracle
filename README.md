@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 9, 2026** // Index **69 (SURGING)** // hottest **WORLD** // record **101-2**
+**July 10, 2026** // Index **69 (SURGING)** // hottest **WORLD** // record **105-2**
 
-> GPT-5.6 is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> Normal people are about to find GPT-5.6. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
