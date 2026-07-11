@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 11, 2026** // Index **65 (SURGING)** // hottest **LEARNING** // record **118-2**
+**July 11, 2026** // Index **66 (SURGING)** // hottest **XBOX** // record **118-2**
 
-> Fresh cs.AI/cs.LG work on OpenCoF: Learning to Reason Through Video Generation just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.
+> The perfect kit for all your tiny repairs just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
