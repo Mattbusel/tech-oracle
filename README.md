@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 12, 2026** // Index **72 (SURGING)** // hottest **LEARNING** // record **134-2**
+**July 12, 2026** // Index **72 (SURGING)** // hottest **LEARNING** // record **135-2**
 
-> OpenCoF: Learning to Reason Through Video Generation is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.
+> The machine flagged OpenCoF: Learning to Reason Through Video Generation crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
