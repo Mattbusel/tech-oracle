@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 12, 2026** // Index **73 (SURGING)** // hottest **GAME** // record **131-2**
+**July 12, 2026** // Index **72 (SURGING)** // hottest **LEARNING** // record **134-2**
 
 > OpenCoF: Learning to Reason Through Video Generation is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.
 
