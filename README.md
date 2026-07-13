@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 13, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **138-2**
+**July 13, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **138-2**
 
-> Want to own a real T. rex? It could cost you $30 million is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Watching Zig Creator Calls Spade a Spade, Anthropic Blows Smoke climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
