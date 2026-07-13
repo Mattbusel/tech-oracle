@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7769,
+    "defined": 7776,
     "phases": {
-      "BOTTOMING": 275,
-      "CHURNING": 628,
-      "FALLING": 54,
-      "FLAT": 6164,
-      "PEAKING": 50,
-      "RISING": 598
+      "BOTTOMING": 270,
+      "CHURNING": 562,
+      "FALLING": 41,
+      "FLAT": 6015,
+      "PEAKING": 67,
+      "RISING": 821
     },
-    "scanned": 40333,
+    "scanned": 40359,
     "turns": [
       {
         "active_days": 205,
@@ -56,13 +56,24 @@
         "term": "LLM"
       },
       {
+        "active_days": 205,
+        "gamma": 1.0,
+        "geodesic": -43,
+        "peak": 23,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "APPLE"
+      },
+      {
         "active_days": 183,
         "gamma": 1.0,
-        "geodesic": 84,
+        "geodesic": 90,
         "peak": 24,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 67,
+        "prob_rising": 68,
         "regime": "SPACELIKE",
         "term": "MULTI"
       },
@@ -111,24 +122,24 @@
         "term": "LIST"
       },
       {
-        "active_days": 194,
+        "active_days": 195,
         "gamma": 1.0,
-        "geodesic": -15,
+        "geodesic": 48,
         "peak": 20,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 47,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "OPENAI"
       },
       {
         "active_days": 204,
         "gamma": 1.0,
-        "geodesic": 80,
+        "geodesic": 61,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 66,
+        "prob_rising": 62,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
       },
@@ -167,25 +178,14 @@
       },
       {
         "active_days": 188,
-        "gamma": 1.0,
-        "geodesic": 6,
+        "gamma": 1.01,
+        "geodesic": 43,
         "peak": 16,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 51,
+        "prob_rising": 59,
         "regime": "SPACELIKE",
         "term": "STATES"
-      },
-      {
-        "active_days": 201,
-        "gamma": 1.01,
-        "geodesic": 64,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 63,
-        "regime": "SPACELIKE",
-        "term": "CODING"
       }
     ]
   },

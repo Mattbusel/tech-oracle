@@ -30,8 +30,8 @@
     },
     {
       "dir": 1,
-      "p": 0.672,
-      "phase": "RISING",
+      "p": 0.61,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "SUPER"
     },
@@ -44,7 +44,7 @@
     },
     {
       "dir": 1,
-      "p": 0.681,
+      "p": 0.686,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
@@ -58,7 +58,7 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.334,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
@@ -79,7 +79,7 @@
     },
     {
       "dir": -1,
-      "p": 0.343,
+      "p": 0.312,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -93,7 +93,7 @@
     },
     {
       "dir": -1,
-      "p": 0.318,
+      "p": 0.361,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "TRUMP"
@@ -114,7 +114,7 @@
     },
     {
       "dir": 1,
-      "p": 0.649,
+      "p": 0.663,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -142,8 +142,8 @@
     },
     {
       "dir": -1,
-      "p": 0.318,
-      "phase": "FALLING",
+      "p": 0.415,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "APPLE"
     },
@@ -156,7 +156,7 @@
     },
     {
       "dir": 1,
-      "p": 0.668,
+      "p": 0.681,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MULTI"
@@ -232,8 +232,8 @@
       "term": "OLYMPICS"
     },
     {
-      "dir": -1,
-      "p": 0.469,
+      "dir": 1,
+      "p": 0.596,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
@@ -261,7 +261,7 @@
     },
     {
       "dir": 1,
-      "p": 0.661,
+      "p": 0.622,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
@@ -324,7 +324,7 @@
     },
     {
       "dir": 1,
-      "p": 0.513,
+      "p": 0.586,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "STATES"
@@ -359,9 +359,9 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
-      "phase": "RISING",
-      "regime": "SPACELIKE",
+      "p": 0.5,
+      "phase": "FLAT",
+      "regime": "LIGHTLIKE",
       "term": "SOCIAL"
     },
     {
@@ -401,7 +401,7 @@
     },
     {
       "dir": 1,
-      "p": 0.636,
+      "p": 0.531,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "WEB"
@@ -424,6 +424,18 @@
   "chasm": [
     {
       "days": 204,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "RELEASE"
+    },
+    {
+      "days": 204,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "SAMSUNG"
+    },
+    {
+      "days": 204,
       "origin": "ARXIV",
       "reach": "ARS",
       "term": "STATE"
@@ -435,34 +447,22 @@
       "term": "100K"
     },
     {
-      "days": 195,
+      "days": 189,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "4TH"
+      "reach": "THE NEWS",
+      "term": "10TH"
     },
     {
       "days": 204,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "ADDED"
-    },
-    {
-      "days": 187,
-      "origin": "HN",
-      "reach": "DEV.TO",
-      "term": "ANIMATIONS"
-    },
-    {
-      "days": 203,
-      "origin": "ARXIV",
-      "reach": "DEV.TO",
-      "term": "ANSWER"
+      "reach": "THE NEWS",
+      "term": "2NM"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "EXTREME FEAR",
-    "value": 0
+    "label": "FEAR",
+    "value": 22
   },
   "manifold": [
     {
@@ -518,16 +518,16 @@
       "term": "FILM"
     },
     {
-      "beta": 0.055,
-      "curvature": -1.21,
+      "beta": 0.0,
+      "curvature": -2.11,
       "defined": true,
-      "ds2": 0.891,
-      "gamma": 1.001,
-      "geodesic_trend": 0.86,
-      "phase": "RISING",
-      "prob_rising": 67,
+      "ds2": 1.0,
+      "gamma": 1.0,
+      "geodesic_trend": 0.548,
+      "phase": "CHURNING",
+      "prob_rising": 61,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.012,
+      "rel_momentum": 0.0,
       "term": "SUPER"
     },
     {
@@ -544,16 +544,16 @@
       "term": "CLAUDE"
     },
     {
-      "beta": 0.033,
-      "curvature": 0.51,
+      "beta": 0.043,
+      "curvature": 0.71,
       "defined": true,
-      "ds2": 0.933,
+      "ds2": 0.914,
       "gamma": 1.001,
-      "geodesic_trend": 0.906,
+      "geodesic_trend": 0.93,
       "phase": "RISING",
-      "prob_rising": 68,
+      "prob_rising": 69,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.009,
+      "rel_momentum": 0.011,
       "term": "LANGUAGE"
     },
     {
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": -0.134,
-      "curvature": -1.1,
+      "beta": -0.087,
+      "curvature": 0.1,
       "defined": true,
-      "ds2": 0.732,
-      "gamma": 1.009,
-      "geodesic_trend": -0.979,
+      "ds2": 0.826,
+      "gamma": 1.004,
+      "geodesic_trend": -0.83,
       "phase": "FALLING",
-      "prob_rising": 30,
+      "prob_rising": 33,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.046,
+      "rel_momentum": -0.027,
       "term": "VIDEO"
     },
     {
@@ -609,16 +609,16 @@
       "term": "EPSTEIN"
     },
     {
-      "beta": -0.031,
-      "curvature": -1.16,
+      "beta": -0.077,
+      "curvature": -2.08,
       "defined": true,
-      "ds2": 0.937,
-      "gamma": 1.0,
-      "geodesic_trend": -0.786,
+      "ds2": 0.846,
+      "gamma": 1.003,
+      "geodesic_trend": -0.94,
       "phase": "FALLING",
-      "prob_rising": 34,
+      "prob_rising": 31,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.006,
+      "rel_momentum": -0.018,
       "term": "GOOGLE"
     },
     {
@@ -635,20 +635,30 @@
       "term": "SERIES"
     },
     {
-      "beta": -0.125,
-      "curvature": 0.14,
+      "beta": -0.087,
+      "curvature": 0.97,
       "defined": true,
-      "ds2": 0.75,
-      "gamma": 1.008,
-      "geodesic_trend": -0.912,
+      "ds2": 0.826,
+      "gamma": 1.004,
+      "geodesic_trend": -0.696,
       "phase": "FALLING",
-      "prob_rising": 32,
+      "prob_rising": 36,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.037,
+      "rel_momentum": -0.025,
       "term": "TRUMP"
     }
   ],
   "movers": [
+    {
+      "count": 6,
+      "term": "SAMSUNG",
+      "vel": 600
+    },
+    {
+      "count": 4,
+      "term": "RELEASE",
+      "vel": 600
+    },
     {
       "count": 3,
       "term": "STATE",
@@ -656,33 +666,23 @@
     },
     {
       "count": 4,
-      "term": "EEG",
+      "term": "DEVELOPMENT",
       "vel": 400
     },
     {
       "count": 4,
-      "term": "VISION",
+      "term": "MAC",
       "vel": 400
     },
     {
       "count": 4,
-      "term": "RISK",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "NETWORKS",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "PREDICTION",
+      "term": "BEEN",
       "vel": 400
     }
   ],
   "pulse": {
-    "breadth": 8,
-    "delta_abs": 16,
+    "breadth": 9,
+    "delta_abs": 1,
     "delta_word": "FALLING",
     "has_prev": true,
     "highest_days": 0,
@@ -741,63 +741,63 @@
       },
       {
         "date": "2026-07-13",
-        "index": 56
+        "index": 71
       }
     ],
-    "index": 56,
-    "theme": "WORLD",
-    "total": 190,
-    "verdict": "ACTIVE"
+    "index": 71,
+    "theme": "GAME",
+    "total": 260,
+    "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -7,
+      "delta": -4,
       "index": 100,
       "name": "AI"
     },
     {
-      "arrow": "DOWN",
-      "delta": -5,
-      "index": 27,
+      "arrow": "UP",
+      "delta": 2,
+      "index": 61,
       "name": "PLATFORM"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 20,
+      "arrow": "UP",
+      "delta": 3,
+      "index": 33,
       "name": "SECURITY"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 13,
-      "name": "RUST"
+      "arrow": "UP",
+      "delta": 1,
+      "index": 22,
+      "name": "CHIPS"
     },
     {
       "arrow": "UP",
-      "delta": 2,
-      "index": 13,
-      "name": "CLOUD"
+      "delta": 1,
+      "index": 17,
+      "name": "RUST"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 13,
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 17,
       "name": "ROBOTS"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -2,
-      "index": 7,
-      "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
       "index": 0,
       "name": "CRYPTO"
+    },
+    {
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 0,
+      "name": "CLOUD"
     }
   ],
   "source_weights": [
@@ -844,7 +844,7 @@
     {
       "bar": 93,
       "has_rate": true,
-      "hits": 55,
+      "hits": 57,
       "label": "THE NEWS",
       "misses": 0,
       "rate": 100,
@@ -902,5 +902,5 @@
       "weight": 1.0
     }
   ],
-  "tracked_terms": 40333
+  "tracked_terms": 40359
 }
