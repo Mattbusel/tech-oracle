@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 12, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **135-2**
+**July 13, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **138-2**
 
-> The machine flagged OpenCoF: Learning to Reason Through Video Generation crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> Want to own a real T. rex? It could cost you $30 million is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
