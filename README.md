@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 13, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **138-2**
+**July 13, 2026** // Index **56 (ACTIVE)** // hottest **WORLD** // record **138-2**
 
-> Watching Zig Creator Calls Spade a Spade, Anthropic Blows Smoke climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> Watching The Graph That Should Be Front-Page News climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
