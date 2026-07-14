@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 13, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **140-2**
+**July 14, 2026** // Index **68 (SURGING)** // hottest **APPLE** // record **140-2**
 
-> LAPD lets contract with surveillance giant Flock expire is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Keep an eye on OpenCut-app/OpenCut. This kind of trending velocity usually precedes it becoming a default in its niche within the year.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
