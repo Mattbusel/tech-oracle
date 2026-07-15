@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 15, 2026** // Index **69 (SURGING)** // hottest **WORLD** // record **146-2**
+**July 15, 2026** // Index **70 (SURGING)** // hottest **SWITCH** // record **148-2**
 
-> OpenCut-app/OpenCut is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
+> The HN front page is piling onto Jurassic Park computers in excruciating detail. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
