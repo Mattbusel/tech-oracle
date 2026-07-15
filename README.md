@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 15, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **149-2**
+**July 15, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **151-2**
 
-> The HN front page is piling onto Jurassic Park computers in excruciating detail. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Google releases first Pixel 11 teaser and shows Pixel Glow [Video] is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
