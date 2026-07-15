@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 15, 2026** // Index **70 (SURGING)** // hottest **SWITCH** // record **148-2**
+**July 15, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **149-2**
 
 > The HN front page is piling onto Jurassic Park computers in excruciating detail. Expect the tooling around it to consolidate into one default winner within two quarters.
 
