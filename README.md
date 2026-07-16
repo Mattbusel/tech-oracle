@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 16, 2026** // Index **72 (SURGING)** // hottest **DATA** // record **159-2**
+**July 16, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **159-2**
 
 > Devs are starring OpenCut-app/OpenCut hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.
 
