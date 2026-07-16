@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 16, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **155-2**
+**July 16, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **156-2**
 
-> Normal people are about to find Android 17 QPR1 Beta 7 rolling out for Pixel. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Devs are starring OpenCut-app/OpenCut hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

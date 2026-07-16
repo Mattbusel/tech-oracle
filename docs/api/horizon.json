@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7818,
+    "defined": 7825,
     "phases": {
-      "BOTTOMING": 187,
-      "CHURNING": 593,
-      "FALLING": 46,
-      "FLAT": 6101,
-      "PEAKING": 83,
-      "RISING": 808
+      "BOTTOMING": 184,
+      "CHURNING": 573,
+      "FALLING": 42,
+      "FLAT": 6086,
+      "PEAKING": 104,
+      "RISING": 836
     },
-    "scanned": 39933,
+    "scanned": 39962,
     "turns": [
       {
         "active_days": 208,
@@ -23,13 +23,24 @@
         "term": "FILM"
       },
       {
+        "active_days": 175,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 39,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "SUPER"
+      },
+      {
         "active_days": 207,
         "gamma": 1.0,
-        "geodesic": -2,
+        "geodesic": -40,
         "peak": 35,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 50,
+        "prob_rising": 42,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
       },
@@ -46,14 +57,25 @@
       },
       {
         "active_days": 208,
-        "gamma": 1.01,
-        "geodesic": 27,
+        "gamma": 1.0,
+        "geodesic": -12,
         "peak": 32,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 55,
+        "prob_rising": 48,
         "regime": "SPACELIKE",
         "term": "VIDEO"
+      },
+      {
+        "active_days": 208,
+        "gamma": 1.0,
+        "geodesic": 39,
+        "peak": 29,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 58,
+        "regime": "SPACELIKE",
+        "term": "GOOGLE"
       },
       {
         "active_days": 208,
@@ -100,24 +122,24 @@
         "term": "VENEZUELA"
       },
       {
-        "active_days": 174,
+        "active_days": 175,
         "gamma": 1.0,
-        "geodesic": -64,
+        "geodesic": -7,
         "peak": 21,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 37,
+        "prob_rising": 49,
         "regime": "SPACELIKE",
         "term": "AMAZON"
       },
       {
         "active_days": 207,
-        "gamma": 1.01,
-        "geodesic": 40,
+        "gamma": 1.0,
+        "geodesic": -57,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 58,
+        "prob_rising": 39,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
       },
@@ -157,35 +179,13 @@
       {
         "active_days": 195,
         "gamma": 1.0,
-        "geodesic": 68,
+        "geodesic": 15,
         "peak": 13,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 64,
+        "prob_rising": 53,
         "regime": "SPACELIKE",
         "term": "HIGH"
-      },
-      {
-        "active_days": 206,
-        "gamma": 1.01,
-        "geodesic": 71,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 64,
-        "regime": "SPACELIKE",
-        "term": "LINUX"
-      },
-      {
-        "active_days": 204,
-        "gamma": 1.01,
-        "geodesic": 62,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 62,
-        "regime": "SPACELIKE",
-        "term": "GAME"
       }
     ]
   },
