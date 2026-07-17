@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 17, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **161-2**
+**July 17, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **161-2**
 
-> OpenCut-app/OpenCut is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
+> Even Microsoft couldn't make Windows 11 work well on 8GB of RAM just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
