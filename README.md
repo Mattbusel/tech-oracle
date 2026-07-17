@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 16, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **159-2**
+**July 17, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **161-2**
 
-> Devs are starring OpenCut-app/OpenCut hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.
+> OpenCut-app/OpenCut is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
