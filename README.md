@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 17, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **162-2**
+**July 17, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **163-2**
 
-> Will Russia's answer to the Falcon 9 rocket ever take flight? just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> Google-backed satellites for wildfire detection launch as smoke chokes US, Canada just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
