@@ -1,29 +1,51 @@
 {
   "horizon": {
-    "defined": 7845,
+    "defined": 7856,
     "phases": {
-      "BOTTOMING": 181,
-      "CHURNING": 576,
+      "BOTTOMING": 210,
+      "CHURNING": 596,
       "FALLING": 62,
-      "FLAT": 6110,
-      "PEAKING": 101,
-      "RISING": 815
+      "FLAT": 6145,
+      "PEAKING": 86,
+      "RISING": 757
     },
-    "scanned": 39862,
+    "scanned": 39673,
     "turns": [
       {
-        "active_days": 209,
-        "gamma": 1.02,
-        "geodesic": 95,
+        "active_days": 210,
+        "gamma": 1.0,
+        "geodesic": -11,
+        "peak": 36,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 48,
+        "regime": "SPACELIKE",
+        "term": "FIFA"
+      },
+      {
+        "active_days": 186,
+        "gamma": 1.0,
+        "geodesic": -22,
+        "peak": 36,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 46,
+        "regime": "SPACELIKE",
+        "term": "LEARNING"
+      },
+      {
+        "active_days": 210,
+        "gamma": 1.01,
+        "geodesic": 76,
         "peak": 32,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 69,
+        "prob_rising": 65,
         "regime": "SPACELIKE",
         "term": "VIDEO"
       },
       {
-        "active_days": 199,
+        "active_days": 200,
         "gamma": 1.0,
         "geodesic": 21,
         "peak": 27,
@@ -34,62 +56,51 @@
         "term": "WAR"
       },
       {
-        "active_days": 209,
+        "active_days": 210,
         "gamma": 1.0,
-        "geodesic": 3,
+        "geodesic": -67,
         "peak": 26,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 51,
+        "prob_rising": 37,
         "regime": "SPACELIKE",
         "term": "LLM"
       },
       {
-        "active_days": 209,
+        "active_days": 210,
         "gamma": 1.0,
-        "geodesic": -1,
+        "geodesic": -87,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 50,
+        "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "AGENT"
       },
       {
-        "active_days": 209,
+        "active_days": 210,
         "gamma": 1.0,
-        "geodesic": 12,
+        "geodesic": 76,
         "peak": 23,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 52,
+        "prob_rising": 65,
         "regime": "SPACELIKE",
         "term": "APPLE"
       },
       {
-        "active_days": 151,
+        "active_days": 175,
         "gamma": 1.01,
-        "geodesic": -94,
-        "peak": 26,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 31,
-        "regime": "SPACELIKE",
-        "term": "LARGE"
-      },
-      {
-        "active_days": 174,
-        "gamma": 1.01,
-        "geodesic": 58,
+        "geodesic": 81,
         "peak": 24,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 62,
+        "prob_rising": 66,
         "regime": "SPACELIKE",
         "term": "TEAM"
       },
       {
-        "active_days": 184,
+        "active_days": 185,
         "gamma": 1.01,
         "geodesic": 78,
         "peak": 23,
@@ -111,7 +122,7 @@
         "term": "VENEZUELA"
       },
       {
-        "active_days": 192,
+        "active_days": 193,
         "gamma": 1.0,
         "geodesic": 21,
         "peak": 21,
@@ -123,28 +134,28 @@
       },
       {
         "active_days": 176,
-        "gamma": 1.0,
-        "geodesic": -7,
+        "gamma": 1.02,
+        "geodesic": -89,
         "peak": 21,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 49,
+        "prob_rising": 32,
         "regime": "SPACELIKE",
         "term": "AMAZON"
       },
       {
-        "active_days": 208,
-        "gamma": 1.0,
-        "geodesic": -81,
+        "active_days": 203,
+        "gamma": 1.01,
+        "geodesic": -70,
         "peak": 18,
         "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 34,
+        "phase": "BOTTOMING",
+        "prob_rising": 36,
         "regime": "SPACELIKE",
-        "term": "SOFTWARE"
+        "term": "LLMS"
       },
       {
-        "active_days": 140,
+        "active_days": 141,
         "gamma": 1.0,
         "geodesic": 6,
         "peak": 21,
@@ -155,37 +166,26 @@
         "term": "SPACEX"
       },
       {
-        "active_days": 119,
-        "gamma": 1.02,
-        "geodesic": 98,
-        "peak": 22,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 70,
-        "regime": "SPACELIKE",
-        "term": "FOOTBALL"
-      },
-      {
-        "active_days": 180,
-        "gamma": 1.01,
-        "geodesic": -43,
-        "peak": 15,
+        "active_days": 184,
+        "gamma": 1.0,
+        "geodesic": -18,
+        "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 41,
+        "prob_rising": 46,
         "regime": "SPACELIKE",
-        "term": "MEDIA"
+        "term": "FRAMEWORK"
       },
       {
-        "active_days": 204,
+        "active_days": 197,
         "gamma": 1.0,
         "geodesic": 6,
-        "peak": 14,
+        "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
         "prob_rising": 51,
         "regime": "SPACELIKE",
-        "term": "WEB"
+        "term": "CHINA"
       }
     ]
   },

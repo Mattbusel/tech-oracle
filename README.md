@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 17, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **163-2**
+**July 18, 2026** // Index **70 (SURGING)** // hottest **WORLD** // record **169-20**
 
-> Google-backed satellites for wildfire detection launch as smoke chokes US, Canada just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> The machine flagged Google-backed satellites for wildfire detection launch as smoke chokes US, Canada crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
