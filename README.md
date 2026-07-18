@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 18, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **171-20**
+**July 18, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **172-20**
 
-> The machine flagged Siri AI vs. Old Siri on Apple Watch: It Wasn't Even Close crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> The machine flagged New leak by Evan Blass shows the Z Fold8, Z Fold8 Ultra and Galaxy Watch9, confirms some crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
