@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 18, 2026** // Index **69 (SURGING)** // hottest **GOOGLE** // record **172-20**
+**July 19, 2026** // Index **68 (SURGING)** // hottest **GOOGLE** // record **173-40**
 
-> The machine flagged LG monitors silently install software through Windows Update without consent crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> LG monitors silently install software through Windows Update without consent is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
