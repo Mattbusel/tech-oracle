@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 19, 2026** // Index **68 (SURGING)** // hottest **GOOGLE** // record **173-40**
+**July 19, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **174-40**
 
-> LG monitors silently install software through Windows Update without consent is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Why Are Nothing's New 'B' Series Phones So Much Cheaper? is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
