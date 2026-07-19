@@ -25,7 +25,7 @@ Worker for the paid gate. No server you operate, no database you run.
 
 **July 19, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **174-40**
 
-> Why Are Nothing's New 'B' Series Phones So Much Cheaper? is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Show HN: I replaced a $120k bowling center system with $1,600 in ESP32s is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
