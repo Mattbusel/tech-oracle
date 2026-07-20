@@ -1,24 +1,24 @@
 {
   "horizon": {
-    "defined": 7900,
+    "defined": 7901,
     "phases": {
-      "BOTTOMING": 251,
-      "CHURNING": 602,
-      "FALLING": 76,
-      "FLAT": 6151,
-      "PEAKING": 83,
-      "RISING": 737
+      "BOTTOMING": 256,
+      "CHURNING": 590,
+      "FALLING": 70,
+      "FLAT": 6164,
+      "PEAKING": 86,
+      "RISING": 735
     },
-    "scanned": 39493,
+    "scanned": 39520,
     "turns": [
       {
         "active_days": 212,
         "gamma": 1.01,
-        "geodesic": -25,
+        "geodesic": -15,
         "peak": 38,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 45,
+        "prob_rising": 47,
         "regime": "SPACELIKE",
         "term": "CUP"
       },
@@ -32,6 +32,17 @@
         "prob_rising": 46,
         "regime": "SPACELIKE",
         "term": "LANGUAGE"
+      },
+      {
+        "active_days": 212,
+        "gamma": 1.0,
+        "geodesic": -47,
+        "peak": 32,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "VIDEO"
       },
       {
         "active_days": 209,
@@ -54,6 +65,17 @@
         "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "AGENTS"
+      },
+      {
+        "active_days": 190,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 26,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "ANTHROPIC"
       },
       {
         "active_days": 212,
@@ -91,11 +113,11 @@
       {
         "active_days": 177,
         "gamma": 1.01,
-        "geodesic": -43,
+        "geodesic": -6,
         "peak": 21,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 41,
+        "prob_rising": 49,
         "regime": "SPACELIKE",
         "term": "AMAZON"
       },
@@ -109,6 +131,17 @@
         "prob_rising": 48,
         "regime": "SPACELIKE",
         "term": "FOOTBALL"
+      },
+      {
+        "active_days": 210,
+        "gamma": 1.0,
+        "geodesic": 9,
+        "peak": 16,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 52,
+        "regime": "SPACELIKE",
+        "term": "SYSTEM"
       },
       {
         "active_days": 208,
@@ -153,39 +186,6 @@
         "prob_rising": 56,
         "regime": "SPACELIKE",
         "term": "WEB"
-      },
-      {
-        "active_days": 203,
-        "gamma": 1.0,
-        "geodesic": -21,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 46,
-        "regime": "SPACELIKE",
-        "term": "SELF"
-      },
-      {
-        "active_days": 198,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "SEARCH"
-      },
-      {
-        "active_days": 149,
-        "gamma": 1.02,
-        "geodesic": -73,
-        "peak": 16,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 35,
-        "regime": "SPACELIKE",
-        "term": "SUPREME"
       }
     ]
   },

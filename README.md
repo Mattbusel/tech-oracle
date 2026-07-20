@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 20, 2026** // Index **72 (SURGING)** // hottest **FIFA** // record **180-57**
+**July 20, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **182-57**
 
-> Show HN: I replaced a $120k bowling center system with $1,600 in ESP32s is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> Watch Google Maps on Android Auto finally gets up to speed with this Waze feature leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
