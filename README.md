@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 19, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **174-40**
+**July 20, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **179-57**
 
-> Show HN: I replaced a $120k bowling center system with $1,600 in ESP32s is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Show HN: I replaced a $120k bowling center system with $1,600 in ESP32s is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
