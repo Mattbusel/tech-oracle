@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 20, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **182-57**
+**July 20, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **182-57**
 
-> Watch Google Maps on Android Auto finally gets up to speed with this Waze feature leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Watch Apple Seeds Fourth iOS 27 and iPadOS 27 Betas to Developers leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
