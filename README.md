@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 20, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **179-57**
+**July 20, 2026** // Index **72 (SURGING)** // hottest **FIFA** // record **180-57**
 
 > Show HN: I replaced a $120k bowling center system with $1,600 in ESP32s is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
