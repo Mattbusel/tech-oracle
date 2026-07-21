@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 20, 2026** // Index **72 (SURGING)** // hottest **WORLD** // record **182-57**
+**July 21, 2026** // Index **72 (SURGING)** // hottest **FIFA** // record **190-78**
 
-> Watch Apple Seeds Fourth iOS 27 and iPadOS 27 Betas to Developers leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Google alerts Android users about a major backup storage change is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
