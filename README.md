@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 21, 2026** // Index **72 (SURGING)** // hottest **FIFA** // record **190-78**
+**July 21, 2026** // Index **58 (ACTIVE)** // hottest **WORLD** // record **190-78**
 
-> Google alerts Android users about a major backup storage change is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> Watching China's open-weights AI strategy is winning climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
