@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 21, 2026** // Index **73 (SURGING)** // hottest **APPLE** // record **190-78**
+**July 21, 2026** // Index **73 (SURGING)** // hottest **WORLD** // record **190-78**
 
-> Apple to Launch 'Upgrade' Device Leasing Program With Klarna to Spur Sales is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
