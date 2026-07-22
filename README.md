@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 21, 2026** // Index **73 (SURGING)** // hottest **WORLD** // record **190-78**
+**July 22, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **197-98**
 
-> Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> OpenAI and Hugging Face address security incident during model evaluation is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
