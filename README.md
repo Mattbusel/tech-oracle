@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 22, 2026** // Index **66 (SURGING)** // hottest **GALAXY** // record **199-98**
+**July 22, 2026** // Index **65 (SURGING)** // hottest **AFTER** // record **200-98**
 
-> Normal people are about to find [Galaxy Unpacked July 2026] A First Look at Galaxy Z Fold8 Ultra, Galaxy Z Fold8 and. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Normal people are about to find Why Samsung Gave Its Next Folding Phone a New Shape. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
