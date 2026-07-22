@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 22, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **197-98**
+**July 22, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **198-98**
 
-> OpenAI and Hugging Face address security incident during model evaluation is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> Normal people are about to find Samsung's Galaxy Watch 9 and Ultra 2 bet big on battery. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
