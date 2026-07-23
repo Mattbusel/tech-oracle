@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 23, 2026** // Index **63 (ACTIVE)** // hottest **DATA** // record **201-115**
+**July 23, 2026** // Index **63 (ACTIVE)** // hottest **GALAXY** // record **201-115**
 
-> Samsung's Galaxy Z Fold 8 Is for Everyone Who Can't Stop Scrolling just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> Everything Samsung Announced at Galaxy Unpacked: Z Fold 8, Flip 8, Watch 9, More just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
