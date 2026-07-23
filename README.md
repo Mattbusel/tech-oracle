@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 22, 2026** // Index **65 (SURGING)** // hottest **AFTER** // record **200-98**
+**July 23, 2026** // Index **63 (ACTIVE)** // hottest **DATA** // record **201-115**
 
-> Normal people are about to find Why Samsung Gave Its Next Folding Phone a New Shape. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Samsung's Galaxy Z Fold 8 Is for Everyone Who Can't Stop Scrolling just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
