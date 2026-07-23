@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 23, 2026** // Index **63 (ACTIVE)** // hottest **DATA** // record **201-115**
+**July 23, 2026** // Index **63 (ACTIVE)** // hottest **GOOGLE** // record **201-115**
 
-> Final Coyote vs. Acme trailer drops at SDCC just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> Microsoft responds to LG monitors installing McAfee ads on Windows just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
