@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 23, 2026** // Index **63 (ACTIVE)** // hottest **GOOGLE** // record **201-115**
+**July 24, 2026** // Index **63 (ACTIVE)** // hottest **AGENT** // record **203-134**
 
-> Microsoft responds to LG monitors installing McAfee ads on Windows just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> The machine flagged Microsoft responds to LG monitors installing McAfee ads on Windows crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
