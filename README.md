@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 24, 2026** // Index **68 (SURGING)** // hottest **MODELS** // record **204-134**
+**July 24, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **210-134**
 
-> The machine flagged Microsoft responds to LG monitors installing McAfee ads on Windows crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> The machine flagged Microsoft pressures LG into killing unwanted McAfee ads crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
