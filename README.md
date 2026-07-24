@@ -25,7 +25,7 @@ Worker for the paid gate. No server you operate, no database you run.
 
 **July 24, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **210-134**
 
-> The machine flagged Microsoft pressures LG into killing unwanted McAfee ads crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> Canadian legislator reads out apparent LLM response in floor speech just hit the wider tech press. The signal points to it shaping a product roadmap at a big player by year end.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
