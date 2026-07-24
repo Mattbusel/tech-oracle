@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 24, 2026** // Index **63 (ACTIVE)** // hottest **AGENT** // record **203-134**
+**July 24, 2026** // Index **68 (SURGING)** // hottest **MODELS** // record **204-134**
 
 > The machine flagged Microsoft responds to LG monitors installing McAfee ads on Windows crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
