@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 25, 2026** // Index **69 (SURGING)** // hottest **IPHONE** // record **213-150**
+**July 25, 2026** // Index **71 (SURGING)** // hottest **FILM** // record **213-150**
 
 > With help from data, art museums are reframing the visitor experience is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 

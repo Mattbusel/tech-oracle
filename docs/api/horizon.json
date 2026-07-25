@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7951,
+    "defined": 7952,
     "phases": {
-      "BOTTOMING": 201,
-      "CHURNING": 655,
-      "FALLING": 68,
-      "FLAT": 6231,
+      "BOTTOMING": 202,
+      "CHURNING": 652,
+      "FALLING": 66,
+      "FLAT": 6210,
       "PEAKING": 88,
-      "RISING": 708
+      "RISING": 734
     },
-    "scanned": 38874,
+    "scanned": 38887,
     "turns": [
       {
         "active_days": 193,
@@ -113,11 +113,11 @@
       {
         "active_days": 207,
         "gamma": 1.01,
-        "geodesic": 91,
+        "geodesic": 86,
         "peak": 14,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 68,
+        "prob_rising": 67,
         "regime": "SPACELIKE",
         "term": "MICROSOFT"
       },
@@ -146,13 +146,24 @@
       {
         "active_days": 201,
         "gamma": 1.01,
-        "geodesic": 47,
+        "geodesic": 62,
         "peak": 12,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 59,
+        "prob_rising": 62,
         "regime": "SPACELIKE",
         "term": "WINDOWS"
+      },
+      {
+        "active_days": 192,
+        "gamma": 1.0,
+        "geodesic": -92,
+        "peak": 12,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 32,
+        "regime": "SPACELIKE",
+        "term": "STATE"
       },
       {
         "active_days": 206,
@@ -175,17 +186,6 @@
         "prob_rising": 39,
         "regime": "SPACELIKE",
         "term": "TRAINING"
-      },
-      {
-        "active_days": 162,
-        "gamma": 1.0,
-        "geodesic": 21,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 54,
-        "regime": "SPACELIKE",
-        "term": "ANALYSIS"
       }
     ]
   },
