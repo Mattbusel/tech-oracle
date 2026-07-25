@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 24, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **210-134**
+**July 25, 2026** // Index **71 (SURGING)** // hottest **DATA** // record **211-150**
 
-> Canadian legislator reads out apparent LLM response in floor speech just hit the wider tech press. The signal points to it shaping a product roadmap at a big player by year end.
+> Wildfire forces evacuation of NASA's Deep Space Network complex in Spain is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
