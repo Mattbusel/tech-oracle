@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 25, 2026** // Index **71 (SURGING)** // hottest **FILM** // record **213-150**
+**July 26, 2026** // Index **72 (SURGING)** // hottest **XBOX** // record **216-162**
 
-> One UI 9 makes major lock screen security change every Galaxy user needs to know is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Watch Android May Soon Restrict On-Device ADB leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
