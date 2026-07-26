@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 26, 2026** // Index **72 (SURGING)** // hottest **XBOX** // record **216-162**
+**July 26, 2026** // Index **72 (SURGING)** // hottest **AFTER** // record **217-162**
 
-> Watch Android May Soon Restrict On-Device ADB leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Watch The 6 best laptops for college in 2026, tested by experts leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
