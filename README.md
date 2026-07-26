@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 26, 2026** // Index **72 (SURGING)** // hottest **DATA** // record **217-162**
+**July 26, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **218-162**
 
-> Watch Apple's Smart Glasses Will Need to Overcome Meta's Privacy Reputation leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Watch Apple is banking on privacy to set its smart glasses apart leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

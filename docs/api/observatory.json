@@ -72,8 +72,8 @@
     },
     {
       "dir": -1,
-      "p": 0.451,
-      "phase": "CHURNING",
+      "p": 0.396,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
     },
@@ -121,7 +121,7 @@
     },
     {
       "dir": 1,
-      "p": 0.582,
+      "p": 0.531,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
@@ -170,7 +170,7 @@
     },
     {
       "dir": -1,
-      "p": 0.308,
+      "p": 0.314,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "TEAM"
@@ -205,7 +205,7 @@
     },
     {
       "dir": 1,
-      "p": 0.697,
+      "p": 0.693,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "META"
@@ -289,8 +289,8 @@
     },
     {
       "dir": 1,
-      "p": 0.61,
-      "phase": "CHURNING",
+      "p": 0.543,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SPACEX"
     },
@@ -331,7 +331,7 @@
     },
     {
       "dir": -1,
-      "p": 0.411,
+      "p": 0.359,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "CODING"
@@ -415,7 +415,7 @@
     },
     {
       "dir": 1,
-      "p": 0.632,
+      "p": 0.575,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
@@ -429,12 +429,6 @@
       "term": "WATCH"
     },
     {
-      "days": 217,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "DESIGN"
-    },
-    {
       "days": 216,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -442,9 +436,9 @@
     },
     {
       "days": 217,
-      "origin": "HN",
+      "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "GAMING"
+      "term": "GAME"
     },
     {
       "days": 89,
@@ -456,13 +450,19 @@
       "days": 217,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "ABSOLUTE"
+      "term": "ACCESS"
+    },
+    {
+      "days": 192,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ACCESSORIES"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 54
+    "value": 53
   },
   "manifold": [
     {
@@ -596,16 +596,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": 0.004,
-      "curvature": -0.17,
+      "beta": -0.016,
+      "curvature": -0.56,
       "defined": true,
-      "ds2": 0.992,
+      "ds2": 0.968,
       "gamma": 1.0,
-      "geodesic_trend": -0.243,
-      "phase": "CHURNING",
-      "prob_rising": 45,
+      "geodesic_trend": -0.521,
+      "phase": "FALLING",
+      "prob_rising": 40,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.001,
+      "rel_momentum": -0.004,
       "term": "GOOGLE"
     },
     {
@@ -650,6 +650,11 @@
   ],
   "movers": [
     {
+      "count": 5,
+      "term": "TEACHING",
+      "vel": 600
+    },
+    {
       "count": 6,
       "term": "WATCH",
       "vel": 500
@@ -660,24 +665,19 @@
       "vel": 460
     },
     {
+      "count": 9,
+      "term": "GAME",
+      "vel": 425
+    },
+    {
       "count": 3,
       "term": "CONFIRMS",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "GAMING",
+      "term": "AUTOMATION",
       "vel": 425
-    },
-    {
-      "count": 4,
-      "term": "NEWS",
-      "vel": 400
-    },
-    {
-      "count": 4,
-      "term": "RELEASE",
-      "vel": 400
     }
   ],
   "pulse": {
@@ -745,7 +745,7 @@
       }
     ],
     "index": 72,
-    "theme": "DATA",
+    "theme": "GAME",
     "total": 267,
     "verdict": "SURGING"
   },
@@ -753,50 +753,50 @@
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -2,
+      "delta": -4,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
-      "delta": 5,
-      "index": 85,
+      "delta": 3,
+      "index": 83,
       "name": "PLATFORM"
     },
     {
-      "arrow": "UP",
-      "delta": 2,
-      "index": 25,
-      "name": "ROBOTS"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 20,
-      "name": "CLOUD"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 15,
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 22,
       "name": "RUST"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 22,
+      "name": "CLOUD"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 15,
+      "index": 17,
       "name": "CRYPTO"
+    },
+    {
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 17,
+      "name": "ROBOTS"
     },
     {
       "arrow": "DOWN",
       "delta": -2,
-      "index": 10,
+      "index": 11,
       "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
       "delta": -2,
-      "index": 5,
+      "index": 6,
       "name": "CHIPS"
     }
   ],
@@ -814,12 +814,12 @@
     {
       "bar": 78,
       "has_rate": true,
-      "hits": 96,
+      "hits": 97,
       "label": "THE NEWS",
       "misses": 40,
       "rate": 70,
       "source": "news",
-      "weight": 1.16
+      "weight": 1.17
     },
     {
       "bar": 70,
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 38736
+  "tracked_terms": 38747
 }
