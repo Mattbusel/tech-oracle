@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 26, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **218-162**
+**July 27, 2026** // Index **72 (SURGING)** // hottest **DATA** // record **222-179**
 
-> Watch Apple is banking on privacy to set its smart glasses apart leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> How to Get Samsung's Galaxy Z Fold 8 for $599 is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
