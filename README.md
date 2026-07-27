@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 27, 2026** // Index **72 (SURGING)** // hottest **DATA** // record **222-179**
+**July 27, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **224-179**
 
-> How to Get Samsung's Galaxy Z Fold 8 for $599 is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> What public health professionals can learn from anti-vaccine storytelling is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

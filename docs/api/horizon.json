@@ -1,26 +1,37 @@
 {
   "horizon": {
-    "defined": 7974,
+    "defined": 7976,
     "phases": {
-      "BOTTOMING": 219,
-      "CHURNING": 603,
-      "FALLING": 91,
-      "FLAT": 6254,
-      "PEAKING": 87,
-      "RISING": 720
+      "BOTTOMING": 222,
+      "CHURNING": 608,
+      "FALLING": 81,
+      "FLAT": 6242,
+      "PEAKING": 99,
+      "RISING": 724
     },
-    "scanned": 38582,
+    "scanned": 38609,
     "turns": [
       {
-        "active_days": 180,
+        "active_days": 181,
         "gamma": 1.0,
-        "geodesic": -43,
+        "geodesic": 21,
         "peak": 39,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 41,
+        "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "SUPER"
+      },
+      {
+        "active_days": 216,
+        "gamma": 1.0,
+        "geodesic": 85,
+        "peak": 35,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 67,
+        "regime": "SPACELIKE",
+        "term": "LANGUAGE"
       },
       {
         "active_days": 195,
@@ -47,11 +58,11 @@
       {
         "active_days": 219,
         "gamma": 1.0,
-        "geodesic": 18,
+        "geodesic": 52,
         "peak": 25,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 54,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "AGENT"
       },
@@ -78,6 +89,17 @@
         "term": "ANTHROPIC"
       },
       {
+        "active_days": 195,
+        "gamma": 1.0,
+        "geodesic": -6,
+        "peak": 24,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 49,
+        "regime": "SPACELIKE",
+        "term": "MULTI"
+      },
+      {
         "active_days": 217,
         "gamma": 1.02,
         "geodesic": -95,
@@ -89,15 +111,15 @@
         "term": "LIST"
       },
       {
-        "active_days": 209,
-        "gamma": 1.0,
-        "geodesic": -61,
-        "peak": 20,
+        "active_days": 218,
+        "gamma": 1.02,
+        "geodesic": -96,
+        "peak": 18,
         "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 38,
+        "phase": "BOTTOMING",
+        "prob_rising": 31,
         "regime": "SPACELIKE",
-        "term": "OPENAI"
+        "term": "SOFTWARE"
       },
       {
         "active_days": 122,
@@ -124,11 +146,11 @@
       {
         "active_days": 193,
         "gamma": 1.0,
-        "geodesic": 52,
+        "geodesic": 29,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 60,
+        "prob_rising": 56,
         "regime": "SPACELIKE",
         "term": "FRAMEWORK"
       },
@@ -155,37 +177,15 @@
         "term": "CHINA"
       },
       {
-        "active_days": 218,
-        "gamma": 1.01,
-        "geodesic": 64,
-        "peak": 14,
+        "active_days": 199,
+        "gamma": 1.0,
+        "geodesic": -12,
+        "peak": 15,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 63,
+        "prob_rising": 48,
         "regime": "SPACELIKE",
-        "term": "YEARS"
-      },
-      {
-        "active_days": 217,
-        "gamma": 1.0,
-        "geodesic": 17,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 53,
-        "regime": "SPACELIKE",
-        "term": "LINUX"
-      },
-      {
-        "active_days": 215,
-        "gamma": 1.0,
-        "geodesic": -5,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 49,
-        "regime": "SPACELIKE",
-        "term": "RUST"
+        "term": "GITHUB"
       }
     ]
   },
