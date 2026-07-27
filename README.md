@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 27, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **224-179**
+**July 27, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **224-179**
 
-> Activist charged with felony after giving border agent "duress code" that wiped his phone is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> 5th Circuit blocks Texas law requiring websites to filter "harmful" speech is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

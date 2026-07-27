@@ -2,9 +2,9 @@
   "bet_pool": [
     {
       "dir": 1,
-      "p": 0.618,
-      "phase": "RISING",
-      "regime": "SPACELIKE",
+      "p": 0.5,
+      "phase": "FLAT",
+      "regime": "LIGHTLIKE",
       "term": "IRAN"
     },
     {
@@ -37,8 +37,8 @@
     },
     {
       "dir": 1,
-      "p": 0.69,
-      "phase": "RISING",
+      "p": 0.676,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
     },
@@ -86,7 +86,7 @@
     },
     {
       "dir": 1,
-      "p": 0.696,
+      "p": 0.698,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SERIES"
@@ -121,14 +121,14 @@
     },
     {
       "dir": -1,
-      "p": 0.45,
+      "p": 0.493,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
     },
     {
-      "dir": -1,
-      "p": 0.452,
+      "dir": 1,
+      "p": 0.531,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
@@ -149,10 +149,17 @@
     },
     {
       "dir": -1,
-      "p": 0.487,
-      "phase": "BOTTOMING",
+      "p": 0.374,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "MULTI"
+    },
+    {
+      "dir": 1,
+      "p": 0.699,
+      "phase": "RISING",
+      "regime": "SPACELIKE",
+      "term": "LARGE"
     },
     {
       "dir": 1,
@@ -162,15 +169,8 @@
       "term": "ICE"
     },
     {
-      "dir": 1,
-      "p": 0.698,
-      "phase": "RISING",
-      "regime": "SPACELIKE",
-      "term": "LARGE"
-    },
-    {
       "dir": -1,
-      "p": 0.324,
+      "p": 0.311,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "TEAM"
@@ -316,9 +316,9 @@
       "term": "FOOTBALL"
     },
     {
-      "dir": -1,
-      "p": 0.468,
-      "phase": "CHURNING",
+      "dir": 1,
+      "p": 0.565,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
     },
@@ -338,7 +338,7 @@
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.695,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
@@ -351,8 +351,8 @@
       "term": "LOCAL"
     },
     {
-      "dir": 1,
-      "p": 0.543,
+      "dir": -1,
+      "p": 0.414,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "CHINA"
@@ -373,7 +373,7 @@
     },
     {
       "dir": 1,
-      "p": 0.679,
+      "p": 0.686,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -387,7 +387,7 @@
     },
     {
       "dir": -1,
-      "p": 0.395,
+      "p": 0.442,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "REAL"
@@ -408,8 +408,8 @@
     },
     {
       "dir": 1,
-      "p": 0.661,
-      "phase": "BOTTOMING",
+      "p": 0.677,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "SELF"
     },
@@ -430,12 +430,6 @@
     },
     {
       "days": 218,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "FRAMEWORK"
-    },
-    {
-      "days": 218,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "HELP"
@@ -444,38 +438,44 @@
       "days": 218,
       "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "FUTURE"
+      "term": "FRAMEWORK"
     },
     {
-      "days": 217,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "ONLY"
-    },
-    {
-      "days": 208,
+      "days": 212,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "PS5"
+      "term": "POKÉMON"
+    },
+    {
+      "days": 216,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "UPDATE"
+    },
+    {
+      "days": 218,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "END"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 57
+    "value": 53
   },
   "manifold": [
     {
-      "beta": 0.187,
-      "curvature": 4.36,
+      "beta": 0.0,
+      "curvature": 0.0,
       "defined": true,
-      "ds2": 0.627,
-      "gamma": 1.018,
-      "geodesic_trend": 0.591,
-      "phase": "RISING",
-      "prob_rising": 62,
-      "regime": "SPACELIKE",
-      "rel_momentum": 0.012,
+      "ds2": 0.0,
+      "gamma": 1.0,
+      "geodesic_trend": 0.0,
+      "phase": "FLAT",
+      "prob_rising": 50,
+      "regime": "LIGHTLIKE",
+      "rel_momentum": 0.0,
       "term": "IRAN"
     },
     {
@@ -531,16 +531,16 @@
       "term": "SUPER"
     },
     {
-      "beta": 0.044,
-      "curvature": 0.58,
+      "beta": 0.015,
+      "curvature": -0.02,
       "defined": true,
-      "ds2": 0.911,
-      "gamma": 1.001,
-      "geodesic_trend": 0.951,
-      "phase": "RISING",
-      "prob_rising": 69,
+      "ds2": 0.97,
+      "gamma": 1.0,
+      "geodesic_trend": 0.882,
+      "phase": "CHURNING",
+      "prob_rising": 68,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.012,
+      "rel_momentum": 0.004,
       "term": "CLAUDE"
     },
     {
@@ -622,16 +622,16 @@
       "term": "EPSTEIN"
     },
     {
-      "beta": 0.085,
-      "curvature": -0.38,
+      "beta": 0.097,
+      "curvature": -0.11,
       "defined": true,
-      "ds2": 0.829,
-      "gamma": 1.004,
-      "geodesic_trend": 0.981,
+      "ds2": 0.805,
+      "gamma": 1.005,
+      "geodesic_trend": 0.989,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.032,
+      "rel_momentum": 0.037,
       "term": "SERIES"
     },
     {
@@ -650,40 +650,40 @@
   ],
   "movers": [
     {
+      "count": 5,
+      "term": "HELP",
+      "vel": 775
+    },
+    {
+      "count": 5,
+      "term": "FANTASY",
+      "vel": 775
+    },
+    {
+      "count": 4,
+      "term": "UPDATE",
+      "vel": 600
+    },
+    {
       "count": 4,
       "term": "FRAMEWORK",
       "vel": 600
     },
     {
       "count": 4,
-      "term": "HELP",
+      "term": "POKÉMON",
       "vel": 600
     },
     {
-      "count": 4,
-      "term": "FANTASY",
-      "vel": 600
-    },
-    {
-      "count": 4,
-      "term": "FUTURE",
-      "vel": 460
-    },
-    {
       "count": 3,
-      "term": "ONLY",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "BUGS",
+      "term": "STARSHIP",
       "vel": 425
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
-    "delta_word": "FALLING",
+    "delta_abs": 0,
+    "delta_word": "FLAT",
     "has_prev": true,
     "highest_days": 0,
     "history": [
@@ -741,50 +741,56 @@
       },
       {
         "date": "2026-07-27",
-        "index": 71
+        "index": 72
       }
     ],
-    "index": 71,
+    "index": 72,
     "theme": "GAME",
-    "total": 264,
+    "total": 265,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -2,
+      "delta": -1,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 88,
+      "index": 82,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
-      "delta": 2,
-      "index": 25,
+      "delta": 4,
+      "index": 35,
       "name": "SECURITY"
+    },
+    {
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 24,
+      "name": "RUST"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 25,
+      "index": 24,
       "name": "ROBOTS"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 19,
-      "name": "RUST"
+      "index": 12,
+      "name": "CRYPTO"
     },
     {
       "arrow": "DOWN",
-      "delta": -1,
-      "index": 19,
+      "delta": -2,
+      "index": 12,
       "name": "CLOUD"
     },
     {
@@ -792,12 +798,6 @@
       "delta": 0,
       "index": 6,
       "name": "CHIPS"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -2,
-      "index": 6,
-      "name": "CRYPTO"
     }
   ],
   "source_weights": [
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 38626
+  "tracked_terms": 38636
 }
