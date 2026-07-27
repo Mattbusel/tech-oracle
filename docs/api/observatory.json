@@ -29,15 +29,15 @@
       "term": "FIFA"
     },
     {
-      "dir": 1,
-      "p": 0.543,
+      "dir": -1,
+      "p": 0.414,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SUPER"
     },
     {
       "dir": 1,
-      "p": 0.687,
+      "p": 0.69,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
@@ -72,8 +72,8 @@
     },
     {
       "dir": -1,
-      "p": 0.344,
-      "phase": "FALLING",
+      "p": 0.355,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
     },
@@ -93,7 +93,7 @@
     },
     {
       "dir": 1,
-      "p": 0.628,
+      "p": 0.569,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "TRUMP"
@@ -114,8 +114,8 @@
     },
     {
       "dir": 1,
-      "p": 0.604,
-      "phase": "BOTTOMING",
+      "p": 0.639,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
@@ -142,7 +142,7 @@
     },
     {
       "dir": 1,
-      "p": 0.647,
+      "p": 0.608,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -170,7 +170,7 @@
     },
     {
       "dir": -1,
-      "p": 0.341,
+      "p": 0.324,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "TEAM"
@@ -184,9 +184,9 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
-      "phase": "RISING",
-      "regime": "SPACELIKE",
+      "p": 0.5,
+      "phase": "FLAT",
+      "regime": "LIGHTLIKE",
       "term": "VENEZUELA"
     },
     {
@@ -254,8 +254,8 @@
     },
     {
       "dir": -1,
-      "p": 0.308,
-      "phase": "BOTTOMING",
+      "p": 0.302,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
     },
@@ -296,7 +296,7 @@
     },
     {
       "dir": 1,
-      "p": 0.558,
+      "p": 0.633,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "FRAMEWORK"
@@ -338,7 +338,7 @@
     },
     {
       "dir": 1,
-      "p": 0.698,
+      "p": 0.699,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
@@ -373,7 +373,7 @@
     },
     {
       "dir": 1,
-      "p": 0.628,
+      "p": 0.679,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -384,6 +384,13 @@
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "MEDIA"
+    },
+    {
+      "dir": -1,
+      "p": 0.395,
+      "phase": "BOTTOMING",
+      "regime": "SPACELIKE",
+      "term": "REAL"
     },
     {
       "dir": 1,
@@ -400,13 +407,6 @@
       "term": "LEAGUE"
     },
     {
-      "dir": -1,
-      "p": 0.314,
-      "phase": "FALLING",
-      "regime": "SPACELIKE",
-      "term": "REAL"
-    },
-    {
       "dir": 1,
       "p": 0.661,
       "phase": "BOTTOMING",
@@ -415,54 +415,54 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
-      "phase": "FALLING",
+      "p": 0.307,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
     }
   ],
   "chasm": [
     {
-      "days": 204,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "10GB"
-    },
-    {
-      "days": 193,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "16GB"
-    },
-    {
-      "days": 210,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "20TH"
-    },
-    {
-      "days": 218,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "ACCESS"
-    },
-    {
-      "days": 216,
+      "days": 215,
       "origin": "ARXIV",
-      "reach": "HN",
-      "term": "ACCURATE"
+      "reach": "THE NEWS",
+      "term": "FANTASY"
+    },
+    {
+      "days": 218,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "FRAMEWORK"
     },
     {
       "days": 218,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "ACCUSED"
+      "reach": "THE NEWS",
+      "term": "HELP"
+    },
+    {
+      "days": 218,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "FUTURE"
+    },
+    {
+      "days": 217,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "ONLY"
+    },
+    {
+      "days": 208,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "PS5"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "GREED",
-    "value": 69
+    "label": "NEUTRAL",
+    "value": 57
   },
   "manifold": [
     {
@@ -518,29 +518,29 @@
       "term": "FIFA"
     },
     {
-      "beta": -0.027,
-      "curvature": 0.99,
+      "beta": -0.073,
+      "curvature": 0.08,
       "defined": true,
-      "ds2": 0.945,
-      "gamma": 1.0,
-      "geodesic_trend": 0.214,
+      "ds2": 0.855,
+      "gamma": 1.003,
+      "geodesic_trend": -0.431,
       "phase": "BOTTOMING",
-      "prob_rising": 54,
+      "prob_rising": 41,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.007,
+      "rel_momentum": -0.018,
       "term": "SUPER"
     },
     {
-      "beta": 0.036,
-      "curvature": 0.41,
+      "beta": 0.044,
+      "curvature": 0.58,
       "defined": true,
-      "ds2": 0.927,
+      "ds2": 0.911,
       "gamma": 1.001,
-      "geodesic_trend": 0.937,
+      "geodesic_trend": 0.951,
       "phase": "RISING",
       "prob_rising": 69,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.009,
+      "rel_momentum": 0.012,
       "term": "CLAUDE"
     },
     {
@@ -596,16 +596,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.019,
-      "curvature": -0.53,
+      "beta": -0.011,
+      "curvature": -0.38,
       "defined": true,
-      "ds2": 0.962,
+      "ds2": 0.978,
       "gamma": 1.0,
-      "geodesic_trend": -0.782,
-      "phase": "FALLING",
-      "prob_rising": 34,
+      "geodesic_trend": -0.725,
+      "phase": "CHURNING",
+      "prob_rising": 35,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.005,
+      "rel_momentum": -0.003,
       "term": "GOOGLE"
     },
     {
@@ -635,55 +635,55 @@
       "term": "SERIES"
     },
     {
-      "beta": 0.058,
-      "curvature": -0.63,
+      "beta": 0.037,
+      "curvature": -1.04,
       "defined": true,
-      "ds2": 0.885,
-      "gamma": 1.002,
-      "geodesic_trend": 0.638,
+      "ds2": 0.927,
+      "gamma": 1.001,
+      "geodesic_trend": 0.343,
       "phase": "RISING",
-      "prob_rising": 63,
+      "prob_rising": 57,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.018,
+      "rel_momentum": 0.012,
       "term": "TRUMP"
     }
   ],
   "movers": [
     {
-      "count": 5,
-      "term": "AUGUST",
-      "vel": 400
+      "count": 4,
+      "term": "FRAMEWORK",
+      "vel": 600
     },
     {
       "count": 4,
-      "term": "GOING",
-      "vel": 400
+      "term": "HELP",
+      "vel": 600
+    },
+    {
+      "count": 4,
+      "term": "FANTASY",
+      "vel": 600
+    },
+    {
+      "count": 4,
+      "term": "FUTURE",
+      "vel": 460
     },
     {
       "count": 3,
-      "term": "DEVELOPMENT",
-      "vel": 400
+      "term": "ONLY",
+      "vel": 425
     },
     {
       "count": 3,
-      "term": "WIN",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "EVEN",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "ARRIVES",
-      "vel": 400
+      "term": "BUGS",
+      "vel": 425
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 0,
-    "delta_word": "FLAT",
+    "delta_abs": 1,
+    "delta_word": "FALLING",
     "has_prev": true,
     "highest_days": 0,
     "history": [
@@ -741,10 +741,10 @@
       },
       {
         "date": "2026-07-27",
-        "index": 72
+        "index": 71
       }
     ],
-    "index": 72,
+    "index": 71,
     "theme": "GAME",
     "total": 264,
     "verdict": "SURGING"
@@ -753,50 +753,50 @@
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -3,
+      "delta": -2,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -2,
-      "index": 87,
+      "delta": -1,
+      "index": 88,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 33,
+      "index": 25,
+      "name": "SECURITY"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 25,
       "name": "ROBOTS"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 20,
+      "index": 19,
       "name": "RUST"
     },
     {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 20,
-      "name": "SECURITY"
-    },
-    {
       "arrow": "DOWN",
-      "delta": -2,
-      "index": 13,
+      "delta": -1,
+      "index": 19,
       "name": "CLOUD"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 7,
+      "index": 6,
       "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
       "delta": -2,
-      "index": 7,
+      "index": 6,
       "name": "CRYPTO"
     }
   ],
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 38609
+  "tracked_terms": 38626
 }
