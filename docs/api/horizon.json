@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 7987,
+    "defined": 7990,
     "phases": {
-      "BOTTOMING": 214,
-      "CHURNING": 592,
-      "FALLING": 69,
-      "FLAT": 6253,
+      "BOTTOMING": 217,
+      "CHURNING": 595,
+      "FALLING": 70,
+      "FLAT": 6265,
       "PEAKING": 91,
-      "RISING": 768
+      "RISING": 752
     },
-    "scanned": 38514,
+    "scanned": 38532,
     "turns": [
       {
         "active_days": 182,
@@ -78,13 +78,13 @@
         "term": "AGENT"
       },
       {
-        "active_days": 197,
-        "gamma": 1.02,
-        "geodesic": -30,
+        "active_days": 198,
+        "gamma": 1.01,
+        "geodesic": 36,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 44,
+        "prob_rising": 57,
         "regime": "SPACELIKE",
         "term": "ANTHROPIC"
       },
@@ -102,22 +102,22 @@
       {
         "active_days": 196,
         "gamma": 1.0,
-        "geodesic": -14,
+        "geodesic": 8,
         "peak": 24,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 47,
+        "prob_rising": 52,
         "regime": "SPACELIKE",
         "term": "MULTI"
       },
       {
         "active_days": 161,
         "gamma": 1.0,
-        "geodesic": 76,
+        "geodesic": 31,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 65,
+        "prob_rising": 56,
         "regime": "SPACELIKE",
         "term": "LARGE"
       },
@@ -131,6 +131,17 @@
         "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "LIST"
+      },
+      {
+        "active_days": 210,
+        "gamma": 1.0,
+        "geodesic": -87,
+        "peak": 20,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 33,
+        "regime": "SPACELIKE",
+        "term": "OPENAI"
       },
       {
         "active_days": 219,
@@ -175,17 +186,6 @@
         "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "LOCAL"
-      },
-      {
-        "active_days": 200,
-        "gamma": 1.0,
-        "geodesic": -2,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 50,
-        "regime": "SPACELIKE",
-        "term": "GITHUB"
       }
     ]
   },
