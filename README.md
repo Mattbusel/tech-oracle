@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 28, 2026** // Index **70 (SURGING)** // hottest **GAME** // record **227-195**
+**July 28, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **227-195**
 
-> Normal people are about to find Microsoft unveils AI security tools it says outperform competing platforms. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Normal people are about to find As US measles cases rise, biotech firms start developing new treatments. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
