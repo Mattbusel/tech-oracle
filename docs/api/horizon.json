@@ -2,14 +2,14 @@
   "horizon": {
     "defined": 8000,
     "phases": {
-      "BOTTOMING": 216,
-      "CHURNING": 618,
-      "FALLING": 65,
-      "FLAT": 6322,
-      "PEAKING": 86,
-      "RISING": 693
+      "BOTTOMING": 213,
+      "CHURNING": 569,
+      "FALLING": 60,
+      "FLAT": 6246,
+      "PEAKING": 90,
+      "RISING": 822
     },
-    "scanned": 38374,
+    "scanned": 38391,
     "turns": [
       {
         "active_days": 183,
@@ -25,22 +25,22 @@
       {
         "active_days": 221,
         "gamma": 1.0,
-        "geodesic": -72,
+        "geodesic": -1,
         "peak": 32,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 36,
+        "prob_rising": 50,
         "regime": "SPACELIKE",
         "term": "VIDEO"
       },
       {
         "active_days": 221,
         "gamma": 1.0,
-        "geodesic": 43,
+        "geodesic": 6,
         "peak": 29,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 59,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
       },
@@ -59,65 +59,43 @@
         "active_days": 221,
         "gamma": 1.0,
         "geodesic": 94,
-        "peak": 26,
+        "peak": 25,
         "peak_in": 1,
         "phase": "BOTTOMING",
         "prob_rising": 69,
         "regime": "SPACELIKE",
-        "term": "LLM"
-      },
-      {
-        "active_days": 221,
-        "gamma": 1.01,
-        "geodesic": 56,
-        "peak": 25,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 61,
-        "regime": "SPACELIKE",
         "term": "AGENT"
-      },
-      {
-        "active_days": 199,
-        "gamma": 1.0,
-        "geodesic": 68,
-        "peak": 26,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 64,
-        "regime": "SPACELIKE",
-        "term": "ANTHROPIC"
       },
       {
         "active_days": 221,
         "gamma": 1.02,
-        "geodesic": 92,
+        "geodesic": 96,
         "peak": 23,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 68,
+        "prob_rising": 69,
         "regime": "SPACELIKE",
         "term": "APPLE"
       },
       {
         "active_days": 197,
-        "gamma": 1.01,
-        "geodesic": 33,
+        "gamma": 1.0,
+        "geodesic": 84,
         "peak": 24,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 57,
+        "prob_rising": 67,
         "regime": "SPACELIKE",
         "term": "MULTI"
       },
       {
         "active_days": 162,
         "gamma": 1.01,
-        "geodesic": -94,
+        "geodesic": -78,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 31,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "LARGE"
       },
@@ -145,23 +123,23 @@
       },
       {
         "active_days": 123,
-        "gamma": 1.01,
-        "geodesic": -87,
+        "gamma": 1.0,
+        "geodesic": 2,
         "peak": 24,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 33,
+        "prob_rising": 50,
         "regime": "SPACELIKE",
         "term": "REASONING"
       },
       {
         "active_days": 213,
         "gamma": 1.0,
-        "geodesic": 21,
+        "geodesic": -43,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 54,
+        "prob_rising": 41,
         "regime": "SPACELIKE",
         "term": "LLMS"
       },
@@ -177,6 +155,17 @@
         "term": "SPACEX"
       },
       {
+        "active_days": 205,
+        "gamma": 1.02,
+        "geodesic": -52,
+        "peak": 15,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 40,
+        "regime": "SPACELIKE",
+        "term": "LOCAL"
+      },
+      {
         "active_days": 204,
         "gamma": 1.02,
         "geodesic": -43,
@@ -186,6 +175,17 @@
         "prob_rising": 41,
         "regime": "SPACELIKE",
         "term": "CHINA"
+      },
+      {
+        "active_days": 201,
+        "gamma": 1.0,
+        "geodesic": 53,
+        "peak": 15,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 61,
+        "regime": "SPACELIKE",
+        "term": "GITHUB"
       }
     ]
   },
