@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 29, 2026** // Index **66 (SURGING)** // hottest **GOOGLE** // record **230-214**
+**July 29, 2026** // Index **64 (ACTIVE)** // hottest **GOOGLE** // record **233-214**
 
 > Apple Upgrade: 20 Things to Know Before Leasing an iPhone, iPad, or Mac just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
