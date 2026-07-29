@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 29, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **234-214**
+**July 29, 2026** // Index **72 (SURGING)** // hottest **XBOX** // record **234-214**
 
-> Gemini for macOS rolling out voice control and Gboard Rambler-level transcription just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> What's the catch with the Apple Upgrade program? just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
