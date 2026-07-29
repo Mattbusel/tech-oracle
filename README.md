@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 28, 2026** // Index **69 (SURGING)** // hottest **APPLE** // record **227-195**
+**July 29, 2026** // Index **66 (SURGING)** // hottest **GOOGLE** // record **230-214**
 
-> New airliner sets record flying 24 hrs nonstop from Australia to France just hit the wider tech press. The signal points to it shaping a product roadmap at a big player by year end.
+> Apple Upgrade: 20 Things to Know Before Leasing an iPhone, iPad, or Mac just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
