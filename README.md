@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 30, 2026** // Index **71 (SURGING)** // hottest **AGENTS** // record **236-232**
+**July 30, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **236-232**
 
-> The machine flagged What's the catch with the Apple Upgrade program? crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> The machine flagged DJI Osmo Pocket 4P Lab Test: Rolling Shutter, Dynamic Range and Exposure Latitude crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
