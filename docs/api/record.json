@@ -1,12 +1,12 @@
 {
   "book": {
-    "bank": 15203,
+    "bank": 15584,
     "best_loss": 15,
-    "best_win": 146,
+    "best_win": 148,
     "history": [
       {
         "date": "2026-07-23",
-        "pct": 87
+        "pct": 86
       },
       {
         "date": "2026-07-23",
@@ -18,26 +18,26 @@
       },
       {
         "date": "2026-07-23",
-        "pct": 89
+        "pct": 88
       },
       {
         "date": "2026-07-23",
         "pct": 89
       },
       {
-        "date": "2026-07-23",
+        "date": "2026-07-24",
         "pct": 90
       },
       {
-        "date": "2026-07-23",
+        "date": "2026-07-24",
+        "pct": 90
+      },
+      {
+        "date": "2026-07-25",
         "pct": 91
       },
       {
-        "date": "2026-07-24",
-        "pct": 91
-      },
-      {
-        "date": "2026-07-24",
+        "date": "2026-07-25",
         "pct": 92
       },
       {
@@ -58,37 +58,37 @@
       },
       {
         "date": "2026-07-25",
-        "pct": 95
-      },
-      {
-        "date": "2026-07-25",
         "pct": 96
       },
       {
-        "date": "2026-07-25",
-        "pct": 97
-      },
-      {
         "date": "2026-07-26",
-        "pct": 98
+        "pct": 96
       },
       {
         "date": "2026-07-27",
-        "pct": 99
+        "pct": 97
       },
       {
         "date": "2026-07-28",
-        "pct": 99
+        "pct": 98
       },
       {
         "date": "2026-07-28",
+        "pct": 98
+      },
+      {
+        "date": "2026-07-29",
+        "pct": 99
+      },
+      {
+        "date": "2026-07-29",
         "pct": 100
       }
     ],
     "pnl_class": "sb-hit",
-    "roi_str": "+1420%",
-    "settled": 468,
-    "streak": "W146"
+    "roi_str": "+1458%",
+    "settled": 470,
+    "streak": "W148"
   },
   "calibration": {
     "brier": "0.282",
@@ -96,7 +96,7 @@
       {
         "actual": 50,
         "label": "LONGSHOTS",
-        "n": 443,
+        "n": 445,
         "pred": 41
       },
       {
@@ -114,7 +114,7 @@
     ],
     "grade": "HONEST: ROUGHLY CALIBRATED",
     "has_data": true,
-    "n": 468
+    "n": 470
   },
   "calls": [
     {
@@ -147,38 +147,154 @@
       "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-08-29"
     },
     {
-      "confidence": 0.43,
+      "confidence": 0.44,
       "date": "2026-07-30",
       "id": 1065,
-      "keyword": "flagship",
+      "keyword": "intelligence",
       "keyword2": "",
-      "live": 43,
-      "live_prev": 43,
+      "live": 44,
+      "live_prev": 44,
+      "manifold": {
+        "gamma": 1.033,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.29,
+      "permalink": "/call/1065.html",
+      "prediction": "The HN front page is piling onto Gemini Robotics 2 brings whole body intelligence to robots. Expect the tooling around it to consolidate into one default winner within two quarters.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL +200% // HALF-LIFE 94.7d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+        "type": "hn",
+        "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"INTELLIGENCE\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-29"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-07-30",
+      "id": 1064,
+      "keyword": "design",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.001,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1064.html",
+      "prediction": "Watch Pixel 11 Pro Fold design leaks ahead of Google launch event leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL -46%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +25% // CROSSING FROM ARXIV // HALF-LIFE 110d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "Pixel 11 Pro Fold design leaks ahead of Google launch event",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQMlRHRTRFNkNtVWlsNnhGUEtJUmV0d2tzQ3Joa0hUNnkyMVc3OFc5cFRGTWQ2YjRmeTZFTUpBeGFhYm5kY2pkSjlpOUhHU1VORFp0SDVTZmNzWWo0dW9JX0JRZ19yb044Wmdhd2ZwbllodWxYUTdOY0hkcGE2TGFPWmxQZTFvZTNuOE5DSjh5UVp1aDhHM1E?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"DESIGN\" RESURFACES BY 2026-08-29"
+    },
+    {
+      "confidence": 0.37,
+      "date": "2026-07-30",
+      "id": 1063,
+      "keyword": "outperform",
+      "keyword2": "",
+      "live": 37,
+      "live_prev": 37,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.72,
+      "permalink": "/call/1063.html",
+      "prediction": "Quantum computers outperform classical ones, with results you can trust is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM ARXIV // HALF-LIFE 205d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "Quantum computers outperform classical ones, with results you can trust",
+        "type": "ars",
+        "url": "https://arstechnica.com/science/2026/07/if-a-quantum-computer-outperforms-normal-ones-can-you-tell-if-its-right/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"OUTPERFORM\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
+    },
+    {
+      "confidence": 0.39,
+      "date": "2026-07-30",
+      "id": 1062,
+      "keyword": "personalized",
+      "keyword2": "",
+      "live": 39,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "OVER",
-      "odds": 2.34,
-      "permalink": "/call/1065.html",
-      "prediction": "iPhone 18 Pro: Twelve Changes Coming to Apple's Next Flagship is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
-      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "market": "INDEX",
+      "odds": 2.53,
+      "permalink": "/call/1062.html",
+      "prediction": "Normal people are about to find Spotify Rolls Out New Personalized Running Features For Premium Users. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM ARXIV // HALF-LIFE 347d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "iPhone 18 Pro: Twelve Changes Coming to Apple's Next Flagship",
+        "title": "Spotify Rolls Out New Personalized Running Features For Premium Users",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5zRkFaS3d1SUtXbnY0RHJ1dm9kRFA4QnNrUWJYOUpkbUZMRDNybHpycVc2b0xNc0J5SVBRcU9XT3J2em9sWnNSUmU5Zm1XSzlaQ3N1b3VSQlY3SWZoTzVmc0lxbmk0VS1UWkNRRHZOV0ZybVBpc1E?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxOZVVyUG5FcGNCWGViVUdZU0tNZXdsc0lDbHlmLUd4RTJjZFRsaFBNR05TNW9JaFJVXzlBdW5xd3ItcDdmWlBLQkZwN09yekpvTTRoNXRkRHZ0U21BQl8wR2RMV3pfN09nMjh0akk5M2g4T0o1djJLRGM5S2J2OGktVUp4d0pxUjJoY2lFX1BNUkd1YmdFNjBGNQ?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"FLAGSHIP\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-29"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-08-29"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-07-30",
+      "id": 1061,
+      "keyword": "passport",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.64,
+      "permalink": "/call/1061.html",
+      "prediction": "Galaxy Z Fold 8 Review: A Passport-Size Shape-Shifter for Every Moment just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 220d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "Galaxy Z Fold 8 Review: A Passport-Size Shape-Shifter for Every Moment",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBQQWVEcERPemw3azJ2ZzlsU09ReFlrbHNhXzRtVFI2dE45dTlsMDg1MF85YkxsZmNBMHdBTV9TVnQtVFNLNkdqaXlCUnBqc2QzRC1kV3JLUjIxTzBGejZERUVzN2NXdW8?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"PASSPORT\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-29"
     },
     {
       "confidence": 0.34,
       "date": "2026-07-30",
-      "id": 1064,
+      "id": 1060,
       "keyword": "specification",
       "keyword2": "",
       "live": 34,
@@ -191,8 +307,8 @@
       },
       "market": "LONGSHOT",
       "odds": 2.94,
-      "permalink": "/call/1064.html",
-      "prediction": "Watch New MCP specification addresses the main barrier to enterprise adoption leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "permalink": "/call/1060.html",
+      "prediction": "The machine flagged New MCP specification addresses the main barrier to enterprise adoption crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM ARXIV // HALF-LIFE 194d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
@@ -205,126 +321,10 @@
       "win_if": "LONGSHOT: WIN IF \"SPECIFICATION\" RESURFACES BY 2026-08-29"
     },
     {
-      "confidence": 0.38,
-      "date": "2026-07-30",
-      "id": 1063,
-      "keyword": "lenovo",
-      "keyword2": "",
-      "live": 38,
-      "live_prev": 38,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 79,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "RESURFACE",
-      "odds": 2.66,
-      "permalink": "/call/1063.html",
-      "prediction": "Lenovo's Yoga 9n Is The First 2-In-1 Laptop To Ship With NVIDIA's RTX Spark, Comes With A is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "Lenovo's Yoga 9n Is The First 2-In-1 Laptop To Ship With NVIDIA's RTX Spark, Comes With A Crisp PureSight Pro OLED, Stylus Support And More",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTFAwNXg4R1gzNWhTeDZsOHZOTlBBTzJ1b2xGMTBuLURMdXBNLVlhSU9Vb0s1NEQ2d3BtQnFON3paU19DTWItY1VXWDQ5a1RVOXRKVWZhVy1UZlR6RjZYVlR1a1RFODFvbnBsaERyM3ZpSE1jSmFtaFp0anI2LULSAYIBQVVfeXFMT0ZNenpna2l3UnJYMDdpWTk2bE1MakpWUHpWcks5bE1sS1FiN0phYVdQb3ZRME0tOTh3VVdoT1lLZ0pDUS1xWnZqdDdsdjZPRWY0Ni1ySEpHVnBFa01MWE0zQnZyY2llNjAtZEE5d3lJendZZDJVenV6ZmFMUW10d3NTZw?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"LENOVO\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
-    },
-    {
-      "confidence": 0.39,
-      "date": "2026-07-30",
-      "id": 1062,
-      "keyword": "samsung",
-      "keyword2": "",
-      "live": 39,
-      "live_prev": 39,
-      "manifold": {
-        "gamma": 1.0,
-        "geodesic": -91,
-        "phase": "CHURNING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.59,
-      "permalink": "/call/1062.html",
-      "prediction": "Normal people are about to find Why Samsung May Build the Galaxy S27 Ultra Around Users. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +8%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 15.8d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.00 // geodesic -91% // CHURNING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "Why Samsung May Build the Galaxy S27 Ultra Around Users",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5oZi1nQTdtRExtUU9SaTNQU1N1Vmhua0otY0RyN0loNktNQlA5QUZxRUtNSnIxWGlZN3J6Q0FlbGNKakVMT1lmbUI2UnJPLUtsRkRPLTBOemwwbjRlUllMdTlocw?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-08-29"
-    },
-    {
-      "confidence": 0.36,
-      "date": "2026-07-30",
-      "id": 1061,
-      "keyword": "upgrade",
-      "keyword2": "",
-      "live": 36,
-      "live_prev": 36,
-      "manifold": {
-        "gamma": 1.026,
-        "geodesic": 99,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "OVER",
-      "odds": 2.75,
-      "permalink": "/call/1061.html",
-      "prediction": "What's the catch with the Apple Upgrade program? just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
-      "rationale": "VEL -30%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +25% // CROSSING FROM HN // HALF-LIFE 11d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.06 // geodesic +99% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "What's the catch with the Apple Upgrade program?",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE96OXgyNDBLanVXUkZZbDRNRWN6dGw0SldBYmIyRXRQUnBMTVRORjl5THFfMHNnU0ZsNThvVmlUdDFrZl9VZThfNXYwUUIwNGRqYmE4Vl9UU1VEdUFCY0JTQWFjamZ5c3NiSVF6a29SRXI?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"UPGRADE\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-29"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-07-30",
-      "id": 1060,
-      "keyword": "boosted",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/1060.html",
-      "prediction": "The machine flagged The best Galaxy Z Fold 8 deal is at Amazon - boosted trade-in plus $350 gift card crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "The best Galaxy Z Fold 8 deal is at Amazon - boosted trade-in plus $350 gift card",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPc0d0Qmp3Q19xQVNUZVBOZTBCN2c4Wm82SHBVMmtRajdLaGZDQ1ZnTzlITXNUT09oWk5USFZDVmw2U1ZrRjBZYVFrTVJNWDJFTWpUWllvY2xGY1lNaHZTa0xTVVV6RGlDV2tpbUstdVdRTVFDcTZZdi16V2ZBRFZhcTdQUEhUaFpnNWE4S2I3b01lWDdXWTBlQ2xZYXZ4X3hmQ1FoV21EdEx5N3M?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"BOOSTED\" RESURFACES BY 2026-08-29"
-    },
-    {
       "confidence": 0.39,
       "date": "2026-07-30",
       "id": 1059,
-      "keyword": "commission",
+      "keyword": "different",
       "keyword2": "",
       "live": 39,
       "live_prev": 39,
@@ -337,7 +337,123 @@
       "market": "RESURFACE",
       "odds": 2.56,
       "permalink": "/call/1059.html",
-      "prediction": "Mythos attack on 3rd-round PQC algorithm candidate puts it out of commission is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "prediction": "different-ai/openwork is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // HALF-LIFE 115.5d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "different-ai/openwork",
+        "type": "github",
+        "url": "https://github.com/different-ai/openwork"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"DIFFERENT\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
+    },
+    {
+      "confidence": 0.35,
+      "date": "2026-07-30",
+      "id": 1058,
+      "keyword": "september",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.89,
+      "permalink": "/call/1058.html",
+      "prediction": "Watch Google says Pixel battery drain should be fixed in July and September updates leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 26.5d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "Google says Pixel battery drain should be fixed in July and September updates",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxPdlNScVpZbXM5aktKS2RZemhpZmc4SnhXMWo0VGhUb1JNSEFUQnJGUUhCMXpTcFN4UWozamdnLXZVY0hjT2g3cnRoMGc1SEdUMGhNcVNTZ1QtSHV3aXZLWGVjdUR2UExfSEZHc0ZWMUswR0ZBQmUwcmRwYUN4elpxNnFXbWJyYTNi?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 81 BY 2026-08-29"
+    },
+    {
+      "confidence": 0.35,
+      "date": "2026-07-30",
+      "id": 1057,
+      "keyword": "password",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.84,
+      "permalink": "/call/1057.html",
+      "prediction": "These Password Managers Are Consumer Reports' Top Picks For Keeping Your Data Safe is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 63.4d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "These Password Managers Are Consumer Reports' Top Picks For Keeping Your Data Safe",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQRzdQRHRITlhwaF9Cak1lcUlnclV5S2tPZUQtczFac0szMjBiYlppMU9kWVRPQ3Z1TkJPLVE5VGJxbS11TDdnV2xERVVEYXVVc2RqTzN2czNJNFhiVGxtaUJlX0p1TWUwQUdDVTE1MVJ1dHRwYTBWM0tmWHdxa0xxNldn?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"PASSWORD\" CLEARS 2 MENTIONS IN A DAY BY 2026-08-29"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-07-30",
+      "id": 1056,
+      "keyword": "functions",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.004,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1056.html",
+      "prediction": "Do You Really Need to Pretrain Q-Functions for Online RL Fine-Tuning? is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 137.5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-08-29",
+      "source": {
+        "title": "Do You Really Need to Pretrain Q-Functions for Online RL Fine-Tuning?",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2607.27203v1"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"FUNCTIONS\" RESURFACES BY 2026-08-29"
+    },
+    {
+      "confidence": 0.36,
+      "date": "2026-07-30",
+      "id": 1055,
+      "keyword": "commission",
+      "keyword2": "",
+      "live": 36,
+      "live_prev": 36,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.75,
+      "permalink": "/call/1055.html",
+      "prediction": "Mythos attack on 3rd-round PQC algorithm candidate puts it out of commission just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 175d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
@@ -352,144 +468,28 @@
     {
       "confidence": 0.37,
       "date": "2026-07-30",
-      "id": 1058,
-      "keyword": "functions",
+      "id": 1054,
+      "keyword": "utility",
       "keyword2": "",
       "live": 37,
       "live_prev": 37,
-      "manifold": {
-        "gamma": 1.007,
-        "geodesic": 79,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.72,
-      "permalink": "/call/1058.html",
-      "prediction": "Do You Really Need to Pretrain Q-Functions for Online RL Fine-Tuning? looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
-      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL +200% // HALF-LIFE 372.7d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +79% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "Do You Really Need to Pretrain Q-Functions for Online RL Fine-Tuning?",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2607.27203v1"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 81 BY 2026-08-29"
-    },
-    {
-      "confidence": 0.35,
-      "date": "2026-07-30",
-      "id": 1057,
-      "keyword": "different",
-      "keyword2": "",
-      "live": 35,
-      "live_prev": 35,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "OVER",
-      "odds": 2.84,
-      "permalink": "/call/1057.html",
-      "prediction": "different-ai/openwork is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // HALF-LIFE 115.5d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "different-ai/openwork",
-        "type": "github",
-        "url": "https://github.com/different-ai/openwork"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"DIFFERENT\" CLEARS 2 MENTIONS IN A DAY BY 2026-08-29"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-07-30",
-      "id": 1056,
-      "keyword": "technical",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/1056.html",
-      "prediction": "'VPNs are lawful technical tools,' says EU Court in landmark copyright ruling is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 71.1d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "'VPNs are lawful technical tools,' says EU Court in landmark copyright ruling",
-        "type": "hn",
-        "url": "https://remysharp.com/links/2026-07-23-35890312"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"TECHNICAL\" RESURFACES BY 2026-08-29"
-    },
-    {
-      "confidence": 0.36,
-      "date": "2026-07-30",
-      "id": 1055,
-      "keyword": "officially",
-      "keyword2": "",
-      "live": 36,
-      "live_prev": 36,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "RESURFACE",
-      "odds": 2.75,
-      "permalink": "/call/1055.html",
-      "prediction": "Samsung officially confirms Galaxy Tab S12 series is coming just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 101.6d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-08-29",
-      "source": {
-        "title": "Samsung officially confirms Galaxy Tab S12 series is coming",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE9yR3ZKQUdCUlc5cHBIVEZWeUVwbkt6ZTRhZzUtcE5TaGpxdzVsNWhYM0NZRXp5UTdFV3FVQ21jenV0TWdIZjRKZzlOcVU4d2dUdkFnVzBoOV91MnBTYWJZTTd1OEt2MG5iQ2xJSTRqZEdlSzlVZThNa2pfOHB1UQ?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"OFFICIALLY\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
-    },
-    {
-      "confidence": 0.37,
-      "date": "2026-07-30",
-      "id": 1054,
-      "keyword": "ideacentre",
-      "keyword2": "",
-      "live": 37,
-      "live_prev": 37,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
       "market": "INDEX",
-      "odds": 2.71,
+      "odds": 2.72,
       "permalink": "/call/1054.html",
-      "prediction": "Exclusive: Lenovo's new IdeaCentre All-in-One is its answer to the iMac, and it finally is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The machine flagged There's an under-the-radar utility stock on Josh Brown's list that's ready to break out crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 218d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Exclusive: Lenovo's new IdeaCentre All-in-One is its answer to the iMac, and it finally has the colors to prove it",
+        "title": "There's an under-the-radar utility stock on Josh Brown's list that's ready to break out",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMi6AFBVV95cUxNN3JzcHg1Wk1Nb3YyMHBKaXRiMlliVzFjMWRUbVpCVVRnMG9vbUhYdG4zLW5zRmxzVTItV3Y1b0ZUZEtUYzJzQjlVRTcwa1dfY2N2TC1INVAtejNDSzZiVzluT2R3YXR4SW5kRE5fU1I3Vm5TcXhyU0M3S2NzcjhvUld3aFNmT3BqMEV4bUdKcklfaWF1OGszdzUyWTctM2hGYlNncmtnZlNfVFdydVVWQ3FKa3NMV3YxeEMtOVFsSURyR1EtM3R1M3d4YzJYaXA0T0NucHRHN0Vob2FGakZETTBkVThIbm1X?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPWHdJcVVnc1hjSGUyU2pIZkV0VHR3WkFoN0ZwaWd4ZnFJNkJNdUVFbW94QXNEMzNpcDlQRzdSSGxNeDU2QnhQWl80TFkyemlvUExla3RORWdySGNYMlg5MEJaM0lsZjNQeUg5LWc1d3BSVUZ5MUpjeXZ2OE5KdVJSOHhvUnkwTGZvSWQwbjVLWnFaaU52ZGFEeG9GeXF2SlY4VHBVeUtRMEwwN1MzbDdPeTlUVzRHNGNIRjBfTzlB?oc=5"
       },
       "status": "OPEN",
       "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-08-29"
@@ -498,65 +498,65 @@
       "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1053,
-      "keyword": "boycotts",
+      "keyword": "multiplayer",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
-        "geodesic": 59,
+        "geodesic": 79,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "OVER",
       "odds": 2.94,
       "permalink": "/call/1053.html",
-      "prediction": "Musk went to \"war,\" sought jail time for X ad boycotts-but case ends with a whimper is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Gears of War: E-Day multiplayer reveal trailer, developer overview is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 271.8d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Musk went to \"war,\" sought jail time for X ad boycotts-but case ends with a whimper",
-        "type": "ars",
-        "url": "https://arstechnica.com/tech-policy/2026/07/musk-went-to-war-sought-jail-time-for-x-ad-boycotts-but-case-ends-with-a-whimper/"
+        "title": "Gears of War: E-Day multiplayer reveal trailer, developer overview",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxPSngwWlRZSDJ5N0xMdEpzeWtReGdFeU9fRVl2LWZwMHBIQzctTUpoVkF2MERkdHVuNmRiVGZNRjA4dFMtNGZqWkpYSzlUQkpGdURxWnk4ZUZwaHBPdERCdlpyYXJweGFmTTM0cjNkWXB3WWFFdnppZHlxZEhRaUVJYlNBbjBqbTJ2MGVMT2dVRzNvODFnbXJCV21VTUE?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"BOYCOTTS\" CLEARS 3 MENTIONS IN A DAY BY 2026-08-29"
+      "win_if": "WIN IF \"MULTIPLAYER\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-29"
     },
     {
       "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1052,
-      "keyword": "research",
+      "keyword": "performance",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.004,
-        "geodesic": 79,
+        "gamma": 1.014,
+        "geodesic": 99,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/1052.html",
-      "prediction": "Can AI agents conduct open-ended AI research? Early evidence from two case studies is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
-      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL -200% // HALF-LIFE 138.8d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +79% // RISING",
+      "prediction": "Watch Advancing the price-performance frontier with GPT‑5.6 leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +320%/7d // 2/10 FEEDS // REACH ARS // ACCEL -300% // CROSSING FROM ARXIV // HALF-LIFE 154.8d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.05 // geodesic +99% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2607.27191v1"
+        "title": "Advancing the price-performance frontier with GPT‑5.6",
+        "type": "hn",
+        "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6/"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"RESEARCH\" RESURFACES BY 2026-08-29"
+      "win_if": "LONGSHOT: WIN IF \"PERFORMANCE\" RESURFACES BY 2026-08-29"
     },
     {
       "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1051,
-      "keyword": "displays",
+      "keyword": "mistaken",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -569,43 +569,43 @@
       "market": "RESURFACE",
       "odds": 2.94,
       "permalink": "/call/1051.html",
-      "prediction": "Galaxy Z Fold 8 gives apps new scaling options for its large displays is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "prediction": "Mistaken Username Sent Man to Prison for 18 Months, Court Finds is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Galaxy Z Fold 8 gives apps new scaling options for its large displays",
+        "title": "Mistaken Username Sent Man to Prison for 18 Months, Court Finds",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxOSTJyMGc0OEZyVkxGV0lvdVI5MS1RQjQtMjVQSzhhYWF2d2V0Y3FLZlNYOG5ob2tBdXljSC1ha2ZxcFo3TDNYR0RkZHowb0RxbnBWVXV4WERDeW00ZkdFeVBsWkdIX0RlSmh2a2hMLXRhNG03M0VQX0lRWVhBQ3R2cWtIcmk5WUY1dXBF?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOOEhDeEducHctYl80aDcwVUZJbldBQktiYWt6bFdyUnVtbkQ2djJaX21QNF9Xa2ZmZkp6UkdhYTltUHNDeHVGb2VjZDRNT2s4Y1dRSU9vVkJsY1ZTY2dFM01YZW9yb29KczA3amJjZkNPZlFkYy0tLTBxUG50dThaLU44Rl9MTk1ON0xiYjF2MXhKWWtmX0ZLVTFUOTc?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"DISPLAYS\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
+      "win_if": "WIN IF \"MISTAKEN\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
     },
     {
-      "confidence": 0.35,
+      "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1050,
-      "keyword": "multiplayer",
+      "keyword": "research",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 35,
+      "live": 34,
+      "live_prev": 34,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 79,
+        "gamma": 1.002,
+        "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "INDEX",
-      "odds": 2.84,
+      "odds": 2.93,
       "permalink": "/call/1050.html",
-      "prediction": "Normal people are about to find Gears of War: E-Day's new multiplayer mode takes some great ideas from Helldivers 2. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 271.8d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "prediction": "Can AI agents conduct open-ended AI research? Early evidence from two case studies looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL -300% // HALF-LIFE 138.8d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Gears of War: E-Day's new multiplayer mode takes some great ideas from Helldivers 2",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMihwFBVV95cUxQRTIxT09oZHRPcEpkWUhaWDBfMjlkVTNNYXVqQmhJbXpfQ3U2ZXlzRWVaaWR6Qll5dVBIR3hEYm5qdVh4RERkSUxtcWlBT0JCT21IWlVqdWtJVHFfOXpoWHhTSmtxdEVuU0gzckpFZldyV191YkNDVDFSMGxZWnJkejVxQ3BRaDg?oc=5"
+        "title": "Can AI agents conduct open-ended AI research? Early evidence from two case studies",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2607.27191v1"
       },
       "status": "OPEN",
       "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-08-29"
@@ -614,7 +614,7 @@
       "confidence": 0.35,
       "date": "2026-07-30",
       "id": 1049,
-      "keyword": "introduces",
+      "keyword": "boycotts",
       "keyword2": "",
       "live": 35,
       "live_prev": 35,
@@ -627,46 +627,46 @@
       "market": "OVER",
       "odds": 2.87,
       "permalink": "/call/1049.html",
-      "prediction": "LinkedIn Introduces a 'Seems Like AI Slop' Button just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 70.7d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Musk went to \"war,\" sought jail time for X ad boycotts-but case ends with a whimper just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "LinkedIn Introduces a 'Seems Like AI Slop' Button",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE9INVNVYmFBaE5LUU5ySTdzaFZzS2VUSEJUWTJpeWVyM2I2NkloQ2hYcmdDa1Q1VTUyWUttVzN6eE4xazZZcTg3ZURRbkZodElZdkE2a0lLWk1sb19IZC0zdGVYd1VSTnpHVXlqV2xyWEY2UGRGUDczdnJkM1Y?oc=5"
+        "title": "Musk went to \"war,\" sought jail time for X ad boycotts-but case ends with a whimper",
+        "type": "ars",
+        "url": "https://arstechnica.com/tech-policy/2026/07/musk-went-to-war-sought-jail-time-for-x-ad-boycotts-but-case-ends-with-a-whimper/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"INTRODUCES\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-29"
+      "win_if": "WIN IF \"BOYCOTTS\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-29"
     },
     {
       "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1048,
-      "keyword": "foreign",
+      "keyword": "pokémon",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
+        "gamma": 1.002,
+        "geodesic": 43,
+        "phase": "PEAKING",
         "regime": "SPACELIKE"
       },
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/1048.html",
-      "prediction": "Who wins and who loses after US bans foreign robots? just hit the wider tech press. The signal points to it shaping a product roadmap at a big player by year end.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // HALF-LIFE 49.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The machine flagged Pokémon Pokopia's First DLC Comes To Switch 2 On August 5 crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +250%/7d // 1/10 FEEDS // REACH THE NEWS // CROSSING FROM HN // HALF-LIFE 22.2d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +43% // PEAKING IN 1D",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Who wins and who loses after US bans foreign robots?",
-        "type": "ars",
-        "url": "https://arstechnica.com/ai/2026/07/who-wins-and-who-loses-after-us-bans-foreign-robots/"
+        "title": "Pokémon Pokopia's First DLC Comes To Switch 2 On August 5",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQUTFhamFKYXFCQVJNcFVNOXVMNWFTaDRWZUtsMHZkeldMZ1RPRnJPLVB3ZkF4UlRuWjBUcFBaX1FQZ0JKeE5hSDdUWC1PTXFLNWF6M1ZpajlkMkpQWFk3WFNISjljNkR6YkliRkxYS290M3FBZGxsbHNVMTQ2Z0tfUnMxRzJaTDFJ?oc=5"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"FOREIGN\" RESURFACES BY 2026-08-29"
+      "win_if": "LONGSHOT: WIN IF \"POKÉMON\" RESURFACES BY 2026-08-29"
     },
     {
       "confidence": 0.34,
@@ -730,7 +730,7 @@
       "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1045,
-      "keyword": "accounting",
+      "keyword": "requirements",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -743,23 +743,23 @@
       "market": "OVER",
       "odds": 2.94,
       "permalink": "/call/1045.html",
-      "prediction": "Fresh cs.AI/cs.LG work on APEX-Accounting just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 131.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Silent Hill: Townfall PC Requirements Land Two Months Out, Targeting RTX 3080 for 4K but is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 202d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "APEX-Accounting",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2607.27189v1"
+        "title": "Silent Hill: Townfall PC Requirements Land Two Months Out, Targeting RTX 3080 for 4K but Only at 30 FPS",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxQWUNGU1RQMmIxQ183aFJjMHpuRTl1dGswZDhFejdYcmNxbGxxcUJtRlFXTmg3TDFJSEcxdGZrWkdnWlBOZXg4anpUR0hZRy1PeF9yaFo3Y2FMbEowelVXbVVVR2tUelVFRmItSDc1OGluTjliaWc1alBmR3lxclFtX3NB0gGHAUFVX3lxTE1pN1FZVWpwblQzdWYwWVdOOU1oMElnQVlNbkNrM3V4NEpOTzE1UmRicWhsS3IzcVR1eU1IRDBseFp4aWtWZUViODdlUHhfNGxxV0wtZHl5d25lRFlUT1JTTGtLLVEzMjlFamI4TG9MMjZabmtFd1MzNWc1aFd6b0h0UndEamp2dw?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"ACCOUNTING\" CLEARS 2 MENTIONS IN A DAY BY 2026-08-29"
+      "win_if": "WIN IF \"REQUIREMENTS\" CLEARS 2 MENTIONS IN A DAY BY 2026-08-29"
     },
     {
       "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1044,
-      "keyword": "introducing",
+      "keyword": "accounting",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -772,46 +772,46 @@
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/1044.html",
-      "prediction": "Normal people are about to find Introducing: The TAG Heuer Carrera Chronograph x Team Ikuzawa, A Glassbox Inspired by. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM ARXIV // HALF-LIFE 123.7d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "APEX-Accounting is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 131.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Introducing: The TAG Heuer Carrera Chronograph x Team Ikuzawa, A Glassbox Inspired by Japanese Racing Heritage",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMi1wFBVV95cUxOUC13enAwcDJKUzZuNUJ5ZDU0dFlRVjB0V3B6OURMV1MwNjZ1TEpvOXpMR0MyaEVyZ0hscDVsb29JbFZrX1Zmejh0NUZTLWZSVXl5OEtiWWRwUDZXUmV5YUxOeVZVazNVX1JiVGdYWHhIQnc3c2taUkNVc3NmOVkzQUI5MVZEN2lCMGFRTGdGM0RPQklReFF4ZUlKUFE4WW1TMjZMVm83bktZdHJCNHZXQ2FneTY4V0kwWFJHeHpDOXRwcU9Ed3FMUXAyRTdUS3psRS1faEpUUQ?oc=5"
+        "title": "APEX-Accounting",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2607.27189v1"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"INTRODUCING\" RESURFACES BY 2026-08-29"
+      "win_if": "LONGSHOT: WIN IF \"ACCOUNTING\" RESURFACES BY 2026-08-29"
     },
     {
       "confidence": 0.34,
       "date": "2026-07-30",
       "id": 1043,
-      "keyword": "pokémon",
+      "keyword": "flagship",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.002,
-        "geodesic": 43,
-        "phase": "PEAKING",
+        "gamma": 1.018,
+        "geodesic": 79,
+        "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "RESURFACE",
       "odds": 2.94,
       "permalink": "/call/1043.html",
-      "prediction": "Pokémon Pokopia's First DLC Comes To Switch 2 On August 5 just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
-      "rationale": "VEL +250%/7d // 1/10 FEEDS // REACH THE NEWS // CROSSING FROM HN // HALF-LIFE 22.2d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +43% // PEAKING IN 1D",
+      "prediction": "iPhone 18 Pro: Twelve Changes Coming to Apple's Next Flagship just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-08-29",
       "source": {
-        "title": "Pokémon Pokopia's First DLC Comes To Switch 2 On August 5",
+        "title": "iPhone 18 Pro: Twelve Changes Coming to Apple's Next Flagship",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQUTFhamFKYXFCQVJNcFVNOXVMNWFTaDRWZUtsMHZkeldMZ1RPRnJPLVB3ZkF4UlRuWjBUcFBaX1FQZ0JKeE5hSDdUWC1PTXFLNWF6M1ZpajlkMkpQWFk3WFNISjljNkR6YkliRkxYS290M3FBZGxsbHNVMTQ2Z0tfUnMxRzJaTDFJ?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5zRkFaS3d1SUtXbnY0RHJ1dm9kRFA4QnNrUWJYOUpkbUZMRDNybHpycVc2b0xNc0J5SVBRcU9XT3J2em9sWnNSUmU5Zm1XSzlaQ3N1b3VSQlY3SWZoTzVmc0lxbmk0VS1UWkNRRHZOV0ZybVBpc1E?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"POKÉMON\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
+      "win_if": "WIN IF \"FLAGSHIP\" RESURFACES ACROSS THE FEEDS BY 2026-08-29"
     },
     {
       "confidence": 0.41,
@@ -919,14 +919,14 @@
       "permalink": "/call/1039.html",
       "prediction": "Watch Gemini can now make your Google Docs look a lot less boring leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
       "rationale": "VEL +56%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 112d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.06 // geodesic +100% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-07-30",
       "resolves_by": "2026-08-28",
       "source": {
         "title": "Gemini can now make your Google Docs look a lot less boring",
         "type": "news",
         "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxNOGx0UXQxQ2laN1ZzcnlidTZCSVF4dUxJb0FfOWlIU3FRbG5udGd4dXVGWFNIRHJ1Q21NWG1ORlQzTzdoSVhuTlFacTBVN2xSLXhCYUJSb2lpbDNxN0lsQ0RYbEtxYXNkUllGV2I1NGNuTDVMSEo0S01nSHBKLWZPYzAwMmlnNFFPN0E?oc=5"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "LONGSHOT: WIN IF \"GEMINI\" RESURFACES BY 2026-08-28"
     },
     {
@@ -1122,14 +1122,14 @@
       "permalink": "/call/1032.html",
       "prediction": "AMD reveals the Radeon RX 9050-and 4GB graphics cards are back is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 131.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-07-30",
       "resolves_by": "2026-08-28",
       "source": {
         "title": "AMD reveals the Radeon RX 9050-and 4GB graphics cards are back",
         "type": "news",
         "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxNMlFWM0cxcnhoYzhXQjMzRXVKbXRQZUJ1ZktXallPb19FUHJpTHAxLWhkU0JWRmU2bDFERnNQbXZqNXoyWUFPQVdfNUV1MGdBZ0VOWUE0d1plZkVsMmdZeXZUbk8xM1pZejM2dTFtSUd3MlRWR04walUyOFZ3VFNLX0FlMEpEWXBfRVMyTWRLT2tvaXVpUVl5aTREWjdMaUR6dHhJSC1JNnk2dk0?oc=5"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "WIN IF \"GRAPHICS\" CLEARS 2 MENTIONS IN A DAY BY 2026-08-28"
     },
     {
@@ -31035,11 +31035,11 @@
   "schema": "the-signal/record/1",
   "scoreboard": {
     "has_rate": true,
-    "hits": 236,
+    "hits": 238,
     "misses": 232,
-    "open": 598,
+    "open": 596,
     "rate": 50,
-    "resolved": 468,
+    "resolved": 470,
     "verdict": "AHEAD OF THE CROWD"
   },
   "total": 1066
