@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 31, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **246-250**
+**July 31, 2026** // Index **71 (SURGING)** // hottest **GAMES** // record **247-250**
 
 > AI scammers outperform humans when it comes to building trust is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
