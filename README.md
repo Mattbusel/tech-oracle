@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 31, 2026** // Index **71 (SURGING)** // hottest **UPDATE** // record **246-250**
+**July 31, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **246-250**
 
-> Quantum computers outperform classical ones, with results you can trust is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> AI scammers outperform humans when it comes to building trust is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
