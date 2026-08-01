@@ -58,8 +58,8 @@
     },
     {
       "dir": -1,
-      "p": 0.444,
-      "phase": "CHURNING",
+      "p": 0.381,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
     },
@@ -114,7 +114,7 @@
     },
     {
       "dir": 1,
-      "p": 0.621,
+      "p": 0.603,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -170,7 +170,7 @@
     },
     {
       "dir": -1,
-      "p": 0.307,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "TEAM"
@@ -226,7 +226,7 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
+      "p": 0.658,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
@@ -247,7 +247,7 @@
     },
     {
       "dir": 1,
-      "p": 0.687,
+      "p": 0.672,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
@@ -268,7 +268,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -317,15 +317,15 @@
     },
     {
       "dir": 1,
-      "p": 0.598,
+      "p": 0.561,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
     },
     {
       "dir": 1,
-      "p": 0.5,
-      "phase": "CHURNING",
+      "p": 0.618,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "STATES"
     },
@@ -338,8 +338,8 @@
     },
     {
       "dir": -1,
-      "p": 0.5,
-      "phase": "CHURNING",
+      "p": 0.424,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
     },
@@ -366,8 +366,8 @@
     },
     {
       "dir": -1,
-      "p": 0.457,
-      "phase": "CHURNING",
+      "p": 0.357,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "YEARS"
     },
@@ -425,20 +425,20 @@
     {
       "days": 223,
       "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ULTRA"
+    },
+    {
+      "days": 223,
+      "origin": "HN",
       "reach": "WIKIPEDIA",
       "term": "MAN"
     },
     {
-      "days": 223,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "VISION"
-    },
-    {
-      "days": 206,
+      "days": 219,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "1980S"
+      "term": "FOLD"
     },
     {
       "days": 135,
@@ -453,16 +453,16 @@
       "term": "8GB"
     },
     {
-      "days": 223,
+      "days": 199,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "ACCESS"
+      "term": "ACKNOWLEDGES"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 50
+    "value": 46
   },
   "manifold": [
     {
@@ -570,16 +570,16 @@
       "term": "LEARNING"
     },
     {
-      "beta": 0.0,
-      "curvature": -0.31,
+      "beta": -0.021,
+      "curvature": -0.72,
       "defined": true,
-      "ds2": 1.0,
+      "ds2": 0.958,
       "gamma": 1.0,
-      "geodesic_trend": -0.279,
-      "phase": "CHURNING",
-      "prob_rising": 44,
+      "geodesic_trend": -0.594,
+      "phase": "FALLING",
+      "prob_rising": 38,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.0,
+      "rel_momentum": -0.007,
       "term": "VIDEO"
     },
     {
@@ -651,12 +651,12 @@
   "movers": [
     {
       "count": 5,
-      "term": "MAN",
-      "vel": 600
+      "term": "ULTRA",
+      "vel": 775
     },
     {
       "count": 4,
-      "term": "VISION",
+      "term": "MAN",
       "vel": 460
     },
     {
@@ -671,21 +671,21 @@
     },
     {
       "count": 3,
-      "term": "COMPUTER",
+      "term": "FOLD",
       "vel": 425
     },
     {
-      "count": 4,
-      "term": "ALREADY",
-      "vel": 400
+      "count": 3,
+      "term": "TRAINING",
+      "vel": 425
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
-    "delta_word": "RISING",
+    "delta_abs": 0,
+    "delta_word": "FLAT",
     "has_prev": true,
-    "highest_days": 2,
+    "highest_days": 0,
     "history": [
       {
         "date": "2026-07-19",
@@ -741,12 +741,12 @@
       },
       {
         "date": "2026-08-01",
-        "index": 71
+        "index": 70
       }
     ],
-    "index": 71,
+    "index": 70,
     "theme": "GOOGLE",
-    "total": 263,
+    "total": 255,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
@@ -771,27 +771,27 @@
     },
     {
       "arrow": "UP",
-      "delta": 1,
-      "index": 17,
+      "delta": 3,
+      "index": 28,
       "name": "CHIPS"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 11,
-      "name": "RUST"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 11,
+      "index": 17,
       "name": "CRYPTO"
     },
     {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 17,
+      "name": "ROBOTS"
+    },
+    {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 11,
-      "name": "ROBOTS"
+      "index": 6,
+      "name": "RUST"
     },
     {
       "arrow": "UP",
@@ -804,7 +804,7 @@
     {
       "bar": 69,
       "has_rate": true,
-      "hits": 110,
+      "hits": 111,
       "label": "THE NEWS",
       "misses": 91,
       "rate": 54,
@@ -833,6 +833,16 @@
     },
     {
       "bar": 67,
+      "has_rate": true,
+      "hits": 17,
+      "label": "GITHUB",
+      "misses": 17,
+      "rate": 50,
+      "source": "github",
+      "weight": 1.0
+    },
+    {
+      "bar": 67,
       "has_rate": false,
       "hits": 0,
       "label": "REDDIT",
@@ -840,16 +850,6 @@
       "rate": 0,
       "source": "reddit",
       "weight": 1.0
-    },
-    {
-      "bar": 66,
-      "has_rate": true,
-      "hits": 16,
-      "label": "GITHUB",
-      "misses": 17,
-      "rate": 48,
-      "source": "github",
-      "weight": 0.99
     },
     {
       "bar": 64,
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 38025
+  "tracked_terms": 38041
 }
