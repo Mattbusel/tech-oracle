@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8048,
+    "defined": 8049,
     "phases": {
-      "BOTTOMING": 201,
-      "CHURNING": 665,
-      "FALLING": 77,
-      "FLAT": 6364,
-      "PEAKING": 73,
-      "RISING": 668
+      "BOTTOMING": 203,
+      "CHURNING": 645,
+      "FALLING": 73,
+      "FLAT": 6323,
+      "PEAKING": 81,
+      "RISING": 724
     },
-    "scanned": 38012,
+    "scanned": 38025,
     "turns": [
       {
         "active_days": 224,
@@ -45,24 +45,24 @@
         "term": "LARGE"
       },
       {
-        "active_days": 222,
+        "active_days": 204,
         "gamma": 1.0,
-        "geodesic": -52,
-        "peak": 20,
+        "geodesic": 6,
+        "peak": 21,
         "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 40,
+        "phase": "PEAKING",
+        "prob_rising": 51,
         "regime": "SPACELIKE",
-        "term": "LIST"
+        "term": "META"
       },
       {
         "active_days": 218,
         "gamma": 1.0,
-        "geodesic": 30,
+        "geodesic": 49,
         "peak": 16,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 56,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "SYSTEM"
       },
@@ -91,11 +91,11 @@
       {
         "active_days": 218,
         "gamma": 1.01,
-        "geodesic": 93,
+        "geodesic": 89,
         "peak": 14,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 69,
+        "prob_rising": 68,
         "regime": "SPACELIKE",
         "term": "REAL"
       },
@@ -113,22 +113,22 @@
       {
         "active_days": 175,
         "gamma": 1.01,
-        "geodesic": -80,
+        "geodesic": -90,
         "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 34,
+        "prob_rising": 32,
         "regime": "SPACELIKE",
         "term": "GENERATION"
       },
       {
         "active_days": 220,
         "gamma": 1.0,
-        "geodesic": -61,
+        "geodesic": -21,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 38,
+        "prob_rising": 46,
         "regime": "SPACELIKE",
         "term": "GAME"
       },
@@ -146,13 +146,24 @@
       {
         "active_days": 194,
         "gamma": 1.0,
-        "geodesic": 3,
+        "geodesic": 49,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 51,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "SYSTEMS"
+      },
+      {
+        "active_days": 190,
+        "gamma": 1.0,
+        "geodesic": -33,
+        "peak": 12,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 43,
+        "regime": "SPACELIKE",
+        "term": "UNDER"
       },
       {
         "active_days": 220,
@@ -175,17 +186,6 @@
         "prob_rising": 36,
         "regime": "SPACELIKE",
         "term": "HUMAN"
-      },
-      {
-        "active_days": 172,
-        "gamma": 1.01,
-        "geodesic": -56,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 39,
-        "regime": "SPACELIKE",
-        "term": "TRAINING"
       }
     ]
   },
