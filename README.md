@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**July 31, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **247-250**
+**August 1, 2026** // Index **70 (SURGING)** // hottest **GAME** // record **252-267**
 
-> Google rolling out Android 17 QPR1 Beta 8 for Pixel is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Watch microsoft/AI-For-Beginners leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
