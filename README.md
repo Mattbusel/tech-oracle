@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 1, 2026** // Index **70 (SURGING)** // hottest **GAME** // record **252-267**
+**August 1, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **254-267**
 
-> Watch microsoft/AI-For-Beginners leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Watch Alphabet rolls back AI image generation in Google Earth over policy violations leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
