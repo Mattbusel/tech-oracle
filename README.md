@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 2, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **261-281**
+**August 2, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **262-281**
 
-> How To Get The Best Battery Life Out Of Your MacBook Pro is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> For a Day, Google Made It Easy to Spoof Satellite Imagery is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
