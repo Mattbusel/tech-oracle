@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 1, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **257-267**
+**August 2, 2026** // Index **72 (SURGING)** // hottest **GAMES** // record **260-281**
 
-> Watch Google Pixel 11: Every rumor, leak, and confirmed fact ahead of Made By Google leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Watching How Google helped destroy adoption of RSS feeds (2023) climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

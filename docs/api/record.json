@@ -1,8 +1,8 @@
 {
   "book": {
-    "bank": 15494,
+    "bank": 14664,
     "best_loss": 15,
-    "best_win": 155,
+    "best_win": 147,
     "history": [
       {
         "date": "2026-07-25",
@@ -10,26 +10,26 @@
       },
       {
         "date": "2026-07-25",
-        "pct": 88
-      },
-      {
-        "date": "2026-07-25",
-        "pct": 88
-      },
-      {
-        "date": "2026-07-25",
-        "pct": 89
+        "pct": 87
       },
       {
         "date": "2026-07-26",
-        "pct": 90
+        "pct": 88
       },
       {
         "date": "2026-07-27",
-        "pct": 90
+        "pct": 89
       },
       {
         "date": "2026-07-27",
+        "pct": 89
+      },
+      {
+        "date": "2026-07-28",
+        "pct": 90
+      },
+      {
+        "date": "2026-07-28",
         "pct": 91
       },
       {
@@ -41,20 +41,24 @@
         "pct": 92
       },
       {
-        "date": "2026-07-28",
+        "date": "2026-07-29",
         "pct": 93
       },
       {
-        "date": "2026-07-28",
+        "date": "2026-07-29",
         "pct": 94
       },
       {
-        "date": "2026-07-29",
+        "date": "2026-07-30",
+        "pct": 94
+      },
+      {
+        "date": "2026-07-30",
         "pct": 95
       },
       {
-        "date": "2026-07-29",
-        "pct": 95
+        "date": "2026-07-30",
+        "pct": 96
       },
       {
         "date": "2026-07-30",
@@ -66,18 +70,14 @@
       },
       {
         "date": "2026-07-30",
-        "pct": 97
-      },
-      {
-        "date": "2026-07-30",
         "pct": 98
       },
       {
-        "date": "2026-07-30",
+        "date": "2026-07-31",
         "pct": 99
       },
       {
-        "date": "2026-07-30",
+        "date": "2026-07-31",
         "pct": 99
       },
       {
@@ -86,17 +86,17 @@
       }
     ],
     "pnl_class": "sb-hit",
-    "roi_str": "+1449%",
-    "settled": 524,
-    "streak": "W155"
+    "roi_str": "+1366%",
+    "settled": 541,
+    "streak": "W147"
   },
   "calibration": {
-    "brier": "0.280",
+    "brier": "0.278",
     "buckets": [
       {
-        "actual": 49,
+        "actual": 48,
         "label": "LONGSHOTS",
-        "n": 499,
+        "n": 516,
         "pred": 40
       },
       {
@@ -114,16 +114,712 @@
     ],
     "grade": "HONEST: ROUGHLY CALIBRATED",
     "has_data": true,
-    "n": 524
+    "n": 541
   },
   "calls": [
+    {
+      "confidence": 0.41,
+      "date": "2026-08-02",
+      "id": 1138,
+      "keyword": "adoption",
+      "keyword2": "",
+      "live": 41,
+      "live_prev": 41,
+      "manifold": {
+        "gamma": 1.033,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.43,
+      "permalink": "/call/1138.html",
+      "prediction": "Watching How Google helped destroy adoption of RSS feeds (2023) climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL -200% // HALF-LIFE 189d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "How Google helped destroy adoption of RSS feeds (2023)",
+        "type": "hn",
+        "url": "https://openrss.org/blog/how-google-helped-destroy-adoption-of-rss-feeds"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ADOPTION\" RESURFACES ACROSS THE FEEDS BY 2026-09-01"
+    },
+    {
+      "confidence": 0.39,
+      "date": "2026-08-02",
+      "id": 1137,
+      "keyword": "discounted",
+      "keyword2": "",
+      "live": 39,
+      "live_prev": 39,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 79,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.53,
+      "permalink": "/call/1137.html",
+      "prediction": "Normal people are about to find Deals: Samsung Galaxy S26 Ultra discounted, Galaxy Z Fold8 series up for pre-order -. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Deals: Samsung Galaxy S26 Ultra discounted, Galaxy Z Fold8 series up for pre-order - GSMArena.com news",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxQWll6Smx2Z0dsYy00WThIMHZGN242YzZzNlBRLXBmUVRiWDhFcUp1d0x1eTZ6TElodlpXeEp5cFpYUHFwWXdWR1VDZ3dNWjZqZ2Y2SHRxUlFRR1lNYlhKZlhUd1BlOFo3aFNMa2owYmlQWU1BWlRzT3dyNXRMM2pfWW8wbnVRZFkybFY2NFh6WUh3b2RfUHI4LUV5U0lfb3IwRVRHaDF6eF9LWTBjMWM4aWdBSUlUWlU4M0Zn0gG3AUFVX3lxTE1ETG5nOWhCNlI4TG9ncy1RZnp0d0hyYXl3Z2Z2am9tQlZQajNMSXg1Zy1zSlk4ZG05cDlmMHllWTZBeVNEeFdPQkh1a0JkdlNwM3J6WVdiYTFjV1JfTVdaRlNTR3FiZDRQaHVqVzFiQTJnVGs4STlfUFpNYzNoZHRob3ZXQlhvU0JvRzlERHF4cUtTc3F2MzNaSjNYM2xFVmNUeWNRME5TUEdqcFVDVGljYjB5eHdKWQ?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-09-01"
+    },
+    {
+      "confidence": 0.41,
+      "date": "2026-08-02",
+      "id": 1136,
+      "keyword": "september",
+      "keyword2": "",
+      "live": 41,
+      "live_prev": 41,
+      "manifold": {
+        "gamma": 1.033,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.44,
+      "permalink": "/call/1136.html",
+      "prediction": "Apple iPhone 18 Pro September Release Date Signaled In Keynote Update just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 76.9d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Apple iPhone 18 Pro September Release Date Signaled In Keynote Update",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPeXFHZUxaSmhfR1JTUEpKeW1XbFh5bEs0ZzBxOWlOZ09HQktCT1ppZGdycWI0YzN6eGxaTHo1MmxEd3BBOTFkdjhpNm5QZU9NZkZ3cktGUVV5eGhwdlYzdTBOZmtZamxjQ3lHX2o2eG03UmNfQTFQRzJNSno0aDZwUkd2UVNSVmo3TzF5VnpsQnRQZjJjMWoybDhSaXQ5Nm9COFJUSTlIZ1dPMnRyS1lSR2cxUHo2T1pTY2hBMzZuRQ?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"SEPTEMBER\" CLEARS 5 MENTIONS IN A DAY BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1135,
+      "keyword": "surprises",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1135.html",
+      "prediction": "The machine flagged Pixel 11 specs and price leak with no surprises crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Pixel 11 specs and price leak with no surprises",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE53cHhhVHJjZ1FtSWM2dGhzZDhMUnU4WmdqOE5WZFVVT1JXeFpRVHlRTldienR6RWgzWl9GTlV2akNmaGJoUTd5ckRHSV9ocTJJUjZNcE5wRFRMTUFyeHpTV1ZtZFdfbEZaOElEV3lab0NoUzdI?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"SURPRISES\" RESURFACES BY 2026-09-01"
+    },
+    {
+      "confidence": 0.4,
+      "date": "2026-08-02",
+      "id": 1134,
+      "keyword": "engineers",
+      "keyword2": "",
+      "live": 40,
+      "live_prev": 40,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.48,
+      "permalink": "/call/1134.html",
+      "prediction": "Here's how engineers plan to save the satellite sent to save NASA's Swift mission is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 28.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Here's how engineers plan to save the satellite sent to save NASA's Swift mission",
+        "type": "ars",
+        "url": "https://arstechnica.com/space/2026/08/heres-how-engineers-plan-to-save-the-satellite-sent-to-save-nasas-swift-mission/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ENGINEERS\" RESURFACES ACROSS THE FEEDS BY 2026-09-01"
+    },
+    {
+      "confidence": 0.36,
+      "date": "2026-08-02",
+      "id": 1133,
+      "keyword": "reportedly",
+      "keyword2": "",
+      "live": 36,
+      "live_prev": 36,
+      "manifold": {
+        "gamma": 1.002,
+        "geodesic": 63,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.78,
+      "permalink": "/call/1133.html",
+      "prediction": "Watch Nvidia Isn't Alone: AMD Reportedly Plans to Raise GPU Prices Too leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +300%/7d // 1/10 FEEDS // REACH THE NEWS // CROSSING FROM HN // HALF-LIFE 205d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +63% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Nvidia Isn't Alone: AMD Reportedly Plans to Raise GPU Prices Too",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE84WnJ0RURFT3BDQ1ZJNjlJc0JNaEVUSjh2VmFmbU9lejA4N0lGNW8tNWdNaWR5cl9pX05qMEZabHlNNFhnRmtOYzFwSEctZ21IZ0J3ZFdlcVpQMmdIcjVtRDUtR19RVGh2TzhXMnhERGJzUTVSck5pMkc2Y21kZw?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 82 BY 2026-09-01"
+    },
+    {
+      "confidence": 0.39,
+      "date": "2026-08-02",
+      "id": 1132,
+      "keyword": "retrieval",
+      "keyword2": "",
+      "live": 39,
+      "live_prev": 39,
+      "manifold": {
+        "gamma": 1.047,
+        "geodesic": 100,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.59,
+      "permalink": "/call/1132.html",
+      "prediction": "Fresh cs.AI/cs.LG work on ReToken: One Token to Improve Vision-Language Models for Visual Retrieval just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
+      "rationale": "VEL +250%/7d // 1/10 FEEDS // REACH ARXIV // HALF-LIFE 168.5d // MANIFOLD SPACELIKE // gamma 1.05 // rel-mom +0.07 // geodesic +100% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2607.28627v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"RETRIEVAL\" CLEARS 4 MENTIONS IN A DAY BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1131,
+      "keyword": "questions",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.02,
+        "geodesic": 98,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1131.html",
+      "prediction": "Normal people are about to find As Reddit stock falls, CEO questions value of Google's AI Overviews. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +425%/7d // 3/10 FEEDS // REACH ARS // ACCEL -100% // CROSSING FROM HN // HALF-LIFE 527.7d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.04 // geodesic +98% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "As Reddit stock falls, CEO questions value of Google's AI Overviews",
+        "type": "ars",
+        "url": "https://arstechnica.com/ai/2026/08/reddit-ceo-on-ai-overviews-were-still-looking-for-that-win-win/"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"QUESTIONS\" RESURFACES BY 2026-09-01"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-08-02",
+      "id": 1130,
+      "keyword": "zhaoxuya520",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.66,
+      "permalink": "/call/1130.html",
+      "prediction": "zhaoxuya520/reverse-skill is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "zhaoxuya520/reverse-skill",
+        "type": "github",
+        "url": "https://github.com/zhaoxuya520/reverse-skill"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ZHAOXUYA520\" RESURFACES ACROSS THE FEEDS BY 2026-09-01"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-08-02",
+      "id": 1129,
+      "keyword": "briefly",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.62,
+      "permalink": "/call/1129.html",
+      "prediction": "The machine flagged Google Briefly Turned Google Earth Into an AI Slop Factory crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Google Briefly Turned Google Earth Into an AI Slop Factory",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQSDBYMFQ4RXZqeWpDN2JjUExodEdZSVNOQzhFOTVrdk5BR01XSWpLUi1UbGNGdWZUdkh5azVLMm1TU21vbWk1TTlvNjlZa2dGQWpjQVFXS0dsWFFUdFB5WXdnUU0wMDlNMk5hWWx1NjY1SEVpNG9uemNuRF9MT1VnX0oyUmh5ZjI5NHhEUzhJUDZyVGc?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1128,
+      "keyword": "northern",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.94,
+      "permalink": "/call/1128.html",
+      "prediction": "Northern Lights Forecast Tonight: Up To 9 States Could See The Aurora Borealis is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 53d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Northern Lights Forecast Tonight: Up To 9 States Could See The Aurora Borealis",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxNNTFhQnFhckMxM0dlb3VrTUJpNW51LWpudndVOEJwQlhaQVp2YlRRWXEwVEs1dW1BRlVVSUIwZ0Mxb25NSUNiVlR3ZWRVYkRuY05Sa01MdzhReHdSd003MERhLXFkdUY3UzV6V2dBcWFUT0pQVEhtMm5iLUZ6VzlmZkI1WWtMYXhZZDc4RmlBcEM5b2RRVmpBOGVlWG9UdlNvRElXRXlBaGpwLWVlVDU4Qm9UejJmNk5NYzhjQlZsLUktc3U0MWkxeHlVUl8yTUdu?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"NORTHERN\" CLEARS 3 MENTIONS IN A DAY BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1127,
+      "keyword": "arguing",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1127.html",
+      "prediction": "Watch Review: Yes, we're still arguing about Nolan's The Odyssey leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Review: Yes, we're still arguing about Nolan's The Odyssey",
+        "type": "ars",
+        "url": "https://arstechnica.com/culture/2026/08/review-yes-were-still-arguing-about-nolans-the-odyssey/"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"ARGUING\" RESURFACES BY 2026-09-01"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-08-02",
+      "id": 1126,
+      "keyword": "playstation",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
+      "manifold": {
+        "gamma": 1.015,
+        "geodesic": 100,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.63,
+      "permalink": "/call/1126.html",
+      "prediction": "PlayStation Discs Are the Least of Sony's Problems Right Now is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +75%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +67% // CROSSING FROM HN // HALF-LIFE 22.6d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.07 // geodesic +100% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "PlayStation Discs Are the Least of Sony's Problems Right Now",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOTXdEOW1OM2lxNlhLQW1YYkMycTVBNTJaMjQ4QnVnUjhlQUNaSXZNVU5pYjNrZHk4SjVORENaY000N3h1cERmd2dnOFhvM3RTdlpreHdqUnVCeGQzYWxyVUxobXZMWk12YktRODEweFlTN1Y2QWlNTFZuYW1hV0RQVGxqeUQ1MFVGRUZfZEx0VWFnakY5ZXc?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"PLAYSTATION\" RESURFACES ACROSS THE FEEDS BY 2026-09-01"
+    },
+    {
+      "confidence": 0.39,
+      "date": "2026-08-02",
+      "id": 1125,
+      "keyword": "interactive",
+      "keyword2": "",
+      "live": 39,
+      "live_prev": 39,
+      "manifold": {
+        "gamma": 1.033,
+        "geodesic": 97,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.59,
+      "permalink": "/call/1125.html",
+      "prediction": "Go 1.27 interactive tour is the quiet Lobsters pick. This is usually how the next standard library or pattern starts.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL +200% // HALF-LIFE 163.4d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Go 1.27 interactive tour",
+        "type": "lobsters",
+        "url": "https://victoriametrics.com/blog/go-1-27/"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-09-01"
+    },
+    {
+      "confidence": 0.36,
+      "date": "2026-08-02",
+      "id": 1124,
+      "keyword": "dualities",
+      "keyword2": "",
+      "live": 36,
+      "live_prev": 36,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.77,
+      "permalink": "/call/1124.html",
+      "prediction": "Fresh cs.AI/cs.LG work on Learning to Trace Seiberg Dualities just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Learning to Trace Seiberg Dualities",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2607.28628v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"DUALITIES\" CLEARS 4 MENTIONS IN A DAY BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1123,
+      "keyword": "going",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.001,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1123.html",
+      "prediction": "The machine flagged Going for a Spin crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 26.7d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Going for a Spin",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAySnpLMTQxX2hKbDRCWnQ1bFBZRXN5N19VMmVoektnd1N6OHRka3phQ2hkTU9ORER0Qm5hSWg0ZXA0bTV1Z1dYVmdIakdsVWhQSkxDVEN6N2R5alhYSlM1Nk52VFpDOFVPWmtmSjFXd2JuYy1XSzA1dlpwQVZoMTg?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"GOING\" RESURFACES BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1122,
+      "keyword": "caring",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.94,
+      "permalink": "/call/1122.html",
+      "prediction": "I knew caring for my 88-year-old mom would be hard. I didn't expect to spend so much time is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "I knew caring for my 88-year-old mom would be hard. I didn't expect to spend so much time on tech support.",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMirwFBVV95cUxOWi1ZNkxabjA0RU83TTFFQVZBeVhvU3l4emZlVWNRQkRJMjQ5Vkl6dFJzN2lnanRGWEZqbF81NVdHYVJiam1HQ3h2R2IyM05QaG5EWjRMUlh6eXBGTzA4MTlTRG5XbE9qX0RBNEV3MFN1aTY0anU3dXRqYjh4VlZYSFpGdDhLdGNJc2NUNTgxeDhNazZ0Z2JWVzMxOExLOFRnb0VuUHZfRUJ4SFVpQUhr?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"CARING\" RESURFACES ACROSS THE FEEDS BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1121,
+      "keyword": "efficiently",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.94,
+      "permalink": "/call/1121.html",
+      "prediction": "Watch Microsoft Confirms Plans To Make 8GB RAM Run Efficiently On Windows 11 Systems, Realizing leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM ARXIV // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Microsoft Confirms Plans To Make 8GB RAM Run Efficiently On Windows 11 Systems, Realizing That AI Has Made Lower Memory Configurations The Norm",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5NV0o3Y09HNUlzWV8yYTUzc2g5aXVxQmw0NWYyUk84eHRCeHUtRjJYMEc0NmRUSU5Xa0k3VnRMaWxzay05UkRXRUhSTzdLRGpka3BXZkQyZDVWSHA1cVJJY0Y4d01oTUtXd0gyNVNKX192ZEpfVlQyddIBfkFVX3lxTFB4ckN5WUFXbHhkcHE2Q05pTmhlUm1Lelk3SWZyMl9IZUttb3R0djh3a0V2U1VsTV96eC1KcndsU2VNZ3JXQm9HeU0wdjJvaHdkSEY5UU43NlZZSW5ULVhMY2tNOUtWNDVvanFRQmRaOHhZdUlXOC02MGd0Rk51dw?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 82 BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1120,
+      "keyword": "anniversary",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.007,
+        "geodesic": 79,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.92,
+      "permalink": "/call/1120.html",
+      "prediction": "Super Robot Wars Y DLC 'Anniversary Expansion Pack' launches August 5 is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 61.5d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Super Robot Wars Y DLC 'Anniversary Expansion Pack' launches August 5",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPSXBOd3A3SVdYdXc3RXFscVB3ckdXZWRQTC14RW5rMmQyYmlZVF9GWVBBSlBFaUlIU2x2Rmhxa2g5cloxV2pFalpqdTRndDBhUTY3a2pMUEZkaEE4a2NZb19zclhXcmwyRjI0NlRodmZIT1J4dWNNYml1a2Y2M1NvdWFkUXhnQlRON0ZhYkpOSGZZUlVfVXRtS3d0b0ZQX3dL?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ANNIVERSARY\" CLEARS 3 MENTIONS IN A DAY BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1119,
+      "keyword": "charlotte",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1119.html",
+      "prediction": "The press is circling Prince Edward shares sweet moment with his great-niece, Princess Charlotte, at the. Betting today's story is the small version of a much larger one by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // HALF-LIFE 168d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "Prince Edward shares sweet moment with his great-niece, Princess Charlotte, at the Commonwealth Games in Glasgow",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxNeUJtWUpBMmZrT3E3TWdnZHZoRHhNUlhpQzFyV0U5clRCVmFCNlhFLUh5bmxxb201Rjc1XzhLU2d4aHcycC0zRDBDV0dHWXhvMzhRaTZUX0ZpN2VSNmNOR1d4Mm9JWm9oNU9BRFU3cnBvYVNncmZfdHBkY0tBdkJ4QnpHZXZzN0JBTjVTN0VJMFVuZ0xuUUx3aWlNWjFydHdHVG10Z2RvZ3RhRDVFTVlTMnF2Mm5KdlExemxVdmsycGlUc2ROWEZNSnFkdGVhckhFY21nVHJ0cWw?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"CHARLOTTE\" RESURFACES BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1118,
+      "keyword": "developer",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.015,
+        "geodesic": 98,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.94,
+      "permalink": "/call/1118.html",
+      "prediction": "The Junior Developer Pipeline Is Broken... And AI Broke It just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +56%/7d // 2/10 FEEDS // REACH ARS // ACCEL +33% // CROSSING FROM HN // HALF-LIFE 169.4d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.06 // geodesic +98% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "The Junior Developer Pipeline Is Broken... And AI Broke It",
+        "type": "devto",
+        "url": "https://dev.to/nazar-boyko/the-junior-developer-pipeline-is-broken-and-ai-broke-it-1aai"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"DEVELOPER\" RESURFACES ACROSS THE FEEDS BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1117,
+      "keyword": "perception",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.004,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.94,
+      "permalink": "/call/1117.html",
+      "prediction": "PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 140.7d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2607.28623v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1116,
+      "keyword": "anniversary",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.007,
+        "geodesic": 79,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.94,
+      "permalink": "/call/1116.html",
+      "prediction": "I'm not convinced the 20th anniversary iPhone will be what we think, here's why is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 61.5d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "I'm not convinced the 20th anniversary iPhone will be what we think, here's why",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxOMTJFRXhORXktUHdtZktfNWhZQ1VIM2dlSGt4bEVVWFZmX0ZLMnBMbVVRQjF6dW1kLW1ualdxWkIzQVBzcFRmam5LWGlLbXZBUTNzdF8teVhYSGxUU0h3UmE1c0d3WFRieEtNNWoxYl95SlBCRzhVdGhjTUxsQjZoTDd3SWJxZnh4eHc?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ANNIVERSARY\" CLEARS 4 MENTIONS IN A DAY BY 2026-09-01"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-02",
+      "id": 1115,
+      "keyword": "complaints",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1115.html",
+      "prediction": "Watch After noise complaints, judge orders Waymo to stop overnight charging in Santa Monica leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-01",
+      "source": {
+        "title": "After noise complaints, judge orders Waymo to stop overnight charging in Santa Monica",
+        "type": "ars",
+        "url": "https://arstechnica.com/tech-policy/2026/08/after-noise-complaints-judge-orders-waymo-to-stop-overnight-charging-in-santa-monica/"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"COMPLAINTS\" RESURFACES BY 2026-09-01"
+    },
     {
       "confidence": 0.34,
       "date": "2026-08-01",
       "id": 1114,
       "keyword": "confirmed",
       "keyword2": "",
-      "live": 34,
+      "live": 52,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
@@ -152,7 +848,7 @@
       "id": 1113,
       "keyword": "engineers",
       "keyword2": "",
-      "live": 38,
+      "live": 55,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -181,7 +877,7 @@
       "id": 1112,
       "keyword": "overhaul",
       "keyword2": "",
-      "live": 38,
+      "live": 54,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.004,
@@ -210,7 +906,7 @@
       "id": 1111,
       "keyword": "retrieval",
       "keyword2": "",
-      "live": 41,
+      "live": 42,
       "live_prev": 41,
       "manifold": {
         "gamma": 1.033,
@@ -239,7 +935,7 @@
       "id": 1110,
       "keyword": "yourself",
       "keyword2": "",
-      "live": 34,
+      "live": 45,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -268,7 +964,7 @@
       "id": 1109,
       "keyword": "acknowledges",
       "keyword2": "",
-      "live": 43,
+      "live": 59,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.033,
@@ -297,7 +993,7 @@
       "id": 1108,
       "keyword": "zhaoxuya520",
       "keyword2": "",
-      "live": 35,
+      "live": 46,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -326,7 +1022,7 @@
       "id": 1107,
       "keyword": "briefly",
       "keyword2": "",
-      "live": 36,
+      "live": 42,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
@@ -355,7 +1051,7 @@
       "id": 1106,
       "keyword": "arguing",
       "keyword2": "",
-      "live": 34,
+      "live": 55,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -384,7 +1080,7 @@
       "id": 1105,
       "keyword": "engadget",
       "keyword2": "",
-      "live": 37,
+      "live": 45,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -413,7 +1109,7 @@
       "id": 1104,
       "keyword": "questions",
       "keyword2": "",
-      "live": 40,
+      "live": 50,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.007,
@@ -442,7 +1138,7 @@
       "id": 1103,
       "keyword": "dualities",
       "keyword2": "",
-      "live": 34,
+      "live": 42,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -471,7 +1167,7 @@
       "id": 1102,
       "keyword": "exclusive",
       "keyword2": "",
-      "live": 34,
+      "live": 45,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.002,
@@ -500,7 +1196,7 @@
       "id": 1101,
       "keyword": "saturday",
       "keyword2": "",
-      "live": 35,
+      "live": 45,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -529,7 +1225,7 @@
       "id": 1100,
       "keyword": "information",
       "keyword2": "",
-      "live": 34,
+      "live": 54,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
@@ -558,7 +1254,7 @@
       "id": 1099,
       "keyword": "visualization",
       "keyword2": "",
-      "live": 36,
+      "live": 41,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
@@ -587,7 +1283,7 @@
       "id": 1098,
       "keyword": "starting",
       "keyword2": "",
-      "live": 34,
+      "live": 58,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -616,7 +1312,7 @@
       "id": 1097,
       "keyword": "desktop",
       "keyword2": "",
-      "live": 34,
+      "live": 55,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.007,
@@ -645,7 +1341,7 @@
       "id": 1096,
       "keyword": "perception",
       "keyword2": "",
-      "live": 34,
+      "live": 46,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
@@ -674,7 +1370,7 @@
       "id": 1095,
       "keyword": "destructive",
       "keyword2": "",
-      "live": 34,
+      "live": 41,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -703,7 +1399,7 @@
       "id": 1094,
       "keyword": "occasionally",
       "keyword2": "",
-      "live": 34,
+      "live": 45,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -732,7 +1428,7 @@
       "id": 1093,
       "keyword": "complaints",
       "keyword2": "",
-      "live": 34,
+      "live": 55,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -761,7 +1457,7 @@
       "id": 1092,
       "keyword": "surveillance",
       "keyword2": "",
-      "live": 34,
+      "live": 50,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
@@ -790,7 +1486,7 @@
       "id": 1091,
       "keyword": "caring",
       "keyword2": "",
-      "live": 34,
+      "live": 42,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -819,7 +1515,7 @@
       "id": 1090,
       "keyword": "rolling",
       "keyword2": "",
-      "live": 42,
+      "live": 40,
       "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
@@ -849,7 +1545,7 @@
       "keyword": "neanderthals",
       "keyword2": "",
       "live": 55,
-      "live_prev": 34,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -878,7 +1574,7 @@
       "keyword": "deepfake",
       "keyword2": "",
       "live": 45,
-      "live_prev": 37,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -906,8 +1602,8 @@
       "id": 1087,
       "keyword": "microsoft",
       "keyword2": "",
-      "live": 50,
-      "live_prev": 35,
+      "live": 54,
+      "live_prev": 50,
       "manifold": {
         "gamma": 1.0,
         "geodesic": 71,
@@ -935,8 +1631,8 @@
       "id": 1086,
       "keyword": "roundup",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 38,
+      "live": 40,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -977,14 +1673,14 @@
       "permalink": "/call/1085.html",
       "prediction": "The machine flagged Google plans to exempt sanctioned nations from Android developer verification crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
       "rationale": "VEL +75%/7d // 1/10 FEEDS // REACH ARS // ACCEL +150% // CROSSING FROM ARXIV // HALF-LIFE 50.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.03 // geodesic +94% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-30",
       "source": {
         "title": "Google plans to exempt sanctioned nations from Android developer verification",
         "type": "ars",
         "url": "https://arstechnica.com/gadgets/2026/07/google-plans-to-exempt-sanctioned-nations-from-android-developer-verification/"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "LONGSHOT: WIN IF \"VERIFICATION\" RESURFACES BY 2026-08-30"
     },
     {
@@ -993,8 +1689,8 @@
       "id": 1084,
       "keyword": "acknowledges",
       "keyword2": "",
-      "live": 58,
-      "live_prev": 42,
+      "live": 69,
+      "live_prev": 58,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -1022,8 +1718,8 @@
       "id": 1083,
       "keyword": "shoulder",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 35,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1093,14 +1789,14 @@
       "permalink": "/call/1081.html",
       "prediction": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +300% // HALF-LIFE 166.9d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +88% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-30",
       "source": {
         "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
         "type": "arxiv",
         "url": "https://arxiv.org/abs/2607.28627v1"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "LONGSHOT: WIN IF \"RETRIEVAL\" RESURFACES BY 2026-08-30"
     },
     {
@@ -1110,7 +1806,7 @@
       "keyword": "antizuck",
       "keyword2": "",
       "live": 45,
-      "live_prev": 37,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1138,8 +1834,8 @@
       "id": 1079,
       "keyword": "testing",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 38,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 79,
@@ -1168,7 +1864,7 @@
       "keyword": "dualities",
       "keyword2": "",
       "live": 42,
-      "live_prev": 34,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1196,8 +1892,8 @@
       "id": 1077,
       "keyword": "googlebooks",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 34,
+      "live": 45,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1225,8 +1921,8 @@
       "id": 1076,
       "keyword": "successes",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 34,
+      "live": 45,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1254,8 +1950,8 @@
       "id": 1075,
       "keyword": "decreasing",
       "keyword2": "",
-      "live": 50,
-      "live_prev": 35,
+      "live": 54,
+      "live_prev": 50,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1284,7 +1980,7 @@
       "keyword": "perception",
       "keyword2": "",
       "live": 42,
-      "live_prev": 35,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -1313,7 +2009,7 @@
       "keyword": "strange",
       "keyword2": "",
       "live": 55,
-      "live_prev": 34,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1341,8 +2037,8 @@
       "id": 1072,
       "keyword": "northern",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 34,
+      "live": 55,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1370,8 +2066,8 @@
       "id": 1071,
       "keyword": "compiler",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 34,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -1399,8 +2095,8 @@
       "id": 1070,
       "keyword": "exclusive",
       "keyword2": "",
-      "live": 41,
-      "live_prev": 34,
+      "live": 40,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -1428,8 +2124,8 @@
       "id": 1069,
       "keyword": "starting",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 34,
+      "live": 68,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1457,8 +2153,8 @@
       "id": 1068,
       "keyword": "infrastructure",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 34,
+      "live": 51,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.002,
         "geodesic": -50,
@@ -1486,8 +2182,8 @@
       "id": 1067,
       "keyword": "published",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 34,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1544,8 +2240,8 @@
       "id": 1065,
       "keyword": "specification",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1573,7 +2269,7 @@
       "id": 1064,
       "keyword": "different",
       "keyword2": "",
-      "live": 55,
+      "live": 44,
       "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
@@ -1602,8 +2298,8 @@
       "id": 1063,
       "keyword": "associations",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 55,
+      "live": 44,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1660,8 +2356,8 @@
       "id": 1061,
       "keyword": "commission",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1689,8 +2385,8 @@
       "id": 1060,
       "keyword": "research",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 58,
+      "live": 44,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -1718,8 +2414,8 @@
       "id": 1059,
       "keyword": "boycotts",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 55,
+      "live": 44,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1776,8 +2472,8 @@
       "id": 1057,
       "keyword": "whether",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1805,7 +2501,7 @@
       "id": 1056,
       "keyword": "accounting",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
@@ -1834,8 +2530,8 @@
       "id": 1055,
       "keyword": "foreign",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 55,
+      "live": 44,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -1921,8 +2617,8 @@
       "id": 1052,
       "keyword": "performance",
       "keyword2": "",
-      "live": 69,
-      "live_prev": 70,
+      "live": 67,
+      "live_prev": 69,
       "manifold": {
         "gamma": 1.012,
         "geodesic": 98,
@@ -1950,7 +2646,7 @@
       "id": 1051,
       "keyword": "artificial",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.004,
@@ -2008,8 +2704,8 @@
       "id": 1049,
       "keyword": "punished",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2037,8 +2733,8 @@
       "id": 1048,
       "keyword": "intelligence",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 58,
+      "live": 44,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.033,
         "geodesic": 97,
@@ -2066,7 +2762,7 @@
       "id": 1047,
       "keyword": "capability",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.007,
@@ -2124,8 +2820,8 @@
       "id": 1045,
       "keyword": "discoverability",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 41,
+      "live": 39,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2153,8 +2849,8 @@
       "id": 1044,
       "keyword": "streaming",
       "keyword2": "",
-      "live": 45,
-      "live_prev": 55,
+      "live": 44,
+      "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2182,7 +2878,7 @@
       "id": 1043,
       "keyword": "constraint",
       "keyword2": "",
-      "live": 45,
+      "live": 44,
       "live_prev": 45,
       "manifold": {
         "gamma": 1.018,
@@ -2211,8 +2907,8 @@
       "id": 1042,
       "keyword": "upgrade",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 57,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.032,
         "geodesic": 100,
@@ -2240,8 +2936,8 @@
       "id": 1041,
       "keyword": "reportedly",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.0,
         "geodesic": 86,
@@ -2269,8 +2965,8 @@
       "id": 1040,
       "keyword": "foreign",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 42,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2328,7 +3024,7 @@
       "keyword": "distillation",
       "keyword2": "",
       "live": 55,
-      "live_prev": 58,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.032,
         "geodesic": 98,
@@ -2356,8 +3052,8 @@
       "id": 1037,
       "keyword": "numbers",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.014,
         "geodesic": 81,
@@ -2385,8 +3081,8 @@
       "id": 1036,
       "keyword": "transcription",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 42,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2414,8 +3110,8 @@
       "id": 1035,
       "keyword": "smartphone",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 45,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -2443,8 +3139,8 @@
       "id": 1034,
       "keyword": "punished",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 55,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2472,8 +3168,8 @@
       "id": 1033,
       "keyword": "virgiliojr94",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2530,8 +3226,8 @@
       "id": 1031,
       "keyword": "koreader",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 45,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2559,8 +3255,8 @@
       "id": 1030,
       "keyword": "expansion",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 51,
+      "live": 55,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.014,
         "geodesic": 81,
@@ -2588,8 +3284,8 @@
       "id": 1029,
       "keyword": "verification",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 93,
@@ -2617,8 +3313,8 @@
       "id": 1028,
       "keyword": "incremental",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -2646,8 +3342,8 @@
       "id": 1027,
       "keyword": "reactive",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 45,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2675,8 +3371,8 @@
       "id": 1026,
       "keyword": "fable",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 58,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -2704,8 +3400,8 @@
       "id": 1025,
       "keyword": "shortcut",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2762,8 +3458,8 @@
       "id": 1023,
       "keyword": "turbocharged",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 45,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2791,8 +3487,8 @@
       "id": 1022,
       "keyword": "subscription",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 52,
+      "live": 43,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 21,
@@ -2820,8 +3516,8 @@
       "id": 1021,
       "keyword": "expensive",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 21,
@@ -2849,8 +3545,8 @@
       "id": 1020,
       "keyword": "installing",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 42,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -2878,8 +3574,8 @@
       "id": 1019,
       "keyword": "mammography",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 45,
+      "live": 43,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2908,7 +3604,7 @@
       "keyword": "australia",
       "keyword2": "",
       "live": 43,
-      "live_prev": 44,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2937,7 +3633,7 @@
       "keyword": "partnership",
       "keyword2": "",
       "live": 43,
-      "live_prev": 44,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -2965,8 +3661,8 @@
       "id": 1016,
       "keyword": "prediction",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -3024,7 +3720,7 @@
       "keyword": "endorsement",
       "keyword2": "",
       "live": 43,
-      "live_prev": 44,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3053,7 +3749,7 @@
       "keyword": "bradautomates",
       "keyword2": "",
       "live": 43,
-      "live_prev": 44,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3081,8 +3777,8 @@
       "id": 1012,
       "keyword": "unpacked",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3111,7 +3807,7 @@
       "keyword": "vaccines",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3139,8 +3835,8 @@
       "id": 1010,
       "keyword": "biggest",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 37,
+      "live": 43,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.012,
         "geodesic": 97,
@@ -3169,7 +3865,7 @@
       "keyword": "unprecedented",
       "keyword2": "",
       "live": 43,
-      "live_prev": 44,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3197,8 +3893,8 @@
       "id": 1008,
       "keyword": "understanding",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.0,
         "geodesic": 71,
@@ -3227,7 +3923,7 @@
       "keyword": "worsens",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3285,7 +3981,7 @@
       "keyword": "cybersecurity",
       "keyword2": "",
       "live": 43,
-      "live_prev": 55,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -3313,8 +4009,8 @@
       "id": 1004,
       "keyword": "developing",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3343,7 +4039,7 @@
       "keyword": "certified",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3401,7 +4097,7 @@
       "keyword": "distributions",
       "keyword2": "",
       "live": 43,
-      "live_prev": 44,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3429,8 +4125,8 @@
       "id": 1000,
       "keyword": "outperform",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3487,8 +4183,8 @@
       "id": 998,
       "keyword": "configurations",
       "keyword2": "",
-      "live": 43,
-      "live_prev": 44,
+      "live": 55,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3545,8 +4241,8 @@
       "id": 996,
       "keyword": "playstation",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 85,
@@ -3575,7 +4271,7 @@
       "keyword": "turbocharged",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3603,7 +4299,7 @@
       "id": 994,
       "keyword": "requiring",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -3632,8 +4328,8 @@
       "id": 993,
       "keyword": "cybersecurity",
       "keyword2": "",
-      "live": 43,
-      "live_prev": 55,
+      "live": 42,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -3661,7 +4357,7 @@
       "id": 992,
       "keyword": "starship",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.046,
@@ -3690,8 +4386,8 @@
       "id": 991,
       "keyword": "playstation",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.008,
         "geodesic": 91,
@@ -3719,7 +4415,7 @@
       "id": 990,
       "keyword": "verizon",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -3748,7 +4444,7 @@
       "id": 989,
       "keyword": "permissionlesstech",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.031,
@@ -3777,7 +4473,7 @@
       "id": 988,
       "keyword": "conversations",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
@@ -3806,8 +4502,8 @@
       "id": 987,
       "keyword": "hundreds",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3835,7 +4531,7 @@
       "id": 986,
       "keyword": "upgradeable",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -3864,7 +4560,7 @@
       "id": 985,
       "keyword": "smartphone",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
@@ -3893,7 +4589,7 @@
       "id": 984,
       "keyword": "listening",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
@@ -3922,8 +4618,8 @@
       "id": 983,
       "keyword": "huggingface",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -3951,7 +4647,7 @@
       "id": 982,
       "keyword": "blocking",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -3980,7 +4676,7 @@
       "id": 981,
       "keyword": "exploded",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
@@ -4009,7 +4705,7 @@
       "id": 980,
       "keyword": "mirrorless",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
@@ -4038,8 +4734,8 @@
       "id": 979,
       "keyword": "reconstruction",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4068,7 +4764,7 @@
       "keyword": "playstation",
       "keyword2": "",
       "live": 60,
-      "live_prev": 42,
+      "live_prev": 60,
       "manifold": {
         "gamma": 1.008,
         "geodesic": 91,
@@ -4125,8 +4821,8 @@
       "id": 976,
       "keyword": "reinforcement",
       "keyword2": "",
-      "live": 50,
-      "live_prev": 59,
+      "live": 54,
+      "live_prev": 50,
       "manifold": {
         "gamma": 1.001,
         "geodesic": 59,
@@ -4154,8 +4850,8 @@
       "id": 975,
       "keyword": "activist",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4212,8 +4908,8 @@
       "id": 973,
       "keyword": "inspired",
       "keyword2": "",
-      "live": 43,
-      "live_prev": 55,
+      "live": 42,
+      "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4241,7 +4937,7 @@
       "id": 972,
       "keyword": "decomposing",
       "keyword2": "",
-      "live": 43,
+      "live": 42,
       "live_prev": 43,
       "manifold": {
         "gamma": 1.018,
@@ -4270,8 +4966,8 @@
       "id": 971,
       "keyword": "framework",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.003,
         "geodesic": 66,
@@ -4299,8 +4995,8 @@
       "id": 970,
       "keyword": "banking",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4328,8 +5024,8 @@
       "id": 969,
       "keyword": "cleaning",
       "keyword2": "",
-      "live": 37,
-      "live_prev": 38,
+      "live": 36,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4358,7 +5054,7 @@
       "keyword": "auspicious",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4386,8 +5082,8 @@
       "id": 967,
       "keyword": "launching",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 43,
+      "live": 38,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -4415,8 +5111,8 @@
       "id": 966,
       "keyword": "experience",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -4444,8 +5140,8 @@
       "id": 965,
       "keyword": "preparing",
       "keyword2": "",
-      "live": 37,
-      "live_prev": 38,
+      "live": 36,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4474,7 +5170,7 @@
       "keyword": "survivors",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -4503,7 +5199,7 @@
       "keyword": "saturday",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4531,8 +5227,8 @@
       "id": 962,
       "keyword": "inspired",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4590,7 +5286,7 @@
       "keyword": "cookie",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4619,7 +5315,7 @@
       "keyword": "wedding",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4647,8 +5343,8 @@
       "id": 958,
       "keyword": "expanding",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -4676,8 +5372,8 @@
       "id": 957,
       "keyword": "gadgets",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 38,
+      "live": 60,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 79,
@@ -4706,7 +5402,7 @@
       "keyword": "download",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 6,
@@ -4735,7 +5431,7 @@
       "keyword": "connect",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4763,8 +5459,8 @@
       "id": 954,
       "keyword": "stonewalling",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4793,7 +5489,7 @@
       "keyword": "releases",
       "keyword2": "",
       "live": 42,
-      "live_prev": 38,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.008,
         "geodesic": 56,
@@ -4822,7 +5518,7 @@
       "keyword": "geometries",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4851,7 +5547,7 @@
       "keyword": "basically",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4879,8 +5575,8 @@
       "id": 950,
       "keyword": "evacuation",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4908,8 +5604,8 @@
       "id": 949,
       "keyword": "illustration",
       "keyword2": "",
-      "live": 37,
-      "live_prev": 38,
+      "live": 36,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -4967,7 +5663,7 @@
       "keyword": "block",
       "keyword2": "",
       "live": 42,
-      "live_prev": 43,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 6,
@@ -5024,8 +5720,8 @@
       "id": 945,
       "keyword": "basically",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5053,8 +5749,8 @@
       "id": 944,
       "keyword": "passport",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 42,
+      "live": 35,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5111,7 +5807,7 @@
       "id": 942,
       "keyword": "auspicious",
       "keyword2": "",
-      "live": 42,
+      "live": 41,
       "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
@@ -5140,8 +5836,8 @@
       "id": 941,
       "keyword": "downloaded",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5227,7 +5923,7 @@
       "id": 938,
       "keyword": "splatoon",
       "keyword2": "",
-      "live": 51,
+      "live": 36,
       "live_prev": 51,
       "manifold": {
         "gamma": 1.004,
@@ -5256,8 +5952,8 @@
       "id": 937,
       "keyword": "teaser",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 6,
@@ -5285,8 +5981,8 @@
       "id": 936,
       "keyword": "expanding",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 37,
+      "live": 35,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -5314,7 +6010,7 @@
       "id": 935,
       "keyword": "smartwatch",
       "keyword2": "",
-      "live": 42,
+      "live": 41,
       "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
@@ -5343,7 +6039,7 @@
       "id": 934,
       "keyword": "geometries",
       "keyword2": "",
-      "live": 42,
+      "live": 41,
       "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
@@ -5372,8 +6068,8 @@
       "id": 933,
       "keyword": "stonewalling",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5430,7 +6126,7 @@
       "id": 931,
       "keyword": "indulged",
       "keyword2": "",
-      "live": 42,
+      "live": 41,
       "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
@@ -5488,8 +6184,8 @@
       "id": 929,
       "keyword": "inside",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.01,
         "geodesic": -75,
@@ -5517,8 +6213,8 @@
       "id": 928,
       "keyword": "discovered",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 37,
+      "live": 35,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5604,8 +6300,8 @@
       "id": 925,
       "keyword": "evacuation",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5633,8 +6329,8 @@
       "id": 924,
       "keyword": "controllable",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 37,
+      "live": 35,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5662,7 +6358,7 @@
       "id": 923,
       "keyword": "block",
       "keyword2": "",
-      "live": 42,
+      "live": 41,
       "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
@@ -5692,7 +6388,7 @@
       "keyword": "legislator",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5721,7 +6417,7 @@
       "keyword": "passport",
       "keyword2": "",
       "live": 41,
-      "live_prev": 55,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5749,8 +6445,8 @@
       "id": 920,
       "keyword": "claude",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 90,
@@ -5808,7 +6504,7 @@
       "keyword": "moderation",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5837,7 +6533,7 @@
       "keyword": "considers",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5865,8 +6561,8 @@
       "id": 916,
       "keyword": "windows",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.023,
         "geodesic": 76,
@@ -5894,8 +6590,8 @@
       "id": 915,
       "keyword": "midjourney",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 36,
+      "live": 34,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -5924,7 +6620,7 @@
       "keyword": "streaming",
       "keyword2": "",
       "live": 41,
-      "live_prev": 55,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -5953,7 +6649,7 @@
       "keyword": "expanding",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -5981,8 +6677,8 @@
       "id": 912,
       "keyword": "reduced",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6010,8 +6706,8 @@
       "id": 911,
       "keyword": "expanding",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 36,
+      "live": 34,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -6040,7 +6736,7 @@
       "keyword": "geometries",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6069,7 +6765,7 @@
       "keyword": "manufacture",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6097,8 +6793,8 @@
       "id": 908,
       "keyword": "everywhere",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6126,8 +6822,8 @@
       "id": 907,
       "keyword": "everyone",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 36,
+      "live": 34,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.003,
         "geodesic": -15,
@@ -6156,7 +6852,7 @@
       "keyword": "leasing",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6185,7 +6881,7 @@
       "keyword": "reporters",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6213,8 +6909,8 @@
       "id": 904,
       "keyword": "controllable",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6242,8 +6938,8 @@
       "id": 903,
       "keyword": "snapdragon",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 36,
+      "live": 34,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6301,7 +6997,7 @@
       "keyword": "logicalbeat",
       "keyword2": "",
       "live": 41,
-      "live_prev": 42,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6329,8 +7025,8 @@
       "id": 900,
       "keyword": "block",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 6,
@@ -6358,8 +7054,8 @@
       "id": 899,
       "keyword": "superlinear",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 36,
+      "live": 34,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6387,8 +7083,8 @@
       "id": 898,
       "keyword": "installing",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 42,
+      "live": 33,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 79,
@@ -6416,8 +7112,8 @@
       "id": 897,
       "keyword": "passport",
       "keyword2": "",
-      "live": 41,
-      "live_prev": 55,
+      "live": 40,
+      "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6445,7 +7141,7 @@
       "id": 896,
       "keyword": "writing",
       "keyword2": "",
-      "live": 59,
+      "live": 54,
       "live_prev": 59,
       "manifold": {
         "gamma": 1.018,
@@ -6474,8 +7170,8 @@
       "id": 895,
       "keyword": "relaunches",
       "keyword2": "",
-      "live": 56,
-      "live_prev": 58,
+      "live": 60,
+      "live_prev": 56,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6532,7 +7228,7 @@
       "id": 893,
       "keyword": "identified",
       "keyword2": "",
-      "live": 41,
+      "live": 40,
       "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
@@ -6561,7 +7257,7 @@
       "id": 892,
       "keyword": "differentiable",
       "keyword2": "",
-      "live": 36,
+      "live": 35,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.031,
@@ -6619,8 +7315,8 @@
       "id": 890,
       "keyword": "worldmonitor",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 35,
+      "live": 33,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6648,7 +7344,7 @@
       "id": 889,
       "keyword": "lipschitzian",
       "keyword2": "",
-      "live": 41,
+      "live": 40,
       "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
@@ -6677,8 +7373,8 @@
       "id": 888,
       "keyword": "reinforcement",
       "keyword2": "",
-      "live": 50,
-      "live_prev": 59,
+      "live": 54,
+      "live_prev": 50,
       "manifold": {
         "gamma": 1.001,
         "geodesic": 86,
@@ -6735,8 +7431,8 @@
       "id": 886,
       "keyword": "shutdown",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 35,
+      "live": 33,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6822,8 +7518,8 @@
       "id": 883,
       "keyword": "synthetic",
       "keyword2": "",
-      "live": 56,
-      "live_prev": 58,
+      "live": 60,
+      "live_prev": 56,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -6851,8 +7547,8 @@
       "id": 882,
       "keyword": "billion",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 35,
+      "live": 33,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.011,
         "geodesic": 94,
@@ -6880,7 +7576,7 @@
       "id": 881,
       "keyword": "bacteria",
       "keyword2": "",
-      "live": 41,
+      "live": 40,
       "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
@@ -6909,7 +7605,7 @@
       "id": 880,
       "keyword": "refluxfs",
       "keyword2": "",
-      "live": 41,
+      "live": 40,
       "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
@@ -6967,8 +7663,8 @@
       "id": 878,
       "keyword": "account",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 35,
+      "live": 33,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 79,
@@ -6996,7 +7692,7 @@
       "id": 877,
       "keyword": "protecting",
       "keyword2": "",
-      "live": 41,
+      "live": 40,
       "live_prev": 41,
       "manifold": {
         "gamma": 1.018,
@@ -7025,8 +7721,8 @@
       "id": 876,
       "keyword": "decided",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 41,
+      "live": 35,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -7141,8 +7837,8 @@
       "id": 872,
       "keyword": "compatibility",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 41,
+      "live": 40,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7171,7 +7867,7 @@
       "keyword": "nightmare",
       "keyword2": "",
       "live": 40,
-      "live_prev": 41,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7199,8 +7895,8 @@
       "id": 870,
       "keyword": "worldmonitor",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7228,8 +7924,8 @@
       "id": 869,
       "keyword": "powerpoint",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7258,7 +7954,7 @@
       "keyword": "initiative",
       "keyword2": "",
       "live": 40,
-      "live_prev": 41,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7315,8 +8011,8 @@
       "id": 866,
       "keyword": "overcoming",
       "keyword2": "",
-      "live": 56,
-      "live_prev": 58,
+      "live": 60,
+      "live_prev": 56,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7374,7 +8070,7 @@
       "keyword": "sometimes",
       "keyword2": "",
       "live": 40,
-      "live_prev": 41,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7403,7 +8099,7 @@
       "keyword": "coderescue",
       "keyword2": "",
       "live": 40,
-      "live_prev": 41,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7490,7 +8186,7 @@
       "keyword": "pictured",
       "keyword2": "",
       "live": 40,
-      "live_prev": 41,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7519,7 +8215,7 @@
       "keyword": "privateers",
       "keyword2": "",
       "live": 40,
-      "live_prev": 41,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7547,8 +8243,8 @@
       "id": 858,
       "keyword": "humanoid",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 21,
@@ -7576,8 +8272,8 @@
       "id": 857,
       "keyword": "lipschitz",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7635,7 +8331,7 @@
       "keyword": "diffusion",
       "keyword2": "",
       "live": 50,
-      "live_prev": 51,
+      "live_prev": 50,
       "manifold": {
         "gamma": 1.0,
         "geodesic": -94,
@@ -7663,8 +8359,8 @@
       "id": 854,
       "keyword": "counterexample",
       "keyword2": "",
-      "live": 56,
-      "live_prev": 58,
+      "live": 60,
+      "live_prev": 56,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7705,14 +8401,14 @@
       "permalink": "/call/853.html",
       "prediction": "iOS code could reportedly let Apple cut off apps when users miss iPhone payments is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL -200% // CROSSING FROM HN // HALF-LIFE 41.6d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +93% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-21",
       "source": {
         "title": "iOS code could reportedly let Apple cut off apps when users miss iPhone payments",
         "type": "news",
         "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTE5sZHNtZ2xXNDFUemF0RU40SThPZE9ZVl9KSUxpRDRuU2ZqV0V1THFUNkFQN3BFZnJaVWZBUjBwNEd6TDR5cGltNngydnVYdERHSUdteVFfMTQ5ZmZveTZQcFdBbXphOUNSbTNUZnY3YUd1bEk?oc=5"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "WIN IF \"REPORTEDLY\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-21"
     },
     {
@@ -7722,7 +8418,7 @@
       "keyword": "decided",
       "keyword2": "",
       "live": 35,
-      "live_prev": 41,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -7751,7 +8447,7 @@
       "keyword": "spigen",
       "keyword2": "",
       "live": 40,
-      "live_prev": 41,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7808,8 +8504,8 @@
       "id": 849,
       "keyword": "rumored",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7837,8 +8533,8 @@
       "id": 848,
       "keyword": "unpacked",
       "keyword2": "",
-      "live": 32,
-      "live_prev": 33,
+      "live": 31,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7866,7 +8562,7 @@
       "id": 847,
       "keyword": "customers",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -7895,7 +8591,7 @@
       "id": 846,
       "keyword": "authentic",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -7924,8 +8620,8 @@
       "id": 845,
       "keyword": "discounted",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 38,
+      "live": 40,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7953,8 +8649,8 @@
       "id": 844,
       "keyword": "bojieli",
       "keyword2": "",
-      "live": 32,
-      "live_prev": 33,
+      "live": 31,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -7982,7 +8678,7 @@
       "id": 843,
       "keyword": "screenless",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8011,7 +8707,7 @@
       "id": 842,
       "keyword": "voluntarily",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8040,8 +8736,8 @@
       "id": 841,
       "keyword": "nintendo",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.004,
         "geodesic": -70,
@@ -8069,8 +8765,8 @@
       "id": 840,
       "keyword": "representations",
       "keyword2": "",
-      "live": 32,
-      "live_prev": 33,
+      "live": 31,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -8098,7 +8794,7 @@
       "id": 839,
       "keyword": "hiddleston",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8127,7 +8823,7 @@
       "id": 838,
       "keyword": "minimalist",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8156,8 +8852,8 @@
       "id": 837,
       "keyword": "similarity",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8185,8 +8881,8 @@
       "id": 836,
       "keyword": "bluetooth",
       "keyword2": "",
-      "live": 32,
-      "live_prev": 33,
+      "live": 31,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -8214,7 +8910,7 @@
       "id": 835,
       "keyword": "vulnerability",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8243,7 +8939,7 @@
       "id": 834,
       "keyword": "admitting",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8272,8 +8968,8 @@
       "id": 833,
       "keyword": "fertility",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 38,
+      "live": 40,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8301,8 +8997,8 @@
       "id": 832,
       "keyword": "universally",
       "keyword2": "",
-      "live": 32,
-      "live_prev": 33,
+      "live": 31,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8330,7 +9026,7 @@
       "id": 831,
       "keyword": "groundwork",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8359,7 +9055,7 @@
       "id": 830,
       "keyword": "bluetooth",
       "keyword2": "",
-      "live": 35,
+      "live": 34,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -8388,8 +9084,8 @@
       "id": 829,
       "keyword": "technical",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -8417,8 +9113,8 @@
       "id": 828,
       "keyword": "settlement",
       "keyword2": "",
-      "live": 32,
-      "live_prev": 33,
+      "live": 31,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -8446,7 +9142,7 @@
       "id": 827,
       "keyword": "likelihood",
       "keyword2": "",
-      "live": 40,
+      "live": 39,
       "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
@@ -8475,8 +9171,8 @@
       "id": 826,
       "keyword": "developers",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 35,
+      "live": 38,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.012,
         "geodesic": 97,
@@ -8504,8 +9200,8 @@
       "id": 825,
       "keyword": "strategy",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 55,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8533,8 +9229,8 @@
       "id": 824,
       "keyword": "websites",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.025,
         "geodesic": 88,
@@ -8562,8 +9258,8 @@
       "id": 823,
       "keyword": "monitors",
       "keyword2": "",
-      "live": 31,
-      "live_prev": 32,
+      "live": 30,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -8591,8 +9287,8 @@
       "id": 822,
       "keyword": "onexplayer",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8620,8 +9316,8 @@
       "id": 821,
       "keyword": "tirth8205",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8649,8 +9345,8 @@
       "id": 820,
       "keyword": "reignites",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8736,8 +9432,8 @@
       "id": 817,
       "keyword": "unexpected",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8765,8 +9461,8 @@
       "id": 816,
       "keyword": "differentiable",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8794,8 +9490,8 @@
       "id": 815,
       "keyword": "reinforcement",
       "keyword2": "",
-      "live": 31,
-      "live_prev": 32,
+      "live": 30,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 94,
@@ -8823,8 +9519,8 @@
       "id": 814,
       "keyword": "california",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 55,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8881,8 +9577,8 @@
       "id": 812,
       "keyword": "replacement",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8910,8 +9606,8 @@
       "id": 811,
       "keyword": "laplacian",
       "keyword2": "",
-      "live": 31,
-      "live_prev": 32,
+      "live": 30,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8939,8 +9635,8 @@
       "id": 810,
       "keyword": "openship",
       "keyword2": "",
-      "live": 39,
-      "live_prev": 40,
+      "live": 38,
+      "live_prev": 39,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -8997,8 +9693,8 @@
       "id": 808,
       "keyword": "warhammer",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -9026,8 +9722,8 @@
       "id": 807,
       "keyword": "informing",
       "keyword2": "",
-      "live": 31,
-      "live_prev": 32,
+      "live": 30,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9113,8 +9809,8 @@
       "id": 804,
       "keyword": "vibecoded",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9142,8 +9838,8 @@
       "id": 803,
       "keyword": "suffers",
       "keyword2": "",
-      "live": 31,
-      "live_prev": 32,
+      "live": 30,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9171,8 +9867,8 @@
       "id": 802,
       "keyword": "replaced",
       "keyword2": "",
-      "live": 30,
-      "live_prev": 31,
+      "live": 29,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -9201,7 +9897,7 @@
       "keyword": "dashboard",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9258,8 +9954,8 @@
       "id": 799,
       "keyword": "expecting",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9287,8 +9983,8 @@
       "id": 798,
       "keyword": "bojieli",
       "keyword2": "",
-      "live": 30,
-      "live_prev": 31,
+      "live": 29,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9317,7 +10013,7 @@
       "keyword": "glowing",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9346,7 +10042,7 @@
       "keyword": "meanflownft",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9374,8 +10070,8 @@
       "id": 795,
       "keyword": "snapdragon",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9433,7 +10129,7 @@
       "keyword": "strands",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9462,7 +10158,7 @@
       "keyword": "wordpress",
       "keyword2": "",
       "live": 38,
-      "live_prev": 34,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -9490,8 +10186,8 @@
       "id": 791,
       "keyword": "exodites",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9519,8 +10215,8 @@
       "id": 790,
       "keyword": "scidiagramedit",
       "keyword2": "",
-      "live": 30,
-      "live_prev": 31,
+      "live": 29,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9548,8 +10244,8 @@
       "id": 789,
       "keyword": "assistants",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 39,
+      "live": 34,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -9578,7 +10274,7 @@
       "keyword": "authorization",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9606,8 +10302,8 @@
       "id": 787,
       "keyword": "synthesis",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9635,8 +10331,8 @@
       "id": 786,
       "keyword": "bleszinski",
       "keyword2": "",
-      "live": 30,
-      "live_prev": 31,
+      "live": 29,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9665,7 +10361,7 @@
       "keyword": "classrooms",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9722,8 +10418,8 @@
       "id": 783,
       "keyword": "evaluation",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 99,
@@ -9751,8 +10447,8 @@
       "id": 782,
       "keyword": "computational",
       "keyword2": "",
-      "live": 30,
-      "live_prev": 31,
+      "live": 29,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9780,8 +10476,8 @@
       "id": 781,
       "keyword": "satellites",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 39,
+      "live": 38,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 59,
@@ -9810,7 +10506,7 @@
       "keyword": "imminent",
       "keyword2": "",
       "live": 38,
-      "live_prev": 39,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -9838,8 +10534,8 @@
       "id": 779,
       "keyword": "odyssey",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.03,
         "geodesic": 100,
@@ -9867,8 +10563,8 @@
       "id": 778,
       "keyword": "monitors",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -9954,7 +10650,7 @@
       "id": 775,
       "keyword": "advantage",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -9983,8 +10679,8 @@
       "id": 774,
       "keyword": "satellites",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -10013,7 +10709,7 @@
       "keyword": "meanflownft",
       "keyword2": "",
       "live": 29,
-      "live_prev": 30,
+      "live_prev": 29,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10041,7 +10737,7 @@
       "id": 772,
       "keyword": "codecrafters",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -10070,7 +10766,7 @@
       "id": 771,
       "keyword": "sourcing",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -10099,8 +10795,8 @@
       "id": 770,
       "keyword": "authorization",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10129,7 +10825,7 @@
       "keyword": "affordable",
       "keyword2": "",
       "live": 29,
-      "live_prev": 30,
+      "live_prev": 29,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -10157,7 +10853,7 @@
       "id": 768,
       "keyword": "freestyle",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -10186,7 +10882,7 @@
       "id": 767,
       "keyword": "scidiagramedit",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -10215,8 +10911,8 @@
       "id": 766,
       "keyword": "ordered",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10302,8 +10998,8 @@
       "id": 763,
       "keyword": "assistants",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 38,
+      "live": 33,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -10331,8 +11027,8 @@
       "id": 762,
       "keyword": "digital",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.017,
         "geodesic": 91,
@@ -10361,7 +11057,7 @@
       "keyword": "computational",
       "keyword2": "",
       "live": 29,
-      "live_prev": 30,
+      "live_prev": 29,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10418,7 +11114,7 @@
       "id": 759,
       "keyword": "marketing",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -10447,8 +11143,8 @@
       "id": 758,
       "keyword": "evaluation",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.02,
         "geodesic": 95,
@@ -10477,7 +11173,7 @@
       "keyword": "lagging",
       "keyword2": "",
       "live": 29,
-      "live_prev": 30,
+      "live_prev": 29,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10505,7 +11201,7 @@
       "id": 756,
       "keyword": "scenebind",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -10534,7 +11230,7 @@
       "id": 755,
       "keyword": "regressive",
       "keyword2": "",
-      "live": 38,
+      "live": 37,
       "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
@@ -10563,8 +11259,8 @@
       "id": 754,
       "keyword": "satellites",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 38,
+      "live": 37,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -10592,8 +11288,8 @@
       "id": 753,
       "keyword": "inaccurate",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10651,7 +11347,7 @@
       "keyword": "hallmark",
       "keyword2": "",
       "live": 37,
-      "live_prev": 38,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10680,7 +11376,7 @@
       "keyword": "marketing",
       "keyword2": "",
       "live": 37,
-      "live_prev": 38,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10708,8 +11404,8 @@
       "id": 749,
       "keyword": "exclusive",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 88,
@@ -10737,7 +11433,7 @@
       "id": 748,
       "keyword": "meanflownft",
       "keyword2": "",
-      "live": 29,
+      "live": 28,
       "live_prev": 29,
       "manifold": {
         "gamma": 1.018,
@@ -10767,7 +11463,7 @@
       "keyword": "migicovsky",
       "keyword2": "",
       "live": 37,
-      "live_prev": 38,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10796,7 +11492,7 @@
       "keyword": "freestyle",
       "keyword2": "",
       "live": 37,
-      "live_prev": 38,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10824,8 +11520,8 @@
       "id": 745,
       "keyword": "scidiagramedit",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10853,7 +11549,7 @@
       "id": 744,
       "keyword": "accidentally",
       "keyword2": "",
-      "live": 29,
+      "live": 42,
       "live_prev": 29,
       "manifold": {
         "gamma": 1.018,
@@ -10940,8 +11636,8 @@
       "id": 741,
       "keyword": "minefield",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -10999,7 +11695,7 @@
       "keyword": "applecare",
       "keyword2": "",
       "live": 37,
-      "live_prev": 38,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11056,8 +11752,8 @@
       "id": 737,
       "keyword": "subscription",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 6,
@@ -11085,7 +11781,7 @@
       "id": 736,
       "keyword": "preproduction",
       "keyword2": "",
-      "live": 29,
+      "live": 28,
       "live_prev": 29,
       "manifold": {
         "gamma": 1.018,
@@ -11172,8 +11868,8 @@
       "id": 733,
       "keyword": "computational",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11231,7 +11927,7 @@
       "keyword": "cyclosporiasis",
       "keyword2": "",
       "live": 37,
-      "live_prev": 38,
+      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11288,7 +11984,7 @@
       "id": 729,
       "keyword": "continue",
       "keyword2": "",
-      "live": 37,
+      "live": 36,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -11317,8 +12013,8 @@
       "id": 728,
       "keyword": "migration",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11346,8 +12042,8 @@
       "id": 727,
       "keyword": "regulations",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 29,
+      "live": 27,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11375,7 +12071,7 @@
       "id": 726,
       "keyword": "generalizable",
       "keyword2": "",
-      "live": 37,
+      "live": 36,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -11433,8 +12129,8 @@
       "id": 724,
       "keyword": "customize",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11462,8 +12158,8 @@
       "id": 723,
       "keyword": "hallmark",
       "keyword2": "",
-      "live": 28,
-      "live_prev": 29,
+      "live": 27,
+      "live_prev": 28,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11491,7 +12187,7 @@
       "id": 722,
       "keyword": "independent",
       "keyword2": "",
-      "live": 55,
+      "live": 36,
       "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
@@ -11520,7 +12216,7 @@
       "id": 721,
       "keyword": "basketball",
       "keyword2": "",
-      "live": 37,
+      "live": 36,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -11549,8 +12245,8 @@
       "id": 720,
       "keyword": "official",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11578,8 +12274,8 @@
       "id": 719,
       "keyword": "notebooklm",
       "keyword2": "",
-      "live": 28,
-      "live_prev": 29,
+      "live": 27,
+      "live_prev": 28,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -11607,7 +12303,7 @@
       "id": 718,
       "keyword": "lightweight",
       "keyword2": "",
-      "live": 37,
+      "live": 36,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -11636,7 +12332,7 @@
       "id": 717,
       "keyword": "bioacoustics",
       "keyword2": "",
-      "live": 37,
+      "live": 36,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -11665,8 +12361,8 @@
       "id": 716,
       "keyword": "interaction",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -11723,7 +12419,7 @@
       "id": 714,
       "keyword": "biosecurity",
       "keyword2": "",
-      "live": 37,
+      "live": 36,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -11781,8 +12477,8 @@
       "id": 712,
       "keyword": "generator",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11810,8 +12506,8 @@
       "id": 711,
       "keyword": "intelligence",
       "keyword2": "",
-      "live": 28,
-      "live_prev": 42,
+      "live": 27,
+      "live_prev": 28,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 6,
@@ -11868,7 +12564,7 @@
       "id": 709,
       "keyword": "connected",
       "keyword2": "",
-      "live": 37,
+      "live": 36,
       "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
@@ -11897,8 +12593,8 @@
       "id": 708,
       "keyword": "tecnologia",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -11956,7 +12652,7 @@
       "keyword": "releases",
       "keyword2": "",
       "live": 42,
-      "live_prev": 28,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.0,
         "geodesic": 76,
@@ -12014,7 +12710,7 @@
       "keyword": "complexity",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12042,8 +12738,8 @@
       "id": 703,
       "keyword": "mattpocock",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12071,8 +12767,8 @@
       "id": 702,
       "keyword": "regularity",
       "keyword2": "",
-      "live": 27,
-      "live_prev": 28,
+      "live": 26,
+      "live_prev": 27,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12101,7 +12797,7 @@
       "keyword": "uncertainty",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -12130,7 +12826,7 @@
       "keyword": "sneak",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -12158,8 +12854,8 @@
       "id": 699,
       "keyword": "gsmarena",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12217,7 +12913,7 @@
       "keyword": "seriality",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12245,8 +12941,8 @@
       "id": 696,
       "keyword": "researchers",
       "keyword2": "",
-      "live": 68,
-      "live_prev": 37,
+      "live": 55,
+      "live_prev": 68,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12274,8 +12970,8 @@
       "id": 695,
       "keyword": "replacement",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12333,7 +13029,7 @@
       "keyword": "identifies",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -12362,7 +13058,7 @@
       "keyword": "demonstration",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12390,8 +13086,8 @@
       "id": 691,
       "keyword": "devices",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -12449,7 +13145,7 @@
       "keyword": "projector",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12478,7 +13174,7 @@
       "keyword": "generator",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12506,8 +13202,8 @@
       "id": 687,
       "keyword": "recognition",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.005,
         "geodesic": -97,
@@ -12535,8 +13231,8 @@
       "id": 686,
       "keyword": "statistically",
       "keyword2": "",
-      "live": 27,
-      "live_prev": 28,
+      "live": 26,
+      "live_prev": 27,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12594,7 +13290,7 @@
       "keyword": "workspace",
       "keyword2": "",
       "live": 36,
-      "live_prev": 37,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 6,
@@ -12622,8 +13318,8 @@
       "id": 683,
       "keyword": "goldeneye",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12651,8 +13347,8 @@
       "id": 682,
       "keyword": "opencut",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.033,
         "geodesic": 97,
@@ -12738,7 +13434,7 @@
       "id": 679,
       "keyword": "webpage",
       "keyword2": "",
-      "live": 36,
+      "live": 35,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
@@ -12767,8 +13463,8 @@
       "id": 678,
       "keyword": "decisions",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12796,8 +13492,8 @@
       "id": 677,
       "keyword": "assistant",
       "keyword2": "",
-      "live": 26,
-      "live_prev": 27,
+      "live": 25,
+      "live_prev": 26,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -12825,7 +13521,7 @@
       "id": 676,
       "keyword": "compression",
       "keyword2": "",
-      "live": 36,
+      "live": 35,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.004,
@@ -12883,8 +13579,8 @@
       "id": 674,
       "keyword": "microsoft",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.0,
         "geodesic": 66,
@@ -12941,7 +13637,7 @@
       "id": 672,
       "keyword": "metacognition",
       "keyword2": "",
-      "live": 36,
+      "live": 35,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
@@ -12999,8 +13695,8 @@
       "id": 670,
       "keyword": "alternative",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -13115,8 +13811,8 @@
       "id": 666,
       "keyword": "recommend",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13144,8 +13840,8 @@
       "id": 665,
       "keyword": "durability",
       "keyword2": "",
-      "live": 26,
-      "live_prev": 27,
+      "live": 25,
+      "live_prev": 26,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13202,7 +13898,7 @@
       "id": 663,
       "keyword": "overhaul",
       "keyword2": "",
-      "live": 55,
+      "live": 52,
       "live_prev": 55,
       "manifold": {
         "gamma": 1.031,
@@ -13231,8 +13927,8 @@
       "id": 662,
       "keyword": "biosensors",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13289,7 +13985,7 @@
       "id": 660,
       "keyword": "snapdragon",
       "keyword2": "",
-      "live": 36,
+      "live": 35,
       "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
@@ -13376,8 +14072,8 @@
       "id": 657,
       "keyword": "process",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 79,
@@ -13435,7 +14131,7 @@
       "keyword": "ukrainian",
       "keyword2": "",
       "live": 35,
-      "live_prev": 36,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13492,8 +14188,8 @@
       "id": 653,
       "keyword": "topological",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13608,8 +14304,8 @@
       "id": 649,
       "keyword": "distributions",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13637,8 +14333,8 @@
       "id": 648,
       "keyword": "california",
       "keyword2": "",
-      "live": 25,
-      "live_prev": 42,
+      "live": 24,
+      "live_prev": 25,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -13724,8 +14420,8 @@
       "id": 645,
       "keyword": "speechanalyzer",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13753,8 +14449,8 @@
       "id": 644,
       "keyword": "sextortion",
       "keyword2": "",
-      "live": 25,
-      "live_prev": 26,
+      "live": 24,
+      "live_prev": 25,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13783,7 +14479,7 @@
       "keyword": "allegedly",
       "keyword2": "",
       "live": 35,
-      "live_prev": 36,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13840,8 +14536,8 @@
       "id": 641,
       "keyword": "disappear",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13869,8 +14565,8 @@
       "id": 640,
       "keyword": "shubhamsaboo",
       "keyword2": "",
-      "live": 25,
-      "live_prev": 26,
+      "live": 24,
+      "live_prev": 25,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13956,8 +14652,8 @@
       "id": 637,
       "keyword": "trustworthiness",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -13985,8 +14681,8 @@
       "id": 636,
       "keyword": "resources",
       "keyword2": "",
-      "live": 25,
-      "live_prev": 26,
+      "live": 24,
+      "live_prev": 25,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -14101,8 +14797,8 @@
       "id": 632,
       "keyword": "benchmarking",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.047,
         "geodesic": 100,
@@ -14130,8 +14826,8 @@
       "id": 631,
       "keyword": "diffusion",
       "keyword2": "",
-      "live": 24,
-      "live_prev": 25,
+      "live": 23,
+      "live_prev": 24,
       "manifold": {
         "gamma": 1.037,
         "geodesic": 100,
@@ -14159,7 +14855,7 @@
       "id": 630,
       "keyword": "trading",
       "keyword2": "",
-      "live": 55,
+      "live": 68,
       "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
@@ -14188,7 +14884,7 @@
       "id": 629,
       "keyword": "polynesians",
       "keyword2": "",
-      "live": 35,
+      "live": 34,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -14217,8 +14913,8 @@
       "id": 628,
       "keyword": "powerful",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14275,7 +14971,7 @@
       "id": 626,
       "keyword": "monopoly",
       "keyword2": "",
-      "live": 35,
+      "live": 34,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -14333,8 +15029,8 @@
       "id": 624,
       "keyword": "jupiter",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14420,7 +15116,7 @@
       "id": 621,
       "keyword": "mawtribes",
       "keyword2": "",
-      "live": 35,
+      "live": 34,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -14449,8 +15145,8 @@
       "id": 620,
       "keyword": "transcription",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14478,8 +15174,8 @@
       "id": 619,
       "keyword": "regulations",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 25,
+      "live": 23,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14507,7 +15203,7 @@
       "id": 618,
       "keyword": "opencode",
       "keyword2": "",
-      "live": 35,
+      "live": 34,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.018,
@@ -14536,8 +15232,8 @@
       "id": 617,
       "keyword": "assassin",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 31,
+      "live": 34,
+      "live_prev": 35,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 59,
@@ -14565,8 +15261,8 @@
       "id": 616,
       "keyword": "everything",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 79,
@@ -14594,8 +15290,8 @@
       "id": 615,
       "keyword": "regularization",
       "keyword2": "",
-      "live": 24,
-      "live_prev": 25,
+      "live": 23,
+      "live_prev": 24,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14623,7 +15319,7 @@
       "id": 614,
       "keyword": "expensive",
       "keyword2": "",
-      "live": 31,
+      "live": 52,
       "live_prev": 31,
       "manifold": {
         "gamma": 1.007,
@@ -14681,7 +15377,7 @@
       "id": 612,
       "keyword": "less",
       "keyword2": "",
-      "live": 35,
+      "live": 34,
       "live_prev": 35,
       "manifold": {
         "gamma": 1.0,
@@ -14710,8 +15406,8 @@
       "id": 611,
       "keyword": "recalibrate",
       "keyword2": "",
-      "live": 24,
-      "live_prev": 25,
+      "live": 23,
+      "live_prev": 24,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14797,8 +15493,8 @@
       "id": 608,
       "keyword": "charging",
       "keyword2": "",
-      "live": 30,
-      "live_prev": 31,
+      "live": 52,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -14855,8 +15551,8 @@
       "id": 606,
       "keyword": "employees",
       "keyword2": "",
-      "live": 23,
-      "live_prev": 24,
+      "live": 22,
+      "live_prev": 23,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14885,7 +15581,7 @@
       "keyword": "jupiter",
       "keyword2": "",
       "live": 34,
-      "live_prev": 35,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -14914,7 +15610,7 @@
       "keyword": "consumer",
       "keyword2": "",
       "live": 34,
-      "live_prev": 35,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -14971,8 +15667,8 @@
       "id": 602,
       "keyword": "snapdragon",
       "keyword2": "",
-      "live": 23,
-      "live_prev": 24,
+      "live": 22,
+      "live_prev": 23,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15000,8 +15696,8 @@
       "id": 601,
       "keyword": "regulations",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 35,
+      "live": 34,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15087,8 +15783,8 @@
       "id": 598,
       "keyword": "scalpers",
       "keyword2": "",
-      "live": 23,
-      "live_prev": 24,
+      "live": 22,
+      "live_prev": 23,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15117,7 +15813,7 @@
       "keyword": "assassin",
       "keyword2": "",
       "live": 34,
-      "live_prev": 31,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -15146,7 +15842,7 @@
       "keyword": "stories",
       "keyword2": "",
       "live": 34,
-      "live_prev": 35,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15262,7 +15958,7 @@
       "keyword": "malisper",
       "keyword2": "",
       "live": 34,
-      "live_prev": 35,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15378,7 +16074,7 @@
       "keyword": "descriptive",
       "keyword2": "",
       "live": 34,
-      "live_prev": 35,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15435,8 +16131,8 @@
       "id": 586,
       "keyword": "generation",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 93,
@@ -15551,8 +16247,8 @@
       "id": 582,
       "keyword": "mattpocock",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15580,8 +16276,8 @@
       "id": 581,
       "keyword": "recovered",
       "keyword2": "",
-      "live": 22,
-      "live_prev": 23,
+      "live": 21,
+      "live_prev": 22,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15609,7 +16305,7 @@
       "id": 580,
       "keyword": "allegedly",
       "keyword2": "",
-      "live": 34,
+      "live": 33,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -15667,8 +16363,8 @@
       "id": 578,
       "keyword": "shipwreck",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15696,8 +16392,8 @@
       "id": 577,
       "keyword": "assassin",
       "keyword2": "",
-      "live": 22,
-      "live_prev": 23,
+      "live": 21,
+      "live_prev": 22,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 86,
@@ -15754,8 +16450,8 @@
       "id": 575,
       "keyword": "ransomware",
       "keyword2": "",
-      "live": 30,
-      "live_prev": 52,
+      "live": 33,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -15783,8 +16479,8 @@
       "id": 574,
       "keyword": "extension",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.033,
         "geodesic": 97,
@@ -15812,8 +16508,8 @@
       "id": 573,
       "keyword": "inaccurate",
       "keyword2": "",
-      "live": 22,
-      "live_prev": 23,
+      "live": 21,
+      "live_prev": 22,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15870,8 +16566,8 @@
       "id": 571,
       "keyword": "transcription",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 55,
+      "live": 33,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15899,8 +16595,8 @@
       "id": 570,
       "keyword": "glasses",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.002,
         "geodesic": -10,
@@ -15928,8 +16624,8 @@
       "id": 569,
       "keyword": "preorders",
       "keyword2": "",
-      "live": 22,
-      "live_prev": 23,
+      "live": 21,
+      "live_prev": 22,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -15986,7 +16682,7 @@
       "id": 567,
       "keyword": "regularization",
       "keyword2": "",
-      "live": 34,
+      "live": 33,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -16015,8 +16711,8 @@
       "id": 566,
       "keyword": "maintain",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16044,8 +16740,8 @@
       "id": 565,
       "keyword": "disappear",
       "keyword2": "",
-      "live": 22,
-      "live_prev": 23,
+      "live": 21,
+      "live_prev": 22,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16102,7 +16798,7 @@
       "id": 563,
       "keyword": "toddlers",
       "keyword2": "",
-      "live": 34,
+      "live": 33,
       "live_prev": 34,
       "manifold": {
         "gamma": 1.018,
@@ -16160,8 +16856,8 @@
       "id": 561,
       "keyword": "machine",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.0,
         "geodesic": -92,
@@ -16189,8 +16885,8 @@
       "id": 560,
       "keyword": "attackers",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 22,
+      "live": 20,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -16218,8 +16914,8 @@
       "id": 559,
       "keyword": "interdisciplinary",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16247,8 +16943,8 @@
       "id": 558,
       "keyword": "madslorentzen",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16276,8 +16972,8 @@
       "id": 557,
       "keyword": "superzoom",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16305,8 +17001,8 @@
       "id": 556,
       "keyword": "greenlights",
       "keyword2": "",
-      "live": 21,
-      "live_prev": 22,
+      "live": 20,
+      "live_prev": 21,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16363,8 +17059,8 @@
       "id": 554,
       "keyword": "allstate",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16392,8 +17088,8 @@
       "id": 553,
       "keyword": "wrapped",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16421,8 +17117,8 @@
       "id": 552,
       "keyword": "linearization",
       "keyword2": "",
-      "live": 21,
-      "live_prev": 22,
+      "live": 20,
+      "live_prev": 21,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16450,8 +17146,8 @@
       "id": 551,
       "keyword": "credible",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16479,8 +17175,8 @@
       "id": 550,
       "keyword": "numerous",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16508,8 +17204,8 @@
       "id": 549,
       "keyword": "regeneration",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16566,8 +17262,8 @@
       "id": 547,
       "keyword": "thermostat",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16595,8 +17291,8 @@
       "id": 546,
       "keyword": "institutional",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16624,8 +17320,8 @@
       "id": 545,
       "keyword": "continuous",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 6,
@@ -16740,8 +17436,8 @@
       "id": 541,
       "keyword": "words",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.001,
         "geodesic": 59,
@@ -16798,8 +17494,8 @@
       "id": 539,
       "keyword": "squeezed",
       "keyword2": "",
-      "live": 33,
-      "live_prev": 34,
+      "live": 32,
+      "live_prev": 33,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16828,7 +17524,7 @@
       "keyword": "obfuscated",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -16915,7 +17611,7 @@
       "keyword": "conversations",
       "keyword2": "",
       "live": 20,
-      "live_prev": 21,
+      "live_prev": 20,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -16944,7 +17640,7 @@
       "keyword": "iofficeai",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17001,8 +17697,8 @@
       "id": 532,
       "keyword": "convolutional",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17060,7 +17756,7 @@
       "keyword": "stepdaughter",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17089,7 +17785,7 @@
       "keyword": "preservation",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17117,8 +17813,8 @@
       "id": 528,
       "keyword": "requested",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17176,7 +17872,7 @@
       "keyword": "override",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17205,7 +17901,7 @@
       "keyword": "rechargeable",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17263,7 +17959,7 @@
       "keyword": "orchestration",
       "keyword2": "",
       "live": 20,
-      "live_prev": 21,
+      "live_prev": 20,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17321,7 +18017,7 @@
       "keyword": "vulnerability",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.001,
         "geodesic": 59,
@@ -17349,8 +18045,8 @@
       "id": 520,
       "keyword": "gallery",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -17379,7 +18075,7 @@
       "keyword": "announcement",
       "keyword2": "",
       "live": 20,
-      "live_prev": 21,
+      "live_prev": 20,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17437,7 +18133,7 @@
       "keyword": "functioning",
       "keyword2": "",
       "live": 32,
-      "live_prev": 33,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17465,8 +18161,8 @@
       "id": 516,
       "keyword": "duckduckgo",
       "keyword2": "",
-      "live": 52,
-      "live_prev": 54,
+      "live": 56,
+      "live_prev": 52,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17495,7 +18191,7 @@
       "keyword": "factorization",
       "keyword2": "",
       "live": 20,
-      "live_prev": 21,
+      "live_prev": 20,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17552,7 +18248,7 @@
       "id": 513,
       "keyword": "connection",
       "keyword2": "",
-      "live": 32,
+      "live": 31,
       "live_prev": 32,
       "manifold": {
         "gamma": 1.009,
@@ -17581,7 +18277,7 @@
       "id": 512,
       "keyword": "madslorentzen",
       "keyword2": "",
-      "live": 32,
+      "live": 31,
       "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
@@ -17610,8 +18306,8 @@
       "id": 511,
       "keyword": "streetcomplete",
       "keyword2": "",
-      "live": 50,
-      "live_prev": 52,
+      "live": 54,
+      "live_prev": 50,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17639,7 +18335,7 @@
       "id": 510,
       "keyword": "threatens",
       "keyword2": "",
-      "live": 20,
+      "live": 19,
       "live_prev": 20,
       "manifold": {
         "gamma": 1.018,
@@ -17668,7 +18364,7 @@
       "id": 509,
       "keyword": "calibration",
       "keyword2": "",
-      "live": 32,
+      "live": 31,
       "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
@@ -17697,8 +18393,8 @@
       "id": 508,
       "keyword": "increases",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 32,
+      "live": 31,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 88,
@@ -17726,8 +18422,8 @@
       "id": 507,
       "keyword": "generalization",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
@@ -17784,7 +18480,7 @@
       "id": 505,
       "keyword": "anywhere",
       "keyword2": "",
-      "live": 32,
+      "live": 31,
       "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
@@ -17842,8 +18538,8 @@
       "id": 503,
       "keyword": "glasses",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.007,
         "geodesic": -24,
@@ -17900,8 +18596,8 @@
       "id": 501,
       "keyword": "censorship",
       "keyword2": "",
-      "live": 32,
-      "live_prev": 55,
+      "live": 31,
+      "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -17958,8 +18654,8 @@
       "id": 499,
       "keyword": "verification",
       "keyword2": "",
-      "live": 50,
-      "live_prev": 52,
+      "live": 54,
+      "live_prev": 50,
       "manifold": {
         "gamma": 1.0,
         "geodesic": 55,
@@ -17987,7 +18683,7 @@
       "id": 498,
       "keyword": "accidentally",
       "keyword2": "",
-      "live": 20,
+      "live": 42,
       "live_prev": 20,
       "manifold": {
         "gamma": 1.018,
@@ -18074,8 +18770,8 @@
       "id": 495,
       "keyword": "diffusion",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.0,
         "geodesic": 55,
@@ -18132,7 +18828,7 @@
       "id": 493,
       "keyword": "translate",
       "keyword2": "",
-      "live": 32,
+      "live": 31,
       "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
@@ -18161,7 +18857,7 @@
       "id": 492,
       "keyword": "announcement",
       "keyword2": "",
-      "live": 32,
+      "live": 31,
       "live_prev": 32,
       "manifold": {
         "gamma": 1.018,
@@ -18190,8 +18886,8 @@
       "id": 491,
       "keyword": "microsoft",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.019,
         "geodesic": -99,
@@ -18219,8 +18915,8 @@
       "id": 490,
       "keyword": "distributed",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.022,
         "geodesic": 100,
@@ -18248,8 +18944,8 @@
       "id": 489,
       "keyword": "upgrades",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 20,
+      "live": 18,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.009,
         "geodesic": 88,
@@ -18335,8 +19031,8 @@
       "id": 486,
       "keyword": "solutions",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18364,8 +19060,8 @@
       "id": 485,
       "keyword": "resetting",
       "keyword2": "",
-      "live": 19,
-      "live_prev": 20,
+      "live": 18,
+      "live_prev": 19,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18394,7 +19090,7 @@
       "keyword": "forces",
       "keyword2": "",
       "live": 31,
-      "live_prev": 32,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18423,7 +19119,7 @@
       "keyword": "suggests",
       "keyword2": "",
       "live": 31,
-      "live_prev": 32,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -18451,8 +19147,8 @@
       "id": 482,
       "keyword": "interactive",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.003,
         "geodesic": 92,
@@ -18510,7 +19206,7 @@
       "keyword": "localization",
       "keyword2": "",
       "live": 31,
-      "live_prev": 32,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18567,8 +19263,8 @@
       "id": 478,
       "keyword": "feature",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.007,
         "geodesic": 97,
@@ -18596,8 +19292,8 @@
       "id": 477,
       "keyword": "suspected",
       "keyword2": "",
-      "live": 19,
-      "live_prev": 20,
+      "live": 18,
+      "live_prev": 19,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18625,7 +19321,7 @@
       "id": 476,
       "keyword": "american",
       "keyword2": "",
-      "live": 65,
+      "live": 59,
       "live_prev": 65,
       "manifold": {
         "gamma": 1.029,
@@ -18683,8 +19379,8 @@
       "id": 474,
       "keyword": "foldables",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18771,7 +19467,7 @@
       "keyword": "availability",
       "keyword2": "",
       "live": 31,
-      "live_prev": 32,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18799,8 +19495,8 @@
       "id": 470,
       "keyword": "button",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
@@ -18828,8 +19524,8 @@
       "id": 469,
       "keyword": "recontext",
       "keyword2": "",
-      "live": 19,
-      "live_prev": 20,
+      "live": 18,
+      "live_prev": 19,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18858,7 +19554,7 @@
       "keyword": "recognition",
       "keyword2": "",
       "live": 31,
-      "live_prev": 32,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.022,
         "geodesic": 96,
@@ -18887,7 +19583,7 @@
       "keyword": "12cilindri",
       "keyword2": "",
       "live": 31,
-      "live_prev": 32,
+      "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -18944,8 +19640,8 @@
       "id": 465,
       "keyword": "distributed",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.022,
         "geodesic": 100,
@@ -19002,7 +19698,7 @@
       "id": 463,
       "keyword": "organic",
       "keyword2": "",
-      "live": 31,
+      "live": 30,
       "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
@@ -19060,8 +19756,8 @@
       "id": 461,
       "keyword": "september",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -19118,7 +19814,7 @@
       "id": 459,
       "keyword": "localization",
       "keyword2": "",
-      "live": 31,
+      "live": 30,
       "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
@@ -19176,8 +19872,8 @@
       "id": 457,
       "keyword": "infuriating",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 38,
+      "live": 40,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19205,8 +19901,8 @@
       "id": 456,
       "keyword": "bombardment",
       "keyword2": "",
-      "live": 18,
-      "live_prev": 19,
+      "live": 17,
+      "live_prev": 18,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19234,7 +19930,7 @@
       "id": 455,
       "keyword": "passenger",
       "keyword2": "",
-      "live": 31,
+      "live": 30,
       "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
@@ -19263,7 +19959,7 @@
       "id": 454,
       "keyword": "upcoming",
       "keyword2": "",
-      "live": 31,
+      "live": 55,
       "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
@@ -19292,8 +19988,8 @@
       "id": 453,
       "keyword": "solutions",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19321,8 +20017,8 @@
       "id": 452,
       "keyword": "administration",
       "keyword2": "",
-      "live": 18,
-      "live_prev": 19,
+      "live": 17,
+      "live_prev": 18,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 21,
@@ -19408,8 +20104,8 @@
       "id": 449,
       "keyword": "protagonist",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19437,8 +20133,8 @@
       "id": 448,
       "keyword": "socializing",
       "keyword2": "",
-      "live": 18,
-      "live_prev": 19,
+      "live": 17,
+      "live_prev": 18,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19466,7 +20162,7 @@
       "id": 447,
       "keyword": "recontext",
       "keyword2": "",
-      "live": 31,
+      "live": 30,
       "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
@@ -19495,8 +20191,8 @@
       "id": 446,
       "keyword": "display",
       "keyword2": "",
-      "live": 55,
-      "live_prev": 31,
+      "live": 30,
+      "live_prev": 55,
       "manifold": {
         "gamma": 1.001,
         "geodesic": 6,
@@ -19524,8 +20220,8 @@
       "id": 445,
       "keyword": "recognition",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 38,
+      "live": 40,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.022,
         "geodesic": 96,
@@ -19553,8 +20249,8 @@
       "id": 444,
       "keyword": "shopping",
       "keyword2": "",
-      "live": 18,
-      "live_prev": 19,
+      "live": 17,
+      "live_prev": 18,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19582,7 +20278,7 @@
       "id": 443,
       "keyword": "ability",
       "keyword2": "",
-      "live": 31,
+      "live": 30,
       "live_prev": 31,
       "manifold": {
         "gamma": 1.018,
@@ -19669,8 +20365,8 @@
       "id": 440,
       "keyword": "supergirl",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 79,
@@ -19698,8 +20394,8 @@
       "id": 439,
       "keyword": "usestrix",
       "keyword2": "",
-      "live": 17,
-      "live_prev": 18,
+      "live": 16,
+      "live_prev": 17,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19728,7 +20424,7 @@
       "keyword": "bottleneck",
       "keyword2": "",
       "live": 30,
-      "live_prev": 31,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19757,7 +20453,7 @@
       "keyword": "suggestions",
       "keyword2": "",
       "live": 30,
-      "live_prev": 31,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19785,8 +20481,8 @@
       "id": 436,
       "keyword": "samsung",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.01,
         "geodesic": 99,
@@ -19814,8 +20510,8 @@
       "id": 435,
       "keyword": "shopping",
       "keyword2": "",
-      "live": 17,
-      "live_prev": 18,
+      "live": 16,
+      "live_prev": 17,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19844,7 +20540,7 @@
       "keyword": "localization",
       "keyword2": "",
       "live": 30,
-      "live_prev": 31,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19901,8 +20597,8 @@
       "id": 432,
       "keyword": "discontinued",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19930,8 +20626,8 @@
       "id": 431,
       "keyword": "ability",
       "keyword2": "",
-      "live": 17,
-      "live_prev": 18,
+      "live": 16,
+      "live_prev": 17,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19960,7 +20656,7 @@
       "keyword": "ferrari",
       "keyword2": "",
       "live": 30,
-      "live_prev": 31,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -19989,7 +20685,7 @@
       "keyword": "overpowered",
       "keyword2": "",
       "live": 30,
-      "live_prev": 31,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20017,8 +20713,8 @@
       "id": 428,
       "keyword": "martian",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 44,
+      "live": 46,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20133,8 +20829,8 @@
       "id": 424,
       "keyword": "underfire",
       "keyword2": "",
-      "live": 46,
-      "live_prev": 48,
+      "live": 50,
+      "live_prev": 46,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20162,8 +20858,8 @@
       "id": 423,
       "keyword": "recontext",
       "keyword2": "",
-      "live": 17,
-      "live_prev": 18,
+      "live": 16,
+      "live_prev": 17,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20192,7 +20888,7 @@
       "keyword": "swapping",
       "keyword2": "",
       "live": 30,
-      "live_prev": 31,
+      "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20249,8 +20945,8 @@
       "id": 420,
       "keyword": "millenary",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 40,
+      "live": 42,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20278,8 +20974,8 @@
       "id": 419,
       "keyword": "widespread",
       "keyword2": "",
-      "live": 17,
-      "live_prev": 18,
+      "live": 16,
+      "live_prev": 17,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20336,7 +21032,7 @@
       "id": 417,
       "keyword": "juliusbrussee",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
@@ -20365,7 +21061,7 @@
       "id": 416,
       "keyword": "millenary",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
@@ -20394,8 +21090,8 @@
       "id": 415,
       "keyword": "disappointed",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20423,8 +21119,8 @@
       "id": 414,
       "keyword": "usestrix",
       "keyword2": "",
-      "live": 16,
-      "live_prev": 17,
+      "live": 15,
+      "live_prev": 16,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20452,7 +21148,7 @@
       "id": 413,
       "keyword": "refresh",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
@@ -20510,8 +21206,8 @@
       "id": 411,
       "keyword": "localization",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20597,7 +21293,7 @@
       "id": 408,
       "keyword": "harnessing",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
@@ -20626,8 +21322,8 @@
       "id": 407,
       "keyword": "alternatives",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -20713,7 +21409,7 @@
       "id": 404,
       "keyword": "darkness",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
@@ -20742,8 +21438,8 @@
       "id": 403,
       "keyword": "exciting",
       "keyword2": "",
-      "live": 44,
-      "live_prev": 46,
+      "live": 48,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20771,8 +21467,8 @@
       "id": 402,
       "keyword": "subscriptions",
       "keyword2": "",
-      "live": 16,
-      "live_prev": 17,
+      "live": 15,
+      "live_prev": 16,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20800,7 +21496,7 @@
       "id": 401,
       "keyword": "recontext",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
@@ -20829,7 +21525,7 @@
       "id": 400,
       "keyword": "ferrari",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.018,
@@ -20858,8 +21554,8 @@
       "id": 399,
       "keyword": "telescopes",
       "keyword2": "",
-      "live": 48,
-      "live_prev": 50,
+      "live": 52,
+      "live_prev": 48,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20888,7 +21584,7 @@
       "keyword": "anniversary",
       "keyword2": "",
       "live": 42,
-      "live_prev": 17,
+      "live_prev": 42,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -20916,7 +21612,7 @@
       "id": 397,
       "keyword": "officially",
       "keyword2": "",
-      "live": 30,
+      "live": 29,
       "live_prev": 30,
       "manifold": {
         "gamma": 1.002,
@@ -20974,8 +21670,8 @@
       "id": 395,
       "keyword": "structure",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 42,
+      "live": 44,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.002,
         "geodesic": 59,
@@ -21016,14 +21712,14 @@
       "permalink": "/call/394.html",
       "prediction": "Measuring the Gap Between Human and LLM Research Ideas looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +300% // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +88% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "Measuring the Gap Between Human and LLM Research Ideas",
         "type": "arxiv",
         "url": "https://arxiv.org/abs/2607.01233v1"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF THE PULSE INDEX CROSSES 75 BY 2026-08-01"
     },
     {
@@ -21045,14 +21741,14 @@
       "permalink": "/call/393.html",
       "prediction": "The HN front page is piling onto Spain Orders Blacklist of Palantir from Public and Private Companies. Expect the tooling around it to consolidate into one default winner within two quarters.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 127d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "Spain Orders Blacklist of Palantir from Public and Private Companies",
         "type": "hn",
         "url": "https://clashreport.com/world/articles/spain-orders-blacklist-of-us-tech-giant-palantir-from-public-and-private-companies-fsnc2z17gjv"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"BLACKLIST\" CLEARS 2 MENTIONS IN A DAY BY 2026-08-01"
     },
     {
@@ -21103,14 +21799,14 @@
       "permalink": "/call/391.html",
       "prediction": "msitarzewski/agency-agents is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "msitarzewski/agency-agents",
         "type": "github",
         "url": "https://github.com/msitarzewski/agency-agents"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"MSITARZEWSKI\" RESURFACES ACROSS THE FEEDS BY 2026-08-01"
     },
     {
@@ -21190,14 +21886,14 @@
       "permalink": "/call/388.html",
       "prediction": "AutoMem: Automated Learning of Memory as a Cognitive Skill is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL -300% // HALF-LIFE 84.8d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.03 // geodesic +94% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "AutoMem: Automated Learning of Memory as a Cognitive Skill",
         "type": "arxiv",
         "url": "https://arxiv.org/abs/2607.01224v1"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "LONGSHOT: WIN IF \"AUTOMATED\" RESURFACES BY 2026-08-01"
     },
     {
@@ -21219,14 +21915,14 @@
       "permalink": "/call/387.html",
       "prediction": "FAA proposal: Supersonic airliners can fly over US cities if they're quiet is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "FAA proposal: Supersonic airliners can fly over US cities if they're quiet",
         "type": "ars",
         "url": "https://arstechnica.com/gadgets/2026/07/faa-proposal-supersonic-airliners-can-fly-over-us-cities-if-theyre-quiet/"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "LONGSHOT: WIN IF \"SUPERSONIC\" RESURFACES BY 2026-08-01"
     },
     {
@@ -21277,14 +21973,14 @@
       "permalink": "/call/385.html",
       "prediction": "iOS 27 public beta release date: When you can install the new iPhone update just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
       "rationale": "VEL +56%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 71.9d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +43% // PEAKING IN 1D",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "iOS 27 public beta release date: When you can install the new iPhone update",
         "type": "news",
         "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxONG9ieUpOUEpILTZEN2pydFZ0aHBXVU1IZXJkNjBCbmtoNEt2ekVXd3paNG9TLVk5NDBOR1pHTG9XTkRwMHNkejVUZDNBTDBBZTRQbHgxU0ROMDlpRWdvOU9Ea2JKdDc5N2xObkhnOUY5c29NRElKTHpzQW11VThBLTFRYXBXX1JrdEctWHZCZHZGSDQwY3haSThkckF4SVZ0cHJodjgxWVl1dw?oc=5"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"RELEASE\" CLEARS 5 MENTIONS IN A DAY BY 2026-08-01"
     },
     {
@@ -21306,14 +22002,14 @@
       "permalink": "/call/384.html",
       "prediction": "The machine flagged Intel Expected To Restart Supply Of 10th, 12th, 13th, And 14th Gen Processors In Mainland crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "Intel Expected To Restart Supply Of 10th, 12th, 13th, And 14th Gen Processors In Mainland China",
         "type": "news",
         "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxPSU5KLVlJbHptcnVsSHNhSGpQb3VqV01YclQ4M21FcTktV2lEZjVqcDdyWUZNTXp3X2NNV0tDMzVzSFkzYnNsU0YwUWFGM0t2NzE3STBua21oZ1JkbVVkLThUTzdSdGZrbVh0WjhiVG9vaW96N3B4T3dKdlgxZUE0WTJxNkE3aVphSzlUVFlGYW94ZVY4cC1KcHpENEtDTS1UV2VRcVloRnlSbUc3UWl5Z2tQaWfSAboBQVVfeXFMUDRZWkhyc004dmplRGhBS0hoUHFzM1hLX2FKb2E5S3VwUGwyYjVKc0YySEhpa1ljZkdDSEZRSDJlVXQyX1p6U1NRMEpueHZydkd5NVQzSEJPTmJ0dlhGaWVzZEFaajNJdHUwSC1QV0dVY1VUaUpZb1ZQdGFLUzBNWTRYUl9FN0NPNHlBUmhhVVBfMkU4dUtqdnVnZEFBWk9abFE4QmpfTjlnU3FSZEE0d0tCMl9CSWV4N19B?oc=5"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "LONGSHOT: WIN IF \"PROCESSORS\" RESURFACES BY 2026-08-01"
     },
     {
@@ -21335,14 +22031,14 @@
       "permalink": "/call/383.html",
       "prediction": "Ars Live recap: When are the big rockets NASA desperately needs going to be ready? is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "Ars Live recap: When are the big rockets NASA desperately needs going to be ready?",
         "type": "ars",
         "url": "https://arstechnica.com/space/2026/07/ars-live-recap-when-are-the-big-rockets-nasa-desperately-needs-going-to-be-ready/"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"DESPERATELY\" RESURFACES ACROSS THE FEEDS BY 2026-08-01"
     },
     {
@@ -21364,14 +22060,14 @@
       "permalink": "/call/382.html",
       "prediction": "PeerTube is a free, decentralized and federated video platform is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 87.5d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "PeerTube is a free, decentralized and federated video platform",
         "type": "hn",
         "url": "https://github.com/Chocobozzz/PeerTube"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF THE PULSE INDEX CROSSES 75 BY 2026-08-01"
     },
     {
@@ -21393,14 +22089,14 @@
       "permalink": "/call/381.html",
       "prediction": "Newly discovered PamStealer isn't your typical macOS malware is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
       "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH ARS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 99.9d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom -0.02 // geodesic +3% // BOTTOMING IN 1D",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "Newly discovered PamStealer isn't your typical macOS malware",
         "type": "ars",
         "url": "https://arstechnica.com/security/2026/07/new-pamstealer-macos-malware-uses-clever-tradecraft-to-remain-stealthy/"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"DISCOVERED\" CLEARS 3 MENTIONS IN A DAY BY 2026-08-01"
     },
     {
@@ -21422,14 +22118,14 @@
       "permalink": "/call/380.html",
       "prediction": "Theoria: Rewrite-Acceptability Verification over Informal Reasoning States is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "Theoria: Rewrite-Acceptability Verification over Informal Reasoning States",
         "type": "arxiv",
         "url": "https://arxiv.org/abs/2607.01223v1"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "LONGSHOT: WIN IF \"ACCEPTABILITY\" RESURFACES BY 2026-08-01"
     },
     {
@@ -21451,14 +22147,14 @@
       "permalink": "/call/379.html",
       "prediction": "Plex debuts 5-year membership pass for $250 just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "Plex debuts 5-year membership pass for $250",
         "type": "ars",
         "url": "https://arstechnica.com/gadgets/2026/07/250-used-to-get-you-a-lifetime-plex-pass-now-you-get-a-five-year-subscription/"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"MEMBERSHIP\" RESURFACES ACROSS THE FEEDS BY 2026-08-01"
     },
     {
@@ -21625,14 +22321,14 @@
       "permalink": "/call/373.html",
       "prediction": "Fresh cs.AI/cs.LG work on FurnitureVLA: Learning Long-Horizon Bimanual Furniture Assembly with just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "FurnitureVLA: Learning Long-Horizon Bimanual Furniture Assembly with Vision-Language-Action Model",
         "type": "arxiv",
         "url": "https://arxiv.org/abs/2607.01212v1"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"FURNITUREVLA\" CLEARS 4 MENTIONS IN A DAY BY 2026-08-01"
     },
     {
@@ -21683,14 +22379,14 @@
       "permalink": "/call/371.html",
       "prediction": "usestrix/strix is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-02",
       "resolves_by": "2026-08-01",
       "source": {
         "title": "usestrix/strix",
         "type": "github",
         "url": "https://github.com/usestrix/strix"
       },
-      "status": "OPEN",
+      "status": "MISS",
       "win_if": "WIN IF \"USESTRIX\" RESURFACES ACROSS THE FEEDS BY 2026-08-01"
     },
     {
@@ -32427,12 +33123,12 @@
   "schema": "the-signal/record/1",
   "scoreboard": {
     "has_rate": true,
-    "hits": 257,
-    "misses": 267,
-    "open": 590,
-    "rate": 49,
-    "resolved": 524,
+    "hits": 260,
+    "misses": 281,
+    "open": 597,
+    "rate": 48,
+    "resolved": 541,
     "verdict": "UNDERWATER, AND NOT HIDING IT"
   },
-  "total": 1114
+  "total": 1138
 }
