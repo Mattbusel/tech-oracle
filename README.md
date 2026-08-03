@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 3, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **263-299**
+**August 3, 2026** // Index **72 (SURGING)** // hottest **XBOX** // record **263-299**
 
-> Normal people are about to find For a Day, Google Made It Easy to Spoof Satellite Imagery. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Normal people are about to find A $1,399 starting price for the iPhone 18 Pro doesn't seem credible, even for Apple. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

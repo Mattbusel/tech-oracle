@@ -1,16 +1,38 @@
 {
   "horizon": {
-    "defined": 8068,
+    "defined": 8075,
     "phases": {
-      "BOTTOMING": 270,
-      "CHURNING": 608,
-      "FALLING": 63,
-      "FLAT": 6317,
-      "PEAKING": 53,
-      "RISING": 757
+      "BOTTOMING": 268,
+      "CHURNING": 601,
+      "FALLING": 62,
+      "FLAT": 6314,
+      "PEAKING": 59,
+      "RISING": 771
     },
-    "scanned": 37740,
+    "scanned": 37778,
     "turns": [
+      {
+        "active_days": 219,
+        "gamma": 1.02,
+        "geodesic": -98,
+        "peak": 38,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 30,
+        "regime": "SPACELIKE",
+        "term": "CUP"
+      },
+      {
+        "active_days": 219,
+        "gamma": 1.0,
+        "geodesic": -76,
+        "peak": 27,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 35,
+        "regime": "SPACELIKE",
+        "term": "TRUMP"
+      },
       {
         "active_days": 226,
         "gamma": 1.0,
@@ -25,13 +47,13 @@
       {
         "active_days": 226,
         "gamma": 1.0,
-        "geodesic": 45,
-        "peak": 25,
+        "geodesic": 41,
+        "peak": 23,
         "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 59,
+        "phase": "BOTTOMING",
+        "prob_rising": 58,
         "regime": "SPACELIKE",
-        "term": "AGENTS"
+        "term": "APPLE"
       },
       {
         "active_days": 189,
@@ -67,6 +89,17 @@
         "term": "OPENAI"
       },
       {
+        "active_days": 190,
+        "gamma": 1.0,
+        "geodesic": -31,
+        "peak": 21,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 44,
+        "regime": "SPACELIKE",
+        "term": "AMAZON"
+      },
+      {
         "active_days": 123,
         "gamma": 1.01,
         "geodesic": -73,
@@ -100,17 +133,6 @@
         "term": "GITHUB"
       },
       {
-        "active_days": 225,
-        "gamma": 1.0,
-        "geodesic": -17,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 47,
-        "regime": "SPACELIKE",
-        "term": "YEARS"
-      },
-      {
         "active_days": 178,
         "gamma": 1.02,
         "geodesic": -43,
@@ -124,22 +146,22 @@
       {
         "active_days": 222,
         "gamma": 1.0,
-        "geodesic": 17,
+        "geodesic": 59,
         "peak": 12,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 53,
+        "prob_rising": 62,
         "regime": "SPACELIKE",
         "term": "RUST"
       },
       {
         "active_days": 210,
         "gamma": 1.0,
-        "geodesic": 1,
+        "geodesic": -21,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 50,
+        "prob_rising": 46,
         "regime": "SPACELIKE",
         "term": "WINDOWS"
       },
@@ -164,28 +186,6 @@
         "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "STATE"
-      },
-      {
-        "active_days": 192,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "MACOS"
-      },
-      {
-        "active_days": 208,
-        "gamma": 1.02,
-        "geodesic": -79,
-        "peak": 11,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 34,
-        "regime": "SPACELIKE",
-        "term": "HUMAN"
       }
     ]
   },
