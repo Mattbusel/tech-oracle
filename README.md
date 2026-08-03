@@ -25,7 +25,7 @@ Worker for the paid gate. No server you operate, no database you run.
 
 **August 3, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **263-299**
 
-> Normal people are about to find Google teases Pixel 11 Pro Fold, early pre-order time on August 12. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Normal people are about to find Google Health 5.05 rolling out: Apple Health sync & bug fixes. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
