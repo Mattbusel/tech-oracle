@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 3, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **263-299**
+**August 4, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **267-317**
 
-> Normal people are about to find Google Health 5.05 rolling out: Apple Health sync & bug fixes. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> [Interview] [Galaxy Unpacked July 2026] Inside the Design Behind the Latest Galaxy Z just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
