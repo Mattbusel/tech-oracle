@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8084,
+    "defined": 8087,
     "phases": {
-      "BOTTOMING": 260,
-      "CHURNING": 581,
-      "FALLING": 56,
-      "FLAT": 6352,
-      "PEAKING": 75,
-      "RISING": 760
+      "BOTTOMING": 258,
+      "CHURNING": 583,
+      "FALLING": 50,
+      "FLAT": 6344,
+      "PEAKING": 72,
+      "RISING": 780
     },
-    "scanned": 37672,
+    "scanned": 37688,
     "turns": [
       {
         "active_days": 220,
@@ -47,13 +47,24 @@
       {
         "active_days": 224,
         "gamma": 1.0,
-        "geodesic": -29,
+        "geodesic": -60,
         "peak": 35,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 44,
+        "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "LANGUAGE"
+      },
+      {
+        "active_days": 227,
+        "gamma": 1.01,
+        "geodesic": 86,
+        "peak": 29,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 67,
+        "regime": "SPACELIKE",
+        "term": "GOOGLE"
       },
       {
         "active_days": 217,
@@ -91,11 +102,11 @@
       {
         "active_days": 217,
         "gamma": 1.0,
-        "geodesic": -49,
+        "geodesic": -31,
         "peak": 20,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 40,
+        "prob_rising": 44,
         "regime": "SPACELIKE",
         "term": "OPENAI"
       },
@@ -133,26 +144,15 @@
         "term": "FOOTBALL"
       },
       {
-        "active_days": 206,
+        "active_days": 221,
         "gamma": 1.0,
-        "geodesic": -61,
+        "geodesic": 76,
         "peak": 15,
         "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 38,
+        "phase": "BOTTOMING",
+        "prob_rising": 65,
         "regime": "SPACELIKE",
-        "term": "GITHUB"
-      },
-      {
-        "active_days": 226,
-        "gamma": 1.01,
-        "geodesic": 96,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 69,
-        "regime": "SPACELIKE",
-        "term": "YEARS"
+        "term": "CODING"
       },
       {
         "active_days": 209,
