@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 4, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **267-317**
+**August 4, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **267-317**
 
-> [Interview] [Galaxy Unpacked July 2026] Inside the Design Behind the Latest Galaxy Z just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> The next Xbox could play every Xbox game ever made just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

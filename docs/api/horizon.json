@@ -1,24 +1,24 @@
 {
   "horizon": {
-    "defined": 8081,
+    "defined": 8082,
     "phases": {
-      "BOTTOMING": 263,
-      "CHURNING": 584,
-      "FALLING": 61,
-      "FLAT": 6391,
+      "BOTTOMING": 260,
+      "CHURNING": 575,
+      "FALLING": 58,
+      "FLAT": 6347,
       "PEAKING": 76,
-      "RISING": 706
+      "RISING": 766
     },
-    "scanned": 37623,
+    "scanned": 37656,
     "turns": [
       {
         "active_days": 220,
-        "gamma": 1.02,
-        "geodesic": -87,
+        "gamma": 1.03,
+        "geodesic": -96,
         "peak": 38,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 33,
+        "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "CUP"
       },
@@ -56,6 +56,17 @@
         "term": "LANGUAGE"
       },
       {
+        "active_days": 168,
+        "gamma": 1.0,
+        "geodesic": -81,
+        "peak": 26,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 34,
+        "regime": "SPACELIKE",
+        "term": "LARGE"
+      },
+      {
         "active_days": 190,
         "gamma": 1.0,
         "geodesic": 21,
@@ -80,13 +91,24 @@
       {
         "active_days": 217,
         "gamma": 1.0,
-        "geodesic": -84,
+        "geodesic": -68,
         "peak": 20,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 33,
+        "prob_rising": 36,
         "regime": "SPACELIKE",
         "term": "OPENAI"
+      },
+      {
+        "active_days": 191,
+        "gamma": 1.0,
+        "geodesic": -73,
+        "peak": 21,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 35,
+        "regime": "SPACELIKE",
+        "term": "AMAZON"
       },
       {
         "active_days": 128,
@@ -120,17 +142,6 @@
         "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "FOOTBALL"
-      },
-      {
-        "active_days": 206,
-        "gamma": 1.0,
-        "geodesic": -61,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 38,
-        "regime": "SPACELIKE",
-        "term": "GITHUB"
       },
       {
         "active_days": 209,
@@ -168,24 +179,13 @@
       {
         "active_days": 223,
         "gamma": 1.0,
-        "geodesic": 99,
+        "geodesic": 100,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
         "prob_rising": 70,
         "regime": "SPACELIKE",
         "term": "GAME"
-      },
-      {
-        "active_days": 223,
-        "gamma": 1.0,
-        "geodesic": 60,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 62,
-        "regime": "SPACELIKE",
-        "term": "RUST"
       }
     ]
   },
