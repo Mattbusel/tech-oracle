@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 5, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **276-335**
+**August 5, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **276-335**
 
-> Civilian plane crash in New Mexico tied to military GPS blocking is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> Discovery Loop is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
