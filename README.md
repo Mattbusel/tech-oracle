@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 4, 2026** // Index **71 (SURGING)** // hottest **MEMORY** // record **270-317**
+**August 5, 2026** // Index **70 (SURGING)** // hottest **VIDEO** // record **274-335**
 
-> The next Xbox could play every Xbox game ever made just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> The machine flagged Everything Apple Is Expected to Announce in September crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
