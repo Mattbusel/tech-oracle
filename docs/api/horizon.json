@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8092,
+    "defined": 8096,
     "phases": {
-      "BOTTOMING": 270,
-      "CHURNING": 568,
-      "FALLING": 67,
-      "FLAT": 6367,
-      "PEAKING": 68,
-      "RISING": 752
+      "BOTTOMING": 276,
+      "CHURNING": 548,
+      "FALLING": 64,
+      "FLAT": 6345,
+      "PEAKING": 70,
+      "RISING": 793
     },
-    "scanned": 37512,
+    "scanned": 37536,
     "turns": [
       {
         "active_days": 220,
@@ -47,24 +47,35 @@
       {
         "active_days": 225,
         "gamma": 1.0,
-        "geodesic": -89,
+        "geodesic": -94,
         "peak": 35,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 32,
+        "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "LANGUAGE"
       },
       {
         "active_days": 228,
         "gamma": 1.0,
-        "geodesic": 3,
+        "geodesic": -29,
         "peak": 32,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 51,
+        "prob_rising": 44,
         "regime": "SPACELIKE",
         "term": "VIDEO"
+      },
+      {
+        "active_days": 228,
+        "gamma": 1.0,
+        "geodesic": 20,
+        "peak": 29,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 54,
+        "regime": "SPACELIKE",
+        "term": "GOOGLE"
       },
       {
         "active_days": 225,
@@ -91,11 +102,11 @@
       {
         "active_days": 218,
         "gamma": 1.0,
-        "geodesic": -90,
+        "geodesic": -80,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 32,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "WAR"
       },
@@ -124,11 +135,11 @@
       {
         "active_days": 192,
         "gamma": 1.0,
-        "geodesic": -91,
+        "geodesic": -82,
         "peak": 21,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 32,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "AMAZON"
       },
@@ -175,17 +186,6 @@
         "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "CODING"
-      },
-      {
-        "active_days": 194,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "SOCIAL"
       }
     ]
   },
