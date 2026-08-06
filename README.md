@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 5, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **276-335**
+**August 6, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **284-353**
 
-> Discovery Loop is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> Watching Discovery Loop climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
