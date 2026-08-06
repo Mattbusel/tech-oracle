@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8111,
+    "defined": 8115,
     "phases": {
       "BOTTOMING": 264,
-      "CHURNING": 560,
+      "CHURNING": 556,
       "FALLING": 66,
-      "FLAT": 6379,
-      "PEAKING": 79,
-      "RISING": 763
+      "FLAT": 6397,
+      "PEAKING": 84,
+      "RISING": 748
     },
-    "scanned": 37423,
+    "scanned": 37452,
     "turns": [
       {
         "active_days": 220,
@@ -58,22 +58,22 @@
       {
         "active_days": 229,
         "gamma": 1.0,
-        "geodesic": 25,
+        "geodesic": -14,
         "peak": 32,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 55,
+        "prob_rising": 47,
         "regime": "SPACELIKE",
         "term": "VIDEO"
       },
       {
         "active_days": 229,
         "gamma": 1.0,
-        "geodesic": 4,
+        "geodesic": 23,
         "peak": 29,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 51,
+        "prob_rising": 55,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
       },
@@ -113,11 +113,11 @@
       {
         "active_days": 229,
         "gamma": 1.0,
-        "geodesic": 60,
+        "geodesic": 71,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 62,
+        "prob_rising": 64,
         "regime": "SPACELIKE",
         "term": "AGENT"
       },
@@ -133,6 +133,17 @@
         "term": "ANTHROPIC"
       },
       {
+        "active_days": 229,
+        "gamma": 1.0,
+        "geodesic": 16,
+        "peak": 23,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 53,
+        "regime": "SPACELIKE",
+        "term": "APPLE"
+      },
+      {
         "active_days": 191,
         "gamma": 1.03,
         "geodesic": -91,
@@ -145,12 +156,12 @@
       },
       {
         "active_days": 193,
-        "gamma": 1.01,
-        "geodesic": 84,
+        "gamma": 1.0,
+        "geodesic": 48,
         "peak": 21,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 67,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "AMAZON"
       },
@@ -168,24 +179,13 @@
       {
         "active_days": 227,
         "gamma": 1.0,
-        "geodesic": 10,
+        "geodesic": -52,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 52,
+        "prob_rising": 40,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
-      },
-      {
-        "active_days": 123,
-        "gamma": 1.03,
-        "geodesic": -95,
-        "peak": 22,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 31,
-        "regime": "SPACELIKE",
-        "term": "FOOTBALL"
       }
     ]
   },
