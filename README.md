@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 6, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **284-353**
+**August 7, 2026** // Index **69 (SURGING)** // hottest **GOOGLE** // record **288-370**
 
-> Watching Discovery Loop climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> Mario Meets Pareto is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
