@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 7, 2026** // Index **69 (SURGING)** // hottest **GOOGLE** // record **288-370**
+**August 7, 2026** // Index **69 (SURGING)** // hottest **UPDATE** // record **291-370**
 
-> Mario Meets Pareto is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> Watch Mario Meets Pareto leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

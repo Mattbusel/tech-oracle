@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8127,
+    "defined": 8134,
     "phases": {
-      "BOTTOMING": 223,
-      "CHURNING": 600,
-      "FALLING": 64,
-      "FLAT": 6393,
-      "PEAKING": 80,
-      "RISING": 767
+      "BOTTOMING": 225,
+      "CHURNING": 594,
+      "FALLING": 66,
+      "FLAT": 6407,
+      "PEAKING": 82,
+      "RISING": 760
     },
-    "scanned": 37298,
+    "scanned": 37332,
     "turns": [
       {
         "active_days": 220,
@@ -24,12 +24,12 @@
       },
       {
         "active_days": 230,
-        "gamma": 1.0,
-        "geodesic": 2,
+        "gamma": 1.01,
+        "geodesic": 23,
         "peak": 36,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 50,
+        "prob_rising": 55,
         "regime": "SPACELIKE",
         "term": "FILM"
       },
@@ -58,18 +58,29 @@
       {
         "active_days": 227,
         "gamma": 1.01,
-        "geodesic": -29,
+        "geodesic": 20,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 44,
+        "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
       {
+        "active_days": 220,
+        "gamma": 1.0,
+        "geodesic": -37,
+        "peak": 27,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 43,
+        "regime": "SPACELIKE",
+        "term": "WAR"
+      },
+      {
         "active_days": 230,
         "gamma": 1.01,
-        "geodesic": 95,
+        "geodesic": 93,
         "peak": 26,
         "peak_in": 1,
         "phase": "PEAKING",
@@ -80,7 +91,7 @@
       {
         "active_days": 230,
         "gamma": 1.02,
-        "geodesic": 94,
+        "geodesic": 95,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
@@ -175,17 +186,6 @@
         "prob_rising": 50,
         "regime": "SPACELIKE",
         "term": "CODING"
-      },
-      {
-        "active_days": 229,
-        "gamma": 1.0,
-        "geodesic": 23,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 55,
-        "regime": "SPACELIKE",
-        "term": "YEARS"
       }
     ]
   },
