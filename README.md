@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 7, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **292-370**
+**August 7, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **292-370**
 
-> Watch Mario Meets Pareto leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> AMD acquires Taalas to boost inference performance by etching models in silicon is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
