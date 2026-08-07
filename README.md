@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 7, 2026** // Index **69 (SURGING)** // hottest **UPDATE** // record **291-370**
+**August 7, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **292-370**
 
 > Watch Mario Meets Pareto leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
