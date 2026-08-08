@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 8, 2026** // Index **69 (SURGING)** // hottest **GOOGLE** // record **295-386**
+**August 8, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **296-386**
 
 > The HN front page is piling onto What happens if an entire class of workers loses faith in their careers. Expect the tooling around it to consolidate into one default winner within two quarters.
 
