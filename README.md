@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 7, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **292-370**
+**August 8, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **295-386**
 
-> Watch Cloudflare launches Kitesurf, a browser built for AI agents leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> The HN front page is piling onto AMD acquires Taalas to boost inference performance by etching models in silicon. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
