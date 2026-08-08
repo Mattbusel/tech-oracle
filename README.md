@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 8, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **295-386**
+**August 8, 2026** // Index **69 (SURGING)** // hottest **GOOGLE** // record **295-386**
 
-> The HN front page is piling onto AMD acquires Taalas to boost inference performance by etching models in silicon. Expect the tooling around it to consolidate into one default winner within two quarters.
+> The HN front page is piling onto What happens if an entire class of workers loses faith in their careers. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
