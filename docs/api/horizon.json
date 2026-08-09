@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8163,
+    "defined": 8165,
     "phases": {
-      "BOTTOMING": 227,
-      "CHURNING": 601,
+      "BOTTOMING": 232,
+      "CHURNING": 597,
       "FALLING": 65,
-      "FLAT": 6450,
-      "PEAKING": 63,
-      "RISING": 757
+      "FLAT": 6454,
+      "PEAKING": 76,
+      "RISING": 741
     },
-    "scanned": 37110,
+    "scanned": 37134,
     "turns": [
       {
         "active_days": 220,
@@ -32,6 +32,17 @@
         "prob_rising": 30,
         "regime": "SPACELIKE",
         "term": "FIFA"
+      },
+      {
+        "active_days": 229,
+        "gamma": 1.02,
+        "geodesic": 97,
+        "peak": 27,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 69,
+        "regime": "SPACELIKE",
+        "term": "SERIES"
       },
       {
         "active_days": 225,
@@ -69,7 +80,7 @@
       {
         "active_days": 232,
         "gamma": 1.03,
-        "geodesic": 89,
+        "geodesic": 92,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
@@ -113,7 +124,7 @@
       {
         "active_days": 230,
         "gamma": 1.01,
-        "geodesic": 95,
+        "geodesic": 97,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
@@ -155,37 +166,26 @@
         "term": "SYSTEM"
       },
       {
-        "active_days": 222,
+        "active_days": 231,
         "gamma": 1.0,
-        "geodesic": -71,
+        "geodesic": 12,
         "peak": 14,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 36,
+        "prob_rising": 52,
+        "regime": "SPACELIKE",
+        "term": "YEARS"
+      },
+      {
+        "active_days": 222,
+        "gamma": 1.0,
+        "geodesic": -59,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "MICROSOFT"
-      },
-      {
-        "active_days": 216,
-        "gamma": 1.0,
-        "geodesic": 21,
-        "peak": 13,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 54,
-        "regime": "SPACELIKE",
-        "term": "HIGH"
-      },
-      {
-        "active_days": 216,
-        "gamma": 1.01,
-        "geodesic": -48,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 40,
-        "regime": "SPACELIKE",
-        "term": "WINDOWS"
       }
     ]
   },
