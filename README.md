@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 8, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **296-386**
+**August 9, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **302-407**
 
-> The HN front page is piling onto What happens if an entire class of workers loses faith in their careers. Expect the tooling around it to consolidate into one default winner within two quarters.
+> "Code was never the hard part" is an insult to all programmers is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
