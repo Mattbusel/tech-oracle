@@ -65,8 +65,8 @@
     },
     {
       "dir": 1,
-      "p": 0.629,
-      "phase": "CHURNING",
+      "p": 0.667,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
     },
@@ -100,14 +100,14 @@
     },
     {
       "dir": 1,
-      "p": 0.661,
+      "p": 0.622,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "WAR"
     },
     {
       "dir": -1,
-      "p": 0.339,
+      "p": 0.319,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LLM"
@@ -142,8 +142,8 @@
     },
     {
       "dir": -1,
-      "p": 0.315,
-      "phase": "FALLING",
+      "p": 0.328,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "APPLE"
     },
@@ -163,7 +163,7 @@
     },
     {
       "dir": 1,
-      "p": 0.683,
+      "p": 0.665,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "TEAM"
@@ -226,8 +226,8 @@
     },
     {
       "dir": 1,
-      "p": 0.5,
-      "phase": "CHURNING",
+      "p": 0.618,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
     },
@@ -247,7 +247,7 @@
     },
     {
       "dir": -1,
-      "p": 0.399,
+      "p": 0.331,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "REASONING"
@@ -352,8 +352,8 @@
     },
     {
       "dir": 1,
-      "p": 0.5,
-      "phase": "CHURNING",
+      "p": 0.618,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CHINA"
     },
@@ -365,9 +365,9 @@
       "term": "GITHUB"
     },
     {
-      "dir": 1,
-      "p": 0.524,
-      "phase": "PEAKING",
+      "dir": -1,
+      "p": 0.331,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "YEARS"
     },
@@ -380,7 +380,7 @@
     },
     {
       "dir": -1,
-      "p": 0.308,
+      "p": 0.302,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "REAL"
@@ -394,7 +394,7 @@
     },
     {
       "dir": 1,
-      "p": 0.678,
+      "p": 0.687,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "WEB"
@@ -431,14 +431,14 @@
     {
       "days": 231,
       "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "SOFTWARE"
+      "reach": "WIKIPEDIA",
+      "term": "SMART"
     },
     {
       "days": 231,
       "origin": "ARXIV",
-      "reach": "WIKIPEDIA",
-      "term": "SMART"
+      "reach": "THE NEWS",
+      "term": "SOFTWARE"
     },
     {
       "days": 227,
@@ -447,22 +447,22 @@
       "term": "ANNIVERSARY"
     },
     {
-      "days": 230,
-      "origin": "ARXIV",
-      "reach": "ARS",
-      "term": "MOVING"
-    },
-    {
       "days": 231,
       "origin": "HN",
       "reach": "WIKIPEDIA",
       "term": "WHITE"
+    },
+    {
+      "days": 206,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "8GB"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "FEAR",
-    "value": 35
+    "value": 33
   },
   "manifold": [
     {
@@ -583,16 +583,16 @@
       "term": "VIDEO"
     },
     {
-      "beta": 0.015,
-      "curvature": -0.71,
+      "beta": 0.048,
+      "curvature": -0.05,
       "defined": true,
-      "ds2": 0.971,
-      "gamma": 1.0,
-      "geodesic_trend": 0.646,
-      "phase": "CHURNING",
-      "prob_rising": 63,
+      "ds2": 0.904,
+      "gamma": 1.001,
+      "geodesic_trend": 0.837,
+      "phase": "RISING",
+      "prob_rising": 67,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.003,
+      "rel_momentum": 0.011,
       "term": "GOOGLE"
     },
     {
@@ -655,28 +655,28 @@
       "vel": 600
     },
     {
+      "count": 5,
+      "term": "SMART",
+      "vel": 600
+    },
+    {
       "count": 4,
       "term": "HOUSE",
       "vel": 600
     },
     {
-      "count": 4,
-      "term": "SMART",
-      "vel": 460
+      "count": 3,
+      "term": "ANNIVERSARY",
+      "vel": 425
     },
     {
       "count": 3,
-      "term": "PREDICTION",
+      "term": "TOM",
       "vel": 425
     },
     {
       "count": 3,
       "term": "WHITE",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "ANNIVERSARY",
       "vel": 425
     }
   ],
@@ -745,52 +745,52 @@
       }
     ],
     "index": 71,
-    "theme": "FILM",
+    "theme": "GOOGLE",
     "total": 262,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "FLAT",
-      "delta": 0,
+      "arrow": "UP",
+      "delta": 4,
       "index": 100,
-      "name": "AI"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 88,
       "name": "PLATFORM"
     },
     {
+      "arrow": "DOWN",
+      "delta": -2,
+      "index": 75,
+      "name": "AI"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 20,
+      "name": "CHIPS"
+    },
+    {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 18,
+      "index": 15,
       "name": "ROBOTS"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 12,
-      "name": "CHIPS"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 12,
+      "index": 10,
       "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 6,
+      "index": 5,
       "name": "RUST"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 6,
+      "index": 5,
       "name": "CLOUD"
     },
     {
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 37134
+  "tracked_terms": 37152
 }
