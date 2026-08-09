@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 9, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **302-407**
+**August 9, 2026** // Index **57 (ACTIVE)** // hottest **FILM** // record **302-407**
 
-> Normal people are about to find Apple Explores Shaking Up Its Smartwatch for a New Era. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Mea Culpa - Dark Hours is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
