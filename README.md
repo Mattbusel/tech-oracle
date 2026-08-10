@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 10, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **310-424**
+**August 10, 2026** // Index **72 (SURGING)** // hottest **VIDEO** // record **312-424**
 
-> Apple Explores Shaking Up Its Smartwatch for a New Era just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> Watching How I use LLMs to learn complex topics climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
