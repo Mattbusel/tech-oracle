@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 10, 2026** // Index **72 (SURGING)** // hottest **SAYS** // record **312-424**
+**August 10, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **313-424**
 
-> Live Updates From the 'Made by Google' Pixel 11 Event just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> What to expect from Google's 2026 Pixel hardware launch event just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
