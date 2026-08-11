@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8201,
+    "defined": 8202,
     "phases": {
-      "BOTTOMING": 223,
-      "CHURNING": 598,
-      "FALLING": 65,
-      "FLAT": 6448,
-      "PEAKING": 80,
-      "RISING": 787
+      "BOTTOMING": 222,
+      "CHURNING": 632,
+      "FALLING": 73,
+      "FLAT": 6499,
+      "PEAKING": 62,
+      "RISING": 714
     },
-    "scanned": 36894,
+    "scanned": 36909,
     "turns": [
       {
         "active_days": 220,
@@ -47,24 +47,13 @@
       {
         "active_days": 231,
         "gamma": 1.0,
-        "geodesic": 61,
+        "geodesic": 3,
         "peak": 35,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 62,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
-      },
-      {
-        "active_days": 210,
-        "gamma": 1.01,
-        "geodesic": -76,
-        "peak": 36,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 35,
-        "regime": "SPACELIKE",
-        "term": "LEARNING"
       },
       {
         "active_days": 231,
@@ -80,44 +69,55 @@
       {
         "active_days": 234,
         "gamma": 1.0,
-        "geodesic": 83,
+        "geodesic": 33,
         "peak": 26,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 67,
+        "prob_rising": 57,
         "regime": "SPACELIKE",
         "term": "LLM"
       },
       {
         "active_days": 234,
-        "gamma": 1.02,
-        "geodesic": 79,
+        "gamma": 1.01,
+        "geodesic": 78,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
         "prob_rising": 66,
+        "regime": "SPACELIKE",
+        "term": "AGENT"
+      },
+      {
+        "active_days": 234,
+        "gamma": 1.01,
+        "geodesic": 51,
+        "peak": 25,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "AGENTS"
       },
       {
         "active_days": 234,
         "gamma": 1.01,
-        "geodesic": -29,
+        "geodesic": -42,
         "peak": 23,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 44,
+        "prob_rising": 42,
         "regime": "SPACELIKE",
         "term": "APPLE"
       },
       {
         "active_days": 171,
         "gamma": 1.0,
-        "geodesic": 43,
+        "geodesic": 6,
         "peak": 26,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 59,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "LARGE"
       },
@@ -145,47 +145,47 @@
       },
       {
         "active_days": 224,
-        "gamma": 1.01,
-        "geodesic": -82,
+        "gamma": 1.0,
+        "geodesic": -45,
         "peak": 20,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 34,
+        "prob_rising": 41,
         "regime": "SPACELIKE",
         "term": "OPENAI"
       },
       {
-        "active_days": 182,
-        "gamma": 1.01,
-        "geodesic": 43,
+        "active_days": 125,
+        "gamma": 1.03,
+        "geodesic": -73,
         "peak": 22,
         "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 59,
+        "phase": "BOTTOMING",
+        "prob_rising": 35,
         "regime": "SPACELIKE",
-        "term": "NVIDIA"
+        "term": "FOOTBALL"
       },
       {
-        "active_days": 134,
+        "active_days": 226,
         "gamma": 1.0,
         "geodesic": 21,
-        "peak": 24,
+        "peak": 15,
         "peak_in": 1,
         "phase": "BOTTOMING",
         "prob_rising": 54,
         "regime": "SPACELIKE",
-        "term": "REASONING"
+        "term": "CHATGPT"
       },
       {
-        "active_days": 125,
-        "gamma": 1.01,
-        "geodesic": -24,
-        "peak": 22,
+        "active_days": 233,
+        "gamma": 1.0,
+        "geodesic": -79,
+        "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 45,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
-        "term": "FOOTBALL"
+        "term": "YEARS"
       }
     ]
   },

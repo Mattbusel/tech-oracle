@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 11, 2026** // Index **72 (SURGING)** // hottest **MODELS** // record **319-436**
+**August 11, 2026** // Index **63 (ACTIVE)** // hottest **GAME** // record **319-436**
 
-> The machine flagged New photos show a canceled 2014 Microsoft Surface Phone prototype crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> The machine flagged iPhone Users Who Pay for Enough iCloud Storage Get New iOS 27 Perks crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
