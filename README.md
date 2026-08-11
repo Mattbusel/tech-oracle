@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 10, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **313-424**
+**August 11, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **314-436**
 
-> What to expect from Google's 2026 Pixel hardware launch event just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> The machine flagged Mark Zuckerberg doesn't understand how to live crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
