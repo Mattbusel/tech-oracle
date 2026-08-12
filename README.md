@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 11, 2026** // Index **63 (ACTIVE)** // hottest **GAME** // record **319-436**
+**August 12, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **328-454**
 
-> The machine flagged iPhone Users Who Pay for Enough iCloud Storage Get New iOS 27 Perks crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> The HN front page is piling onto Stealing Reasoning Traces from Proprietary LLM APIs. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
