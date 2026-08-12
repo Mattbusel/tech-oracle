@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 12, 2026** // Index **68 (SURGING)** // hottest **PIXEL** // record **332-454**
+**August 12, 2026** // Index **70 (SURGING)** // hottest **PIXEL** // record **333-454**
 
-> Android now has a tap-to-share feature is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> The HN front page is piling onto Tailscale Traces Database Corruption to 16y/o SQLite WAL-Reset Bug. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
