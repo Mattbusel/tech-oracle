@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 12, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **328-454**
+**August 12, 2026** // Index **71 (SURGING)** // hottest **EDITION** // record **332-454**
 
-> The HN front page is piling onto Stealing Reasoning Traces from Proprietary LLM APIs. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Google's Pixel 11 series pairs a little new hardware with a lot of new software is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
