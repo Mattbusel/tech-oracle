@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 13, 2026** // Index **66 (SURGING)** // hottest **PIXEL** // record **338-468**
+**August 13, 2026** // Index **67 (SURGING)** // hottest **PIXEL** // record **339-468**
 
-> Watch Everything announced at Made by Google today, including Pixel 11, Pixel Watch 4, and Pixel leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Watch Google's Tensor G6 in Pixel 11 isn't a 2nm smartphone chip after all leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
