@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 12, 2026** // Index **70 (SURGING)** // hottest **PIXEL** // record **333-454**
+**August 13, 2026** // Index **68 (SURGING)** // hottest **PIXEL** // record **337-468**
 
-> The HN front page is piling onto Tailscale Traces Database Corruption to 16y/o SQLite WAL-Reset Bug. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Tailscale Traces Database Corruption to 16y/o SQLite WAL-Reset Bug is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
