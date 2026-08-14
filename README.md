@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 14, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **343-482**
+**August 14, 2026** // Index **72 (SURGING)** // hottest **ULTRA** // record **345-482**
 
-> Samsung Galaxy Z Fold 8 Ultra review: The ultra foldable with an ultra price is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
+> Samsung Is Finally Working on the One Audio Product It's Missing is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
