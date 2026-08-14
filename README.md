@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 14, 2026** // Index **68 (SURGING)** // hottest **GOOGLE** // record **341-482**
+**August 14, 2026** // Index **57 (ACTIVE)** // hottest **SOFTWARE** // record **341-482**
 
 > Gemini 3.7 Flash is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
