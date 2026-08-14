@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 13, 2026** // Index **69 (SURGING)** // hottest **GAME** // record **339-468**
+**August 14, 2026** // Index **68 (SURGING)** // hottest **GOOGLE** // record **341-482**
 
-> Watch Gemini 3.7 Flash leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
+> Gemini 3.7 Flash is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
