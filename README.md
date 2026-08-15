@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 15, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **351-502**
+**August 15, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **351-502**
 
-> Firefox is now the last major browser that still supports uBlock Origin is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> Qwen 3.8 27B is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
