@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 15, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **350-502**
+**August 15, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **351-502**
 
-> Normal people are about to find Samsung Galaxy Z Fold 8 Ultra review: The ultra foldable with an ultra price. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> Firefox is now the last major browser that still supports uBlock Origin is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
