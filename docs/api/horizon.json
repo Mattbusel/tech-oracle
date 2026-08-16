@@ -1,24 +1,35 @@
 {
   "horizon": {
-    "defined": 8252,
+    "defined": 8255,
     "phases": {
-      "BOTTOMING": 215,
-      "CHURNING": 591,
-      "FALLING": 66,
-      "FLAT": 6539,
-      "PEAKING": 97,
-      "RISING": 744
+      "BOTTOMING": 217,
+      "CHURNING": 608,
+      "FALLING": 63,
+      "FLAT": 6530,
+      "PEAKING": 101,
+      "RISING": 736
     },
-    "scanned": 36195,
+    "scanned": 36216,
     "turns": [
+      {
+        "active_days": 239,
+        "gamma": 1.01,
+        "geodesic": -62,
+        "peak": 36,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 38,
+        "regime": "SPACELIKE",
+        "term": "FILM"
+      },
       {
         "active_days": 236,
         "gamma": 1.01,
-        "geodesic": -25,
+        "geodesic": 40,
         "peak": 35,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 45,
+        "prob_rising": 58,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
       },
@@ -36,13 +47,24 @@
       {
         "active_days": 236,
         "gamma": 1.0,
-        "geodesic": -72,
+        "geodesic": -56,
         "peak": 27,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 36,
+        "prob_rising": 39,
         "regime": "SPACELIKE",
         "term": "SERIES"
+      },
+      {
+        "active_days": 229,
+        "gamma": 1.0,
+        "geodesic": 82,
+        "peak": 27,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 66,
+        "regime": "SPACELIKE",
+        "term": "WAR"
       },
       {
         "active_days": 176,
@@ -78,6 +100,17 @@
         "term": "LIST"
       },
       {
+        "active_days": 202,
+        "gamma": 1.0,
+        "geodesic": -43,
+        "peak": 21,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "AMAZON"
+      },
+      {
         "active_days": 231,
         "gamma": 1.0,
         "geodesic": -87,
@@ -102,13 +135,24 @@
       {
         "active_days": 233,
         "gamma": 1.0,
-        "geodesic": 9,
+        "geodesic": 35,
         "peak": 16,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 52,
+        "prob_rising": 57,
         "regime": "SPACELIKE",
         "term": "SYSTEM"
+      },
+      {
+        "active_days": 238,
+        "gamma": 1.0,
+        "geodesic": -50,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 40,
+        "regime": "SPACELIKE",
+        "term": "YEARS"
       },
       {
         "active_days": 229,
@@ -133,59 +177,15 @@
         "term": "WEB"
       },
       {
-        "active_days": 217,
-        "gamma": 1.02,
-        "geodesic": -43,
+        "active_days": 218,
+        "gamma": 1.0,
+        "geodesic": 21,
         "peak": 13,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 41,
+        "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "HIGH"
-      },
-      {
-        "active_days": 235,
-        "gamma": 1.0,
-        "geodesic": -7,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 49,
-        "regime": "SPACELIKE",
-        "term": "GAME"
-      },
-      {
-        "active_days": 234,
-        "gamma": 1.0,
-        "geodesic": 61,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 62,
-        "regime": "SPACELIKE",
-        "term": "LINUX"
-      },
-      {
-        "active_days": 223,
-        "gamma": 1.0,
-        "geodesic": 23,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 55,
-        "regime": "SPACELIKE",
-        "term": "WINDOWS"
-      },
-      {
-        "active_days": 211,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "AGE"
       }
     ]
   },

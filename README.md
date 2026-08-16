@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 16, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **355-521**
+**August 16, 2026** // Index **70 (SURGING)** // hottest **GALAXY** // record **355-521**
 
-> The HN front page is piling onto AI has access to a vastly larger working memory than the human brain. Expect the tooling around it to consolidate into one default winner within two quarters.
+> public-apis/public-apis is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
