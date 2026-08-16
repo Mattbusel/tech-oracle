@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 16, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **355-521**
+**August 16, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **356-521**
 
-> Does Apple Still Support iTunes? just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> public-apis/public-apis is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
