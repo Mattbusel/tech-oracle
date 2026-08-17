@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 17, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **359-541**
+**August 17, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **361-541**
 
-> Qwen 3.8 27B is excellent, but it defaults to overthinking things is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> The machine flagged A Preview of DuckDB v2.0 crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
