@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 17, 2026** // Index **70 (SURGING)** // hottest **APP** // record **357-541**
+**August 17, 2026** // Index **56 (ACTIVE)** // hottest **DATA** // record **359-541**
 
 > The machine flagged Claude: System Prompts crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
