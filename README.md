@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 16, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **356-521**
+**August 17, 2026** // Index **70 (SURGING)** // hottest **APP** // record **357-541**
 
-> public-apis/public-apis is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.
+> The machine flagged Claude: System Prompts crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
