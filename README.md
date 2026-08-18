@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 18, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **362-561**
+**August 18, 2026** // Index **71 (SURGING)** // hottest **REVEALS** // record **366-561**
 
-> Watching AI;DR (AI; Didn't Read) climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> Watching Israel creates fake think tank in likely attempt to dupe AI chatbots climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
