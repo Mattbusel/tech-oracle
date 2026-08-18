@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 17, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **361-541**
+**August 18, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **362-561**
 
-> The machine flagged A Preview of DuckDB v2.0 crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> Watching AI;DR (AI; Didn't Read) climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
