@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 18, 2026** // Index **71 (SURGING)** // hottest **REVEALS** // record **366-561**
+**August 18, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **367-561**
 
-> Watching Israel creates fake think tank in likely attempt to dupe AI chatbots climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> The Amazon tax is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
