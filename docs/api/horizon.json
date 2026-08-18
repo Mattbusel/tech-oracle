@@ -1,24 +1,35 @@
 {
   "horizon": {
-    "defined": 8273,
+    "defined": 8276,
     "phases": {
-      "BOTTOMING": 242,
-      "CHURNING": 601,
-      "FALLING": 62,
-      "FLAT": 6513,
-      "PEAKING": 87,
-      "RISING": 768
+      "BOTTOMING": 233,
+      "CHURNING": 599,
+      "FALLING": 59,
+      "FLAT": 6499,
+      "PEAKING": 94,
+      "RISING": 792
     },
-    "scanned": 35953,
+    "scanned": 35965,
     "turns": [
       {
-        "active_days": 233,
+        "active_days": 143,
         "gamma": 1.0,
-        "geodesic": -43,
+        "geodesic": -50,
+        "peak": 37,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 40,
+        "regime": "SPACELIKE",
+        "term": "ASSEMBLY"
+      },
+      {
+        "active_days": 234,
+        "gamma": 1.0,
+        "geodesic": 21,
         "peak": 27,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 41,
+        "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "TRUMP"
       },
@@ -58,11 +69,11 @@
       {
         "active_days": 157,
         "gamma": 1.0,
-        "geodesic": 29,
+        "geodesic": 52,
         "peak": 21,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 56,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "SPACEX"
       },
@@ -78,17 +89,6 @@
         "term": "UNITED"
       },
       {
-        "active_days": 217,
-        "gamma": 1.0,
-        "geodesic": 12,
-        "peak": 16,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 52,
-        "regime": "SPACELIKE",
-        "term": "STATES"
-      },
-      {
         "active_days": 232,
         "gamma": 1.0,
         "geodesic": -32,
@@ -102,11 +102,11 @@
       {
         "active_days": 240,
         "gamma": 1.0,
-        "geodesic": 65,
+        "geodesic": 10,
         "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 63,
+        "prob_rising": 52,
         "regime": "SPACELIKE",
         "term": "YEARS"
       },
@@ -135,13 +135,24 @@
       {
         "active_days": 231,
         "gamma": 1.0,
-        "geodesic": -35,
+        "geodesic": 3,
         "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 43,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "MICROSOFT"
+      },
+      {
+        "active_days": 223,
+        "gamma": 1.0,
+        "geodesic": 43,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 59,
+        "regime": "SPACELIKE",
+        "term": "SEARCH"
       },
       {
         "active_days": 204,
@@ -157,24 +168,13 @@
       {
         "active_days": 236,
         "gamma": 1.0,
-        "geodesic": 13,
+        "geodesic": 48,
         "peak": 12,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 53,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "LINUX"
-      },
-      {
-        "active_days": 235,
-        "gamma": 1.0,
-        "geodesic": 21,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 54,
-        "regime": "SPACELIKE",
-        "term": "RUST"
       },
       {
         "active_days": 225,
