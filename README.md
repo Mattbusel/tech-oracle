@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 19, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **373-581**
+**August 19, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **373-581**
 
 > Git Gud! is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
