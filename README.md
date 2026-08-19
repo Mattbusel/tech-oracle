@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 19, 2026** // Index **69 (SURGING)** // hottest **APPLE** // record **369-581**
+**August 19, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **371-581**
 
 > Watch The Amazon tax leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
