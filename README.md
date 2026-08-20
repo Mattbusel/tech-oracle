@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 20, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **379-599**
+**August 20, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **379-599**
 
 > The HN front page is piling onto AliExpress runs silent WebAudio fingerprinting that breaks Bluetooth multipoint. Expect the tooling around it to consolidate into one default winner within two quarters.
 
