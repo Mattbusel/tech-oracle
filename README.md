@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 20, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **377-599**
+**August 20, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **379-599**
 
-> Dev.to writers are rallying around Git Gud!. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
+> The HN front page is piling onto A joke domain purchase turned in geopolitical warfare. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
