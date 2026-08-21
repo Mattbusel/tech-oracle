@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 21, 2026** // Index **70 (SURGING)** // hottest **GOOGLE** // record **382-621**
+**August 21, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **383-621**
 
-> Normal people are about to find New Xperia 10 VIII reveals itself in leak as Sony confirms global launch. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.
+> HTML Can Do That is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
