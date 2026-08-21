@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 21, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **383-621**
+**August 21, 2026** // Index **72 (SURGING)** // hottest **DATA** // record **385-621**
 
-> HTML Can Do That is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> Kagi added a setting for removing paywalled links from search results is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
