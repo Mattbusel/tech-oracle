@@ -30,7 +30,7 @@
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.7,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
@@ -44,8 +44,8 @@
     },
     {
       "dir": 1,
-      "p": 0.692,
-      "phase": "CHURNING",
+      "p": 0.694,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LEARNING"
     },
@@ -58,21 +58,21 @@
     },
     {
       "dir": 1,
-      "p": 0.691,
+      "p": 0.685,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
     },
     {
       "dir": -1,
-      "p": 0.332,
+      "p": 0.353,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
     },
     {
       "dir": 1,
-      "p": 0.688,
+      "p": 0.658,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "ASSEMBLY"
@@ -128,8 +128,8 @@
     },
     {
       "dir": 1,
-      "p": 0.5,
-      "phase": "CHURNING",
+      "p": 0.658,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
     },
@@ -254,7 +254,7 @@
     },
     {
       "dir": 1,
-      "p": 0.558,
+      "p": 0.605,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
@@ -310,7 +310,7 @@
     },
     {
       "dir": 1,
-      "p": 0.69,
+      "p": 0.694,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -394,7 +394,7 @@
     },
     {
       "dir": 1,
-      "p": 0.669,
+      "p": 0.678,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
@@ -429,12 +429,6 @@
       "term": "CALLS"
     },
     {
-      "days": 225,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "GTA"
-    },
-    {
       "days": 244,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -453,6 +447,12 @@
       "term": "MUSIC"
     },
     {
+      "days": 244,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "RUN"
+    },
+    {
       "days": 229,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -462,7 +462,7 @@
   "corpus_days": 180,
   "fear_greed": {
     "label": "GREED",
-    "value": 68
+    "value": 64
   },
   "manifold": [
     {
@@ -518,16 +518,16 @@
       "term": "SUPER"
     },
     {
-      "beta": 0.196,
-      "curvature": 1.14,
+      "beta": 0.204,
+      "curvature": 1.45,
       "defined": true,
-      "ds2": 0.608,
-      "gamma": 1.02,
-      "geodesic_trend": 0.997,
+      "ds2": 0.592,
+      "gamma": 1.021,
+      "geodesic_trend": 0.998,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.066,
+      "rel_momentum": 0.071,
       "term": "CLAUDE"
     },
     {
@@ -544,16 +544,16 @@
       "term": "LANGUAGE"
     },
     {
-      "beta": 0.007,
-      "curvature": 1.71,
+      "beta": 0.014,
+      "curvature": 1.82,
       "defined": true,
-      "ds2": 0.987,
+      "ds2": 0.972,
       "gamma": 1.0,
-      "geodesic_trend": 0.96,
-      "phase": "CHURNING",
+      "geodesic_trend": 0.97,
+      "phase": "RISING",
       "prob_rising": 69,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.002,
+      "rel_momentum": 0.005,
       "term": "LEARNING"
     },
     {
@@ -570,42 +570,42 @@
       "term": "FIFA"
     },
     {
-      "beta": 0.12,
-      "curvature": 1.18,
+      "beta": 0.111,
+      "curvature": 0.93,
       "defined": true,
-      "ds2": 0.759,
-      "gamma": 1.007,
-      "geodesic_trend": 0.957,
+      "ds2": 0.778,
+      "gamma": 1.006,
+      "geodesic_trend": 0.925,
       "phase": "RISING",
-      "prob_rising": 69,
+      "prob_rising": 68,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.049,
+      "rel_momentum": 0.044,
       "term": "VIDEO"
     },
     {
-      "beta": -0.118,
-      "curvature": -1.6,
+      "beta": -0.105,
+      "curvature": -1.27,
       "defined": true,
-      "ds2": 0.765,
-      "gamma": 1.007,
-      "geodesic_trend": -0.841,
+      "ds2": 0.79,
+      "gamma": 1.006,
+      "geodesic_trend": -0.737,
       "phase": "FALLING",
-      "prob_rising": 33,
+      "prob_rising": 35,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.033,
+      "rel_momentum": -0.029,
       "term": "GOOGLE"
     },
     {
-      "beta": 0.137,
-      "curvature": 1.07,
+      "beta": 0.091,
+      "curvature": -0.1,
       "defined": true,
-      "ds2": 0.726,
-      "gamma": 1.01,
-      "geodesic_trend": 0.942,
+      "ds2": 0.817,
+      "gamma": 1.004,
+      "geodesic_trend": 0.792,
       "phase": "RISING",
-      "prob_rising": 69,
+      "prob_rising": 66,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.03,
+      "rel_momentum": 0.018,
       "term": "ASSEMBLY"
     },
     {
@@ -651,17 +651,17 @@
   "movers": [
     {
       "count": 3,
-      "term": "MAY",
-      "vel": 425
-    },
-    {
-      "count": 3,
       "term": "MUSIC",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "GTA",
+      "term": "MAY",
+      "vel": 425
+    },
+    {
+      "count": 3,
+      "term": "RUN",
       "vel": 425
     },
     {
@@ -676,13 +676,13 @@
     },
     {
       "count": 3,
-      "term": "BENCH",
+      "term": "DOUBLE",
       "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 2,
+    "delta_abs": 3,
     "delta_word": "FALLING",
     "has_prev": true,
     "highest_days": 0,
@@ -741,51 +741,51 @@
       },
       {
         "date": "2026-08-22",
-        "index": 70
+        "index": 69
       }
     ],
-    "index": 70,
+    "index": 69,
     "theme": "DATA",
-    "total": 257,
+    "total": 251,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "DOWN",
-      "delta": -2,
+      "arrow": "FLAT",
+      "delta": 0,
       "index": 100,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
-      "delta": 2,
-      "index": 86,
+      "delta": 4,
+      "index": 88,
       "name": "AI"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 43,
+      "index": 38,
       "name": "ROBOTS"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 29,
+      "index": 25,
       "name": "RUST"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 21,
-      "name": "SECURITY"
+      "arrow": "DOWN",
+      "delta": -2,
+      "index": 13,
+      "name": "CHIPS"
     },
     {
       "arrow": "DOWN",
-      "delta": -3,
-      "index": 7,
-      "name": "CHIPS"
+      "delta": -1,
+      "index": 13,
+      "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 35411
+  "tracked_terms": 35420
 }
