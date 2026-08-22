@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 21, 2026** // Index **72 (SURGING)** // hottest **DATA** // record **385-621**
+**August 22, 2026** // Index **70 (SURGING)** // hottest **DATA** // record **389-638**
 
-> Kagi added a setting for removing paywalled links from search results is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> Watching Kagi added a setting for removing paywalled links from search results climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
