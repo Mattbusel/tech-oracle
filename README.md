@@ -25,7 +25,7 @@ Worker for the paid gate. No server you operate, no database you run.
 
 **August 22, 2026** // Index **70 (SURGING)** // hottest **DATA** // record **389-638**
 
-> Watching Kagi added a setting for removing paywalled links from search results climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> HP's new $599 MacBook Neo rival available with a 14-inch OLED display and over 40 hours just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
