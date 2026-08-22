@@ -1,13 +1,9 @@
 {
   "book": {
-    "bank": 841,
+    "bank": 1035,
     "best_loss": 17,
-    "best_win": 153,
+    "best_win": 154,
     "history": [
-      {
-        "date": "2026-08-14",
-        "pct": 86
-      },
       {
         "date": "2026-08-14",
         "pct": 87
@@ -83,12 +79,16 @@
       {
         "date": "2026-08-20",
         "pct": 98
+      },
+      {
+        "date": "2026-08-21",
+        "pct": 99
       }
     ],
-    "pnl_class": "sb-miss",
-    "roi_str": "-16%",
-    "settled": 1027,
-    "streak": "W153"
+    "pnl_class": "sb-hit",
+    "roi_str": "+4%",
+    "settled": 1028,
+    "streak": "W154"
   },
   "calibration": {
     "brier": "0.245",
@@ -96,7 +96,7 @@
       {
         "actual": 37,
         "label": "LONGSHOTS",
-        "n": 1002,
+        "n": 1003,
         "pred": 39
       },
       {
@@ -114,14 +114,14 @@
     ],
     "grade": "HONEST: ROUGHLY CALIBRATED",
     "has_data": true,
-    "n": 1027
+    "n": 1028
   },
   "calls": [
     {
       "confidence": 0.38,
       "date": "2026-08-22",
       "id": 1618,
-      "keyword": "paywalled",
+      "keyword": "glancer",
       "keyword2": "",
       "live": 38,
       "live_prev": 38,
@@ -134,52 +134,52 @@
       "market": "RESURFACE",
       "odds": 2.63,
       "permalink": "/call/1618.html",
-      "prediction": "Watching Kagi added a setting for removing paywalled links from search results climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Watching Rust Glancer: Rust LSP using 100x less RAM climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 1d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "Kagi added a setting for removing paywalled links from search results",
+        "title": "Rust Glancer: Rust LSP using 100x less RAM",
         "type": "hn",
-        "url": "https://kagi.com/changelog#11296"
+        "url": "https://rust-glancer.github.io/blog/hello-world/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"PAYWALLED\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
+      "win_if": "WIN IF \"GLANCER\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
     },
     {
       "confidence": 0.39,
       "date": "2026-08-22",
       "id": 1617,
-      "keyword": "laptop",
+      "keyword": "productivity",
       "keyword2": "",
       "live": 39,
       "live_prev": 39,
       "manifold": {
-        "gamma": 1.007,
-        "geodesic": 79,
+        "gamma": 1.018,
+        "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "INDEX",
-      "odds": 2.54,
+      "odds": 2.59,
       "permalink": "/call/1617.html",
-      "prediction": "The machine flagged An okay laptop with 16GB of RAM is better than a nice laptop with 8GB, and this $520 HP crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
-      "rationale": "VEL +133%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 51.7d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +79% // RISING",
+      "prediction": "7 Productivity Tips That Sound Wrong (But Actually Work) is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH DEV.TO // ACCEL +100% // HALF-LIFE 100.8d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "An okay laptop with 16GB of RAM is better than a nice laptop with 8GB, and this $520 HP OmniBook proves it",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPYldwUkNFV2VsM3NJRWZCU1BRcFlPOGE5WFg2SmtUX2loNENncmNtbnBJV2JnTWFOXzllMG9SU0VpRXB2TTVDYlpaNG8ycDk3OWphTDlZZnM3MC1jSllKemxoeHQ1V180V1V1WnkwQ0tBSF9XMXBoODBiODhxN2ZTSFNOTnY?oc=5"
+        "title": "7 Productivity Tips That Sound Wrong (But Actually Work)",
+        "type": "devto",
+        "url": "https://dev.to/sylwia-lask/7-productivity-tips-that-sound-wrong-but-actually-work-5602"
       },
       "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-09-21"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-09-21"
     },
     {
       "confidence": 0.39,
       "date": "2026-08-22",
       "id": 1616,
-      "keyword": "productivity",
+      "keyword": "dawnwalker",
       "keyword2": "",
       "live": 39,
       "live_prev": 39,
@@ -192,37 +192,66 @@
       "market": "OVER",
       "odds": 2.56,
       "permalink": "/call/1616.html",
-      "prediction": "Dev.to writers are rallying around 7 Productivity Tips That Sound Wrong (But Actually Work). Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH DEV.TO // ACCEL +100% // HALF-LIFE 100.8d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The Blood of Dawnwalker won't run at 60fps on PS5 or Xbox at launch, new gameplay confirms is in the headlines. The signal says a bigger move (a deal, a rule, or a backlash) follows within two quarters.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "7 Productivity Tips That Sound Wrong (But Actually Work)",
-        "type": "devto",
-        "url": "https://dev.to/sylwia-lask/7-productivity-tips-that-sound-wrong-but-actually-work-5602"
+        "title": "The Blood of Dawnwalker won't run at 60fps on PS5 or Xbox at launch, new gameplay confirms",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE16QzBVbDNDYmZ0Ul90c1J0QW5zQXM1OHN3MHpuR2NFVWFJWFdrekEyMGtJRFV4Y3UyRHVsSkpsLUtpeXQ1SEhYLVViYmtwWEszOXpqbVV2SzZERHpwbFBvaDZHd2R1UTF0OXZKWnJPd3BLS3pOWjAwTA?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"PRODUCTIVITY\" CLEARS 3 MENTIONS IN A DAY BY 2026-09-21"
+      "win_if": "WIN IF \"DAWNWALKER\" CLEARS 3 MENTIONS IN A DAY BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1615,
-      "keyword": "accidentally",
+      "keyword": "laptop",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.033,
-        "geodesic": 97,
+        "gamma": 1.007,
+        "geodesic": 79,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/1615.html",
-      "prediction": "I accidentally logged hundreds of thousands of phone calls to military bases is climbing Lobsters today. Betting it graduates from enthusiast favorite to production-boring within a year.",
-      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL -200% // HALF-LIFE 104.3d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.04 // geodesic +97% // RISING",
+      "prediction": "Watch An okay laptop with 16GB of RAM is better than a nice laptop with 8GB, and this $520 HP leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +133%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 51.7d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-21",
+      "source": {
+        "title": "An okay laptop with 16GB of RAM is better than a nice laptop with 8GB, and this $520 HP OmniBook proves it",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPYldwUkNFV2VsM3NJRWZCU1BRcFlPOGE5WFg2SmtUX2loNENncmNtbnBJV2JnTWFOXzllMG9SU0VpRXB2TTVDYlpaNG8ycDk3OWphTDlZZnM3MC1jSllKemxoeHQ1V180V1V1WnkwQ0tBSF9XMXBoODBiODhxN2ZTSFNOTnY?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"LAPTOP\" RESURFACES BY 2026-09-21"
+    },
+    {
+      "confidence": 0.42,
+      "date": "2026-08-22",
+      "id": 1614,
+      "keyword": "accidentally",
+      "keyword2": "",
+      "live": 42,
+      "live_prev": 42,
+      "manifold": {
+        "gamma": 1.031,
+        "geodesic": 94,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.38,
+      "permalink": "/call/1614.html",
+      "prediction": "The signal on I accidentally logged hundreds of thousands of phone calls to military bases from Lobsters reads early-but-serious. Calling it: real adoption follows within two quarters.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH LOBSTERS // ACCEL -300% // HALF-LIFE 104.3d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.03 // geodesic +94% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
@@ -231,71 +260,13 @@
         "url": "https://lina.sh/blog/hijacking-e164-arpa"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"ACCIDENTALLY\" RESURFACES BY 2026-09-21"
-    },
-    {
-      "confidence": 0.43,
-      "date": "2026-08-22",
-      "id": 1614,
-      "keyword": "microsoft",
-      "keyword2": "",
-      "live": 43,
-      "live_prev": 43,
-      "manifold": {
-        "gamma": 1.002,
-        "geodesic": 89,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "RESURFACE",
-      "odds": 2.34,
-      "permalink": "/call/1614.html",
-      "prediction": "Call of Duty Finally Lands on Switch 2 after Microsoft's 10-year Nintendo Deal, but the is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
-      "rationale": "VEL +75%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +67% // CROSSING FROM HN // HALF-LIFE 54.5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +89% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-09-21",
-      "source": {
-        "title": "Call of Duty Finally Lands on Switch 2 after Microsoft's 10-year Nintendo Deal, but the Port Disappoints Early Testers",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNNVFRdlFOX0VPN3lUTDN0SHF4LWpRaUZ6Ui04a3RyMGk3WXVCd3ZMQUF6bDQyZG85UjhyWEFfTzBoQS1nWXVCQktKN0hrVHRQUmR0bVBmbUN1bWJUR3dlazUtQzIzV0tQRXJIcHloTmV0ZnExSzZiUkluc0dCN1pDZUpWRdIBiAFBVV95cUxPVkZHTUdUZjhXaG05ZnEwRmVoUlFvOFVuOFV5ay1lWXRlY0FMVVlZdmVyLVMtMERUWklGMmI4YlhITTlrY3B6enFDOFhMbjBnaDJ6YXpGMFptWEYwYzIxS3VHaXplUHo1dl9oZGgzeTVCWE5oMko5LV9od3dwYlVvWlhSRkxjTXNy?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"MICROSOFT\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
-    },
-    {
-      "confidence": 0.35,
-      "date": "2026-08-22",
-      "id": 1613,
-      "keyword": "products",
-      "keyword2": "",
-      "live": 35,
-      "live_prev": 35,
-      "manifold": {
-        "gamma": 1.001,
-        "geodesic": -50,
-        "phase": "PEAKING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.83,
-      "permalink": "/call/1613.html",
-      "prediction": "Normal people are about to find Amazon just hiked the prices for Echo, Fire TV, and Kindle products by up to 60 percent. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 49d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic -50% // PEAKING IN 1D",
-      "resolved_on": "",
-      "resolves_by": "2026-09-21",
-      "source": {
-        "title": "Amazon just hiked the prices for Echo, Fire TV, and Kindle products by up to 60 percent",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPQlVHczZHSkFpc281VW1uS3B4RlVtS0MtVFhIbXc2R0Y3cW81cWlzc3FLZ2NHU2dvY21YQTd0X2RDTFdXcm8zOV95ajZmZ0Q4R0F0VlN4UHUySks2YzRQTkktaXF5NXN5MVdhdHJidkNZMksxSVFDa3poTy1TYnVnaVQ0Ulg?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 75 BY 2026-09-21"
+      "win_if": "WIN IF \"ACCIDENTALLY\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
     },
     {
       "confidence": 0.36,
       "date": "2026-08-22",
-      "id": 1612,
-      "keyword": "everywhere",
+      "id": 1613,
+      "keyword": "imessages",
       "keyword2": "",
       "live": 36,
       "live_prev": 36,
@@ -305,39 +276,126 @@
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "OVER",
-      "odds": 2.74,
-      "permalink": "/call/1612.html",
-      "prediction": "Microsoft built a dedicated app that forces Bing everywhere on Windows 11, including just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 57.4d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "market": "INDEX",
+      "odds": 2.79,
+      "permalink": "/call/1613.html",
+      "prediction": "ChatGPT On Mac Can Now Read And Respond To Apple iMessages is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "Microsoft built a dedicated app that forces Bing everywhere on Windows 11, including Chrome, Firefox, and Brave",
+        "title": "ChatGPT On Mac Can Now Read And Respond To Apple iMessages",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQeEZaVVJXUVd6MTM2bnhuUzEtOWJkNE1TQ2x5N3A5OGx6NU5yYlM5a2JHSFZQVW9tWm1IYVNUQlBzVzJzN2dhZ1lqbjloT01HLWNheV8zM0hhOThrVDFaQnNmcmNFVXlyak9iOXpTMmd1RkVUUGRLQUh5SjBTaVpOTFZPOENVNjZybWt0Tkw3RFpnTFFCOXA5LVozdGdlSXFhWDhWeXJQMVJpNlV3Z3hEVzZHUXFJYjloSW9Ic1liSFA0ekVHek1ZRWlsTTFQdVNvZWplWWtncE5SVDhZQjRDTDlOUlQ?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE56Zno2X2Uwd3ZQV0xBRlNsR19tQld4WmxkSkgzY0U1SEJwb29DWjQyQl9zWUhMeFFFa3BDbFNSTnNmUXFFN1FEN213NFNILW5LWWVvNDJ1b0NZMk92N0QydFJuM0p3SjZJQnhleVM4QzRnZ1pwTGpYUA?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"EVERYWHERE\" CLEARS 4 MENTIONS IN A DAY BY 2026-09-21"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-09-21"
+    },
+    {
+      "confidence": 0.36,
+      "date": "2026-08-22",
+      "id": 1612,
+      "keyword": "products",
+      "keyword2": "",
+      "live": 36,
+      "live_prev": 36,
+      "manifold": {
+        "gamma": 1.001,
+        "geodesic": -50,
+        "phase": "PEAKING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.78,
+      "permalink": "/call/1612.html",
+      "prediction": "Amazon just hiked the prices for Echo, Fire TV, and Kindle products by up to 60 percent just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 49d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic -50% // PEAKING IN 1D",
+      "resolved_on": "",
+      "resolves_by": "2026-09-21",
+      "source": {
+        "title": "Amazon just hiked the prices for Echo, Fire TV, and Kindle products by up to 60 percent",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPQlVHczZHSkFpc281VW1uS3B4RlVtS0MtVFhIbXc2R0Y3cW81cWlzc3FLZ2NHU2dvY21YQTd0X2RDTFdXcm8zOV95ajZmZ0Q4R0F0VlN4UHUySks2YzRQTkktaXF5NXN5MVdhdHJidkNZMksxSVFDa3poTy1TYnVnaVQ0Ulg?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"PRODUCTS\" CLEARS 4 MENTIONS IN A DAY BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1611,
-      "keyword": "information",
+      "keyword": "warfare",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.007,
-        "geodesic": 93,
+        "gamma": 1.023,
+        "geodesic": 99,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/1611.html",
-      "prediction": "$TCP_α$: Margin-Controlled Confidence estimation for reliable Music Information Retrieval is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
+      "prediction": "The machine flagged Modern Warfare 4 beta's first update is live, adding a new map, mode, and toned-down crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +17%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL -50% // CROSSING FROM HN // HALF-LIFE 372.7d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.05 // geodesic +99% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-21",
+      "source": {
+        "title": "Modern Warfare 4 beta's first update is live, adding a new map, mode, and toned-down footsteps",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPWi1xekE5czRJR1NzZV84UGFSa0ZZa2hybHZfZ3BpMjhONEdBZmdBRFZodnpYWUQyM190dGw2RWhBSnVuNXlGOUlDTWszZTFfVDJUN3YzWXdyU3dIc2VKbm4yXzBoTWliLVdfWU82bVJuWU0wbUl1ZllnNjI5b3R6T29BYWMtV08xaExSNWhseUlaUWFl?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"WARFARE\" RESURFACES BY 2026-09-21"
+    },
+    {
+      "confidence": 0.4,
+      "date": "2026-08-22",
+      "id": 1610,
+      "keyword": "checklist",
+      "keyword2": "",
+      "live": 40,
+      "live_prev": 40,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 79,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.51,
+      "permalink": "/call/1610.html",
+      "prediction": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-21",
+      "source": {
+        "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2608.20331v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"CHECKLIST\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
+    },
+    {
+      "confidence": 0.4,
+      "date": "2026-08-22",
+      "id": 1609,
+      "keyword": "information",
+      "keyword2": "",
+      "live": 40,
+      "live_prev": 40,
+      "manifold": {
+        "gamma": 1.007,
+        "geodesic": 93,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.52,
+      "permalink": "/call/1609.html",
+      "prediction": "$TCP_α$: Margin-Controlled Confidence estimation for reliable Music Information Retrieval looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL -200% // HALF-LIFE 142d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +93% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
@@ -347,71 +405,13 @@
         "url": "https://arxiv.org/abs/2608.20326v1"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"INFORMATION\" RESURFACES BY 2026-09-21"
-    },
-    {
-      "confidence": 0.38,
-      "date": "2026-08-22",
-      "id": 1610,
-      "keyword": "trajectories",
-      "keyword2": "",
-      "live": 38,
-      "live_prev": 38,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "RESURFACE",
-      "odds": 2.66,
-      "permalink": "/call/1610.html",
-      "prediction": "This Information on trajectories: martingales and random times paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 230d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-09-21",
-      "source": {
-        "title": "Information on trajectories: martingales and random times",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2608.20337v1"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"TRAJECTORIES\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
-    },
-    {
-      "confidence": 0.39,
-      "date": "2026-08-22",
-      "id": 1609,
-      "keyword": "exclusive",
-      "keyword2": "",
-      "live": 39,
-      "live_prev": 39,
-      "manifold": {
-        "gamma": 1.003,
-        "geodesic": 79,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.56,
-      "permalink": "/call/1609.html",
-      "prediction": "Watch New Orks Codex exclusive on Warhammer TV leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
-      "rationale": "VEL +250%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 36d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +79% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-09-21",
-      "source": {
-        "title": "New Orks Codex exclusive on Warhammer TV",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQRGtCUXphdWpUcVhab3dhTnk0bmoxcHlxOXNoR1NmRzcyczlTOGxkRnJIT2JuMGlxM1dEVXhlOWhpdE9LZmY5V0ZldGRWYVVLNy1CUmdYUXlYMWh5ZUpoTGhFNVgtMWVDaGtnM3pMYlNVQTFTOV85OV9jdXpVZXA4U19QLVNWemd3TmVjdDB6VGRBd3dBa29pQTd6cWNHRWIyY19N?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-09-21"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 81 BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1608,
-      "keyword": "scrambles",
+      "keyword": "trajectories",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -424,23 +424,23 @@
       "market": "OVER",
       "odds": 2.94,
       "permalink": "/call/1608.html",
-      "prediction": "'GTA 6' Leaker Has Now Reached A Strip Club As Rockstar Scrambles is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Fresh cs.AI/cs.LG work on Information on trajectories: martingales and random times just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 230d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "'GTA 6' Leaker Has Now Reached A Strip Club As Rockstar Scrambles",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQRFdGWGV0M3A5V3drU3ozT29tM2liSzNJQlIxX2RXc0dZSkpLWWd0a1NoZ0JhSkNoNTNWdGNXXzFOb044ZzlVSExySG4tdDY1eGgtRGlVUURTSTI4cjdkdFVWUFVtTjQ3QjFQVEJoTTZuaU8wcEsyV1hwblFTaklBd2dEd0oweU01cktldHVXLUQzamRLV0NhaGtEMUZxVWdSajZheXdBb2RCbC1sWktNak9hNTQ?oc=5"
+        "title": "Information on trajectories: martingales and random times",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2608.20337v1"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"SCRAMBLES\" CLEARS 2 MENTIONS IN A DAY BY 2026-09-21"
+      "win_if": "WIN IF \"TRAJECTORIES\" CLEARS 2 MENTIONS IN A DAY BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1607,
-      "keyword": "checklist",
+      "keyword": "polansky",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -453,52 +453,52 @@
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/1607.html",
-      "prediction": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 100d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The press is circling Michael Polansky is training an AI model on skin that's still alive. Betting today's story is the small version of a much larger one by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2608.20331v1"
+        "title": "Michael Polansky is training an AI model on skin that's still alive",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPOXgwcGtqWjFOSDJMZm5LbVJxeGk4S2QzSnZuVFRXSXpLUk9hc1VZaTl3WVFud2RvejlrV3lzcHNPQV9hZ2V3R0k4bEcyQmNsOXdyUmJVVXRDZG1ZZVJhWmVjYmxTMGNPSnJHekVxd0dCcFJITjBxNFpldy14NHlPcUNLZm5YTVlrMXcwMWpyUXRKSGl6a2JmYVlWRzFIUGt0RWRj?oc=5"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"CHECKLIST\" RESURFACES BY 2026-09-21"
+      "win_if": "LONGSHOT: WIN IF \"POLANSKY\" RESURFACES BY 2026-09-21"
     },
     {
-      "confidence": 0.35,
+      "confidence": 0.36,
       "date": "2026-08-22",
       "id": 1606,
-      "keyword": "hibernation",
+      "keyword": "exclusive",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 35,
+      "live": 36,
+      "live_prev": 36,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
+        "gamma": 1.004,
+        "geodesic": 88,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "RESURFACE",
-      "odds": 2.86,
+      "odds": 2.76,
       "permalink": "/call/1606.html",
-      "prediction": "Putting mice into hibernation causes a major loss of synapses is industry news now, not a rumor. Calling it: a concrete shipping consequence lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "New Orks Codex exclusive on Warhammer TV just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +425%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +300% // CROSSING FROM HN // HALF-LIFE 86.7d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +88% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "Putting mice into hibernation causes a major loss of synapses",
-        "type": "ars",
-        "url": "https://arstechnica.com/science/2026/08/memories-stick-around-even-after-half-the-synapses-are-gone/"
+        "title": "New Orks Codex exclusive on Warhammer TV",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxQRGtCUXphdWpUcVhab3dhTnk0bmoxcHlxOXNoR1NmRzcyczlTOGxkRnJIT2JuMGlxM1dEVXhlOWhpdE9LZmY5V0ZldGRWYVVLNy1CUmdYUXlYMWh5ZUpoTGhFNVgtMWVDaGtnM3pMYlNVQTFTOV85OV9jdXpVZXA4U19QLVNWemd3TmVjdDB6VGRBd3dBa29pQTd6cWNHRWIyY19N?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"HIBERNATION\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
+      "win_if": "WIN IF \"EXCLUSIVE\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
     },
     {
       "confidence": 0.36,
       "date": "2026-08-22",
       "id": 1605,
-      "keyword": "expeditions",
+      "keyword": "everywhere",
       "keyword2": "",
       "live": 36,
       "live_prev": 36,
@@ -511,110 +511,52 @@
       "market": "INDEX",
       "odds": 2.82,
       "permalink": "/call/1605.html",
-      "prediction": "'ARC Raiders' Halting New Expeditions Until 2027 For 'Bigger Changes' is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The machine flagged Microsoft built a dedicated app that forces Bing everywhere on Windows 11, including crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 57.4d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "'ARC Raiders' Halting New Expeditions Until 2027 For 'Bigger Changes'",
+        "title": "Microsoft built a dedicated app that forces Bing everywhere on Windows 11, including Chrome, Firefox, and Brave",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOZVkyOWVFczk5TWV0bXJvY0tYTVM1MnRJQTlNNHdzMVFZXzVfRnI2c0xaeWVZZ0RsQl9RZGZXc0Jva2F5MUFuaHhPUF9sNFFYTlNwNUlINTlCaWdzQ3ZVQVFzRzE3czB6NW5JUW1wX3B6MWlxY2hXcjNPNFIxQ1RnV2JCWkItU0NDZEhrS0ltSWRFVUF6YVR0Mm1YbTFkS3VvVHZGcGxUYUJzcDdPUjRYX3dtVGdBQlE?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxQeEZaVVJXUVd6MTM2bnhuUzEtOWJkNE1TQ2x5N3A5OGx6NU5yYlM5a2JHSFZQVW9tWm1IYVNUQlBzVzJzN2dhZ1lqbjloT01HLWNheV8zM0hhOThrVDFaQnNmcmNFVXlyak9iOXpTMmd1RkVUUGRLQUh5SjBTaVpOTFZPOENVNjZybWt0Tkw3RFpnTFFCOXA5LVozdGdlSXFhWDhWeXJQMVJpNlV3Z3hEVzZHUXFJYjloSW9Ic1liSFA0ekVHek1ZRWlsTTFQdVNvZWplWWtncE5SVDhZQjRDTDlOUlQ?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-09-21"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-09-21"
     },
     {
-      "confidence": 0.38,
+      "confidence": 0.36,
       "date": "2026-08-22",
       "id": 1604,
-      "keyword": "comparison",
+      "keyword": "hibernation",
       "keyword2": "",
-      "live": 38,
-      "live_prev": 38,
+      "live": 36,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
-        "geodesic": 79,
+        "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "OVER",
-      "odds": 2.61,
+      "odds": 2.77,
       "permalink": "/call/1604.html",
-      "prediction": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
-      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM ARXIV // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "prediction": "Ars is covering Putting mice into hibernation causes a major loss of synapses. When it crosses from tech press to mainstream, regulation or a major incumbent move follows within two quarters.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring and sleep interruption detection",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2608.20322v1"
+        "title": "Putting mice into hibernation causes a major loss of synapses",
+        "type": "ars",
+        "url": "https://arstechnica.com/science/2026/08/memories-stick-around-even-after-half-the-synapses-are-gone/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"COMPARISON\" CLEARS 4 MENTIONS IN A DAY BY 2026-09-21"
+      "win_if": "WIN IF \"HIBERNATION\" CLEARS 3 MENTIONS IN A DAY BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1603,
-      "keyword": "collection",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.031,
-        "geodesic": 94,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/1603.html",
-      "prediction": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL -300% // HALF-LIFE 202d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.03 // geodesic +94% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-09-21",
-      "source": {
-        "title": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2608.20320v1"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"COLLECTION\" RESURFACES BY 2026-09-21"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-08-22",
-      "id": 1602,
-      "keyword": "git",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.047,
-        "geodesic": 100,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "RESURFACE",
-      "odds": 2.91,
-      "permalink": "/call/1602.html",
-      "prediction": "Lots of dev.to energy on Git Gud!. Betting a framework or starter kit consolidates the space before Q4.",
-      "rationale": "VEL +75%/7d // 1/10 FEEDS // REACH DEV.TO // HALF-LIFE 94.5d // MANIFOLD SPACELIKE // gamma 1.05 // rel-mom +0.06 // geodesic +100% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-09-21",
-      "source": {
-        "title": "Git Gud!",
-        "type": "devto",
-        "url": "https://dev.to/francistrdev/git-gud-4e6g"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"GIT\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-08-22",
-      "id": 1601,
-      "keyword": "dawnwalker",
+      "keyword": "scrambles",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -624,20 +566,78 @@
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "INDEX",
+      "market": "LONGSHOT",
       "odds": 2.94,
-      "permalink": "/call/1601.html",
-      "prediction": "The Blood of Dawnwalker won't run at 60fps on PS5 or Xbox at launch, new gameplay confirms is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "permalink": "/call/1603.html",
+      "prediction": "Watch 'GTA 6' Leaker Has Now Reached A Strip Club As Rockstar Scrambles leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "The Blood of Dawnwalker won't run at 60fps on PS5 or Xbox at launch, new gameplay confirms",
+        "title": "'GTA 6' Leaker Has Now Reached A Strip Club As Rockstar Scrambles",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE16QzBVbDNDYmZ0Ul90c1J0QW5zQXM1OHN3MHpuR2NFVWFJWFdrekEyMGtJRFV4Y3UyRHVsSkpsLUtpeXQ1SEhYLVViYmtwWEszOXpqbVV2SzZERHpwbFBvaDZHd2R1UTF0OXZKWnJPd3BLS3pOWjAwTA?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQRFdGWGV0M3A5V3drU3ozT29tM2liSzNJQlIxX2RXc0dZSkpLWWd0a1NoZ0JhSkNoNTNWdGNXXzFOb044ZzlVSExySG4tdDY1eGgtRGlVUURTSTI4cjdkdFVWUFVtTjQ3QjFQVEJoTTZuaU8wcEsyV1hwblFTaklBd2dEd0oweU01cktldHVXLUQzamRLV0NhaGtEMUZxVWdSajZheXdBb2RCbC1sWktNak9hNTQ?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 75 BY 2026-09-21"
+      "win_if": "LONGSHOT: WIN IF \"SCRAMBLES\" RESURFACES BY 2026-09-21"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-22",
+      "id": 1602,
+      "keyword": "comparison",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 79,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.91,
+      "permalink": "/call/1602.html",
+      "prediction": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM ARXIV // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-21",
+      "source": {
+        "title": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring and sleep interruption detection",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2608.20322v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"COMPARISON\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
+    },
+    {
+      "confidence": 0.35,
+      "date": "2026-08-22",
+      "id": 1601,
+      "keyword": "collection",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.031,
+        "geodesic": 94,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.89,
+      "permalink": "/call/1601.html",
+      "prediction": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL -300% // HALF-LIFE 202d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.03 // geodesic +94% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-21",
+      "source": {
+        "title": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2608.20320v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-09-21"
     },
     {
       "confidence": 0.34,
@@ -672,6 +672,35 @@
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1599,
+      "keyword": "tariffs",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/1599.html",
+      "prediction": "Canada will match US tariffs 'dollar for dollar' as trade talks break down is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 46.8d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-09-21",
+      "source": {
+        "title": "Canada will match US tariffs 'dollar for dollar' as trade talks break down",
+        "type": "hn",
+        "url": "https://www.bbc.com/news/articles/cvgvyy4x2mvo"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"TARIFFS\" RESURFACES BY 2026-09-21"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-08-22",
+      "id": 1598,
       "keyword": "openai",
       "keyword2": "",
       "live": 34,
@@ -682,10 +711,10 @@
         "phase": "BOTTOMING",
         "regime": "SPACELIKE"
       },
-      "market": "LONGSHOT",
+      "market": "RESURFACE",
       "odds": 2.94,
-      "permalink": "/call/1599.html",
-      "prediction": "Devs are starring openai/codex hard today. Betting it picks up a corporate backer or a managed-cloud offering within six months.",
+      "permalink": "/call/1598.html",
+      "prediction": "openai/codex is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // HALF-LIFE 26.8d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic +21% // BOTTOMING IN 1D",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
@@ -695,27 +724,27 @@
         "url": "https://github.com/openai/codex"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"OPENAI\" RESURFACES BY 2026-09-21"
+      "win_if": "WIN IF \"OPENAI\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
-      "id": 1598,
+      "id": 1597,
       "keyword": "launches",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.002,
-        "geodesic": 63,
+        "gamma": 1.003,
+        "geodesic": 77,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "RESURFACE",
+      "market": "INDEX",
       "odds": 2.94,
-      "permalink": "/call/1598.html",
-      "prediction": "NBA 2K HQ Launches Today: Mobile Builder Lets You Draft Your Player Early is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
-      "rationale": "VEL +100%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL -400% // CROSSING FROM HN // HALF-LIFE 65d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +63% // RISING",
+      "permalink": "/call/1597.html",
+      "prediction": "Watch NBA 2K HQ Launches Today: Mobile Builder Lets You Draft Your Player Early leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +200%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL -300% // CROSSING FROM HN // HALF-LIFE 65d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.03 // geodesic +77% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
@@ -724,71 +753,42 @@
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPc1FELV9acGtiUVRwbGJyem0tZS1DdkRDcmgtelVpVC1paG50MFliM2FIdTgxTEpaMV85OFBPTzMtbWFkZUVMVEVfR1BSWS1HNzBvY0pjamZBd2ZHWTVDS1JTNGNtZEhEUFJZTGpkbkVBck5aWWxQaEZaeDJ4TU5PQTdtNHFCQ0N0RGtXdEFFQTlPUmdfckFWV2hoWkZKTmxKUkQ1SGJoYkZPVmlfbndXMnBiSHIyTy1SV3BubWV2dU9hMENGZkE?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"LAUNCHES\" RESURFACES ACROSS THE FEEDS BY 2026-09-21"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-08-22",
-      "id": 1597,
-      "keyword": "deleting",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.94,
-      "permalink": "/call/1597.html",
-      "prediction": "Felony charges for citizen deleting phone data at US Border is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 96d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-09-21",
-      "source": {
-        "title": "Felony charges for citizen deleting phone data at US Border",
-        "type": "hn",
-        "url": "https://www.nytimes.com/2026/08/21/us/politics/samuel-tunick-deleted-phone-felony.html"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-09-21"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 81 BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1596,
-      "keyword": "supercars",
+      "keyword": "git",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
+        "gamma": 1.047,
+        "geodesic": 100,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "OVER",
       "odds": 2.94,
       "permalink": "/call/1596.html",
-      "prediction": "The Lucid Air Air Sapphire Beats Genuine Mid-Engine Supercars From 0-200-0 MPH is in the headlines. The signal says a bigger move (a deal, a rule, or a backlash) follows within two quarters.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Dev.to writers are rallying around Git Gud!. Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
+      "rationale": "VEL +75%/7d // 1/10 FEEDS // REACH DEV.TO // HALF-LIFE 94.5d // MANIFOLD SPACELIKE // gamma 1.05 // rel-mom +0.06 // geodesic +100% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "The Lucid Air Air Sapphire Beats Genuine Mid-Engine Supercars From 0-200-0 MPH",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE51Skdsd0ZPVWVLMk1IU0lpYTFObXROS3NDS0NEYzFzdTFmM0FlTl9hOEJ3X1hSSkFmNW1vdEF0dTlkWnJFVkU2eHdBaVhyQjhSNHVFYUtWVVBWbzNUdVgzcHVNNUV6aWpQTW9JeEM2TlJwWUtibUtYag?oc=5"
+        "title": "Git Gud!",
+        "type": "devto",
+        "url": "https://dev.to/francistrdev/git-gud-4e6g"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"SUPERCARS\" CLEARS 2 MENTIONS IN A DAY BY 2026-09-21"
+      "win_if": "WIN IF \"GIT\" CLEARS 3 MENTIONS IN A DAY BY 2026-09-21"
     },
     {
       "confidence": 0.34,
       "date": "2026-08-22",
       "id": 1595,
-      "keyword": "transportation",
+      "keyword": "expeditions",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -801,17 +801,17 @@
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/1595.html",
-      "prediction": "Normal people are about to find Trump's space transportation policy calls for new spaceport on federal land. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM ARXIV // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The press is circling 'ARC Raiders' Halting New Expeditions Until 2027 For 'Bigger Changes'. Betting today's story is the small version of a much larger one by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-09-21",
       "source": {
-        "title": "Trump's space transportation policy calls for new spaceport on federal land",
-        "type": "ars",
-        "url": "https://arstechnica.com/space/2026/08/trump-admin-calls-for-more-spaceports-to-handle-surge-in-launches/"
+        "title": "'ARC Raiders' Halting New Expeditions Until 2027 For 'Bigger Changes'",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxOZVkyOWVFczk5TWV0bXJvY0tYTVM1MnRJQTlNNHdzMVFZXzVfRnI2c0xaeWVZZ0RsQl9RZGZXc0Jva2F5MUFuaHhPUF9sNFFYTlNwNUlINTlCaWdzQ3ZVQVFzRzE3czB6NW5JUW1wX3B6MWlxY2hXcjNPNFIxQ1RnV2JCWkItU0NDZEhrS0ltSWRFVUF6YVR0Mm1YbTFkS3VvVHZGcGxUYUJzcDdPUjRYX3dtVGdBQlE?oc=5"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"TRANSPORTATION\" RESURFACES BY 2026-09-21"
+      "win_if": "LONGSHOT: WIN IF \"EXPEDITIONS\" RESURFACES BY 2026-09-21"
     },
     {
       "confidence": 0.34,
@@ -1151,14 +1151,14 @@
       "permalink": "/call/1583.html",
       "prediction": "Fresh cs.AI/cs.LG work on G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 99d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-08-22",
       "resolves_by": "2026-09-20",
       "source": {
         "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
         "type": "arxiv",
         "url": "https://arxiv.org/abs/2608.20331v1"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "WIN IF \"CHECKLIST\" CLEARS 2 MENTIONS IN A DAY BY 2026-09-20"
     },
     {
@@ -47043,11 +47043,11 @@
   "schema": "the-signal/record/1",
   "scoreboard": {
     "has_rate": true,
-    "hits": 389,
+    "hits": 390,
     "misses": 638,
-    "open": 591,
+    "open": 590,
     "rate": 37,
-    "resolved": 1027,
+    "resolved": 1028,
     "verdict": "UNDERWATER, AND NOT HIDING IT"
   },
   "total": 1618
