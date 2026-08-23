@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 23, 2026** // Index **71 (SURGING)** // hottest **WEEK** // record **396-653**
+**August 23, 2026** // Index **72 (SURGING)** // hottest **TIME** // record **396-653**
 
 > The machine flagged 7 Productivity Tips That Sound Wrong (But Actually Work) crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
