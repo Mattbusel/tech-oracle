@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8324,
+    "defined": 8325,
     "phases": {
-      "BOTTOMING": 228,
-      "CHURNING": 628,
-      "FALLING": 67,
-      "FLAT": 6556,
-      "PEAKING": 88,
-      "RISING": 757
+      "BOTTOMING": 227,
+      "CHURNING": 630,
+      "FALLING": 69,
+      "FLAT": 6542,
+      "PEAKING": 87,
+      "RISING": 770
     },
-    "scanned": 35250,
+    "scanned": 35268,
     "turns": [
       {
         "active_days": 246,
@@ -54,6 +54,17 @@
         "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "META"
+      },
+      {
+        "active_days": 233,
+        "gamma": 1.0,
+        "geodesic": 21,
+        "peak": 20,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 54,
+        "regime": "SPACELIKE",
+        "term": "OPENAI"
       },
       {
         "active_days": 209,
@@ -111,15 +122,26 @@
         "term": "STATES"
       },
       {
-        "active_days": 228,
+        "active_days": 237,
+        "gamma": 1.01,
+        "geodesic": 73,
+        "peak": 15,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 65,
+        "regime": "SPACELIKE",
+        "term": "CHATGPT"
+      },
+      {
+        "active_days": 236,
         "gamma": 1.0,
-        "geodesic": -52,
+        "geodesic": -63,
         "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 40,
+        "prob_rising": 37,
         "regime": "SPACELIKE",
-        "term": "SEARCH"
+        "term": "MICROSOFT"
       },
       {
         "active_days": 216,
@@ -164,28 +186,6 @@
         "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "QUANTUM"
-      },
-      {
-        "active_days": 203,
-        "gamma": 1.0,
-        "geodesic": 43,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 59,
-        "regime": "SPACELIKE",
-        "term": "MACOS"
-      },
-      {
-        "active_days": 241,
-        "gamma": 1.02,
-        "geodesic": -91,
-        "peak": 11,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 32,
-        "regime": "SPACELIKE",
-        "term": "BUILDING"
       }
     ]
   },

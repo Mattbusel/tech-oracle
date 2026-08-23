@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 23, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **396-653**
+**August 23, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **397-653**
 
-> The machine flagged Motorola's GrapheneOS phones will launch in 2027 priced higher than Pixels crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> I spent $266 and four AI models to own my tablet. GLM-5.3 finished it in a day is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

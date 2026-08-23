@@ -37,7 +37,7 @@
     },
     {
       "dir": -1,
-      "p": 0.325,
+      "p": 0.312,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
@@ -58,14 +58,14 @@
     },
     {
       "dir": 1,
-      "p": 0.697,
+      "p": 0.694,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
     },
     {
       "dir": -1,
-      "p": 0.305,
+      "p": 0.313,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "GOOGLE"
@@ -114,7 +114,7 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.305,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -128,15 +128,15 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
-      "phase": "RISING",
+      "p": 0.5,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
     },
     {
       "dir": 1,
-      "p": 0.622,
-      "phase": "CHURNING",
+      "p": 0.635,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
     },
@@ -184,7 +184,7 @@
     },
     {
       "dir": 1,
-      "p": 0.687,
+      "p": 0.693,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LIST"
@@ -212,15 +212,15 @@
     },
     {
       "dir": -1,
-      "p": 0.31,
+      "p": 0.335,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
     },
     {
       "dir": 1,
-      "p": 0.61,
-      "phase": "CHURNING",
+      "p": 0.543,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
     },
@@ -331,8 +331,8 @@
     },
     {
       "dir": 1,
-      "p": 0.693,
-      "phase": "RISING",
+      "p": 0.645,
+      "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
     },
@@ -352,9 +352,9 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
-      "phase": "RISING",
-      "regime": "SPACELIKE",
+      "p": 0.5,
+      "phase": "FLAT",
+      "regime": "LIGHTLIKE",
       "term": "LOCAL"
     },
     {
@@ -366,7 +366,7 @@
     },
     {
       "dir": -1,
-      "p": 0.352,
+      "p": 0.383,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -387,8 +387,8 @@
     },
     {
       "dir": -1,
-      "p": 0.322,
-      "phase": "FALLING",
+      "p": 0.375,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
     },
@@ -415,24 +415,24 @@
     },
     {
       "dir": -1,
-      "p": 0.395,
-      "phase": "BOTTOMING",
+      "p": 0.349,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SEARCH"
     }
   ],
   "chasm": [
     {
-      "days": 89,
+      "days": 244,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "FOLDABLE"
+      "term": "NINTENDO"
     },
     {
-      "days": 242,
+      "days": 243,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "LEAKS"
+      "term": "COOL"
     },
     {
       "days": 245,
@@ -462,7 +462,7 @@
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 52
+    "value": 56
   },
   "manifold": [
     {
@@ -531,16 +531,16 @@
       "term": "CLAUDE"
     },
     {
-      "beta": -0.136,
-      "curvature": 0.16,
+      "beta": -0.155,
+      "curvature": -0.34,
       "defined": true,
-      "ds2": 0.728,
-      "gamma": 1.009,
-      "geodesic_trend": -0.875,
+      "ds2": 0.691,
+      "gamma": 1.012,
+      "geodesic_trend": -0.942,
       "phase": "FALLING",
-      "prob_rising": 32,
+      "prob_rising": 31,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.041,
+      "rel_momentum": -0.048,
       "term": "LANGUAGE"
     },
     {
@@ -570,29 +570,29 @@
       "term": "FIFA"
     },
     {
-      "beta": 0.131,
-      "curvature": -0.15,
+      "beta": 0.116,
+      "curvature": -0.51,
       "defined": true,
-      "ds2": 0.738,
-      "gamma": 1.009,
-      "geodesic_trend": 0.987,
+      "ds2": 0.768,
+      "gamma": 1.007,
+      "geodesic_trend": 0.971,
       "phase": "RISING",
-      "prob_rising": 70,
+      "prob_rising": 69,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.053,
+      "rel_momentum": 0.047,
       "term": "VIDEO"
     },
     {
-      "beta": -0.185,
-      "curvature": -1.57,
+      "beta": -0.168,
+      "curvature": -0.98,
       "defined": true,
-      "ds2": 0.63,
-      "gamma": 1.018,
-      "geodesic_trend": -0.976,
+      "ds2": 0.663,
+      "gamma": 1.014,
+      "geodesic_trend": -0.936,
       "phase": "FALLING",
-      "prob_rising": 30,
+      "prob_rising": 31,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.059,
+      "rel_momentum": -0.05,
       "term": "GOOGLE"
     },
     {
@@ -650,18 +650,13 @@
   ],
   "movers": [
     {
-      "count": 3,
-      "term": "FOLDABLE",
-      "vel": 425
+      "count": 4,
+      "term": "NINTENDO",
+      "vel": 600
     },
     {
       "count": 3,
-      "term": "THERE",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "CONTENT",
+      "term": "COOL",
       "vel": 425
     },
     {
@@ -671,12 +666,17 @@
     },
     {
       "count": 3,
-      "term": "LEAKS",
+      "term": "THERE",
       "vel": 425
     },
     {
-      "count": 4,
-      "term": "LATEST",
+      "count": 3,
+      "term": "ACTUALLY",
+      "vel": 400
+    },
+    {
+      "count": 3,
+      "term": "RADAR",
       "vel": 400
     }
   ],
@@ -753,27 +753,27 @@
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 2,
+      "delta": 3,
       "index": 100,
-      "name": "AI"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -2,
-      "index": 78,
       "name": "PLATFORM"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 28,
-      "name": "ROBOTS"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 17,
-      "name": "SECURITY"
+      "index": 95,
+      "name": "AI"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -1,
+      "index": 26,
+      "name": "ROBOTS"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 16,
+      "name": "CHIPS"
     },
     {
       "arrow": "FLAT",
@@ -782,22 +782,22 @@
       "name": "RUST"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 6,
-      "name": "CHIPS"
+      "arrow": "UP",
+      "delta": 1,
+      "index": 11,
+      "name": "SECURITY"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 5,
+      "name": "CLOUD"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
       "index": 0,
       "name": "CRYPTO"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 0,
-      "name": "CLOUD"
     }
   ],
   "source_weights": [
@@ -834,7 +834,7 @@
     {
       "bar": 62,
       "has_rate": true,
-      "hits": 183,
+      "hits": 184,
       "label": "THE NEWS",
       "misses": 258,
       "rate": 41,
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 35250
+  "tracked_terms": 35268
 }
