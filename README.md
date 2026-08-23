@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 23, 2026** // Index **72 (SURGING)** // hottest **TIME** // record **396-653**
+**August 23, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **396-653**
 
-> The machine flagged 7 Productivity Tips That Sound Wrong (But Actually Work) crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> The machine flagged Motorola's GrapheneOS phones will launch in 2027 priced higher than Pixels crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
