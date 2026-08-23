@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 22, 2026** // Index **71 (SURGING)** // hottest **DATA** // record **390-638**
+**August 23, 2026** // Index **71 (SURGING)** // hottest **WEEK** // record **396-653**
 
-> Watching Rust Glancer: Rust LSP using 100x less RAM climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> The machine flagged 7 Productivity Tips That Sound Wrong (But Actually Work) crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
