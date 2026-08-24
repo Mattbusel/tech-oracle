@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8338,
+    "defined": 8341,
     "phases": {
-      "BOTTOMING": 235,
-      "CHURNING": 593,
-      "FALLING": 83,
-      "FLAT": 6543,
-      "PEAKING": 87,
-      "RISING": 797
+      "BOTTOMING": 239,
+      "CHURNING": 601,
+      "FALLING": 82,
+      "FLAT": 6527,
+      "PEAKING": 82,
+      "RISING": 810
     },
-    "scanned": 35057,
+    "scanned": 35095,
     "turns": [
       {
         "active_days": 200,
@@ -36,35 +36,13 @@
       {
         "active_days": 247,
         "gamma": 1.0,
-        "geodesic": 16,
+        "geodesic": -12,
         "peak": 25,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 53,
+        "prob_rising": 48,
         "regime": "SPACELIKE",
         "term": "AGENT"
-      },
-      {
-        "active_days": 218,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 26,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "ANTHROPIC"
-      },
-      {
-        "active_days": 247,
-        "gamma": 1.0,
-        "geodesic": 47,
-        "peak": 23,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 59,
-        "regime": "SPACELIKE",
-        "term": "APPLE"
       },
       {
         "active_days": 184,
@@ -91,22 +69,22 @@
       {
         "active_days": 234,
         "gamma": 1.01,
-        "geodesic": -43,
+        "geodesic": -6,
         "peak": 20,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 41,
+        "prob_rising": 49,
         "regime": "SPACELIKE",
         "term": "OPENAI"
       },
       {
         "active_days": 210,
         "gamma": 1.01,
-        "geodesic": 91,
+        "geodesic": 95,
         "peak": 21,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 68,
+        "prob_rising": 69,
         "regime": "SPACELIKE",
         "term": "AMAZON"
       },
@@ -133,17 +111,6 @@
         "term": "LLMS"
       },
       {
-        "active_days": 241,
-        "gamma": 1.0,
-        "geodesic": 18,
-        "peak": 16,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 54,
-        "regime": "SPACELIKE",
-        "term": "SYSTEM"
-      },
-      {
         "active_days": 223,
         "gamma": 1.0,
         "geodesic": 6,
@@ -166,6 +133,28 @@
         "term": "CHATGPT"
       },
       {
+        "active_days": 236,
+        "gamma": 1.01,
+        "geodesic": -70,
+        "peak": 15,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 36,
+        "regime": "SPACELIKE",
+        "term": "CODING"
+      },
+      {
+        "active_days": 246,
+        "gamma": 1.0,
+        "geodesic": -26,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 45,
+        "regime": "SPACELIKE",
+        "term": "YEARS"
+      },
+      {
         "active_days": 237,
         "gamma": 1.0,
         "geodesic": 35,
@@ -186,6 +175,17 @@
         "prob_rising": 48,
         "regime": "SPACELIKE",
         "term": "SEARCH"
+      },
+      {
+        "active_days": 195,
+        "gamma": 1.0,
+        "geodesic": 0,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 50,
+        "regime": "SPACELIKE",
+        "term": "GENERATION"
       }
     ]
   },

@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 24, 2026** // Index **72 (SURGING)** // hottest **TIME** // record **401-673**
+**August 24, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **401-673**
 
 > Dev.to writers are rallying around 7 Productivity Tips That Sound Wrong (But Actually Work). Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
