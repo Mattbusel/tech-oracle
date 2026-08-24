@@ -25,7 +25,7 @@ Worker for the paid gate. No server you operate, no database you run.
 
 **August 24, 2026** // Index **72 (SURGING)** // hottest **TIME** // record **401-673**
 
-> Everything I own, owned is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Dev.to writers are rallying around 7 Productivity Tips That Sound Wrong (But Actually Work). Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
