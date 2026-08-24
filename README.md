@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 23, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **397-653**
+**August 24, 2026** // Index **72 (SURGING)** // hottest **TIME** // record **401-673**
 
-> I spent $266 and four AI models to own my tablet. GLM-5.3 finished it in a day is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> Everything I own, owned is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
