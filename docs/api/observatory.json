@@ -58,7 +58,7 @@
     },
     {
       "dir": -1,
-      "p": 0.306,
+      "p": 0.3,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
@@ -100,7 +100,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.303,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "WAR"
@@ -121,7 +121,7 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.308,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
@@ -135,7 +135,7 @@
     },
     {
       "dir": 1,
-      "p": 0.693,
+      "p": 0.692,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -191,8 +191,8 @@
     },
     {
       "dir": 1,
-      "p": 0.513,
-      "phase": "PEAKING",
+      "p": 0.626,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "META"
     },
@@ -211,15 +211,15 @@
       "term": "WINTER"
     },
     {
-      "dir": -1,
-      "p": 0.4,
+      "dir": 1,
+      "p": 0.525,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
     },
     {
       "dir": 1,
-      "p": 0.654,
+      "p": 0.61,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
@@ -261,14 +261,14 @@
     },
     {
       "dir": 1,
-      "p": 0.641,
+      "p": 0.538,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LLMS"
     },
     {
-      "dir": -1,
-      "p": 0.414,
+      "dir": 1,
+      "p": 0.543,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SPACEX"
@@ -310,7 +310,7 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.309,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -331,7 +331,7 @@
     },
     {
       "dir": -1,
-      "p": 0.469,
+      "p": 0.4,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
@@ -359,7 +359,7 @@
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.698,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CHINA"
@@ -372,9 +372,9 @@
       "term": "YEARS"
     },
     {
-      "dir": 1,
-      "p": 0.524,
-      "phase": "PEAKING",
+      "dir": -1,
+      "p": 0.468,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "REAL"
     },
@@ -401,7 +401,7 @@
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.698,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SELF"
@@ -415,7 +415,7 @@
     },
     {
       "dir": 1,
-      "p": 0.649,
+      "p": 0.555,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SEARCH"
@@ -423,22 +423,16 @@
   ],
   "chasm": [
     {
-      "days": 244,
+      "days": 247,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "SOON"
+      "term": "COMPUTER"
     },
     {
       "days": 247,
-      "origin": "ARXIV",
+      "origin": "HN",
       "reach": "THE NEWS",
-      "term": "BLOOD"
-    },
-    {
-      "days": 247,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "REAL"
+      "term": "NVIDIA"
     },
     {
       "days": 211,
@@ -447,22 +441,28 @@
       "term": "25TH"
     },
     {
-      "days": 247,
+      "days": 217,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "ABSOLUTE"
+      "reach": "THE NEWS",
+      "term": "60FPS"
+    },
+    {
+      "days": 128,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "64GB"
     },
     {
       "days": 247,
       "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "ADDS"
+      "reach": "ARS",
+      "term": "ABSOLUTE"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "NEUTRAL",
-    "value": 50
+    "label": "EXTREME GREED",
+    "value": 80
   },
   "manifold": [
     {
@@ -570,16 +570,16 @@
       "term": "FIFA"
     },
     {
-      "beta": -0.104,
-      "curvature": 0.12,
+      "beta": -0.149,
+      "curvature": -1.08,
       "defined": true,
-      "ds2": 0.792,
-      "gamma": 1.005,
-      "geodesic_trend": -0.971,
+      "ds2": 0.702,
+      "gamma": 1.011,
+      "geodesic_trend": -0.998,
       "phase": "FALLING",
-      "prob_rising": 31,
+      "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.042,
+      "rel_momentum": -0.065,
       "term": "VIDEO"
     },
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": 0.149,
-      "curvature": 0.15,
+      "beta": 0.154,
+      "curvature": 0.27,
       "defined": true,
-      "ds2": 0.701,
-      "gamma": 1.011,
+      "ds2": 0.692,
+      "gamma": 1.012,
       "geodesic_trend": 0.998,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.061,
+      "rel_momentum": 0.063,
       "term": "SERIES"
     },
     {
@@ -651,32 +651,32 @@
   "movers": [
     {
       "count": 4,
-      "term": "SOON",
+      "term": "COMPUTER",
       "vel": 600
     },
     {
+      "count": 3,
+      "term": "NVIDIA",
+      "vel": 425
+    },
+    {
+      "count": 3,
+      "term": "MARVEL",
+      "vel": 425
+    },
+    {
       "count": 4,
-      "term": "BLOOD",
-      "vel": 460
-    },
-    {
-      "count": 3,
-      "term": "REAL",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "SERVER",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "STUDY",
+      "term": "HARDWARE",
       "vel": 400
     },
     {
       "count": 3,
-      "term": "LOCAL",
+      "term": "RELEASES",
+      "vel": 400
+    },
+    {
+      "count": 3,
+      "term": "SAFETY",
       "vel": 400
     }
   ],
@@ -753,45 +753,45 @@
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 2,
+      "delta": 4,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -2,
-      "index": 85,
+      "delta": -4,
+      "index": 68,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 25,
-      "name": "SECURITY"
+      "index": 32,
+      "name": "CHIPS"
     },
     {
-      "arrow": "DOWN",
-      "delta": -2,
-      "index": 20,
-      "name": "CHIPS"
+      "arrow": "UP",
+      "delta": 2,
+      "index": 9,
+      "name": "CRYPTO"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 10,
+      "index": 9,
       "name": "CLOUD"
     },
     {
       "arrow": "UP",
       "delta": 1,
       "index": 5,
-      "name": "CRYPTO"
+      "name": "RUST"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 0,
-      "name": "RUST"
+      "arrow": "DOWN",
+      "delta": -3,
+      "index": 5,
+      "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
@@ -834,12 +834,12 @@
     {
       "bar": 62,
       "has_rate": true,
-      "hits": 188,
+      "hits": 191,
       "label": "THE NEWS",
       "misses": 275,
       "rate": 40,
       "source": "news",
-      "weight": 0.92
+      "weight": 0.93
     },
     {
       "bar": 60,
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 34934
+  "tracked_terms": 34956
 }
