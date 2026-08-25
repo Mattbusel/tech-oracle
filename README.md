@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 24, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **401-673**
+**August 25, 2026** // Index **71 (SURGING)** // hottest **AGENT** // record **410-686**
 
-> Dev.to writers are rallying around 7 Productivity Tips That Sound Wrong (But Actually Work). Expect tutorials to outpace the docs and adoption to snowball within a quarter.
+> 7 Productivity Tips That Sound Wrong (But Actually Work) is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
