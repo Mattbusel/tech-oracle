@@ -86,8 +86,8 @@
     },
     {
       "dir": 1,
-      "p": 0.68,
-      "phase": "RISING",
+      "p": 0.659,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "TRUMP"
     },
@@ -100,8 +100,8 @@
     },
     {
       "dir": -1,
-      "p": 0.303,
-      "phase": "FALLING",
+      "p": 0.306,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "WAR"
     },
@@ -121,7 +121,7 @@
     },
     {
       "dir": -1,
-      "p": 0.308,
+      "p": 0.304,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
@@ -135,7 +135,7 @@
     },
     {
       "dir": 1,
-      "p": 0.692,
+      "p": 0.69,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -149,8 +149,8 @@
     },
     {
       "dir": -1,
-      "p": 0.304,
-      "phase": "FALLING",
+      "p": 0.307,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "MULTI"
     },
@@ -212,14 +212,14 @@
     },
     {
       "dir": 1,
-      "p": 0.525,
+      "p": 0.567,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
     },
     {
       "dir": 1,
-      "p": 0.61,
+      "p": 0.654,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
@@ -233,7 +233,7 @@
     },
     {
       "dir": 1,
-      "p": 0.697,
+      "p": 0.694,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "AMAZON"
@@ -345,7 +345,7 @@
     },
     {
       "dir": 1,
-      "p": 0.675,
+      "p": 0.684,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LOCAL"
@@ -359,22 +359,22 @@
     },
     {
       "dir": 1,
-      "p": 0.698,
+      "p": 0.692,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CHINA"
     },
     {
       "dir": -1,
-      "p": 0.432,
+      "p": 0.345,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "YEARS"
     },
     {
-      "dir": -1,
-      "p": 0.468,
-      "phase": "CHURNING",
+      "dir": 1,
+      "p": 0.524,
+      "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "REAL"
     },
@@ -415,7 +415,7 @@
     },
     {
       "dir": 1,
-      "p": 0.555,
+      "p": 0.649,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SEARCH"
@@ -424,9 +424,9 @@
   "chasm": [
     {
       "days": 247,
-      "origin": "HN",
+      "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "COMPUTER"
+      "term": "ACTION"
     },
     {
       "days": 247,
@@ -435,34 +435,34 @@
       "term": "NVIDIA"
     },
     {
-      "days": 211,
-      "origin": "HN",
+      "days": 247,
+      "origin": "ARXIV",
       "reach": "THE NEWS",
-      "term": "25TH"
+      "term": "BLOOD"
     },
     {
-      "days": 217,
+      "days": 246,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "60FPS"
-    },
-    {
-      "days": 128,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "64GB"
+      "term": "ANNOUNCED"
     },
     {
       "days": 247,
       "origin": "HN",
-      "reach": "ARS",
-      "term": "ABSOLUTE"
+      "reach": "THE NEWS",
+      "term": "COMPUTER"
+    },
+    {
+      "days": 247,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "REAL"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "EXTREME GREED",
-    "value": 80
+    "label": "GREED",
+    "value": 61
   },
   "manifold": [
     {
@@ -622,16 +622,16 @@
       "term": "SERIES"
     },
     {
-      "beta": 0.036,
-      "curvature": 1.37,
+      "beta": 0.012,
+      "curvature": 0.9,
       "defined": true,
-      "ds2": 0.928,
-      "gamma": 1.001,
-      "geodesic_trend": 0.901,
-      "phase": "RISING",
-      "prob_rising": 68,
+      "ds2": 0.976,
+      "gamma": 1.0,
+      "geodesic_trend": 0.793,
+      "phase": "CHURNING",
+      "prob_rising": 66,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.01,
+      "rel_momentum": 0.003,
       "term": "TRUMP"
     },
     {
@@ -650,40 +650,40 @@
   ],
   "movers": [
     {
+      "count": 5,
+      "term": "ACTION",
+      "vel": 775
+    },
+    {
       "count": 4,
-      "term": "COMPUTER",
+      "term": "NVIDIA",
       "vel": 600
     },
     {
+      "count": 4,
+      "term": "BLOOD",
+      "vel": 460
+    },
+    {
       "count": 3,
-      "term": "NVIDIA",
+      "term": "REAL",
+      "vel": 425
+    },
+    {
+      "count": 3,
+      "term": "COMPUTER",
       "vel": 425
     },
     {
       "count": 3,
       "term": "MARVEL",
       "vel": 425
-    },
-    {
-      "count": 4,
-      "term": "HARDWARE",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "RELEASES",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "SAFETY",
-      "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 2,
-    "delta_word": "FALLING",
+    "delta_abs": 0,
+    "delta_word": "FLAT",
     "has_prev": true,
     "highest_days": 0,
     "history": [
@@ -741,45 +741,51 @@
       },
       {
         "date": "2026-08-25",
-        "index": 70
+        "index": 72
       }
     ],
-    "index": 70,
+    "index": 72,
     "theme": "APPLE",
-    "total": 257,
+    "total": 266,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 4,
+      "delta": 3,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "DOWN",
-      "delta": -4,
-      "index": 68,
+      "delta": -5,
+      "index": 67,
       "name": "PLATFORM"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 32,
+      "index": 33,
       "name": "CHIPS"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 9,
+      "index": 10,
       "name": "CRYPTO"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 9,
+      "index": 10,
       "name": "CLOUD"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -2,
+      "index": 10,
+      "name": "SECURITY"
     },
     {
       "arrow": "UP",
@@ -789,14 +795,8 @@
     },
     {
       "arrow": "DOWN",
-      "delta": -3,
+      "delta": -2,
       "index": 5,
-      "name": "SECURITY"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -3,
-      "index": 0,
       "name": "ROBOTS"
     }
   ],
@@ -834,10 +834,10 @@
     {
       "bar": 62,
       "has_rate": true,
-      "hits": 191,
+      "hits": 193,
       "label": "THE NEWS",
       "misses": 275,
-      "rate": 40,
+      "rate": 41,
       "source": "news",
       "weight": 0.93
     },
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 34956
+  "tracked_terms": 34980
 }

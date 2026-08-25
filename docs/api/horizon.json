@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8351,
+    "defined": 8353,
     "phases": {
       "BOTTOMING": 254,
-      "CHURNING": 601,
-      "FALLING": 69,
-      "FLAT": 6609,
-      "PEAKING": 75,
-      "RISING": 743
+      "CHURNING": 600,
+      "FALLING": 66,
+      "FLAT": 6598,
+      "PEAKING": 82,
+      "RISING": 753
     },
-    "scanned": 34956,
+    "scanned": 34980,
     "turns": [
       {
         "active_days": 147,
@@ -35,23 +35,23 @@
       },
       {
         "active_days": 196,
-        "gamma": 1.0,
-        "geodesic": 13,
+        "gamma": 1.01,
+        "geodesic": 33,
         "peak": 22,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 53,
+        "prob_rising": 57,
         "regime": "SPACELIKE",
         "term": "NVIDIA"
       },
       {
         "active_days": 235,
         "gamma": 1.0,
-        "geodesic": 55,
+        "geodesic": 77,
         "peak": 20,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 61,
+        "prob_rising": 65,
         "regime": "SPACELIKE",
         "term": "OPENAI"
       },
@@ -91,13 +91,24 @@
       {
         "active_days": 247,
         "gamma": 1.0,
-        "geodesic": -34,
+        "geodesic": -78,
         "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 43,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "YEARS"
+      },
+      {
+        "active_days": 240,
+        "gamma": 1.0,
+        "geodesic": 12,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 52,
+        "regime": "SPACELIKE",
+        "term": "REAL"
       },
       {
         "active_days": 238,
@@ -123,12 +134,12 @@
       },
       {
         "active_days": 243,
-        "gamma": 1.01,
-        "geodesic": 64,
+        "gamma": 1.0,
+        "geodesic": 35,
         "peak": 12,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 63,
+        "prob_rising": 57,
         "regime": "SPACELIKE",
         "term": "LINUX"
       },
@@ -175,17 +186,6 @@
         "prob_rising": 64,
         "regime": "SPACELIKE",
         "term": "CONTROL"
-      },
-      {
-        "active_days": 218,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "STATE"
       }
     ]
   },
