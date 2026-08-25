@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 25, 2026** // Index **71 (SURGING)** // hottest **AGENT** // record **410-686**
+**August 25, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **410-686**
 
-> 7 Productivity Tips That Sound Wrong (But Actually Work) is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
+> Greatness Is Forged by Limitation is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
