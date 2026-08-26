@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 25, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **415-686**
+**August 26, 2026** // Index **68 (SURGING)** // hottest **PARTON** // record **417-706**
 
-> Dev Opportunity Radar #13: a16z Alpha, a $740K Hackathon, and an AI Agent Competition is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
+> Watching Dolly Parton has died climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
