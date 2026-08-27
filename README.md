@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 27, 2026** // Index **66 (SURGING)** // hottest **DATA** // record **419-727**
+**August 27, 2026** // Index **67 (SURGING)** // hottest **MODEL** // record **420-727**
 
 > 10 Git Commands You'll Wish You Knew Earlier is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
