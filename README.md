@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 27, 2026** // Index **66 (SURGING)** // hottest **PARTON** // record **419-727**
+**August 27, 2026** // Index **66 (SURGING)** // hottest **DATA** // record **419-727**
 
-> Dev Opportunity Radar #13: a16z Alpha, a $740K Hackathon, and an AI Agent Competition is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> 10 Git Commands You'll Wish You Knew Earlier is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
