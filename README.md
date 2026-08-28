@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 28, 2026** // Index **69 (SURGING)** // hottest **GTA** // record **427-746**
+**August 28, 2026** // Index **70 (SURGING)** // hottest **GTA** // record **429-746**
 
 > Dev.to writers are rallying around 10 Git Commands You'll Wish You Knew Earlier. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
