@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**August 27, 2026** // Index **67 (SURGING)** // hottest **MODEL** // record **420-727**
+**August 28, 2026** // Index **67 (SURGING)** // hottest **AGENTS** // record **425-746**
 
-> 10 Git Commands You'll Wish You Knew Earlier is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> Dev.to writers are rallying around 10 Git Commands You'll Wish You Knew Earlier. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
