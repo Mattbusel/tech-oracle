@@ -58,7 +58,7 @@
     },
     {
       "dir": 1,
-      "p": 0.669,
+      "p": 0.649,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
@@ -114,8 +114,8 @@
     },
     {
       "dir": 1,
-      "p": 0.671,
-      "phase": "BOTTOMING",
+      "p": 0.679,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
@@ -128,14 +128,14 @@
     },
     {
       "dir": 1,
-      "p": 0.686,
+      "p": 0.675,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
     },
     {
       "dir": 1,
-      "p": 0.646,
+      "p": 0.665,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -261,7 +261,7 @@
     },
     {
       "dir": 1,
-      "p": 0.697,
+      "p": 0.698,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -380,14 +380,14 @@
     },
     {
       "dir": -1,
-      "p": 0.391,
+      "p": 0.458,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
     },
     {
       "dir": -1,
-      "p": 0.315,
+      "p": 0.304,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SELF"
@@ -423,16 +423,22 @@
   ],
   "chasm": [
     {
-      "days": 245,
+      "days": 251,
       "origin": "HN",
       "reach": "WIKIPEDIA",
-      "term": "THEFT"
+      "term": "MAN"
     },
     {
       "days": 251,
       "origin": "HN",
       "reach": "WIKIPEDIA",
-      "term": "MAN"
+      "term": "AUTO"
+    },
+    {
+      "days": 245,
+      "origin": "HN",
+      "reach": "WIKIPEDIA",
+      "term": "THEFT"
     },
     {
       "days": 230,
@@ -447,22 +453,16 @@
       "term": "EFFICIENT"
     },
     {
-      "days": 251,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "FEATURES"
-    },
-    {
-      "days": 249,
+      "days": 250,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "LEAKED"
+      "term": "SOME"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "FEAR",
-    "value": 40
+    "label": "NEUTRAL",
+    "value": 50
   },
   "manifold": [
     {
@@ -505,16 +505,16 @@
       "term": "CUP"
     },
     {
-      "beta": 0.255,
-      "curvature": -0.34,
+      "beta": 0.245,
+      "curvature": -0.63,
       "defined": true,
-      "ds2": 0.49,
-      "gamma": 1.034,
-      "geodesic_trend": 0.996,
+      "ds2": 0.51,
+      "gamma": 1.031,
+      "geodesic_trend": 0.994,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.085,
+      "rel_momentum": 0.081,
       "term": "CLAUDE"
     },
     {
@@ -570,16 +570,16 @@
       "term": "FIFA"
     },
     {
-      "beta": 0.079,
-      "curvature": -0.45,
+      "beta": 0.067,
+      "curvature": -0.69,
       "defined": true,
-      "ds2": 0.843,
-      "gamma": 1.003,
-      "geodesic_trend": 0.847,
+      "ds2": 0.866,
+      "gamma": 1.002,
+      "geodesic_trend": 0.745,
       "phase": "RISING",
-      "prob_rising": 67,
+      "prob_rising": 65,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.032,
+      "rel_momentum": 0.027,
       "term": "VIDEO"
     },
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": -0.074,
-      "curvature": 0.08,
+      "beta": -0.065,
+      "curvature": 0.26,
       "defined": true,
-      "ds2": 0.853,
-      "gamma": 1.003,
-      "geodesic_trend": -0.992,
+      "ds2": 0.87,
+      "gamma": 1.002,
+      "geodesic_trend": -0.988,
       "phase": "FALLING",
       "prob_rising": 30,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.031,
+      "rel_momentum": -0.027,
       "term": "SERIES"
     },
     {
@@ -650,8 +650,8 @@
   ],
   "movers": [
     {
-      "count": 5,
-      "term": "THEFT",
+      "count": 4,
+      "term": "DRIVEN",
       "vel": 600
     },
     {
@@ -665,25 +665,25 @@
       "vel": 483
     },
     {
-      "count": 3,
-      "term": "AUGUST",
-      "vel": 425
+      "count": 4,
+      "term": "THEFT",
+      "vel": 460
+    },
+    {
+      "count": 4,
+      "term": "AUTO",
+      "vel": 460
     },
     {
       "count": 3,
-      "term": "FEATURES",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "WITHOUT",
+      "term": "TESTED",
       "vel": 425
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 1,
-    "delta_word": "FALLING",
+    "delta_abs": 0,
+    "delta_word": "FLAT",
     "has_prev": true,
     "highest_days": 0,
     "history": [
@@ -741,57 +741,57 @@
       },
       {
         "date": "2026-08-29",
-        "index": 69
+        "index": 70
       }
     ],
-    "index": 69,
+    "index": 70,
     "theme": "APPLE",
-    "total": 250,
+    "total": 258,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "DOWN",
-      "delta": -2,
+      "delta": -1,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
-      "delta": 1,
-      "index": 56,
+      "delta": 4,
+      "index": 68,
       "name": "PLATFORM"
     },
     {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 22,
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 16,
       "name": "CHIPS"
+    },
+    {
+      "arrow": "UP",
+      "delta": 3,
+      "index": 16,
+      "name": "CLOUD"
     },
     {
       "arrow": "DOWN",
       "delta": -1,
-      "index": 17,
+      "index": 16,
       "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 1,
       "index": 11,
-      "name": "CRYPTO"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 6,
       "name": "RUST"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 6,
-      "name": "CLOUD"
+      "index": 11,
+      "name": "CRYPTO"
     },
     {
       "arrow": "DOWN",
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 34483
+  "tracked_terms": 34494
 }
