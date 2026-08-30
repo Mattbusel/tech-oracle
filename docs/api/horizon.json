@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8396,
+    "defined": 8397,
     "phases": {
-      "BOTTOMING": 193,
-      "CHURNING": 661,
-      "FALLING": 67,
-      "FLAT": 6633,
-      "PEAKING": 89,
-      "RISING": 753
+      "BOTTOMING": 194,
+      "CHURNING": 652,
+      "FALLING": 68,
+      "FLAT": 6620,
+      "PEAKING": 94,
+      "RISING": 769
     },
-    "scanned": 34333,
+    "scanned": 34341,
     "turns": [
       {
         "active_days": 253,
@@ -25,11 +25,11 @@
       {
         "active_days": 250,
         "gamma": 1.01,
-        "geodesic": 78,
+        "geodesic": 87,
         "peak": 35,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 66,
+        "prob_rising": 67,
         "regime": "SPACELIKE",
         "term": "LANGUAGE"
       },
@@ -80,7 +80,7 @@
       {
         "active_days": 253,
         "gamma": 1.03,
-        "geodesic": 98,
+        "geodesic": 99,
         "peak": 23,
         "peak_in": 1,
         "phase": "PEAKING",
@@ -112,12 +112,12 @@
       },
       {
         "active_days": 201,
-        "gamma": 1.0,
-        "geodesic": 48,
+        "gamma": 1.01,
+        "geodesic": 73,
         "peak": 22,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 60,
+        "prob_rising": 65,
         "regime": "SPACELIKE",
         "term": "NVIDIA"
       },
@@ -131,28 +131,6 @@
         "prob_rising": 40,
         "regime": "SPACELIKE",
         "term": "OPENAI"
-      },
-      {
-        "active_days": 240,
-        "gamma": 1.0,
-        "geodesic": 80,
-        "peak": 18,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 66,
-        "regime": "SPACELIKE",
-        "term": "LLMS"
-      },
-      {
-        "active_days": 241,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "CODING"
       },
       {
         "active_days": 224,
@@ -177,6 +155,17 @@
         "term": "MICROSOFT"
       },
       {
+        "active_days": 210,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 15,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "SOCIAL"
+      },
+      {
         "active_days": 249,
         "gamma": 1.0,
         "geodesic": 54,
@@ -186,6 +175,17 @@
         "prob_rising": 61,
         "regime": "SPACELIKE",
         "term": "GAME"
+      },
+      {
+        "active_days": 246,
+        "gamma": 1.01,
+        "geodesic": 56,
+        "peak": 12,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 61,
+        "regime": "SPACELIKE",
+        "term": "RUST"
       }
     ]
   },
