@@ -3,13 +3,13 @@
     "defined": 8396,
     "phases": {
       "BOTTOMING": 193,
-      "CHURNING": 660,
-      "FALLING": 71,
-      "FLAT": 6678,
-      "PEAKING": 86,
-      "RISING": 708
+      "CHURNING": 661,
+      "FALLING": 67,
+      "FLAT": 6633,
+      "PEAKING": 89,
+      "RISING": 753
     },
-    "scanned": 34324,
+    "scanned": 34333,
     "turns": [
       {
         "active_days": 253,
@@ -58,18 +58,29 @@
       {
         "active_days": 250,
         "gamma": 1.0,
-        "geodesic": -81,
+        "geodesic": -73,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 34,
+        "prob_rising": 35,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
       {
+        "active_days": 252,
+        "gamma": 1.0,
+        "geodesic": 54,
+        "peak": 25,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 61,
+        "regime": "SPACELIKE",
+        "term": "AGENTS"
+      },
+      {
         "active_days": 253,
         "gamma": 1.03,
-        "geodesic": 99,
+        "geodesic": 98,
         "peak": 23,
         "peak_in": 1,
         "phase": "PEAKING",
@@ -135,11 +146,11 @@
       {
         "active_days": 241,
         "gamma": 1.0,
-        "geodesic": 43,
+        "geodesic": 6,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 59,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "CODING"
       },
@@ -168,24 +179,13 @@
       {
         "active_days": 249,
         "gamma": 1.0,
-        "geodesic": 40,
+        "geodesic": 54,
         "peak": 12,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 58,
+        "prob_rising": 61,
         "regime": "SPACELIKE",
         "term": "GAME"
-      },
-      {
-        "active_days": 248,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "LINUX"
       }
     ]
   },
