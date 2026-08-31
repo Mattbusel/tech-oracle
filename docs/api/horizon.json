@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8407,
+    "defined": 8408,
     "phases": {
-      "BOTTOMING": 198,
-      "CHURNING": 635,
-      "FALLING": 68,
-      "FLAT": 6662,
-      "PEAKING": 81,
-      "RISING": 763
+      "BOTTOMING": 200,
+      "CHURNING": 702,
+      "FALLING": 73,
+      "FLAT": 6767,
+      "PEAKING": 73,
+      "RISING": 593
     },
-    "scanned": 34121,
+    "scanned": 34143,
     "turns": [
       {
         "active_days": 254,
@@ -46,12 +46,12 @@
       },
       {
         "active_days": 251,
-        "gamma": 1.02,
-        "geodesic": 96,
+        "gamma": 1.01,
+        "geodesic": 49,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 69,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
@@ -65,6 +65,17 @@
         "prob_rising": 64,
         "regime": "SPACELIKE",
         "term": "LLM"
+      },
+      {
+        "active_days": 202,
+        "gamma": 1.0,
+        "geodesic": -12,
+        "peak": 22,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 48,
+        "regime": "SPACELIKE",
+        "term": "NVIDIA"
       },
       {
         "active_days": 240,
@@ -102,24 +113,13 @@
       {
         "active_days": 243,
         "gamma": 1.0,
-        "geodesic": -50,
+        "geodesic": -15,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 40,
+        "prob_rising": 47,
         "regime": "SPACELIKE",
         "term": "CHATGPT"
-      },
-      {
-        "active_days": 225,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "CHINA"
       },
       {
         "active_days": 225,
@@ -134,36 +134,47 @@
       },
       {
         "active_days": 243,
-        "gamma": 1.01,
-        "geodesic": 64,
+        "gamma": 1.0,
+        "geodesic": -54,
         "peak": 14,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 63,
+        "prob_rising": 39,
         "regime": "SPACELIKE",
         "term": "MICROSOFT"
       },
       {
         "active_days": 250,
         "gamma": 1.0,
-        "geodesic": 56,
+        "geodesic": -5,
         "peak": 12,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 61,
+        "prob_rising": 49,
         "regime": "SPACELIKE",
         "term": "GAME"
       },
       {
         "active_days": 247,
         "gamma": 1.01,
-        "geodesic": 91,
+        "geodesic": 82,
         "peak": 12,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 68,
+        "prob_rising": 66,
         "regime": "SPACELIKE",
         "term": "RUST"
+      },
+      {
+        "active_days": 243,
+        "gamma": 1.0,
+        "geodesic": 43,
+        "peak": 12,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 59,
+        "regime": "SPACELIKE",
+        "term": "TECH"
       },
       {
         "active_days": 219,
@@ -175,17 +186,6 @@
         "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "SYSTEMS"
-      },
-      {
-        "active_days": 209,
-        "gamma": 1.0,
-        "geodesic": 21,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 54,
-        "regime": "SPACELIKE",
-        "term": "MACOS"
       }
     ]
   },
