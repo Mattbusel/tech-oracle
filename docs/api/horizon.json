@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8409,
+    "defined": 8410,
     "phases": {
-      "BOTTOMING": 256,
-      "CHURNING": 627,
-      "FALLING": 65,
-      "FLAT": 6604,
-      "PEAKING": 88,
+      "BOTTOMING": 260,
+      "CHURNING": 604,
+      "FALLING": 66,
+      "FLAT": 6619,
+      "PEAKING": 92,
       "RISING": 769
     },
-    "scanned": 33928,
+    "scanned": 33973,
     "turns": [
       {
         "active_days": 252,
@@ -47,11 +47,11 @@
       {
         "active_days": 252,
         "gamma": 1.01,
-        "geodesic": 79,
+        "geodesic": 72,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 66,
+        "prob_rising": 64,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
@@ -111,17 +111,6 @@
         "term": "LIST"
       },
       {
-        "active_days": 202,
-        "gamma": 1.0,
-        "geodesic": 46,
-        "peak": 22,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 59,
-        "regime": "SPACELIKE",
-        "term": "NVIDIA"
-      },
-      {
         "active_days": 154,
         "gamma": 1.01,
         "geodesic": 73,
@@ -133,13 +122,13 @@
         "term": "REASONING"
       },
       {
-        "active_days": 240,
+        "active_days": 241,
         "gamma": 1.0,
-        "geodesic": -52,
+        "geodesic": 10,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 40,
+        "prob_rising": 52,
         "regime": "SPACELIKE",
         "term": "LLMS"
       },
@@ -157,11 +146,11 @@
       {
         "active_days": 244,
         "gamma": 1.0,
-        "geodesic": 39,
+        "geodesic": 13,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 58,
+        "prob_rising": 53,
         "regime": "SPACELIKE",
         "term": "CHATGPT"
       },
@@ -186,6 +175,17 @@
         "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "GITHUB"
+      },
+      {
+        "active_days": 241,
+        "gamma": 1.01,
+        "geodesic": 30,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 56,
+        "regime": "SPACELIKE",
+        "term": "WEB"
       }
     ]
   },
