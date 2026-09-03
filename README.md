@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 2, 2026** // Index **64 (ACTIVE)** // hottest **GTA** // record **453-834**
+**September 3, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **459-852**
 
-> How long does it take for you to write a dev.to article? is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
+> Lots of dev.to energy on How long does it take for you to write a dev.to article?. Betting a framework or starter kit consolidates the space before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
