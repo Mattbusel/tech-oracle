@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 3, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **459-852**
+**September 3, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **462-852**
 
 > Lots of dev.to energy on How long does it take for you to write a dev.to article?. Betting a framework or starter kit consolidates the space before Q4.
 

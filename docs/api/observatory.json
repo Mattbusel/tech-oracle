@@ -23,14 +23,14 @@
     },
     {
       "dir": 1,
-      "p": 0.698,
+      "p": 0.697,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
     },
     {
       "dir": 1,
-      "p": 0.626,
+      "p": 0.641,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
@@ -58,8 +58,8 @@
     },
     {
       "dir": 1,
-      "p": 0.601,
-      "phase": "CHURNING",
+      "p": 0.669,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
     },
@@ -107,35 +107,35 @@
     },
     {
       "dir": -1,
-      "p": 0.399,
+      "p": 0.363,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LLM"
     },
     {
       "dir": -1,
-      "p": 0.304,
+      "p": 0.312,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
     {
       "dir": 1,
-      "p": 0.627,
-      "phase": "BOTTOMING",
+      "p": 0.663,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
     },
     {
-      "dir": 1,
-      "p": 0.543,
+      "dir": -1,
+      "p": 0.414,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
     },
     {
       "dir": -1,
-      "p": 0.321,
+      "p": 0.31,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -184,7 +184,7 @@
     },
     {
       "dir": 1,
-      "p": 0.654,
+      "p": 0.61,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LIST"
@@ -205,8 +205,8 @@
     },
     {
       "dir": 1,
-      "p": 0.636,
-      "phase": "BOTTOMING",
+      "p": 0.669,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
     },
@@ -218,18 +218,18 @@
       "term": "WINTER"
     },
     {
-      "dir": -1,
-      "p": 0.315,
-      "phase": "FALLING",
-      "regime": "SPACELIKE",
-      "term": "AMAZON"
-    },
-    {
       "dir": 1,
-      "p": 0.682,
+      "p": 0.695,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
+    },
+    {
+      "dir": -1,
+      "p": 0.352,
+      "phase": "FALLING",
+      "regime": "SPACELIKE",
+      "term": "AMAZON"
     },
     {
       "dir": 1,
@@ -247,8 +247,8 @@
     },
     {
       "dir": -1,
-      "p": 0.311,
-      "phase": "BOTTOMING",
+      "p": 0.303,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
     },
@@ -260,8 +260,8 @@
       "term": "OLYMPICS"
     },
     {
-      "dir": 1,
-      "p": 0.535,
+      "dir": -1,
+      "p": 0.456,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -345,8 +345,8 @@
     },
     {
       "dir": 1,
-      "p": 0.618,
-      "phase": "RISING",
+      "p": 0.5,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "LOCAL"
     },
@@ -366,22 +366,22 @@
     },
     {
       "dir": -1,
-      "p": 0.302,
+      "p": 0.301,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "YEARS"
     },
     {
-      "dir": 1,
-      "p": 0.589,
+      "dir": -1,
+      "p": 0.46,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "REAL"
     },
     {
       "dir": 1,
-      "p": 0.693,
-      "phase": "RISING",
+      "p": 0.58,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
     },
@@ -423,46 +423,46 @@
   ],
   "chasm": [
     {
-      "days": 256,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "THREE"
-    },
-    {
-      "days": 256,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "ANDROID"
-    },
-    {
-      "days": 256,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "KNOW"
-    },
-    {
       "days": 254,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "PLAYSTATION"
     },
     {
-      "days": 250,
+      "days": 256,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "1PASSWORD"
+      "term": "TECH"
     },
     {
-      "days": 249,
+      "days": 256,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "DIGITAL"
+    },
+    {
+      "days": 255,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "1TB"
+      "term": "GETTING"
+    },
+    {
+      "days": 232,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ACADEMIA"
+    },
+    {
+      "days": 200,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ACER"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
-    "label": "NEUTRAL",
-    "value": 56
+    "label": "GREED",
+    "value": 64
   },
   "manifold": [
     {
@@ -505,29 +505,29 @@
       "term": "CUP"
     },
     {
-      "beta": 0.2,
-      "curvature": 0.41,
+      "beta": 0.187,
+      "curvature": 0.03,
       "defined": true,
-      "ds2": 0.601,
-      "gamma": 1.021,
-      "geodesic_trend": 0.992,
+      "ds2": 0.625,
+      "gamma": 1.018,
+      "geodesic_trend": 0.985,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.072,
+      "rel_momentum": 0.066,
       "term": "CLAUDE"
     },
     {
-      "beta": -0.056,
-      "curvature": 1.27,
+      "beta": -0.047,
+      "curvature": 1.43,
       "defined": true,
-      "ds2": 0.888,
-      "gamma": 1.002,
-      "geodesic_trend": 0.631,
+      "ds2": 0.907,
+      "gamma": 1.001,
+      "geodesic_trend": 0.703,
       "phase": "BOTTOMING",
-      "prob_rising": 63,
+      "prob_rising": 64,
       "regime": "SPACELIKE",
-      "rel_momentum": -0.014,
+      "rel_momentum": -0.012,
       "term": "LANGUAGE"
     },
     {
@@ -570,16 +570,16 @@
       "term": "FIFA"
     },
     {
-      "beta": 0.005,
-      "curvature": -1.2,
+      "beta": 0.034,
+      "curvature": -0.65,
       "defined": true,
-      "ds2": 0.991,
-      "gamma": 1.0,
-      "geodesic_trend": 0.506,
-      "phase": "CHURNING",
-      "prob_rising": 60,
+      "ds2": 0.932,
+      "gamma": 1.001,
+      "geodesic_trend": 0.844,
+      "phase": "RISING",
+      "prob_rising": 67,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.002,
+      "rel_momentum": 0.013,
       "term": "VIDEO"
     },
     {
@@ -650,33 +650,33 @@
   ],
   "movers": [
     {
+      "count": 4,
+      "term": "PLAYSTATION",
+      "vel": 600
+    },
+    {
       "count": 5,
-      "term": "THREE",
+      "term": "TECH",
       "vel": 483
     },
     {
-      "count": 6,
-      "term": "KNOW",
+      "count": 3,
+      "term": "GETTING",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "ANDROID",
+      "term": "DIGITAL",
       "vel": 425
     },
     {
-      "count": 3,
-      "term": "PLAYSTATION",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "FRAMEWORK",
+      "count": 5,
+      "term": "PS5",
       "vel": 400
     },
     {
-      "count": 3,
-      "term": "COMPUTER",
+      "count": 4,
+      "term": "DATE",
       "vel": 400
     }
   ],
@@ -745,7 +745,7 @@
       }
     ],
     "index": 72,
-    "theme": "GOOGLE",
+    "theme": "GAME",
     "total": 269,
     "verdict": "SURGING"
   },
@@ -753,45 +753,45 @@
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 5,
+      "delta": 9,
       "index": 100,
       "name": "AI"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 100,
+      "arrow": "DOWN",
+      "delta": -3,
+      "index": 59,
       "name": "PLATFORM"
     },
     {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 31,
+      "arrow": "UP",
+      "delta": 1,
+      "index": 29,
       "name": "CHIPS"
     },
     {
       "arrow": "UP",
-      "delta": 3,
-      "index": 31,
+      "delta": 4,
+      "index": 29,
       "name": "SECURITY"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 15,
+      "index": 12,
       "name": "RUST"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 15,
-      "name": "ROBOTS"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 8,
+      "index": 6,
       "name": "CLOUD"
+    },
+    {
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 6,
+      "name": "ROBOTS"
     },
     {
       "arrow": "FLAT",
@@ -834,7 +834,7 @@
     {
       "bar": 61,
       "has_rate": true,
-      "hits": 220,
+      "hits": 223,
       "label": "THE NEWS",
       "misses": 351,
       "rate": 38,
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 33667
+  "tracked_terms": 33704
 }
