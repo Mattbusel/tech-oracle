@@ -1,26 +1,37 @@
 {
   "horizon": {
-    "defined": 8448,
+    "defined": 8449,
     "phases": {
-      "BOTTOMING": 218,
-      "CHURNING": 634,
-      "FALLING": 66,
-      "FLAT": 6692,
-      "PEAKING": 97,
-      "RISING": 741
+      "BOTTOMING": 220,
+      "CHURNING": 653,
+      "FALLING": 67,
+      "FLAT": 6733,
+      "PEAKING": 89,
+      "RISING": 687
     },
-    "scanned": 33565,
+    "scanned": 33588,
     "turns": [
       {
         "active_days": 258,
         "gamma": 1.0,
-        "geodesic": -35,
+        "geodesic": -22,
         "peak": 36,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 43,
+        "prob_rising": 46,
         "regime": "SPACELIKE",
         "term": "FILM"
+      },
+      {
+        "active_days": 255,
+        "gamma": 1.01,
+        "geodesic": 94,
+        "peak": 35,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 69,
+        "regime": "SPACELIKE",
+        "term": "CLAUDE"
       },
       {
         "active_days": 258,
@@ -46,23 +57,23 @@
       },
       {
         "active_days": 255,
-        "gamma": 1.01,
-        "geodesic": 31,
+        "gamma": 1.0,
+        "geodesic": -18,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 56,
+        "prob_rising": 46,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
       {
         "active_days": 258,
         "gamma": 1.01,
-        "geodesic": 1,
+        "geodesic": -17,
         "peak": 26,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 50,
+        "prob_rising": 47,
         "regime": "SPACELIKE",
         "term": "LLM"
       },
@@ -89,17 +100,6 @@
         "term": "AGENT"
       },
       {
-        "active_days": 227,
-        "gamma": 1.0,
-        "geodesic": 21,
-        "peak": 26,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 54,
-        "regime": "SPACELIKE",
-        "term": "ANTHROPIC"
-      },
-      {
         "active_days": 197,
         "gamma": 1.02,
         "geodesic": -43,
@@ -111,15 +111,37 @@
         "term": "ELECTION"
       },
       {
+        "active_days": 226,
+        "gamma": 1.01,
+        "geodesic": -97,
+        "peak": 24,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 31,
+        "regime": "SPACELIKE",
+        "term": "MULTI"
+      },
+      {
         "active_days": 254,
-        "gamma": 1.04,
-        "geodesic": -69,
+        "gamma": 1.05,
+        "geodesic": -85,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 36,
+        "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
+      },
+      {
+        "active_days": 244,
+        "gamma": 1.0,
+        "geodesic": 17,
+        "peak": 18,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 53,
+        "regime": "SPACELIKE",
+        "term": "LLMS"
       },
       {
         "active_days": 219,
@@ -157,35 +179,13 @@
       {
         "active_days": 233,
         "gamma": 1.0,
-        "geodesic": 17,
+        "geodesic": -22,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 53,
+        "prob_rising": 46,
         "regime": "SPACELIKE",
         "term": "LOCAL"
-      },
-      {
-        "active_days": 227,
-        "gamma": 1.01,
-        "geodesic": 25,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 55,
-        "regime": "SPACELIKE",
-        "term": "GITHUB"
-      },
-      {
-        "active_days": 247,
-        "gamma": 1.0,
-        "geodesic": 94,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 69,
-        "regime": "SPACELIKE",
-        "term": "MICROSOFT"
       }
     ]
   },

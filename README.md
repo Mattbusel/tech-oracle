@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 4, 2026** // Index **69 (SURGING)** // hottest **LANGUAGE** // record **467-867**
+**September 4, 2026** // Index **68 (SURGING)** // hottest **LANGUAGE** // record **468-867**
 
-> .name Termination is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> GPT-6 Astra is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
