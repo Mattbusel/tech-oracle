@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 3, 2026** // Index **72 (SURGING)** // hottest **MODELS** // record **463-852**
+**September 4, 2026** // Index **69 (SURGING)** // hottest **LANGUAGE** // record **466-867**
 
-> Lots of dev.to energy on How long does it take for you to write a dev.to article?. Betting a framework or starter kit consolidates the space before Q4.
+> How long does it take for you to write a dev.to article? is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
