@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 4, 2026** // Index **69 (SURGING)** // hottest **LANGUAGE** // record **466-867**
+**September 4, 2026** // Index **69 (SURGING)** // hottest **LANGUAGE** // record **467-867**
 
-> How long does it take for you to write a dev.to article? is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> .name Termination is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

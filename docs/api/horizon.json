@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8446,
+    "defined": 8448,
     "phases": {
-      "BOTTOMING": 224,
-      "CHURNING": 657,
+      "BOTTOMING": 218,
+      "CHURNING": 634,
       "FALLING": 66,
-      "FLAT": 6711,
-      "PEAKING": 83,
-      "RISING": 705
+      "FLAT": 6692,
+      "PEAKING": 97,
+      "RISING": 741
     },
-    "scanned": 33543,
+    "scanned": 33565,
     "turns": [
       {
         "active_days": 258,
@@ -46,12 +46,12 @@
       },
       {
         "active_days": 255,
-        "gamma": 1.0,
-        "geodesic": -18,
+        "gamma": 1.01,
+        "geodesic": 31,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 46,
+        "prob_rising": 56,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
@@ -80,22 +80,22 @@
       {
         "active_days": 258,
         "gamma": 1.0,
-        "geodesic": -69,
+        "geodesic": -60,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 36,
+        "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "AGENT"
       },
       {
-        "active_days": 226,
+        "active_days": 227,
         "gamma": 1.0,
-        "geodesic": -43,
+        "geodesic": 21,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 41,
+        "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "ANTHROPIC"
       },
@@ -111,24 +111,13 @@
         "term": "ELECTION"
       },
       {
-        "active_days": 242,
-        "gamma": 1.01,
-        "geodesic": 73,
-        "peak": 20,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 65,
-        "regime": "SPACELIKE",
-        "term": "OPENAI"
-      },
-      {
         "active_days": 254,
-        "gamma": 1.05,
-        "geodesic": -85,
+        "gamma": 1.04,
+        "geodesic": -69,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 33,
+        "prob_rising": 36,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
       },
@@ -157,11 +146,11 @@
       {
         "active_days": 245,
         "gamma": 1.0,
-        "geodesic": -15,
+        "geodesic": -50,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 47,
+        "prob_rising": 40,
         "regime": "SPACELIKE",
         "term": "CODING"
       },
@@ -186,6 +175,17 @@
         "prob_rising": 55,
         "regime": "SPACELIKE",
         "term": "GITHUB"
+      },
+      {
+        "active_days": 247,
+        "gamma": 1.0,
+        "geodesic": 94,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 69,
+        "regime": "SPACELIKE",
+        "term": "MICROSOFT"
       }
     ]
   },
