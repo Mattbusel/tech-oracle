@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 4, 2026** // Index **67 (SURGING)** // hottest **LANGUAGE** // record **468-867**
+**September 5, 2026** // Index **68 (SURGING)** // hottest **LANGUAGE** // record **472-884**
 
-> The machine flagged 20 Agentic AI Terms Every Developer Should Know (Explained Simply) crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> Dev.to writers are rallying around 20 Agentic AI Terms Every Developer Should Know (Explained Simply). Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
