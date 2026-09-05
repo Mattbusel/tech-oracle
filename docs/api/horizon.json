@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8460,
+    "defined": 8463,
     "phases": {
-      "BOTTOMING": 207,
-      "CHURNING": 662,
-      "FALLING": 69,
-      "FLAT": 6712,
-      "PEAKING": 84,
-      "RISING": 726
+      "BOTTOMING": 206,
+      "CHURNING": 653,
+      "FALLING": 65,
+      "FLAT": 6664,
+      "PEAKING": 90,
+      "RISING": 785
     },
-    "scanned": 33382,
+    "scanned": 33408,
     "turns": [
       {
         "active_days": 259,
@@ -25,11 +25,11 @@
       {
         "active_days": 256,
         "gamma": 1.01,
-        "geodesic": 63,
+        "geodesic": 79,
         "peak": 35,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 63,
+        "prob_rising": 66,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
       },
@@ -47,22 +47,22 @@
       {
         "active_days": 259,
         "gamma": 1.01,
-        "geodesic": -63,
+        "geodesic": -81,
         "peak": 29,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 37,
+        "prob_rising": 34,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
       },
       {
         "active_days": 256,
         "gamma": 1.0,
-        "geodesic": 31,
+        "geodesic": 4,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 56,
+        "prob_rising": 51,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
@@ -112,14 +112,25 @@
       },
       {
         "active_days": 255,
-        "gamma": 1.05,
-        "geodesic": -87,
+        "gamma": 1.04,
+        "geodesic": -74,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 33,
+        "prob_rising": 35,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
+      },
+      {
+        "active_days": 245,
+        "gamma": 1.01,
+        "geodesic": 69,
+        "peak": 18,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 64,
+        "regime": "SPACELIKE",
+        "term": "LLMS"
       },
       {
         "active_days": 246,
@@ -135,11 +146,11 @@
       {
         "active_days": 246,
         "gamma": 1.0,
-        "geodesic": -15,
+        "geodesic": -50,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 47,
+        "prob_rising": 40,
         "regime": "SPACELIKE",
         "term": "CODING"
       },
@@ -167,25 +178,14 @@
       },
       {
         "active_days": 251,
-        "gamma": 1.01,
-        "geodesic": 70,
+        "gamma": 1.02,
+        "geodesic": 85,
         "peak": 14,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 64,
+        "prob_rising": 67,
         "regime": "SPACELIKE",
         "term": "REAL"
-      },
-      {
-        "active_days": 248,
-        "gamma": 1.0,
-        "geodesic": 25,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 55,
-        "regime": "SPACELIKE",
-        "term": "MICROSOFT"
       }
     ]
   },
