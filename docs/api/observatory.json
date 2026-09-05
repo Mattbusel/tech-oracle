@@ -23,7 +23,7 @@
     },
     {
       "dir": 1,
-      "p": 0.644,
+      "p": 0.625,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "CLAUDE"
@@ -58,7 +58,7 @@
     },
     {
       "dir": 1,
-      "p": 0.681,
+      "p": 0.672,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "VIDEO"
@@ -135,8 +135,8 @@
     },
     {
       "dir": -1,
-      "p": 0.361,
-      "phase": "CHURNING",
+      "p": 0.347,
+      "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "APPLE"
     },
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.698,
+      "p": 0.699,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LARGE"
@@ -226,7 +226,7 @@
     },
     {
       "dir": -1,
-      "p": 0.367,
+      "p": 0.32,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "AMAZON"
@@ -247,7 +247,7 @@
     },
     {
       "dir": -1,
-      "p": 0.352,
+      "p": 0.325,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
@@ -261,7 +261,7 @@
     },
     {
       "dir": 1,
-      "p": 0.535,
+      "p": 0.639,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -345,7 +345,7 @@
     },
     {
       "dir": -1,
-      "p": 0.376,
+      "p": 0.338,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "LOCAL"
@@ -373,14 +373,14 @@
     },
     {
       "dir": 1,
-      "p": 0.64,
+      "p": 0.67,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "REAL"
     },
     {
       "dir": 1,
-      "p": 0.549,
+      "p": 0.614,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
@@ -438,25 +438,25 @@
       "days": 258,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "WRITE"
-    },
-    {
-      "days": 247,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "30TH"
-    },
-    {
-      "days": 130,
-      "origin": "HN",
-      "reach": "ARS",
-      "term": "ABC"
+      "term": "MAY"
     },
     {
       "days": 258,
       "origin": "HN",
-      "reach": "DEV.TO",
-      "term": "ACTIONS"
+      "reach": "THE NEWS",
+      "term": "MILLION"
+    },
+    {
+      "days": 258,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "OLD"
+    },
+    {
+      "days": 258,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ZERO"
     }
   ],
   "corpus_days": 180,
@@ -505,29 +505,29 @@
       "term": "CUP"
     },
     {
-      "beta": 0.11,
-      "curvature": -0.12,
+      "beta": 0.101,
+      "curvature": -0.34,
       "defined": true,
-      "ds2": 0.78,
-      "gamma": 1.006,
-      "geodesic_trend": 0.722,
+      "ds2": 0.798,
+      "gamma": 1.005,
+      "geodesic_trend": 0.625,
       "phase": "PEAKING",
-      "prob_rising": 64,
+      "prob_rising": 63,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.034,
+      "rel_momentum": 0.031,
       "term": "CLAUDE"
     },
     {
-      "beta": 0.15,
-      "curvature": 2.23,
+      "beta": 0.153,
+      "curvature": 2.32,
       "defined": true,
-      "ds2": 0.699,
-      "gamma": 1.011,
+      "ds2": 0.694,
+      "gamma": 1.012,
       "geodesic_trend": 0.999,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.052,
+      "rel_momentum": 0.054,
       "term": "LANGUAGE"
     },
     {
@@ -570,16 +570,16 @@
       "term": "FIFA"
     },
     {
-      "beta": 0.021,
-      "curvature": 1.35,
+      "beta": 0.012,
+      "curvature": 1.19,
       "defined": true,
-      "ds2": 0.957,
+      "ds2": 0.975,
       "gamma": 1.0,
-      "geodesic_trend": 0.906,
+      "geodesic_trend": 0.858,
       "phase": "RISING",
-      "prob_rising": 68,
+      "prob_rising": 67,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.009,
+      "rel_momentum": 0.005,
       "term": "VIDEO"
     },
     {
@@ -656,7 +656,12 @@
     },
     {
       "count": 3,
-      "term": "PROGRAMMING",
+      "term": "OLD",
+      "vel": 425
+    },
+    {
+      "count": 3,
+      "term": "ZERO",
       "vel": 425
     },
     {
@@ -666,17 +671,12 @@
     },
     {
       "count": 3,
-      "term": "FINAL",
+      "term": "PROGRAMMING",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "WORKS",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "WRITE",
+      "term": "MAY",
       "vel": 425
     }
   ],
@@ -746,7 +746,7 @@
     ],
     "index": 69,
     "theme": "LANGUAGE",
-    "total": 250,
+    "total": 248,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
@@ -764,9 +764,9 @@
       "name": "PLATFORM"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 20,
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 25,
       "name": "CHIPS"
     },
     {
@@ -789,15 +789,15 @@
     },
     {
       "arrow": "DOWN",
-      "delta": -1,
+      "delta": -2,
       "index": 5,
-      "name": "CRYPTO"
+      "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
       "delta": -2,
-      "index": 5,
-      "name": "SECURITY"
+      "index": 0,
+      "name": "CRYPTO"
     }
   ],
   "source_weights": [
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 33416
+  "tracked_terms": 33431
 }
