@@ -30,7 +30,7 @@
     },
     {
       "dir": 1,
-      "p": 0.7,
+      "p": 0.699,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LANGUAGE"
@@ -114,14 +114,14 @@
     },
     {
       "dir": 1,
-      "p": 0.694,
+      "p": 0.692,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
     {
       "dir": 1,
-      "p": 0.691,
+      "p": 0.693,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
@@ -149,7 +149,7 @@
     },
     {
       "dir": 1,
-      "p": 0.696,
+      "p": 0.692,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LARGE"
@@ -331,8 +331,8 @@
     },
     {
       "dir": 1,
-      "p": 0.513,
-      "phase": "PEAKING",
+      "p": 0.626,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CODING"
     },
@@ -366,7 +366,7 @@
     },
     {
       "dir": 1,
-      "p": 0.6,
+      "p": 0.618,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -423,16 +423,16 @@
   ],
   "chasm": [
     {
-      "days": 259,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "HOME"
-    },
-    {
       "days": 256,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "IMPOSSIBLE"
+    },
+    {
+      "days": 223,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "000X"
     },
     {
       "days": 177,
@@ -447,16 +447,16 @@
       "term": "ABC"
     },
     {
+      "days": 257,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "ABLE"
+    },
+    {
       "days": 203,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "ACER"
-    },
-    {
-      "days": 259,
-      "origin": "HN",
-      "reach": "DEV.TO",
-      "term": "ACTIONS"
     }
   ],
   "corpus_days": 180,
@@ -518,16 +518,16 @@
       "term": "CLAUDE"
     },
     {
-      "beta": 0.158,
-      "curvature": -0.05,
+      "beta": 0.147,
+      "curvature": -0.32,
       "defined": true,
-      "ds2": 0.684,
-      "gamma": 1.013,
-      "geodesic_trend": 0.998,
+      "ds2": 0.705,
+      "gamma": 1.011,
+      "geodesic_trend": 0.996,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.056,
+      "rel_momentum": 0.051,
       "term": "LANGUAGE"
     },
     {
@@ -650,39 +650,39 @@
   ],
   "movers": [
     {
-      "count": 4,
-      "term": "HOME",
-      "vel": 600
-    },
-    {
       "count": 3,
       "term": "IMPOSSIBLE",
       "vel": 425
     },
     {
-      "count": 6,
+      "count": 7,
       "term": "YEARS",
       "vel": 400
     },
     {
-      "count": 3,
+      "count": 6,
+      "term": "NETBSD",
+      "vel": 400
+    },
+    {
+      "count": 4,
+      "term": "PROJECT",
+      "vel": 400
+    },
+    {
+      "count": 4,
       "term": "RELEASE",
       "vel": 400
     },
     {
       "count": 3,
-      "term": "EVERYONE",
-      "vel": 400
-    },
-    {
-      "count": 3,
-      "term": "LINUX",
+      "term": "NITTER",
       "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 2,
+    "delta_abs": 3,
     "delta_word": "RISING",
     "has_prev": true,
     "highest_days": 2,
@@ -741,57 +741,57 @@
       },
       {
         "date": "2026-09-06",
-        "index": 71
+        "index": 72
       }
     ],
-    "index": 71,
-    "theme": "LANGUAGE",
-    "total": 263,
+    "index": 72,
+    "theme": "GAME",
+    "total": 267,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "DOWN",
-      "delta": -1,
+      "arrow": "UP",
+      "delta": 1,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
       "delta": 5,
-      "index": 79,
+      "index": 71,
       "name": "PLATFORM"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 26,
+      "index": 24,
       "name": "CHIPS"
-    },
-    {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 16,
-      "name": "RUST"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 16,
+      "index": 14,
       "name": "CLOUD"
     },
     {
       "arrow": "UP",
       "delta": 2,
-      "index": 16,
+      "index": 14,
       "name": "SECURITY"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 16,
+      "index": 14,
       "name": "ROBOTS"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -2,
+      "index": 10,
+      "name": "RUST"
     },
     {
       "arrow": "FLAT",
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 33230
+  "tracked_terms": 33249
 }

@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 6, 2026** // Index **71 (SURGING)** // hottest **LANGUAGE** // record **480-902**
+**September 6, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **480-902**
 
 > Watch 20 Agentic AI Terms Every Developer Should Know (Explained Simply) leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.
 
