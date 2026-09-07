@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 7, 2026** // Index **71 (SURGING)** // hottest **GAME** // record **483-921**
+**September 7, 2026** // Index **71 (SURGING)** // hottest **IPHONE** // record **484-921**
 
 > Lots of dev.to energy on 20 Agentic AI Terms Every Developer Should Know (Explained Simply). Betting a framework or starter kit consolidates the space before Q4.
 
