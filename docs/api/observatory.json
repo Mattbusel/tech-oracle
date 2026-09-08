@@ -86,7 +86,7 @@
     },
     {
       "dir": -1,
-      "p": 0.475,
+      "p": 0.404,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "TRUMP"
@@ -114,7 +114,7 @@
     },
     {
       "dir": 1,
-      "p": 0.566,
+      "p": 0.602,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -128,21 +128,21 @@
     },
     {
       "dir": -1,
-      "p": 0.335,
+      "p": 0.31,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "ANTHROPIC"
     },
     {
-      "dir": -1,
-      "p": 0.415,
+      "dir": 1,
+      "p": 0.531,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "APPLE"
     },
     {
       "dir": 1,
-      "p": 0.618,
+      "p": 0.658,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "ELECTION"
@@ -183,18 +183,18 @@
       "term": "LIST"
     },
     {
+      "dir": -1,
+      "p": 0.468,
+      "phase": "CHURNING",
+      "regime": "SPACELIKE",
+      "term": "META"
+    },
+    {
       "dir": 1,
       "p": 0.5,
       "phase": "FLAT",
       "regime": "LIGHTLIKE",
       "term": "NATIONAL"
-    },
-    {
-      "dir": -1,
-      "p": 0.331,
-      "phase": "FALLING",
-      "regime": "SPACELIKE",
-      "term": "META"
     },
     {
       "dir": -1,
@@ -267,9 +267,9 @@
       "term": "OLYMPICS"
     },
     {
-      "dir": 1,
-      "p": 0.513,
-      "phase": "PEAKING",
+      "dir": -1,
+      "p": 0.39,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "MUSK"
     },
@@ -331,8 +331,8 @@
     },
     {
       "dir": 1,
-      "p": 0.5,
-      "phase": "CHURNING",
+      "p": 0.618,
+      "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "CHATGPT"
     },
@@ -359,7 +359,7 @@
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.7,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -380,8 +380,8 @@
     },
     {
       "dir": 1,
-      "p": 0.554,
-      "phase": "BOTTOMING",
+      "p": 0.592,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
     },
@@ -423,6 +423,24 @@
   ],
   "chasm": [
     {
+      "days": 261,
+      "origin": "ARXIV",
+      "reach": "WIKIPEDIA",
+      "term": "EVENT"
+    },
+    {
+      "days": 105,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "FOLDABLE"
+    },
+    {
+      "days": 259,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "GALAXY"
+    },
+    {
       "days": 260,
       "origin": "HN",
       "reach": "THE NEWS",
@@ -435,34 +453,16 @@
       "term": "VERSION"
     },
     {
-      "days": 105,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "FOLDABLE"
-    },
-    {
-      "days": 261,
-      "origin": "ARXIV",
-      "reach": "WIKIPEDIA",
-      "term": "EVENT"
-    },
-    {
       "days": 253,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "10GBE"
-    },
-    {
-      "days": 179,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "128GB"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "GREED",
-    "value": 78
+    "value": 77
   },
   "manifold": [
     {
@@ -622,16 +622,16 @@
       "term": "SERIES"
     },
     {
-      "beta": 0.116,
-      "curvature": -0.47,
+      "beta": 0.095,
+      "curvature": -0.92,
       "defined": true,
-      "ds2": 0.768,
-      "gamma": 1.007,
-      "geodesic_trend": -0.123,
+      "ds2": 0.81,
+      "gamma": 1.005,
+      "geodesic_trend": -0.479,
       "phase": "PEAKING",
-      "prob_rising": 48,
+      "prob_rising": 40,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.037,
+      "rel_momentum": 0.03,
       "term": "TRUMP"
     },
     {
@@ -650,13 +650,8 @@
   ],
   "movers": [
     {
-      "count": 5,
-      "term": "GETS",
-      "vel": 775
-    },
-    {
       "count": 4,
-      "term": "VERSION",
+      "term": "EVENT",
       "vel": 600
     },
     {
@@ -665,27 +660,32 @@
       "vel": 460
     },
     {
+      "count": 6,
+      "term": "GALAXY",
+      "vel": 425
+    },
+    {
       "count": 3,
-      "term": "EVENT",
+      "term": "GETS",
+      "vel": 425
+    },
+    {
+      "count": 3,
+      "term": "FASTER",
       "vel": 425
     },
     {
       "count": 3,
       "term": "BROWSER",
       "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "POKÉMON",
-      "vel": 400
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 0,
-    "delta_word": "FLAT",
+    "delta_abs": 1,
+    "delta_word": "RISING",
     "has_prev": true,
-    "highest_days": 0,
+    "highest_days": 1,
     "history": [
       {
         "date": "2026-08-26",
@@ -741,62 +741,62 @@
       },
       {
         "date": "2026-09-08",
-        "index": 70
+        "index": 71
       }
     ],
-    "index": 70,
+    "index": 71,
     "theme": "APPLE",
-    "total": 259,
+    "total": 263,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 4,
+      "delta": 9,
       "index": 100,
+      "name": "PLATFORM"
+    },
+    {
+      "arrow": "UP",
+      "delta": 3,
+      "index": 79,
       "name": "AI"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 80,
-      "name": "PLATFORM"
-    },
-    {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 25,
+      "index": 21,
       "name": "SECURITY"
     },
     {
       "arrow": "UP",
       "delta": 1,
-      "index": 15,
+      "index": 13,
+      "name": "CHIPS"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 13,
+      "name": "RUST"
+    },
+    {
+      "arrow": "UP",
+      "delta": 1,
+      "index": 13,
       "name": "CLOUD"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 10,
-      "name": "CHIPS"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 10,
-      "name": "RUST"
-    },
-    {
-      "arrow": "FLAT",
-      "delta": 0,
-      "index": 5,
+      "index": 4,
       "name": "CRYPTO"
     },
     {
       "arrow": "FLAT",
       "delta": 0,
-      "index": 5,
+      "index": 4,
       "name": "ROBOTS"
     }
   ],
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 32857
+  "tracked_terms": 32870
 }

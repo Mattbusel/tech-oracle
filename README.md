@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 8, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **488-938**
+**September 8, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **488-938**
 
 > 20 Agentic AI Terms Every Developer Should Know (Explained Simply) is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
