@@ -1,35 +1,35 @@
 {
   "horizon": {
-    "defined": 8475,
+    "defined": 8476,
     "phases": {
-      "BOTTOMING": 252,
-      "CHURNING": 583,
-      "FALLING": 59,
-      "FLAT": 6724,
+      "BOTTOMING": 249,
+      "CHURNING": 579,
+      "FALLING": 56,
+      "FLAT": 6708,
       "PEAKING": 80,
-      "RISING": 777
+      "RISING": 804
     },
-    "scanned": 32823,
+    "scanned": 32857,
     "turns": [
       {
         "active_days": 259,
         "gamma": 1.0,
-        "geodesic": 37,
+        "geodesic": -11,
         "peak": 35,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 57,
+        "prob_rising": 48,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
       },
       {
         "active_days": 238,
         "gamma": 1.0,
-        "geodesic": -5,
+        "geodesic": 13,
         "peak": 36,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 49,
+        "prob_rising": 53,
         "regime": "SPACELIKE",
         "term": "LEARNING"
       },
@@ -69,13 +69,24 @@
       {
         "active_days": 261,
         "gamma": 1.01,
-        "geodesic": 81,
+        "geodesic": 69,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 66,
+        "prob_rising": 64,
         "regime": "SPACELIKE",
         "term": "AGENTS"
+      },
+      {
+        "active_days": 262,
+        "gamma": 1.0,
+        "geodesic": -42,
+        "peak": 23,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 42,
+        "regime": "SPACELIKE",
+        "term": "APPLE"
       },
       {
         "active_days": 198,
@@ -111,13 +122,13 @@
         "term": "REASONING"
       },
       {
-        "active_days": 256,
-        "gamma": 1.05,
-        "geodesic": -88,
+        "active_days": 257,
+        "gamma": 1.03,
+        "geodesic": -61,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 32,
+        "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
       },
@@ -146,11 +157,11 @@
       {
         "active_days": 222,
         "gamma": 1.01,
-        "geodesic": -53,
+        "geodesic": -85,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 39,
+        "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "FRAMEWORK"
       },
@@ -168,24 +179,13 @@
       {
         "active_days": 255,
         "gamma": 1.0,
-        "geodesic": 0,
+        "geodesic": 38,
         "peak": 16,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 50,
+        "prob_rising": 58,
         "regime": "SPACELIKE",
         "term": "SYSTEM"
-      },
-      {
-        "active_days": 233,
-        "gamma": 1.01,
-        "geodesic": -59,
-        "peak": 16,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 38,
-        "regime": "SPACELIKE",
-        "term": "STATES"
       }
     ]
   },
