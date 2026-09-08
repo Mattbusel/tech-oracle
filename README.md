@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 7, 2026** // Index **70 (SURGING)** // hottest **BUILT** // record **484-921**
+**September 8, 2026** // Index **69 (SURGING)** // hottest **AGENTS** // record **487-938**
 
-> Lots of dev.to energy on 20 Agentic AI Terms Every Developer Should Know (Explained Simply). Betting a framework or starter kit consolidates the space before Q4.
+> 216M Spy TVs - The LG Smart TV Problem [video] is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
