@@ -1,35 +1,35 @@
 {
   "horizon": {
-    "defined": 8481,
+    "defined": 8484,
     "phases": {
-      "BOTTOMING": 256,
-      "CHURNING": 605,
-      "FALLING": 57,
-      "FLAT": 6738,
-      "PEAKING": 76,
-      "RISING": 749
+      "BOTTOMING": 262,
+      "CHURNING": 611,
+      "FALLING": 64,
+      "FLAT": 6795,
+      "PEAKING": 73,
+      "RISING": 679
     },
-    "scanned": 32734,
+    "scanned": 32744,
     "turns": [
       {
         "active_days": 263,
-        "gamma": 1.0,
-        "geodesic": 35,
+        "gamma": 1.01,
+        "geodesic": -44,
         "peak": 29,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 57,
+        "prob_rising": 41,
         "regime": "SPACELIKE",
         "term": "GOOGLE"
       },
       {
         "active_days": 260,
         "gamma": 1.0,
-        "geodesic": 72,
+        "geodesic": 59,
         "peak": 27,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 64,
+        "prob_rising": 62,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
@@ -56,24 +56,46 @@
         "term": "AGENT"
       },
       {
+        "active_days": 232,
+        "gamma": 1.0,
+        "geodesic": -87,
+        "peak": 26,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 33,
+        "regime": "SPACELIKE",
+        "term": "ANTHROPIC"
+      },
+      {
+        "active_days": 199,
+        "gamma": 1.0,
+        "geodesic": -50,
+        "peak": 26,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 40,
+        "regime": "SPACELIKE",
+        "term": "LARGE"
+      },
+      {
         "active_days": 233,
         "gamma": 1.0,
-        "geodesic": 38,
+        "geodesic": 0,
         "peak": 21,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 58,
+        "prob_rising": 50,
         "regime": "SPACELIKE",
         "term": "META"
       },
       {
         "active_days": 224,
         "gamma": 1.0,
-        "geodesic": 3,
+        "geodesic": 61,
         "peak": 21,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 51,
+        "prob_rising": 62,
         "regime": "SPACELIKE",
         "term": "AMAZON"
       },
@@ -113,22 +135,33 @@
       {
         "active_days": 223,
         "gamma": 1.01,
-        "geodesic": -49,
+        "geodesic": -67,
         "peak": 18,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 40,
+        "prob_rising": 37,
         "regime": "SPACELIKE",
         "term": "FRAMEWORK"
       },
       {
+        "active_days": 212,
+        "gamma": 1.0,
+        "geodesic": 21,
+        "peak": 18,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 54,
+        "regime": "SPACELIKE",
+        "term": "UNITED"
+      },
+      {
         "active_days": 256,
         "gamma": 1.0,
-        "geodesic": 10,
+        "geodesic": 31,
         "peak": 16,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 52,
+        "prob_rising": 56,
         "regime": "SPACELIKE",
         "term": "SYSTEM"
       },
@@ -153,39 +186,6 @@
         "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "GITHUB"
-      },
-      {
-        "active_days": 226,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "CHINA"
-      },
-      {
-        "active_days": 255,
-        "gamma": 1.0,
-        "geodesic": -87,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 33,
-        "regime": "SPACELIKE",
-        "term": "REAL"
-      },
-      {
-        "active_days": 252,
-        "gamma": 1.0,
-        "geodesic": 54,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 61,
-        "regime": "SPACELIKE",
-        "term": "MICROSOFT"
       }
     ]
   },
