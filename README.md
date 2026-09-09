@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 9, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **491-955**
+**September 9, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **496-955**
 
 > Dev.to writers are rallying around 20 Agentic AI Terms Every Developer Should Know (Explained Simply). Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
