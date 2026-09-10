@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 10, 2026** // Index **67 (SURGING)** // hottest **APPLE** // record **498-976**
+**September 10, 2026** // Index **68 (SURGING)** // hottest **APPLE** // record **498-976**
 
 > The machine flagged iPhone Duo crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
 
