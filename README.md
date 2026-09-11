@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 10, 2026** // Index **68 (SURGING)** // hottest **APPLE** // record **498-976**
+**September 11, 2026** // Index **67 (SURGING)** // hottest **APPLE** // record **502-990**
 
-> The machine flagged iPhone Duo crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.
+> iPhone Duo is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
