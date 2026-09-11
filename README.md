@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 11, 2026** // Index **67 (SURGING)** // hottest **APPLE** // record **502-990**
+**September 11, 2026** // Index **69 (SURGING)** // hottest **IPHONE** // record **503-990**
 
-> iPhone Duo is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Watching Shopify is moving from React Native back to Swift and Kotlin climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

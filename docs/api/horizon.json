@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8490,
+    "defined": 8493,
     "phases": {
       "BOTTOMING": 230,
-      "CHURNING": 617,
-      "FALLING": 76,
-      "FLAT": 6810,
-      "PEAKING": 66,
-      "RISING": 691
+      "CHURNING": 598,
+      "FALLING": 71,
+      "FLAT": 6798,
+      "PEAKING": 74,
+      "RISING": 722
     },
-    "scanned": 32379,
+    "scanned": 32414,
     "turns": [
       {
         "active_days": 227,
@@ -47,11 +47,11 @@
       {
         "active_days": 262,
         "gamma": 1.0,
-        "geodesic": -2,
+        "geodesic": -20,
         "peak": 27,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 50,
+        "prob_rising": 46,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
@@ -65,6 +65,17 @@
         "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "TRUMP"
+      },
+      {
+        "active_days": 265,
+        "gamma": 1.0,
+        "geodesic": -36,
+        "peak": 25,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 43,
+        "regime": "SPACELIKE",
+        "term": "AGENT"
       },
       {
         "active_days": 200,
@@ -87,17 +98,6 @@
         "prob_rising": 32,
         "regime": "SPACELIKE",
         "term": "SPACEX"
-      },
-      {
-        "active_days": 262,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "YEARS"
       },
       {
         "active_days": 249,
@@ -144,6 +144,17 @@
         "term": "STATE"
       },
       {
+        "active_days": 233,
+        "gamma": 1.0,
+        "geodesic": -43,
+        "peak": 12,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "CONTROL"
+      },
+      {
         "active_days": 226,
         "gamma": 1.0,
         "geodesic": 46,
@@ -168,24 +179,13 @@
       {
         "active_days": 260,
         "gamma": 1.0,
-        "geodesic": 9,
+        "geodesic": -53,
         "peak": 11,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 52,
+        "prob_rising": 39,
         "regime": "SPACELIKE",
         "term": "MEMORY"
-      },
-      {
-        "active_days": 215,
-        "gamma": 1.01,
-        "geodesic": -43,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "MACOS"
       }
     ]
   },
