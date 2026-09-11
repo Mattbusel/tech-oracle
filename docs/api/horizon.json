@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8493,
+    "defined": 8496,
     "phases": {
-      "BOTTOMING": 230,
-      "CHURNING": 598,
-      "FALLING": 71,
+      "BOTTOMING": 231,
+      "CHURNING": 599,
+      "FALLING": 72,
       "FLAT": 6798,
-      "PEAKING": 74,
-      "RISING": 722
+      "PEAKING": 79,
+      "RISING": 717
     },
-    "scanned": 32414,
+    "scanned": 32430,
     "turns": [
       {
         "active_days": 227,
@@ -89,15 +89,48 @@
         "term": "LARGE"
       },
       {
-        "active_days": 169,
-        "gamma": 1.05,
-        "geodesic": -88,
+        "active_days": 213,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 22,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "NVIDIA"
+      },
+      {
+        "active_days": 170,
+        "gamma": 1.03,
+        "geodesic": -61,
         "peak": 21,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 32,
+        "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "SPACEX"
+      },
+      {
+        "active_days": 258,
+        "gamma": 1.0,
+        "geodesic": 49,
+        "peak": 16,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 60,
+        "regime": "SPACELIKE",
+        "term": "SYSTEM"
+      },
+      {
+        "active_days": 256,
+        "gamma": 1.0,
+        "geodesic": -88,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 32,
+        "regime": "SPACELIKE",
+        "term": "REAL"
       },
       {
         "active_days": 249,
@@ -122,6 +155,28 @@
         "term": "JOHN"
       },
       {
+        "active_days": 182,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 15,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "COURT"
+      },
+      {
+        "active_days": 252,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 12,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "TECH"
+      },
+      {
         "active_days": 245,
         "gamma": 1.0,
         "geodesic": -30,
@@ -131,61 +186,6 @@
         "prob_rising": 44,
         "regime": "SPACELIKE",
         "term": "TWO"
-      },
-      {
-        "active_days": 234,
-        "gamma": 1.0,
-        "geodesic": 43,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 59,
-        "regime": "SPACELIKE",
-        "term": "STATE"
-      },
-      {
-        "active_days": 233,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "CONTROL"
-      },
-      {
-        "active_days": 226,
-        "gamma": 1.0,
-        "geodesic": 46,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 59,
-        "regime": "SPACELIKE",
-        "term": "SYSTEMS"
-      },
-      {
-        "active_days": 225,
-        "gamma": 1.01,
-        "geodesic": 43,
-        "peak": 12,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 59,
-        "regime": "SPACELIKE",
-        "term": "AGE"
-      },
-      {
-        "active_days": 260,
-        "gamma": 1.0,
-        "geodesic": -53,
-        "peak": 11,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 39,
-        "regime": "SPACELIKE",
-        "term": "MEMORY"
       }
     ]
   },

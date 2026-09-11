@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 11, 2026** // Index **69 (SURGING)** // hottest **IPHONE** // record **503-990**
+**September 11, 2026** // Index **69 (SURGING)** // hottest **MODELS** // record **503-990**
 
-> Watching Shopify is moving from React Native back to Swift and Kotlin climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
+> Lots of dev.to energy on From AI Solutions to Shared Knowledge: Building an MCP for the Community. Betting a framework or starter kit consolidates the space before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
