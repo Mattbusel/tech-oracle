@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 11, 2026** // Index **69 (SURGING)** // hottest **MODELS** // record **504-990**
+**September 12, 2026** // Index **70 (SURGING)** // hottest **MODELS** // record **509-1007**
 
-> Lots of dev.to energy on From AI Solutions to Shared Knowledge: Building an MCP for the Community. Betting a framework or starter kit consolidates the space before Q4.
+> A misalignment of AI in mathematics is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
