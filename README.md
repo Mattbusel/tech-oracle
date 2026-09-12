@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 12, 2026** // Index **70 (SURGING)** // hottest **MODELS** // record **509-1007**
+**September 12, 2026** // Index **63 (ACTIVE)** // hottest **APPLE** // record **510-1007**
 
-> A misalignment of AI in mathematics is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.
+> AI Is Already Better at Coding Than Most Software Developers is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
