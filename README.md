@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 13, 2026** // Index **67 (SURGING)** // hottest **MODELS** // record **510-1025**
+**September 13, 2026** // Index **59 (ACTIVE)** // hottest **APPLE** // record **511-1025**
 
 > Dev.to writers are rallying around AI Is Already Better at Coding Than Most Software Developers. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
