@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 14, 2026** // Index **62 (ACTIVE)** // hottest **IPHONE** // record **516-1044**
+**September 14, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **527-1044**
 
 > AI Is Already Better at Coding Than Most Software Developers is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
