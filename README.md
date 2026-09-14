@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 13, 2026** // Index **59 (ACTIVE)** // hottest **APPLE** // record **511-1025**
+**September 14, 2026** // Index **60 (ACTIVE)** // hottest **APPLE** // record **515-1044**
 
-> Dev.to writers are rallying around AI Is Already Better at Coding Than Most Software Developers. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
+> AI Is Already Better at Coding Than Most Software Developers is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
