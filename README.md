@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 15, 2026** // Index **71 (SURGING)** // hottest **APPLE** // record **533-1065**
+**September 15, 2026** // Index **71 (SURGING)** // hottest **LEARNING** // record **534-1065**
 
-> Lots of dev.to energy on AI Is Already Better at Coding Than Most Software Developers. Betting a framework or starter kit consolidates the space before Q4.
+> AI Is Already Better at Coding Than Most Software Developers just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->

@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8526,
+    "defined": 8529,
     "phases": {
-      "BOTTOMING": 279,
-      "CHURNING": 545,
-      "FALLING": 61,
-      "FLAT": 6791,
-      "PEAKING": 87,
-      "RISING": 763
+      "BOTTOMING": 278,
+      "CHURNING": 539,
+      "FALLING": 58,
+      "FLAT": 6769,
+      "PEAKING": 91,
+      "RISING": 794
     },
-    "scanned": 31698,
+    "scanned": 31714,
     "turns": [
       {
         "active_days": 266,
@@ -25,33 +25,44 @@
       {
         "active_days": 245,
         "gamma": 1.0,
-        "geodesic": 45,
+        "geodesic": 52,
         "peak": 36,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 59,
+        "prob_rising": 60,
         "regime": "SPACELIKE",
         "term": "LEARNING"
       },
       {
         "active_days": 269,
         "gamma": 1.0,
-        "geodesic": 76,
+        "geodesic": 30,
         "peak": 32,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 65,
+        "prob_rising": 56,
         "regime": "SPACELIKE",
         "term": "VIDEO"
       },
       {
+        "active_days": 269,
+        "gamma": 1.0,
+        "geodesic": -25,
+        "peak": 29,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 45,
+        "regime": "SPACELIKE",
+        "term": "GOOGLE"
+      },
+      {
         "active_days": 268,
         "gamma": 1.01,
-        "geodesic": 30,
+        "geodesic": 61,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 56,
+        "prob_rising": 62,
         "regime": "SPACELIKE",
         "term": "AGENTS"
       },
@@ -134,12 +145,12 @@
       },
       {
         "active_days": 262,
-        "gamma": 1.0,
-        "geodesic": 35,
+        "gamma": 1.01,
+        "geodesic": 78,
         "peak": 16,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 57,
+        "prob_rising": 66,
         "regime": "SPACELIKE",
         "term": "SYSTEM"
       },
@@ -157,11 +168,11 @@
       {
         "active_days": 242,
         "gamma": 1.01,
-        "geodesic": -27,
+        "geodesic": -59,
         "peak": 15,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 45,
+        "prob_rising": 38,
         "regime": "SPACELIKE",
         "term": "LOCAL"
       },
@@ -175,17 +186,6 @@
         "prob_rising": 59,
         "regime": "SPACELIKE",
         "term": "CHINA"
-      },
-      {
-        "active_days": 230,
-        "gamma": 1.0,
-        "geodesic": 6,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 51,
-        "regime": "SPACELIKE",
-        "term": "GITHUB"
       }
     ]
   },
