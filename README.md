@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 15, 2026** // Index **63 (ACTIVE)** // hottest **APPLE** // record **528-1065**
+**September 15, 2026** // Index **64 (ACTIVE)** // hottest **APPLE** // record **528-1065**
 
 > Lots of dev.to energy on AI Is Already Better at Coding Than Most Software Developers. Betting a framework or starter kit consolidates the space before Q4.
 
