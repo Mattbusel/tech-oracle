@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8530,
+    "defined": 8531,
     "phases": {
-      "BOTTOMING": 243,
-      "CHURNING": 560,
-      "FALLING": 52,
-      "FLAT": 6877,
-      "PEAKING": 72,
-      "RISING": 726
+      "BOTTOMING": 239,
+      "CHURNING": 555,
+      "FALLING": 55,
+      "FLAT": 6847,
+      "PEAKING": 68,
+      "RISING": 767
     },
-    "scanned": 31506,
+    "scanned": 31509,
     "turns": [
       {
         "active_days": 267,
@@ -36,22 +36,22 @@
       {
         "active_days": 267,
         "gamma": 1.0,
-        "geodesic": 16,
+        "geodesic": -2,
         "peak": 27,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 53,
+        "prob_rising": 50,
         "regime": "SPACELIKE",
         "term": "SERIES"
       },
       {
         "active_days": 269,
         "gamma": 1.0,
-        "geodesic": 26,
+        "geodesic": 40,
         "peak": 25,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 55,
+        "prob_rising": 58,
         "regime": "SPACELIKE",
         "term": "AGENTS"
       },
@@ -65,17 +65,6 @@
         "prob_rising": 63,
         "regime": "SPACELIKE",
         "term": "MULTI"
-      },
-      {
-        "active_days": 268,
-        "gamma": 1.0,
-        "geodesic": -39,
-        "peak": 20,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 42,
-        "regime": "SPACELIKE",
-        "term": "LIST"
       },
       {
         "active_days": 237,
@@ -100,6 +89,17 @@
         "term": "OPENAI"
       },
       {
+        "active_days": 231,
+        "gamma": 1.0,
+        "geodesic": 6,
+        "peak": 21,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 51,
+        "regime": "SPACELIKE",
+        "term": "AMAZON"
+      },
+      {
         "active_days": 230,
         "gamma": 1.0,
         "geodesic": -78,
@@ -113,11 +113,11 @@
       {
         "active_days": 243,
         "gamma": 1.01,
-        "geodesic": -54,
+        "geodesic": -71,
         "peak": 15,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 39,
+        "prob_rising": 36,
         "regime": "SPACELIKE",
         "term": "LOCAL"
       },
@@ -156,7 +156,7 @@
       },
       {
         "active_days": 254,
-        "gamma": 1.02,
+        "gamma": 1.03,
         "geodesic": 99,
         "peak": 12,
         "peak_in": 1,
@@ -177,15 +177,15 @@
         "term": "QUANTUM"
       },
       {
-        "active_days": 254,
+        "active_days": 146,
         "gamma": 1.0,
-        "geodesic": 66,
-        "peak": 11,
+        "geodesic": 41,
+        "peak": 14,
         "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 63,
+        "phase": "BOTTOMING",
+        "prob_rising": 58,
         "regime": "SPACELIKE",
-        "term": "OFF"
+        "term": "DETECTION"
       }
     ]
   },

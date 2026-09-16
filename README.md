@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 16, 2026** // Index **69 (SURGING)** // hottest **CODING** // record **539-1086**
+**September 16, 2026** // Index **70 (SURGING)** // hottest **MODELS** // record **540-1086**
 
 > AI Is Already Better at Coding Than Most Software Developers is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
