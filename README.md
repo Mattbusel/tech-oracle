@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 17, 2026** // Index **69 (SURGING)** // hottest **CODING** // record **544-1104**
+**September 17, 2026** // Index **71 (SURGING)** // hottest **AGENT** // record **544-1104**
 
-> Dev.to writers are rallying around AI Is Already Better at Coding Than Most Software Developers. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
+> Dev.to writers are rallying around Vibe Coding Isn't the Problem. Calling It Engineering Is. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
