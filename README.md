@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 17, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **546-1104**
+**September 17, 2026** // Index **73 (SURGING)** // hottest **GAME** // record **553-1104**
 
 > Dev.to writers are rallying around Vibe Coding Isn't the Problem. Calling It Engineering Is. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
