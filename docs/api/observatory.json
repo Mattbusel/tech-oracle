@@ -114,7 +114,7 @@
     },
     {
       "dir": 1,
-      "p": 0.548,
+      "p": 0.528,
       "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "AGENT"
@@ -135,7 +135,7 @@
     },
     {
       "dir": 1,
-      "p": 0.63,
+      "p": 0.646,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -177,14 +177,14 @@
     },
     {
       "dir": -1,
-      "p": 0.412,
+      "p": 0.451,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "LIST"
     },
     {
       "dir": -1,
-      "p": 0.318,
+      "p": 0.308,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "NVIDIA"
@@ -254,7 +254,7 @@
     },
     {
       "dir": 1,
-      "p": 0.699,
+      "p": 0.7,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -281,8 +281,8 @@
       "term": "SPACEX"
     },
     {
-      "dir": 1,
-      "p": 0.528,
+      "dir": -1,
+      "p": 0.449,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "FRAMEWORK"
@@ -317,7 +317,7 @@
     },
     {
       "dir": 1,
-      "p": 0.681,
+      "p": 0.694,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "IPHONE"
@@ -359,7 +359,7 @@
     },
     {
       "dir": 1,
-      "p": 0.698,
+      "p": 0.696,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -380,14 +380,14 @@
     },
     {
       "dir": 1,
-      "p": 0.571,
+      "p": 0.615,
       "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "REAL"
     },
     {
-      "dir": -1,
-      "p": 0.456,
+      "dir": 1,
+      "p": 0.535,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
@@ -429,16 +429,22 @@
       "term": "XBOX"
     },
     {
-      "days": 270,
-      "origin": "ARXIV",
-      "reach": "THE NEWS",
-      "term": "VISION"
-    },
-    {
       "days": 269,
       "origin": "HN",
       "reach": "THE NEWS",
       "term": "AVAILABLE"
+    },
+    {
+      "days": 270,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "TECH"
+    },
+    {
+      "days": 270,
+      "origin": "ARXIV",
+      "reach": "THE NEWS",
+      "term": "WORK"
     },
     {
       "days": 269,
@@ -447,22 +453,16 @@
       "term": "GOLDEN"
     },
     {
-      "days": 264,
+      "days": 268,
       "origin": "HN",
       "reach": "THE NEWS",
-      "term": "2ND"
-    },
-    {
-      "days": 259,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "30TH"
+      "term": "VALVE"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "GREED",
-    "value": 75
+    "value": 66
   },
   "manifold": [
     {
@@ -650,13 +650,13 @@
   ],
   "movers": [
     {
-      "count": 6,
+      "count": 7,
       "term": "XBOX",
-      "vel": 740
+      "vel": 880
     },
     {
       "count": 4,
-      "term": "VISION",
+      "term": "AVAILABLE",
       "vel": 600
     },
     {
@@ -665,27 +665,27 @@
       "vel": 483
     },
     {
+      "count": 5,
+      "term": "TECH",
+      "vel": 483
+    },
+    {
       "count": 3,
-      "term": "AVAILABLE",
+      "term": "VALVE",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "PHYSICS",
-      "vel": 425
-    },
-    {
-      "count": 3,
-      "term": "GOLDEN",
+      "term": "VISION",
       "vel": 425
     }
   ],
   "pulse": {
     "breadth": 9,
-    "delta_abs": 3,
+    "delta_abs": 4,
     "delta_word": "RISING",
     "has_prev": true,
-    "highest_days": 1,
+    "highest_days": 13,
     "history": [
       {
         "date": "2026-09-04",
@@ -741,26 +741,26 @@
       },
       {
         "date": "2026-09-17",
-        "index": 71
+        "index": 72
       }
     ],
-    "index": 71,
-    "theme": "AGENT",
-    "total": 261,
+    "index": 72,
+    "theme": "GAME",
+    "total": 265,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
       "arrow": "UP",
-      "delta": 8,
+      "delta": 7,
       "index": 100,
       "name": "AI"
     },
     {
       "arrow": "UP",
-      "delta": 3,
-      "index": 52,
+      "delta": 5,
+      "index": 62,
       "name": "PLATFORM"
     },
     {
@@ -770,22 +770,22 @@
       "name": "CHIPS"
     },
     {
-      "arrow": "UP",
-      "delta": 1,
-      "index": 15,
+      "arrow": "FLAT",
+      "delta": 0,
+      "index": 12,
       "name": "RUST"
     },
     {
-      "arrow": "DOWN",
-      "delta": -1,
-      "index": 15,
-      "name": "SECURITY"
-    },
-    {
       "arrow": "UP",
       "delta": 1,
-      "index": 11,
+      "index": 12,
       "name": "ROBOTS"
+    },
+    {
+      "arrow": "DOWN",
+      "delta": -3,
+      "index": 8,
+      "name": "SECURITY"
     },
     {
       "arrow": "DOWN",
@@ -814,12 +814,12 @@
     {
       "bar": 65,
       "has_rate": true,
-      "hits": 23,
+      "hits": 24,
       "label": "DEV.TO",
       "misses": 27,
-      "rate": 46,
+      "rate": 47,
       "source": "devto",
-      "weight": 0.97
+      "weight": 0.98
     },
     {
       "bar": 61,
@@ -864,12 +864,12 @@
     {
       "bar": 54,
       "has_rate": true,
-      "hits": 13,
+      "hits": 14,
       "label": "LOBSTERS",
       "misses": 38,
-      "rate": 25,
+      "rate": 26,
       "source": "lobsters",
-      "weight": 0.8
+      "weight": 0.82
     },
     {
       "bar": 52,
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 31359
+  "tracked_terms": 31376
 }
