@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 18, 2026** // Index **70 (SURGING)** // hottest **MODELS** // record **559-1125**
+**September 18, 2026** // Index **72 (SURGING)** // hottest **GAME** // record **559-1125**
 
 > Vibe Coding Isn't the Problem. Calling It Engineering Is is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
