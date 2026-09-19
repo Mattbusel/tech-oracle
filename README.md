@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 19, 2026** // Index **72 (SURGING)** // hottest **TIME** // record **566-1142**
+**September 19, 2026** // Index **72 (SURGING)** // hottest **MODELS** // record **566-1142**
 
 > Lots of dev.to energy on Vibe Coding Isn't the Problem. Calling It Engineering Is. Betting a framework or starter kit consolidates the space before Q4.
 
