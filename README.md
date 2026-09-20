@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 20, 2026** // Index **71 (SURGING)** // hottest **PRO** // record **571-1159**
+**September 20, 2026** // Index **71 (SURGING)** // hottest **MODELS** // record **571-1159**
 
 > The Quiet Weight of Working in Tech in the AI Era is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
