@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 20, 2026** // Index **70 (SURGING)** // hottest **IPHONE** // record **570-1159**
+**September 20, 2026** // Index **71 (SURGING)** // hottest **PRO** // record **571-1159**
 
-> Vibe Coding Isn't the Problem. Calling It Engineering Is is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> The Quiet Weight of Working in Tech in the AI Era is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
