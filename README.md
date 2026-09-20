@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 19, 2026** // Index **71 (SURGING)** // hottest **MODELS** // record **567-1142**
+**September 20, 2026** // Index **70 (SURGING)** // hottest **IPHONE** // record **570-1159**
 
-> Lots of dev.to energy on Vibe Coding Isn't the Problem. Calling It Engineering Is. Betting a framework or starter kit consolidates the space before Q4.
+> Vibe Coding Isn't the Problem. Calling It Engineering Is is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
