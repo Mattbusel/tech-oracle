@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 21, 2026** // Index **70 (SURGING)** // hottest **PRO** // record **572-1174**
+**September 21, 2026** // Index **69 (SURGING)** // hottest **MODELS** // record **573-1174**
 
 > Dev.to writers are rallying around The Quiet Weight of Working in Tech in the AI Era. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 

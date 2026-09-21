@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8537,
+    "defined": 8538,
     "phases": {
-      "BOTTOMING": 221,
-      "CHURNING": 600,
-      "FALLING": 67,
-      "FLAT": 6815,
-      "PEAKING": 59,
-      "RISING": 775
+      "BOTTOMING": 217,
+      "CHURNING": 585,
+      "FALLING": 61,
+      "FLAT": 6831,
+      "PEAKING": 70,
+      "RISING": 774
     },
-    "scanned": 30713,
+    "scanned": 30751,
     "turns": [
       {
         "active_days": 272,
@@ -25,22 +25,33 @@
       {
         "active_days": 275,
         "gamma": 1.0,
-        "geodesic": 85,
+        "geodesic": 93,
         "peak": 32,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 67,
+        "prob_rising": 69,
         "regime": "SPACELIKE",
         "term": "VIDEO"
       },
       {
+        "active_days": 265,
+        "gamma": 1.02,
+        "geodesic": -94,
+        "peak": 27,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 31,
+        "regime": "SPACELIKE",
+        "term": "TRUMP"
+      },
+      {
         "active_days": 275,
         "gamma": 1.0,
-        "geodesic": 10,
+        "geodesic": -29,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 52,
+        "prob_rising": 44,
         "regime": "SPACELIKE",
         "term": "LLM"
       },
@@ -89,15 +100,15 @@
         "term": "NVIDIA"
       },
       {
-        "active_days": 257,
+        "active_days": 240,
         "gamma": 1.0,
-        "geodesic": -50,
-        "peak": 18,
+        "geodesic": -18,
+        "peak": 21,
         "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 40,
+        "phase": "BOTTOMING",
+        "prob_rising": 46,
         "regime": "SPACELIKE",
-        "term": "LLMS"
+        "term": "META"
       },
       {
         "active_days": 268,
@@ -113,11 +124,11 @@
       {
         "active_days": 203,
         "gamma": 1.02,
-        "geodesic": 85,
+        "geodesic": 75,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 67,
+        "prob_rising": 65,
         "regime": "SPACELIKE",
         "term": "IPHONE"
       },
@@ -157,35 +168,24 @@
       {
         "active_days": 257,
         "gamma": 1.0,
+        "geodesic": -43,
+        "peak": 14,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 41,
+        "regime": "SPACELIKE",
+        "term": "WEB"
+      },
+      {
+        "active_days": 222,
+        "gamma": 1.0,
         "geodesic": 21,
         "peak": 14,
         "peak_in": 1,
         "phase": "BOTTOMING",
         "prob_rising": 54,
         "regime": "SPACELIKE",
-        "term": "WEB"
-      },
-      {
-        "active_days": 221,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
         "term": "JOHN"
-      },
-      {
-        "active_days": 184,
-        "gamma": 1.0,
-        "geodesic": -43,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "BOTTOMING",
-        "prob_rising": 41,
-        "regime": "SPACELIKE",
-        "term": "COURT"
       }
     ]
   },
