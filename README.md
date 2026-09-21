@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 20, 2026** // Index **71 (SURGING)** // hottest **MODELS** // record **571-1159**
+**September 21, 2026** // Index **70 (SURGING)** // hottest **PRO** // record **572-1174**
 
-> The Quiet Weight of Working in Tech in the AI Era is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> Dev.to writers are rallying around The Quiet Weight of Working in Tech in the AI Era. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
