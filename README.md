@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 21, 2026** // Index **69 (SURGING)** // hottest **MODELS** // record **573-1174**
+**September 21, 2026** // Index **71 (SURGING)** // hottest **PRO** // record **574-1174**
 
-> Dev.to writers are rallying around The Quiet Weight of Working in Tech in the AI Era. Expect tutorials to outpace the docs and adoption to snowball within a quarter.
+> The HN front page is piling onto Attention is all you have. Expect the tooling around it to consolidate into one default winner within two quarters.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
