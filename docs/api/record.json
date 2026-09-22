@@ -1,15 +1,11 @@
 {
   "book": {
-    "bank": -21167,
+    "bank": -20989,
     "best_loss": 17,
     "best_win": 94,
     "history": [
       {
         "date": "2026-09-13",
-        "pct": 47
-      },
-      {
-        "date": "2026-09-14",
         "pct": 48
       },
       {
@@ -17,7 +13,7 @@
         "pct": 48
       },
       {
-        "date": "2026-09-15",
+        "date": "2026-09-14",
         "pct": 48
       },
       {
@@ -37,7 +33,7 @@
         "pct": 50
       },
       {
-        "date": "2026-09-16",
+        "date": "2026-09-15",
         "pct": 50
       },
       {
@@ -53,7 +49,7 @@
         "pct": 51
       },
       {
-        "date": "2026-09-17",
+        "date": "2026-09-16",
         "pct": 52
       },
       {
@@ -65,12 +61,16 @@
         "pct": 53
       },
       {
-        "date": "2026-09-18",
+        "date": "2026-09-17",
         "pct": 53
       },
       {
         "date": "2026-09-18",
         "pct": 53
+      },
+      {
+        "date": "2026-09-18",
+        "pct": 54
       },
       {
         "date": "2026-09-18",
@@ -82,13 +82,13 @@
       },
       {
         "date": "2026-09-19",
-        "pct": 54
+        "pct": 55
       }
     ],
     "pnl_class": "sb-miss",
-    "roi_str": "-2217%",
-    "settled": 1773,
-    "streak": "W60"
+    "roi_str": "-2199%",
+    "settled": 1774,
+    "streak": "W61"
   },
   "calibration": {
     "brier": "0.228",
@@ -96,7 +96,7 @@
       {
         "actual": 32,
         "label": "LONGSHOTS",
-        "n": 1748,
+        "n": 1749,
         "pred": 38
       },
       {
@@ -114,7 +114,7 @@
     ],
     "grade": "HONEST: ROUGHLY CALIBRATED",
     "has_data": true,
-    "n": 1773
+    "n": 1774
   },
   "calls": [
     {
@@ -147,39 +147,39 @@
       "win_if": "LONGSHOT: WIN IF \"DIFFERENT\" RESURFACES BY 2026-10-22"
     },
     {
-      "confidence": 0.41,
+      "confidence": 0.43,
       "date": "2026-09-22",
       "id": 2361,
-      "keyword": "mimo",
+      "keyword": "claude",
       "keyword2": "",
-      "live": 41,
-      "live_prev": 41,
+      "live": 43,
+      "live_prev": 43,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
+        "gamma": 1.006,
+        "geodesic": -67,
+        "phase": "BOTTOMING",
         "regime": "SPACELIKE"
       },
       "market": "RESURFACE",
-      "odds": 2.43,
+      "odds": 2.34,
       "permalink": "/call/2361.html",
-      "prediction": "Watching MiMo v2.6 climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 92.7d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Watching Claude Opus 5.5 climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
+      "rationale": "VEL +75%/7d // 2/10 FEEDS // REACH HN // ACCEL +250% // HALF-LIFE 49.4d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom -0.04 // geodesic -67% // BOTTOMING IN 1D",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
-        "title": "MiMo v2.6",
+        "title": "Claude Opus 5.5",
         "type": "hn",
-        "url": "https://mimo.xiaomi.com/mimo-v2-6"
+        "url": "https://www.anthropic.com/claude-opus-5-5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"MIMO\" RESURFACES ACROSS THE FEEDS BY 2026-10-22"
+      "win_if": "WIN IF \"CLAUDE\" RESURFACES ACROSS THE FEEDS BY 2026-10-22"
     },
     {
       "confidence": 0.42,
       "date": "2026-09-22",
       "id": 2360,
-      "keyword": "activision",
+      "keyword": "headphones",
       "keyword2": "",
       "live": 42,
       "live_prev": 42,
@@ -192,153 +192,37 @@
       "market": "INDEX",
       "odds": 2.39,
       "permalink": "/call/2360.html",
-      "prediction": "Watch More Xbox Layoffs Hit as Massive Reorg Continues; Activision to Make Next 'Halo' Game leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Watch The new Beats headphones are made for workouts leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 192d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
-        "title": "More Xbox Layoffs Hit as Massive Reorg Continues; Activision to Make Next 'Halo' Game",
+        "title": "The new Beats headphones are made for workouts",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxQTFFfOFNjWVo1Z01sZ1NUbWFCV3lMNWVBaEZBb2d1N2Q0Z25OUTE4SVl1VHVESTdZSXRQYWZzWTNNamR3UGJSdWRIdUFJSElyUzlnRzM1QzZ5T0o1UUFObnJLdGZzaHVPRENENGNTWXdEbTN2dlA1THYzM1JBVWlXYXlBd2tNWnhMN1o2cjRLR0dWWGlRSDJuUThWU0tvTmt3VlZ1dC11STZ2TTVvZVZ3VEdEajdLLXJMXzB3WA?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9fUHVoSnRGelNsY25makczeWFBanNvMjdWNEU1bi1LNUdlM0NoLU40ZDBtaWtfdDN1YTRWcFZtM1FoREpMMHdLNHpuTHFwelpZa2VBVmRMYXY4WnNmemlkdGdoMTZWdDhJZGxNdHh3ZTMzZw?oc=5"
       },
       "status": "OPEN",
       "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-10-22"
     },
     {
-      "confidence": 0.47,
+      "confidence": 0.44,
       "date": "2026-09-22",
       "id": 2359,
-      "keyword": "review",
-      "keyword2": "",
-      "live": 47,
-      "live_prev": 47,
-      "manifold": {
-        "gamma": 1.004,
-        "geodesic": 98,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "OVER",
-      "odds": 2.15,
-      "permalink": "/call/2359.html",
-      "prediction": "Sonos Ace Ultra Review: Giving The People What They Want is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
-      "rationale": "VEL +68%/7d // 3/10 FEEDS // REACH THE NEWS // ACCEL -50% // CROSSING FROM HN // HALF-LIFE 333.4d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.03 // geodesic +98% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "Sonos Ace Ultra Review: Giving The People What They Want",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE9qRDE1Z29XWVVNZzdZVDlWaFhGT3NDTzJ5c3dLOVZ2N1BLbTN3bGtldEJxNjJSdW51eEhiOWI0aUZHQlRScjJVUi10djU0OU05emFSV3U0Y2NjX0hCRXlhcEJzaUJHSE9GUFlsXzdiNkdVU0F5SXc?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"REVIEW\" CLEARS 7 MENTIONS IN A DAY BY 2026-10-22"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-22",
-      "id": 2358,
-      "keyword": "templates",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 79,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/2358.html",
-      "prediction": "Normal people are about to find Adobe Premiere for Android launches for free with layered video editing, YouTube templates. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "Adobe Premiere for Android launches for free with layered video editing, YouTube templates",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTFBVQUkxYzAwLV9FdkM1bFBhbW1XaHRtZDEwZVNWVmhQQnphU1h3dmxYMnRPRHFHZGpjNU01eURfd2ZzZWJ3bnpFQ2tWaDFsNjl6czlfTmltQlcxS2xzNmdTVloxY1p5Rmo4cmV1TjZ6eGdwZw?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"TEMPLATES\" RESURFACES BY 2026-10-22"
-    },
-    {
-      "confidence": 0.4,
-      "date": "2026-09-22",
-      "id": 2357,
-      "keyword": "write",
-      "keyword2": "",
-      "live": 40,
-      "live_prev": 40,
-      "manifold": {
-        "gamma": 1.0,
-        "geodesic": -93,
-        "phase": "FALLING",
-        "regime": "SPACELIKE"
-      },
-      "market": "RESURFACE",
-      "odds": 2.5,
-      "permalink": "/call/2357.html",
-      "prediction": "Watching I don't want to read what you didn't write climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 78d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic -93% // FALLING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "I don't want to read what you didn't write",
-        "type": "hn",
-        "url": "https://blog.colinbreck.com/i-dont-want-to-read-what-you-didnt-write/"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"WRITE\" RESURFACES ACROSS THE FEEDS BY 2026-10-22"
-    },
-    {
-      "confidence": 0.39,
-      "date": "2026-09-22",
-      "id": 2356,
-      "keyword": "customizability",
-      "keyword2": "",
-      "live": 39,
-      "live_prev": 39,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.56,
-      "permalink": "/call/2356.html",
-      "prediction": "Beats 360 Deliver Customizability and a Revamped Over-Ear Headphone Design is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "Beats 360 Deliver Customizability and a Revamped Over-Ear Headphone Design",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE9oY1l4UTlxV0xZWi1mc18zQlpSeXJMaXVRNGVMQnZteDdDTVdyUkhZeUk5WmM3ZTZYREhkandWTWE2Qmw5R2kzZ3lucUQzeTZObE9KMW9SbVlocVFkT29tYTBSMXowLUp3Q0k5WU5mQzlodw?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-10-22"
-    },
-    {
-      "confidence": 0.41,
-      "date": "2026-09-22",
-      "id": 2355,
       "keyword": "wrong",
       "keyword2": "",
-      "live": 41,
-      "live_prev": 41,
+      "live": 44,
+      "live_prev": 44,
       "manifold": {
-        "gamma": 1.004,
-        "geodesic": 86,
+        "gamma": 1.007,
+        "geodesic": 93,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "OVER",
-      "odds": 2.45,
-      "permalink": "/call/2355.html",
+      "odds": 2.28,
+      "permalink": "/call/2359.html",
       "prediction": "Lobsters is chewing on What Sun got wrong. When the careful crowd gets interested, it tends to be a default tool a year out.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH LOBSTERS // ACCEL -300% // HALF-LIFE 60.3d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +86% // RISING",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH LOBSTERS // ACCEL -200% // HALF-LIFE 60.3d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +93% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
@@ -352,8 +236,124 @@
     {
       "confidence": 0.34,
       "date": "2026-09-22",
-      "id": 2354,
+      "id": 2358,
+      "keyword": "disappointed",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/2358.html",
+      "prediction": "Normal people are about to find I tested Sonos's new Dolby Atmos soundbar - and I was not disappointed. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "I tested Sonos's new Dolby Atmos soundbar - and I was not disappointed",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxPRVh3ZEdBcUZtRUstZFpCLUIxa3BERHdaZmgwUF9lZ3NudmR0bWNueU0wcXVNcTVCR0d2SDhIQ05IUEltRGxjbzR6eVRwSlloWXAzZ0FLMGFCTklPTjZyTXlkcmdvTHlIUGZxbzFEeEZEbWg5NWF2WXNTanQ0SFRkWQ?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"DISAPPOINTED\" RESURFACES BY 2026-10-22"
+    },
+    {
+      "confidence": 0.39,
+      "date": "2026-09-22",
+      "id": 2357,
+      "keyword": "aftermarket",
+      "keyword2": "",
+      "live": 39,
+      "live_prev": 39,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.6,
+      "permalink": "/call/2357.html",
+      "prediction": "New Mac mini drops support for aftermarket storage upgrades made the news. This is the kind of story that quietly reshapes a market before anyone admits it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "New Mac mini drops support for aftermarket storage upgrades",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE40VFh6NFVzdTN5emQ2MGxjcDZJSXE0NHJNcFlPUnVMcFpzcXJsVy1pWmRoZjFwQm5fbDRjOFFqRVF6V0hTMzlVS2lJYXEtYWIxeU1uaWJIVVdnbVRzZFpoXzZWRURJWkFzRVpyX3loc1dMdU5M?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"AFTERMARKET\" RESURFACES ACROSS THE FEEDS BY 2026-10-22"
+    },
+    {
+      "confidence": 0.39,
+      "date": "2026-09-22",
+      "id": 2356,
       "keyword": "gamehorizon",
+      "keyword2": "",
+      "live": 39,
+      "live_prev": 39,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.56,
+      "permalink": "/call/2356.html",
+      "prediction": "GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay looks academic today, but this line of work tends to go commercial fast. Call it two quarters to first product.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2609.25001v1"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-10-22"
+    },
+    {
+      "confidence": 0.4,
+      "date": "2026-09-22",
+      "id": 2355,
+      "keyword": "developing",
+      "keyword2": "",
+      "live": 40,
+      "live_prev": 40,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.52,
+      "permalink": "/call/2355.html",
+      "prediction": "Apple Is Developing New Fitness Tracker Aimed at Rivaling Whoop is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 142d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "Apple Is Developing New Fitness Tracker Aimed at Rivaling Whoop",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOX3FaYUlSZUI0NEVvazRSd0JVWXlfaHdtUFhha1d5NUVJVDQ4ZW13dm5tWHFQTUkxUndKdHcxdHdXOUotY0dkRVVqb3NOcFBkd2VEMHAyMXdqMjB5MkRTWVhNa0FHYzBfSExrSDVqQnlZWWx3MUk5cDJsckRkeXZDLWdsYVppUHBYU0E2U0tsb1g4RXM0VFZRLVViNklKbk9BcTJpYXh6T0VSUUUxbnNOREg0MXg?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"DEVELOPING\" CLEARS 3 MENTIONS IN A DAY BY 2026-10-22"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-09-22",
+      "id": 2354,
+      "keyword": "amazfit",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -366,94 +366,7 @@
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/2354.html",
-      "prediction": "GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2609.25001v1"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"GAMEHORIZON\" RESURFACES BY 2026-10-22"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-22",
-      "id": 2353,
-      "keyword": "developing",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/2353.html",
-      "prediction": "Apple Is Developing New Fitness Tracker Aimed at Rivaling Whoop is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 142d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "Apple Is Developing New Fitness Tracker Aimed at Rivaling Whoop",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxOX3FaYUlSZUI0NEVvazRSd0JVWXlfaHdtUFhha1d5NUVJVDQ4ZW13dm5tWHFQTUkxUndKdHcxdHdXOUotY0dkRVVqb3NOcFBkd2VEMHAyMXdqMjB5MkRTWVhNa0FHYzBfSExrSDVqQnlZWWx3MUk5cDJsckRkeXZDLWdsYVppUHBYU0E2U0tsb1g4RXM0VFZRLVViNklKbk9BcTJpYXh6T0VSUUUxbnNOREg0MXg?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"DEVELOPING\" RESURFACES BY 2026-10-22"
-    },
-    {
-      "confidence": 0.38,
-      "date": "2026-09-22",
-      "id": 2352,
-      "keyword": "samsung",
-      "keyword2": "",
-      "live": 38,
-      "live_prev": 38,
-      "manifold": {
-        "gamma": 1.0,
-        "geodesic": 93,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.64,
-      "permalink": "/call/2352.html",
-      "prediction": "Normal people are about to find Samsung's One UI 9 rollout may have hit a speed bump for the Galaxy S26 (Updated: Dates. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +163%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 40.9d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.00 // geodesic +93% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "Samsung's One UI 9 rollout may have hit a speed bump for the Galaxy S26 (Updated: Dates removed)",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE5qNkh6SDBOdlI5VWs1VXNZSjVRc1hTZkZPOTBaWncyTHlTZnhNVHEwZExRdWVGUUlhcUprN2Y5YmlHMTdnOEpXNFNkc015SzNKOTlkeWxFLWlrSUUtbEZlRGxzM1l1MVBjZnhESkV6TTRWRmpWaXNfRV8xZHE?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 76 BY 2026-10-22"
-    },
-    {
-      "confidence": 0.37,
-      "date": "2026-09-22",
-      "id": 2351,
-      "keyword": "amazfit",
-      "keyword2": "",
-      "live": 37,
-      "live_prev": 37,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "OVER",
-      "odds": 2.7,
-      "permalink": "/call/2351.html",
-      "prediction": "Amazfit T-Rex Dual Solar Hands-On: AMOLED meets Solar?!? is in the headlines. The signal says a bigger move (a deal, a rule, or a backlash) follows within two quarters.",
+      "prediction": "The press is circling Amazfit T-Rex Dual Solar Hands-On: AMOLED meets Solar?!?. Betting today's story is the small version of a much larger one by year end.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
@@ -463,12 +376,12 @@
         "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNd2dIenc1cG9BSlJlOEczc1JjcGxMVkNLaWFqc1d1c25BWVdhbFhxd3Zic3o4YmF2TDBMNnVPY1c2VDdKdFgxaVgzZ3pubi1EdE9xZ0ZRYVV3SzJkV2x5Z2RuNjROejZvVWdzdUtvcEZ1UjNqTUhoTzJGVkZpRXBkRnV1Wndmdl9KdGI5V0ZDZDdsNXFT?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"AMAZFIT\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-22"
+      "win_if": "LONGSHOT: WIN IF \"AMAZFIT\" RESURFACES BY 2026-10-22"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-22",
-      "id": 2350,
+      "id": 2353,
       "keyword": "diagnosing",
       "keyword2": "",
       "live": 34,
@@ -481,8 +394,8 @@
       },
       "market": "LONGSHOT",
       "odds": 2.94,
-      "permalink": "/call/2350.html",
-      "prediction": "Critical-State RL: Diagnosing Trainable States for Multi-Turn Tool Use is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
+      "permalink": "/call/2353.html",
+      "prediction": "This Critical-State RL: Diagnosing Trainable States for Multi-Turn Tool Use paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 267d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
@@ -495,13 +408,100 @@
       "win_if": "LONGSHOT: WIN IF \"DIAGNOSING\" RESURFACES BY 2026-10-22"
     },
     {
+      "confidence": 0.36,
+      "date": "2026-09-22",
+      "id": 2352,
+      "keyword": "excludes",
+      "keyword2": "",
+      "live": 36,
+      "live_prev": 36,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.75,
+      "permalink": "/call/2352.html",
+      "prediction": "Normal people are about to find Apple Quietly Excludes Older iPhones From New Camera Feature. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "Apple Quietly Excludes Older iPhones From New Camera Feature",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiiwFBVV95cUxNdjcxc1VidC0zU2hncktRU0JKalFqWUhZY3JDbXZiZU9wUU16OWdWTThyM1h0UnFna3NaNTdBcGVjNE00OXh3dElSQWpTd2Z5bkVJUVplXzBaUTdmOExxV0tLT2xPQnZxX2hOTkpqQV9YVlRyeTBNT01leHZ1dm9mdVhjQ3JOLUdjRGtR?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 76 BY 2026-10-22"
+    },
+    {
       "confidence": 0.35,
+      "date": "2026-09-22",
+      "id": 2351,
+      "keyword": "engineering",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.004,
+        "geodesic": -98,
+        "phase": "FALLING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.84,
+      "permalink": "/call/2351.html",
+      "prediction": "Snapdragon 8 Elite Extreme Gen 6's Engineering Prototype Video Surfaces Before Official just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL -42%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM ARXIV // HALF-LIFE 34.4d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.03 // geodesic -98% // FALLING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "Snapdragon 8 Elite Extreme Gen 6's Engineering Prototype Video Surfaces Before Official Launch, Showing A New Packaging, Improved Benchmark Scores & More",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxNLUtpcmdLb1gxNVllZUg2QUJoRHRNVXZGOTg5UWI1MEtvelo3aVROVFR4cW45NnZiajN3QUU0SVBDbmdaOFUtTExRZ2RmNGZzZGtWSjVsaDR0OE5GMVJLNWhuLU5OWU9zNWhGS1FxM296a01aUExDM2RLTkM2Z0hOZ3VLU2dtWGU0UDJDTWpoa0FmSWFh0gGaAUFVX3lxTFBNQmdwZ3ZLWGh5aGhQUkpnMExEa1FrNUVLSzlGY2lJMlJuSEJZYUFveXQwOERUbDN0RWdMWFRJeklJVVQyNjJYS2pyOVl6UlNnc09kSTc5Y3VJb19BVmNZS0lSUmRaellRNTEzUEF0a2xlcUhvcnZpRW1yRzNRXzFzUzlhOG1OMk1zbjYxTGtyRFV3SE9QQWRFRWc?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"ENGINEERING\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-22"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-09-22",
+      "id": 2350,
+      "keyword": "publisher",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 79,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/2350.html",
+      "prediction": "The machine flagged 'Halo' to move under Call of Duty publisher as Xbox announces layoffs crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "'Halo' to move under Call of Duty publisher as Xbox announces layoffs",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPTjNsY29XYzZVVThZbkxQMExRUlBtSlNDNmpJVUJJbTV2OHJfa0NadGcxNTR3OXZlTmNkdmlyWk51cXh6R0lYYUd2VDBsN3g0ek44OUxzUWljenlmNnUtT25xdTdlQzk0OFExcmgyUkp2TTRKY01pdlhHT2pLcTdfeG1BQl81SHJfYVpybWpjZHlLT01SVFlfZENGRDA4RVI2bmE3NExNc1dqWlFGMFhnNEh1V296N1ZvOGd4ekF2a0s1OTA1bUE?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"PUBLISHER\" RESURFACES BY 2026-10-22"
+    },
+    {
+      "confidence": 0.36,
       "date": "2026-09-22",
       "id": 2349,
       "keyword": "google",
       "keyword2": "",
-      "live": 35,
-      "live_prev": 35,
+      "live": 36,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.003,
         "geodesic": -41,
@@ -509,10 +509,10 @@
         "regime": "SPACELIKE"
       },
       "market": "RESURFACE",
-      "odds": 2.86,
+      "odds": 2.76,
       "permalink": "/call/2349.html",
       "prediction": "google/ax is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
-      "rationale": "VEL -9%/7d // 2/10 FEEDS // REACH ARS // ACCEL -75% // CROSSING FROM HN // HALF-LIFE 49.3d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.02 // geodesic -41% // BOTTOMING IN 1D",
+      "rationale": "VEL -9%/7d // 3/10 FEEDS // REACH THE NEWS // ACCEL -75% // CROSSING FROM HN // HALF-LIFE 49.3d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.02 // geodesic -41% // BOTTOMING IN 1D",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
@@ -527,12 +527,12 @@
       "confidence": 0.34,
       "date": "2026-09-22",
       "id": 2348,
-      "keyword": "dynamic",
+      "keyword": "audiophiles",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.004,
+        "gamma": 1.018,
         "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
@@ -540,14 +540,14 @@
       "market": "INDEX",
       "odds": 2.94,
       "permalink": "/call/2348.html",
-      "prediction": "Watch Vivo's X500 Pro Max has 17 stops of dynamic range and 4K240 slo-mo leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM ARXIV // HALF-LIFE 86d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Motorola shows off its Signature 27 flagship, and there's good news for audiophiles is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
-        "title": "Vivo's X500 Pro Max has 17 stops of dynamic range and 4K240 slo-mo",
+        "title": "Motorola shows off its Signature 27 flagship, and there's good news for audiophiles",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPM3NqMXZaOHEwQkdPZy00N19PbXVhUVc1MXA1b0NkTnU5Wng2em13S2NqWkpLZGhKN2RwZGZ0N3BhdnJ0X1Y5QzlQT1MzWWxUSkU0SDlXWENqdFBwUE9hd3JDN2VSQ1d2ZnpsTFAtS1JrQTNZY2FrU0o1UVEzU0QzRWJDOHVjSU15NFZPLTU2U3N6MGJKd2F5ZEtkTQ?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQNUM3ajJyNkV5Y0c5NVJkaFpXRTRUenRmcHAzVmd0TzFEVUpCclF3dGxiYkFQWkxkQkN2ejd4VmxrNHljS1lIU1plNF91MDMzeEtDeHNacU5PZXpVbjVXRHpEblg4S2VTT1VRNW1oLUVJTWNBMEhVelhrRmk5UzJRWVNrQkh0SXZDTGI0aF9rN2xyUWZ0c3VJdUhYdw?oc=5"
       },
       "status": "OPEN",
       "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-10-22"
@@ -585,35 +585,6 @@
       "confidence": 0.34,
       "date": "2026-09-22",
       "id": 2346,
-      "keyword": "experiencing",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/2346.html",
-      "prediction": "Normal people are about to find Some iPhone 18 Pro Users Experiencing Face ID Issues. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 235d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "Some iPhone 18 Pro Users Experiencing Face ID Issues",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTFAyVFNMMHJPSVZWY01xRWQwYjBDdzdkWlZ6UlVqMlc3WThCblliY1RSa3ZSbXNKWG5Kc0plcV80cm5UalpadGFmY21vQkFDOFpKLWNMcWx0NHFIMEtFNmF4aHRoU0pTdDdxaTNSckVLem9NaXZh?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"EXPERIENCING\" RESURFACES BY 2026-10-22"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-22",
-      "id": 2345,
       "keyword": "microsoft",
       "keyword2": "",
       "live": 34,
@@ -624,10 +595,10 @@
         "phase": "BOTTOMING",
         "regime": "SPACELIKE"
       },
-      "market": "RESURFACE",
+      "market": "LONGSHOT",
       "odds": 2.94,
-      "permalink": "/call/2345.html",
-      "prediction": "With new Macs, Apple aims to take on Microsoft, Nvidia in a rush to lower AI costs just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "permalink": "/call/2346.html",
+      "prediction": "Normal people are about to find With new Macs, Apple aims to take on Microsoft, Nvidia in a rush to lower AI costs. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
       "rationale": "VEL -12%/7d // 1/10 FEEDS // REACH THE NEWS // CROSSING FROM HN // HALF-LIFE 39.9d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.02 // geodesic -5% // BOTTOMING IN 1D",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
@@ -637,18 +608,47 @@
         "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxPdW5hd1BKazlnZmctdWM5ZjA5QXFOZnVPYjE0dExZNXc0cDJiUWhjb0VzWUZ0QkdYb3dKaThfR20wMzlOVWRGaTc3SlZUYVdWOXB5bWV5NFE0ZGhsSC1xeG1NN2szdVpISklVdW1FcExXZ1Eya3JoekEwa0VJSHJzc2l5dW9PRWdLVzJ5MVYyNG15ZWFVRHMxNmdDRHpZd0xWY2ZaUGhLTWptZVJlSHBueWloeUFIcHhYTGhISC00c0pHQ2lBdVE?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"MICROSOFT\" RESURFACES ACROSS THE FEEDS BY 2026-10-22"
+      "win_if": "LONGSHOT: WIN IF \"MICROSOFT\" RESURFACES BY 2026-10-22"
+    },
+    {
+      "confidence": 0.35,
+      "date": "2026-09-22",
+      "id": 2345,
+      "keyword": "toolbox",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "RESURFACE",
+      "odds": 2.82,
+      "permalink": "/call/2345.html",
+      "prediction": "The Maker's Toolbox: Bambu Lab R1 CO2 Laser Cutter Review just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM ARXIV // HALF-LIFE 272d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "The Maker's Toolbox: Bambu Lab R1 CO2 Laser Cutter Review",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxORENiTWZfNG1jcWZSZXA0Vi1BdncyZ3FSREI4a3U3SmpuR1Nab1RQdFZ6Tm9YbjBSeGg3UHNyTjc1STJabGVCMEg2VmRKTmpYQ1FKVEI2bmVGY3J1SmFPa1Y4Y0dBaFN1STdicVNGbWt3UTFWeXZZR29QVkVGNXc0TlZxZ1c1THRIQTBUeVNoU3RWTnlMYXUyT2cxVmpPYTQ?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"TOOLBOX\" RESURFACES ACROSS THE FEEDS BY 2026-10-22"
     },
     {
       "confidence": 0.38,
       "date": "2026-09-22",
       "id": 2344,
-      "keyword": "googlebooks",
+      "keyword": "performance",
       "keyword2": "",
       "live": 38,
       "live_prev": 38,
       "manifold": {
-        "gamma": 1.018,
+        "gamma": 1.003,
         "geodesic": 79,
         "phase": "RISING",
         "regime": "SPACELIKE"
@@ -656,36 +656,7 @@
       "market": "INDEX",
       "odds": 2.62,
       "permalink": "/call/2344.html",
-      "prediction": "The machine flagged Googlebooks will live or die on the loyalty of a billion Android users crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
-      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-22",
-      "source": {
-        "title": "Googlebooks will live or die on the loyalty of a billion Android users",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxOWG5NdF8xY1gtQjg5QzNyVEN1WExkcXBFekx6U3JCRWUwWW1OWDZOT0dscmNvVDdrdUs0bXNEd1laZy13VXZvc2tZbU43d0Q0TmJRalFlNUN0cTdveFhIdXl4QzFjaXNzUkhiTWtlV1A4aFowWlpfNm9OUmExcVJYQlFKOGlxRmtEWkwyZ191Zlg5TnlOOWdRQVV1YTZDQURDalRZRnd1V0I?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-10-22"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-22",
-      "id": 2343,
-      "keyword": "performance",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.003,
-        "geodesic": 79,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "OVER",
-      "odds": 2.94,
-      "permalink": "/call/2343.html",
-      "prediction": "Dev.to writers are rallying around API Performance Testing: How to Design Realistic Tests. Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
+      "prediction": "API Performance Testing: How to Design Realistic Tests is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.",
       "rationale": "VEL +180%/7d // 2/10 FEEDS // REACH DEV.TO // ACCEL +200% // HALF-LIFE 136.5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +79% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
@@ -695,13 +666,13 @@
         "url": "https://dev.to/gramli/api-performance-testing-how-to-design-realistic-tests-59gn"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"PERFORMANCE\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-22"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-10-22"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-22",
-      "id": 2342,
-      "keyword": "restructuring",
+      "id": 2343,
+      "keyword": "shooting",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -711,25 +682,25 @@
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "LONGSHOT",
+      "market": "OVER",
       "odds": 2.94,
-      "permalink": "/call/2342.html",
-      "prediction": "Watch Shuffling the deck chairs: Xbox continues its \"reset\" with dramatic restructuring leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "permalink": "/call/2343.html",
+      "prediction": "Ars is covering Lawsuit demands OpenAI pay for new school after ChatGPT used in shooting. When it crosses from tech press to mainstream, regulation or a major incumbent move follows within two quarters.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // HALF-LIFE 57.6d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
-        "title": "Shuffling the deck chairs: Xbox continues its \"reset\" with dramatic restructuring",
+        "title": "Lawsuit demands OpenAI pay for new school after ChatGPT used in shooting",
         "type": "ars",
-        "url": "https://arstechnica.com/gaming/2026/09/shuffling-the-deck-chairs-xbox-continues-its-reset-with-dramatic-restructuring/"
+        "url": "https://arstechnica.com/tech-policy/2026/09/lawsuit-demands-openai-pay-for-new-school-after-chatgpt-used-in-shooting/"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"RESTRUCTURING\" RESURFACES BY 2026-10-22"
+      "win_if": "WIN IF \"SHOOTING\" CLEARS 3 MENTIONS IN A DAY BY 2026-10-22"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-22",
-      "id": 2341,
+      "id": 2342,
       "keyword": "annotation",
       "keyword2": "",
       "live": 34,
@@ -742,8 +713,8 @@
       },
       "market": "LONGSHOT",
       "odds": 2.94,
-      "permalink": "/call/2341.html",
-      "prediction": "This onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
+      "permalink": "/call/2342.html",
+      "prediction": "onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via is the new research thread to watch. Expect a wave of follow-on papers and an open-source reference implementation within a quarter.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 265d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
@@ -758,60 +729,89 @@
     {
       "confidence": 0.34,
       "date": "2026-09-22",
-      "id": 2340,
-      "keyword": "megapixel",
+      "id": 2341,
+      "keyword": "upgrade",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
+        "gamma": 1.009,
+        "geodesic": 98,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/2341.html",
+      "prediction": "iPhone 14 Pro vs. iPhone 18 Pro Buyer's Guide: Should You Upgrade? is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +17%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +25% // CROSSING FROM HN // HALF-LIFE 65d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.04 // geodesic +98% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-22",
+      "source": {
+        "title": "iPhone 14 Pro vs. iPhone 18 Pro Buyer's Guide: Should You Upgrade?",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFB0MkF0V0tmVlh2N0U3aVU0b3JwakMtY2FjUGxOeWRrcjhlcDNpbnR6WnRQS2NfWHF1ZnFkZ0I1UTBNdURaSzEtVUVfdm0zbGQ5R08xcWVyVi1RRzBnZDlobXQzdF94SnM?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"UPGRADE\" RESURFACES BY 2026-10-22"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-09-22",
+      "id": 2340,
+      "keyword": "dynamic",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.007,
+        "geodesic": 79,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "INDEX",
-      "odds": 2.94,
+      "odds": 2.92,
       "permalink": "/call/2340.html",
-      "prediction": "Oppo's new phone is the first with three 200-megapixel cameras is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Normal people are about to find Vivo's X500 Pro Max has 17 stops of dynamic range and 4K240 slo-mo. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM ARXIV // HALF-LIFE 129d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.02 // geodesic +79% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
-        "title": "Oppo's new phone is the first with three 200-megapixel cameras",
+        "title": "Vivo's X500 Pro Max has 17 stops of dynamic range and 4K240 slo-mo",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQUHJHNTR4aW1Yc1R0V0MyaXJ2UGc0U2NCWHRtdEktcENJNnBpc3Z1aUVIMnB4dlM3cEJiUjM2dzN6MkE2MFcxSGFjRjVDVGRic2FiZ1V5Q2JpaU9ib2FybUtnbC15cTRfVkV4NDF3ZlEtQ2FUelVEbmFmdmVSRmNMYWdTUVBFS0h4cHRkSjNsdlFqUWs?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPM3NqMXZaOHEwQkdPZy00N19PbXVhUVc1MXA1b0NkTnU5Wng2em13S2NqWkpLZGhKN2RwZGZ0N3BhdnJ0X1Y5QzlQT1MzWWxUSkU0SDlXWENqdFBwUE9hd3JDN2VSQ1d2ZnpsTFAtS1JrQTNZY2FrU0o1UVEzU0QzRWJDOHVjSU15NFZPLTU2U3N6MGJKd2F5ZEtkTQ?oc=5"
       },
       "status": "OPEN",
       "win_if": "WIN IF THE PULSE INDEX CROSSES 76 BY 2026-10-22"
     },
     {
-      "confidence": 0.34,
+      "confidence": 0.36,
       "date": "2026-09-22",
       "id": 2339,
-      "keyword": "personalization",
+      "keyword": "premiere",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
+      "live": 36,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
-        "geodesic": 59,
+        "geodesic": 79,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "OVER",
-      "odds": 2.94,
+      "odds": 2.77,
       "permalink": "/call/2339.html",
-      "prediction": "Fresh cs.AI/cs.LG work on LoRA-generating hypernetworks for efficient on-device LLM generative personalization just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Adobe Premiere finally brings powerful video editing to Android, and it's free just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-22",
       "source": {
-        "title": "LoRA-generating hypernetworks for efficient on-device LLM generative personalization",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2609.24979v1"
+        "title": "Adobe Premiere finally brings powerful video editing to Android, and it's free",
+        "type": "ars",
+        "url": "https://arstechnica.com/gadgets/2026/09/adobe-premiere-finally-brings-powerful-video-editing-to-android-and-its-free/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"PERSONALIZATION\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-22"
+      "win_if": "WIN IF \"PREMIERE\" CLEARS 5 MENTIONS IN A DAY BY 2026-10-22"
     },
     {
       "confidence": 0.44,
@@ -8691,14 +8691,14 @@
       "permalink": "/call/2067.html",
       "prediction": "Apple Watch Ultra 4 Hands-On: A Closer Look at Its Biggest Upgrades is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 41.6d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-09-22",
       "resolves_by": "2026-10-10",
       "source": {
         "title": "Apple Watch Ultra 4 Hands-On: A Closer Look at Its Biggest Upgrades",
         "type": "news",
         "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE8yX0hBLTB0NHc5cjU4ckxNMGlrSmZKNzg5TGtQUWJiSERjdXVPNW43enN1YTViMzFaUWlaQmo0SGNqaHlKUkVwQ1E0MDJwcEtLNDhaZE9QS2lOWk1sVW5qQlZiMXVreUpZNTk3aGs0Yw?oc=5"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "WIN IF \"UPGRADES\" CLEARS 3 MENTIONS IN A DAY BY 2026-10-10"
     },
     {
@@ -68619,11 +68619,11 @@
   "schema": "the-signal/record/1",
   "scoreboard": {
     "has_rate": true,
-    "hits": 580,
+    "hits": 581,
     "misses": 1193,
-    "open": 589,
+    "open": 588,
     "rate": 32,
-    "resolved": 1773,
+    "resolved": 1774,
     "verdict": "UNDERWATER, AND NOT HIDING IT"
   },
   "total": 2362

@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 22, 2026** // Index **70 (SURGING)** // hottest **PRO** // record **580-1193**
+**September 22, 2026** // Index **70 (SURGING)** // hottest **APPLE** // record **581-1193**
 
 > You're not an impostor, you just started from a different line is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
