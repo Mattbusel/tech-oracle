@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 22, 2026** // Index **70 (SURGING)** // hottest **MODELS** // record **580-1193**
+**September 22, 2026** // Index **69 (SURGING)** // hottest **APPLE** // record **580-1193**
 
-> Attention is all you have is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
+> AI Didn't Remove the Engineering Work. It Just Made It Easier to Pretend You Did is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
