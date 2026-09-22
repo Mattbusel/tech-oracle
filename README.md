@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 21, 2026** // Index **71 (SURGING)** // hottest **PRO** // record **574-1174**
+**September 22, 2026** // Index **70 (SURGING)** // hottest **MODELS** // record **580-1193**
 
-> The HN front page is piling onto Attention is all you have. Expect the tooling around it to consolidate into one default winner within two quarters.
+> Attention is all you have is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
