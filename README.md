@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 23, 2026** // Index **72 (SURGING)** // hottest **XBOX** // record **585-1207**
+**September 23, 2026** // Index **71 (SURGING)** // hottest **AGENT** // record **585-1207**
 
-> These 3 Major Upgrades Could Be Heading to Your Next Flagship Android Phone is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
+> Microsoft refreshes its smaller Surface Pro and Laptop with Qualcomm's X2 Plus is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
