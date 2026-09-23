@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 22, 2026** // Index **69 (SURGING)** // hottest **APPLE** // record **581-1193**
+**September 23, 2026** // Index **66 (SURGING)** // hottest **AGENT** // record **582-1207**
 
-> You're not an impostor, you just started from a different line is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
+> Watching Claude Opus 5.5 climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
