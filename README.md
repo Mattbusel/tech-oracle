@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 24, 2026** // Index **72 (SURGING)** // hottest **LEARNING** // record **586-1226**
+**September 24, 2026** // Index **72 (SURGING)** // hottest **LEARNING** // record **587-1226**
 
-> You're not an impostor, you just started from a different line is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> What If Your AI Agent Never Had to Leave the Browser? (Demo ) is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
