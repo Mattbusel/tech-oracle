@@ -23,7 +23,7 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 24, 2026** // Index **72 (SURGING)** // hottest **LEARNING** // record **588-1226**
+**September 24, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **588-1226**
 
 > What If Your AI Agent Never Had to Leave the Browser? (Demo ) is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
