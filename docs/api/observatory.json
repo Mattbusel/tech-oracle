@@ -79,7 +79,7 @@
     },
     {
       "dir": 1,
-      "p": 0.693,
+      "p": 0.687,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SERIES"
@@ -114,15 +114,15 @@
     },
     {
       "dir": 1,
-      "p": 0.611,
-      "phase": "BOTTOMING",
+      "p": 0.637,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "AGENT"
     },
     {
-      "dir": -1,
-      "p": 0.491,
-      "phase": "BOTTOMING",
+      "dir": 1,
+      "p": 0.556,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "AGENTS"
     },
@@ -135,7 +135,7 @@
     },
     {
       "dir": 1,
-      "p": 0.533,
+      "p": 0.515,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "APPLE"
@@ -184,7 +184,7 @@
     },
     {
       "dir": -1,
-      "p": 0.301,
+      "p": 0.305,
       "phase": "FALLING",
       "regime": "SPACELIKE",
       "term": "LIST"
@@ -205,8 +205,8 @@
     },
     {
       "dir": -1,
-      "p": 0.374,
-      "phase": "FALLING",
+      "p": 0.414,
+      "phase": "BOTTOMING",
       "regime": "SPACELIKE",
       "term": "OPENAI"
     },
@@ -247,14 +247,14 @@
     },
     {
       "dir": 1,
-      "p": 0.676,
+      "p": 0.66,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "SOFTWARE"
     },
     {
       "dir": 1,
-      "p": 0.633,
+      "p": 0.667,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "LLMS"
@@ -303,7 +303,7 @@
     },
     {
       "dir": 1,
-      "p": 0.632,
+      "p": 0.576,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "SYSTEM"
@@ -331,8 +331,8 @@
     },
     {
       "dir": 1,
-      "p": 0.691,
-      "phase": "RISING",
+      "p": 0.669,
+      "phase": "CHURNING",
       "regime": "SPACELIKE",
       "term": "STATES"
     },
@@ -359,7 +359,7 @@
     },
     {
       "dir": -1,
-      "p": 0.4,
+      "p": 0.437,
       "phase": "PEAKING",
       "regime": "SPACELIKE",
       "term": "YEARS"
@@ -387,7 +387,7 @@
     },
     {
       "dir": 1,
-      "p": 0.696,
+      "p": 0.691,
       "phase": "RISING",
       "regime": "SPACELIKE",
       "term": "MICROSOFT"
@@ -429,40 +429,40 @@
       "term": "BIGGEST"
     },
     {
-      "days": 278,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "LAUNCHES"
-    },
-    {
       "days": 261,
       "origin": "ARXIV",
       "reach": "HN",
       "term": "MUSE"
     },
     {
-      "days": 273,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "SALE"
-    },
-    {
-      "days": 267,
-      "origin": "HN",
-      "reach": "THE NEWS",
-      "term": "ABANDON"
-    },
-    {
       "days": 276,
       "origin": "ARXIV",
       "reach": "ARS",
       "term": "ACCEPT"
+    },
+    {
+      "days": 253,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ACTIVISION"
+    },
+    {
+      "days": 278,
+      "origin": "ARXIV",
+      "reach": "WIKIPEDIA",
+      "term": "ACTOR"
+    },
+    {
+      "days": 276,
+      "origin": "HN",
+      "reach": "THE NEWS",
+      "term": "ADDRESS"
     }
   ],
   "corpus_days": 180,
   "fear_greed": {
     "label": "NEUTRAL",
-    "value": 50
+    "value": 41
   },
   "manifold": [
     {
@@ -583,16 +583,16 @@
       "term": "FIFA"
     },
     {
-      "beta": 0.177,
-      "curvature": 1.52,
+      "beta": 0.183,
+      "curvature": 1.73,
       "defined": true,
-      "ds2": 0.645,
-      "gamma": 1.016,
-      "geodesic_trend": 0.994,
+      "ds2": 0.634,
+      "gamma": 1.017,
+      "geodesic_trend": 0.996,
       "phase": "RISING",
       "prob_rising": 70,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.051,
+      "rel_momentum": 0.054,
       "term": "GOOGLE"
     },
     {
@@ -609,16 +609,16 @@
       "term": "ASSEMBLY"
     },
     {
-      "beta": 0.058,
-      "curvature": -0.65,
+      "beta": 0.038,
+      "curvature": -1.02,
       "defined": true,
-      "ds2": 0.885,
-      "gamma": 1.002,
-      "geodesic_trend": 0.964,
+      "ds2": 0.924,
+      "gamma": 1.001,
+      "geodesic_trend": 0.937,
       "phase": "RISING",
       "prob_rising": 69,
       "regime": "SPACELIKE",
-      "rel_momentum": 0.014,
+      "rel_momentum": 0.009,
       "term": "SERIES"
     },
     {
@@ -656,28 +656,28 @@
     },
     {
       "count": 3,
-      "term": "TYPE",
-      "vel": 425
-    },
-    {
-      "count": 3,
       "term": "BIGGEST",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "SALE",
+      "term": "MUSE",
       "vel": 425
     },
     {
       "count": 3,
-      "term": "LAUNCHES",
+      "term": "TYPE",
       "vel": 425
     },
     {
       "count": 3,
       "term": "HORIZON",
       "vel": 425
+    },
+    {
+      "count": 5,
+      "term": "FILM",
+      "vel": 400
     }
   ],
   "pulse": {
@@ -745,22 +745,22 @@
       }
     ],
     "index": 72,
-    "theme": "APPLE",
+    "theme": "GOOGLE",
     "total": 266,
     "verdict": "SURGING"
   },
   "schema": "the-signal/observatory/1",
   "sectors": [
     {
-      "arrow": "UP",
-      "delta": 1,
+      "arrow": "FLAT",
+      "delta": 0,
       "index": 100,
       "name": "PLATFORM"
     },
     {
       "arrow": "DOWN",
-      "delta": -8,
-      "index": 56,
+      "delta": -4,
+      "index": 73,
       "name": "AI"
     },
     {
@@ -777,14 +777,14 @@
     },
     {
       "arrow": "UP",
-      "delta": 3,
-      "index": 11,
+      "delta": 2,
+      "index": 8,
       "name": "CLOUD"
     },
     {
       "arrow": "DOWN",
-      "delta": -2,
-      "index": 7,
+      "delta": -3,
+      "index": 4,
       "name": "CHIPS"
     },
     {
@@ -902,5 +902,5 @@
       "weight": 0.6
     }
   ],
-  "tracked_terms": 30081
+  "tracked_terms": 30088
 }

@@ -9,7 +9,7 @@ Most prediction content is vague and never checked. THE SIGNAL makes specific, d
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 25, 2026** // Index **72 (SURGING)** // hottest **APPLE** // record **594-1246**
+**September 25, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **594-1246**
 
 > Dev.to writers are rallying around What If Your AI Agent Never Had to Leave the Browser? (Demo ). Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
