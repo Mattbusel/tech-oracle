@@ -23,9 +23,9 @@ Worker for the paid gate. No server you operate, no database you run.
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 24, 2026** // Index **72 (SURGING)** // hottest **GOOGLE** // record **588-1226**
+**September 25, 2026** // Index **71 (SURGING)** // hottest **GOOGLE** // record **594-1246**
 
-> What If Your AI Agent Never Had to Leave the Browser? (Demo ) is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> Dev.to writers are rallying around What If Your AI Agent Never Had to Leave the Browser? (Demo ). Expect tutorials to outpace the docs and adoption to snowball within a quarter.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
