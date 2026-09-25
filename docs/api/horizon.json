@@ -1,24 +1,24 @@
 {
   "horizon": {
-    "defined": 8542,
+    "defined": 8549,
     "phases": {
-      "BOTTOMING": 211,
-      "CHURNING": 586,
-      "FALLING": 45,
-      "FLAT": 6783,
-      "PEAKING": 80,
-      "RISING": 837
+      "BOTTOMING": 215,
+      "CHURNING": 587,
+      "FALLING": 44,
+      "FLAT": 6793,
+      "PEAKING": 85,
+      "RISING": 825
     },
-    "scanned": 30037,
+    "scanned": 30064,
     "turns": [
       {
-        "active_days": 275,
-        "gamma": 1.01,
-        "geodesic": -77,
+        "active_days": 276,
+        "gamma": 1.0,
+        "geodesic": -32,
         "peak": 35,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 35,
+        "prob_rising": 44,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
       },
@@ -78,13 +78,24 @@
         "term": "AGENT"
       },
       {
-        "active_days": 242,
-        "gamma": 1.03,
-        "geodesic": -73,
+        "active_days": 278,
+        "gamma": 1.0,
+        "geodesic": -4,
+        "peak": 25,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 49,
+        "regime": "SPACELIKE",
+        "term": "AGENTS"
+      },
+      {
+        "active_days": 243,
+        "gamma": 1.01,
+        "geodesic": -24,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 35,
+        "prob_rising": 45,
         "regime": "SPACELIKE",
         "term": "ANTHROPIC"
       },
@@ -124,22 +135,22 @@
       {
         "active_days": 225,
         "gamma": 1.0,
-        "geodesic": 60,
+        "geodesic": 19,
         "peak": 22,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 62,
+        "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "NVIDIA"
       },
       {
         "active_days": 274,
         "gamma": 1.02,
-        "geodesic": 80,
+        "geodesic": 88,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 66,
+        "prob_rising": 68,
         "regime": "SPACELIKE",
         "term": "SOFTWARE"
       },
@@ -157,35 +168,24 @@
       {
         "active_days": 207,
         "gamma": 1.0,
-        "geodesic": 0,
+        "geodesic": 22,
         "peak": 18,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 50,
+        "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "IPHONE"
       },
       {
         "active_days": 265,
         "gamma": 1.0,
-        "geodesic": -91,
+        "geodesic": -96,
         "peak": 15,
         "peak_in": 1,
         "phase": "PEAKING",
-        "prob_rising": 32,
+        "prob_rising": 31,
         "regime": "SPACELIKE",
         "term": "CODING"
-      },
-      {
-        "active_days": 277,
-        "gamma": 1.0,
-        "geodesic": -84,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 33,
-        "regime": "SPACELIKE",
-        "term": "YEARS"
       }
     ]
   },
