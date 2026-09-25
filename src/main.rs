@@ -33,11 +33,39 @@ const EARLY_OUT: &str = "build/early_payload.json";
 pub const OUT_DIR: &str = "docs";
 pub const OUT_HTML: &str = "docs/index.html";
 
+const HELP: &str = "tech-oracle: build THE SIGNAL, a self-grading tech-prediction site, in the current folder
+
+USAGE:
+    tech-oracle              Fetch today's public signals, make and grade calls,
+                             and write data/, build/ and docs/ here
+    tech-oracle backfill [N] Rebuild N days of history from Hacker News (default 178)
+    tech-oracle harvest      Read leaderboard submissions from GitHub issues
+    tech-oracle --version    Print the version
+    tech-oracle --help       Print this help
+
+Run it in an empty folder (or a clone of the repo) and open docs/index.html.
+No API keys are needed. Environment: REVEAL_DELAY_DAYS (default 0), SITE_URL,
+STRIPE_PAYMENT_LINK, ACCESS_CODES; see the README for the full list.
+";
+
 fn main() {
     // One-time historical backfill: `tech-oracle backfill [days]` reconstructs the
     // corpus's daily trajectory from Hacker News so the manifold skips warmup, then
     // exits. The normal daily run appends today's full ten-source snapshot after.
     let args: Vec<String> = std::env::args().collect();
+    // `--version` / `--help` only print and exit; with no arguments (how the
+    // daily Action runs it) behaviour is unchanged.
+    match args.get(1).map(|s| s.as_str()) {
+        Some("--version") | Some("-V") => {
+            println!("tech-oracle {}", env!("CARGO_PKG_VERSION"));
+            return;
+        }
+        Some("--help") | Some("-h") | Some("help") => {
+            print!("{}", HELP);
+            return;
+        }
+        _ => {}
+    }
     if args.get(1).map(|s| s.as_str()) == Some("backfill") {
         let days = args.get(2).and_then(|s| s.parse::<i64>().ok()).unwrap_or(178).clamp(1, 365);
         backfill::run(days);

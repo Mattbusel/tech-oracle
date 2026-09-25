@@ -34,6 +34,43 @@ curl https://mattbusel.github.io/tech-oracle/cli
 curl https://mattbusel.github.io/tech-oracle/api/today.json
 ```
 
+## Run your own
+
+### Download
+
+Get the latest build from
+[GitHub Releases](https://github.com/Mattbusel/tech-oracle/releases/latest)
+and pick the file for your computer:
+
+| You have | Download |
+| --- | --- |
+| Windows 10 or 11 | `tech-oracle-vX.Y.Z-x86_64-pc-windows-msvc.zip` |
+| Mac with Apple Silicon (M1 and later) | `tech-oracle-vX.Y.Z-aarch64-apple-darwin.tar.gz` |
+| Mac with an Intel chip | `tech-oracle-vX.Y.Z-x86_64-apple-darwin.tar.gz` |
+| Linux, 64-bit | `tech-oracle-vX.Y.Z-x86_64-unknown-linux-gnu.tar.gz` |
+
+Unzip it, put `tech-oracle` (`tech-oracle.exe` on Windows) in an empty folder
+and run it there. It fetches today's public signals, makes and grades its
+calls, and writes `data/`, `build/` and `docs/` into that folder. Open
+`docs/index.html` to see your site. Run it again each day (a scheduled task or
+cron job works) and it keeps grading itself. `tech-oracle --help` lists the
+other commands.
+
+The downloads are not signed, so your computer will be cautious the first
+time. On Windows, SmartScreen may say "unknown publisher": click **More info**,
+then **Run anyway**. On a Mac, right-click the program and choose **Open**.
+`SHA256SUMS.txt` on the release page lists every file's checksum.
+
+### With Cargo
+
+```bash
+cargo install tech-oracle
+```
+
+### From source
+
+See the quick start below.
+
 ## Quick start
 
 Requires a stable Rust toolchain. No keys are needed to run it.

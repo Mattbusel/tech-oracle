@@ -1,0 +1,129 @@
+name: Release
+
+# Push a tag like v0.2.0 to build binaries for Linux, macOS and Windows and
+# attach them to a GitHub Release. Publishing to crates.io stays manual.
+on:
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+  # Build-only dry run when this workflow itself changes (nothing is released).
+  pull_request:
+    paths:
+      - ".github/workflows/release.yml"
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to (re)build, e.g. v0.2.0"
+        required: true
+
+permissions:
+  contents: write
+
+env:
+  CARGO_TERM_COLOR: always
+  TAG: ${{ github.event_name == 'pull_request' && 'pr-test' || github.event.inputs.tag || github.ref_name }}
+
+jobs:
+  build:
+    name: Build ${{ matrix.target }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            target: x86_64-unknown-linux-gnu
+          - os: macos-latest
+            target: aarch64-apple-darwin
+          - os: macos-latest
+            target: x86_64-apple-darwin
+          - os: windows-latest
+            target: x86_64-pc-windows-msvc
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'pull_request' && github.sha || env.TAG }}
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+
+      - name: Build
+        run: cargo build --release --locked --target ${{ matrix.target }} 
+
+      - name: Smoke test
+        if: matrix.target != 'x86_64-apple-darwin'
+        shell: bash
+        run: target/${{ matrix.target }}/release/tech-oracle --version
+
+      - name: Package (Unix)
+        if: runner.os != 'Windows'
+        shell: bash
+        run: |
+          name="tech-oracle-${TAG}-${{ matrix.target }}"
+          mkdir "$name"
+          cp "target/${{ matrix.target }}/release/tech-oracle" README.md LICENSE "$name/"
+          tar czf "$name.tar.gz" "$name"
+
+      - name: Package (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $name = "tech-oracle-$env:TAG-${{ matrix.target }}"
+          New-Item -ItemType Directory $name | Out-Null
+          Copy-Item "target/${{ matrix.target }}/release/tech-oracle.exe", README.md, LICENSE $name
+          Compress-Archive -Path $name -DestinationPath "$name.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.target }}
+          path: |
+            tech-oracle-*.tar.gz
+            tech-oracle-*.zip
+
+  release:
+    name: Publish GitHub Release
+    needs: build
+    # Ship whatever built, even if one platform failed.
+    if: ${{ !cancelled() && github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Checksums
+        run: |
+          cd dist
+          test -n "$(ls)" || { echo "nothing built"; exit 1; }
+          sha256sum * > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Create or update release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          ls -l dist
+          cat > notes.md <<EOF
+          tech-oracle ${TAG}: the engine behind THE SIGNAL, for running your own self-grading prediction site.
+
+          - Windows: \`tech-oracle-${TAG}-x86_64-pc-windows-msvc.zip\`
+          - macOS Apple Silicon: \`tech-oracle-${TAG}-aarch64-apple-darwin.tar.gz\`
+          - macOS Intel: \`tech-oracle-${TAG}-x86_64-apple-darwin.tar.gz\`
+          - Linux x86_64: \`tech-oracle-${TAG}-x86_64-unknown-linux-gnu.tar.gz\`
+
+          Run it in an empty folder; it writes data/, build/ and docs/ there. Open docs/index.html. \`tech-oracle --help\` lists the subcommands.
+
+          The binaries are unsigned. Windows SmartScreen may say "unknown publisher": click More info, then Run anyway. On macOS, right-click and choose Open the first time. Checksums are in SHA256SUMS.txt. See CHANGELOG.md for what changed.
+          EOF
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" dist/* --clobber
+          else
+            gh release create "$TAG" dist/* --title "tech-oracle $TAG" --notes-file notes.md
+          fi
