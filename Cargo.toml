@@ -1,7 +1,16 @@
 [package]
 name = "tech-oracle"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
+license = "MIT"
+repository = "https://github.com/Mattbusel/tech-oracle"
+homepage = "https://mattbusel.github.io/tech-oracle/"
+readme = "README.md"
+keywords = ["predictions", "static-site", "tech", "trends"]
+categories = ["command-line-utilities"]
+# The generated site (docs/) and state (data/) are hundreds of MB; the crate
+# only needs the source and the embedded template.
+include = ["src/**", "templates/**", "Cargo.toml", "Cargo.lock", "README.md", "LICENSE", "CHANGELOG.md"]
 description = "Self-updating tech-prediction site: fetch free signals, generate dated calls by rules, render a static page."
 
 [dependencies]
