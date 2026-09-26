@@ -1,15 +1,15 @@
 {
   "horizon": {
-    "defined": 8547,
+    "defined": 8548,
     "phases": {
-      "BOTTOMING": 195,
-      "CHURNING": 614,
-      "FALLING": 52,
-      "FLAT": 6798,
-      "PEAKING": 94,
-      "RISING": 794
+      "BOTTOMING": 196,
+      "CHURNING": 629,
+      "FALLING": 50,
+      "FLAT": 6803,
+      "PEAKING": 86,
+      "RISING": 784
     },
-    "scanned": 29874,
+    "scanned": 29886,
     "turns": [
       {
         "active_days": 280,
@@ -25,11 +25,11 @@
       {
         "active_days": 277,
         "gamma": 1.01,
-        "geodesic": -75,
+        "geodesic": -85,
         "peak": 35,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 35,
+        "prob_rising": 33,
         "regime": "SPACELIKE",
         "term": "CLAUDE"
       },
@@ -58,11 +58,11 @@
       {
         "active_days": 280,
         "gamma": 1.0,
-        "geodesic": -70,
+        "geodesic": -44,
         "peak": 26,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 36,
+        "prob_rising": 41,
         "regime": "SPACELIKE",
         "term": "LLM"
       },
@@ -80,11 +80,11 @@
       {
         "active_days": 280,
         "gamma": 1.0,
-        "geodesic": -5,
+        "geodesic": 17,
         "peak": 25,
         "peak_in": 1,
         "phase": "BOTTOMING",
-        "prob_rising": 49,
+        "prob_rising": 53,
         "regime": "SPACELIKE",
         "term": "AGENT"
       },
@@ -133,6 +133,17 @@
         "term": "NVIDIA"
       },
       {
+        "active_days": 264,
+        "gamma": 1.0,
+        "geodesic": 46,
+        "peak": 20,
+        "peak_in": 1,
+        "phase": "BOTTOMING",
+        "prob_rising": 59,
+        "regime": "SPACELIKE",
+        "term": "OPENAI"
+      },
+      {
         "active_days": 169,
         "gamma": 1.0,
         "geodesic": 36,
@@ -155,6 +166,17 @@
         "term": "SOFTWARE"
       },
       {
+        "active_days": 273,
+        "gamma": 1.0,
+        "geodesic": -21,
+        "peak": 16,
+        "peak_in": 1,
+        "phase": "PEAKING",
+        "prob_rising": 46,
+        "regime": "SPACELIKE",
+        "term": "SYSTEM"
+      },
+      {
         "active_days": 208,
         "gamma": 1.0,
         "geodesic": 20,
@@ -164,28 +186,6 @@
         "prob_rising": 54,
         "regime": "SPACELIKE",
         "term": "IPHONE"
-      },
-      {
-        "active_days": 266,
-        "gamma": 1.0,
-        "geodesic": -97,
-        "peak": 15,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 31,
-        "regime": "SPACELIKE",
-        "term": "CODING"
-      },
-      {
-        "active_days": 278,
-        "gamma": 1.0,
-        "geodesic": -23,
-        "peak": 14,
-        "peak_in": 1,
-        "phase": "PEAKING",
-        "prob_rising": 45,
-        "regime": "SPACELIKE",
-        "term": "YEARS"
       }
     ]
   },
