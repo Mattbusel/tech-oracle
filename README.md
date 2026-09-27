@@ -9,9 +9,9 @@ Most prediction content is vague and never checked. THE SIGNAL makes specific, d
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 26, 2026** // Index **71 (SURGING)** // hottest **MODEL** // record **601-1263**
+**September 27, 2026** // Index **70 (SURGING)** // hottest **MODEL** // record **606-1276**
 
-> What If Your AI Agent Never Had to Leave the Browser? (Demo ) is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
+> Prime Day Hasn't Started Yet, but I've Already Found Deals Worth Buying just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
