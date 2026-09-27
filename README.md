@@ -9,9 +9,9 @@ Most prediction content is vague and never checked. THE SIGNAL makes specific, d
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 27, 2026** // Index **70 (SURGING)** // hottest **MODEL** // record **606-1276**
+**September 27, 2026** // Index **70 (SURGING)** // hottest **WORLD** // record **607-1276**
 
-> Prime Day Hasn't Started Yet, but I've Already Found Deals Worth Buying just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> Unsealed Briefs in Authors' Case v. Microsoft/OpenAI just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
