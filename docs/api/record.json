@@ -1,27 +1,11 @@
 {
   "book": {
-    "bank": -24695,
+    "bank": -24022,
     "best_loss": 17,
-    "best_win": 86,
+    "best_win": 90,
     "history": [
       {
-        "date": "2026-09-19",
-        "pct": 43
-      },
-      {
-        "date": "2026-09-19",
-        "pct": 44
-      },
-      {
-        "date": "2026-09-19",
-        "pct": 44
-      },
-      {
         "date": "2026-09-20",
-        "pct": 44
-      },
-      {
-        "date": "2026-09-21",
         "pct": 45
       },
       {
@@ -29,7 +13,7 @@
         "pct": 45
       },
       {
-        "date": "2026-09-22",
+        "date": "2026-09-21",
         "pct": 45
       },
       {
@@ -45,11 +29,11 @@
         "pct": 46
       },
       {
-        "date": "2026-09-23",
-        "pct": 46
+        "date": "2026-09-22",
+        "pct": 47
       },
       {
-        "date": "2026-09-23",
+        "date": "2026-09-22",
         "pct": 47
       },
       {
@@ -63,32 +47,48 @@
       {
         "date": "2026-09-23",
         "pct": 48
+      },
+      {
+        "date": "2026-09-23",
+        "pct": 48
+      },
+      {
+        "date": "2026-09-23",
+        "pct": 48
+      },
+      {
+        "date": "2026-09-23",
+        "pct": 49
       },
       {
         "date": "2026-09-24",
-        "pct": 48
+        "pct": 49
       },
       {
         "date": "2026-09-24",
-        "pct": 48
-      },
-      {
-        "date": "2026-09-25",
         "pct": 49
       },
       {
         "date": "2026-09-25",
-        "pct": 49
+        "pct": 50
+      },
+      {
+        "date": "2026-09-25",
+        "pct": 50
+      },
+      {
+        "date": "2026-09-25",
+        "pct": 50
       },
       {
         "date": "2026-09-26",
-        "pct": 50
+        "pct": 51
       }
     ],
     "pnl_class": "sb-miss",
-    "roi_str": "-2570%",
-    "settled": 1883,
-    "streak": "W86"
+    "roi_str": "-2502%",
+    "settled": 1887,
+    "streak": "W90"
   },
   "calibration": {
     "brier": "0.227",
@@ -96,7 +96,7 @@
       {
         "actual": 32,
         "label": "LONGSHOTS",
-        "n": 1858,
+        "n": 1862,
         "pred": 38
       },
       {
@@ -114,56 +114,85 @@
     ],
     "grade": "HONEST: ROUGHLY CALIBRATED",
     "has_data": true,
-    "n": 1883
+    "n": 1887
   },
   "calls": [
     {
       "confidence": 0.43,
       "date": "2026-09-27",
       "id": 2482,
-      "keyword": "microsoft",
+      "keyword": "concurrency",
       "keyword2": "",
       "live": 43,
       "live_prev": 43,
       "manifold": {
-        "gamma": 1.01,
-        "geodesic": 99,
+        "gamma": 1.018,
+        "geodesic": 79,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "RESURFACE",
-      "odds": 2.31,
+      "odds": 2.34,
       "permalink": "/call/2482.html",
-      "prediction": "Unsealed Briefs in Authors' Case v. Microsoft/OpenAI just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
-      "rationale": "VEL +35%/7d // 3/10 FEEDS // REACH THE NEWS // ACCEL -200% // CROSSING FROM HN // HALF-LIFE 117d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.04 // geodesic +99% // RISING",
+      "prediction": "Watching Go Concurrency Distilled climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.",
+      "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH HN // ACCEL +200% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Unsealed Briefs in Authors' Case v. Microsoft/OpenAI",
+        "title": "Go Concurrency Distilled",
         "type": "hn",
-        "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/"
+        "url": "https://antonz.org/go-concurrency-distilled/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"MICROSOFT\" RESURFACES ACROSS THE FEEDS BY 2026-10-27"
+      "win_if": "WIN IF \"CONCURRENCY\" RESURFACES ACROSS THE FEEDS BY 2026-10-27"
     },
     {
-      "confidence": 0.41,
+      "confidence": 0.42,
       "date": "2026-09-27",
       "id": 2481,
+      "keyword": "browser",
+      "keyword2": "",
+      "live": 42,
+      "live_prev": 42,
+      "manifold": {
+        "gamma": 1.0,
+        "geodesic": 55,
+        "phase": "CHURNING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.38,
+      "permalink": "/call/2481.html",
+      "prediction": "What If Your AI Agent Never Had to Leave the Browser? (Demo ) is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.",
+      "rationale": "VEL +75%/7d // 2/10 FEEDS // REACH DEV.TO // ACCEL +200% // HALF-LIFE 110.3d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.00 // geodesic +55% // CHURNING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-27",
+      "source": {
+        "title": "What If Your AI Agent Never Had to Leave the Browser? (Demo )",
+        "type": "devto",
+        "url": "https://dev.to/sylwia-lask/what-if-your-ai-agent-never-had-to-leave-the-browser-demo--5g"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-10-27"
+    },
+    {
+      "confidence": 0.44,
+      "date": "2026-09-27",
+      "id": 2480,
       "keyword": "different",
       "keyword2": "",
-      "live": 41,
-      "live_prev": 41,
+      "live": 44,
+      "live_prev": 44,
       "manifold": {
         "gamma": 1.031,
         "geodesic": 94,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "INDEX",
-      "odds": 2.42,
-      "permalink": "/call/2481.html",
-      "prediction": "You're not an impostor, you just started from a different line is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.",
+      "market": "OVER",
+      "odds": 2.3,
+      "permalink": "/call/2480.html",
+      "prediction": "Dev.to writers are rallying around You're not an impostor, you just started from a different line. Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH DEV.TO // ACCEL +150% // HALF-LIFE 152.7d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.03 // geodesic +94% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
@@ -173,26 +202,26 @@
         "url": "https://dev.to/danielhe4rt/youre-not-an-impostor-you-just-started-from-a-different-line-2lph"
       },
       "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-10-27"
+      "win_if": "WIN IF \"DIFFERENT\" CLEARS 3 MENTIONS IN A DAY BY 2026-10-27"
     },
     {
-      "confidence": 0.4,
+      "confidence": 0.34,
       "date": "2026-09-27",
-      "id": 2480,
+      "id": 2479,
       "keyword": "upgrades",
       "keyword2": "",
-      "live": 40,
-      "live_prev": 40,
+      "live": 34,
+      "live_prev": 34,
       "manifold": {
         "gamma": 1.004,
         "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "OVER",
-      "odds": 2.5,
-      "permalink": "/call/2480.html",
-      "prediction": "Galaxy S27 Ultra and Galaxy S27 Pro may boast supreme memory upgrades, but there's a catch is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/2479.html",
+      "prediction": "Watch Galaxy S27 Ultra and Galaxy S27 Pro may boast supreme memory upgrades, but there's a catch leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 52.4d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
@@ -202,129 +231,100 @@
         "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOSWZPZHlkdFd4R21VUzdkVlpZWVB4THFvOWduNV92RHBzd280a1RGM0tKSlRjbkhjU1hZQmJkTDkwYnNSR3Z2dm5ZN0wwZVhvcjVGSEFKUm9zVkpfTHNtbkNuNmx2T3dqZEc0VzhReGFUNkJvd3RXbHgtQmI4NjV5dUkzZ1BGT2tnM3ZhUmxjWHlSQQ?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"UPGRADES\" CLEARS 3 MENTIONS IN A DAY BY 2026-10-27"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-27",
-      "id": 2479,
-      "keyword": "googlebooks",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/2479.html",
-      "prediction": "Watch Googlebooks might be the real deal leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 5d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-27",
-      "source": {
-        "title": "Googlebooks might be the real deal",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxPQTU0eVFxVGF3Ui1wdXBlbGtiNnRRWlR6VTBqMDFCZjFFOEI0MXFlZmVwcmM2NjdVR0ZXUEVaSlIxaGp2OG1RNHZnMFlYa0JwaUtDSGJvMTlsZGJMMG9ZbV9vX3dlRU82c29VLUhZamdDUUROaDRWNE52andLdDFWUTJtajBpc2Z6VWpvWjNUTDkxSzY0U000VkVGU3lNTWxWTk1NT2F6MXZkQnRjU3c?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"GOOGLEBOOKS\" RESURFACES BY 2026-10-27"
+      "win_if": "LONGSHOT: WIN IF \"UPGRADES\" RESURFACES BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2478,
-      "keyword": "browser",
+      "keyword": "handwritten",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
-      "manifold": {
-        "gamma": 1.0,
-        "geodesic": 21,
-        "phase": "BOTTOMING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/2478.html",
-      "prediction": "Lots of dev.to energy on What If Your AI Agent Never Had to Leave the Browser? (Demo ). Betting a framework or starter kit consolidates the space before Q4.",
-      "rationale": "VEL -12%/7d // 1/10 FEEDS // REACH DEV.TO // ACCEL +100% // HALF-LIFE 77.1d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic +21% // BOTTOMING IN 1D",
-      "resolved_on": "",
-      "resolves_by": "2026-10-27",
-      "source": {
-        "title": "What If Your AI Agent Never Had to Leave the Browser? (Demo )",
-        "type": "devto",
-        "url": "https://dev.to/sylwia-lask/what-if-your-ai-agent-never-had-to-leave-the-browser-demo--5g"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"BROWSER\" RESURFACES BY 2026-10-27"
-    },
-    {
-      "confidence": 0.37,
-      "date": "2026-09-27",
-      "id": 2477,
-      "keyword": "gsmarena",
-      "keyword2": "",
-      "live": 37,
-      "live_prev": 37,
-      "manifold": {
-        "gamma": 1.0,
-        "geodesic": 55,
-        "phase": "CHURNING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.74,
-      "permalink": "/call/2477.html",
-      "prediction": "Here's the Apple HomePod Mini 2 in all its colors - GSMArena.com news is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // HALF-LIFE 172.7d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.00 // geodesic +55% // CHURNING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-27",
-      "source": {
-        "title": "Here's the Apple HomePod Mini 2 in all its colors - GSMArena.com news",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5RNVMwT1BUTFFVYXlUMnhidEhKXzVhVXM2c0JaN0NWenZrQ2F4SlphOWFGTVFHeWFvMnVWQWhpZEQxX1FGdlNYVzN4OGpYcld4YlQxOW9MenoyM1d1eGdodU8xNTV2MHp4d3FzNmFXQ0luNmNFRktvOTJNQ2R4TXfSAXtBVV95cUxPNFZYOGo4XzNWMDFlX3I3ZkNPQ2ZDVFRUWWpGaU5pQWhUS3dfeTNMR1J5eFNmSjc1bERJVm9WMlp2eExWTEJNX3YtNzdDUVVXOVpjYzB6UGJsQU1rTDZRTFRCR3NyOHcyX1dndjVPVnRjTlBmM1ZrZGlKTFE?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 76 BY 2026-10-27"
-    },
-    {
-      "confidence": 0.37,
-      "date": "2026-09-27",
-      "id": 2476,
-      "keyword": "vectorize",
-      "keyword2": "",
-      "live": 37,
-      "live_prev": 37,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "OVER",
-      "odds": 2.67,
-      "permalink": "/call/2476.html",
-      "prediction": "vectorize-io/hindsight is rocketing up GitHub trending. The trajectory says it crosses into mainstream dev workflows within two quarters.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/2478.html",
+      "prediction": "Ruby on Rails Creator Declares 'Pencils Down' on Handwritten Code is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM ARXIV // HALF-LIFE 276d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "vectorize-io/hindsight",
-        "type": "github",
-        "url": "https://github.com/vectorize-io/hindsight"
+        "title": "Ruby on Rails Creator Declares 'Pencils Down' on Handwritten Code",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxPWTE1dDlZOVcyX1NVOS1CSlNibVhsMVd1Z2JubFFZc1NXUS1EVC05X1N6QzN5Nk9BU0tqSHpKajNaZzZMdFNsd3lvclVIS2U3c080ckxyd29LaEVHMm1Sa3EtTXNVY1lwQThNMWxTeUs2Ym1hM2hOS3oxeTlybFU2NGgtMDJFTnhKc3hmbWpB?oc=5"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"VECTORIZE\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-27"
+      "win_if": "LONGSHOT: WIN IF \"HANDWRITTEN\" RESURFACES BY 2026-10-27"
+    },
+    {
+      "confidence": 0.39,
+      "date": "2026-09-27",
+      "id": 2477,
+      "keyword": "instagram",
+      "keyword2": "",
+      "live": 39,
+      "live_prev": 39,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.6,
+      "permalink": "/call/2477.html",
+      "prediction": "Instagram has a new feature that's bad news for creepers - and it's got people vowing to is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // HALF-LIFE 100.2d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-27",
+      "source": {
+        "title": "Instagram has a new feature that's bad news for creepers - and it's got people vowing to quit the app",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPc1RqX3BxaUY4NFZmYmMtc3VWQXpZd0dOSzFHMkwwQ2pTTXE1bS1tTERzSnJFZGplMWhOcmdrbTdRcjduRk0xQWl2V3dIRzFvb3N1bU9FaFlXV2dHLTM3UzJPRGdDVzNxUTlmX240WkU5X3Vvb3AxNFRiYkpONDZ2dFJseEwzRVFjQ3ROaE9fN1VvVFFFQjJTdmhFcXBWel9GNXZLQm5rSEE3T3VvOExKM3hPVm5XZmdWQlBoek12dng0WVZQbXFXeGl1Uk5ua1E?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-10-27"
+    },
+    {
+      "confidence": 0.42,
+      "date": "2026-09-27",
+      "id": 2476,
+      "keyword": "performance",
+      "keyword2": "",
+      "live": 42,
+      "live_prev": 42,
+      "manifold": {
+        "gamma": 1.005,
+        "geodesic": 81,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "OVER",
+      "odds": 2.35,
+      "permalink": "/call/2476.html",
+      "prediction": "Microsoft shares new Edge tools to fill key performance gaps to improve slow web apps just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.",
+      "rationale": "VEL +775%/7d // 3/10 FEEDS // REACH THE NEWS // ACCEL +500% // CROSSING FROM ARXIV // HALF-LIFE 410d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.03 // geodesic +81% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-27",
+      "source": {
+        "title": "Microsoft shares new Edge tools to fill key performance gaps to improve slow web apps",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNNVA5aFBSeVRTU3Vvc1YtY1lLMFIxMzRTdktGU09DQXdPNG5pYWVUSmxxalNqRmNydnh0VDZiWnh1eFkzdE9rRnZEUmhhejRXUktxdGZsT3dvckY2bnlVNFEwRUVTa0s0dHlCWHpMbDhVaUJwc0pJcVEzb3BJM1lSOElDQUdMUkJseW81MkNQWnpMMEFITmx2Mk9uOGw1djRWdEpNc2pnOHp3S0VFaXVQdl9DMHY?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF \"PERFORMANCE\" CLEARS 8 MENTIONS IN A DAY BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2475,
-      "keyword": "instagram",
+      "keyword": "competition",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -337,84 +337,84 @@
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/2475.html",
-      "prediction": "The press is circling Instagram has a new feature that's bad news for creepers - and it's got people vowing to. Betting today's story is the small version of a much larger one by year end.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // HALF-LIFE 100.2d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The machine flagged Meta Launches $1 Million Competition For \"Hands-First\" Apps Ahead Of VR Glasses crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 176d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Instagram has a new feature that's bad news for creepers - and it's got people vowing to quit the app",
+        "title": "Meta Launches $1 Million Competition For \"Hands-First\" Apps Ahead Of VR Glasses",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPc1RqX3BxaUY4NFZmYmMtc3VWQXpZd0dOSzFHMkwwQ2pTTXE1bS1tTERzSnJFZGplMWhOcmdrbTdRcjduRk0xQWl2V3dIRzFvb3N1bU9FaFlXV2dHLTM3UzJPRGdDVzNxUTlmX240WkU5X3Vvb3AxNFRiYkpONDZ2dFJseEwzRVFjQ3ROaE9fN1VvVFFFQjJTdmhFcXBWel9GNXZLQm5rSEE3T3VvOExKM3hPVm5XZmdWQlBoek12dng0WVZQbXFXeGl1Uk5ua1E?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPajZ0dHcyM0ZIVnpIZ25XcUEtTHJFWXp1bXJYVjQ5NGVJaEZyczVQVUUzcHlyemFqVzdSRGFKQmVyaDVCcUZsa2QwNGtVM05yRXoxR3QzR0hvY3VWYUplU3ZJaDFTZjk3ZDlGc0FoY0xROXZIeTJTamFkNmRWZ2p6cEZMNnlLLU1hYnJES3dtSmNRYzJWcVlyVC1jYkp3Xy1zZUh5cA?oc=5"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"INSTAGRAM\" RESURFACES BY 2026-10-27"
+      "win_if": "LONGSHOT: WIN IF \"COMPETITION\" RESURFACES BY 2026-10-27"
     },
     {
-      "confidence": 0.42,
+      "confidence": 0.4,
       "date": "2026-09-27",
       "id": 2474,
-      "keyword": "agents",
+      "keyword": "vectorize",
       "keyword2": "",
-      "live": 42,
-      "live_prev": 42,
-      "manifold": {
-        "gamma": 1.001,
-        "geodesic": 54,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
-      "market": "RESURFACE",
-      "odds": 2.38,
-      "permalink": "/call/2474.html",
-      "prediction": "LLM Agents Can Easily Tamper With Their Own Traces is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
-      "rationale": "VEL +47%/7d // 4/10 FEEDS // REACH THE NEWS // CROSSING FROM ARXIV // HALF-LIFE 121.1d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +54% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-27",
-      "source": {
-        "title": "LLM Agents Can Easily Tamper With Their Own Traces",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2609.30266v1"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF \"AGENTS\" RESURFACES ACROSS THE FEEDS BY 2026-10-27"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-27",
-      "id": 2473,
-      "keyword": "williams",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
+      "live": 40,
+      "live_prev": 40,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "INDEX",
-      "odds": 2.92,
-      "permalink": "/call/2473.html",
-      "prediction": "Terrell Williams is back with the Patriots after beating prostate cancer. He has a message is the headline now. Calling it: the second-order consequence is the one that actually matters, and it lands within ~6 months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // HALF-LIFE 129d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "market": "RESURFACE",
+      "odds": 2.48,
+      "permalink": "/call/2474.html",
+      "prediction": "vectorize-io/hindsight is having a moment on GitHub. Expect a Show HN surge and the first VC-backed competitor before Q4.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH GITHUB // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Terrell Williams is back with the Patriots after beating prostate cancer. He has a message for everyone.",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOcVM1aDJJOE1Rd1FHWUhWVFQxNzlWVUxqbnF2Y25rRjBmSzF6enFtMGxXRTZadXJwNGZ1bW1PQkpwdXZMWExEd3VmVmFZM3JUWnk4UTVJMmE4d1poMmtTcXdwQTZGNE5zVFpDR01lOXF6Z0ZXTFV3anRjblpxYnd2ZmR0U0p0ejlOSW5fRUh2TmpoZw?oc=5"
+        "title": "vectorize-io/hindsight",
+        "type": "github",
+        "url": "https://github.com/vectorize-io/hindsight"
       },
       "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-10-27"
+      "win_if": "WIN IF \"VECTORIZE\" RESURFACES ACROSS THE FEEDS BY 2026-10-27"
     },
     {
       "confidence": 0.37,
       "date": "2026-09-27",
-      "id": 2472,
-      "keyword": "minecraft",
+      "id": 2473,
+      "keyword": "september",
       "keyword2": "",
       "live": 37,
       "live_prev": 37,
+      "manifold": {
+        "gamma": 1.002,
+        "geodesic": -65,
+        "phase": "PEAKING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.69,
+      "permalink": "/call/2473.html",
+      "prediction": "Watch Today's NYT Strands Hints, Spangram, Answers: Sunday, September 27 (It's Skin Deep) leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +250%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 7.5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic -65% // PEAKING IN 1D",
+      "resolved_on": "",
+      "resolves_by": "2026-10-27",
+      "source": {
+        "title": "Today's NYT Strands Hints, Spangram, Answers: Sunday, September 27 (It's Skin Deep)",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNZWFlT0h3VzJCUEc1Z2dHVzVQdHk0YlFNN1Y1MklwSGtVS1lBby15Uy1kNWdVOFh5dVA4T19ZTHNXaEl5bUFFU3lyYXYtMUVWT2JZTC1ueS04dHFlbGJmY2hzVnZ5aklaa2psbzRxTkt0aS1jeXE5SmF0U1h0eDVmWFJ5VDBuekd5ZERfZE8zMS1CLW1jbG1Jel9LSFVldl94RkFpR3NQRGpkS0VKclFrVDJqRFlsNTRQZ3FJNU02eGtwWEhn?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 81 BY 2026-10-27"
+    },
+    {
+      "confidence": 0.38,
+      "date": "2026-09-27",
+      "id": 2472,
+      "keyword": "minecraft",
+      "keyword2": "",
+      "live": 38,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 97,
@@ -422,7 +422,7 @@
         "regime": "SPACELIKE"
       },
       "market": "OVER",
-      "odds": 2.73,
+      "odds": 2.62,
       "permalink": "/call/2472.html",
       "prediction": "Minecraft Dungeons II's New Dimension Coming to Minecraft Java & Bedrock Edition is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
       "rationale": "VEL +250%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL -200% // CROSSING FROM HN // HALF-LIFE 225.7d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.04 // geodesic +97% // RISING",
@@ -440,39 +440,39 @@
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2471,
-      "keyword": "become",
+      "keyword": "agents",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 59,
+        "gamma": 1.001,
+        "geodesic": 45,
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/2471.html",
-      "prediction": "If we do not stop to help each other, what do we become? is climbing Lobsters today. Betting it graduates from enthusiast favorite to production-boring within a year.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH LOBSTERS // ACCEL +100% // HALF-LIFE 47.2d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Normal people are about to find LLM Agents Can Easily Tamper With Their Own Traces. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +29%/7d // 4/10 FEEDS // REACH THE NEWS // ACCEL -17% // CROSSING FROM ARXIV // HALF-LIFE 108.4d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +45% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "If we do not stop to help each other, what do we become?",
-        "type": "lobsters",
-        "url": "https://blog.codinghorror.com/if-we-do-not-stop-to-help-each-other-what-do-we-become/"
+        "title": "LLM Agents Can Easily Tamper With Their Own Traces",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2609.30266v1"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"BECOME\" RESURFACES BY 2026-10-27"
+      "win_if": "LONGSHOT: WIN IF \"AGENTS\" RESURFACES BY 2026-10-27"
     },
     {
-      "confidence": 0.36,
+      "confidence": 0.38,
       "date": "2026-09-27",
       "id": 2470,
       "keyword": "discriminative",
       "keyword2": "",
-      "live": 36,
-      "live_prev": 36,
+      "live": 38,
+      "live_prev": 38,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -480,7 +480,7 @@
         "regime": "SPACELIKE"
       },
       "market": "RESURFACE",
-      "odds": 2.78,
+      "odds": 2.66,
       "permalink": "/call/2470.html",
       "prediction": "This AD-WM: Action-Discriminative World Models for Counterfactual Model Predictive Control paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
@@ -498,41 +498,41 @@
       "confidence": 0.38,
       "date": "2026-09-27",
       "id": 2469,
-      "keyword": "september",
+      "keyword": "become",
       "keyword2": "",
       "live": 38,
       "live_prev": 38,
       "manifold": {
-        "gamma": 1.002,
-        "geodesic": -65,
-        "phase": "PEAKING",
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
         "regime": "SPACELIKE"
       },
       "market": "INDEX",
-      "odds": 2.64,
+      "odds": 2.62,
       "permalink": "/call/2469.html",
-      "prediction": "The machine flagged Today's NYT Strands Hints, Spangram, Answers: Sunday, September 27 (It's Skin Deep) crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
-      "rationale": "VEL +250%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // HALF-LIFE 7.5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic -65% // PEAKING IN 1D",
+      "prediction": "If we do not stop to help each other, what do we become? is the quiet Lobsters pick. This is usually how the next standard library or pattern starts.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH LOBSTERS // ACCEL +100% // HALF-LIFE 47.2d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Today's NYT Strands Hints, Spangram, Answers: Sunday, September 27 (It's Skin Deep)",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNZWFlT0h3VzJCUEc1Z2dHVzVQdHk0YlFNN1Y1MklwSGtVS1lBby15Uy1kNWdVOFh5dVA4T19ZTHNXaEl5bUFFU3lyYXYtMUVWT2JZTC1ueS04dHFlbGJmY2hzVnZ5aklaa2psbzRxTkt0aS1jeXE5SmF0U1h0eDVmWFJ5VDBuekd5ZERfZE8zMS1CLW1jbG1Jel9LSFVldl94RkFpR3NQRGpkS0VKclFrVDJqRFlsNTRQZ3FJNU02eGtwWEhn?oc=5"
+        "title": "If we do not stop to help each other, what do we become?",
+        "type": "lobsters",
+        "url": "https://blog.codinghorror.com/if-we-do-not-stop-to-help-each-other-what-do-we-become/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 78 BY 2026-10-27"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 79 BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2468,
-      "keyword": "reconstruction",
+      "keyword": "fluid",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.004,
+        "gamma": 1.018,
         "geodesic": 59,
         "phase": "RISING",
         "regime": "SPACELIKE"
@@ -540,23 +540,23 @@
       "market": "OVER",
       "odds": 2.94,
       "permalink": "/call/2468.html",
-      "prediction": "Fresh cs.AI/cs.LG work on Temporal Gradient Inversion for Private Trajectory Reconstruction in Embodied just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 274d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The HN front page is piling onto Flip Fluid on Flip Dots. Expect the tooling around it to consolidate into one default winner within two quarters.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 264d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Temporal Gradient Inversion for Private Trajectory Reconstruction in Embodied Reinforcement Learning",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2609.30258v1"
+        "title": "Flip Fluid on Flip Dots",
+        "type": "hn",
+        "url": "https://mitxela.com/projects/flipflip"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"RECONSTRUCTION\" CLEARS 3 MENTIONS IN A DAY BY 2026-10-27"
+      "win_if": "WIN IF \"FLUID\" CLEARS 3 MENTIONS IN A DAY BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2467,
-      "keyword": "mandatory",
+      "keyword": "williams",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -569,7 +569,65 @@
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/2467.html",
-      "prediction": "Watch Users find a default, mandatory Windows feature freezes your PC when you use internet leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "prediction": "The press is circling Terrell Williams is back with the Patriots after beating prostate cancer. He has a message. Betting today's story is the small version of a much larger one by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // HALF-LIFE 129d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-27",
+      "source": {
+        "title": "Terrell Williams is back with the Patriots after beating prostate cancer. He has a message for everyone.",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxOcVM1aDJJOE1Rd1FHWUhWVFQxNzlWVUxqbnF2Y25rRjBmSzF6enFtMGxXRTZadXJwNGZ1bW1PQkpwdXZMWExEd3VmVmFZM3JUWnk4UTVJMmE4d1poMmtTcXdwQTZGNE5zVFpDR01lOXF6Z0ZXTFV3anRjblpxYnd2ZmR0U0p0ejlOSW5fRUh2TmpoZw?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"WILLIAMS\" RESURFACES BY 2026-10-27"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-09-27",
+      "id": 2466,
+      "keyword": "reconstruction",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.004,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "LONGSHOT",
+      "odds": 2.94,
+      "permalink": "/call/2466.html",
+      "prediction": "This Temporal Gradient Inversion for Private Trajectory Reconstruction in Embodied paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // HALF-LIFE 274d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +59% // RISING",
+      "resolved_on": "",
+      "resolves_by": "2026-10-27",
+      "source": {
+        "title": "Temporal Gradient Inversion for Private Trajectory Reconstruction in Embodied Reinforcement Learning",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2609.30258v1"
+      },
+      "status": "OPEN",
+      "win_if": "LONGSHOT: WIN IF \"RECONSTRUCTION\" RESURFACES BY 2026-10-27"
+    },
+    {
+      "confidence": 0.35,
+      "date": "2026-09-27",
+      "id": 2465,
+      "keyword": "mandatory",
+      "keyword2": "",
+      "live": 35,
+      "live_prev": 35,
+      "manifold": {
+        "gamma": 1.018,
+        "geodesic": 59,
+        "phase": "RISING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.82,
+      "permalink": "/call/2465.html",
+      "prediction": "Normal people are about to find Users find a default, mandatory Windows feature freezes your PC when you use internet. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
       "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 224d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
@@ -579,74 +637,16 @@
         "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQekZXQUlJWUpKMjBaSDFHYjVPejk2enJBNHBLbjNQalVCSUwtRVZqTkg0OEZYVzJlSFhVb0J3RTlRR0xhYzk5YWlNSzlQUWF1WEp4WjZKWFVSbkI1ZlFpZkl4VllqZXNvM3owZmVvcXB0YTBJb1hyeTlTNzdXMS14anIxUkJVME55dHQzUkRsRzNIakRfWV84RE9vNkVSdXJOcWZNd3l1dC1WVF9FQWRUWXdDNA?oc=5"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"MANDATORY\" RESURFACES BY 2026-10-27"
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 77 BY 2026-10-27"
     },
     {
-      "confidence": 0.34,
-      "date": "2026-09-27",
-      "id": 2466,
-      "keyword": "glasses",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.002,
-        "geodesic": 6,
-        "phase": "PEAKING",
-        "regime": "SPACELIKE"
-      },
-      "market": "LONGSHOT",
-      "odds": 2.94,
-      "permalink": "/call/2466.html",
-      "prediction": "Meta's VR Glasses Are What the Apple Vision Pro Should Have Been is leaking out of the dev bubble. The machine's call, on the record and dated: it goes fully mainstream within two quarters. Tail it or fade it.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // HALF-LIFE 113d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.01 // geodesic +6% // PEAKING IN 1D",
-      "resolved_on": "",
-      "resolves_by": "2026-10-27",
-      "source": {
-        "title": "Meta's VR Glasses Are What the Apple Vision Pro Should Have Been",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMi0AFBVV95cUxQMjk0Q2VnTVNKdm1ubXYwSHdGSFlHcDRUN29YWkh5NmU0MjR5cGt1b0xJM21vTWE3aHFBTmhVaThPUXBNTXpiLUY3OFZTYUZPd21KQ2VmZklCU1c4R295cTZVMlpCMkFZblRUUGRDeGd1Q3dTZ2RaU1puQmFWeXJWLXJDSWNma0U1T1NGR1VQZWI1NEEzc3Fsczk3VEtteTMxMDZvV3ppUWd6UU9yZzQza0o3UFFiUmhSb00xbGpUa0NCQ19udmxxOGI2UUtZSDhW?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"GLASSES\" RESURFACES BY 2026-10-27"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-27",
-      "id": 2465,
-      "keyword": "actually",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.001,
-        "geodesic": 41,
-        "phase": "BOTTOMING",
-        "regime": "SPACELIKE"
-      },
-      "market": "INDEX",
-      "odds": 2.93,
-      "permalink": "/call/2465.html",
-      "prediction": "Normal people are about to find How much should you actually tip on a 'free' walking tour?. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
-      "rationale": "VEL +200%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +300% // CROSSING FROM ARXIV // HALF-LIFE 202.4d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic +41% // BOTTOMING IN 1D",
-      "resolved_on": "",
-      "resolves_by": "2026-10-27",
-      "source": {
-        "title": "How much should you actually tip on a 'free' walking tour?",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPeVVYODVPNEdTQklBU0FtYnhfVkVfamdBVS16S2FLckl2d2dUQ3BuMEVzQmcwaWE2ajUwRkp0ZmwwM1FzaHBrZElxSkxCcE1yTG1Obi1TQlBwNEZXaVFkNmNXdUtVRjZJZVNSTzdLb2RTd2N0T2VIM0JERkNkLW5LYThsWUEzT2RGdV9UZGNBREN1dUhVRHY3U0p3NGFpbXJs?oc=5"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 76 BY 2026-10-27"
-    },
-    {
-      "confidence": 0.34,
+      "confidence": 0.36,
       "date": "2026-09-27",
       "id": 2464,
-      "keyword": "smithsonian",
+      "keyword": "deleted",
       "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
+      "live": 36,
+      "live_prev": 36,
       "manifold": {
         "gamma": 1.018,
         "geodesic": 59,
@@ -654,54 +654,54 @@
         "regime": "SPACELIKE"
       },
       "market": "OVER",
-      "odds": 2.91,
+      "odds": 2.77,
       "permalink": "/call/2464.html",
-      "prediction": "Ars is covering How the Smithsonian became the latest front in Trump's culture war. When it crosses from tech press to mainstream, regulation or a major incumbent move follows within two quarters.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "The HN front page is piling onto On caring for user data: NeoVim caused Vim undo files to be deleted. Expect the tooling around it to consolidate into one default winner within two quarters.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 107.3d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "How the Smithsonian became the latest front in Trump's culture war",
-        "type": "ars",
-        "url": "https://arstechnica.com/tech-policy/2026/09/how-the-smithsonian-became-the-latest-front-in-trumps-culture-war/"
+        "title": "On caring for user data: NeoVim caused Vim undo files to be deleted",
+        "type": "hn",
+        "url": "https://unsung.aresluna.org/they-had-no-concept-of-a-duty-of-care-to-their-users/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"SMITHSONIAN\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-27"
+      "win_if": "WIN IF \"DELETED\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2463,
-      "keyword": "download",
+      "keyword": "halloween",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
       "manifold": {
-        "gamma": 1.018,
-        "geodesic": 79,
-        "phase": "RISING",
+        "gamma": 1.002,
+        "geodesic": 21,
+        "phase": "BOTTOMING",
         "regime": "SPACELIKE"
       },
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/2463.html",
-      "prediction": "The machine flagged EA FC 27 Has a Free Version: How to Download crossing over today, before the headlines. Bet: it is a household reference within six months. The record settles this, not opinions.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +200% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.02 // geodesic +79% // RISING",
+      "prediction": "The press is circling Five Nights at Freddy's is joining Fortnite for this year's Halloween event. Betting today's story is the small version of a much larger one by year end.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // HALF-LIFE 21d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic +21% // BOTTOMING IN 1D",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "EA FC 27 Has a Free Version: How to Download",
+        "title": "Five Nights at Freddy's is joining Fortnite for this year's Halloween event",
         "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1EaXdMRTlZR091VWZ6a2tZay1La1p6eG1BOGFTTm9MRmx4dWlXM3Q0Zll5ekNlS2lna3FQZ0V1bVV3X1VlZ2lPQTRNRk11VU1nRU8tZnAxX2J0NVFCb0ZCc3FwdTlMR19WSFI3b3VVY1M2SFRHdF9tX2VaQ0t6UQ?oc=5"
+        "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxQS0tINDRPUFRrZTNYNHl0Z2lFVU1jdFZNZGJVZjBxLUphTG9mLUxscENYSUItQm10QlpwTVh4Uk5nc3JZTlRPOG5zNGdXdnZIdVhDejVZY0t2QmZFSVhaSUFSNGIzWmlXWnJGS0twNWMzYVhBZ1lWQ3dRNkVLQkVPdEdkdlE?oc=5"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"DOWNLOAD\" RESURFACES BY 2026-10-27"
+      "win_if": "LONGSHOT: WIN IF \"HALLOWEEN\" RESURFACES BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2462,
-      "keyword": "conspiracies",
+      "keyword": "smithsonian",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -714,23 +714,52 @@
       "market": "RESURFACE",
       "odds": 2.94,
       "permalink": "/call/2462.html",
-      "prediction": "This Agentic Detection of Online Conspiracies paper reads like a precursor. The signal points to it landing in a major lab's flagship model by year end.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "How the Smithsonian became the latest front in Trump's culture war is industry news now, not a rumor. Calling it: a concrete shipping consequence lands within ~6 months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARS // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Agentic Detection of Online Conspiracies",
-        "type": "arxiv",
-        "url": "https://arxiv.org/abs/2609.30250v1"
+        "title": "How the Smithsonian became the latest front in Trump's culture war",
+        "type": "ars",
+        "url": "https://arstechnica.com/tech-policy/2026/09/how-the-smithsonian-became-the-latest-front-in-trumps-culture-war/"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"CONSPIRACIES\" RESURFACES ACROSS THE FEEDS BY 2026-10-27"
+      "win_if": "WIN IF \"SMITHSONIAN\" RESURFACES ACROSS THE FEEDS BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2461,
-      "keyword": "implementing",
+      "keyword": "actually",
+      "keyword2": "",
+      "live": 34,
+      "live_prev": 34,
+      "manifold": {
+        "gamma": 1.001,
+        "geodesic": 41,
+        "phase": "BOTTOMING",
+        "regime": "SPACELIKE"
+      },
+      "market": "INDEX",
+      "odds": 2.94,
+      "permalink": "/call/2461.html",
+      "prediction": "Watch How much should you actually tip on a 'free' walking tour? leave the bubble. The call is dated today and it is falsifiable: mainstream within two quarters or the machine eats the loss in public.",
+      "rationale": "VEL +200%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +300% // CROSSING FROM ARXIV // HALF-LIFE 202.4d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom -0.01 // geodesic +41% // BOTTOMING IN 1D",
+      "resolved_on": "",
+      "resolves_by": "2026-10-27",
+      "source": {
+        "title": "How much should you actually tip on a 'free' walking tour?",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPeVVYODVPNEdTQklBU0FtYnhfVkVfamdBVS16S2FLckl2d2dUQ3BuMEVzQmcwaWE2ajUwRkp0ZmwwM1FzaHBrZElxSkxCcE1yTG1Obi1TQlBwNEZXaVFkNmNXdUtVRjZJZVNSTzdLb2RTd2N0T2VIM0JERkNkLW5LYThsWUEzT2RGdV9UZGNBREN1dUhVRHY3U0p3NGFpbXJs?oc=5"
+      },
+      "status": "OPEN",
+      "win_if": "WIN IF THE PULSE INDEX CROSSES 81 BY 2026-10-27"
+    },
+    {
+      "confidence": 0.34,
+      "date": "2026-09-27",
+      "id": 2460,
+      "keyword": "conspiracies",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -740,55 +769,26 @@
         "phase": "RISING",
         "regime": "SPACELIKE"
       },
-      "market": "INDEX",
-      "odds": 2.94,
-      "permalink": "/call/2461.html",
-      "prediction": "PipePipe: NewPipe hard fork implementing SponsorBlock is pulling outsized attention on HN. Betting the backlash think-pieces land within a month and the hype cools by next quarter.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // HALF-LIFE 131.5d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
-      "resolved_on": "",
-      "resolves_by": "2026-10-27",
-      "source": {
-        "title": "PipePipe: NewPipe hard fork implementing SponsorBlock",
-        "type": "hn",
-        "url": "https://github.com/InfinityLoop1308/PipePipe"
-      },
-      "status": "OPEN",
-      "win_if": "WIN IF THE PULSE INDEX CROSSES 80 BY 2026-10-27"
-    },
-    {
-      "confidence": 0.34,
-      "date": "2026-09-27",
-      "id": 2460,
-      "keyword": "resonant",
-      "keyword2": "",
-      "live": 34,
-      "live_prev": 34,
-      "manifold": {
-        "gamma": 1.033,
-        "geodesic": 99,
-        "phase": "RISING",
-        "regime": "SPACELIKE"
-      },
       "market": "OVER",
       "odds": 2.94,
       "permalink": "/call/2460.html",
-      "prediction": "Control Resonant becomes Remedy's top Steam launch, and even pirates are telling people to is in the headlines. The signal says a bigger move (a deal, a rule, or a backlash) follows within two quarters.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL -300% // HALF-LIFE 2.4d // MANIFOLD SPACELIKE // gamma 1.03 // rel-mom +0.05 // geodesic +99% // RISING",
+      "prediction": "Fresh cs.AI/cs.LG work on Agentic Detection of Online Conspiracies just hit arXiv. Calling it now: this goes from paper to shipped product feature inside nine months.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH ARXIV // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Control Resonant becomes Remedy's top Steam launch, and even pirates are telling people to buy it",
-        "type": "news",
-        "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQRk9fdDdWQ1llUS0wSkNHdVg2Vk1ZWGlXOFZGa0M2LW1wWnF5ZkgwR0dCaExwQVoxYmVUNWl1XzNtaGlSUEw5NVMyb2dpSU9qOFFYS3REVWh3akVhNjdrUHVNXzcydFJZeWktYWZQaDdTSFdFOTkzaldIY2ZiODQtaVpLUkMxQ3lvb3VKVzdTRE4taHFjbHVTYi00QV9zemNqYVFKeHdHV3BNVjNJSVc4dXpTSEhsWXlBX1p0MHpyWDVhVjIxd0d4M2JIanVZbk1tUDVZbjdBcXhTUWdL?oc=5"
+        "title": "Agentic Detection of Online Conspiracies",
+        "type": "arxiv",
+        "url": "https://arxiv.org/abs/2609.30250v1"
       },
       "status": "OPEN",
-      "win_if": "WIN IF \"RESONANT\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-27"
+      "win_if": "WIN IF \"CONSPIRACIES\" CLEARS 2 MENTIONS IN A DAY BY 2026-10-27"
     },
     {
       "confidence": 0.34,
       "date": "2026-09-27",
       "id": 2459,
-      "keyword": "georgism",
+      "keyword": "grounds",
       "keyword2": "",
       "live": 34,
       "live_prev": 34,
@@ -801,17 +801,17 @@
       "market": "LONGSHOT",
       "odds": 2.94,
       "permalink": "/call/2459.html",
-      "prediction": "Does Georgism work? Five years later is the conversation on HN today. The signal says a major incumbent ships a near-identical feature before Q4.",
-      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH HN // ACCEL +100% // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
+      "prediction": "Normal people are about to find EA Sports FC 27 Review - The Grounds is Shaky, But the Tactics System Shows Promise. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
+      "rationale": "VEL +400%/7d // 1/10 FEEDS // REACH THE NEWS // ACCEL +100% // CROSSING FROM HN // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.01 // geodesic +59% // RISING",
       "resolved_on": "",
       "resolves_by": "2026-10-27",
       "source": {
-        "title": "Does Georgism work? Five years later",
-        "type": "hn",
-        "url": "https://www.astralcodexten.com/p/does-georgism-work-five-years-later"
+        "title": "EA Sports FC 27 Review - The Grounds is Shaky, But the Tactics System Shows Promise",
+        "type": "news",
+        "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFBubWFQOWZwZDBUOHNqMWtVOW91YTRlelNLRHdQNG8zYmV6NWs4Q09kZ0tDcTkyOUw4bFBvcWNiVFlxN2xmS2ctTmd6bnlKRThrVHU4OHo1SFhTTENIajVMVg?oc=5"
       },
       "status": "OPEN",
-      "win_if": "LONGSHOT: WIN IF \"GEORGISM\" RESURFACES BY 2026-10-27"
+      "win_if": "LONGSHOT: WIN IF \"GROUNDS\" RESURFACES BY 2026-10-27"
     },
     {
       "confidence": 0.34,
@@ -1528,14 +1528,14 @@
       "permalink": "/call/2434.html",
       "prediction": "Dev.to writers are rallying around What If Your AI Agent Never Had to Leave the Browser? (Demo ). Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
       "rationale": "VEL -12%/7d // 1/10 FEEDS // REACH DEV.TO // ACCEL -50% // HALF-LIFE 109.4d // MANIFOLD SPACELIKE // gamma 1.02 // rel-mom +0.05 // geodesic +99% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-09-27",
       "resolves_by": "2026-10-25",
       "source": {
         "title": "What If Your AI Agent Never Had to Leave the Browser? (Demo )",
         "type": "devto",
         "url": "https://dev.to/sylwia-lask/what-if-your-ai-agent-never-had-to-leave-the-browser-demo--5g"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "WIN IF \"BROWSER\" CLEARS 2 MENTIONS IN A DAY BY 2026-10-25"
     },
     {
@@ -3355,14 +3355,14 @@
       "permalink": "/call/2371.html",
       "prediction": "Normal people are about to find API Performance Testing: How to Design Realistic Tests. THE SIGNAL is on record before the wave: this one crosses over before Q4. Come prove the machine wrong.",
       "rationale": "VEL +100%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL -200% // CROSSING FROM ARXIV // HALF-LIFE 137d // MANIFOLD SPACELIKE // gamma 1.01 // rel-mom +0.04 // geodesic +97% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-09-27",
       "resolves_by": "2026-10-23",
       "source": {
         "title": "API Performance Testing: How to Design Realistic Tests",
         "type": "devto",
         "url": "https://dev.to/gramli/api-performance-testing-how-to-design-realistic-tests-59gn"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "LONGSHOT: WIN IF \"PERFORMANCE\" RESURFACES BY 2026-10-23"
     },
     {
@@ -4167,14 +4167,14 @@
       "permalink": "/call/2343.html",
       "prediction": "Dev.to writers are rallying around API Performance Testing: How to Design Realistic Tests. Expect tutorials to outpace the docs and adoption to snowball within a quarter.",
       "rationale": "VEL +180%/7d // 2/10 FEEDS // REACH DEV.TO // ACCEL +200% // HALF-LIFE 136.5d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.02 // geodesic +79% // RISING",
-      "resolved_on": "",
+      "resolved_on": "2026-09-27",
       "resolves_by": "2026-10-22",
       "source": {
         "title": "API Performance Testing: How to Design Realistic Tests",
         "type": "devto",
         "url": "https://dev.to/gramli/api-performance-testing-how-to-design-realistic-tests-59gn"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "WIN IF \"PERFORMANCE\" CLEARS 4 MENTIONS IN A DAY BY 2026-10-22"
     },
     {
@@ -6719,14 +6719,14 @@
       "permalink": "/call/2255.html",
       "prediction": "M5 Ultra and M6 Chip Benchmark Results Reveal Graphics Performance is having its breakout moment. THE SIGNAL calls it now, in writing: this is the start, not the peak. Tail the machine or bet against it.",
       "rationale": "VEL +400%/7d // 2/10 FEEDS // REACH THE NEWS // ACCEL +250% // CROSSING FROM ARXIV // HALF-LIFE 190.1d // MANIFOLD SPACELIKE // gamma 1.00 // rel-mom +0.00 // geodesic +88% // CHURNING",
-      "resolved_on": "",
+      "resolved_on": "2026-09-27",
       "resolves_by": "2026-10-18",
       "source": {
         "title": "M5 Ultra and M6 Chip Benchmark Results Reveal Graphics Performance",
         "type": "news",
         "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTFBhOHZYRkV0WjBpQTdPS1g0UDd0SDh3OFBpenhTTmFRYzZXTERfMlhjNk1NekF0WHJKUXJzV1VrTG9QcThUX1dkeGZmVGRvWHBjM2x3eDZIeWVodjBfQmx5UW5DZ2F2V1dOdS1ldFczUHJrNkZaSUFWQ0VHazlXZw?oc=5"
       },
-      "status": "OPEN",
+      "status": "HIT",
       "win_if": "WIN IF \"PERFORMANCE\" CLEARS 5 MENTIONS IN A DAY BY 2026-10-18"
     },
     {
@@ -72099,11 +72099,11 @@
   "schema": "the-signal/record/1",
   "scoreboard": {
     "has_rate": true,
-    "hits": 607,
+    "hits": 611,
     "misses": 1276,
-    "open": 599,
+    "open": 595,
     "rate": 32,
-    "resolved": 1883,
+    "resolved": 1887,
     "verdict": "UNDERWATER, AND NOT HIDING IT"
   },
   "total": 2482

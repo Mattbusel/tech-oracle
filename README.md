@@ -9,9 +9,9 @@ Most prediction content is vague and never checked. THE SIGNAL makes specific, d
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 27, 2026** // Index **70 (SURGING)** // hottest **WORLD** // record **607-1276**
+**September 27, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **611-1276**
 
-> Unsealed Briefs in Authors' Case v. Microsoft/OpenAI just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> Watching Go Concurrency Distilled climb HN. This is the kind of thing that quietly becomes table-stakes infrastructure within six months.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
