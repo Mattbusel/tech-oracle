@@ -9,9 +9,9 @@ Most prediction content is vague and never checked. THE SIGNAL makes specific, d
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 27, 2026** // Index **71 (SURGING)** // hottest **WORLD** // record **615-1276**
+**September 28, 2026** // Index **71 (SURGING)** // hottest **DEV** // record **618-1294**
 
-> When did Google get so weird? just crossed from the lab to the public. Dated call: it stays in the mainstream conversation, not a one-week flash. Fade it if you dare.
+> You're not an impostor, you just started from a different line is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
