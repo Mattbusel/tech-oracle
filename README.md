@@ -9,9 +9,9 @@ Most prediction content is vague and never checked. THE SIGNAL makes specific, d
 <!--SIGNAL:START-->
 ## Today on THE SIGNAL
 
-**September 28, 2026** // Index **71 (SURGING)** // hottest **PRO** // record **620-1294**
+**October 4, 2026** // Index **70 (SURGING)** // hottest **GAMES** // record **626-1406**
 
-> You're not an impostor, you just started from a different line is what developers are writing about today. This kind of grassroots momentum usually precedes a hiring wave.
+> The Accidental Blogger: How I Ended Up on DEV is trending with practitioners on dev.to. The signal says it hits job postings as a required skill within a year.
 
 Live: https://mattbusel.github.io/tech-oracle/ // Watch this repo for the daily dispatch.
 <!--SIGNAL:END-->
